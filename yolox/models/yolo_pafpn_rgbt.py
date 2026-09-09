@@ -22,6 +22,7 @@ class YOLOPAFPNRGBT(nn.Module):
         fusion_mode="avg",
     ):
         super().__init__()
+        self.input_channels = 6
         self.rgb_branch = YOLOPAFPN(
             depth,
             width,

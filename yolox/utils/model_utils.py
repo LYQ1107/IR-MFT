@@ -19,7 +19,14 @@ __all__ = [
 def get_model_info(model, tsize):
 
     stride = 64
-    img = torch.zeros((1, 3, stride, stride), device=next(model.parameters()).device)
+    backbone = getattr(model, "backbone", None)
+    input_channels = getattr(model, "input_channels", None)
+    if input_channels is None:
+        input_channels = getattr(backbone, "input_channels", 3)
+    img = torch.zeros(
+        (1, input_channels, stride, stride),
+        device=next(model.parameters()).device,
+    )
     flops, params = profile(deepcopy(model), inputs=(img,), verbose=False)
     params /= 1e6
     flops /= 1e9
