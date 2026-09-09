@@ -34,7 +34,11 @@ class Exp(MyExp):
         )
         self.train_ann = "train.json"
         self.val_ann = "test.json"
-        self.input_size = (800, 1440)
+        # The historical visible-only checkpoint was trained with multi-scale
+        # YOLOX inputs. Use a smaller fixed training size for the first paired
+        # development run so two independent YOLOPAFPN branches fit with a
+        # useful distributed batch size. Evaluation remains 800x1440 below.
+        self.input_size = (640, 1152)
         self.test_size = (800, 1440)
 
         self.random_size = None
