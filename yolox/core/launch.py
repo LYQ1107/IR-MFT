@@ -154,7 +154,10 @@ def launch_by_subprocess(
         current_env["LOCAL_RANK"] = str(local_rank)
 
         # spawn the processes
-        cmd = ["python3", *raw_argv]
+        # Keep the interpreter used by the parent process. The host may have a
+        # system ``python3`` without the CUDA/PyTorch environment required by
+        # the experiment.
+        cmd = [sys.executable, *raw_argv]
 
         process = subprocess.Popen(cmd, env=current_env)
         processes.append(process)
