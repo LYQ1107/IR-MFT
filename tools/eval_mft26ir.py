@@ -28,6 +28,11 @@ def make_parser():
     parser.add_argument("--exp_file", default="exps/yolox_mft26ir_rgbt_v1.py")
     parser.add_argument("--ckpt", required=True)
     parser.add_argument("--output", default="results/v1_avg")
+    parser.add_argument(
+        "--sequences",
+        default=None,
+        help="comma-separated test sequences to evaluate in this worker",
+    )
     parser.add_argument("--data-root", default=os.environ.get("MFT26IR_ROOT", DEFAULT_ROOT))
     parser.add_argument("--trackeval-root", default=DEFAULT_TRACKEVAL_ROOT)
     parser.add_argument("--batch-size", type=int, default=1)
@@ -211,11 +216,26 @@ def main():
             std=(0.229, 0.224, 0.225),
         ),
     )
-    sequences = []
+    all_sequences = []
     for video in dataset.coco.dataset.get("videos", []):
-        sequences.append(video["file_name"])
-    if not sequences:
+        all_sequences.append(video["file_name"])
+    if not all_sequences:
         raise RuntimeError("No test sequences were found in the annotation JSON")
+
+    if args.sequences:
+        requested_sequences = [
+            sequence.strip() for sequence in args.sequences.split(",") if sequence.strip()
+        ]
+        unknown_sequences = sorted(set(requested_sequences) - set(all_sequences))
+        if unknown_sequences:
+            raise ValueError(f"Unknown test sequences: {unknown_sequences}")
+        sequences = [
+            sequence for sequence in all_sequences if sequence in requested_sequences
+        ]
+    else:
+        sequences = all_sequences
+    if not sequences:
+        raise RuntimeError("No test sequences selected")
 
     tracker_args = SimpleNamespace(
         track_thresh=args.track_thresh,
@@ -226,39 +246,56 @@ def main():
     result_dir = os.path.join(args.output, "track_results")
     os.makedirs(result_dir, exist_ok=True)
     rows_by_sequence = {sequence: [] for sequence in sequences}
+    sequence_by_index = [
+        dataset.annotations[index][2].split("/")[0]
+        for index in range(len(dataset))
+    ]
+    selected_indices = [
+        index
+        for index, sequence in enumerate(sequence_by_index)
+        if sequence in rows_by_sequence
+    ]
     tracker = None
     current_sequence = None
     total_frames = 0
 
     with torch.no_grad():
-        for index in range(len(dataset)):
-            image, _, info, _ = dataset[index]
-            sequence = info[4].split("/")[0]
-            if sequence != current_sequence:
-                if sequence not in rows_by_sequence:
-                    raise RuntimeError(f"Unexpected sequence in data: {sequence}")
-                tracker = BYTETracker(tracker_args, frame_rate=25)
-                current_sequence = sequence
-
-            input_tensor = torch.from_numpy(image).unsqueeze(0).to(device)
+        batch_size = max(1, args.batch_size)
+        for batch_start in range(0, len(selected_indices), batch_size):
+            batch_indices = selected_indices[batch_start : batch_start + batch_size]
+            batch_items = [dataset[index] for index in batch_indices]
+            infos = [item[2] for item in batch_items]
+            input_tensor = torch.from_numpy(
+                np.stack([item[0] for item in batch_items], axis=0)
+            ).to(device)
             if args.fp16:
                 input_tensor = input_tensor.half()
-            output = postprocess(
+            outputs = postprocess(
                 model(input_tensor), 1, args.conf, args.nms
-            )[0]
-            if output is None:
-                output = torch.empty((0, 7), dtype=input_tensor.dtype, device=device)
-            online_targets = tracker.update(
-                output, (info[0], info[1]), exp.test_size
             )
-            for target in online_targets:
-                tlwh = target.tlwh
-                if tlwh[2] * tlwh[3] <= args.min_box_area:
-                    continue
-                rows_by_sequence[sequence].append(
-                    (info[2], tlwh, target.track_id, target.score)
+            for info, output in zip(infos, outputs):
+                sequence = info[4].split("/")[0]
+                if sequence != current_sequence:
+                    if sequence not in rows_by_sequence:
+                        raise RuntimeError(f"Unexpected sequence in data: {sequence}")
+                    tracker = BYTETracker(tracker_args, frame_rate=25)
+                    current_sequence = sequence
+
+                if output is None:
+                    output = torch.empty(
+                        (0, 7), dtype=input_tensor.dtype, device=device
+                    )
+                online_targets = tracker.update(
+                    output, (info[0], info[1]), exp.test_size
                 )
-            total_frames += 1
+                for target in online_targets:
+                    tlwh = target.tlwh
+                    if tlwh[2] * tlwh[3] <= args.min_box_area:
+                        continue
+                    rows_by_sequence[sequence].append(
+                        (info[2], tlwh, target.track_id, target.score)
+                    )
+                total_frames += 1
 
     for sequence in sequences:
         write_sequence_results(
