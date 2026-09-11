@@ -13,15 +13,31 @@ from .data_augment import preproc
 
 
 class _PairedTransformBase:
-    def __init__(self, rgb_means=None, std=None, swap=(2, 0, 1), max_labels=100):
+    def __init__(
+        self,
+        rgb_means=None,
+        std=None,
+        ir_means=None,
+        ir_std=None,
+        swap=(2, 0, 1),
+        max_labels=100,
+    ):
         self.means = rgb_means
         self.std = std
+        # The constructed IR images have a very different intensity
+        # distribution from the visible images.  Keep the old arguments as
+        # the default for V1 compatibility, while allowing V2+ to use
+        # modality-specific calibration.
+        self.ir_means = rgb_means if ir_means is None else ir_means
+        self.ir_std = std if ir_std is None else ir_std
         self.swap = swap
         self.max_labels = max_labels
 
     def _preprocess_pair(self, rgb, ir, input_dim):
         rgb, rgb_ratio = preproc(rgb, input_dim, self.means, self.std, self.swap)
-        ir, ir_ratio = preproc(ir, input_dim, self.means, self.std, self.swap)
+        ir, ir_ratio = preproc(
+            ir, input_dim, self.ir_means, self.ir_std, self.swap
+        )
         if not np.isclose(rgb_ratio, ir_ratio):
             raise AssertionError(
                 "RGB and IR received different resize ratios: "
@@ -47,8 +63,22 @@ class RGBTTrainTransform(_PairedTransformBase):
     transforms are disabled until the paired pipeline has been validated.
     """
 
-    def __init__(self, p=0.5, rgb_means=None, std=None, max_labels=100):
-        super().__init__(rgb_means, std, max_labels=max_labels)
+    def __init__(
+        self,
+        p=0.5,
+        rgb_means=None,
+        std=None,
+        ir_means=None,
+        ir_std=None,
+        max_labels=100,
+    ):
+        super().__init__(
+            rgb_means,
+            std,
+            ir_means=ir_means,
+            ir_std=ir_std,
+            max_labels=max_labels,
+        )
         self.p = p
 
     def __call__(self, rgb, ir, targets, input_dim):
@@ -96,8 +126,16 @@ class RGBTTrainTransform(_PairedTransformBase):
 class RGBTValTransform(_PairedTransformBase):
     """Validation preprocessing without random operations."""
 
-    def __init__(self, rgb_means=None, std=None):
-        super().__init__(rgb_means, std, max_labels=1)
+    def __init__(
+        self, rgb_means=None, std=None, ir_means=None, ir_std=None
+    ):
+        super().__init__(
+            rgb_means,
+            std,
+            ir_means=ir_means,
+            ir_std=ir_std,
+            max_labels=1,
+        )
 
     def __call__(self, rgb, ir, targets, input_dim):
         del targets

@@ -28,7 +28,7 @@ def make_parser():
 
 def build_mapping(source_state, target_state):
     mapped = {}
-    loaded = {"rgb": 0, "ir": 0, "head": 0}
+    loaded = {"rgb": 0, "ir": 0, "head": 0, "new": 0}
     missing = []
     unexpected = []
 
@@ -45,6 +45,12 @@ def build_mapping(source_state, target_state):
 
         source_value = source_state.get(source_key)
         if source_value is None:
+            # New fusion controls are intentionally initialized by the target
+            # experiment (for example V2's near-zero gate logits).
+            if target_key.startswith("backbone.fusion_"):
+                mapped[target_key] = target_value
+                loaded["new"] += 1
+                continue
             missing.append((target_key, source_key))
             continue
         if tuple(source_value.shape) != tuple(target_value.shape):
@@ -93,6 +99,7 @@ def main():
     print("loaded rgb params:", loaded["rgb"])
     print("loaded ir params:", loaded["ir"])
     print("loaded head params:", loaded["head"])
+    print("initialized new params:", loaded["new"])
     print("missing keys: 0")
     print("unexpected source keys:", len(unexpected), unexpected[:10])
     print("saved:", os.path.abspath(args.output))

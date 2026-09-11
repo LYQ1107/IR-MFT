@@ -49,12 +49,21 @@ class Exp(MyExp):
         self.eval_interval = 100
         self.no_aug_epochs = 0
         self.enable_mixup = False
-        self.data_num_workers = 0
+        # Paired JPEG decoding and geometric preprocessing are CPU-bound.
+        # InfiniteSampler now emits plain Python indices, so multiprocessing
+        # is safe and keeps the GPUs fed during the two-card run.
+        self.data_num_workers = 4
 
         self.test_conf = 0.1
         self.nmsthre = 0.7
         self.basic_lr_per_img = 0.001 / 64.0
         self.warmup_epochs = 1
+        self.rgb_means = (0.485, 0.456, 0.406)
+        self.rgb_std = (0.229, 0.224, 0.225)
+        # V1 keeps the historical visible normalization for both streams.
+        # Later experiments can override only the IR statistics.
+        self.ir_means = self.rgb_means
+        self.ir_std = self.rgb_std
         self.fusion_mode = "avg"
 
     def get_model(self):
@@ -100,8 +109,10 @@ class Exp(MyExp):
             self.train_ann,
             RGBTTrainTransform(
                 p=0.5,
-                rgb_means=(0.485, 0.456, 0.406),
-                std=(0.229, 0.224, 0.225),
+                rgb_means=self.rgb_means,
+                std=self.rgb_std,
+                ir_means=self.ir_means,
+                ir_std=self.ir_std,
                 max_labels=500,
             ),
         )
@@ -123,7 +134,7 @@ class Exp(MyExp):
         return DataLoader(
             dataset,
             num_workers=self.data_num_workers,
-            pin_memory=False,
+            pin_memory=True,
             batch_sampler=batch_sampler,
         )
 
@@ -133,8 +144,10 @@ class Exp(MyExp):
             "test",
             self.val_ann,
             RGBTValTransform(
-                rgb_means=(0.485, 0.456, 0.406),
-                std=(0.229, 0.224, 0.225),
+                rgb_means=self.rgb_means,
+                std=self.rgb_std,
+                ir_means=self.ir_means,
+                ir_std=self.ir_std,
             ),
         )
         if is_distributed:
@@ -149,7 +162,7 @@ class Exp(MyExp):
             batch_size=batch_size,
             sampler=sampler,
             num_workers=self.data_num_workers,
-            pin_memory=False,
+            pin_memory=True,
         )
 
     def get_evaluator(self, batch_size, is_distributed, testdev=False):

@@ -36,6 +36,12 @@ def make_parser():
     parser.add_argument("--data-root", default=os.environ.get("MFT26IR_ROOT", DEFAULT_ROOT))
     parser.add_argument("--trackeval-root", default=DEFAULT_TRACKEVAL_ROOT)
     parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
+        help="CPU workers used to decode and preprocess paired frames",
+    )
     parser.add_argument("--conf", type=float, default=0.1)
     parser.add_argument("--nms", type=float, default=0.7)
     parser.add_argument("--track-thresh", type=float, default=0.6)
@@ -46,6 +52,11 @@ def make_parser():
     parser.add_argument("--fp16", action="store_true")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--skip-trackeval", action="store_true")
+    parser.add_argument(
+        "--detections-output",
+        default=None,
+        help="optional directory for cached post-NMS detections used in tracker sweeps",
+    )
     return parser
 
 
@@ -117,6 +128,11 @@ def pd_is_nan(value):
         return bool(np.isnan(value))
     except TypeError:
         return False
+
+
+def keep_batch(batch):
+    """Keep variable-length MOT targets as a list in the evaluation loader."""
+    return batch
 
 
 def run_trackeval(result_dir, gt_root, output_dir, sequences, trackeval_root):
@@ -208,12 +224,18 @@ def main():
         model.half()
     model.eval()
 
+    rgb_means = getattr(exp, "rgb_means", (0.485, 0.456, 0.406))
+    rgb_std = getattr(exp, "rgb_std", (0.229, 0.224, 0.225))
+    ir_means = getattr(exp, "ir_means", rgb_means)
+    ir_std = getattr(exp, "ir_std", rgb_std)
     dataset = exp._dataset(
         "test",
         exp.val_ann,
         __import__("yolox.data", fromlist=["RGBTValTransform"]).RGBTValTransform(
-            rgb_means=(0.485, 0.456, 0.406),
-            std=(0.229, 0.224, 0.225),
+            rgb_means=rgb_means,
+            std=rgb_std,
+            ir_means=ir_means,
+            ir_std=ir_std,
         ),
     )
     all_sequences = []
@@ -258,16 +280,25 @@ def main():
     tracker = None
     current_sequence = None
     total_frames = 0
+    detections_by_sequence = {sequence: [] for sequence in sequences}
+
+    eval_dataset = torch.utils.data.Subset(dataset, selected_indices)
+    eval_loader = torch.utils.data.DataLoader(
+        eval_dataset,
+        batch_size=max(1, args.batch_size),
+        shuffle=False,
+        num_workers=max(0, args.workers),
+        pin_memory=True,
+        collate_fn=keep_batch,
+        persistent_workers=args.workers > 0,
+    )
 
     with torch.no_grad():
-        batch_size = max(1, args.batch_size)
-        for batch_start in range(0, len(selected_indices), batch_size):
-            batch_indices = selected_indices[batch_start : batch_start + batch_size]
-            batch_items = [dataset[index] for index in batch_indices]
+        for batch_items in eval_loader:
             infos = [item[2] for item in batch_items]
             input_tensor = torch.from_numpy(
                 np.stack([item[0] for item in batch_items], axis=0)
-            ).to(device)
+            ).to(device, non_blocking=True)
             if args.fp16:
                 input_tensor = input_tensor.half()
             outputs = postprocess(
@@ -280,6 +311,22 @@ def main():
                         raise RuntimeError(f"Unexpected sequence in data: {sequence}")
                     tracker = BYTETracker(tracker_args, frame_rate=25)
                     current_sequence = sequence
+
+                if args.detections_output is not None:
+                    if output is None or len(output) == 0:
+                        boxes = np.empty((0, 4), dtype=np.float32)
+                        scores = np.empty((0,), dtype=np.float32)
+                    else:
+                        output_np = output.detach().float().cpu().numpy()
+                        scale = min(
+                            exp.test_size[0] / float(info[0]),
+                            exp.test_size[1] / float(info[1]),
+                        )
+                        boxes = (output_np[:, :4] / scale).astype(np.float32)
+                        scores = (output_np[:, 4] * output_np[:, 5]).astype(np.float32)
+                    detections_by_sequence[sequence].append(
+                        (int(info[2]), boxes, scores)
+                    )
 
                 if output is None:
                     output = torch.empty(
@@ -301,6 +348,28 @@ def main():
         write_sequence_results(
             os.path.join(result_dir, f"{sequence}.txt"), rows_by_sequence[sequence]
         )
+
+    if args.detections_output is not None:
+        os.makedirs(args.detections_output, exist_ok=True)
+        for sequence in sequences:
+            entries = detections_by_sequence[sequence]
+            frame_ids = np.asarray([entry[0] for entry in entries], dtype=np.int32)
+            offsets = np.zeros((len(entries) + 1,), dtype=np.int64)
+            if entries:
+                counts = np.asarray([len(entry[2]) for entry in entries], dtype=np.int64)
+                offsets[1:] = np.cumsum(counts)
+                boxes = np.concatenate([entry[1] for entry in entries], axis=0)
+                scores = np.concatenate([entry[2] for entry in entries], axis=0)
+            else:
+                boxes = np.empty((0, 4), dtype=np.float32)
+                scores = np.empty((0,), dtype=np.float32)
+            np.savez_compressed(
+                os.path.join(args.detections_output, f"{sequence}.npz"),
+                frame_ids=frame_ids,
+                offsets=offsets,
+                boxes=boxes,
+                scores=scores,
+            )
 
     metrics = {"motmetrics": compute_motmetrics(args.output + "/track_results", args.data_root, sequences)}
     if not args.skip_trackeval:

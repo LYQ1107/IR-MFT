@@ -87,9 +87,13 @@ class InfiniteSampler(Sampler):
         g.manual_seed(self._seed)
         while True:
             if self._shuffle:
-                yield from torch.randperm(self._size, generator=g)
+                # Materialize Python integers before the indices are handed
+                # to a multiprocessing DataLoader. Tensor views from
+                # randperm can be reinterpreted as invalid large indices by
+                # worker IPC when the sampler crosses a permutation boundary.
+                yield from torch.randperm(self._size, generator=g).tolist()
             else:
-                yield from torch.arange(self._size)
+                yield from torch.arange(self._size).tolist()
 
     def __len__(self):
         return self._size // self._world_size
