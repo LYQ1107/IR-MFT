@@ -1,0 +1,40 @@
+{
+  "run_id": "phase0_causal_ir_train_full_20261012",
+  "hypothesis": "Replace full-sequence future-dependent IR with a uniform current/past-only response stream before strict-online evaluation",
+  "git_commit": "545574a",
+  "seed": 0,
+  "config": {
+    "schema_version": 1,
+    "state": "FROZEN",
+    "mode": "temporal_ema",
+    "alpha": 0.01,
+    "initialization": "current first RGB frame; include first output",
+    "background_update": "after emitting response, B_t=(1-alpha)*B_(t-1)+alpha*RGB_t",
+    "strategy": "same fixed temporal generator for every sequence, no per-sequence selection",
+    "source": "trans-sn0612.py",
+    "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+    "remaining_response_parameters": "unchanged original pinned script",
+    "reason": "First causal implementation declared before development association outcomes; alpha is a fixed 100-frame EMA timescale, not outcome-selected",
+    "encoding": "original per-frame filename/dimensions, JPEG quality 95",
+    "controls_required": [
+      "current-frame local response",
+      "RGB with equal causal background history",
+      "RGB contrast enhancement",
+      "RGB pseudo-color transform"
+    ]
+  },
+  "detector_sha256": null,
+  "reid_sha256": null,
+  "split": "original train: six association train and two dev videos, no historical test",
+  "epochs": 0,
+  "checkpoint_selection": "Fixed generator configuration before modality diagnosis outcomes, not outcome selected",
+  "metrics": null,
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_ir_train_full_20261012.log",
+  "output": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "conclusion": "Generator/prefix-state chunking/optimizations pass causal and exact output parity checks; complete input build running.",
+  "status": "RUNNING",
+  "wrapper_sha256": "cc7208ca756d5445a1ecb12e56703ce8e7cde01c5b4c3782de9a8ad284638581",
+  "adapter_sha256": "593a0b825479e3096e6ceefc8fab1da36a3ba8d70666801d7aac87b3f317e6bf",
+  "probe_parity": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_ir_chunk_parity.json",
+  "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6"
+}

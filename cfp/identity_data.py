@@ -102,3 +102,25 @@ class PairedIdentityDataset(Dataset):
             self.cached_pair = rgb, ir
             self.cached_image_id = row['image_id']
         return (*(crop_to_tensor(im, row['bbox_xywh'], self.size) for im in self.cached_pair), index)
+
+
+class SingleIdentityDataset(Dataset):
+    """Read only the requested modality; RGB training never opens legacy IR."""
+    def __init__(self, data_root, records, modality='rgb', size=(128, 256)):
+        if modality not in ('rgb', 'ir'):
+            raise ValueError('Unknown modality')
+        self.root = Path(data_root) / 'train'
+        self.records, self.modality, self.size = records, modality, size
+        self.cached_image_id, self.cached_image = None, None
+
+    def __len__(self):
+        return len(self.records)
+
+    def __getitem__(self, index):
+        row = self.records[index]
+        if self.cached_image_id != row['image_id']:
+            self.cached_image = cv2.imread(str(self.root / row[self.modality + '_file']))
+            if self.cached_image is None:
+                raise ValueError(f'Cannot decode {self.modality} image {row["image_id"]}')
+            self.cached_image_id = row['image_id']
+        return crop_to_tensor(self.cached_image, row['bbox_xywh'], self.size), index
