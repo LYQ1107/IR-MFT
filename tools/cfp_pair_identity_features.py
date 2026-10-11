@@ -28,6 +28,8 @@ def main():
             raise ValueError('Identity features changed')
     if sources[0]['seed'] != sources[1]['seed'] or sources[0]['config_sha256'] != sources[1]['config_sha256']:
         raise ValueError('Main paired diagnostic requires matched encoder seed and budget')
+    if sources[0].get('embedding_stage', 'pre_neck') != sources[1].get('embedding_stage', 'pre_neck'):
+        raise ValueError('Main paired diagnostic representation stages differ')
     if sources[0]['input_regime'] != 'RGB current-frame only; no IR read' or sources[1]['input_regime'] != 'complete causal constructed IR':
         raise ValueError('Expected current RGB and causal IR encoders')
     features = [np.load(root / 'features.npz')['embedding'] for root in (args.rgb_run, args.ir_run)]
