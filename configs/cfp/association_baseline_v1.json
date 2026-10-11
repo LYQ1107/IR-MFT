@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "min_box_area": 100,
+  "appearance_weight": 0.3,
+  "appearance_weight_declared_candidates": [0.1, 0.3, 0.5],
+  "ir_weight": 0.5,
+  "ema": 0.9,
+  "proximity_iou": 0.1,
+  "appearance_max_distance": 0.35,
+  "appearance_distance": "half normalized cosine distance",
+  "score": "convex geometry/appearance cost, with fixed RGB/IR mixture if enabled; high-confidence and unconfirmed stages only",
+  "low_confidence_stage": "unchanged original ByteTrack IoU association",
+  "memory_writes": "every accepted observation, after all frame association decisions; reliability policy is a later independent ablation",
+  "scope": "Declared simple appearance baselines; no utility or predictive-memory claim. All settings selected only on dev, default appearance 0.3 before outcomes."
+}

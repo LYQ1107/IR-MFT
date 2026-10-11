@@ -32,7 +32,15 @@ def main():
     p.add_argument('--probe-frames', type=int, default=0, help='First N frames only; diagnostic, not an evaluation cache')
     p.add_argument('--fp16', action='store_true')
     p.add_argument('--seed', type=int, default=0)
+    p.add_argument('--input-regime', choices=['legacy_reproduction', 'causal'], required=True)
     args = p.parse_args()
+    generation_path = args.data_root / 'manifest.json'
+    if args.input_regime == 'causal':
+        generation = json.loads(generation_path.read_text())
+        if generation['status'] != 'COMPLETE':
+            raise ValueError('Causal input generation is incomplete')
+        if generation.get('probe_frames', 0) and not args.probe_frames:
+            raise ValueError('Probe inputs cannot form a full evaluation cache')
     if args.output.exists() and list(args.output.glob('*.npz')):
         raise FileExistsError('Refuse to overwrite existing detection cache')
     args.output.mkdir(parents=True, exist_ok=True)
@@ -61,6 +69,8 @@ def main():
                   batch_size=args.batch_size, workers=args.workers, seed=args.seed, conf=.1, nms=.7,
                   partition=args.partition, source_split=source_split, probe_frames=args.probe_frames,
                   rgb_means=exp.rgb_means, rgb_std=exp.rgb_std, ir_means=exp.ir_means, ir_std=exp.ir_std)
+    config.update(input_regime=args.input_regime,
+                  generation_manifest_sha256=sha256(generation_path) if generation_path.exists() else None)
     provenance = dict(schema_version=1, config=config, config_sha256=config_hash(config),
                       checkpoint_sha256=sha256(args.checkpoint), checkpoint_path=str(args.checkpoint),
                       protocol_sha256=sha256(args.protocol), annotation_sha256=sha256(args.data_root / 'annotations' / (source_split + '.json')),
