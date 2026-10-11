@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "round": 1,
+  "hypothesis": "Observed pre-neck unit vectors occupy a narrow cone: total development feature variance about 0.01, first-frame fish cosine above 0.98; triplet loss remains near its 0.3 margin despite 90% train classification accuracy. Absolute cosine affinity largely changes acceptance thresholds rather than identities. The trained BN neck may provide a better scaled identity metric.",
+  "change": "Use normalized post-BN-neck vectors from exactly the same frozen epoch12 weights. No retraining, new parameters, dev label fitting or detector changes.",
+  "main_default": "pre_neck",
+  "declared_candidate": "post_neck",
+  "seed_plan": [0, 1, 2],
+  "selection": "Compare all seeds and existing declared association candidates using canonical dev HOTA then AssA then IDF1. Report failures and per-video tradeoffs. Give external association methods the same representation candidate before strongest-baseline claims.",
+  "controls": "Same new representation for both independent RGB encoders and all RGB auxiliary controls if retained. Current/past-only inputs remain unchanged.",
+  "scope": "Evidence-directed baseline representation repair; not CMUE, PLIM or a new scientific contribution. Frozen before any post-neck feature extraction/outcomes. Original pre-neck runs retained."
+}

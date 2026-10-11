@@ -27,7 +27,7 @@ These output paths already contain verified evidence; use fresh output paths for
 
 `configs/cfp/protocol_v2.json` freezes six association-train and two dev videos, seeds 0/1/2, identity namespaces and audited derived GT. Its old inherited informational IR/preprocessing fields are superseded by the explicit `evaluation_gt_policy` and separate `ir_provenance.json`/`causal_ir_v1.json`; do not silently edit the frozen split file. New official evaluations require `--derived-gt-root /data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt`. Detector V3 previously saw dev images; disclose this exposure.
 
-`cfp/pseudo_ir.py` imports hash-pinned original generators from `IR-MFT_assets/scripts`, without running their old-path mains. Fixed temporal response + past-only EMA background is a separate input version. Geometry caching/component lookup are pixel-equivalent optimizations; offline chunk scheduling uses exact prefix-state checkpoints and does not introduce future observations. Generator runtime must be counted in an online speed report. Full generation is not yet complete at this milestone.
+`cfp/pseudo_ir.py` imports hash-pinned original generators from `IR-MFT_assets/scripts`, without running their old-path mains. Fixed temporal response + past-only EMA background is a separate input version. Geometry caching/component lookup are pixel-equivalent optimizations; offline chunk scheduling uses exact prefix-state checkpoints and does not introduce future observations. Full generation covers all 32,085 original train frames; sequential/chunk byte parity and detector-prefix checks pass. Generator runtime must be counted in an online speed report.
 
 ## Frozen identity diagnosis
 
@@ -39,7 +39,46 @@ The project analysis runtime `/data3/liuyeqiang/.venvs/cfp-fishmot` is isolated 
 PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 \
  /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q \
  tests/test_cfp_protocol.py tests/test_cfp_identity_data.py \
- tests/test_cfp_causal_ir.py tests/test_cfp_feature_diagnosis.py
+ tests/test_cfp_causal_ir.py tests/test_cfp_feature_diagnosis.py \
+ tests/test_cfp_reid.py tests/test_cfp_association.py \
+ tests/test_cfp_detection_features.py tests/test_cfp_control_views.py \
+ tests/test_cfp_external_association.py
 ```
 
-24 passed at this milestone. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. No CMUE/PLIM training or new-method final-test outcome exists yet.
+38 tests pass at this milestone; log: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/pytest.log`. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. No CMUE/PLIM training or new-method final-test outcome exists yet.
+
+## Actual canonical association commands
+
+The default paired features for all three seeds were extracted with the same arguments below, using `--rgb-checkpoint .../reid_rgb_seedS/epoch12.pt`, `--ir-checkpoint .../reid_ir_causal_seedS/epoch12.pt`, batch 128 and eight workers. Do not overwrite existing evidence outputs; substitute fresh directories.
+
+```bash
+PYTHONPATH=. CUDA_VISIBLE_DEVICES=2 OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 \
+ /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_cache_detection_features.py \
+ --data-root /data3/liuyeqiang/datasets/mft26-ir-causal-v1 \
+ --detections /data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_dev_detections \
+ --protocol configs/cfp/protocol_v2.json --partition dev \
+ --rgb-checkpoint /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt \
+ --ir-checkpoint /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt \
+ --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_detection_features_seed0
+
+PYTHONPATH=. OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+ /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_replay_association.py \
+ --detections /data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_dev_detections \
+ --features-root /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_detection_features_seed0 \
+ --protocol configs/cfp/protocol_v2.json --partition dev \
+ --config configs/cfp/association_baseline_v1.json --mode rgb --appearance-weight .3 \
+ --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_rgb_seed0_w0.3
+
+PYTHONPATH=. OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+ /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_evaluate.py \
+ --data-root /data3/liuyeqiang/datasets/mft26-ir-causal-v1 \
+ --derived-gt-root /data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt \
+ --protocol configs/cfp/protocol_v2.json --partition dev \
+ --predictions /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_rgb_seed0_w0.3 \
+ --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_rgb_seed0_w0.3_evaluation \
+ --trackeval-root /data3/liuyeqiang/CFP-FishMOT_references/TrackEval
+```
+
+External association CLI/config and each pinned reference are in `cfp_replay_external_association.py` / `external_association_v1.json`. It consumes the same feature banks and proposals; no native FastReID weights are claimed. `cfp_pair_identity_features.py` verifies matched seed/config/index/features before offline diagnosis. `cfp_compose_rgb_control_features.py` composes the predeclared independent RGB seed pairs; it does not claim a measured encoder runtime for cache composition.
+
+Crossfit crop views are prepared by `cfp_prepare_crossfit_crops.py` at `/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/crossfit_crops/fold{0,1}`. Their `protocol.json` declares training/heldout groups and no canonical dev fitting. Crops are symlinked, labels are local train classes, opposite-fold/canonical dev labels remain -1. Use original ImageNet initialization. New training checkpoints preserve optimizer/scaler plus Torch CPU/CUDA, sampler and augmentation RNG state. `--resume` is limited to an incomplete run's last completed epoch with identical input/config/source/runtime hashes; legacy completed checkpoints are preserved and cannot be relabeled as deterministically resumable.

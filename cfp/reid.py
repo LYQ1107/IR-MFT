@@ -23,10 +23,13 @@ class FishReID(nn.Module):
         original.fc = nn.Identity()
         self.backbone.load_state_dict(original.state_dict(), strict=True)
 
-    def forward(self, images):
+    def forward(self, images, embedding_stage='pre_neck'):
         feature = self.projection(self.backbone(images))
-        normalized = F.normalize(feature.float(), dim=-1)
-        logits = self.classifier(self.neck(feature))
+        neck_feature = self.neck(feature)
+        if embedding_stage not in ('pre_neck', 'post_neck'):
+            raise ValueError('Unknown identity representation stage')
+        normalized = F.normalize((feature if embedding_stage == 'pre_neck' else neck_feature).float(), dim=-1)
+        logits = self.classifier(neck_feature)
         return normalized, logits
 
 

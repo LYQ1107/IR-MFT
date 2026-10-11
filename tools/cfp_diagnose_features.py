@@ -137,7 +137,7 @@ def main():
                                              'Wrong/noise IR are offline feature interventions, not acquired modalities',
                                              'Repeated RGB and zero IR reduce algebraically to the RGB cosine score',
                                              'Candidate gallery density varies by sequence; report per-sequence and identity macro scores',
-                                             'Frozen ImageNet encoder is not a fish-finetuned ReID baseline']))
+                                             'GT-crop representation results are not detector-crop identity association or tracking metrics']))
 
 
 if __name__ == '__main__':

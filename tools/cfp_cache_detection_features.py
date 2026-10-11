@@ -20,8 +20,9 @@ def worker_init(_):
 
 
 class DetectionCrops(torch.utils.data.Dataset):
-    def __init__(self, root, split, images, cache, paired):
+    def __init__(self, root, split, images, cache, paired, auxiliary_root=None):
         self.root = root / split
+        self.auxiliary_root = (auxiliary_root or root) / split
         self.images = images
         self.frames = cache['frame_ids']
         self.offsets = cache['offsets']
@@ -38,7 +39,7 @@ class DetectionCrops(torch.utils.data.Dataset):
         if frame != self.last_frame:
             record = self.images[frame]
             rgb = cv2.imread(str(self.root / record['vi_file_name']))
-            ir = cv2.imread(str(self.root / record['ir_file_name'])) if self.paired else None
+            ir = cv2.imread(str(self.auxiliary_root / record['ir_file_name'])) if self.paired else None
             if rgb is None or (self.paired and (ir is None or ir.shape != rgb.shape)):
                 raise ValueError('Missing or unaligned current-frame inputs')
             self.last_images = rgb, ir
@@ -81,6 +82,8 @@ def main():
     p.add_argument('--partition', choices=['train', 'dev', 'historical_test'], required=True)
     p.add_argument('--rgb-checkpoint', type=Path, required=True)
     p.add_argument('--ir-checkpoint', type=Path)
+    p.add_argument('--auxiliary-root', type=Path, help='Declared RGB control view; detector inputs remain data-root')
+    p.add_argument('--embedding-stage', choices=['pre_neck', 'post_neck'], default='pre_neck')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--batch-size', type=int, default=128)
     p.add_argument('--workers', type=int, default=8)
@@ -110,8 +113,25 @@ def main():
     names = {video['id']: video['file_name'] for video in annotation['videos']}
     rgb_model, rgb_metadata = load_encoder(args.rgb_checkpoint)
     ir_model, ir_metadata = load_encoder(args.ir_checkpoint) if args.ir_checkpoint else (None, None)
-    if ir_metadata and ir_metadata['training_metadata']['input_regime'] != 'complete causal constructed IR':
-        raise ValueError('IR encoder must be trained on causal inputs')
+    auxiliary_mode, auxiliary_generation_sha256 = 'constructed_ir', None
+    if args.auxiliary_root:
+        if ir_model is None:
+            raise ValueError('Auxiliary view requires its trained encoder')
+        auxiliary_path = args.auxiliary_root / 'manifest.json'
+        auxiliary = json.loads(auxiliary_path.read_text())
+        auxiliary_mode = auxiliary['config']['mode']
+        if auxiliary_mode not in ('rgb_contrast', 'rgb_background_difference'):
+            raise ValueError('Unknown auxiliary view')
+        if (auxiliary['status'] != 'COMPLETE' or auxiliary.get('probe_frames', 0) or
+                auxiliary['canonical_generation_manifest_sha256'] != sha256(generation_path)):
+            raise ValueError('Control view does not match the complete canonical input history')
+        if sha256(args.auxiliary_root / 'annotations' / (split + '.json')) != sha256(args.data_root / 'annotations' / (split + '.json')):
+            raise ValueError('Control frame indexing changed')
+        auxiliary_generation_sha256 = sha256(auxiliary_path)
+    expected_regime = ('complete causal constructed IR' if auxiliary_mode == 'constructed_ir' else
+                       f'complete causal RGB auxiliary control: {auxiliary_mode}')
+    if ir_metadata and ir_metadata['training_metadata']['input_regime'] != expected_regime:
+        raise ValueError('Auxiliary encoder training inputs disagree with selected view')
     if ir_metadata and ir_metadata['seed'] != rgb_metadata['seed']:
         raise ValueError('Main paired baseline uses matched encoder seed indices')
     args.output.mkdir(parents=True)
@@ -119,6 +139,10 @@ def main():
                     protocol_sha256=sha256(args.protocol), generation_manifest_sha256=sha256(generation_path),
                     detection_manifest_sha256=sha256(args.detections / 'manifest.json'),
                     rgb_encoder=rgb_metadata, ir_encoder=ir_metadata, fp16=True,
+                    auxiliary_view=auxiliary_mode if ir_model else None,
+                    auxiliary_generation_manifest_sha256=auxiliary_generation_sha256,
+                    storage_schema='ir column denotes the auxiliary view; inspect auxiliary_view, never infer a thermal sensor',
+                    embedding_stage=args.embedding_stage,
                     crop_hw=[128, 256], margin=.05, normalize='ImageNet', batch_size=args.batch_size,
                     source_sha256=sha256(__file__), crop_source_sha256=sha256('cfp/identity_data.py'),
                     model_source_sha256=sha256('cfp/reid.py'),
@@ -138,7 +162,7 @@ def main():
         images = {int(image['frame_id']): image for image in annotation['images'] if names[image['video_id']] == sequence}
         if not np.array_equal(cache['frame_ids'], np.arange(1, len(images) + 1)):
             raise ValueError('Proposal bank does not cover full selected video')
-        dataset = DetectionCrops(args.data_root, split, images, cache, ir_model is not None)
+        dataset = DetectionCrops(args.data_root, split, images, cache, ir_model is not None, args.auxiliary_root)
         loader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=False,
                                             num_workers=args.workers, pin_memory=True, worker_init_fn=worker_init)
         rgb_rows, ir_rows, valid_rgb_rows, valid_ir_rows, latencies = [], [], [], [], []
@@ -153,8 +177,8 @@ def main():
                 torch.cuda.synchronize()
                 t = time.perf_counter()
                 with torch.cuda.amp.autocast():
-                    rgb_feature, _ = rgb_model(rgb)
-                    ir_feature, _ = ir_model(ir) if ir_model else (None, None)
+                    rgb_feature, _ = rgb_model(rgb, embedding_stage=args.embedding_stage)
+                    ir_feature, _ = ir_model(ir, embedding_stage=args.embedding_stage) if ir_model else (None, None)
                 torch.cuda.synchronize()
                 latencies.append(time.perf_counter() - t)
                 if not torch.isfinite(rgb_feature).all() or (ir_feature is not None and not torch.isfinite(ir_feature).all()):

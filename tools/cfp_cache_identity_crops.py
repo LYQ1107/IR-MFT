@@ -32,6 +32,12 @@ def main():
         generation = json.loads((args.data_root / 'manifest.json').read_text())
         if generation['status'] != 'COMPLETE' or generation.get('probe_frames', 0):
             raise ValueError('IR training requires complete causal inputs')
+    view_mode = generation['config'].get('mode') if args.modality == 'ir' else None
+    if view_mode not in (None, 'rgb_contrast', 'rgb_background_difference'):
+        raise ValueError('Unknown auxiliary control view')
+    input_regime = ('RGB current-frame only; no IR read' if args.modality == 'rgb' else
+                    f'complete causal RGB auxiliary control: {view_mode}' if view_mode else
+                    'complete causal constructed IR')
     args.output.mkdir(parents=True)
     index = build_identity_index(args.data_root, args.protocol)
     write_json(args.output / 'index.json', index)
@@ -46,7 +52,7 @@ def main():
                     protocol_sha256=sha256(args.protocol), index_sha256=sha256(args.output / 'index.json'),
                     source_sha256=sha256(__file__), identity_source_sha256=sha256('cfp/identity_data.py'),
                     git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-                    input_regime='RGB current-frame only; no IR read' if args.modality == 'rgb' else 'complete causal constructed IR',
+                    input_regime=input_regime, auxiliary_view=view_mode,
                     generation_manifest_sha256=sha256(args.data_root / 'manifest.json') if args.modality == 'ir' else None)
     write_json(args.output / 'manifest.json', manifest)
     started = time.perf_counter()

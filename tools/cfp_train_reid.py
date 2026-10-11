@@ -92,9 +92,12 @@ def main():
     p.add_argument('--config', type=Path, required=True)
     p.add_argument('--seed', type=int, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--resume', action='store_true', help='Resume this incomplete run exactly from its last completed epoch')
     args = p.parse_args()
-    if args.output.exists():
+    if args.output.exists() and not args.resume:
         raise FileExistsError('A training run never overwrites an earlier experiment')
+    if args.resume and not (args.output / 'last.pt').is_file():
+        raise ValueError('Resume requires this run last.pt')
     config = json.loads(args.config.read_text())
     if config['state'] != 'FROZEN' or args.seed not in config['seed_plan']:
         raise ValueError('Undeclared configuration/seed')
@@ -135,7 +138,7 @@ def main():
     optimizer = torch.optim.AdamW([dict(params=backbone_parameters, lr=config['backbone_lr']),
                                    dict(params=head_parameters, lr=config['head_lr'])], weight_decay=config['weight_decay'])
     scaler = torch.cuda.amp.GradScaler(enabled=config['amp'])
-    args.output.mkdir(parents=True)
+    args.output.mkdir(parents=True, exist_ok=args.resume)
     manifest = dict(status='RUNNING', config=config, config_sha256=config_hash(config), seed=args.seed,
                     modality=crop_manifest['modality'], crop_manifest_sha256=sha256(args.crop_root / 'manifest.json'),
                     pretrained_sha256=sha256(args.pretrained), index_sha256=crop_manifest['index_sha256'],
@@ -145,10 +148,34 @@ def main():
                     parameters=sum(parameter.numel() for parameter in model.parameters()),
                     selection=config['checkpoint_selection'], scope='GT crop fish ReID training, dev only for reporting; no tracking claim',
                     input_regime=crop_manifest['input_regime'], epochs=[])
+    start_epoch, prior_seconds = 0, 0.
+    if args.resume:
+        previous = json.loads((args.output / 'manifest.json').read_text())
+        if previous['status'] == 'COMPLETE':
+            raise ValueError('Completed runs are immutable; do not resume them')
+        checkpoint = torch.load(args.output / 'last.pt', map_location='cpu')
+        if 'rng_state' not in checkpoint:
+            raise ValueError('Legacy checkpoint lacks exact sampler/augmentation RNG state; cannot claim deterministic resume')
+        for key in ['config_sha256', 'seed', 'crop_manifest_sha256', 'pretrained_sha256', 'index_sha256',
+                    'protocol_sha256', 'source_sha256', 'model_source_sha256', 'torch', 'cudnn', 'physical_visible_devices']:
+            if checkpoint['metadata'][key] != manifest[key]:
+                raise ValueError(f'Resume provenance changed: {key}')
+        model.load_state_dict(checkpoint['model'], strict=True)
+        optimizer.load_state_dict(checkpoint['optimizer'])
+        scaler.load_state_dict(checkpoint['scaler'])
+        rng.bit_generator.state = checkpoint['rng_state']['augmentation']
+        sampler.rng.bit_generator.state = checkpoint['rng_state']['sampler']
+        torch.set_rng_state(checkpoint['rng_state']['torch_cpu'])
+        torch.cuda.set_rng_state_all(checkpoint['rng_state']['torch_cuda'])
+        start_epoch = checkpoint['epoch']
+        prior_seconds = checkpoint['elapsed_seconds_before_checkpoint']
+        manifest = checkpoint['metadata']
+        manifest['resumes'] = manifest.get('resumes', []) + [dict(checkpoint_sha256=sha256(args.output / 'last.pt'), start_epoch=start_epoch,
+                                                               git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip())]
     write_json(args.output / 'manifest.json', manifest)
     steps_per_epoch = math.ceil(sum(row['partition'] == 'train' for row in records) / (sampler.p * sampler.k))
     started_all = time.perf_counter()
-    for epoch in range(config['epochs']):
+    for epoch in range(start_epoch, config['epochs']):
         model.train()
         sums = np.zeros(4, np.float64)
         epoch_start = time.perf_counter()
@@ -190,7 +217,10 @@ def main():
                       seconds=time.perf_counter() - epoch_start, steps=steps_per_epoch)
         manifest['epochs'].append(report)
         state = dict(model=model.state_dict(), optimizer=optimizer.state_dict(), scaler=scaler.state_dict(),
-                     epoch=epoch + 1, config=config, seed=args.seed, metadata=manifest)
+                     epoch=epoch + 1, config=config, seed=args.seed, metadata=manifest,
+                     rng_state=dict(augmentation=rng.bit_generator.state, sampler=sampler.rng.bit_generator.state,
+                                    torch_cpu=torch.get_rng_state(), torch_cuda=torch.cuda.get_rng_state_all()),
+                     elapsed_seconds_before_checkpoint=prior_seconds + time.perf_counter() - started_all)
         temporary = args.output / 'last.partial.pt'
         torch.save(state, temporary)
         temporary.replace(args.output / 'last.pt')
@@ -219,7 +249,7 @@ def main():
     retrieval = oracle_retrieval(records, all_features, config['triplet_positive_minimum_frame_gap'])
     manifest.update(status='COMPLETE', checkpoint_sha256=sha256(args.output / f'epoch{config["epochs"]}.pt'),
                     features_sha256=sha256(args.output / 'features.npz'), dev_oracle_retrieval=retrieval,
-                    total_seconds=time.perf_counter() - started_all, peak_gpu_memory_bytes=torch.cuda.max_memory_allocated(),
+                    total_seconds=prior_seconds + time.perf_counter() - started_all, peak_gpu_memory_bytes=torch.cuda.max_memory_allocated(),
                     crop_encoder_batch128_latency_p50_p95_ms=(np.quantile(latencies, [.5, .95]) * 1000).tolist(),
                     latency_scope='Cache-backed crop encoding; excludes original image decode, detector and tracker; not end-to-end FPS')
     write_json(args.output / 'manifest.json', manifest)

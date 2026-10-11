@@ -41,11 +41,21 @@ Recovered `trans-sn0612.py` takes median background from up to 80 uniformly samp
 
 ## I-01: weak and inconsistent frozen identity evidence
 
-Frozen ImageNet ResNet50 legacy-input diagnosis is complete. Equal fusion gains 2.857pp retrieval on BT-005 but loses 3.571pp on SN-013. RGB pair AUC is only 0.521/0.586; domain/identity training is required before a utility-module claim. Do not choose a scene-specific IR version using these outcomes. No fish ReID repair round has occurred yet.
+Frozen ImageNet ResNet50 legacy-input diagnosis is complete. Equal fusion gains 2.857pp retrieval on BT-005 but loses 3.571pp on SN-013. RGB pair AUC is only 0.521/0.586; domain/identity training is required before a utility-module claim. Do not choose a scene-specific IR version using these outcomes. Three-seed fish training and paired causal diagnosis are now complete; mean IR and mean fixed-fusion retrieval remain below RGB. Per-query corrections/harms are retained.
+
+## I-02: narrow metric cone and identity-insensitive association
+
+Pre-neck fish features are normalized but concentrated: BT-005 proposal feature variance sums to about 0.01, and first-ten proposal pair cosines exceed 0.98. Final RGB seed 0 classifier accuracy is 90.90%, while batch-hard triplet remains 0.3125 (margin 0.3). Default .3 appearance weight gives HOTA 47.0802 / AssA 31.3048 / IDF1 55.9773 / IDSW 98, below ByteTrack 49.2967 / 34.0115 / 58.8771 / 86. Different RGB/IR/fusion inputs and seeds produce byte-identical tracks. The constant identical-vector control at .3 also reproduces these tracks exactly. The .1 configurations give 50.7595 HOTA but identical modality trajectories, so no IR benefit is established.
+
+Hypothesis: small absolute cosine distances reduce geometry costs and change acceptance without meaningful identity ranking. First repair: use the existing trained BN neck as the normalized inference metric, with unchanged frozen weights, candidate rules and all-seed comparison. Declared in `reid_repair_v1.json` before post-neck extraction. Further repair must depend on candidate/crop/memory evidence, not arbitrary depth or test tuning. Identity-blind controls cover all declared weights. This is baseline diagnosis, not a rejection or validation of CMUE/PLIM.
+
+## External association compatibility
+
+First HybridSORT full replay fails when its prediction returns singleton score arrays placed beside scalars in a NumPy row; NumPy 1.24 rejects that sequence. Failure log/output remain at `phase1/causal_dev_hybrid_sort_seed0_c2`. A process-local wrapper converts only finite singleton scores to Python float, preserving values; multi-value/nonfinite scores are rejected. Both full dev videos then complete, HOTA 46.3243 / IDSW 141 at declared upstream high/low appearance 4/4.4. No vendor file changed. BoT-SORT completes via an explicit shared-feature provider with exact native confidence/filter order verification, HOTA 49.7996 / IDSW 112 at default .25. All-seed/search comparisons remain necessary.
 
 ## Infrastructure repair
 
-Official dataset loader still uses removed NumPy float/int aliases; process-local builtin alias compatibility fixed the first evaluation error, with upstream source unchanged. Initial pytest import missed pluggy because dependencies were deliberately installed without global resolution; installed lightweight test dependencies in the project venv only. An installed `tools` package shadows the repository namespace; the diagnostic test loads the CLI by its exact file path. Twenty-four tests pass. PyWavelets 1.6.0 was added without dependencies only to the project venv for recovered local-generation controls. No other environment modified.
+Official dataset loader still uses removed NumPy float/int aliases; process-local builtin alias compatibility fixed the first evaluation error, with upstream source unchanged. Initial pytest import missed pluggy because dependencies were deliberately installed without global resolution; installed lightweight test dependencies in the project venv only. An installed `tools` package shadows the repository namespace; tests load CLIs by exact file paths. Tests now cover external filter/order checking and representation-stage invariance in addition to causality/fallback. PyWavelets 1.6.0 was added without dependencies only to the project venv for recovered local-generation controls. No other environment modified. A new paired-feature composition CLI's unmatched parenthesis failed before outputs were created; syntax was corrected, compileall passed and all three paired diagnoses completed, with the failed log retained.
 
 ## Future H1/H2 diagnoses
 

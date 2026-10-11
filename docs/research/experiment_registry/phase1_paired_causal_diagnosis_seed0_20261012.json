@@ -1,0 +1,160 @@
+{
+  "run_id": "phase1_paired_causal_diagnosis_seed0_20261012",
+  "hypothesis": "Conditional corrections and harms of equal RGB/IR identity fusion plus matched feature interventions",
+  "git_commit": "734984b6176011bd32f546391aaebeeab13f97ae",
+  "seed": 0,
+  "config": {
+    "schema_version": 1,
+    "state": "FROZEN",
+    "seed": 0,
+    "minimum_frame_gap": 25,
+    "pairs_per_class_per_sequence": 5000,
+    "retrieval": "Nearest prior GT-labeled sample, at least 25 frames earlier; exclude novel identities until eligible",
+    "pair_sampling": "Sequence-specific, identity-uniform positives and different-identity negatives, both absolute frame gaps >=25",
+    "interventions": [
+      "rgb",
+      "ir",
+      "equal_fusion",
+      "wrong_ir",
+      "noise_ir",
+      "zero_ir",
+      "repeat_rgb"
+    ],
+    "scope": "Representation diagnosis only; no tracker selection or test outcomes"
+  },
+  "detector_sha256": null,
+  "reid_sha256": [
+    "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+    "4e1dcdc8bc3f607b5afc72c23f4fe86f317a25b77a4b98204c27962f691bccaf"
+  ],
+  "split": "protocol_v2 dev; GT oracle crops/history; no tracking claim",
+  "epochs": 12,
+  "checkpoint_selection": "fixed last epoch for both encoders; no diagnosis-based checkpoint selection",
+  "metrics": {
+    "BT-005": {
+      "samples": 1280,
+      "identities": 10,
+      "eligible_queries": 1260,
+      "query_coverage": 0.984375,
+      "interventions": {
+        "rgb": {
+          "causal_oracle_gallery_recall1": 0.30634920634920637,
+          "identity_macro_recall1": 0.3063492063492063,
+          "pair_auc": 0.55579512,
+          "positive_mean_cosine": 0.9904170036315918,
+          "negative_mean_cosine": 0.9900193214416504
+        },
+        "ir": {
+          "causal_oracle_gallery_recall1": 0.18412698412698414,
+          "identity_macro_recall1": 0.1841269841269841,
+          "pair_auc": 0.50933756,
+          "positive_mean_cosine": 0.9907196164131165,
+          "negative_mean_cosine": 0.990645706653595
+        },
+        "equal_fusion": {
+          "causal_oracle_gallery_recall1": 0.2865079365079365,
+          "identity_macro_recall1": 0.28650793650793654,
+          "pair_auc": 0.54175886,
+          "positive_mean_cosine": 0.9905683398246765,
+          "negative_mean_cosine": 0.9903325438499451
+        },
+        "wrong_ir": {
+          "causal_oracle_gallery_recall1": 0.2222222222222222,
+          "identity_macro_recall1": 0.22222222222222218,
+          "pair_auc": 0.54258028,
+          "positive_mean_cosine": 0.9905383586883545,
+          "negative_mean_cosine": 0.990333616733551
+        },
+        "noise_ir": {
+          "causal_oracle_gallery_recall1": 0.09761904761904762,
+          "identity_macro_recall1": 0.09761904761904762,
+          "pair_auc": 0.51131794,
+          "positive_mean_cosine": 0.4956907331943512,
+          "negative_mean_cosine": 0.4947218894958496
+        },
+        "zero_ir": {
+          "causal_oracle_gallery_recall1": 0.30634920634920637,
+          "identity_macro_recall1": 0.3063492063492063,
+          "pair_auc": 0.55579512,
+          "positive_mean_cosine": 0.9904170036315918,
+          "negative_mean_cosine": 0.9900193214416504
+        },
+        "repeat_rgb": {
+          "causal_oracle_gallery_recall1": 0.30634920634920637,
+          "identity_macro_recall1": 0.3063492063492063,
+          "pair_auc": 0.55579512,
+          "positive_mean_cosine": 0.9904170036315918,
+          "negative_mean_cosine": 0.9900193214416504
+        }
+      },
+      "fixed_fusion_corrections": 106,
+      "fixed_fusion_harms": 131
+    },
+    "SN-013": {
+      "samples": 1281,
+      "identities": 11,
+      "eligible_queries": 1260,
+      "query_coverage": 0.9836065573770492,
+      "interventions": {
+        "rgb": {
+          "causal_oracle_gallery_recall1": 0.5190476190476191,
+          "identity_macro_recall1": 0.5190476190476192,
+          "pair_auc": 0.68027814,
+          "positive_mean_cosine": 0.9895617365837097,
+          "negative_mean_cosine": 0.9878902435302734
+        },
+        "ir": {
+          "causal_oracle_gallery_recall1": 0.2507936507936508,
+          "identity_macro_recall1": 0.2507936507936508,
+          "pair_auc": 0.57494388,
+          "positive_mean_cosine": 0.9900254011154175,
+          "negative_mean_cosine": 0.9895131587982178
+        },
+        "equal_fusion": {
+          "causal_oracle_gallery_recall1": 0.49444444444444446,
+          "identity_macro_recall1": 0.49444444444444446,
+          "pair_auc": 0.6701246,
+          "positive_mean_cosine": 0.9897935390472412,
+          "negative_mean_cosine": 0.9887017607688904
+        },
+        "wrong_ir": {
+          "causal_oracle_gallery_recall1": 0.36666666666666664,
+          "identity_macro_recall1": 0.36666666666666664,
+          "pair_auc": 0.64179864,
+          "positive_mean_cosine": 0.9895901083946228,
+          "negative_mean_cosine": 0.9887615442276001
+        },
+        "noise_ir": {
+          "causal_oracle_gallery_recall1": 0.1007936507936508,
+          "identity_macro_recall1": 0.1007936507936508,
+          "pair_auc": 0.50345468,
+          "positive_mean_cosine": 0.49452733993530273,
+          "negative_mean_cosine": 0.4944254755973816
+        },
+        "zero_ir": {
+          "causal_oracle_gallery_recall1": 0.5190476190476191,
+          "identity_macro_recall1": 0.5190476190476192,
+          "pair_auc": 0.68027814,
+          "positive_mean_cosine": 0.9895617365837097,
+          "negative_mean_cosine": 0.9878902435302734
+        },
+        "repeat_rgb": {
+          "causal_oracle_gallery_recall1": 0.5190476190476191,
+          "identity_macro_recall1": 0.5190476190476192,
+          "pair_auc": 0.68027814,
+          "positive_mean_cosine": 0.9895617365837097,
+          "negative_mean_cosine": 0.9878902435302734
+        }
+      },
+      "fixed_fusion_corrections": 138,
+      "fixed_fusion_harms": 169
+    }
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/fish_paired_causal_seed0_attempt2.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/fish_paired_causal_seed0",
+  "status": "COMPLETE_OFFLINE_DIAGNOSIS",
+  "conclusion": "Fusion has both corrections and harms; average retrieval is below RGB. Corrupted correspondence/noise hurt; zero/repeated same RGB preserve RGB. No proof of CMUE or deployed tracking gain.",
+  "manifest_sha256": "5fe736752b41a99236c3660c10d45ea35c294ce82717082d9da877b0227a2807",
+  "report_sha256": "efd6e39b8fa057536bba01f455ff0ff071e8e8ed7d896c51a5992ce0ce05edc7",
+  "config_sha256": "c997c96cb4192f9c08951cde521f1026f16762e91f3833a065919afb72dd7208"
+}
