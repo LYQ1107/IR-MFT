@@ -1,0 +1,766 @@
+{
+  "schema_version": 1,
+  "references": [
+    {
+      "name": "SU-T",
+      "url": "https://github.com/vranlee/SU-T.git",
+      "commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+      "sources": {
+        "tools/train.py": {
+          "sha256": "634eb5fa3dce449e89f1bacc88e5b60a506d5ef22753a99896831fe257cca73c",
+          "classes": []
+        },
+        "exps/SU-T-ReID.py": {
+          "sha256": "f61e62b7c967adcce5dfa2df023269fed529c6c22e3291fc571fa75a1e158cc3",
+          "classes": [
+            "Exp"
+          ]
+        },
+        "trackers/SUT_UKF.py": {
+          "sha256": "b310975cc695d290e6315c1bdf8d990047aafec888e3a6150eb7d6f6228d266e",
+          "classes": [
+            "KalmanBoxTracker",
+            "SU_T"
+          ]
+        },
+        "trackers/SUT_reid_UKF.py": {
+          "sha256": "163a68e3e4516f7376a8b571f072ad43ad05b5901da21f247337fbaa6ea6b7cd",
+          "classes": [
+            "KalmanBoxTracker",
+            "SU_T_ReID"
+          ]
+        },
+        "trackers/association.py": {
+          "sha256": "9c519419b5900d7670998a72509c03b4aa836c686e5c830076683ec31af01d5f",
+          "classes": []
+        },
+        "trackers/UKF.py": {
+          "sha256": "45d0ad3915869607edad7efb4c7c9da7fab955e00371850101fbbe67c0be1e58",
+          "classes": [
+            "UKF"
+          ]
+        },
+        "fast_reid/fast_reid_interfece.py": {
+          "sha256": "0eee682911e5640333a6d6c677a52444156bd8ac7942b3e9015a8190cce76f1b",
+          "classes": [
+            "FastReIDInterface"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "d42d68140fec9ebb12c36b1d45acebd178c448e60c87c0e59f397524c4554f7f",
+        "fast_reid/LICENSE": "1d0721271005bd3d9397109c40534b283ad5b749300ca6fea2f13f483690b639"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "TIDE",
+      "url": "https://github.com/vranlee/TIDE.git",
+      "commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+      "sources": {
+        "src/train.py": {
+          "sha256": "59ebcaf3b46db9408785724ad05505a085c5e06f771622b9a83fc55ceb51664e",
+          "classes": []
+        },
+        "src/lib/models/tidel.py": {
+          "sha256": "1bed5578eb0d14746d9e22f25ffc61acac81a347ac6d6e972893a62d7f2c0ccf",
+          "classes": []
+        },
+        "src/lib/models/tides.py": {
+          "sha256": "5ef32690827018727fbf273fb2876ff24ffaf135e68bdde245f5a0e8debd034f",
+          "classes": []
+        },
+        "src/lib/models/yolo.py": {
+          "sha256": "d140d7714299e16a4cd461e7950bc8e3a78644617d137c05ecae2fa7e5a318c4",
+          "classes": [
+            "Detect",
+            "Model",
+            "PoseL"
+          ]
+        },
+        "src/lib/models/networks/fastvit.py": {
+          "sha256": "af5abac769ed86a292e94f50a27c0c65e5e63cb2fd162a69eff448a92805e187",
+          "classes": [
+            "ReparamLargeKernelConv",
+            "SEBlock",
+            "MobileOneBlock",
+            "MHSA",
+            "PatchEmbed",
+            "RepMixer",
+            "ConvFFN",
+            "RepCPE",
+            "RepMixerBlock",
+            "AttentionBlock",
+            "FastViT"
+          ]
+        },
+        "src/lib/trains/mot.py": {
+          "sha256": "e165f20568c70caf17e36f6a4096a06010ede6c3c8cb782988af064f34938427",
+          "classes": [
+            "GaussianBlurConv",
+            "MotLoss",
+            "CMotLoss",
+            "MotTrainer",
+            "CMotTrainer"
+          ]
+        },
+        "src/lib/datasets/dataset/jde.py": {
+          "sha256": "f26f0602211a434b5baa6dd48de254bf3fabd8f1357bb2e33ea2361630f64de3",
+          "classes": [
+            "LoadImages",
+            "LoadVideo",
+            "LoadImagesAndLabels",
+            "JointDataset",
+            "DetDataset"
+          ]
+        },
+        "src/lib/tracker/matching.py": {
+          "sha256": "918db4c392c897a275977995116e25a1169ff2f3c5d6691239fa8edd72c37da0",
+          "classes": []
+        },
+        "src/lib/tracker/mc_bot_sort.py": {
+          "sha256": "9ace9f1fff12b027c9903d30447ef1a1f252dfa04d5bfdf75ea7d077388ddaaa",
+          "classes": [
+            "STrack",
+            "BoTSORT"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "cee73ea000a4bf9b6831e0779e0ac6c5769447d2e2056570ca6a01ca4a924395"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "M4FT",
+      "url": "https://github.com/vranlee/M-4-FT.git",
+      "commit": "b120e568c07145891e043675892890ed9fe9279d",
+      "sources": {
+        "tools/train.py": {
+          "sha256": "ed97d7ba58307505d5db247c10dd82c29f8d22ceee0eed95e2004e451b9c82dc",
+          "classes": []
+        },
+        "exps/M4FT_exps.py": {
+          "sha256": "715898dd1d905ee95efccfdd891d2aee97e9a06d9662f30751a2742854446626",
+          "classes": [
+            "Exp"
+          ]
+        },
+        "yolox/models/m4ft.py": {
+          "sha256": "ac8a0200144a6c0468f205c3fa3cf1f0f133d9765a3f2236a442f1eba7ebc939",
+          "classes": [
+            "PatchEmbed2D",
+            "PatchMerging2D",
+            "PatchExpand2D",
+            "Final_PatchExpand2D",
+            "SelectiveScanMamba",
+            "SelectiveScanCore",
+            "SelectiveScanOflex",
+            "SelectiveScanFake",
+            "CrossScan",
+            "CrossMerge",
+            "CrossScan_Ab_2direction",
+            "CrossMerge_Ab_2direction",
+            "CrossScan_Ab_1direction",
+            "CrossMerge_Ab_1direction",
+            "SS2D",
+            "AttentionBlockWithMLP",
+            "ConvSSM1",
+            "YOLOXHead",
+            "YOLOPAFPN"
+          ]
+        },
+        "yolox/models/yolox.py": {
+          "sha256": "288381e66b0a285a0d9d8ca6b38cb9d41be72400e9ea634c4475274b48e6a706",
+          "classes": [
+            "YOLOX"
+          ]
+        },
+        "yolox/tracker/byte_tracker.py": {
+          "sha256": "01f57831f3b9478ad99eaa547a031ae773a02a8830bb45f200dedf2ded078c22",
+          "classes": [
+            "STrack",
+            "BYTETracker"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "d6377ed6b51d1631a1d608fcdcb0be4171feaafd143da72b4a22405adb3a832c"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "DM3T",
+      "url": "https://github.com/vranlee/DM-3-T.git",
+      "commit": "662790ba213b4460f19a1bdbefb9714416eb2b5c",
+      "sources": {
+        "src/main.py": {
+          "sha256": "b01ee902c195e11c066cee6f70baf5908dbdc01136672e453ae9dcd3d7287e41",
+          "classes": []
+        },
+        "src/lib/trainer.py": {
+          "sha256": "ef18a2fae3742ace4cf670ec872cf049e9d7aebf03bd57430183a281312e1a22",
+          "classes": [
+            "GenericLoss",
+            "ModleWithLoss",
+            "Trainer"
+          ]
+        },
+        "src/lib/model/networks/dla_rgbt_main.py": {
+          "sha256": "ee9d32c3ee12c363fcf418d615bc151bb37e183596734806420322cd250997e5",
+          "classes": [
+            "CrossModalDiffusionFusion",
+            "DiffusionModule",
+            "BasicBlock",
+            "Bottleneck",
+            "BottleneckX",
+            "Root",
+            "Tree",
+            "DLA",
+            "Identity",
+            "Conv",
+            "GlobalConv",
+            "DeformConv",
+            "IDAUp",
+            "DLAUp",
+            "Interpolate",
+            "DLASeg",
+            "CenterTrack_RGBT"
+          ]
+        },
+        "src/lib/model/networks/tf_fusion_refined.py": {
+          "sha256": "d9288a174ad6fcbbf6715b2da1d18c880584117de07ffa2e845a5e5ea59f9d39",
+          "classes": [
+            "Transformer_Fusion",
+            "TransformerEncoder",
+            "TransformerEncoderLayer",
+            "TransformerEncoder_f",
+            "TransformerEncoderLayer_f"
+          ]
+        },
+        "src/lib/dataset/generic_dataset_rgbt.py": {
+          "sha256": "0b3190ccfcf6cb8261884b22ab4ce398a73e26badc6489c44b102872a34b8f90",
+          "classes": [
+            "GenericDataset"
+          ]
+        },
+        "src/lib/utils/tracker.py": {
+          "sha256": "4affa6ffdd0b56d31f93aa617ccd4d168f7123a5b8142686d15f41de7eaaf3fc",
+          "classes": [
+            "Tracker"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "TFMFT",
+      "url": "https://github.com/vranlee/TFMFT.git",
+      "commit": "d4fbcc0d4df685cc01f5f5d7c9510601a1c9e5b2",
+      "sources": {
+        "tf_track.py": {
+          "sha256": "3fc0ea02abcd6164445af1719beac90b70ffba422491b7de8b29cd5d6a26407b",
+          "classes": []
+        },
+        "tracker_multi.py": {
+          "sha256": "2e36380ef6a70c60443efd19314904fc85245d4971ae9a54fe4b13412443fd07",
+          "classes": [
+            "Multi_Tracker"
+          ]
+        },
+        "eval_motchallenge.py": {
+          "sha256": "024076e1dc155a3004cd1476756204b385da5fc1d94c8c10b2048fc8a22c8897",
+          "classes": []
+        }
+      },
+      "license_files": {
+        "LICENSE": "d6377ed6b51d1631a1d608fcdcb0be4171feaafd143da72b4a22405adb3a832c"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "PFTrack",
+      "url": "https://github.com/wqw123wqw/PFTrack.git",
+      "commit": "73d4dc4c5e69e530f7a77d974bff7d2040720728",
+      "sources": {
+        "src/main.py": {
+          "sha256": "579ce3b1e4fa58d6319870de57a7919fe7c44f42eab5feac43e363d140a942de",
+          "classes": []
+        },
+        "src/lib/trainer.py": {
+          "sha256": "ef18a2fae3742ace4cf670ec872cf049e9d7aebf03bd57430183a281312e1a22",
+          "classes": [
+            "GenericLoss",
+            "ModleWithLoss",
+            "Trainer"
+          ]
+        },
+        "src/lib/model/networks/dla_V3_M.py": {
+          "sha256": "aa0ff2d51d9b7d8b0a74022404a5aa593da4e31ffb345434c82e07a789bc1b54",
+          "classes": [
+            "BasicBlock",
+            "Bottleneck",
+            "BottleneckX",
+            "Root",
+            "Tree",
+            "DLA",
+            "Identity",
+            "Conv",
+            "GlobalConv",
+            "DeformConv",
+            "IDAUp",
+            "DLAUp",
+            "Interpolate",
+            "DLASeg",
+            "CenterTrack_RGBT"
+          ]
+        },
+        "src/lib/model/networks/transformer_fusion_v3.py": {
+          "sha256": "50953a672a3af9be972337c0169dfa496da1ba9b4fdd0e61e02d8cd18cac002f",
+          "classes": [
+            "Transformer_Fusion",
+            "TransformerEncoder",
+            "TransformerEncoderLayer"
+          ]
+        },
+        "src/lib/model/networks/base_model.py": {
+          "sha256": "29920db53e536ad2928fd893a70acb338394f0d14eae252a92777879e0fc61c9",
+          "classes": [
+            "BaseModel"
+          ]
+        },
+        "src/lib/dataset/generic_dataset_rgbt.py": {
+          "sha256": "ac0bf97939eb6b7967e89d083fd1c089e1c5e54582926b3e71d5bace92428045",
+          "classes": [
+            "GenericDataset"
+          ]
+        },
+        "src/lib/utils/tracker.py": {
+          "sha256": "c00872881d0fbe2a25c8011e2d7b5530744e6a19be11999ee00a166895f96af0",
+          "classes": [
+            "Tracker"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "302bcc17cc1e7b1b03124fb5b27eace0274b1ce82107aa50cda2c176abc218b6"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "MOTIP",
+      "url": "https://github.com/MCG-NJU/MOTIP",
+      "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+      "sources": {
+        "models/motip/id_decoder.py": {
+          "sha256": "a16cf34bb16fa14a17d715231af1439cb3f1c1fa15d18341e2a84c61cdf59d81",
+          "classes": [
+            "IDDecoder"
+          ]
+        },
+        "models/motip/id_criterion.py": {
+          "sha256": "420d775f11605ae611aa16a70080d175df63ae7d34586514d8c49a905b281145",
+          "classes": [
+            "IDCriterion"
+          ]
+        },
+        "train.py": {
+          "sha256": "1a5f21957d591c23f665ee794b4e6d846a1112a5123c111eeb5208315745e2bd",
+          "classes": []
+        },
+        "docs/GET_STARTED.md": {
+          "sha256": "139357f7528e2290affb800654001277706322e8c7830b2841d7b4b39eedc4c4"
+        }
+      },
+      "license_files": {
+        "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "TCEI",
+      "url": "https://github.com/1941Zpf/TCEI.git",
+      "commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+      "sources": {
+        "TCEI/tcei.py": {
+          "sha256": "6b2e4cf428359f1ae3a46458b2a2d680d0eb18a33d6bf4901fed42207974cb73",
+          "classes": []
+        },
+        "submit_and_evaluate.py": {
+          "sha256": "33ef4985c4f74464d7e722346060779e6fe0c9bf6d8b7e4959b95e7bf210a3fb",
+          "classes": []
+        }
+      },
+      "license_files": {},
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "GOT-JEPA",
+      "url": "https://github.com/chenshihfang/GOT.git",
+      "commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+      "sources": {
+        "pytracking/ltr/models/tracking/tompnet_JEPA.py": {
+          "sha256": "230243d8f77c2629ef106311d0403824533687a2de9b5fed4d9d5560d3d5f7ca",
+          "classes": [
+            "ToMPnet"
+          ]
+        },
+        "pytracking/ltr/actors/tracking.py": {
+          "sha256": "96d1ce933ec13d5b642586fba7657c0cce48436936c8938eaae102ee799b9d09",
+          "classes": [
+            "ToMPActor",
+            "ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp",
+            "ToMPActor_PTcur",
+            "ToMPActor_PTcurq2",
+            "ToMPActor_PT",
+            "ToMPActor_autocast",
+            "ToMPActor_wL1",
+            "ToMPActor_comlossLGHF",
+            "ToMPActor_comlossLGH",
+            "ToMPActor_comlossLGF",
+            "ToMPActor_comlossGF",
+            "DiMPActor",
+            "KLDiMPActor",
+            "DiMPSimpleActor",
+            "ToMPActor_PiVOT",
+            "DiMPActor_clip",
+            "KYSActor",
+            "TargetCandiateMatchingActor"
+          ]
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_pretrain.py": {
+          "sha256": "b6cd0cec4a78a82e85f61ae48e08381fb178a1797e7e4b0b588bddadb8f4c7ff",
+          "classes": []
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_finetune.py": {
+          "sha256": "68913dbca4dde9defbf2eebdfb4492300f881b5795b3a8656883e805f95ce883",
+          "classes": []
+        }
+      },
+      "license_files": {
+        "LICENSE": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+        "pytracking/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "GOT-JEPA-paper",
+      "url": "https://github.com/chenshihfang/GOT.git",
+      "commit": "84e9324317e4afe62c06b2c51a97563f79730a2e",
+      "sources": {
+        "pytracking/ltr/models/tracking/tompnet_JEPA.py": {
+          "sha256": "e02ed01c41f16cf059d37a91615cfb6cf7ea4b299fbc9a3fc3babf265f6717a1",
+          "classes": [
+            "ToMPnet"
+          ]
+        },
+        "pytracking/ltr/actors/tracking.py": {
+          "sha256": "fe0d29b039fcf83e039d65803ae3fdc619584a8af3073c6aff1af3b315dd70a0",
+          "classes": [
+            "DiMPActor_clip",
+            "DiMPActor",
+            "KLDiMPActor",
+            "KYSActor",
+            "DiMPSimpleActor",
+            "TargetCandiateMatchingActor",
+            "ToMPActor_autocast",
+            "ToMPActor",
+            "ToMPActor_wL1",
+            "ToMPActor_comlossLGHF",
+            "ToMPActor_comlossLGH",
+            "ToMPActor_comlossLGF",
+            "ToMPActor_comlossGF",
+            "ToMPActor_PiVOT",
+            "ToMPActor_PT",
+            "ToMPActor_PTcurq2",
+            "ToMPActor_PTcur",
+            "ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp"
+          ]
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_pretrain.py": {
+          "sha256": "b6cd0cec4a78a82e85f61ae48e08381fb178a1797e7e4b0b588bddadb8f4c7ff",
+          "classes": []
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_finetune.py": {
+          "sha256": "68913dbca4dde9defbf2eebdfb4492300f881b5795b3a8656883e805f95ce883",
+          "classes": []
+        }
+      },
+      "license_files": {
+        "LICENSE": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+        "pytracking/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "HybridSORT",
+      "url": "https://github.com/ymzis69/HybridSORT.git",
+      "commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+      "sources": {
+        "tools/train.py": {
+          "sha256": "ed97d7ba58307505d5db247c10dd82c29f8d22ceee0eed95e2004e451b9c82dc",
+          "classes": []
+        },
+        "trackers/hybrid_sort_tracker/hybrid_sort_reid.py": {
+          "sha256": "b9a1817920636aeb11e1ff951e8fc1a2226370559e6af8b9ab1acb3251654a51",
+          "classes": [
+            "KalmanBoxTracker",
+            "Hybrid_Sort_ReID"
+          ]
+        },
+        "trackers/hybrid_sort_tracker/association.py": {
+          "sha256": "696c195f805dc1dee2bafa670820cb297ffbea9135a9dca1b6428c4f1ea24bd8",
+          "classes": []
+        }
+      },
+      "license_files": {
+        "LICENSE": "e9d83751678cbaba6dfba902ea39215c423d93425e58f8450d6001f7261696f9",
+        "fast_reid/LICENSE": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "BoT-SORT",
+      "url": "https://github.com/NirAharon/BoT-SORT",
+      "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
+      "sources": {
+        "tracker/bot_sort.py": {
+          "sha256": "ba6dd32ad4b96ee49d6f70654159269bd45ce15fd0fe5007f3a1b81bc257edf0",
+          "classes": [
+            "STrack",
+            "BoTSORT"
+          ]
+        },
+        "tracker/matching.py": {
+          "sha256": "020b2215c20467b31f7d8a977a2f557b8d1838f8baa5a5be54c0b8d14bbee4e1",
+          "classes": []
+        },
+        "tracker/gmc.py": {
+          "sha256": "508c3a4ea0e9a72478ce2d1d29aa1eb8892b3804c76b524a16a34dca23dba9ba",
+          "classes": [
+            "GMC"
+          ]
+        },
+        "fast_reid/fast_reid_interfece.py": {
+          "sha256": "99a2780d4cf9b1122f6ff3a0ecb57bff91330d66fc829e71e6c9860c1ca25d94",
+          "classes": [
+            "FastReIDInterface"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "12a15474ca15cec568da311e6cd89e593e3cd2bb5b790e75b90e1608306a3a5f",
+        "fast_reid/LICENSE": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "ByteTrack",
+      "url": "https://github.com/FoundationVision/ByteTrack.git",
+      "commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "sources": {
+        "tools/train.py": {
+          "sha256": "ed97d7ba58307505d5db247c10dd82c29f8d22ceee0eed95e2004e451b9c82dc",
+          "classes": []
+        },
+        "yolox/tracker/byte_tracker.py": {
+          "sha256": "7cecdcdd7998103969a4ba1772f4c9fb5560fd5eef05ca03e0d2df28346ca50b",
+          "classes": [
+            "STrack",
+            "BYTETracker"
+          ]
+        },
+        "yolox/models/yolo_head.py": {
+          "sha256": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8",
+          "classes": [
+            "YOLOXHead"
+          ]
+        },
+        "yolox/data/datasets/mot.py": {
+          "sha256": "de59489a4b984e989e427ca843a0db8a6d981d3e04bf447d6ca08016d5cf025f",
+          "classes": [
+            "MOTDataset"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "e9d83751678cbaba6dfba902ea39215c423d93425e58f8450d6001f7261696f9"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "FastReID",
+      "url": "https://github.com/JDAI-CV/fast-reid.git",
+      "commit": "c9bc3ceb2f7a6438b62fb515ea3df6d1e999e95d",
+      "sources": {
+        "tools/train_net.py": {
+          "sha256": "0d3b0e037badd61eb02323f32220a1f7ba8a0d904b3ff692afdbef58ab075e68",
+          "classes": []
+        },
+        "fastreid/modeling/meta_arch/baseline.py": {
+          "sha256": "924e7d83f1937337eebb3689c9d5cb49b31be20e1dcb9f61704a4ef9ece8110f",
+          "classes": [
+            "Baseline"
+          ]
+        },
+        "fastreid/solver/build.py": {
+          "sha256": "c601ded4d5b3e747825823ffd2685e1a66d02a1d0f489fbdebb37906085ecee7",
+          "classes": [
+            "GradientClipType"
+          ]
+        },
+        "fastreid/config/defaults.py": {
+          "sha256": "e7b10097643fdeb662a97a036b3cb63214846be46b038cde06563da68f72146c",
+          "classes": []
+        },
+        "fastreid/data/samplers/triplet_sampler.py": {
+          "sha256": "035eff5d65d86b734fabc736b6404419daf4bee3934a9dd0994916a8d207d75d",
+          "classes": [
+            "BalancedIdentitySampler",
+            "SetReWeightSampler",
+            "NaiveIdentitySampler"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "V-JEPA2",
+      "url": "https://github.com/facebookresearch/vjepa2.git",
+      "commit": "204698b45b3712590f06245fbfba32d3be539812",
+      "sources": {
+        "app/vjepa/train.py": {
+          "sha256": "abd6431069d541c96b9b31ec05fce954664c56d2d4ca6d67bb4c9e2ddd775a5f",
+          "classes": []
+        },
+        "app/vjepa/utils.py": {
+          "sha256": "9deea46704edd95f7be262bf4f0ffbac6b7a24162992ed057cb80da3438e8de3",
+          "classes": []
+        },
+        "src/models/predictor.py": {
+          "sha256": "3d8481bf2544b85ed92b3feb418e3b6d85ca1f81034c931b8c860f2d3d9aac2b",
+          "classes": [
+            "VisionTransformerPredictor"
+          ]
+        },
+        "src/models/vision_transformer.py": {
+          "sha256": "9d4fd4e3603311803c105cc5114e2bc12ff28bc11870637dd3969511d9dead74",
+          "classes": [
+            "VisionTransformer"
+          ]
+        },
+        "src/datasets/video_dataset.py": {
+          "sha256": "44cee1d4d7a643acb9f26402dcec961f3193240489bb1d2ee89e00515630af4b",
+          "classes": [
+            "VideoDataset"
+          ]
+        },
+        "src/masks/multiseq_multiblock3d.py": {
+          "sha256": "7ef7cf95b0bee9940ac7654aeb3535278bbafdd6d93b643f4142fd19769456d9",
+          "classes": [
+            "MaskCollator",
+            "_MaskGenerator"
+          ]
+        },
+        "configs/train/vitl16/pretrain-256px-16f.yaml": {
+          "sha256": "45d3528ae0e0b08a2da40a54958eff4ecd86321f58cde26d93d84faf9799b48b"
+        }
+      },
+      "license_files": {
+        "LICENSE": "cf9b17822d1fcd4ff32ccbe14183386fb3adf6f2ff92dc184130823f7fc28173"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "DINOv3",
+      "url": "https://github.com/facebookresearch/dinov3",
+      "commit": "6876159a11b4df116f30f667f8c9888617df0751",
+      "sources": {
+        "dinov3/train/train.py": {
+          "sha256": "1f979df26be1f1a7344d5a75716a95470b86b3fdd0294a5c69abe48a85ec576e",
+          "classes": []
+        },
+        "dinov3/train/ssl_meta_arch.py": {
+          "sha256": "1b11d7f9f94e6292c3be141ac50ebd10d7357103cb63ce4965b69e3da4ff0781",
+          "classes": [
+            "SSLMetaArch"
+          ]
+        },
+        "dinov3/models/vision_transformer.py": {
+          "sha256": "1af05405e19bc42188f80bfcb204b87ed1ec72af998e0bbd4658a85d7fae93f2",
+          "classes": [
+            "DinoVisionTransformer"
+          ]
+        },
+        "dinov3/hub/backbones.py": {
+          "sha256": "6c9a18aca0b5fcb1fce439213a94a528e072376a6023718e03dbd9fcfaa10deb",
+          "classes": [
+            "Weights"
+          ]
+        },
+        "dinov3/data/samplers.py": {
+          "sha256": "f51e00c1534badb4c0bd3c09258d03eca50111c6a965a011f35c94184673054c",
+          "classes": [
+            "EpochSampler",
+            "InfiniteSampler",
+            "ShardedInfiniteSampler"
+          ]
+        },
+        "dinov3/configs/ssl_default_config.yaml": {
+          "sha256": "ab32485a2cc80712ab85ef4fe12113eea667902c9cf1f22859ad743a0758c41b"
+        }
+      },
+      "license_files": {
+        "LICENSE.md": "25d122eb8f5b880fd23c736fb6ea8018ee45c12237e00b8a86d14c653904999e"
+      },
+      "availability": "inspected source; training not reproduced"
+    },
+    {
+      "name": "TrackEval",
+      "url": "https://github.com/JonathonLuiten/TrackEval.git",
+      "commit": "12c8791b303e0a0b50f753af204249e622d0281a",
+      "sources": {
+        "trackeval/eval.py": {
+          "sha256": "7190887a1ab116e302da5b6b57bbc36a7c38c4267984c1518f44a25f025680fe",
+          "classes": [
+            "Evaluator"
+          ]
+        },
+        "trackeval/datasets/mot_challenge_2d_box.py": {
+          "sha256": "d636323991fa30e183acd898d89e26e3be04f8000b56c3f2f45b9940315af54f",
+          "classes": [
+            "MotChallenge2DBox"
+          ]
+        },
+        "trackeval/metrics/hota.py": {
+          "sha256": "c582255c3d36bdb49c3ceeb2a5bd912cee009190dfcfe465b4173d03aaa97d6a",
+          "classes": [
+            "HOTA"
+          ]
+        },
+        "trackeval/metrics/clear.py": {
+          "sha256": "ab3963eac401073fe1b2957c734af1e531368f42fca49627c14422350b2744f0",
+          "classes": [
+            "CLEAR"
+          ]
+        },
+        "trackeval/metrics/identity.py": {
+          "sha256": "e76b1bdcbf5b193662431596a984cf70a5be32e903eb5f2a3d9921b4762f93ba",
+          "classes": [
+            "Identity"
+          ]
+        }
+      },
+      "license_files": {
+        "LICENSE": "f7e548c5729e464d878dd4abf691e323bbea028a756d08395d88b83e43dd2d86"
+      },
+      "availability": "inspected source; training not reproduced"
+    }
+  ]
+}

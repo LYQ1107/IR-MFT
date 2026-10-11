@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "seed": 0,
+  "minimum_frame_gap": 25,
+  "pairs_per_class_per_sequence": 5000,
+  "retrieval": "Nearest prior GT-labeled sample, at least 25 frames earlier; exclude novel identities until eligible",
+  "pair_sampling": "Sequence-specific, identity-uniform positives and different-identity negatives, both absolute frame gaps >=25",
+  "interventions": ["rgb", "ir", "equal_fusion", "wrong_ir", "noise_ir", "zero_ir", "repeat_rgb"],
+  "scope": "Representation diagnosis only; no tracker selection or test outcomes"
+}

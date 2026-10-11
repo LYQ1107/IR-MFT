@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "mode": "temporal_ema",
+  "alpha": 0.01,
+  "initialization": "current first RGB frame; include first output",
+  "background_update": "after emitting response, B_t=(1-alpha)*B_(t-1)+alpha*RGB_t",
+  "strategy": "same fixed temporal generator for every sequence, no per-sequence selection",
+  "source": "trans-sn0612.py",
+  "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+  "remaining_response_parameters": "unchanged original pinned script",
+  "reason": "First causal implementation declared before development association outcomes; alpha is a fixed 100-frame EMA timescale, not outcome-selected",
+  "encoding": "original per-frame filename/dimensions, JPEG quality 95",
+  "controls_required": ["current-frame local response", "RGB with equal causal background history", "RGB contrast enhancement", "RGB pseudo-color transform"]
+}

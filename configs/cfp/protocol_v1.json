@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "protocol_id": "cfp_video_holdout_v1",
+  "state": "FROZEN",
+  "train": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "dev": [
+    "BT-005",
+    "SN-013"
+  ],
+  "historical_test": [
+    "BT-002",
+    "BT-004",
+    "MSK-003",
+    "PF-002",
+    "SN-009",
+    "SN-011",
+    "SN-014"
+  ],
+  "identity_key": [
+    "sequence",
+    "track_id"
+  ],
+  "identity_counts": {
+    "train": 98,
+    "dev": 21
+  },
+  "frame_counts": {
+    "train": 27251,
+    "dev": 4834
+  },
+  "train_annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6",
+  "test_annotation_sha256": "c3ed507bbf7e2c86d1071611e1baf5629fcf6ace9ed4889a43f75d5f5ad9b14d",
+  "selection_rationale": "Median-duration video in each repeated BT/SN prefix group; preserve singleton MSK/PF groups for training. Chosen before association outcomes.",
+  "selection_limitations": [
+    "Prefix is not verified species/recording metadata",
+    "Dev excludes the 49-identity dense MSK scene",
+    "Historical detector trained on all eight train videos; only new identity/association modules held out",
+    "Historical test was tuned previously; not independent blind evaluation"
+  ],
+  "gt_hashes": {
+    "BT-001": "4e8bceac0008367cb602033929b9aed5be5f6a3d6f79de2e9d418dc06d372038",
+    "BT-003": "797dff008ab2b72f5aa827c9fde89f9f054ac16793c8769a088515f775377488",
+    "BT-005": "c17179df9857d7727d0b378cae4605e24170e7d226ede74041c7c901f13c60e0",
+    "MSK-002": "a8afe29d66905ed51ac1422c0986663f5b25f6cd9098d81ad40702a9ad9c4668",
+    "PF-001": "2fe2d519f4271d2b7833f2e3e6e649b950f4005da46da979a648e6607f879105",
+    "SN-001": "112842073d01a5c9a5f27bd6464761bd14ec82bc9cc8c61abe5e0bab7b694a92",
+    "SN-013": "8cecc16657e5f6e770a01ce6cd6225eae7df125954834d9f9e088ea4d2833b4d",
+    "SN-015": "742591d35b2eae4b306989ab80f03f6872be1318dc88173b82cbf10f279d3bf0"
+  },
+  "crossfit_groups": [
+    [
+      "BT-001",
+      "PF-001",
+      "SN-001"
+    ],
+    [
+      "BT-003",
+      "MSK-002",
+      "SN-015"
+    ]
+  ],
+  "supplemental_video_cv": [
+    [
+      "BT-001",
+      "SN-015"
+    ],
+    [
+      "BT-003",
+      "SN-001"
+    ],
+    [
+      "MSK-002",
+      "PF-001"
+    ]
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "checkpoint_selection": "dev HOTA, then AssA, then IDF1; never historical_test",
+  "success_targets_pp": {
+    "HOTA": 1.0,
+    "AssA": 2.0,
+    "IDF1": 2.0
+  },
+  "success_constraints": "Three seeds versus strongest reproducible Protocol A baseline; independent CMUE/PLIM ablation benefit; IDSW not increased; MOTA decrease <=0.5pp; end-to-end latency <=2x baseline. Targets aspirational, all tradeoffs reported.",
+  "search_budget": "Initial baseline settings + at most three targeted repair rounds per core hypothesis; record all trials; no test selection",
+  "evaluation": {
+    "tool": "TrackEval",
+    "commit": "12c8791b303e0a0b50f753af204249e622d0281a",
+    "metrics": [
+      "HOTA",
+      "CLEAR",
+      "Identity"
+    ],
+    "class": "pedestrian (fish mapped to class 1)",
+    "hota_alpha": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "clear_identity_threshold": 0.5,
+    "aggregate": "official combine_sequences",
+    "preprocess": "keep GT marked=1,class=1; no distractors exist; parity required with historical fork"
+  },
+  "ir_generation_provenance": "PENDING; no sensor or generator claim without evidence"
+}

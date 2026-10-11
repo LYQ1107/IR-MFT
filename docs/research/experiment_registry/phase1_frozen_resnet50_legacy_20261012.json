@@ -1,0 +1,350 @@
+{
+  "run_id": "phase1_frozen_resnet50_legacy_20261012",
+  "hypothesis": "Measure frozen RGB/constructed-IR identity separation before fish ReID or utility training",
+  "git_commit": "e0cf4c724ff249f2d259cd4c4006c0c872f800d1",
+  "seed": 0,
+  "config": {
+    "backbone": "torchvision ResNet50",
+    "input_hw": [
+      128,
+      256
+    ],
+    "margin": 0.05,
+    "normalization": "ImageNet for both branches",
+    "encoder_shared": true,
+    "encoder_frozen": true,
+    "fp16": false,
+    "seed": 0,
+    "samples_per_identity": 128,
+    "batch_size": 64,
+    "workers": 8,
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+    "input_regime": "legacy_exploratory",
+    "ir_manifest_sha256": null
+  },
+  "detector_sha256": null,
+  "reid_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+  "split": "six train/two dev identity holdout, protocol_v2; legacy-input exploratory",
+  "epochs": 0,
+  "checkpoint_selection": "fixed local ImageNet ResNet50, no model selection",
+  "metrics": {
+    "BT-005": {
+      "samples": 1280,
+      "identities": 10,
+      "eligible_queries": 1260,
+      "query_coverage": 0.984375,
+      "interventions": {
+        "rgb": {
+          "causal_oracle_gallery_recall1": 0.21587301587301588,
+          "identity_macro_recall1": 0.21587301587301586,
+          "pair_auc": 0.5208259,
+          "positive_mean_cosine": 0.7547187209129333,
+          "negative_mean_cosine": 0.749305248260498
+        },
+        "ir": {
+          "causal_oracle_gallery_recall1": 0.19365079365079366,
+          "identity_macro_recall1": 0.19365079365079366,
+          "pair_auc": 0.51568244,
+          "positive_mean_cosine": 0.8215295076370239,
+          "negative_mean_cosine": 0.8176266551017761
+        },
+        "equal_fusion": {
+          "causal_oracle_gallery_recall1": 0.24444444444444444,
+          "identity_macro_recall1": 0.24444444444444446,
+          "pair_auc": 0.52127704,
+          "positive_mean_cosine": 0.788124144077301,
+          "negative_mean_cosine": 0.7834660410881042
+        },
+        "wrong_ir": {
+          "causal_oracle_gallery_recall1": 0.176984126984127,
+          "identity_macro_recall1": 0.176984126984127,
+          "pair_auc": 0.51750422,
+          "positive_mean_cosine": 0.7871875762939453,
+          "negative_mean_cosine": 0.7839069366455078
+        },
+        "noise_ir": {
+          "causal_oracle_gallery_recall1": 0.18015873015873016,
+          "identity_macro_recall1": 0.18015873015873016,
+          "pair_auc": 0.51748494,
+          "positive_mean_cosine": 0.3770861327648163,
+          "negative_mean_cosine": 0.37471649050712585
+        },
+        "zero_ir": {
+          "causal_oracle_gallery_recall1": 0.21587301587301588,
+          "identity_macro_recall1": 0.21587301587301586,
+          "pair_auc": 0.5208259,
+          "positive_mean_cosine": 0.7547187209129333,
+          "negative_mean_cosine": 0.749305248260498
+        },
+        "repeat_rgb": {
+          "causal_oracle_gallery_recall1": 0.21587301587301588,
+          "identity_macro_recall1": 0.21587301587301586,
+          "pair_auc": 0.5208259,
+          "positive_mean_cosine": 0.7547187209129333,
+          "negative_mean_cosine": 0.749305248260498
+        }
+      },
+      "fixed_fusion_corrections": 121,
+      "fixed_fusion_harms": 85
+    },
+    "SN-013": {
+      "samples": 1281,
+      "identities": 11,
+      "eligible_queries": 1260,
+      "query_coverage": 0.9836065573770492,
+      "interventions": {
+        "rgb": {
+          "causal_oracle_gallery_recall1": 0.46746031746031746,
+          "identity_macro_recall1": 0.46746031746031746,
+          "pair_auc": 0.58570028,
+          "positive_mean_cosine": 0.7536624073982239,
+          "negative_mean_cosine": 0.7262564301490784
+        },
+        "ir": {
+          "causal_oracle_gallery_recall1": 0.28174603174603174,
+          "identity_macro_recall1": 0.28174603174603174,
+          "pair_auc": 0.5448948,
+          "positive_mean_cosine": 0.7692044973373413,
+          "negative_mean_cosine": 0.7559887766838074
+        },
+        "equal_fusion": {
+          "causal_oracle_gallery_recall1": 0.43174603174603177,
+          "identity_macro_recall1": 0.4317460317460318,
+          "pair_auc": 0.58894264,
+          "positive_mean_cosine": 0.7614334225654602,
+          "negative_mean_cosine": 0.7411226034164429
+        },
+        "wrong_ir": {
+          "causal_oracle_gallery_recall1": 0.326984126984127,
+          "identity_macro_recall1": 0.32698412698412693,
+          "pair_auc": 0.54878916,
+          "positive_mean_cosine": 0.7570302486419678,
+          "negative_mean_cosine": 0.746165931224823
+        },
+        "noise_ir": {
+          "causal_oracle_gallery_recall1": 0.4007936507936508,
+          "identity_macro_recall1": 0.4007936507936508,
+          "pair_auc": 0.5828534,
+          "positive_mean_cosine": 0.37694090604782104,
+          "negative_mean_cosine": 0.36324790120124817
+        },
+        "zero_ir": {
+          "causal_oracle_gallery_recall1": 0.46746031746031746,
+          "identity_macro_recall1": 0.46746031746031746,
+          "pair_auc": 0.58570028,
+          "positive_mean_cosine": 0.7536624073982239,
+          "negative_mean_cosine": 0.7262564301490784
+        },
+        "repeat_rgb": {
+          "causal_oracle_gallery_recall1": 0.46746031746031746,
+          "identity_macro_recall1": 0.46746031746031746,
+          "pair_auc": 0.58570028,
+          "positive_mean_cosine": 0.7536624073982239,
+          "negative_mean_cosine": 0.7262564301490784
+        }
+      },
+      "fixed_fusion_corrections": 130,
+      "fixed_fusion_harms": 175
+    }
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/frozen_resnet50.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/frozen_resnet50",
+  "conclusion": "Equal fusion improves retrieval on BT-005 and harms SN-013; frozen pair separability weak. Oracle gallery/GT crops/legacy IR; no deployed tracking claim. Fish ReID and causal controls required.",
+  "status": "COMPLETE_EXPLORATORY_DIAGNOSIS",
+  "total_seconds": 40.018464980996214,
+  "encoder_parameters": 23508032,
+  "feature_manifest": {
+    "config": {
+      "backbone": "torchvision ResNet50",
+      "input_hw": [
+        128,
+        256
+      ],
+      "margin": 0.05,
+      "normalization": "ImageNet for both branches",
+      "encoder_shared": true,
+      "encoder_frozen": true,
+      "fp16": false,
+      "seed": 0,
+      "samples_per_identity": 128,
+      "batch_size": 64,
+      "workers": 8,
+      "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+      "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+      "input_regime": "legacy_exploratory",
+      "ir_manifest_sha256": null
+    },
+    "config_sha256": "12e09e92f1bf34629fbc41e2fcadccda190e968b38ee3dade062b1b7abf43750",
+    "status": "COMPLETE",
+    "git_commit": "e0cf4c724ff249f2d259cd4c4006c0c872f800d1",
+    "source_sha256": "c38dda05f1165bb816fc59c4927bb0c52197f4d53918cd3761f7d6853f6fc4b1",
+    "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+    "torch": "2.0.0+cu118",
+    "device": "cuda",
+    "weight_domain": "ImageNet RGB classification; constructed IR domain shift is a diagnosed condition",
+    "scientific_scope": "Exploratory legacy-input diagnosis; not strict-online evidence",
+    "parameters": 23508032,
+    "samples": 14528,
+    "feature_dimension": 2048,
+    "features_sha256": "6c80ff538ca4585535e2f497ad40ffa907e7cef01e9430dbfe5e30edb41cb3ba",
+    "total_seconds": 40.018464980996214,
+    "batch_encoder_latency_p50_p95_ms": [
+      30.072686029598117,
+      32.88399237790145
+    ]
+  },
+  "diagnosis_manifest": {
+    "config": {
+      "schema_version": 1,
+      "state": "FROZEN",
+      "seed": 0,
+      "minimum_frame_gap": 25,
+      "pairs_per_class_per_sequence": 5000,
+      "retrieval": "Nearest prior GT-labeled sample, at least 25 frames earlier; exclude novel identities until eligible",
+      "pair_sampling": "Sequence-specific, identity-uniform positives and different-identity negatives, both absolute frame gaps >=25",
+      "interventions": [
+        "rgb",
+        "ir",
+        "equal_fusion",
+        "wrong_ir",
+        "noise_ir",
+        "zero_ir",
+        "repeat_rgb"
+      ],
+      "scope": "Representation diagnosis only; no tracker selection or test outcomes"
+    },
+    "partition": "dev",
+    "features_manifest_sha256": "9cc6a21a07f2b9010613711343c4349082ad01ed57f4f0b90b65df5e2be88dac",
+    "source_sha256": "3371978133495961d112ac98105bfa7d8c0f18d0c8c9bfc807b3198bf60fa6ac",
+    "videos": {
+      "BT-005": {
+        "samples": 1280,
+        "identities": 10,
+        "eligible_queries": 1260,
+        "query_coverage": 0.984375,
+        "interventions": {
+          "rgb": {
+            "causal_oracle_gallery_recall1": 0.21587301587301588,
+            "identity_macro_recall1": 0.21587301587301586,
+            "pair_auc": 0.5208259,
+            "positive_mean_cosine": 0.7547187209129333,
+            "negative_mean_cosine": 0.749305248260498
+          },
+          "ir": {
+            "causal_oracle_gallery_recall1": 0.19365079365079366,
+            "identity_macro_recall1": 0.19365079365079366,
+            "pair_auc": 0.51568244,
+            "positive_mean_cosine": 0.8215295076370239,
+            "negative_mean_cosine": 0.8176266551017761
+          },
+          "equal_fusion": {
+            "causal_oracle_gallery_recall1": 0.24444444444444444,
+            "identity_macro_recall1": 0.24444444444444446,
+            "pair_auc": 0.52127704,
+            "positive_mean_cosine": 0.788124144077301,
+            "negative_mean_cosine": 0.7834660410881042
+          },
+          "wrong_ir": {
+            "causal_oracle_gallery_recall1": 0.176984126984127,
+            "identity_macro_recall1": 0.176984126984127,
+            "pair_auc": 0.51750422,
+            "positive_mean_cosine": 0.7871875762939453,
+            "negative_mean_cosine": 0.7839069366455078
+          },
+          "noise_ir": {
+            "causal_oracle_gallery_recall1": 0.18015873015873016,
+            "identity_macro_recall1": 0.18015873015873016,
+            "pair_auc": 0.51748494,
+            "positive_mean_cosine": 0.3770861327648163,
+            "negative_mean_cosine": 0.37471649050712585
+          },
+          "zero_ir": {
+            "causal_oracle_gallery_recall1": 0.21587301587301588,
+            "identity_macro_recall1": 0.21587301587301586,
+            "pair_auc": 0.5208259,
+            "positive_mean_cosine": 0.7547187209129333,
+            "negative_mean_cosine": 0.749305248260498
+          },
+          "repeat_rgb": {
+            "causal_oracle_gallery_recall1": 0.21587301587301588,
+            "identity_macro_recall1": 0.21587301587301586,
+            "pair_auc": 0.5208259,
+            "positive_mean_cosine": 0.7547187209129333,
+            "negative_mean_cosine": 0.749305248260498
+          }
+        },
+        "fixed_fusion_corrections": 121,
+        "fixed_fusion_harms": 85
+      },
+      "SN-013": {
+        "samples": 1281,
+        "identities": 11,
+        "eligible_queries": 1260,
+        "query_coverage": 0.9836065573770492,
+        "interventions": {
+          "rgb": {
+            "causal_oracle_gallery_recall1": 0.46746031746031746,
+            "identity_macro_recall1": 0.46746031746031746,
+            "pair_auc": 0.58570028,
+            "positive_mean_cosine": 0.7536624073982239,
+            "negative_mean_cosine": 0.7262564301490784
+          },
+          "ir": {
+            "causal_oracle_gallery_recall1": 0.28174603174603174,
+            "identity_macro_recall1": 0.28174603174603174,
+            "pair_auc": 0.5448948,
+            "positive_mean_cosine": 0.7692044973373413,
+            "negative_mean_cosine": 0.7559887766838074
+          },
+          "equal_fusion": {
+            "causal_oracle_gallery_recall1": 0.43174603174603177,
+            "identity_macro_recall1": 0.4317460317460318,
+            "pair_auc": 0.58894264,
+            "positive_mean_cosine": 0.7614334225654602,
+            "negative_mean_cosine": 0.7411226034164429
+          },
+          "wrong_ir": {
+            "causal_oracle_gallery_recall1": 0.326984126984127,
+            "identity_macro_recall1": 0.32698412698412693,
+            "pair_auc": 0.54878916,
+            "positive_mean_cosine": 0.7570302486419678,
+            "negative_mean_cosine": 0.746165931224823
+          },
+          "noise_ir": {
+            "causal_oracle_gallery_recall1": 0.4007936507936508,
+            "identity_macro_recall1": 0.4007936507936508,
+            "pair_auc": 0.5828534,
+            "positive_mean_cosine": 0.37694090604782104,
+            "negative_mean_cosine": 0.36324790120124817
+          },
+          "zero_ir": {
+            "causal_oracle_gallery_recall1": 0.46746031746031746,
+            "identity_macro_recall1": 0.46746031746031746,
+            "pair_auc": 0.58570028,
+            "positive_mean_cosine": 0.7536624073982239,
+            "negative_mean_cosine": 0.7262564301490784
+          },
+          "repeat_rgb": {
+            "causal_oracle_gallery_recall1": 0.46746031746031746,
+            "identity_macro_recall1": 0.46746031746031746,
+            "pair_auc": 0.58570028,
+            "positive_mean_cosine": 0.7536624073982239,
+            "negative_mean_cosine": 0.7262564301490784
+          }
+        },
+        "fixed_fusion_corrections": 130,
+        "fixed_fusion_harms": 175
+      }
+    },
+    "scope": "Exploratory legacy-input diagnosis; not strict-online evidence",
+    "limitations": [
+      "GT crops and oracle gallery identity labels; not measured tracking performance",
+      "Wrong/noise IR are offline feature interventions, not acquired modalities",
+      "Repeated RGB and zero IR reduce algebraically to the RGB cosine score",
+      "Candidate gallery density varies by sequence; report per-sequence and identity macro scores",
+      "Frozen ImageNet encoder is not a fish-finetuned ReID baseline"
+    ]
+  },
+  "config_sha256": "12e09e92f1bf34629fbc41e2fcadccda190e968b38ee3dade062b1b7abf43750"
+}

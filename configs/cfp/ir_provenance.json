@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "evidence": "Local source audit and SHA256 verification against NAS transfer manifest, 2026-10-12; legacy directory matches remain sampled",
+  "sensor": "No measured thermal radiation or temperature; pseudocolor RGB-derived response",
+  "learned_generator": false,
+  "methods": {
+    "single_frame_local_difference": {
+      "inputs": [
+        "RGB current frame"
+      ],
+      "description": "Green-channel and Lab luminance differences from large blurred background, 0.6/0.4 fusion, foreground/edge suppression, gamma, UDWT+BayesShrink, INFERNO colormap",
+      "old_source": "/home/Valadmin/A100/data1/LWR/vranlee/CELL/PFTrack/data/trans_tir_final.py",
+      "causal_status": "CAUSAL for this fixed single-frame script; adaptive strategy selection is a distinct noncausal pipeline"
+    },
+    "temporal_background": {
+      "inputs": [
+        "up to 80 uniformly sampled frames from entire video",
+        "RGB current frame"
+      ],
+      "description": "Pixelwise median sequence background; Lab background difference plus local difference; morphology/connected components; INFERNO",
+      "old_source": "/home/Valadmin/A100/data1/LWR/vranlee/CELL/PFTrack/data/trans-sn0612.py",
+      "causal_status": "NONCAUSAL confirmed in build_temporal_background: linspace across full sequence and median"
+    },
+    "unified_v2": {
+      "source": "trans-tir0611.py",
+      "output_folder": "infrared_unified_v2",
+      "causal_status": "CAUSAL fixed single-frame script; historical sequence-source mapping remains sampled",
+      "parameters": {
+        "input_folder_name": "visible",
+        "output_folder_name": "infrared_unified_v2",
+        "wavelet": "sym4",
+        "level": 2,
+        "threshold_scale": 0.75,
+        "gamma": 0.55,
+        "background_threshold": 28,
+        "mask_base": 0.12,
+        "mask_gain": 0.88,
+        "mask_threshold": 24,
+        "left_border_ratio": 0.045,
+        "right_border_ratio": 0.055,
+        "border_keep": 0.05,
+        "use_ellipse_suppression": true,
+        "ellipse_inner": 0.88,
+        "ellipse_outer": 1.0,
+        "ellipse_outside_keep": 0.08
+      },
+      "description": "Local green/Lab response; gamma0.55, wavelet shrink0.75, threshold28, mask0.12/0.88, mask threshold24; omit duplicate post-denoising enhancement and final 3x3 blur"
+    },
+    "adaptive": {
+      "source": "trans-auto.py",
+      "causal_status": "NONCAUSAL even when local branch selected: full-sequence median background determines complexity/strategy",
+      "complexity_threshold": 0.038
+    }
+  },
+  "sequence_sources": {
+    "train/BT-001": "infrared_adaptive or infrared_final_no_timestamp",
+    "train/BT-003": "infrared_adaptive or infrared_final_no_timestamp",
+    "train/BT-005": "infrared_adaptive or infrared_final_no_timestamp",
+    "train/PF-001": "infrared_adaptive or infrared_final_no_timestamp",
+    "train/MSK-002": "infrared_unified_v2",
+    "test/MSK-003": "infrared_unified_v2",
+    "test/BT-002": "infrared_final1",
+    "test/BT-004": "infrared_final1",
+    "train/SN-001": "infrared_temporal_bg",
+    "train/SN-013": "infrared_temporal_bg",
+    "train/SN-015": "infrared_temporal_bg",
+    "test/PF-002": "infrared_temporal_bg",
+    "test/SN-009": "infrared_temporal_bg",
+    "test/SN-011": "infrared_temporal_bg",
+    "test/SN-014": "infrared_temporal_bg"
+  },
+  "source_match_scope": "Three sampled frame hashes per sequence; no full-frame provenance proof",
+  "scientific_claim": "Deterministic transformation of RGB observations, not independent sensor information; full-sequence source can contain future RGB information",
+  "strict_online_requirement": "Rebuild IR using only current/past RGB before strict-online detector/association experiments; separate legacy exploratory results and controls",
+  "causal_ir_source_status": "Implemented in cfp/pseudo_ir.py with pinned recovered functions; future-perturbation and original-output parity tests pass; full generation pending",
+  "scripts": {
+    "trans_tir_final.py": {
+      "sha256": "31289e713bf13d34530e0310dff038c18eb150c9c5a310e9f3341fa5f6662437",
+      "bytes": 9286,
+      "parameters": {
+        "base_dir": "/data1/LWR/vranlee/CELL/PFTrack/data/mft25/test",
+        "seq_list": [
+          "MSK-003"
+        ],
+        "input_folder_name": "visible",
+        "output_folder_name": "infrared_final_no_timestamp",
+        "wavelet": "sym4",
+        "level": 2,
+        "threshold_scale": 0.45,
+        "gamma": 0.38,
+        "background_threshold": 10,
+        "mask_base": 0.4,
+        "mask_gain": 0.6,
+        "left_border_ratio": 0.06,
+        "right_border_ratio": 0.08,
+        "border_keep": 0.03,
+        "use_ellipse_suppression": true,
+        "ellipse_inner": 0.86,
+        "ellipse_outer": 1.0,
+        "ellipse_outside_keep": 0.05
+      }
+    },
+    "trans-sn0612.py": {
+      "sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+      "bytes": 9826,
+      "parameters": {
+        "base_dir": "/data1/LWR/vranlee/CELL/PFTrack/data/mft25/train",
+        "seq_list": [
+          "BT-001",
+          "BT-003",
+          "BT-005",
+          "MSK-002",
+          "PF-001"
+        ],
+        "input_folder_name": "visible",
+        "output_folder_name": "infrared_temporal_bg",
+        "background_sample_num": 80,
+        "fg_threshold": 22,
+        "background_threshold": 12,
+        "gamma": 0.42,
+        "mask_base": 0.06,
+        "mask_gain": 0.94,
+        "min_area_ratio": 1.5e-05,
+        "max_area_ratio": 0.06,
+        "left_border_ratio": 0.045,
+        "right_border_ratio": 0.055,
+        "border_keep": 0.04,
+        "use_ellipse_suppression": true,
+        "ellipse_inner": 0.88,
+        "ellipse_outer": 1.0,
+        "ellipse_outside_keep": 0.08
+      }
+    },
+    "trans-auto.py": {
+      "sha256": "10880db26d7aae0c92156b68cfd16ecfc20a91feecd74f93c303a0af0b5af7ce",
+      "bytes": 17919,
+      "parameters": {
+        "base_dir": "/data1/LWR/vranlee/CELL/PFTrack/data/mft25/train",
+        "seq_list": [
+          "BT-001",
+          "BT-003",
+          "BT-005",
+          "PF-001",
+          "MSK-002",
+          "SN-001",
+          "SN-013",
+          "SN-015"
+        ],
+        "input_folder_name": "visible",
+        "output_folder_name": "infrared_adaptive",
+        "background_sample_num": 80,
+        "complexity_threshold": 0.038,
+        "manual_strategy": {},
+        "wavelet": "sym4",
+        "level": 2,
+        "threshold_scale": 0.45,
+        "local_gamma": 0.38,
+        "local_background_threshold": 10,
+        "local_mask_base": 0.4,
+        "local_mask_gain": 0.6,
+        "local_mask_threshold": 8,
+        "local_left_border_ratio": 0.06,
+        "local_right_border_ratio": 0.08,
+        "local_border_keep": 0.03,
+        "local_use_ellipse_suppression": true,
+        "local_ellipse_inner": 0.86,
+        "local_ellipse_outer": 1.0,
+        "local_ellipse_outside_keep": 0.05,
+        "temporal_fg_threshold": 22,
+        "temporal_background_threshold": 12,
+        "temporal_gamma": 0.42,
+        "temporal_mask_base": 0.06,
+        "temporal_mask_gain": 0.94,
+        "temporal_min_area_ratio": 1.5e-05,
+        "temporal_max_area_ratio": 0.06,
+        "temporal_left_border_ratio": 0.045,
+        "temporal_right_border_ratio": 0.055,
+        "temporal_border_keep": 0.04,
+        "temporal_use_ellipse_suppression": true,
+        "temporal_ellipse_inner": 0.88,
+        "temporal_ellipse_outer": 1.0,
+        "temporal_ellipse_outside_keep": 0.08
+      }
+    },
+    "trans-tir0611.py": {
+      "sha256": "74da8fce8619f3eaafb3aa451d6e123ccb6790b692e7aeb1f70b4fb834826800",
+      "bytes": 9709,
+      "parameters": {
+        "base_dir": "/data1/LWR/vranlee/CELL/PFTrack/data/mft25/test",
+        "seq_list": [
+          "MSK-003"
+        ],
+        "input_folder_name": "visible",
+        "output_folder_name": "infrared_unified_v2",
+        "wavelet": "sym4",
+        "level": 2,
+        "threshold_scale": 0.75,
+        "gamma": 0.55,
+        "background_threshold": 28,
+        "mask_base": 0.12,
+        "mask_gain": 0.88,
+        "mask_threshold": 24,
+        "left_border_ratio": 0.045,
+        "right_border_ratio": 0.055,
+        "border_keep": 0.05,
+        "use_ellipse_suppression": true,
+        "ellipse_inner": 0.88,
+        "ellipse_outer": 1.0,
+        "ellipse_outside_keep": 0.08
+      }
+    }
+  },
+  "causal_configuration": "configs/cfp/causal_ir_v1.json"
+}
