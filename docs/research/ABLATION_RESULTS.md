@@ -1,6 +1,6 @@
 # Experiment and ablation results
 
-Status: Phase 0 reproduced. All 27 pre-neck and 27 post-neck ordinary association runs, and 18 external runs per representation, are complete. All nine independent RGB post-neck capacity controls are complete; all 36 RGB auxiliary-view runs are complete. Two seed0 CMUE targeted rounds are complete without validated benefit; PLIM is not yet trained.
+Status: Phase 0 reproduced. All 27 pre-neck and 27 post-neck ordinary association runs, and 18 external runs per representation, are complete. All nine independent RGB post-neck capacity controls are complete; all 36 RGB auxiliary-view runs are complete. Two seed0 CMUE targeted rounds are complete without validated benefit; four seed0 PLIM/association-only temporal models are trained and full tracking comparisons are underway.
 
 | Evaluation | Detections | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
 |---|---|---:|---:|---:|---:|---:|---:|
