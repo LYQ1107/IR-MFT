@@ -57,9 +57,9 @@ First HybridSORT full replay fails when its prediction returns singleton score a
 
 Official dataset loader still uses removed NumPy float/int aliases; process-local builtin alias compatibility fixed the first evaluation error, with upstream source unchanged. Initial pytest import missed pluggy because dependencies were deliberately installed without global resolution; installed lightweight test dependencies in the project venv only. An installed `tools` package shadows the repository namespace; tests load CLIs by exact file paths. Tests now cover external filter/order checking and representation-stage invariance in addition to causality/fallback. PyWavelets 1.6.0 was added without dependencies only to the project venv for recovered local-generation controls. No other environment modified. A new paired-feature composition CLI's unmatched parenthesis failed before outputs were created; syntax was corrected, compileall passed and all three paired diagnoses completed, with the failed log retained.
 
-## Future H1/H2 diagnoses
+## H1/H2 diagnosis contract
 
-Not run. Each core hypothesis gets at most three targeted evidence-driven repair rounds. Separate feature separability, crop shift, candidate recall, utility calibration, temporal collapse and memory contamination. Store per-video outcomes and events; use training/dev only for research diagnosis and historical test only for reproduction/frozen reporting.
+H1 has two completed seed0 targeted rounds; H2 query construction is underway. Each core hypothesis gets at most three targeted evidence-driven repair rounds. Separate feature separability, crop shift, candidate recall, utility calibration, temporal collapse and memory contamination. Store per-video outcomes and events; use training/dev only for research diagnosis and historical test only for reproduction/frozen reporting.
 
 ## I-03: completed cone repair and residual association errors
 
@@ -72,3 +72,18 @@ A second baseline repair is frozen before outcomes: current-ROI long-axis alignm
 Real CUDA ResNet/AdamW/AMP resume proof passes: a dedicated synthetic fixture interrupted after epoch 1 resumes to bit-identical final model, optimizer and RNG states versus uninterrupted training. This is infrastructure evidence, not a fish-method result. No unrelated process was interrupted.
 
 The first long-axis IR cache call rejected the canonical `temporal_ema` generator as an unknown auxiliary mode. No output was created. Its mode is now explicitly classified as causal constructed IR; RGB controls retain distinct labels. Both complete aligned caches are finite and paired. Initial post-neck capacity campaign stdout filenames also collided when `Path.with_suffix` stripped decimal weights; per-run manifests/predictions/metric files were intact. Filename handling now appends `.log`. All nine original prediction files were re-evaluated with official TrackEval, every metric verified equal, and separate verification logs/registry provenance preserve that limitation.
+
+
+## II-01: utility learns rejection penalty without established identity benefit
+
+Round1 local-candidate supervision yields near-chance calibration sign AUC0.5066. Its best seed0 HOTA50.9769 is only0.0241pp above an identity-ranking-free constant IR distance control, with worse IDSW86 vs85. Dev loss decomposition attributes most positive target utility to NULL penalties while genuine candidate-ranking mean utility is negative. Do not claim these gains are counterfactual identity selection.
+
+Independent candidate audit finds148 dev queries (88BT/60SN) where a correct geometry-matchable proposal existed outside the appearance-modifiable local subset. Round2 preserves the complete native geometry candidate context in both teachers and model evidence. Sign AUC remains0.5082 and best seed0 HOTA49.3071, below ordinary/quality50.3556. Smaller target MSE is partly a change of target scale and not proof of sign learning. Preserve both rounds; any third repair must follow this evidence. Native NULL rejection/lifecycle remains unlearned.
+
+Accepted utility rows originally risked FP32-rounding RGB costs on individual unavailable IR edges. A tested edge-specific update now preserves those unchanged costs exactly, including when another edge has available IR. Actual completed raw source snapshots remain attached; no old metric is overwritten.
+
+## III-01: actual accepted memory contamination
+
+PLIM query construction retains sticky earliest physically known past identity anchors while tracker decisions remain GT-free. Early original-train BT-001/MSK-002 histories have mean purity about0.49/0.47 and fully contaminated fractions about0.43/0.48. Clean teacher-forced histories and actual accepted histories are stored separately. This motivates separating predictor accuracy from write contamination, not attributing all failures to temporal architecture. These are preliminary complete-video query observations, not learned predictor outcomes.
+
+A broad test run passed63 tests and encountered one original pairing test's old default server path. Its existing MFT26IR_ROOT environment setting was switched to the migrated original dataset and that test passed without altering original code. Current suite invocation declares this root.

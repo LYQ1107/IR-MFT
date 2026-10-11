@@ -30,6 +30,29 @@ def write_json(path, value):
     os.replace(temp, path)
 
 
+def snapshot_sources(directory, paths):
+    """Retain the exact small source/config bytes behind a run's hashes."""
+    root = Path.cwd().resolve()
+    result = {}
+    for source in paths:
+        source = Path(source).resolve()
+        data = source.read_bytes()
+        if source.suffix not in ('.py', '.json', '.md') or len(data) > 4 * 1024 * 1024:
+            raise ValueError('Source snapshots accept small code/config text, never model/data arrays')
+        digest = hashlib.sha256(data).hexdigest()
+        try:
+            name = source.relative_to(root)
+        except ValueError:
+            name = Path('external') / (digest[:12] + '_' + source.name)
+        destination = Path(directory) / 'source_snapshots' / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if destination.exists() and destination.read_bytes() != data:
+            raise FileExistsError('Existing source snapshot differs')
+        destination.write_bytes(data)
+        result[str(name)] = digest
+    return result
+
+
 def record_run(directory, record, *, update=False):
     required = {'run_id', 'hypothesis', 'git_commit', 'seed', 'config',
                 'detector_sha256', 'reid_sha256', 'split', 'epochs',

@@ -1,0 +1,143 @@
+{
+  "run_id": "phase3_prediction_dev_queries_postneck_seed0_20261012",
+  "hypothesis": "Strictly past stopped-target latent examples separating clean teacher history from actual accepted contamination",
+  "git_commit": "30aab7d7404ef95a85edac7158eda2baf25b51a4",
+  "seed": 0,
+  "config": {
+    "schema_version": 1,
+    "state": "FROZEN",
+    "hypothesis": "Predict current identity appearance from strictly earlier accepted latent observations, with stopped current targets and same-frame different-fish contrast to avoid average-feature collapse.",
+    "representation": "Frozen main original-crop post-neck encoders, dimension512, fixed epoch12; this first predictive trial is separate from prospective crop repair.",
+    "history_length": 8,
+    "gap_training_candidates": [
+      1,
+      5,
+      15,
+      30
+    ],
+    "history_order": "Accepted observations sorted strictly before current query, right padded, maximum8; no current candidate enters history before scoring",
+    "architectures": {
+      "gru": {
+        "hidden": 128,
+        "layers": 1
+      },
+      "transformer": {
+        "hidden": 96,
+        "heads": 4,
+        "layers": 2,
+        "feedforward": 144,
+        "dropout": 0.0
+      }
+    },
+    "prediction": "Normalized residual from last observation; output projection starts at zero. Empty history explicitly unavailable, zero output, geometry fallback.",
+    "time_features": "Known current query minus each past timestamp and consecutive accepted-observation gaps, scaled by37 and capped at2; no future motion or observations",
+    "loss": "Cosine latent prediction plus same-frame different-identity candidate CE, temperature0.1. Target/current candidate tensors stopped; encoders receive no gradient.",
+    "ordinary_temporal_control": "Same GRU/Transformer and training budget, candidate association CE only, no cosine forecasting objective",
+    "memory_controls": [
+      "last",
+      "bounded EMA0.9 from identical8 observations",
+      "FIFO normalized mean from identical8 observations",
+      "GRU association-only",
+      "Transformer association-only",
+      "GRU predictive",
+      "Transformer predictive"
+    ],
+    "clean_online_controls": "Teacher-forced physically matched histories versus actual accepted RGB-tracker histories with original past identity anchor; contamination labels are training diagnostics, never inference inputs",
+    "fit_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "calibration_videos": [
+      "SN-015"
+    ],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 8,
+    "batch_size": 128,
+    "seed_plan": [
+      0,
+      1,
+      2
+    ],
+    "checkpoint_selection": "Fixed last epoch8, no historical test tuning",
+    "safe_writes": "Independent later ablation on same fixed predictor weights; confidence and assignment-margin refusal/damping use observable current quantities only, never GT. Geometry updates remain separate.",
+    "candidate_policy": "Same geometry-gated current proposal pool for all predictive and matched history controls. A separate bounded-EMA baseline and constant-vector control must measure any effect of widening the original RGB distance gate; do not credit a candidate-rule change to forecasting.",
+    "scope": "Offline gap sampling from the last64 past accepted proposals; each predictor receives at most8 observations. Hard negatives are independently physically labelled distinct current fish in the native high/unconfirmed association stage; absent targets excluded. GT labels annotate examples only and never affect accepted online histories. Explicit duplicate/ambiguous identities excluded as targets, anchors and negatives.",
+    "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "query_frame_stride": 5,
+    "physical_matching_min_iou": 0.5,
+    "physical_matching_ambiguity_gap": 0.15,
+    "observational_buffer": 64
+  },
+  "detector_sha256": "c448238beaa8540860d17f6a022d99b29b1407649823398a8553fa0890b6d786",
+  "reid_sha256": [
+    "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+    "4e1dcdc8bc3f607b5afc72c23f4fe86f317a25b77a4b98204c27962f691bccaf"
+  ],
+  "split": {
+    "partition": "dev",
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "epochs": 0,
+  "checkpoint_selection": "Frozen encoder epoch12; query data is not trained-model evaluation",
+  "metrics": {
+    "BT-005": {
+      "queries": 3370,
+      "sha256": "02c1d78bb6e075ee09efa790732925612b168dd0976afdf9802649f009ec8465",
+      "features_sha256": "eaaf18ab81c98a1f79c232675b9e77f89093ce6171e5d3454c0429c09b3e1642",
+      "clean_available_queries": 3370,
+      "actual_history_mean_purity": 0.7061784654514625,
+      "fully_contaminated_history_fraction": 0.26201780415430265,
+      "requested_gap_counts": {
+        "1": 821,
+        "5": 822,
+        "15": 845,
+        "30": 882
+      },
+      "exclusions": {
+        "missing_clean_or_actual_gap_history": 27,
+        "fewer_than_two_same_frame_physical_ids": 3,
+        "unavailable_stopped_current_target": 34
+      }
+    },
+    "SN-013": {
+      "queries": 4923,
+      "sha256": "226fd30926e1026671c48542fa6cb25ce9cab7cfe31272d3f530281faae61a8d",
+      "features_sha256": "44462ab45a5ea05987a80553e86d7144aa3e7a637da212a454b1b0cce05fac92",
+      "clean_available_queries": 4923,
+      "actual_history_mean_purity": 0.6865802404650668,
+      "fully_contaminated_history_fraction": 0.28762949421084705,
+      "requested_gap_counts": {
+        "1": 1242,
+        "5": 1241,
+        "15": 1201,
+        "30": 1239
+      },
+      "exclusions": {
+        "missing_clean_or_actual_gap_history": 66,
+        "fewer_than_two_same_frame_physical_ids": 5,
+        "unavailable_stopped_current_target": 570
+      }
+    }
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/prediction_dev_queries_postneck_seed0.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_dev_queries_postneck_seed0",
+  "conclusion": "Physical labels annotate strictly past examples, never tracker decisions. Candidate rank1/variance/gain are not yet evaluated.",
+  "status": "COMPLETE",
+  "manifest_sha256": "4683687b98c84deb48501ac21e0f7c19363563f0e12521c1ba2b65b1e23f6370",
+  "source_snapshots": {
+    "tools/cfp_build_prediction_queries.py": "7014af0eaf5e54b8261bcdcdaf0153271b2cfdedc342007b69aeff18ff147fc0",
+    "tools/cfp_build_utility_queries.py": "2073444e21b6aefb3c14949e56e7d77143be21433d155eb915175c77a52a9684",
+    "cfp/association.py": "511b76ff3080b3049a32ceaa85805c270d9fd6b5d5efac40ee44578d0edc403e",
+    "cfp/supervision.py": "b0cc2747dae1716a1fd7218c8cf9c10f7e1e4299343ac0d4e5ad4c628c51baec",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "configs/cfp/plim_trial_v1.json": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "configs/cfp/plim_query_v1.json": "9480e9e2b77322aa7d62c4ab16e8d7e888a232ad55e61db5c1f43d0506a80022",
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "config_sha256": "516a295a0901d12ea30837cc1b90221901528a3d59193b2c9a92b6f02be1483e"
+}

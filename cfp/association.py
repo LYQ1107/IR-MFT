@@ -33,7 +33,7 @@ def optional_feature(value):
 
 
 class IdentityTrack(STrack):
-    def __init__(self, tlwh, score, rgb, ir):
+    def __init__(self, tlwh, score, rgb, ir, proposal_index=None):
         super().__init__(tlwh, score)
         self.current_rgb = optional_feature(rgb)
         self.current_ir = optional_feature(ir)
@@ -41,15 +41,19 @@ class IdentityTrack(STrack):
         self.pending = True
         self.last_identity_frame = 0
         self.identity_history = deque(maxlen=8)
+        self.current_proposal_index = proposal_index
+        self.identity_proposals = deque(maxlen=8)
 
     def update(self, new_track, frame_id):
         super().update(new_track, frame_id)
         self.current_rgb, self.current_ir = new_track.current_rgb, new_track.current_ir
+        self.current_proposal_index = new_track.current_proposal_index
         self.pending = True
 
     def re_activate(self, new_track, frame_id, new_id=False):
         super().re_activate(new_track, frame_id, new_id)
         self.current_rgb, self.current_ir = new_track.current_rgb, new_track.current_ir
+        self.current_proposal_index = new_track.current_proposal_index
         self.pending = True
 
     def write_identity(self, frame_id, ema):
@@ -66,6 +70,7 @@ class IdentityTrack(STrack):
             self.memory_ir = self.current_ir.copy() if self.memory_ir is None else normalize(ema * self.memory_ir + (1 - ema) * self.current_ir)
         if self.current_rgb is not None:
             self.identity_history.append((int(frame_id), self.current_rgb.copy(), None if self.current_ir is None else self.current_ir.copy()))
+            self.identity_proposals.append((int(frame_id), self.current_proposal_index))
         self.last_identity_frame, self.pending = int(frame_id), False
         return True
 
@@ -109,7 +114,7 @@ class AppearanceTracker(BYTETracker):
             self.decision_counts['eligible_edges'] += int(eligible.sum())
         return result
 
-    def update(self, output_results, img_info, img_size, rgb_features=None, ir_features=None):
+    def update(self, output_results, img_info, img_size, rgb_features=None, ir_features=None, proposal_indices=None):
         if self.mode == 'off':
             return super().update(output_results, img_info, img_size)
         if output_results.ndim != 2 or output_results.shape[1] != 5:
@@ -118,6 +123,10 @@ class AppearanceTracker(BYTETracker):
             raise ValueError('RGB feature/detection alignment required')
         if ir_features is not None and (ir_features.shape != rgb_features.shape):
             raise ValueError('Paired appearance shapes disagree')
+        indices = np.arange(len(output_results), dtype=np.int64) if proposal_indices is None else np.asarray(proposal_indices)
+        if indices.shape != (len(output_results),) or not np.issubdtype(indices.dtype, np.integer) or np.any(indices < 0) or len(np.unique(indices)) != len(indices):
+            raise ValueError('Proposal indices must be unique nonnegative integers for the current frame')
+        self._current_proposal_indices = indices
         return self._appearance_update(output_results, img_info, img_size, rgb_features, ir_features)
 
     # The lifecycle method below is adapted from the unchanged repository
@@ -152,9 +161,9 @@ class AppearanceTracker(BYTETracker):
 
         if len(dets) > 0:
             '''Detections'''
-            detections = [IdentityTrack(STrack.tlbr_to_tlwh(tlbr), s, rgb, ir) for
-                          (tlbr, s, rgb, ir) in zip(dets, scores_keep, rgb_features[remain_inds],
-                          [None] * len(dets) if ir_features is None else ir_features[remain_inds])]
+            detections = [IdentityTrack(STrack.tlbr_to_tlwh(tlbr), s, rgb, ir, int(index)) for
+                          (tlbr, s, rgb, ir, index) in zip(dets, scores_keep, rgb_features[remain_inds],
+                          [None] * len(dets) if ir_features is None else ir_features[remain_inds], self._current_proposal_indices[remain_inds])]
         else:
             detections = []
 
@@ -188,9 +197,9 @@ class AppearanceTracker(BYTETracker):
         # association the untrack to the low score detections
         if len(dets_second) > 0:
             '''Detections'''
-            detections_second = [IdentityTrack(STrack.tlbr_to_tlwh(tlbr), s, rgb, ir) for
-                          (tlbr, s, rgb, ir) in zip(dets_second, scores_second, rgb_features[inds_second],
-                          [None] * len(dets_second) if ir_features is None else ir_features[inds_second])]
+            detections_second = [IdentityTrack(STrack.tlbr_to_tlwh(tlbr), s, rgb, ir, int(index)) for
+                          (tlbr, s, rgb, ir, index) in zip(dets_second, scores_second, rgb_features[inds_second],
+                          [None] * len(dets_second) if ir_features is None else ir_features[inds_second], self._current_proposal_indices[inds_second])]
         else:
             detections_second = []
         r_tracked_stracks = [strack_pool[i] for i in u_track if strack_pool[i].state == TrackState.Tracked]
@@ -260,4 +269,5 @@ class AppearanceTracker(BYTETracker):
             track.memory_rgb = track.memory_ir = None
             track.current_rgb = track.current_ir = None
             track.identity_history.clear()
+            track.identity_proposals.clear()
         return output_stracks

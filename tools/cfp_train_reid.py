@@ -13,7 +13,7 @@ import numpy as np
 import torch
 from torch.nn import functional as F
 
-from cfp.provenance import config_hash, sha256, write_json
+from cfp.provenance import config_hash, sha256, write_json, snapshot_sources
 from cfp.reid import FishReID, temporal_batch_hard
 
 
@@ -99,6 +99,8 @@ def main():
         raise FileExistsError('A training run never overwrites an earlier experiment')
     if args.resume and not (args.output / 'last.pt').is_file():
         raise ValueError('Resume requires this run last.pt')
+    if args.resume and json.loads((args.output / 'manifest.json').read_text())['status'] == 'COMPLETE':
+        raise ValueError('Completed runs are immutable; do not resume them')
     config = json.loads(args.config.read_text())
     if config['state'] != 'FROZEN' or args.seed not in config['seed_plan']:
         raise ValueError('Undeclared configuration/seed')
@@ -143,11 +145,13 @@ def main():
                                    dict(params=head_parameters, lr=config['head_lr'])], weight_decay=config['weight_decay'])
     scaler = torch.cuda.amp.GradScaler(enabled=config['amp'])
     args.output.mkdir(parents=True, exist_ok=args.resume)
+    sources = snapshot_sources(args.output, [__file__, 'cfp/reid.py', 'cfp/provenance.py', args.protocol, args.config])
     manifest = dict(status='RUNNING', config=config, config_sha256=config_hash(config), seed=args.seed,
                     modality=crop_manifest['modality'], crop_manifest_sha256=sha256(args.crop_root / 'manifest.json'),
                     pretrained_sha256=sha256(args.pretrained), index_sha256=crop_manifest['index_sha256'],
                     protocol_sha256=sha256(args.protocol), git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     source_sha256=sha256(__file__), model_source_sha256=sha256('cfp/reid.py'),
+                    source_snapshots=sources,
                     torch=torch.__version__, cudnn=torch.backends.cudnn.version(), physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),
                     parameters=sum(parameter.numel() for parameter in model.parameters()),
                     train_identity_count=index['train_identity_count'], training_videos=protocol['train'],
@@ -156,6 +160,8 @@ def main():
                     checkpoint_retention='fixed selected epoch plus resumable last.pt' + (' and milestones 1/4/8' if args.keep_intermediate_checkpoints else ''),
                     selection=config['checkpoint_selection'], scope='GT crop fish ReID training, dev only for reporting; no tracking claim',
                     input_regime=crop_manifest['input_regime'], epochs=[])
+    manifest['crop_variant'] = crop_manifest.get('crop_variant', 'original')
+    manifest['crop_view_source_sha256'] = crop_manifest.get('crop_view_source_sha256')
     start_epoch, prior_seconds = 0, 0.
     if args.resume:
         previous = json.loads((args.output / 'manifest.json').read_text())

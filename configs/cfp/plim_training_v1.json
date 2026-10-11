@@ -1,0 +1,17 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+  "query_config_sha256": "9480e9e2b77322aa7d62c4ab16e8d7e888a232ad55e61db5c1f43d0506a80022",
+  "sampling": "Uniform fit video, uniform composite physical anchor ID within video, uniform query within that ID, with replacement. Exactly ceil(fit_queries/128) fixed-size steps per epoch for every architecture/objective/history control.",
+  "precision": "FP32 predictor SGD; stopped RGB targets/features in original fixed post-neck coordinate space",
+  "gradient_clip_norm": 5.0,
+  "first_seed0_jobs": [
+    "gru predictive clean",
+    "gru association clean",
+    "transformer predictive clean",
+    "transformer association clean"
+  ],
+  "diagnostics": "SN-015 only after fixed epoch8: clean/actual teacher query cosine, same-frame rank1, variance sum, mean vector norm, by gap; not checkpoint selection.",
+  "resume": "Last completed epoch saves optimizer and CPU/CUDA/NumPy RNG and source/runtime/data guard. No real interrupted predictor proof is claimed yet.",
+  "scope": "First predictive hypothesis trial, no deployment tracking claim; variants/actual-history fitting require separately recorded matched runs."
+}

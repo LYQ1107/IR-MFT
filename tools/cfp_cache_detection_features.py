@@ -12,7 +12,7 @@ import torch
 
 from cfp.identity_data import crop_to_tensor
 from cfp.crop_views import long_axis_crop
-from cfp.provenance import sha256, write_json
+from cfp.provenance import sha256, write_json, snapshot_sources
 from cfp.reid import FishReID
 
 
@@ -165,6 +165,9 @@ def main():
     if ir_metadata and ir_metadata['seed'] != rgb_metadata['seed']:
         raise ValueError('Main paired baseline uses matched encoder seed indices')
     args.output.mkdir(parents=True)
+    sources = snapshot_sources(args.output, [__file__, 'cfp/reid.py', 'cfp/identity_data.py',
+                                   'cfp/crop_views.py', 'cfp/provenance.py', args.protocol] +
+                                   ([args.teacher_protocol] if args.teacher_protocol else []))
     manifest = dict(status='RUNNING', input_regime='causal', partition=args.partition,
                     protocol_sha256=sha256(args.protocol), generation_manifest_sha256=sha256(generation_path),
                     detection_manifest_sha256=sha256(args.detections / 'manifest.json'),
@@ -179,6 +182,7 @@ def main():
                     selected_sequences=selected_sequences,
                     crop_hw=[128, 256], margin=.05, normalize='ImageNet', batch_size=args.batch_size,
                     source_sha256=sha256(__file__), crop_source_sha256=sha256('cfp/identity_data.py'),
+                    source_snapshots=sources,
                     model_source_sha256=sha256('cfp/reid.py'),
                     git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     scope='Current-frame detector crops, aligned to unchanged proposals; no GT crop or online oracle labels')

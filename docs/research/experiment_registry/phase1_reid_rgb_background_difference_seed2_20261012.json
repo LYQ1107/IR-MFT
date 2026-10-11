@@ -1,0 +1,200 @@
+{
+  "run_id": "phase1_reid_rgb_background_difference_seed2_20261012",
+  "hypothesis": "Predeclared matched crop or RGB auxiliary encoder trial",
+  "git_commit": "30aab7d7404ef95a85edac7158eda2baf25b51a4",
+  "seed": 2,
+  "config": {
+    "schema_version": 1,
+    "state": "FROZEN",
+    "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+    "dimension": 512,
+    "epochs": 12,
+    "identities_per_batch": 8,
+    "observations_per_identity": 8,
+    "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+    "optimizer": "AdamW",
+    "backbone_lr": 3e-05,
+    "head_lr": 0.0003,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 1,
+    "cosine_min_lr_fraction": 0.1,
+    "ce_label_smoothing": 0.1,
+    "triplet_weight": 1.0,
+    "triplet_margin": 0.3,
+    "triplet_positive_minimum_frame_gap": 25,
+    "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+    "augmentation": {
+      "horizontal_flip_probability": 0.5,
+      "erase_probability": 0.2,
+      "erase_area_fraction": [
+        0.05,
+        0.2
+      ],
+      "erase_fill": "zero in ImageNet-normalized space"
+    },
+    "amp": true,
+    "gradient_clip_norm": 5.0,
+    "seed_plan": [
+      0,
+      1,
+      2
+    ],
+    "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+    "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+  },
+  "detector_sha256": null,
+  "reid_sha256": [
+    "bfbe95ab909fb51813ac3565e725f5438f92c983c42b40f44b4bc918e2d3456d"
+  ],
+  "split": {
+    "fit_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "heldout_videos": [
+      "BT-005",
+      "SN-013"
+    ],
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "epochs": 12,
+  "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+  "metrics": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "ce": 3.8558311806643073,
+        "triplet": 0.40322284743110126,
+        "valid_triplet_anchor_fraction": 0.7529244652406417,
+        "train_accuracy": 0.15616644385026737,
+        "seconds": 12.603626227995846,
+        "steps": 187
+      },
+      {
+        "epoch": 2,
+        "ce": 3.0692669134089017,
+        "triplet": 0.3595890535071572,
+        "valid_triplet_anchor_fraction": 0.7403074866310161,
+        "train_accuracy": 0.3210227272727273,
+        "seconds": 12.015014478005469,
+        "steps": 187
+      },
+      {
+        "epoch": 3,
+        "ce": 2.5961146010434564,
+        "triplet": 0.3462750301322835,
+        "valid_triplet_anchor_fraction": 0.7388870320855615,
+        "train_accuracy": 0.4530414438502674,
+        "seconds": 12.467975369014312,
+        "steps": 187
+      },
+      {
+        "epoch": 4,
+        "ce": 2.273944361962099,
+        "triplet": 0.3389064559643281,
+        "valid_triplet_anchor_fraction": 0.7499164438502673,
+        "train_accuracy": 0.5614973262032086,
+        "seconds": 11.695552525983658,
+        "steps": 187
+      },
+      {
+        "epoch": 5,
+        "ce": 1.9884049968923476,
+        "triplet": 0.3310720297423276,
+        "valid_triplet_anchor_fraction": 0.7575200534759359,
+        "train_accuracy": 0.6524064171122995,
+        "seconds": 10.97972977597965,
+        "steps": 187
+      },
+      {
+        "epoch": 6,
+        "ce": 1.7752871048004233,
+        "triplet": 0.3265952235237162,
+        "valid_triplet_anchor_fraction": 0.7470755347593583,
+        "train_accuracy": 0.7261029411764706,
+        "seconds": 11.552112976962235,
+        "steps": 187
+      },
+      {
+        "epoch": 7,
+        "ce": 1.595524450674414,
+        "triplet": 0.323139067958383,
+        "valid_triplet_anchor_fraction": 0.7621991978609626,
+        "train_accuracy": 0.7921122994652406,
+        "seconds": 11.962397257972043,
+        "steps": 187
+      },
+      {
+        "epoch": 8,
+        "ce": 1.4629665587675125,
+        "triplet": 0.319293079847958,
+        "valid_triplet_anchor_fraction": 0.7459893048128342,
+        "train_accuracy": 0.8336397058823529,
+        "seconds": 12.056452590972185,
+        "steps": 187
+      },
+      {
+        "epoch": 9,
+        "ce": 1.3612338852754888,
+        "triplet": 0.3169722396103456,
+        "valid_triplet_anchor_fraction": 0.7454879679144385,
+        "train_accuracy": 0.872576871657754,
+        "seconds": 11.99104435701156,
+        "steps": 187
+      },
+      {
+        "epoch": 10,
+        "ce": 1.2971612215042114,
+        "triplet": 0.31529725713525864,
+        "valid_triplet_anchor_fraction": 0.7474933155080213,
+        "train_accuracy": 0.8938001336898396,
+        "seconds": 12.037086626980454,
+        "steps": 187
+      },
+      {
+        "epoch": 11,
+        "ce": 1.259441048703729,
+        "triplet": 0.3151871064767481,
+        "valid_triplet_anchor_fraction": 0.7415608288770054,
+        "train_accuracy": 0.90625,
+        "seconds": 11.846190730982926,
+        "steps": 187
+      },
+      {
+        "epoch": 12,
+        "ce": 1.2257664815627318,
+        "triplet": 0.3138266334877932,
+        "valid_triplet_anchor_fraction": 0.7472426470588235,
+        "train_accuracy": 0.9202038770053476,
+        "seconds": 12.040356931975111,
+        "steps": 187
+      }
+    ],
+    "dev_oracle_retrieval": {
+      "BT-005": {
+        "eligible_queries": 1260,
+        "samples": 1280,
+        "recall1": 0.23333333333333334,
+        "identity_macro_recall1": 0.23333333333333334
+      },
+      "SN-013": {
+        "eligible_queries": 1260,
+        "samples": 1281,
+        "recall1": 0.3484126984126984,
+        "identity_macro_recall1": 0.34841269841269845
+      }
+    }
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_background_difference_seed2.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_background_difference_seed2",
+  "conclusion": "Completed measured training/calibration; no independent module benefit or final-test outcome established.",
+  "status": "COMPLETE",
+  "manifest_sha256": "c855c32ad06b43fb681e06da80c460aed75947c124adfe98830e3567a9558253",
+  "source_snapshots": null,
+  "checkpoint_sha256": "bfbe95ab909fb51813ac3565e725f5438f92c983c42b40f44b4bc918e2d3456d",
+  "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993"
+}

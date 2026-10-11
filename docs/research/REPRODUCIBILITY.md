@@ -46,7 +46,7 @@ PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=2 OPENBLAS_NUM_THR
  tests/test_cfp_crop_views.py
 ```
 
-42 tests pass at this milestone; log: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/pytest.log`. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. No CMUE/PLIM training or new-method final-test outcome exists yet.
+All66 tests pass with MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir; log: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/pytest_phase23_20261012.log`. The old default dataset path is retained in original code and overridden through its existing environment variable. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. Two seed0 CMUE training/evaluation rounds exist; PLIM training and new-method final-test outcomes remain outstanding.
 
 ## Actual canonical association commands
 
@@ -86,7 +86,7 @@ Crossfit crop views are prepared by `cfp_prepare_crossfit_crops.py` at `/data3/l
 
 ## Representation controls, event traces and resume proof
 
-`cfp_export_reid_features.py --embedding-stage post_neck` exports fixed weights without SGD. Proposal extraction accepts the same stage, and `--crop-variant` must match training metadata (legacy manifests mean `original`). Long-axis crops are created separately with `cfp_cache_identity_crops.py --crop-variant long_axis`; no oriented training result is implied.
+`cfp_export_reid_features.py --embedding-stage post_neck` exports fixed weights without SGD. Proposal extraction accepts the same stage, and `--crop-variant` must match training metadata (legacy manifests mean `original`). Long-axis crops are created separately with `cfp_cache_identity_crops.py --crop-variant long_axis`; all six aligned encoders are trained; the declared54-run association campaign is underway.
 
 `cfp_trace_clear_events.py --evaluation-root RUN_evaluation --derived-gt-root .../protocol_v2/gt --trackeval-root .../TrackEval --output FRESH.json` reads exact official matching events and writes full matched-row sidecars. It verifies all CLEAR counts, prediction/GT/metric hashes, and excludes historical-test diagnosis. `cfp_render_switch_cases.py` produces static figure artifacts with source hashes.
 
@@ -105,3 +105,14 @@ PYTHONPATH=. OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
  --trackeval-root /data3/liuyeqiang/CFP-FishMOT_references/TrackEval \
  --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_rgb_repeat_postneck_campaign_summary.json
 ```
+
+
+## Measured CMUE and causal PLIM module
+
+Utility queries: `cfp_build_utility_queries.py --partition train --feature-roots phase2/oof_detection_features_postneck_fold0_seed0 phase2/oof_detection_features_postneck_fold1_seed0`, canonical protocol and frozen trial v1/v2. Fitting: `cfp_train_utility.py --kind {cmue,ordinary,quality} --seed0 --config configs/cfp/cmue_trial_v{1,2}.json --queries MATCHED_QUERIES --output FRESH`. Use proper separate option tokens (`--seed 0`). Replay: `cfp_replay_utility.py --kind KIND --checkpoint MATCHED/epoch8.pt --appearance-weight {.1,.3,.5} --config MATCHED_TRIAL --execution-config MATCHED_EXECUTION` with fixed causal dev bank and post-neck seed0 features. Actual argument vectors are in `phase2/cmue_{first,second}_seed0_campaign_summary.json`. This utility CLI permits canonical dev only; historical-test tuning is unavailable. Full logs/evaluation hashes are in registry.
+
+`cfp_build_prediction_queries.py` requires main frozen original/post-neck feature space, `--config configs/cfp/plim_trial_v1.json --query-config configs/cfp/plim_query_v1.json`, canonical train/dev banks and protocol. It saves clean/actual strictly past indices and stopped current same-frame targets; GT/purity never become online model inputs. Predictive training/replay is still outstanding. `cfp/predictive.py` tests cover causal order, stopped gradients, empty histories, bounded memory and collapse-sensitive objectives.
+
+New executions snapshot the exact small source/config bytes into each output's `source_snapshots`, in addition to immutable data/checkpoint hashes and checkout commit. Completed runs generated before source archiving retain their actual hashes; verified reconstructed originals are stored separately where available. Never rewrite a run's recorded commit or replace adverse outputs.
+
+`cfp_train_predictor.py --architecture {gru,transformer} --objective {predictive,association} --history clean --seed 0 --device cuda --config configs/cfp/plim_trial_v1.json --query-config configs/cfp/plim_query_v1.json --training-config configs/cfp/plim_training_v1.json --queries TRAIN_QUERY_ROOT --output FRESH` trains only canonical-train queries. CUDA_VISIBLE_DEVICES=2 and CUBLAS_WORKSPACE_CONFIG=:4096:8 are required for this declared first trial. Eight epochs, identical video/identity-uniform budget; report SN-015 clean/actual and last/EMA/FIFO diagnostics after fixed epoch8. Canonical dev cannot fit or select a checkpoint. Online prediction/safe-write replay is still pending.

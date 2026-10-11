@@ -1,0 +1,12 @@
+{
+  "state": "FROZEN",
+  "evidence_before_outcomes": "Dev seed0 physical-query diagnostics: GT-positive mean utility -0.02380/-0.03668, NULL mean +0.13344/+0.25482 on BT-005/SN-013. Aggregate positive utility can therefore be rejection/calibration, not IR identity ranking.",
+  "controls": {
+    "fixed_constant_ir": "Every available eligible IR pair distance is exactly0.5. Same actual RGB distances, RGB-defined candidate graph, 0.5 branch mixing and lifecycle. No IR candidate identity rank is used.",
+    "fixed_row_mean_ir": "Replace available IR distances in each current track row by that row's actual mean IR distance. Preserves scalar IR risk evidence while removing its candidate identity ordering. Same candidate graph and mixture.",
+    "diagnostic_rank_utility": "For non-NULL supervised queries with >=2 candidates, compute CE differences normalized over candidates only, excluding NULL. This is retrospective diagnosis, not a changed trained target or an online oracle."
+  },
+  "appearance_weight_candidates": [0.1,0.3,0.5],
+  "selection": "Same three declared association weights, three full pipeline seeds for final comparisons; no historical test diagnosis or tuning",
+  "scope": "Evidence-directed identity-information controls, declared before their tracking outcomes. First seed0 controls are diagnostic only and do not select a winning seed."
+}
