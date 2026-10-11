@@ -66,12 +66,30 @@ class DetectionCrops(torch.utils.data.Dataset):
 
 def load_encoder(path):
     checkpoint = torch.load(path, map_location='cpu')
+    if checkpoint['epoch'] != checkpoint['config']['epochs']:
+        raise ValueError('Declared fish representation uses its fixed last epoch')
     state = checkpoint['model']
     encoder = FishReID(state['classifier.weight'].shape[0], state['projection.weight'].shape[0])
     encoder.load_state_dict(state, strict=True)
     encoder.eval().requires_grad_(False).cuda()
     return encoder, dict(checkpoint_sha256=sha256(path), checkpoint_epoch=checkpoint['epoch'],
                          seed=checkpoint['seed'], training_metadata=checkpoint['metadata'])
+
+
+def declared_encoder_role(protocol_path, partition, teacher_path=None):
+    protocol = json.loads(protocol_path.read_text())
+    expected = sha256(protocol_path)
+    if teacher_path is None:
+        return protocol[partition], expected
+    teacher = json.loads(teacher_path.read_text())
+    if partition != 'train' or teacher['state'] != 'FROZEN' or teacher['parent_protocol_sha256'] != expected:
+        raise ValueError('OOF teacher protocol must derive from canonical association train split')
+    selected = teacher['teacher_heldout']
+    if (set(selected) & set(teacher['train']) or
+            set(selected + teacher['train']) != set(protocol['train']) or
+            set(protocol['dev']) & set(teacher['train'])):
+        raise ValueError('OOF teacher has heldout/dev training exposure')
+    return selected, sha256(teacher_path)
 
 
 def main():
@@ -84,6 +102,7 @@ def main():
     p.add_argument('--ir-checkpoint', type=Path)
     p.add_argument('--auxiliary-root', type=Path, help='Declared RGB control view; detector inputs remain data-root')
     p.add_argument('--embedding-stage', choices=['pre_neck', 'post_neck'], default='pre_neck')
+    p.add_argument('--teacher-protocol', type=Path, help='Explicit out-of-fold teacher protocol; encode only its heldout training videos')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--batch-size', type=int, default=128)
     p.add_argument('--workers', type=int, default=8)
@@ -111,8 +130,12 @@ def main():
     split = 'test' if args.partition == 'historical_test' else 'train'
     annotation = json.loads((args.data_root / 'annotations' / (split + '.json')).read_text())
     names = {video['id']: video['file_name'] for video in annotation['videos']}
+    selected_sequences, expected_training_protocol = declared_encoder_role(args.protocol, args.partition, args.teacher_protocol)
     rgb_model, rgb_metadata = load_encoder(args.rgb_checkpoint)
     ir_model, ir_metadata = load_encoder(args.ir_checkpoint) if args.ir_checkpoint else (None, None)
+    for metadata in (rgb_metadata, ir_metadata):
+        if metadata and metadata['training_metadata']['protocol_sha256'] != expected_training_protocol:
+            raise ValueError('Encoder training split differs from its declared main/OOF role')
     auxiliary_mode, auxiliary_generation_sha256 = 'constructed_ir', None
     if args.auxiliary_root:
         if ir_model is None:
@@ -143,6 +166,9 @@ def main():
                     auxiliary_generation_manifest_sha256=auxiliary_generation_sha256,
                     storage_schema='ir column denotes the auxiliary view; inspect auxiliary_view, never infer a thermal sensor',
                     embedding_stage=args.embedding_stage,
+                    encoder_role='oof_teacher' if args.teacher_protocol else 'main_baseline',
+                    teacher_protocol_sha256=sha256(args.teacher_protocol) if args.teacher_protocol else None,
+                    selected_sequences=selected_sequences,
                     crop_hw=[128, 256], margin=.05, normalize='ImageNet', batch_size=args.batch_size,
                     source_sha256=sha256(__file__), crop_source_sha256=sha256('cfp/identity_data.py'),
                     model_source_sha256=sha256('cfp/reid.py'),
@@ -151,7 +177,7 @@ def main():
     write_json(args.output / 'manifest.json', manifest)
     reports = {}
     start_all = time.perf_counter()
-    for sequence in protocol[args.partition]:
+    for sequence in selected_sequences:
         cache_path = args.detections / (sequence + '.npz')
         expected = detection_manifest['caches'][sequence]['sha256']
         if sha256(cache_path) != expected:

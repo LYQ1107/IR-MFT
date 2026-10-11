@@ -93,6 +93,7 @@ def main():
     p.add_argument('--seed', type=int, required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--resume', action='store_true', help='Resume this incomplete run exactly from its last completed epoch')
+    p.add_argument('--keep-intermediate-checkpoints', action='store_true', help='Also retain epoch 1/4/8; default stores fixed selected epoch and resumable last.pt')
     args = p.parse_args()
     if args.output.exists() and not args.resume:
         raise FileExistsError('A training run never overwrites an earlier experiment')
@@ -116,6 +117,9 @@ def main():
             raise ValueError('Record partition disagrees with frozen video split')
         if row['partition'] == 'dev' and row['train_label'] != -1:
             raise ValueError('Development identity leaked into classifier')
+    observed_labels = sorted({row['train_label'] for row in records if row['partition'] == 'train'})
+    if observed_labels != list(range(index['train_identity_count'])):
+        raise ValueError('Training classifier labels must cover exactly the declared local identities')
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
     torch.backends.cudnn.benchmark = False
@@ -146,6 +150,10 @@ def main():
                     source_sha256=sha256(__file__), model_source_sha256=sha256('cfp/reid.py'),
                     torch=torch.__version__, cudnn=torch.backends.cudnn.version(), physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),
                     parameters=sum(parameter.numel() for parameter in model.parameters()),
+                    train_identity_count=index['train_identity_count'], training_videos=protocol['train'],
+                    heldout_videos=protocol['dev'], protocol_role=protocol.get('role', 'canonical appearance baseline'),
+                    parent_protocol_sha256=protocol.get('parent_protocol_sha256'),
+                    checkpoint_retention='fixed selected epoch plus resumable last.pt' + (' and milestones 1/4/8' if args.keep_intermediate_checkpoints else ''),
                     selection=config['checkpoint_selection'], scope='GT crop fish ReID training, dev only for reporting; no tracking claim',
                     input_regime=crop_manifest['input_regime'], epochs=[])
     start_epoch, prior_seconds = 0, 0.
@@ -224,7 +232,7 @@ def main():
         temporary = args.output / 'last.partial.pt'
         torch.save(state, temporary)
         temporary.replace(args.output / 'last.pt')
-        if epoch + 1 in [1, 4, 8, config['epochs']]:
+        if epoch + 1 == config['epochs'] or (args.keep_intermediate_checkpoints and epoch + 1 in [1, 4, 8]):
             torch.save(dict(model=model.state_dict(), epoch=epoch + 1, config=config, seed=args.seed, metadata=manifest),
                        args.output / f'epoch{epoch + 1}.pt')
         write_json(args.output / 'manifest.json', manifest)

@@ -2,7 +2,9 @@ import importlib.util
 from pathlib import Path
 
 import cv2
+import json
 import numpy as np
+import pytest
 
 spec = importlib.util.spec_from_file_location('cfp_detector_features_cli', Path(__file__).parents[1] / 'tools/cfp_cache_detection_features.py')
 module = importlib.util.module_from_spec(spec)
@@ -47,3 +49,20 @@ def test_auxiliary_control_reads_separate_root_without_changing_rgb(tmp_path):
     r, q, valid_r, valid_q, _ = dataset[0]
     assert valid_r and valid_q and r[0].max() > 2 and q[2].max() > 2
     assert r[2].max() < 0 and q[0].max() < 0
+
+
+def test_oof_role_never_encodes_teacher_training_or_canonical_dev(tmp_path):
+    from cfp.provenance import sha256
+    main = tmp_path / 'main.json'
+    main.write_text(json.dumps(dict(train=['a', 'b'], dev=['c'])))
+    teacher = tmp_path / 'teacher.json'
+    data = dict(state='FROZEN', parent_protocol_sha256=sha256(main), train=['a'], teacher_heldout=['b'])
+    teacher.write_text(json.dumps(data))
+    selected, expected_hash = module.declared_encoder_role(main, 'train', teacher)
+    assert selected == ['b'] and expected_hash == sha256(teacher)
+    with pytest.raises(ValueError):
+        module.declared_encoder_role(main, 'dev', teacher)
+    for training in (['a', 'b'], ['a', 'c']):
+        teacher.write_text(json.dumps(dict(data, train=training)))
+        with pytest.raises(ValueError):
+            module.declared_encoder_role(main, 'train', teacher)
