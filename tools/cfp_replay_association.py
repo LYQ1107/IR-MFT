@@ -24,7 +24,11 @@ def main():
     p.add_argument('--mode', choices=['off', 'rgb', 'ir', 'fixed'], required=True)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--appearance-weight', type=float)
+    p.add_argument('--final-freeze', type=Path)
     args = p.parse_args()
+    if args.partition == 'historical_test' and args.mode != 'off':
+        if args.final_freeze is None or json.loads(args.final_freeze.read_text())['state'] != 'FROZEN':
+            raise ValueError('Enabled historical test evaluation requires final frozen configuration')
     if args.output.exists():
         raise FileExistsError('Replay outputs are immutable')
     config = json.loads(args.config.read_text())

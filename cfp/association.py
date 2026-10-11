@@ -254,5 +254,10 @@ class AppearanceTracker(BYTETracker):
             if track.pending:
                 if track.write_identity(self.frame_id, self.ema):
                     self.decision_counts['identity_writes'] += 1
+        for track in removed_stracks:
+            # Original BYTETracker retains removed object IDs for its lifecycle.
+            # Retire the larger identity state once reactivation is impossible.
+            track.memory_rgb = track.memory_ir = None
+            track.current_rgb = track.current_ir = None
+            track.identity_history.clear()
         return output_stracks
-
