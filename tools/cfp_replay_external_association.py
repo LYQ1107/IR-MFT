@@ -115,6 +115,7 @@ def main():
                     reference_commit=commit, reference_source_sha256=source_hashes, reference_license_sha256=sha256(args.reference_root / 'LICENSE'),
                     git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     source_sha256=sha256(__file__), feature_manifest_sha256=sha256(args.features_root / 'manifest.json'),
+                    features_root=str(args.features_root), embedding_stage=feature_manifest.get('embedding_stage', 'pre_neck'),
                     rgb_encoder=feature_manifest['rgb_encoder'],
                     compatibility_adapter='numpy singleton prediction scores to Python float' if args.family == 'hybrid_sort' else 'precomputed fish feature provider; numpy aliases',
                     scope='Protocol A external association with shared fish RGB features; not native person-ReID weights, no GT-assisted tracking')

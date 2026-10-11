@@ -11,6 +11,7 @@ import numpy as np
 import torch
 
 from cfp.identity_data import build_identity_index, SingleIdentityDataset
+from cfp.crop_views import long_axis_crop
 from cfp.provenance import sha256, write_json
 
 
@@ -25,6 +26,7 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--modality', choices=['rgb', 'ir'], required=True)
     p.add_argument('--workers', type=int, default=8)
+    p.add_argument('--crop-variant', choices=['original', 'long_axis'], default='original')
     args = p.parse_args()
     if args.output.exists():
         raise FileExistsError('Crop caches are immutable')
@@ -32,16 +34,18 @@ def main():
         generation = json.loads((args.data_root / 'manifest.json').read_text())
         if generation['status'] != 'COMPLETE' or generation.get('probe_frames', 0):
             raise ValueError('IR training requires complete causal inputs')
-    view_mode = generation['config'].get('mode') if args.modality == 'ir' else None
-    if view_mode not in (None, 'rgb_contrast', 'rgb_background_difference'):
+    generated_mode = generation['config'].get('mode') if args.modality == 'ir' else None
+    if generated_mode not in (None, 'temporal_ema', 'rgb_contrast', 'rgb_background_difference'):
         raise ValueError('Unknown auxiliary control view')
+    view_mode = generated_mode if generated_mode in ('rgb_contrast', 'rgb_background_difference') else None
     input_regime = ('RGB current-frame only; no IR read' if args.modality == 'rgb' else
                     f'complete causal RGB auxiliary control: {view_mode}' if view_mode else
                     'complete causal constructed IR')
     args.output.mkdir(parents=True)
     index = build_identity_index(args.data_root, args.protocol)
     write_json(args.output / 'index.json', index)
-    dataset = SingleIdentityDataset(args.data_root, index['records'], args.modality)
+    dataset = SingleIdentityDataset(args.data_root, index['records'], args.modality,
+                                    crop_transform=long_axis_crop if args.crop_variant == 'long_axis' else None)
     loader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=False, num_workers=args.workers,
                                         worker_init_fn=worker_init, persistent_workers=args.workers > 0)
     temporary = args.output / 'crops.partial.npy'
@@ -53,6 +57,7 @@ def main():
                     source_sha256=sha256(__file__), identity_source_sha256=sha256('cfp/identity_data.py'),
                     git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                     input_regime=input_regime, auxiliary_view=view_mode,
+                    crop_variant=args.crop_variant, crop_view_source_sha256=sha256('cfp/crop_views.py'),
                     generation_manifest_sha256=sha256(args.data_root / 'manifest.json') if args.modality == 'ir' else None)
     write_json(args.output / 'manifest.json', manifest)
     started = time.perf_counter()

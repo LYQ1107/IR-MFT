@@ -42,10 +42,11 @@ PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=2 OPENBLAS_NUM_THR
  tests/test_cfp_causal_ir.py tests/test_cfp_feature_diagnosis.py \
  tests/test_cfp_reid.py tests/test_cfp_association.py \
  tests/test_cfp_detection_features.py tests/test_cfp_control_views.py \
- tests/test_cfp_external_association.py
+ tests/test_cfp_external_association.py tests/test_cfp_clear_events.py \
+ tests/test_cfp_crop_views.py
 ```
 
-38 tests pass at this milestone; log: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/pytest.log`. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. No CMUE/PLIM training or new-method final-test outcome exists yet.
+42 tests pass at this milestone; log: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/pytest.log`. External generator tests require the recovered scripts; single-frame adapter tests also require PyWavelets. No CMUE/PLIM training or new-method final-test outcome exists yet.
 
 ## Actual canonical association commands
 
@@ -82,3 +83,25 @@ PYTHONPATH=. OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
 External association CLI/config and each pinned reference are in `cfp_replay_external_association.py` / `external_association_v1.json`. It consumes the same feature banks and proposals; no native FastReID weights are claimed. `cfp_pair_identity_features.py` verifies matched seed/config/index/features before offline diagnosis. `cfp_compose_rgb_control_features.py` composes the predeclared independent RGB seed pairs; it does not claim a measured encoder runtime for cache composition.
 
 Crossfit crop views are prepared by `cfp_prepare_crossfit_crops.py` at `/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/crossfit_crops/fold{0,1}`. Their `protocol.json` declares training/heldout groups and no canonical dev fitting. Crops are symlinked, labels are local train classes, opposite-fold/canonical dev labels remain -1. Use original ImageNet initialization. New training checkpoints preserve optimizer/scaler plus Torch CPU/CUDA, sampler and augmentation RNG state. `--resume` is limited to an incomplete run's last completed epoch with identical input/config/source/runtime hashes; legacy completed checkpoints are preserved and cannot be relabeled as deterministically resumable.
+
+## Representation controls, event traces and resume proof
+
+`cfp_export_reid_features.py --embedding-stage post_neck` exports fixed weights without SGD. Proposal extraction accepts the same stage, and `--crop-variant` must match training metadata (legacy manifests mean `original`). Long-axis crops are created separately with `cfp_cache_identity_crops.py --crop-variant long_axis`; no oriented training result is implied.
+
+`cfp_trace_clear_events.py --evaluation-root RUN_evaluation --derived-gt-root .../protocol_v2/gt --trackeval-root .../TrackEval --output FRESH.json` reads exact official matching events and writes full matched-row sidecars. It verifies all CLEAR counts, prediction/GT/metric hashes, and excludes historical-test diagnosis. `cfp_render_switch_cases.py` produces static figure artifacts with source hashes.
+
+`cfp_verify_reid_resume.py --pretrained .../resnet50-0676ba61.pth --output FRESH` ran on GPU 2 with `CUBLAS_WORKSPACE_CONFIG=:4096:8`. Actual proof: `phase0/reid_resume_verification/verification.json`, status PASS. It interrupts only its dedicated fixture child, then compares model/optimizer/RNG states to uninterrupted real CUDA training. Completed runs remain immutable.
+
+The ordinary-association campaign runner saves exact executed command vectors and full official metrics and resumes only complete, provenance-matching jobs. Actual post-neck capacity campaign:
+
+```bash
+PYTHONPATH=. OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \
+ /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_association_campaign.py \
+ --plan configs/cfp/postneck_rgb_repeat_campaign_v1.json \
+ --assets-root /data3/liuyeqiang/IR-MFT_assets/cfp/phase1 \
+ --data-root /data3/liuyeqiang/datasets/mft26-ir-causal-v1 \
+ --protocol configs/cfp/protocol_v2.json \
+ --derived-gt-root /data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt \
+ --trackeval-root /data3/liuyeqiang/CFP-FishMOT_references/TrackEval \
+ --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_rgb_repeat_postneck_campaign_summary.json
+```

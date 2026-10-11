@@ -121,7 +121,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data-root', type=Path, required=True)
     parser.add_argument('--protocol', type=Path, required=True)
-    parser.add_argument('--partition', choices=['dev', 'historical_test'], required=True)
+    parser.add_argument('--partition', choices=['train', 'dev', 'historical_test'], required=True)
     parser.add_argument('--predictions', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--trackeval-root', type=Path, required=True)

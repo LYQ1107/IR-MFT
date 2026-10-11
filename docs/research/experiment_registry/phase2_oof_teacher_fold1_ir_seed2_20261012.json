@@ -1,0 +1,444 @@
+{
+  "run_id": "phase2_oof_teacher_fold1_ir_seed2_20261012",
+  "hypothesis": "Training-disjoint frozen teachers for candidate/history counterfactual CE targets; no canonical dev fitting",
+  "git_commit": "d94d1d6b6b96e2f6c724825aad4eea2634d78a88",
+  "seed": 2,
+  "config": {
+    "schema_version": 1,
+    "state": "FROZEN",
+    "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+    "dimension": 512,
+    "epochs": 12,
+    "identities_per_batch": 8,
+    "observations_per_identity": 8,
+    "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+    "optimizer": "AdamW",
+    "backbone_lr": 3e-05,
+    "head_lr": 0.0003,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 1,
+    "cosine_min_lr_fraction": 0.1,
+    "ce_label_smoothing": 0.1,
+    "triplet_weight": 1.0,
+    "triplet_margin": 0.3,
+    "triplet_positive_minimum_frame_gap": 25,
+    "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+    "augmentation": {
+      "horizontal_flip_probability": 0.5,
+      "erase_probability": 0.2,
+      "erase_area_fraction": [
+        0.05,
+        0.2
+      ],
+      "erase_fill": "zero in ImageNet-normalized space"
+    },
+    "amp": true,
+    "gradient_clip_norm": 5.0,
+    "seed_plan": [
+      0,
+      1,
+      2
+    ],
+    "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+    "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+  },
+  "detector_sha256": null,
+  "reid_sha256": [
+    "a795ddf125bc8ad6ffb9b2f7c04254e9c7747fcec9f88d72a2cbb7b71fb7b7ed"
+  ],
+  "split": {
+    "training_videos": [
+      "BT-003",
+      "MSK-002",
+      "SN-015"
+    ],
+    "heldout_videos": [
+      "BT-001",
+      "PF-001",
+      "SN-001",
+      "BT-005",
+      "SN-013"
+    ],
+    "protocol_sha256": "ec43654663a41cd0a2c4c2e82fb964147af7389c1f1d6a5b090715250871a084",
+    "parent_protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "epochs": 12,
+  "checkpoint_selection": "fixed last epoch12; ImageNet initialization only",
+  "metrics": {
+    "training_epochs": [
+      {
+        "epoch": 1,
+        "ce": 3.685777341220396,
+        "triplet": 0.41367137812553567,
+        "valid_triplet_anchor_fraction": 0.8930629432624113,
+        "train_accuracy": 0.16788563829787234,
+        "seconds": 9.594494307006244,
+        "steps": 141
+      },
+      {
+        "epoch": 2,
+        "ce": 2.9662451490442803,
+        "triplet": 0.36571779086234724,
+        "valid_triplet_anchor_fraction": 0.8798758865248227,
+        "train_accuracy": 0.3376551418439716,
+        "seconds": 9.031935616978444,
+        "steps": 141
+      },
+      {
+        "epoch": 3,
+        "ce": 2.4867277272204134,
+        "triplet": 0.3501824269480739,
+        "valid_triplet_anchor_fraction": 0.8726728723404256,
+        "train_accuracy": 0.47506648936170215,
+        "seconds": 9.183930012979545,
+        "steps": 141
+      },
+      {
+        "epoch": 4,
+        "ce": 2.232215222737468,
+        "triplet": 0.3435778909541191,
+        "valid_triplet_anchor_fraction": 0.887854609929078,
+        "train_accuracy": 0.5525265957446809,
+        "seconds": 8.988363551034126,
+        "steps": 141
+      },
+      {
+        "epoch": 5,
+        "ce": 1.9594364309987278,
+        "triplet": 0.3358703813654311,
+        "valid_triplet_anchor_fraction": 0.8874113475177305,
+        "train_accuracy": 0.6460549645390071,
+        "seconds": 9.101820693002082,
+        "steps": 141
+      },
+      {
+        "epoch": 6,
+        "ce": 1.7385439399286364,
+        "triplet": 0.3296566256817351,
+        "valid_triplet_anchor_fraction": 0.8867464539007093,
+        "train_accuracy": 0.7198581560283688,
+        "seconds": 9.059860725014005,
+        "steps": 141
+      },
+      {
+        "epoch": 7,
+        "ce": 1.566462903158039,
+        "triplet": 0.3254542845360776,
+        "valid_triplet_anchor_fraction": 0.8707890070921985,
+        "train_accuracy": 0.78302304964539,
+        "seconds": 8.82762679096777,
+        "steps": 141
+      },
+      {
+        "epoch": 8,
+        "ce": 1.4533508060671758,
+        "triplet": 0.3233920802884068,
+        "valid_triplet_anchor_fraction": 0.8721187943262412,
+        "train_accuracy": 0.8201462765957447,
+        "seconds": 8.988157238985877,
+        "steps": 141
+      },
+      {
+        "epoch": 9,
+        "ce": 1.3595182117840923,
+        "triplet": 0.3206940210880117,
+        "valid_triplet_anchor_fraction": 0.8747783687943262,
+        "train_accuracy": 0.8522828014184397,
+        "seconds": 8.99640962400008,
+        "steps": 141
+      },
+      {
+        "epoch": 10,
+        "ce": 1.290661334991455,
+        "triplet": 0.31862009839808686,
+        "valid_triplet_anchor_fraction": 0.8743351063829787,
+        "train_accuracy": 0.875,
+        "seconds": 9.149063759017736,
+        "steps": 141
+      },
+      {
+        "epoch": 11,
+        "ce": 1.236131009480632,
+        "triplet": 0.3172099425437603,
+        "valid_triplet_anchor_fraction": 0.8853058510638298,
+        "train_accuracy": 0.9020390070921985,
+        "seconds": 9.107941324997228,
+        "steps": 141
+      },
+      {
+        "epoch": 12,
+        "ce": 1.2084921674525484,
+        "triplet": 0.31618647752924167,
+        "valid_triplet_anchor_fraction": 0.87322695035461,
+        "train_accuracy": 0.9029255319148937,
+        "seconds": 9.10041855199961,
+        "steps": 141
+      }
+    ],
+    "representation_diagnostics": {
+      "BT-001": {
+        "eligible_queries": 1260,
+        "samples": 1280,
+        "recall1": 0.20793650793650795,
+        "identity_macro_recall1": 0.20793650793650792
+      },
+      "BT-005": {
+        "eligible_queries": 1260,
+        "samples": 1280,
+        "recall1": 0.1738095238095238,
+        "identity_macro_recall1": 0.1738095238095238
+      },
+      "PF-001": {
+        "eligible_queries": 254,
+        "samples": 256,
+        "recall1": 0.547244094488189,
+        "identity_macro_recall1": 0.547244094488189
+      },
+      "SN-001": {
+        "eligible_queries": 1338,
+        "samples": 1456,
+        "recall1": 0.3901345291479821,
+        "identity_macro_recall1": 0.35761690706556926
+      },
+      "SN-013": {
+        "eligible_queries": 1260,
+        "samples": 1281,
+        "recall1": 0.24523809523809523,
+        "identity_macro_recall1": 0.24523809523809526
+      }
+    },
+    "total_seconds": 122.97097874298925
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/oof_teacher_fold1_ir_seed2.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/oof_teacher_fold1_ir_seed2",
+  "conclusion": "Teachers trained, not utility models. Heldout unknown identity supervision must use candidate/history affinities, not classifier labels. No canonical dev/test claim.",
+  "status": "COMPLETE",
+  "manifest_sha256": "b563c2fce36b006ec84353bafb45dbc43c68a67b6bc6d090e9b1e055b6700dcf",
+  "provenance": {
+    "status": "COMPLETE",
+    "config": {
+      "schema_version": 1,
+      "state": "FROZEN",
+      "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+      "dimension": 512,
+      "epochs": 12,
+      "identities_per_batch": 8,
+      "observations_per_identity": 8,
+      "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+      "optimizer": "AdamW",
+      "backbone_lr": 3e-05,
+      "head_lr": 0.0003,
+      "weight_decay": 0.0001,
+      "warmup_epochs": 1,
+      "cosine_min_lr_fraction": 0.1,
+      "ce_label_smoothing": 0.1,
+      "triplet_weight": 1.0,
+      "triplet_margin": 0.3,
+      "triplet_positive_minimum_frame_gap": 25,
+      "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+      "augmentation": {
+        "horizontal_flip_probability": 0.5,
+        "erase_probability": 0.2,
+        "erase_area_fraction": [
+          0.05,
+          0.2
+        ],
+        "erase_fill": "zero in ImageNet-normalized space"
+      },
+      "amp": true,
+      "gradient_clip_norm": 5.0,
+      "seed_plan": [
+        0,
+        1,
+        2
+      ],
+      "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+      "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+    },
+    "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+    "seed": 2,
+    "modality": "ir",
+    "crop_manifest_sha256": "45fc8e910e48a324b8d040b515c5637f63561cd6c1f208f0b16d1783b113061d",
+    "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+    "index_sha256": "05d37b602f09b14fcf6c957eb86aea955e2467587f88eedfca8f771c909fd684",
+    "protocol_sha256": "ec43654663a41cd0a2c4c2e82fb964147af7389c1f1d6a5b090715250871a084",
+    "git_commit": "d94d1d6b6b96e2f6c724825aad4eea2634d78a88",
+    "source_sha256": "614e2f5f64882b59b6658a97b7e2d556e92269566da53d9ac020643ed52e4f69",
+    "model_source_sha256": "b00c8c3a6ba9935c0d186ab4eeee7f6dda3563bb6e8fa8fc915f68ee2e4499a8",
+    "torch": "2.0.0+cu118",
+    "cudnn": 8700,
+    "physical_visible_devices": "2",
+    "parameters": 24595008,
+    "train_identity_count": 73,
+    "training_videos": [
+      "BT-003",
+      "MSK-002",
+      "SN-015"
+    ],
+    "heldout_videos": [
+      "BT-001",
+      "PF-001",
+      "SN-001",
+      "BT-005",
+      "SN-013"
+    ],
+    "protocol_role": "Out-of-fold identity teacher only; not a replacement association development protocol",
+    "parent_protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "checkpoint_retention": "fixed selected epoch plus resumable last.pt",
+    "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+    "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+    "input_regime": "complete causal constructed IR",
+    "epochs": [
+      {
+        "epoch": 1,
+        "ce": 3.685777341220396,
+        "triplet": 0.41367137812553567,
+        "valid_triplet_anchor_fraction": 0.8930629432624113,
+        "train_accuracy": 0.16788563829787234,
+        "seconds": 9.594494307006244,
+        "steps": 141
+      },
+      {
+        "epoch": 2,
+        "ce": 2.9662451490442803,
+        "triplet": 0.36571779086234724,
+        "valid_triplet_anchor_fraction": 0.8798758865248227,
+        "train_accuracy": 0.3376551418439716,
+        "seconds": 9.031935616978444,
+        "steps": 141
+      },
+      {
+        "epoch": 3,
+        "ce": 2.4867277272204134,
+        "triplet": 0.3501824269480739,
+        "valid_triplet_anchor_fraction": 0.8726728723404256,
+        "train_accuracy": 0.47506648936170215,
+        "seconds": 9.183930012979545,
+        "steps": 141
+      },
+      {
+        "epoch": 4,
+        "ce": 2.232215222737468,
+        "triplet": 0.3435778909541191,
+        "valid_triplet_anchor_fraction": 0.887854609929078,
+        "train_accuracy": 0.5525265957446809,
+        "seconds": 8.988363551034126,
+        "steps": 141
+      },
+      {
+        "epoch": 5,
+        "ce": 1.9594364309987278,
+        "triplet": 0.3358703813654311,
+        "valid_triplet_anchor_fraction": 0.8874113475177305,
+        "train_accuracy": 0.6460549645390071,
+        "seconds": 9.101820693002082,
+        "steps": 141
+      },
+      {
+        "epoch": 6,
+        "ce": 1.7385439399286364,
+        "triplet": 0.3296566256817351,
+        "valid_triplet_anchor_fraction": 0.8867464539007093,
+        "train_accuracy": 0.7198581560283688,
+        "seconds": 9.059860725014005,
+        "steps": 141
+      },
+      {
+        "epoch": 7,
+        "ce": 1.566462903158039,
+        "triplet": 0.3254542845360776,
+        "valid_triplet_anchor_fraction": 0.8707890070921985,
+        "train_accuracy": 0.78302304964539,
+        "seconds": 8.82762679096777,
+        "steps": 141
+      },
+      {
+        "epoch": 8,
+        "ce": 1.4533508060671758,
+        "triplet": 0.3233920802884068,
+        "valid_triplet_anchor_fraction": 0.8721187943262412,
+        "train_accuracy": 0.8201462765957447,
+        "seconds": 8.988157238985877,
+        "steps": 141
+      },
+      {
+        "epoch": 9,
+        "ce": 1.3595182117840923,
+        "triplet": 0.3206940210880117,
+        "valid_triplet_anchor_fraction": 0.8747783687943262,
+        "train_accuracy": 0.8522828014184397,
+        "seconds": 8.99640962400008,
+        "steps": 141
+      },
+      {
+        "epoch": 10,
+        "ce": 1.290661334991455,
+        "triplet": 0.31862009839808686,
+        "valid_triplet_anchor_fraction": 0.8743351063829787,
+        "train_accuracy": 0.875,
+        "seconds": 9.149063759017736,
+        "steps": 141
+      },
+      {
+        "epoch": 11,
+        "ce": 1.236131009480632,
+        "triplet": 0.3172099425437603,
+        "valid_triplet_anchor_fraction": 0.8853058510638298,
+        "train_accuracy": 0.9020390070921985,
+        "seconds": 9.107941324997228,
+        "steps": 141
+      },
+      {
+        "epoch": 12,
+        "ce": 1.2084921674525484,
+        "triplet": 0.31618647752924167,
+        "valid_triplet_anchor_fraction": 0.87322695035461,
+        "train_accuracy": 0.9029255319148937,
+        "seconds": 9.10041855199961,
+        "steps": 141
+      }
+    ],
+    "checkpoint_sha256": "a795ddf125bc8ad6ffb9b2f7c04254e9c7747fcec9f88d72a2cbb7b71fb7b7ed",
+    "features_sha256": "73034de516eb710c99d37b7e3d3473a99a1b1452c779d779863b63a9083b155c",
+    "dev_oracle_retrieval": {
+      "BT-001": {
+        "eligible_queries": 1260,
+        "samples": 1280,
+        "recall1": 0.20793650793650795,
+        "identity_macro_recall1": 0.20793650793650792
+      },
+      "BT-005": {
+        "eligible_queries": 1260,
+        "samples": 1280,
+        "recall1": 0.1738095238095238,
+        "identity_macro_recall1": 0.1738095238095238
+      },
+      "PF-001": {
+        "eligible_queries": 254,
+        "samples": 256,
+        "recall1": 0.547244094488189,
+        "identity_macro_recall1": 0.547244094488189
+      },
+      "SN-001": {
+        "eligible_queries": 1338,
+        "samples": 1456,
+        "recall1": 0.3901345291479821,
+        "identity_macro_recall1": 0.35761690706556926
+      },
+      "SN-013": {
+        "eligible_queries": 1260,
+        "samples": 1281,
+        "recall1": 0.24523809523809523,
+        "identity_macro_recall1": 0.24523809523809526
+      }
+    },
+    "total_seconds": 122.97097874298925,
+    "peak_gpu_memory_bytes": 2416378368,
+    "crop_encoder_batch128_latency_p50_p95_ms": [
+      18.27733952086419,
+      18.352894636336714
+    ],
+    "latency_scope": "Cache-backed crop encoding; excludes original image decode, detector and tracker; not end-to-end FPS"
+  },
+  "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993"
+}

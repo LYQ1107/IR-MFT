@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "round": 2,
+  "hypothesis": "The 128x256 fish crop wastes resolution on frequent vertical ROIs. Geometric audit shows 64.38% vertical BT-001 crops and 62.34% vertical BT-005 crops. Rectangular crop coverage averages 43.87%/47.31%, versus 77.26%/79.00% if the long axis is aligned before resizing. This is a representation-resolution hypothesis, not measured fish foreground or learned improvement.",
+  "change": "Clip the exact same current detection/GT ROI with 0.05 margin. Rotate 90 degrees clockwise only when its clipped height exceeds width, before any resize. Preserve aspect ratio, 128x256 canvas, RGB order/ImageNet normalization. Both views use the same current box/rotation; no future orientation or GT used in deployment.",
+  "crop_variant": "long_axis",
+  "training": "Fresh original ImageNet initialization; unchanged 12-epoch RGB/IR ReID config, losses, sampler and all three seeds. Fixed last epoch. Pre-/post-neck candidates and original association grids retained.",
+  "controls": "If retained, retrain all RGB auxiliary views and OOF teachers with identical crop variant, encoder budgets and video splits. Independent RGB repeat uses matching variant. Give external trackers the same features/candidate budgets.",
+  "selection": "Mean dev HOTA, then AssA, then IDF1 across three seeds. Original pre-neck geometry control remains a comparator. No historical test selection.",
+  "risk": "Current-box aspect crossing one can introduce a discrete 90-degree representation transition; quantify offline retrieval, temporal drift and online association rather than assuming benefit.",
+  "scope": "Second evidence-directed baseline repair, declared before aligned crop extraction/training. Not CMUE/PLIM or an independent scientific contribution."
+}

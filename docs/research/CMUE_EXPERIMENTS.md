@@ -1,5 +1,7 @@
 # CMUE experiments
 
-Status: NOT_STARTED. No utility estimator has been trained or evaluated. Architecture, teachers, fixed-candidate target and controls are predeclared in ARCHITECTURE_DESIGN.md; cross-fit videos are in the frozen protocol.
+Status: TEACHERS_TRAINED / UTILITY_NOT_STARTED. All 12 two-fold, three-seed RGB/causal-IR teachers trained from original ImageNet with fixed last epoch and video-local classes; canonical dev was always held out. No utility estimator has been trained or evaluated. Architecture, teachers, fixed-candidate target and controls are predeclared in ARCHITECTURE_DESIGN.md; cross-fit videos are in the frozen protocol.
 
 Initial loss: Huber utility regression on frozen out-of-fold teacher CE differences, plus a separately documented sign calibration stage. Track teacher provenance, benefit/harm distribution, acceptance frequency, corrections and harmful overrides. RGB fallback must return identical RGB scores when utility is rejected. Compare same evidence, capacity, teacher and training budget against ordinary gates. Do not report module implementation as validation of H1.
+
+Teacher paths: `IR-MFT_assets/cfp/phase2/oof_teacher_fold{0,1}_{rgb,ir}_seed{0,1,2}`. Fold 0/1 classifier counts are 25/73. Unknown heldout identity utility must use candidate/history affinity CE, not a teacher classifier over training identities. `cfp_cache_detection_features.py --teacher-protocol .../foldF/protocol.json --partition train` enforces three heldout videos per teacher bank. Official continuity-biased CLEAR matches are diagnostic only; physical current-proposal labels require independent GT matching and ambiguity exclusion.

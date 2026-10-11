@@ -11,6 +11,7 @@ import numpy as np
 import torch
 
 from cfp.identity_data import crop_to_tensor
+from cfp.crop_views import long_axis_crop
 from cfp.provenance import sha256, write_json
 from cfp.reid import FishReID
 
@@ -20,7 +21,7 @@ def worker_init(_):
 
 
 class DetectionCrops(torch.utils.data.Dataset):
-    def __init__(self, root, split, images, cache, paired, auxiliary_root=None):
+    def __init__(self, root, split, images, cache, paired, auxiliary_root=None, crop_variant='original'):
         self.root = root / split
         self.auxiliary_root = (auxiliary_root or root) / split
         self.images = images
@@ -28,6 +29,9 @@ class DetectionCrops(torch.utils.data.Dataset):
         self.offsets = cache['offsets']
         self.boxes = cache['boxes']
         self.paired = paired
+        if crop_variant not in ('original', 'long_axis'):
+            raise ValueError('Unknown crop variant')
+        self.crop_transform = long_axis_crop if crop_variant == 'long_axis' else crop_to_tensor
         self.last_frame, self.last_images = None, None
 
     def __len__(self):
@@ -53,7 +57,7 @@ class DetectionCrops(torch.utils.data.Dataset):
                 valid.append(False)
                 continue
             try:
-                crop = crop_to_tensor(image, xywh)
+                crop = self.crop_transform(image, xywh)
             except ValueError:
                 # Preserve the proposal; mark unavailable appearance explicitly.
                 crops.append(torch.zeros((3, 128, 256)))
@@ -102,6 +106,7 @@ def main():
     p.add_argument('--ir-checkpoint', type=Path)
     p.add_argument('--auxiliary-root', type=Path, help='Declared RGB control view; detector inputs remain data-root')
     p.add_argument('--embedding-stage', choices=['pre_neck', 'post_neck'], default='pre_neck')
+    p.add_argument('--crop-variant', choices=['original', 'long_axis'], default='original')
     p.add_argument('--teacher-protocol', type=Path, help='Explicit out-of-fold teacher protocol; encode only its heldout training videos')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--batch-size', type=int, default=128)
@@ -136,6 +141,8 @@ def main():
     for metadata in (rgb_metadata, ir_metadata):
         if metadata and metadata['training_metadata']['protocol_sha256'] != expected_training_protocol:
             raise ValueError('Encoder training split differs from its declared main/OOF role')
+        if metadata and metadata['training_metadata'].get('crop_variant', 'original') != args.crop_variant:
+            raise ValueError('Deployment crop variant differs from encoder training')
     auxiliary_mode, auxiliary_generation_sha256 = 'constructed_ir', None
     if args.auxiliary_root:
         if ir_model is None:
@@ -166,6 +173,7 @@ def main():
                     auxiliary_generation_manifest_sha256=auxiliary_generation_sha256,
                     storage_schema='ir column denotes the auxiliary view; inspect auxiliary_view, never infer a thermal sensor',
                     embedding_stage=args.embedding_stage,
+                    crop_variant=args.crop_variant, crop_view_source_sha256=sha256('cfp/crop_views.py'),
                     encoder_role='oof_teacher' if args.teacher_protocol else 'main_baseline',
                     teacher_protocol_sha256=sha256(args.teacher_protocol) if args.teacher_protocol else None,
                     selected_sequences=selected_sequences,
@@ -188,7 +196,7 @@ def main():
         images = {int(image['frame_id']): image for image in annotation['images'] if names[image['video_id']] == sequence}
         if not np.array_equal(cache['frame_ids'], np.arange(1, len(images) + 1)):
             raise ValueError('Proposal bank does not cover full selected video')
-        dataset = DetectionCrops(args.data_root, split, images, cache, ir_model is not None, args.auxiliary_root)
+        dataset = DetectionCrops(args.data_root, split, images, cache, ir_model is not None, args.auxiliary_root, args.crop_variant)
         loader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size, shuffle=False,
                                             num_workers=args.workers, pin_memory=True, worker_init_fn=worker_init)
         rgb_rows, ir_rows, valid_rgb_rows, valid_ir_rows, latencies = [], [], [], [], []
