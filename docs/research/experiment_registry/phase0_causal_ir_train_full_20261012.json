@@ -28,13 +28,807 @@
   "split": "original train: six association train and two dev videos, no historical test",
   "epochs": 0,
   "checkpoint_selection": "Fixed generator configuration before modality diagnosis outcomes, not outcome selected",
-  "metrics": null,
+  "metrics": {
+    "total_frames": 32085,
+    "total_sequences": 8,
+    "generator_cpu_seconds": 11921.918075763155
+  },
   "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_ir_train_full_20261012.log",
   "output": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
-  "conclusion": "Generator/prefix-state chunking/optimizations pass causal and exact output parity checks; complete input build running.",
-  "status": "RUNNING",
+  "conclusion": "All 32,085 original train frames have separate causal derived inputs, immutable image hashes and continuous per-video coverage. Chunked scheduling is exactly equivalent to sequential generation. No historical test generated/evaluated in this build.",
+  "status": "COMPLETE_CAUSAL_INPUTS",
   "wrapper_sha256": "cc7208ca756d5445a1ecb12e56703ce8e7cde01c5b4c3782de9a8ad284638581",
   "adapter_sha256": "593a0b825479e3096e6ceefc8fab1da36a3ba8d70666801d7aac87b3f317e6bf",
   "probe_parity": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_ir_chunk_parity.json",
-  "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6"
+  "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+  "total_seconds": 1883.663498392969,
+  "generation_manifest_sha256": "34e2787d387cb3128b1e916fb97a2aa7b6203a27402b04a6c60c31800c05f0d8",
+  "generation_manifest": {
+    "status": "COMPLETE",
+    "config": {
+      "schema_version": 1,
+      "state": "FROZEN",
+      "mode": "temporal_ema",
+      "alpha": 0.01,
+      "initialization": "current first RGB frame; include first output",
+      "background_update": "after emitting response, B_t=(1-alpha)*B_(t-1)+alpha*RGB_t",
+      "strategy": "same fixed temporal generator for every sequence, no per-sequence selection",
+      "source": "trans-sn0612.py",
+      "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+      "remaining_response_parameters": "unchanged original pinned script",
+      "reason": "First causal implementation declared before development association outcomes; alpha is a fixed 100-frame EMA timescale, not outcome-selected",
+      "encoding": "original per-frame filename/dimensions, JPEG quality 95",
+      "controls_required": [
+        "current-frame local response",
+        "RGB with equal causal background history",
+        "RGB contrast enhancement",
+        "RGB pseudo-color transform"
+      ]
+    },
+    "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+    "git_commit": "545574ade0149d26d89af87c36cae345845a87ed",
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6",
+    "wrapper_sha256": "cc7208ca756d5445a1ecb12e56703ce8e7cde01c5b4c3782de9a8ad284638581",
+    "adapter_sha256": "593a0b825479e3096e6ceefc8fab1da36a3ba8d70666801d7aac87b3f317e6bf",
+    "cv2": "4.10.0",
+    "probe_frames": 0,
+    "chunk_size": 1000,
+    "scheduling": "prefix-state checkpoints; no future data in state",
+    "warning": null,
+    "prefix_preparations": [
+      {
+        "sequence": "BT-001",
+        "preparation_seconds": 24.947511118953116
+      },
+      {
+        "sequence": "BT-003",
+        "preparation_seconds": 0.00032061198726296425
+      },
+      {
+        "sequence": "MSK-002",
+        "preparation_seconds": 11.18926051701419
+      },
+      {
+        "sequence": "PF-001",
+        "preparation_seconds": 141.95406401494984
+      },
+      {
+        "sequence": "SN-001",
+        "preparation_seconds": 0.0002504150033928454
+      },
+      {
+        "sequence": "SN-015",
+        "preparation_seconds": 63.68910614494234
+      },
+      {
+        "sequence": "BT-005",
+        "preparation_seconds": 12.942622356000356
+      },
+      {
+        "sequence": "SN-013",
+        "preparation_seconds": 25.473099427996203
+      }
+    ],
+    "total_seconds": 1883.663498392969,
+    "chunks": [
+      {
+        "sequence": "BT-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 366.07321471895557,
+        "generator_latency_p50_p95_ms": [
+          358.6329170211684,
+          413.6530730262166
+        ],
+        "total_seconds": 380.98451282503083,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "BT-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 369.8185504519497,
+        "generator_latency_p50_p95_ms": [
+          364.3517225282267,
+          412.5094227434601
+        ],
+        "total_seconds": 384.7477887960267,
+        "first_frame": 1001,
+        "last_frame": 2000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/BT-001/before_001001.npy",
+          "sha256": "4c1e3b8beb794afb431ee0bfb68e138f87ad2e4da5deef7f5df586201c21de0d",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "BT-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 376.8102281577885,
+        "generator_latency_p50_p95_ms": [
+          369.9037295009475,
+          413.6570194852538
+        ],
+        "total_seconds": 395.30313059099717,
+        "first_frame": 2001,
+        "last_frame": 3000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/BT-001/before_002001.npy",
+          "sha256": "c570557c8df652ce7531216bc9b271ae983241c78ab21b53ce4cb51d65a34e2b",
+          "prior_frames": 2000
+        }
+      },
+      {
+        "sequence": "BT-003",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 243,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 93.35275402793195,
+        "generator_latency_p50_p95_ms": [
+          367.81907803379,
+          454.74538843845943
+        ],
+        "total_seconds": 97.28231332299765,
+        "first_frame": 1,
+        "last_frame": 243,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "MSK-002",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 371.21950446953997,
+        "generator_latency_p50_p95_ms": [
+          368.00412900629453,
+          404.2183201527223
+        ],
+        "total_seconds": 388.8761600339785,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "MSK-002",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 754,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 278.671071454708,
+        "generator_latency_p50_p95_ms": [
+          367.23711699596606,
+          394.0793333167676
+        ],
+        "total_seconds": 291.5891725930269,
+        "first_frame": 1001,
+        "last_frame": 1754,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/MSK-002/before_001001.npy",
+          "sha256": "7aaabe0639e7aa1485777f8963cfd20459b841f565b6249a00a61f57b33179c0",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 382.1628652032814,
+        "generator_latency_p50_p95_ms": [
+          372.7032364986371,
+          427.2065400029532
+        ],
+        "total_seconds": 397.78410307795275,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 374.7607964501367,
+        "generator_latency_p50_p95_ms": [
+          370.78912698780186,
+          406.225140125025
+        ],
+        "total_seconds": 390.256949358969,
+        "first_frame": 1001,
+        "last_frame": 2000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_001001.npy",
+          "sha256": "4163993302450f51b1e149fcfbcbab563375e89b36a2c1d2ab0d064143b7f10a",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 375.59788885724265,
+        "generator_latency_p50_p95_ms": [
+          368.3933004795108,
+          428.84604531573126
+        ],
+        "total_seconds": 391.1789095539716,
+        "first_frame": 2001,
+        "last_frame": 3000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_002001.npy",
+          "sha256": "fd3bc313ea87d1affb9554842d48fb86829289051b8b6b21deed18f382ff5717",
+          "prior_frames": 2000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 372.5772301987163,
+        "generator_latency_p50_p95_ms": [
+          366.7019589920528,
+          413.36142250511324
+        ],
+        "total_seconds": 387.86933475203114,
+        "first_frame": 3001,
+        "last_frame": 4000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_003001.npy",
+          "sha256": "9717971a8d23fd836ff4ad24d4932d131acbb86f256ea6fa3ce02814aa35ab42",
+          "prior_frames": 3000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 381.2334030336351,
+        "generator_latency_p50_p95_ms": [
+          377.2591195011046,
+          423.78336287511047
+        ],
+        "total_seconds": 396.72792863997165,
+        "first_frame": 4001,
+        "last_frame": 5000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_004001.npy",
+          "sha256": "73d70462b65b05a656bf86e255489f2e18643a83833d17d0d82cd9b91bf49e9e",
+          "prior_frames": 4000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 374.9034452518681,
+        "generator_latency_p50_p95_ms": [
+          372.2418885154184,
+          405.53894894255785
+        ],
+        "total_seconds": 390.257379785995,
+        "first_frame": 5001,
+        "last_frame": 6000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_005001.npy",
+          "sha256": "4f9c0089b97f6330e3d352a122abb7c0057f1f2e5e788dd24e694ab7150d6328",
+          "prior_frames": 5000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 367.477970151871,
+        "generator_latency_p50_p95_ms": [
+          364.5923754957039,
+          402.12663255806547
+        ],
+        "total_seconds": 382.5545944919577,
+        "first_frame": 6001,
+        "last_frame": 7000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_006001.npy",
+          "sha256": "df21bf3b56e7b7a10e6e7709b7be65fa93031f3da55db785c703ce57902d91cc",
+          "prior_frames": 6000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 373.40603750309674,
+        "generator_latency_p50_p95_ms": [
+          369.5246415154543,
+          407.61050199507736
+        ],
+        "total_seconds": 388.8946061080205,
+        "first_frame": 7001,
+        "last_frame": 8000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_007001.npy",
+          "sha256": "537da03ff250b68584cbc82441b81e930670564f2e45ff7ceaf8fb912b3a2340",
+          "prior_frames": 7000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 368.9232572132023,
+        "generator_latency_p50_p95_ms": [
+          367.152194987284,
+          395.49163499614224
+        ],
+        "total_seconds": 384.1000117789954,
+        "first_frame": 8001,
+        "last_frame": 9000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_008001.npy",
+          "sha256": "d217c12a845d66d40a0cc7893cdf442402f0c3ba4acd9bfb2ce43605ddfb8a74",
+          "prior_frames": 8000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 380.2091547238524,
+        "generator_latency_p50_p95_ms": [
+          377.7479419950396,
+          416.150346188806
+        ],
+        "total_seconds": 395.5140526309842,
+        "first_frame": 9001,
+        "last_frame": 10000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_009001.npy",
+          "sha256": "e6959a97b3d3d9dd496a79ee4d9e339e2e90106f323235a599d5f40285a4bd44",
+          "prior_frames": 9000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 370.1431870710803,
+        "generator_latency_p50_p95_ms": [
+          367.919394018827,
+          400.3079140733461
+        ],
+        "total_seconds": 385.27636512200115,
+        "first_frame": 10001,
+        "last_frame": 11000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_010001.npy",
+          "sha256": "98f32b5c028544a9e93bc7524b76dd6568dfcad483aa3c70792b652a48876709",
+          "prior_frames": 10000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 380.48759211797733,
+        "generator_latency_p50_p95_ms": [
+          375.71520754136145,
+          425.90740639425337
+        ],
+        "total_seconds": 396.0061066559865,
+        "first_frame": 11001,
+        "last_frame": 12000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_011001.npy",
+          "sha256": "aabc19267f3fa3e0c2af71e813e0f695765d86ccf6c5ea247e044a8939325bcb",
+          "prior_frames": 11000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 358.93041979905684,
+        "generator_latency_p50_p95_ms": [
+          356.3960454775952,
+          391.54019840352703
+        ],
+        "total_seconds": 373.7440059490036,
+        "first_frame": 12001,
+        "last_frame": 13000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_012001.npy",
+          "sha256": "dbaf6139c45c5b13e2f4a00f9e6f55097e533f12f8b14e3423584e6da0e65370",
+          "prior_frames": 12000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 372.53677028173115,
+        "generator_latency_p50_p95_ms": [
+          368.6954290315043,
+          415.94391948601697
+        ],
+        "total_seconds": 387.5318899679696,
+        "first_frame": 13001,
+        "last_frame": 14000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_013001.npy",
+          "sha256": "118710434d562073e792f564009d0d0317e1e3e69a3fb670e682b099d4ea2aa5",
+          "prior_frames": 13000
+        }
+      },
+      {
+        "sequence": "PF-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 372.94799174030777,
+        "generator_latency_p50_p95_ms": [
+          372.5798999948893,
+          407.77037960651796
+        ],
+        "total_seconds": 393.7052816710202,
+        "first_frame": 14001,
+        "last_frame": 15000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/PF-001/before_014001.npy",
+          "sha256": "bffa621f216df103937a41dd30ab82ae3c690c8ab4cd1046bbccc6647cf33a50",
+          "prior_frames": 14000
+        }
+      },
+      {
+        "sequence": "SN-001",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 684,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 252.01195816864492,
+        "generator_latency_p50_p95_ms": [
+          366.3445555139333,
+          399.56970364728477
+        ],
+        "total_seconds": 265.45838075398933,
+        "first_frame": 1,
+        "last_frame": 684,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 371.8563319137902,
+        "generator_latency_p50_p95_ms": [
+          368.99876900133677,
+          409.8454049701104
+        ],
+        "total_seconds": 391.04842139501125,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 376.5277207895415,
+        "generator_latency_p50_p95_ms": [
+          374.0658879978582,
+          413.02817175455857
+        ],
+        "total_seconds": 397.3497598299873,
+        "first_frame": 1001,
+        "last_frame": 2000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_001001.npy",
+          "sha256": "36b58cd0d3048b08d2892c534700421e38dcb512442c68466a2b3ce9f7a9afd8",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 400.2517434549518,
+        "generator_latency_p50_p95_ms": [
+          400.10245802113786,
+          454.7900937439408
+        ],
+        "total_seconds": 418.68151642603334,
+        "first_frame": 2001,
+        "last_frame": 3000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_002001.npy",
+          "sha256": "381c614ec4377358f062b299a72487a33bbc11e4e17d4b43372be443d68d5427",
+          "prior_frames": 2000
+        }
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 356.0614517063368,
+        "generator_latency_p50_p95_ms": [
+          354.9130015016999,
+          385.3958957071882
+        ],
+        "total_seconds": 372.354577042046,
+        "first_frame": 3001,
+        "last_frame": 4000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_003001.npy",
+          "sha256": "5d6a771056c5c0a0ba76ff1ba0abbcbbbebb2ea3e05524d0f7366354c9fcb5ef",
+          "prior_frames": 3000
+        }
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 383.70311248506187,
+        "generator_latency_p50_p95_ms": [
+          378.11695848358795,
+          428.0101646669209
+        ],
+        "total_seconds": 400.6163009160082,
+        "first_frame": 4001,
+        "last_frame": 5000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_004001.npy",
+          "sha256": "910135300df095a9f66f4273f67e796c62473c8716efedff4ca9bbbab1e01cde",
+          "prior_frames": 4000
+        }
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 354.7791538441088,
+        "generator_latency_p50_p95_ms": [
+          352.9051279765554,
+          392.4256886180956
+        ],
+        "total_seconds": 371.53296873602085,
+        "first_frame": 5001,
+        "last_frame": 6000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_005001.npy",
+          "sha256": "22d5775c6a6247657be243793323f3b774373f9428d39de499f34fa13268d2e7",
+          "prior_frames": 5000
+        }
+      },
+      {
+        "sequence": "SN-015",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 570,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 219.41919290990336,
+        "generator_latency_p50_p95_ms": [
+          379.2673014686443,
+          426.2133531534346
+        ],
+        "total_seconds": 229.05381879099878,
+        "first_frame": 6001,
+        "last_frame": 6570,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-015/before_006001.npy",
+          "sha256": "2df4a22c14230b96930e3b9749e109fa4b64cfcfb628748215a77a808be2dc18",
+          "prior_frames": 6000
+        }
+      },
+      {
+        "sequence": "BT-005",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 371.03714082518127,
+        "generator_latency_p50_p95_ms": [
+          368.95921648829244,
+          411.9613093062071
+        ],
+        "total_seconds": 386.82432746404083,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "BT-005",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 834,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 311.08381634083344,
+        "generator_latency_p50_p95_ms": [
+          363.28343697823584,
+          435.0127167621394
+        ],
+        "total_seconds": 325.0865983220283,
+        "first_frame": 1001,
+        "last_frame": 1834,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/BT-005/before_001001.npy",
+          "sha256": "3854d32c81c5937f383b6ffd23ca5456fa2d4d7bc99d38965be19cda977c5b41",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "SN-013",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 372.9899190645083,
+        "generator_latency_p50_p95_ms": [
+          368.8346055278089,
+          449.0357997798128
+        ],
+        "total_seconds": 390.2365391809726,
+        "first_frame": 1,
+        "last_frame": 1000,
+        "prefix_checkpoint": null
+      },
+      {
+        "sequence": "SN-013",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 356.84027724998305,
+        "generator_latency_p50_p95_ms": [
+          345.08013949380256,
+          414.6272967831464
+        ],
+        "total_seconds": 373.36252377397614,
+        "first_frame": 1001,
+        "last_frame": 2000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-013/before_001001.npy",
+          "sha256": "eecccb711eb86c5e5b8b26963f46b327eec61257e267fc686f6f13499de9050a",
+          "prior_frames": 1000
+        }
+      },
+      {
+        "sequence": "SN-013",
+        "split": "train",
+        "status": "COMPLETE",
+        "frames": 1000,
+        "config_sha256": "b388db4b92247b6f74781acf448a2349d6d4a24bc76f159112a2bac7f5fb53e6",
+        "source_file": "trans-sn0612.py",
+        "source_sha256": "03d578453f7cc37f08b9ea44102f0fc74891bcee132dc7d3f64ad3adbc41913d",
+        "generator_seconds": 333.1129241323797,
+        "generator_latency_p50_p95_ms": [
+          323.6065660021268,
+          397.6303734933026
+        ],
+        "total_seconds": 348.88741665601265,
+        "first_frame": 2001,
+        "last_frame": 3000,
+        "prefix_checkpoint": {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1/state_checkpoints/train/SN-013/before_002001.npy",
+          "sha256": "f8c34e0773612c331a57a254c41c0fa464098cbcb143c852151b8471147bb38a",
+          "prior_frames": 2000
+        }
+      }
+    ],
+    "total_frames": 32085
+  }
 }

@@ -13,3 +13,13 @@ These rows test baseline reproducibility, not method improvements. Historical te
 Frozen-feature interventions are actual representation diagnosis results in PHASE_I_MODALITY_IDENTITY_DIAGNOSIS.md, not tracking ablations. A fish-trained RGB ReID baseline is running under fixed last-epoch selection; its GT/oracle-gallery retrieval must not be relabeled as IDF1. Simple appearance tracking baselines are implemented in `cfp/association.py` with declared geometry/appearance mixing and no trained utility/predictive module. Disabled mode calls original BYTETracker; enabled zero-weight lifecycle and post-association memory writes pass tests. Full-video replay and final causal-detection comparisons are still required.
 
 Required Protocol A baseline/fusion/CMUE/PLIM/write-policy and optional interaction rows will be added only from registered actual runs. Three final seeds, cost measurements, per-video details and leave-one-component-out evidence remain outstanding.
+
+## Canonical causal association development baseline
+
+4,834 frames from BT-005/SN-013, one common bank of 51,286 V3 proposals. All association methods use this exact bank and versioned derived GT. Detector trained on these images historically; new appearance/association models hold these videos out. Development videos differ from the historical test set above.
+
+| Method | HOTA | AssA | DetA | IDF1 | MOTA | IDSW | FP | FN | Frag |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Original ByteTrack, causal IR inputs, original fixed settings | 49.2967 | 34.0115 | 71.5087 | 58.8771 | 92.5292 | 86 | 1,353 | 2,032 | 349 |
+
+Source: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_dev_bytetrack_off_evaluation/metrics.json`. No appearance/CMUE/PLIM tracking rows exist yet.

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "declaration": "Parameters frozen before inspecting causal-IR ReID outcomes or any development fusion tracking outcomes; control families predeclared in Phase 0 architecture",
+  "rgb_independent_repeat": {
+    "seed_pairs": [[0, 1], [1, 2], [2, 0]],
+    "source": "Two independently fish-trained current-frame RGB encoders, existing 12-epoch checkpoints",
+    "match": "Same two-encoder parameter count, total training exposure, preprocessing and inference budget as RGB+IR"
+  },
+  "rgb_contrast": {
+    "input": "current RGB frame only",
+    "method": "Lab L CLAHE, unchanged A/B, convert back to BGR",
+    "clip_limit": 2.0,
+    "tile_grid_size": [8, 8]
+  },
+  "rgb_background_difference": {
+    "input": "current and identical causal RGB EMA background used by IR",
+    "alpha": 0.01,
+    "initialization": "first current frame; include first output",
+    "method": "per-BGR-channel absolute difference, nonzero percentile enhancement, gamma",
+    "percentiles": [2.0, 98.5],
+    "gamma": 0.42,
+    "state_update": "after response, identical prefix states to causal_ir_v1",
+    "limitation": "No IR morphology or ellipse suppression; explicitly report processing differences"
+  },
+  "encoding": "same frame names/dimensions, JPEG quality 95",
+  "encoder_budget": "same reid_baseline_v1, last epoch 12, all three seeds",
+  "scope": "Separate ordinary extra-view/capacity/history controls, not temperature measurements or claimed method gains"
+}
