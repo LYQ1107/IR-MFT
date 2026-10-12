@@ -588,7 +588,19 @@
       "N10": null,
       "cost": null,
       "conclusion": "88 hashes, 3 byte-identical strong GRU replays, 6 exact official reevaluations",
-      "next_step": "Retain frozen baselines; inspect recoverability"
+      "next_step": "Retain frozen baselines; inspect recoverability",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_audit_v1/manifest.json",
+          "status": "FAILED",
+          "sha256": "b844b6f7e6926d587bc2851421e323d7758d331c0aa7b636267b8487aa45ae2e"
+        },
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_audit_pathrepair_v2/manifest.json",
+          "status": "BASELINE_REPRODUCED",
+          "sha256": "67489996317725e425230d8fa66ab758c2669460277e43f178ced471e422f33f"
+        }
+      ]
     },
     {
       "experiment_id": "VI1_recoverability_actual_traces_v1",
@@ -1000,7 +1012,19 @@
       "N10": null,
       "cost": null,
       "conclusion": "Feasible reranking, rescoring, stage coverage and absent/unverified detections separated; not an MOT improvement",
-      "next_step": "Train heldout risk controls; implement branching and candidate prediction"
+      "next_step": "Train heldout risk controls; implement branching and candidate prediction",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/recoverability_train_gru_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "4d5cc1fa1445fded468dd659f1a6fcff5d0beb376220da3ab43f73d6a7daebb2"
+        },
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/recoverability_historical_dev_gru_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "ddeed6ca465192d4be1af302fa2a27c292aae4266a5206258739e2cdf7510ffa"
+        }
+      ]
     },
     {
       "experiment_id": "VI2_candidate_queries_warmstart_s0_v1",
@@ -1103,7 +1127,14 @@
       "N10": null,
       "cost": null,
       "conclusion": "Warm-start teacher states, not genuine OOF evidence",
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_BT-001_s0_v1",
@@ -1755,7 +1786,14 @@
       "N10": 47,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_BT-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "8d311baa70db3f2b308674c73423139f6f5b7728d1baa2c22130a12845b97f1d"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_BT-001_s0_v1",
@@ -2421,7 +2459,14 @@
       "N10": 44,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_BT-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0e98c85e8b075209f9fd7d6f23fb44a87c0f10f2a0164f68238c697fd35c4b9e"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_BT-003_s0_v1",
@@ -3073,7 +3118,14 @@
       "N10": 26,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_BT-003_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "868b28a1c59fa1ee62002ae2595297b0f1a1e88ce431c9d0b0a8de8f03150c3f"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_BT-003_s0_v1",
@@ -3739,7 +3791,14 @@
       "N10": 24,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_BT-003_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0a396d52e1d00002a62ddae1dd1f59c941bb37c9dd1f6599c2e8cb2a5c4ae0e5"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_MSK-002_s0_v1",
@@ -4433,7 +4492,14 @@
       "N10": 44,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_MSK-002_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "a97bb42f1307110aa11ee58bd89d18df2f3c44277ae15d3b1d14bac40fea610b"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_MSK-002_s0_v1",
@@ -5127,7 +5193,14 @@
       "N10": 36,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_MSK-002_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "e677067995f6682d690d34bdd0c4ebfbaed442785fb1a9d602b9b1bee902d51f"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_PF-001_s0_v1",
@@ -5821,7 +5894,14 @@
       "N10": 0,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_PF-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "51279cced15185c2444c60d8cd7159b64bbf71d012e4faff36a836082cc3d9d0"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_PF-001_s0_v1",
@@ -6515,7 +6595,14 @@
       "N10": 0,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_PF-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "2ee490d7bb4f7bbe7107d1717826cf7f564b943ab89d7cd1d85bce7ab526f1de"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_SN-001_s0_v1",
@@ -7125,7 +7212,14 @@
       "N10": 4,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_SN-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "c2f1a1c54600dde5a798fec592a3648e696a0112bfb4b12f1c91dc8a70521e53"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_SN-001_s0_v1",
@@ -7763,7 +7857,14 @@
       "N10": 3,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_SN-001_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "351496320561d39585d7323bd1631892517f2bc158b09add29ffb51c6a869ea9"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_risk_context_holdout_SN-015_s0_v1",
@@ -8415,7 +8516,14 @@
       "N10": 2303,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_SN-015_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "7371285a63879d1800f4da12ff2050df6ab4dc259cfdefcee368ac93c63d0379"
+        }
+      ]
     },
     {
       "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_SN-015_s0_v1",
@@ -9067,7 +9175,14 @@
       "N10": 2195,
       "cost": null,
       "conclusion": "No consistent context advantage over ordinary MLP; static diagnostics only",
-      "next_step": "Complete-video action controls and genuinely video-excluded states"
+      "next_step": "Complete-video action controls and genuinely video-excluded states",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_SN-015_s0_loadrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0735338abb174b81cf84bec016d53619672f88df658a4cfc907c7a6c1e74ef90"
+        }
+      ]
     },
     {
       "experiment_id": "baseline_K1_train_s0_v1",
@@ -10054,7 +10169,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_K1_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0650f19213a5c7406d781deb5b01068c5862275b6c8bbbb83d9064ecaac3b96c"
+        }
+      ]
     },
     {
       "experiment_id": "ambiguity_K2_train_s0_v1",
@@ -11017,7 +11139,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ambiguity_K2_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "b4e1c7227d16f94b4e35891d84009b8e3d0f7c35071e196bc49ed7102d3f1f90"
+        }
+      ]
     },
     {
       "experiment_id": "protected_write_K1_train_s0_v1",
@@ -12004,7 +12133,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/protected_write_K1_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "a62a7347a89b733fb6f40e20c383c21e74928b370d7beb6dca820bc26f69affd"
+        }
+      ]
     },
     {
       "experiment_id": "ordinary_candidate_attention_SN015_s0_v1",
@@ -12050,7 +12186,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_candidate_attention_SN015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "114d7c40610596944be62b637c454eec5335465436cba5b852c5b53bacf83559"
+        }
+      ]
     },
     {
       "experiment_id": "candidate_jepa_ema_SN015_s0_v1",
@@ -12096,7 +12239,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_jepa_ema_SN015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "9dbe2e8e54dde6f77a1dd268b5911afd9953f4247b84e0ae43ad14ef7620fbfb"
+        }
+      ]
     },
     {
       "experiment_id": "candidate_jepa_noema_SN015_s0_v1",
@@ -12142,7 +12292,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_jepa_noema_SN015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "3ceb833ab532f91c71ce3c6254bf4f2abd8a04ab79e1303d0872366b5a7556f4"
+        }
+      ]
     },
     {
       "experiment_id": "ordinary_candidate_gru_SN015_s0_v1",
@@ -12188,7 +12345,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_candidate_gru_SN015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "312e75228318491d000c8971887990062fcbdbf44a6c51bff91a052c1b76e071"
+        }
+      ]
     },
     {
       "experiment_id": "ordinary_candidate_mlp_SN015_s0_v1",
@@ -12234,7 +12398,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_candidate_mlp_SN015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "5f4ce3c685fdabffee27279e98c3a9aaa96e929aa3b0de39222a62d262c286b6"
+        }
+      ]
     },
     {
       "experiment_id": "risk_context_score_train_s0_v1",
@@ -12451,7 +12622,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_context_score_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "f38e164d5a7b34409317cf805f24cb4efa1dd13194b8d60be1f583e55da27640"
+        }
+      ]
     },
     {
       "experiment_id": "mlp_score_train_s0_v1",
@@ -12668,7 +12846,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/mlp_score_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "51176afd0d40e3a975973816e17dd3f59967150f1b93968a9fdeff51846fd046"
+        }
+      ]
     },
     {
       "experiment_id": "risk_context_gate_train_s0_v1",
@@ -12885,7 +13070,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_context_gate_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "ba9855097ac1131538d1f6f0af7380c84ea31c989af96e36dd0c9762d8f2f46b"
+        }
+      ]
     },
     {
       "experiment_id": "mlp_gate_train_s0_v1",
@@ -13102,7 +13294,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/mlp_gate_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "a41c5662151498f298c3cac2707021892acc9bf63eead6cebebca6b7fd4e1e62"
+        }
+      ]
     },
     {
       "experiment_id": "margin_gate_train_s0_v1",
@@ -13257,7 +13456,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/margin_gate_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "fda9b66abdf0538fa5484b09626a84795f947dc4639a5bfcd439db231bed6f73"
+        }
+      ]
     },
     {
       "experiment_id": "entropy_gate_train_s0_v1",
@@ -13350,7 +13556,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/entropy_gate_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "12843440feb4da443ea84a524ad7c06d5cec02f9f92114230deac0016df22489"
+        }
+      ]
     },
     {
       "experiment_id": "confidence_gate_train_s0_v1",
@@ -13380,7 +13593,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/confidence_gate_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "c84ab952bd0113056becdfa76a4b6bc648600b87e4003aa91ac0f17045fa3b0e"
+        }
+      ]
     },
     {
       "experiment_id": "recoverability_joint_oracle_train_v1",
@@ -13608,7 +13828,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/recoverability_joint_oracle_train_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "d7ef3bc2c0adf5f6467a49835cc0706bd77f56d529cc40e538c8b5065120e118"
+        }
+      ]
     },
     {
       "experiment_id": "K2_hysteresis_train_s0_v1",
@@ -13783,7 +14010,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/K2_hysteresis_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "988d5803853f67536875607c88efc536d91bf5b2c9626cb9c30df47e6b8cc4c6"
+        }
+      ]
     },
     {
       "experiment_id": "K2_confirmation_train_s0_v1",
@@ -13958,7 +14192,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": null
+      "next_step": null,
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/K2_confirmation_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "8753a7fe9386a03392be74639dc65b18bb9d3434f05687ea96f0ae2c24139e37"
+        }
+      ]
     },
     {
       "experiment_id": "oof_clean_bootstrap_queries_v1",
@@ -14029,7 +14270,14 @@
       "N10": null,
       "cost": null,
       "conclusion": "Explicit clean training supervision for bootstrap, not actual online histories; subsequent learned causal replay required",
-      "next_step": "Train video-excluded ordinary GRU producers; generate genuine accepted histories"
+      "next_step": "Train video-excluded ordinary GRU producers; generate genuine accepted histories",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_BT-001_s0_v1",
@@ -14063,7 +14311,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0fe65a3f0d0335403079dd4c5a00a04c50d26b5e83cb5174acc5ca7655cff5bf"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_BT-003_s0_v1",
@@ -14097,7 +14352,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_BT-003_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "15f03adac7cbc6384f834dc2ca8c9a970e8ce8b64cbe6f53a6989b96fa866a8a"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_MSK-002_s0_v1",
@@ -14131,7 +14393,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_MSK-002_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "4a64038c38ba323106c330784b04f55c5f6f63a83da13b9879ffc45eef073880"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_PF-001_s0_v1",
@@ -14165,7 +14434,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "127d65028679be9160c06e10544d8bb9bd66536a77b1ed317af0de61889b3309"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_SN-001_s0_v1",
@@ -14194,7 +14470,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_SN-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "13d9346782d9fedbced3c02f2669f8925bcc02ecff9d5e590b06a186c7716e0e"
+        }
+      ]
     },
     {
       "experiment_id": "oof_gru_bootstrap_holdout_SN-015_s0_v1",
@@ -14223,7 +14506,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery"
+      "next_step": "Generate actual causal fit/calibration/validation states; do not report cleanGT as online recovery",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_SN-015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "37a52121438b27256fa49346ca0d634bafcbb94e3caa60983fec1cd2d660a18f"
+        }
+      ]
     },
     {
       "experiment_id": "oof_states_holdout_BT-001_s0_v1",
@@ -14317,7 +14607,14 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Create supervised candidate graphs offline; validation and calibration states have no producer fitting exposure"
+      "next_step": "Create supervised candidate graphs offline; validation and calibration states have no producer fitting exposure",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "e2e9a782eb7871158d0176afc8bc0227b6f4f8f5fa8f5ce318fff49628a7bb30"
+        }
+      ]
     },
     {
       "experiment_id": "oof_states_holdout_BT-003_s0_v1",
@@ -14411,7 +14708,1358 @@
       "N10": null,
       "cost": null,
       "conclusion": null,
-      "next_step": "Create supervised candidate graphs offline; validation and calibration states have no producer fitting exposure"
+      "next_step": "Create supervised candidate graphs offline; validation and calibration states have no producer fitting exposure",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-003_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "a2c0d9dcf69119d0e82eba4f12a783a4a64d32011387da2c74e72716abe1f059"
+        }
+      ]
+    },
+    {
+      "experiment_id": "candidate_raw_coordinate_controls_v1",
+      "hypothesis_id": "H3_coordinate_shift",
+      "question": "Is candidate attention/EMA worse because learned latent coordinates discard existing raw identity cues?",
+      "status": "REGISTERED",
+      "reason": "Ordinary candidateMLP54.46 beats attention46.44 andEMA39.62; raw-space controls distinguish coordinate-loss from intrinsic unobservability",
+      "code": [
+        "tools/cfp_diagnose_candidate_raw_controls.py"
+      ],
+      "inputs": [
+        "Same complete actual candidate queries and frozen ordinary GRU"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_raw_coordinate_controls_v1.json"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "433452d",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "If raw cues remain superior, controlled bounded residual scoring; otherwise inspect candidate evidence/coverage and producer state shift",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_raw_coordinate_controls_v1.json",
+          "status": "COMPLETE",
+          "sha256": "3c875d2d7c141e63a180af788722a43a1b26c1df488cc32e7d247d13e20a90df"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_context_memory_train_s0_v1",
+      "hypothesis_id": "H2_provisional_memory",
+      "question": "Can provisional memory control avoid the FN/fragmentation caused by rejecting geometric association?",
+      "status": "REGISTERED",
+      "reason": "Risk cost/gate trials lose many HOTA points; identity write decision is separate from detector/geometry validity",
+      "code": [
+        "cfp/online_recovery_write.py",
+        "tools/cfp_replay_risk_memory.py"
+      ],
+      "inputs": [
+        "Same six train inputs and video-heldout risk/context/MLP or constant heads"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_context_memory_train_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_context_memory_train_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Compare learned risk to ordinary MLP and constant memory refusal, then evaluate episode onset",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_context_memory_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "f1ce0792c2f7c68cf5d6582c5b5333badd5a2919bb08e9ce64cd46e12050528d"
+        }
+      ]
+    },
+    {
+      "experiment_id": "mlp_memory_train_s0_v1",
+      "hypothesis_id": "H2_provisional_memory",
+      "question": "Can provisional memory control avoid the FN/fragmentation caused by rejecting geometric association?",
+      "status": "REGISTERED",
+      "reason": "Risk cost/gate trials lose many HOTA points; identity write decision is separate from detector/geometry validity",
+      "code": [
+        "cfp/online_recovery_write.py",
+        "tools/cfp_replay_risk_memory.py"
+      ],
+      "inputs": [
+        "Same six train inputs and video-heldout risk/context/MLP or constant heads"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/mlp_memory_train_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_mlp_memory_train_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Compare learned risk to ordinary MLP and constant memory refusal, then evaluate episode onset",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/mlp_memory_train_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "d49c91db2e2235ccd2152b15e18bd88df9c1f10644ecb7732e5f7c78853c30bb"
+        }
+      ]
+    },
+    {
+      "experiment_id": "constant_reject_memory_train_s0_v1",
+      "hypothesis_id": "H2_provisional_memory",
+      "question": "Can provisional memory control avoid the FN/fragmentation caused by rejecting geometric association?",
+      "status": "FAILED_GUARD_REPAIR_REGISTERED",
+      "reason": "Risk cost/gate trials lose many HOTA points; identity write decision is separate from detector/geometry validity",
+      "code": [
+        "cfp/online_recovery_write.py",
+        "tools/cfp_replay_risk_memory.py"
+      ],
+      "inputs": [
+        "Same six train inputs and video-heldout risk/context/MLP or constant heads"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/constant_reject_memory_train_s0_v1",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/constant_reject_memory_train_s0_guardrepair_v2"
+      ],
+      "train_config": "configs/cfp/phase_vi_constant_reject_memory_train_s0_guardrepair_v2.json",
+      "seed": 0,
+      "git_commit": "433452d",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": "Active constant memory must not be mislabeled disabled; source/partial outputs preserved; no scientific hyperparameter change",
+      "next_step": "Compare learned risk to ordinary MLP and constant memory refusal, then evaluate episode onset",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/constant_reject_memory_train_s0_v1/manifest.json",
+          "status": "FAILED_DISABLED_GUARD_ON_ACTIVE_CONSTANT_MEMORY",
+          "sha256": "4eabbe10a6156232365a0cddfe0599738b4907a15d0983ee52f56c0099abea08"
+        },
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/constant_reject_memory_train_s0_guardrepair_v2/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "350e5e5831d4e0789608c26fbc60873e0e563800dc579d82d9ccd383e2d1dafb"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_states_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Generate genuine accepted states from video-excluded ordinary producer",
+      "status": "STARTING",
+      "reason": "Clean training GT is not deployment history",
+      "code": [
+        "tools/cfp_replay_oof_gru.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_MSK-002_s0_v1/inference.pt",
+        "Frozen train detection/feature banks"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_oof_states_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": "b020f6bb65e418994bfddeda8ec9b16e4f212bff669f7c936692aaafb32db6f6",
+      "parameters": 231040,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Construct actual candidate histories offline, outer/calibration videos excluded from producer fitting",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_MSK-002_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "7cb791137a8bdc8be4c5cd0c3b128516f5f2d00f0b02f700c65499324abff466"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_states_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Generate genuine accepted states from video-excluded ordinary producer",
+      "status": "STARTING",
+      "reason": "Clean training GT is not deployment history",
+      "code": [
+        "tools/cfp_replay_oof_gru.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/inference.pt",
+        "Frozen train detection/feature banks"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_oof_states_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": "6a7934f66a921e1723818861a38ac10b0e6703223f9ae8d4ab4710860a488086",
+      "parameters": 231040,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Construct actual candidate histories offline, outer/calibration videos excluded from producer fitting",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_PF-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "6cbc07fddd4c091c5a23c47ba4e75a0e3cae8bcf88caad45f8c488cf5981e900"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_states_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Generate genuine accepted states from video-excluded ordinary producer",
+      "status": "REGISTERED",
+      "reason": "Clean training GT is not deployment history",
+      "code": [
+        "tools/cfp_replay_oof_gru.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_SN-001_s0_v1/inference.pt",
+        "Frozen train detection/feature banks"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_oof_states_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": "5954cbc51dcd626a4dd4412d96e976ff08d77634b5943cd2298fbfb82e983ae6",
+      "parameters": 231040,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Construct actual candidate histories offline, outer/calibration videos excluded from producer fitting",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_SN-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "86edd4f6a8324193e80d2635aa8787589ebb092edeb60279afcb596ad5ae95e4"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_states_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Generate genuine accepted states from video-excluded ordinary producer",
+      "status": "REGISTERED",
+      "reason": "Clean training GT is not deployment history",
+      "code": [
+        "tools/cfp_replay_oof_gru.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_SN-015_s0_v1/inference.pt",
+        "Frozen train detection/feature banks"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_oof_states_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": "e4e0850f8a1f287409a2cf45e312e4aa75c3dc2e38f4268c7686b8f161713d10",
+      "parameters": 231040,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Construct actual candidate histories offline, outer/calibration videos excluded from producer fitting",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_SN-015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "e9761a54f893de13e2e7496a974a68412816a2c77968752b28bbe818ce23acd9"
+        }
+      ]
+    },
+    {
+      "experiment_id": "online_device_padding_probe_v1",
+      "hypothesis_id": "H6_exact_runtime",
+      "question": "Can unchanged detector inputs transfer once and skip unused IR identity crops without altering outputs?",
+      "status": "REGISTERED",
+      "reason": "Old measured preprocessing/transfer .278s andcrop .058s; avoid repeated host tensor copies without any current/IR/batch/precision/weight change",
+      "code": [
+        "cfp/detector_runtime_device_pad.py",
+        "tools/cfp_detector_worker_device_pad.py",
+        "tools/cfp_run_jepa_online_device_pad.py"
+      ],
+      "inputs": [
+        "Frozen V3/RGB/representativeJ3, two historical-prefix images, no GT"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_device_pad_probe32_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_speed_J3_device_pad_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Require exact input/output parity; probes are not final full-online FPS",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_device_pad_probe32_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "cc7accee2bc2b8ca39bd6e70697c0c8561d21087cf39306287d470b7adccae7a"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_candidate_queries_anchor_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Build actual candidate supervision from legal excluded-video producers with original/early3 history views",
+      "status": "REGISTERED",
+      "reason": "Retain actual contamination and unknown labels; early3 supports majority-reference inference without trusting one token",
+      "code": [
+        "tools/cfp_build_oof_candidate_queries.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_anchor_holdout_BT-001_s0_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Same-current candidate/target keys across views; train only four fit videos; outer/calibration excluded by producer",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_anchor_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "46d993a609854f8186136ee06cfa6ebd16898255473ef2171efa8c5d5ef120e0"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Build actual candidate supervision from legal excluded-video producers with original/early3 history views",
+      "status": "REGISTERED",
+      "reason": "Retain actual contamination and unknown labels; early3 supports majority-reference inference without trusting one token",
+      "code": [
+        "tools/cfp_build_oof_early_candidate_queries.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Same-current candidate/target keys across views; train only four fit videos; outer/calibration excluded by producer",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e"
+        }
+      ]
+    },
+    {
+      "experiment_id": "oof_candidate_queries_anchor_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Build actual candidate supervision from legal excluded-video producers with original/early3 history views",
+      "status": "REGISTERED",
+      "reason": "Retain actual contamination and unknown labels; early3 supports majority-reference inference without trusting one token",
+      "code": [
+        "tools/cfp_build_oof_candidate_queries.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-003_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_anchor_holdout_BT-003_s0_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Same-current candidate/target keys across views; train only four fit videos; outer/calibration excluded by producer"
+    },
+    {
+      "experiment_id": "oof_candidate_queries_early3_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2_state_shift",
+      "question": "Build actual candidate supervision from legal excluded-video producers with original/early3 history views",
+      "status": "REGISTERED",
+      "reason": "Retain actual contamination and unknown labels; early3 supports majority-reference inference without trusting one token",
+      "code": [
+        "tools/cfp_build_oof_early_candidate_queries.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-003_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-003_s0_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Same-current candidate/target keys across views; train only four fit videos; outer/calibration excluded by producer"
+    },
+    {
+      "experiment_id": "online_original_probe32_currentload_v1",
+      "hypothesis_id": "H6_exact_runtime",
+      "question": "Measure original frontend under current same hardware/load rather than comparing only historical timings",
+      "status": "REGISTERED",
+      "reason": "Device-padding prefix equality verified, but historic .79FPS is not a contemporaneous isolated speed control",
+      "code": [
+        "tools/cfp_run_jepa_online.py"
+      ],
+      "inputs": [
+        "Same frozen original J3/RGB/V3 and32frames perdevsequence; noGT"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_original_probe32_currentload_v1"
+      ],
+      "train_config": "configs/cfp/phase_v_online_J3_seed0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Compare only matched prefixes; full end-to-end model measurement remains required",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_original_probe32_currentload_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "78b4c3d36ffd1ab30176e39b6a765546eb10216a59909d2138bf2505eda75e5b"
+        }
+      ]
+    },
+    {
+      "experiment_id": "ordinary_relation_OOF_BT001_s0_v1",
+      "hypothesis_id": "H3_relative_evidence",
+      "question": "Does predicting candidate-relative clean identity evidence preserve raw-space discrimination better than direct learned identity embedding?",
+      "status": "REGISTERED",
+      "reason": "Raw mean62.36 beats learned64dim candidate models; retained correct-cue oracle83.49 versus same-support mean76.99 shows candidate-aware cue-selection opportunity",
+      "code": [
+        "cfp/candidate_relation_jepa.py",
+        "tools/cfp_train_candidate_relations.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_relation_OOF_BT001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_ordinary_relation_OOF_BT001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Matched ordinary/EMA/noEMA and separately controlled known-negative-only NULL augmentation; actual tracking required after useful heldout signals",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_relation_OOF_BT001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "49c4b5f33da0c69bd8df9eed91990f8f3723474f9c980176b69e660902ec22ad"
+        }
+      ]
+    },
+    {
+      "experiment_id": "relation_jepa_OOF_BT001_s0_v1",
+      "hypothesis_id": "H3_relative_evidence",
+      "question": "Does predicting candidate-relative clean identity evidence preserve raw-space discrimination better than direct learned identity embedding?",
+      "status": "REGISTERED",
+      "reason": "Raw mean62.36 beats learned64dim candidate models; retained correct-cue oracle83.49 versus same-support mean76.99 shows candidate-aware cue-selection opportunity",
+      "code": [
+        "cfp/candidate_relation_jepa.py",
+        "tools/cfp_train_candidate_relations.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_jepa_OOF_BT001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_relation_jepa_OOF_BT001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Matched ordinary/EMA/noEMA and separately controlled known-negative-only NULL augmentation; actual tracking required after useful heldout signals",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_jepa_OOF_BT001_s0_v1/manifest.json",
+          "status": "FAILED_BEFORE_FIRST_EPOCH",
+          "sha256": "c224fbceb794ef8ecc377454ad55a0d26ddced177c1d4b8c4db2bd66171ad3a4"
+        }
+      ]
+    },
+    {
+      "experiment_id": "relation_noema_OOF_BT001_s0_v1",
+      "hypothesis_id": "H3_relative_evidence",
+      "question": "Does predicting candidate-relative clean identity evidence preserve raw-space discrimination better than direct learned identity embedding?",
+      "status": "REGISTERED",
+      "reason": "Raw mean62.36 beats learned64dim candidate models; retained correct-cue oracle83.49 versus same-support mean76.99 shows candidate-aware cue-selection opportunity",
+      "code": [
+        "cfp/candidate_relation_jepa.py",
+        "tools/cfp_train_candidate_relations.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_noema_OOF_BT001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_relation_noema_OOF_BT001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Matched ordinary/EMA/noEMA and separately controlled known-negative-only NULL augmentation; actual tracking required after useful heldout signals",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_noema_OOF_BT001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "ad340a1beb9a02691d292afa5e44c695b4d1088f2f8ddd0b43fb8799eb0a550b"
+        }
+      ]
+    },
+    {
+      "experiment_id": "ordinary_relation_missing_OOF_BT001_s0_v1",
+      "hypothesis_id": "H3_relative_evidence",
+      "question": "Does predicting candidate-relative clean identity evidence preserve raw-space discrimination better than direct learned identity embedding?",
+      "status": "REGISTERED",
+      "reason": "Raw mean62.36 beats learned64dim candidate models; retained correct-cue oracle83.49 versus same-support mean76.99 shows candidate-aware cue-selection opportunity",
+      "code": [
+        "cfp/candidate_relation_jepa.py",
+        "tools/cfp_train_candidate_relations.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_relation_missing_OOF_BT001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_ordinary_relation_missing_OOF_BT001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Matched ordinary/EMA/noEMA and separately controlled known-negative-only NULL augmentation; actual tracking required after useful heldout signals",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_relation_missing_OOF_BT001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0e310cde8e65a40fb40631f7c67f70797ca662f5bdb5733962e96edcbe2298ce"
+        }
+      ]
+    },
+    {
+      "experiment_id": "relation_jepa_missing_OOF_BT001_s0_v1",
+      "hypothesis_id": "H3_relative_evidence",
+      "question": "Does predicting candidate-relative clean identity evidence preserve raw-space discrimination better than direct learned identity embedding?",
+      "status": "REGISTERED",
+      "reason": "Raw mean62.36 beats learned64dim candidate models; retained correct-cue oracle83.49 versus same-support mean76.99 shows candidate-aware cue-selection opportunity",
+      "code": [
+        "cfp/candidate_relation_jepa.py",
+        "tools/cfp_train_candidate_relations.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_jepa_missing_OOF_BT001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_relation_jepa_missing_OOF_BT001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Matched ordinary/EMA/noEMA and separately controlled known-negative-only NULL augmentation; actual tracking required after useful heldout signals"
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_BT-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_BT-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "7bbc5c6de425006d0bf28bfec99d092b388274973e6fb4f27db32ac543705917"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_BT-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_BT-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "3062cdd40e5a1c20e55242a06c8878f624394da9feb449475111728ef8ec62e5"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_BT-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_BT-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_BT-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "4f852b9322ec0b6b31bf2939a48de29eefde07b16db5488aed0a5572ea79a9d6"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_BT-003_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_BT-003_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_BT-003_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "1cab9c69492667b01a6e0f2af56c9dc2f1cacce24c0a23b6d602d764f9546875"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_BT-003_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_BT-003_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_BT-003_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "0c16b0cf5e6fd9de692e49d91934a7f7853fde13fa81f276e1583601c41f8289"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_BT-003_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_BT-003_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_BT-003_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "b2f81bf8d398062136b2c728d056ec3fe07138b62162a11c2376119dea986673"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_MSK-002_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "e92378cacb3e50019b144ec677096e2c2b1cd5bc49373e3df3615d6542652a1d"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_MSK-002_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "dff3907ffcfc2bc03d29f039c4e23e2edfccacd62367d2729e433c4f8940d7fc"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_MSK-002_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "ef2a61e40a37f02ed318c09542a1a2a0113e9e7a083e86e2515bbaa3df59d2fa"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_PF-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "081b731cef61879a381abba7480debd7e63013bc4b4b151ed9aa7d4e2a9ac24b"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_PF-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "57b930f21cd5dd6385667b54aff6049b6bb5c135fdbc4318112423a6cbd85575"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_PF-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "c979504876e4651d8a4c84b7d080015ffa8e87987256112334bb33b3d1448186"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_SN-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "ed187ab4f6d8ccd916e9b2892324bcaa5e5476c83a03fcf5d7219b96b830734f"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_SN-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "f54b748a874bd3d6f458d56f725e9a54c3c7c9007438c4d12618ba4ee1641b9e"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_SN-001_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "7affee04ff150574c54642928eb4d7eadde9fca6dcb8c390a6d831106e735a06"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_no_identity_history_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_no_identity_history_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_no_identity_history_holdout_SN-015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "d4adb5bf1bc4c8b2ea6ba2e31debed13210c1cb8a8b211da5afd54fde7729639"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_learned_threshold_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_learned_threshold_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_learned_threshold_holdout_SN-015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "e2ecfcb3b51476a61d00076553a3977be7c1870a3230fa77a42d988e1e8dd32d"
+        }
+      ]
+    },
+    {
+      "experiment_id": "risk_untrained_context_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2_memory_discrimination",
+      "question": "Does memory-control benefit require trained identity-history/set risk rather than a threshold or calibrated random head?",
+      "status": "REGISTERED",
+      "reason": "Trained context memory33.267 improves MLP32.927 andbaseline32.891; verify history/learning/calibration contributions before promotion",
+      "code": [
+        "cfp/recoverability_ablation.py",
+        "tools/cfp_train_risk_ablation.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_untrained_context_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": "Complete-video matched memory controls; random head only calibrates inner video and is not called trained",
+      "observed_outputs": [
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_untrained_context_holdout_SN-015_s0_v1/manifest.json",
+          "status": "COMPLETE",
+          "sha256": "312a2c9e437f86a76dbe0283bf88ededcad78d7a1686fb0e57bcbf880f525c91"
+        }
+      ]
+    },
+    {
+      "experiment_id": "memory_ablation_replays_v1",
+      "status": "RUNNING",
+      "train_config": "configs/cfp/phase_vi_memory_ablation_replays_v1.json",
+      "code": [
+        "tools/cfp_replay_risk_memory_ablation.py"
+      ],
+      "seed": [
+        0
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/memory_ablation_replays_v1"
+      ],
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "reason": "Evidence-guided control, no historical-dev selection"
+    },
+    {
+      "experiment_id": "relation_jepa_OOF_BT001_s0_updatecallrepair_v2",
+      "status": "RUNNING",
+      "train_config": "configs/cfp/phase_vi_relation_jepa_OOF_BT001_s0_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_relations_v2.py"
+      ],
+      "seed": [
+        0
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_jepa_OOF_BT001_s0_updatecallrepair_v2"
+      ],
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "reason": "Evidence-guided control, no historical-dev selection"
     }
   ]
 }

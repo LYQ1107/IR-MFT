@@ -15,6 +15,9 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--plan', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--replay-driver', default='tools/cfp_replay_candidate.py', choices=[
+        'tools/cfp_replay_candidate.py', 'tools/cfp_replay_risk_memory.py',
+        'tools/cfp_replay_risk_memory_ablation.py', 'tools/cfp_replay_hypothesis_stable.py'])
     args = p.parse_args()
     plan = json.loads(args.plan.read_text())
     if plan['state'] != 'FROZEN' or args.output.exists() or not 1 <= plan['workers'] <= 2:
@@ -29,7 +32,7 @@ def main():
     def job(spec):
         config, output = Path(spec['config']), Path(spec['output'])
         cfg = json.loads(config.read_text())
-        command = [sys.executable, 'tools/cfp_replay_candidate.py', '--config', str(config), '--output', str(output)]
+        command = [sys.executable, args.replay_driver, '--config', str(config), '--output', str(output)]
         if not output.exists():
             execute(command, output.with_suffix('.log'))
         run = json.loads((output / 'manifest.json').read_text())

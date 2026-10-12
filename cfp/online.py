@@ -65,9 +65,9 @@ def jpeg_response(image, quality=95):
     return decoded
 
 
-def proposal_crop_arrays(rgb, ir, boxes):
+def proposal_crop_arrays(rgb, ir, boxes, rgb_only=False):
     arrays, valid = [], []
-    for image in (rgb, ir):
+    for image in ((rgb,) if rgb_only else (rgb, ir)):
         rows, flags = [], []
         for box in boxes:
             xywh = [float(box[0]), float(box[1]), float(box[2] - box[0]), float(box[3] - box[1])]
@@ -81,6 +81,9 @@ def proposal_crop_arrays(rgb, ir, boxes):
             rows.append(crop)
         arrays.append(torch.stack(rows) if rows else torch.empty(0, 3, 128, 256))
         valid.append(np.asarray(flags, bool))
+    if rgb_only:
+        arrays.append(torch.empty(0, 3, 128, 256))
+        valid.append(np.empty(0, bool))
     return arrays, valid
 
 
@@ -102,7 +105,8 @@ def identity_ir_view(rgb, ir, intervention='none'):
 class CurrentFrameFrontend:
     def __init__(self, detector_checkpoint, scripts_root, rgb_checkpoint=None,
                  ir_checkpoint=None, detector_batch=8, encoder_batch=128,
-                 input_regime='causal', protocol_sha256=None, preprocessing='original', detector_runtime_python=None):
+                 input_regime='causal', protocol_sha256=None, preprocessing='original', detector_runtime_python=None,
+                 detector_runtime_factory=None, skip_unused_ir_crops=False):
         if detector_batch not in (1, 8) or encoder_batch != 128:
             raise ValueError('Declared current-frame padding requires detector1/8 and encoder128')
         if input_regime not in ('causal', 'causal_precomputed', 'legacy_reproduction'):
@@ -114,6 +118,7 @@ class CurrentFrameFrontend:
         self.generator = CausalPseudoIR(scripts_root, mode='temporal_ema', alpha=.01)
         self.detector_batch = detector_batch
         self.encoder_batch = encoder_batch
+        self.skip_unused_ir_crops = skip_unused_ir_crops
         self.exp = get_exp('exps/yolox_mft26ir_rgbt_v3.py', None)
         self.transform = RGBTValTransform(rgb_means=self.exp.rgb_means, std=self.exp.rgb_std,
                                          ir_means=self.exp.ir_means, ir_std=self.exp.ir_std)
@@ -126,7 +131,8 @@ class CurrentFrameFrontend:
         self.detector = None
         if detector_runtime_python:
             from .detector_runtime import DetectorRuntime
-            self.detector_worker = DetectorRuntime(detector_runtime_python, detector_checkpoint, scripts_root, detector_batch, preprocessing)
+            runtime_type = detector_runtime_factory or DetectorRuntime
+            self.detector_worker = runtime_type(detector_runtime_python, detector_checkpoint, scripts_root, detector_batch, preprocessing)
             self.detector_parameters = self.detector_worker.metadata['parameters']
         else:
             self.detector = self.exp.get_model().cuda()
@@ -228,7 +234,8 @@ class CurrentFrameFrontend:
         rgb_features = ir_features = None
         if self.rgb_encoder is not None:
             start = time.perf_counter()
-            crops, valid = proposal_crop_arrays(rgb, identity_ir_view(rgb, ir, ir_intervention), boxes)
+            crops, valid = proposal_crop_arrays(rgb, identity_ir_view(rgb, ir, ir_intervention), boxes,
+                rgb_only=self.skip_unused_ir_crops and self.ir_encoder is None)
             timings['crop_preparation'] = time.perf_counter() - start
             start = time.perf_counter()
             rgb_features = self.encode_crops(crops[0], valid[0], self.rgb_encoder)

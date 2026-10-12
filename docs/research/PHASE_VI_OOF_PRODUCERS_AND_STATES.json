@@ -1,0 +1,2942 @@
+{
+  "status": "COMPLETE",
+  "scope": "Six outer folds: fit4/innercal1/outerval1. GT-clean bootstrap then actual causal accepted-history replay. Frozen encoder6/detector8 exposure remains.",
+  "models": {
+    "oof_gru_bootstrap_holdout_BT-001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "91c09450f6e9d6add630d16b52dd1580306c617dab31ce31649bbec87edaf241",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_BT-001_s0_v1.json": "91c09450f6e9d6add630d16b52dd1580306c617dab31ce31649bbec87edaf241"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.26474993443116546,
+          "steps": 64,
+          "query_order_sha256": "f7970a9f14ee6900043040925c0120d8c7c22e28f77ee6e32bdbff35a5026d4c"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.25377327273599803,
+          "steps": 64,
+          "query_order_sha256": "9a821b85005f513d891289da814a715143bbd25c76346455dcfa85aa65fa1357"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.2378912039566785,
+          "steps": 64,
+          "query_order_sha256": "63f0e5bbace1e9552b43da9be1ed513822dad512422865bdcdf594cbd6a978bf"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.2144467020407319,
+          "steps": 64,
+          "query_order_sha256": "3db3023da76c374b1446e560b893c968bc2174c78997a2908d8a8c00ac19f272"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.20347780431620777,
+          "steps": 64,
+          "query_order_sha256": "0529271be94fe90d91bc7b07f712087df4a9711d025ecacbc5741395ec9da893"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.20020921831019223,
+          "steps": 64,
+          "query_order_sha256": "ed9c87a66fe7ae644c0fc9b76c608ff49c744b5e35dd2056ae76b14836556c82"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.18828320386819541,
+          "steps": 64,
+          "query_order_sha256": "a39f967a797b610d799eebc2c3ab2890f4a73505b6eaa52001db1d19572d7d01"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.1917107974877581,
+          "steps": 64,
+          "query_order_sha256": "d97c647cf3d0651d36892132a6e53fbdf2ca83b8a4b7f3ea410bfdd218acd46e"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 27711,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "d9459a30b2b0d8d83e17de1835df640e60cd71fa",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 360,
+        "known_candidate_rank1_percent": 98.33333333333333,
+        "mean_positive_cosine": 0.6530993367027905,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 4285,
+        "known_candidate_rank1_percent": 97.45624270711785,
+        "mean_positive_cosine": 0.6629237703448694,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "3c6052c7c0aa93cd50f2f29a33211358adef9b6c5bd82d173de8e74d364097f7",
+      "inference_sha256": "e509c22d663b51de437a7c0efe2cbd72ce0b622e26867636d3dc028ee2f598a4"
+    },
+    "oof_gru_bootstrap_holdout_BT-003_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "BT-001",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "MSK-002",
+        "validation_video": "BT-003",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "b5e760f48a952455522fc93dd02222e480b67541440e6c7043e5934e16f6f4b9",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_BT-003_s0_v1.json": "b5e760f48a952455522fc93dd02222e480b67541440e6c7043e5934e16f6f4b9"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.08361131593119353,
+          "steps": 64,
+          "query_order_sha256": "f1a00c90e6e11761a88fa3fa839fa0b6434c202489e1198530990a39ab7ca211"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.08298999152611941,
+          "steps": 64,
+          "query_order_sha256": "0c245a8211289e2fa7cf01feed6ab3d4e8e65d2ad99660eb1bd4c0af3c672519"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.07122976105893031,
+          "steps": 64,
+          "query_order_sha256": "3b238039b989aca632f0578eab6d5aaa33a684c8710079c35e2f230d742f2e90"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.06485875928774476,
+          "steps": 64,
+          "query_order_sha256": "d307ceac723395144495383a0e6be4d964c8eed5420ca71a8894af4ecbe659b9"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.06435432017315179,
+          "steps": 64,
+          "query_order_sha256": "2b6bf9d2082a717188a1cd140ae21c7ce2cb3ad3c524d2abe3e75e69abd266dd"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.06420105934375897,
+          "steps": 64,
+          "query_order_sha256": "d8ecf32a7e938a65f839662987065510179917ad24c16e4fd0afd4bfc63ef3f1"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.06083531572949141,
+          "steps": 64,
+          "query_order_sha256": "3e3c9291222dc9773267703b39aecb4b7eb35923458efad3b5bf3fdfbaeaf01a"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.05939007882261649,
+          "steps": 64,
+          "query_order_sha256": "bf875c04623ed7f91fbff6a3182fba17e1cba57f3c35fd44f576d6404e362538"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 22477,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "d9459a30b2b0d8d83e17de1835df640e60cd71fa",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 9519,
+        "known_candidate_rank1_percent": 77.14045593024478,
+        "mean_positive_cosine": 0.5098245353730986,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 360,
+        "known_candidate_rank1_percent": 97.22222222222221,
+        "mean_positive_cosine": 0.607209693123069,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "2d7645a140360ce0c66b162177363b819a436ed921d48b5914ca83748d58d54c",
+      "inference_sha256": "2da5049030565f697614c213b174671cf127b2b5f03ea2765797ae165634c7aa"
+    },
+    "oof_gru_bootstrap_holdout_MSK-002_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "BT-001",
+          "BT-003",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "PF-001",
+        "validation_video": "MSK-002",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "fc5992b0a28de83359fb7005b3748f10940f7d32b5eadd8f662619df09ac09fd",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_MSK-002_s0_v1.json": "fc5992b0a28de83359fb7005b3748f10940f7d32b5eadd8f662619df09ac09fd"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.10523457068484277,
+          "steps": 64,
+          "query_order_sha256": "1ba7e2377b32d06b12f55603ee535019d4e15e8fc4597fa5c7347468b65784f3"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.10226792591856793,
+          "steps": 64,
+          "query_order_sha256": "f0f623b8843876ed1d7921a2bec1fa25f8d73224868e4db255be38dbd15d9812"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.08735828567296267,
+          "steps": 64,
+          "query_order_sha256": "bc824c2a306b9aadf1684dda66c5a1f3452201c1c765892f0e852683c838b354"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.0793353189365007,
+          "steps": 64,
+          "query_order_sha256": "a282f83f51cdfc2053f99f7407d50987b2d41f2651a4d8112c56f0158106b06e"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.07805878092767671,
+          "steps": 64,
+          "query_order_sha256": "90d1278d5c1e9a9e2cb6c8f721a03db5ee8e44a37eb8a3d27457331f85945173"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.07757720735389739,
+          "steps": 64,
+          "query_order_sha256": "1f2a019360dc7b7c6896b4cc675f7234708c4a8e3110d53d8ae6603e780219fd"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.0716610720846802,
+          "steps": 64,
+          "query_order_sha256": "71fa1aa275944c413a355ff4cc3c932571249105b48da499891a2c522146e021"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.06948410684708506,
+          "steps": 64,
+          "query_order_sha256": "8e9549d4af452a3c7ee3ad46417d2ecd0738a55eb9ead77a2aa3868ae839ef97"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 17138,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "d9459a30b2b0d8d83e17de1835df640e60cd71fa",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 5699,
+        "known_candidate_rank1_percent": 99.98245306194069,
+        "mean_positive_cosine": 0.8173355484535912,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 9519,
+        "known_candidate_rank1_percent": 77.46612039079736,
+        "mean_positive_cosine": 0.5061556855675973,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "9fcd272af4329d2ee4a28b7fa23a320489cd6141aa878deb0a9f02357cccbbb4",
+      "inference_sha256": "b020f6bb65e418994bfddeda8ec9b16e4f212bff669f7c936692aaafb32db6f6"
+    },
+    "oof_gru_bootstrap_holdout_PF-001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "SN-015"
+        ],
+        "calibration_video": "SN-001",
+        "validation_video": "PF-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "7b601390310853db312e958ba098b253c928ad1ef027bdf5885d1a5a8bb9ef3f",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_PF-001_s0_v1.json": "7b601390310853db312e958ba098b253c928ad1ef027bdf5885d1a5a8bb9ef3f"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.30901404237374663,
+          "steps": 64,
+          "query_order_sha256": "532ce2800a9e44e658d16a9ee665eb5a066167282ebff7bf41394bbd56a63b5d"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.28310792287811637,
+          "steps": 64,
+          "query_order_sha256": "e4b217aa3a435731dae92b83922ad9e7382fb79bcf6554be6707d7f99e30f4d5"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.2628459727857262,
+          "steps": 64,
+          "query_order_sha256": "63eba59b6b21161052cc9cc22d7cd8a136abb5cb90dbfa2504e2a618d4932210"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.24467828148044646,
+          "steps": 64,
+          "query_order_sha256": "87101aba951660b0a8634a98bd9d790f5c5ebdb6347e402becb08f33c9c356eb"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.23407638794742525,
+          "steps": 64,
+          "query_order_sha256": "3b049eae604aca06a3577a7b7c586c18db4c79fe2203e53367dae69b6e3aa058"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.23396642738953233,
+          "steps": 64,
+          "query_order_sha256": "1675600f894b4fe7f866724a9a10eb8af2bb9ffbeaba31853064e5f49d91294e"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.23398113017901778,
+          "steps": 64,
+          "query_order_sha256": "ed976f0fa70980c644b3eda1ef57b25edfb2f60e9c759058d835fd820ad2cbd8"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.22426017886027694,
+          "steps": 64,
+          "query_order_sha256": "bfea9c45eea555759d4638dacfc58ae912a05696edf43af976667056c24d0390"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 25627,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "d9459a30b2b0d8d83e17de1835df640e60cd71fa",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 1030,
+        "known_candidate_rank1_percent": 98.44660194174757,
+        "mean_positive_cosine": 0.6742994200691436,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 5699,
+        "known_candidate_rank1_percent": 99.94735918582207,
+        "mean_positive_cosine": 0.8132439484395863,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "1cb5cb4ffe9aae3efc0810fb91caca6332dba78f4319840af150b1b325e5d022",
+      "inference_sha256": "6a7934f66a921e1723818861a38ac10b0e6703223f9ae8d4ab4710860a488086"
+    },
+    "oof_gru_bootstrap_holdout_SN-001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "PF-001"
+        ],
+        "calibration_video": "SN-015",
+        "validation_video": "SN-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "ebe21f13f038352fab17ebc5d7021f234250166d32ffa161d8a824b853e229c9",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_SN-001_s0_v1.json": "ebe21f13f038352fab17ebc5d7021f234250166d32ffa161d8a824b853e229c9"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.30374679062515497,
+          "steps": 64,
+          "query_order_sha256": "a9b7383cf8a17528bcdd9ce0dece77818296bb37787d382242d88515977a85a4"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.27762675751000643,
+          "steps": 64,
+          "query_order_sha256": "a8f19e1394a4f59639a857ad7de879edb4ee5ebcb171883bb5be8d2ff04443d8"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.2579646424856037,
+          "steps": 64,
+          "query_order_sha256": "02a72f5e51a1755f1286c497fe9dbcfa9580bf5a1ed716740357dd8af40b4bbe"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.2395088067278266,
+          "steps": 64,
+          "query_order_sha256": "a972f8898dd37652ccb89f36274d107e87055b672f9870dfc22549f9fffdf327"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.2272991705685854,
+          "steps": 64,
+          "query_order_sha256": "079cdc41ea23922e23358486c7ddb19ee13e78df96b62c785f89dcce2bf83713"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.22949921269901097,
+          "steps": 64,
+          "query_order_sha256": "77fe5da810707937f6d45b031b70b2d157bab6490a66dc09de3d123e029da533"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.2284095990471542,
+          "steps": 64,
+          "query_order_sha256": "1598b8041fde457225baf7594a3c795b933b909912c6cfe212d9626ef0c8cf82"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.2175849126651883,
+          "steps": 64,
+          "query_order_sha256": "fc623dba75c095ca1e2de8ec1750614af34510ecd16c89179d06a04e0768385d"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 19863,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 11463,
+        "known_candidate_rank1_percent": 99.77318328535287,
+        "mean_positive_cosine": 0.7564268555623131,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 1030,
+        "known_candidate_rank1_percent": 98.54368932038835,
+        "mean_positive_cosine": 0.6681422006664346,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "08bf5d7e1dde7a1c3ef0632039f29c04d0762cfbf1148a29992e4eed98ed5920",
+      "inference_sha256": "5954cbc51dcd626a4dd4412d96e976ff08d77634b5943cd2298fbfb82e983ae6"
+    },
+    "oof_gru_bootstrap_holdout_SN-015_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_clean_bootstrap_queries_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "hidden": 128,
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 128,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed epoch8; no frame-level random split or dev metric selection",
+        "scope": "Clean training bootstrap only; generate actual video-excluded accepted histories next"
+      },
+      "guard": {
+        "config_sha256": "231de2248bf9d8ee1756d5b57954e1f1b7edf2d0684df8c92ae9514c07f45b47",
+        "query_manifest_sha256": "cdf018138a1e9d5e9625e27b1bd115b4dffab8d59ee1eae04100dc62a0060422",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_oof_gru.py": "29cd6d53d1271abcc4b69a83b877355c2f5b2834e4e2bf738552df0edc74fed5",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "configs/cfp/phase_vi_oof_gru_bootstrap_holdout_SN-015_s0_v1.json": "231de2248bf9d8ee1756d5b57954e1f1b7edf2d0684df8c92ae9514c07f45b47"
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 0.2816783348098397,
+          "steps": 64,
+          "query_order_sha256": "2586d4162b1c9dbe8a5d66edf9dc77cca3661520664f225ac6ba855bb21f3ed3"
+        },
+        {
+          "epoch": 2,
+          "loss": 0.2561047011986375,
+          "steps": 64,
+          "query_order_sha256": "f6c7d024e68b1115fc4e8d953047340f6f78073da09e833bd94f1418c1ffd86d"
+        },
+        {
+          "epoch": 3,
+          "loss": 0.22531157708726823,
+          "steps": 64,
+          "query_order_sha256": "3b3d633a272f780684164b80aa252ad71305728a4dcd7a37fd453df1b709b891"
+        },
+        {
+          "epoch": 4,
+          "loss": 0.22440608125180006,
+          "steps": 64,
+          "query_order_sha256": "db7d18d99b4608a5e8197cf52ff10f8aad66e46c040bddf20c304c8419f7d1d7"
+        },
+        {
+          "epoch": 5,
+          "loss": 0.21449042577296495,
+          "steps": 64,
+          "query_order_sha256": "7ea8511f89a64c7e30b70ff52ad0e9c4154c0dc7ecec3b6c30a608308d84194a"
+        },
+        {
+          "epoch": 6,
+          "loss": 0.21483409451320767,
+          "steps": 64,
+          "query_order_sha256": "a42c6c397708bb6bc060a816b197e7ca2151a5880cad585cde322b73af6cbc8c"
+        },
+        {
+          "epoch": 7,
+          "loss": 0.19798022136092186,
+          "steps": 64,
+          "query_order_sha256": "01f5211e62a0950963e9b17e55bf320f259dbc3371f1670717f822ed66fbeb90"
+        },
+        {
+          "epoch": 8,
+          "loss": 0.19776359910611063,
+          "steps": 64,
+          "query_order_sha256": "4b9222e900976b946b43278e246f5b2549f7919c07ad2eefc8c386b8e92f0337"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "parameters": 231040,
+      "fit_queries": 16608,
+      "features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "scope": "Ordinary raw512 residual GRU, clean training bootstrap from GT on fit videos only. No learned old teacher states. New actual states must come from subsequent causal replay. OOF conditional on frozen encoders/detector exposed to six/eight videos, not whole-system unseen data.",
+      "calibration": {
+        "clean_queries": 4285,
+        "known_candidate_rank1_percent": 97.57292882147024,
+        "mean_positive_cosine": 0.6428895095139394,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "validation": {
+        "clean_queries": 11463,
+        "known_candidate_rank1_percent": 99.75573584576463,
+        "mean_positive_cosine": 0.7583880978337052,
+        "scope": "GT-clean diagnostic only; actual online history performance not established."
+      },
+      "checkpoint_sha256": "89cdbe86f536de1d1222de5286a3da67c05f3d6db8824a4260135be41c59b9a1",
+      "inference_sha256": "e4e0850f8a1f287409a2cf45e312e4aa75c3dc2e38f4268c7686b8f161713d10"
+    }
+  },
+  "states": {
+    "oof_states_holdout_BT-001_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "manifest_sha256": "e2e9a782eb7871158d0176afc8bc0227b6f4f8f5fa8f5ce318fff49628a7bb30",
+      "checkpoint_sha256": "e509c22d663b51de437a7c0efe2cbd72ce0b622e26867636d3dc028ee2f598a4",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29522,
+          "prediction_sha256": "4d107415d70960dafcffe66a692016997521fe6e5ebee4852e9b15656dae64db",
+          "association_seconds": 60.32250908273272,
+          "latency_p50_p95_ms": [
+            19.40261252457276,
+            28.001953891362064
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "17677e932d9a2807b2247225dc8825a7dd8492508b82c6e48aa34ee3ce67035c",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 4.419796581147239,
+          "latency_p50_p95_ms": [
+            18.472514988388866,
+            22.65201298869215
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "7240b07f585d9b531efd7d63706020f9b8f015601d915f8f432ad1d43889182d",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66045,
+          "prediction_sha256": "3050e5d58a6e7e0116932fa7bb0ab3d4879b79847c2b3336329016e6185503ba",
+          "association_seconds": 175.07795740338042,
+          "latency_p50_p95_ms": [
+            99.97495700372383,
+            152.77054503676482
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "36cf27e4649ca65d5861136ca62085a4e6a2b42dfa280d25657e7e81b32c838d",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29806,
+          "prediction_sha256": "5c6e3c7c3e33f9c2ebe5a059fae87d104ea95f249898769ed562985a5a5685b9",
+          "association_seconds": 93.07911136950133,
+          "latency_p50_p95_ms": [
+            6.188077502883971,
+            8.343162981327623
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "573dcbe0863face428e2fa944fb676e997dd826101dd874221c02430cf97cab2",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "e587f5550ffe6852663e0c17677c896684f6d34e10f14f28c968fb94fa2f8a3a",
+          "association_seconds": 7.999613945488818,
+          "latency_p50_p95_ms": [
+            11.129477992653847,
+            15.920016347081404
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c458df776ff7c2739f7ab012538db39032757c70e43c35b2b7616c88d8c71e81",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61925,
+          "prediction_sha256": "17212e8576be872137d8197b35f8514f9f3a3c6e30071edae0f9f1cd876735de",
+          "association_seconds": 93.44364556774963,
+          "latency_p50_p95_ms": [
+            13.00552798784338,
+            20.314247874193825
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "bd951ecf12e45428557fc95a550d0d709f3feb40392f0b0c88a967a78a5c8b86",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    },
+    "oof_states_holdout_BT-003_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "MSK-002",
+        "BT-003"
+      ],
+      "manifest_sha256": "a2c0d9dcf69119d0e82eba4f12a783a4a64d32011387da2c74e72716abe1f059",
+      "checkpoint_sha256": "2da5049030565f697614c213b174671cf127b2b5f03ea2765797ae165634c7aa",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29526,
+          "prediction_sha256": "aaa21c1651ef14dc160042bc8e8df6269625f02a99440462e0587f084d0e3c3c",
+          "association_seconds": 62.53712269937387,
+          "latency_p50_p95_ms": [
+            19.952148490119725,
+            29.635819818940927
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c72128edb00c7f1de370c2e99c0eb91b8d53a858b44242dc0f1d55ec24a7fb7c",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 3.7320339999860153,
+          "latency_p50_p95_ms": [
+            15.876191959250718,
+            20.347559778019786
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "b9d85eecb7625d9c565b83b194851517560880fe30c06f3641d6dee0200a7007",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66030,
+          "prediction_sha256": "81b4d24e3947f6734ae77457cf707c581ae5686b031a7462f9f0aeb81293da6d",
+          "association_seconds": 170.8108031047159,
+          "latency_p50_p95_ms": [
+            96.1977214901708,
+            148.9741104276618
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "2e4fb697675c8237d469212d7728a3498a4e668e8d4977901551cfc8434683b2",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29806,
+          "prediction_sha256": "9fcf4f0dbee90001a7dc863afbe1f1cb04e74e32651f385a1f849dfcbc1339f5",
+          "association_seconds": 84.70557218167232,
+          "latency_p50_p95_ms": [
+            5.428443488199264,
+            7.357914102612994
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "b077857b0202d77c769f390d8cad9f0137ff1fae4ceff0d0102c4447fd708cff",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "e587f5550ffe6852663e0c17677c896684f6d34e10f14f28c968fb94fa2f8a3a",
+          "association_seconds": 10.58108974690549,
+          "latency_p50_p95_ms": [
+            13.622173486510292,
+            22.814002286759205
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c4bc79086bae6ae70bcfbf810d5ca68336d890768e8ae9df4643694979beaaf3",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61913,
+          "prediction_sha256": "c0ad4ee02b18874d661321cdf63d39ba51e5eccc9cfe3443ef36d994756c034b",
+          "association_seconds": 87.78831856197212,
+          "latency_p50_p95_ms": [
+            11.740638496121392,
+            20.848942027078007
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "54d3f2764e387f531468d18148028e5d19f8d74924546fdfa11041ba5db19180",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    },
+    "oof_states_holdout_MSK-002_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "PF-001",
+        "MSK-002"
+      ],
+      "manifest_sha256": "7cb791137a8bdc8be4c5cd0c3b128516f5f2d00f0b02f700c65499324abff466",
+      "checkpoint_sha256": "b020f6bb65e418994bfddeda8ec9b16e4f212bff669f7c936692aaafb32db6f6",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29535,
+          "prediction_sha256": "dc343cf47bc23af98c23c4dc9966a79ba344244b30c49f5096448387e37f6933",
+          "association_seconds": 49.441590432601515,
+          "latency_p50_p95_ms": [
+            15.83696051966399,
+            23.47003477916587
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "7341e8bbd7784bb549eaed5340e2522fce0e253302361d83e0bad74db1189e5e",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 3.5624998126295395,
+          "latency_p50_p95_ms": [
+            12.625675008166581,
+            20.570399094140157
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "b394a13799826ecfcd96f0e6c9616288a0bb5f46350c7b28f3f3b8799248e3d3",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66023,
+          "prediction_sha256": "e253a2551fa6bc87a9db6c32339a2a34f1a47c0035978fce4a4178b074894ac4",
+          "association_seconds": 124.6990284640342,
+          "latency_p50_p95_ms": [
+            63.09680352569558,
+            112.68204917432739
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c2f66e07175c509c1334c8b44096954c42437b2e2615c87f1cd3f326df0bf7bd",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29808,
+          "prediction_sha256": "5fa7bfcce9c5d11cb45868c6729142767bb977c618dc7696728f3973777ffa70",
+          "association_seconds": 74.82239394017961,
+          "latency_p50_p95_ms": [
+            4.7110024897847325,
+            7.212185233947821
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "19d2287ec44e3ffa0ed5bb7b19b039c6d6039ef9db25523e80994983ea4c3807",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "e587f5550ffe6852663e0c17677c896684f6d34e10f14f28c968fb94fa2f8a3a",
+          "association_seconds": 7.702984347939491,
+          "latency_p50_p95_ms": [
+            11.21217300533317,
+            12.357877567410469
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "474fbd55fd5d977f8ac6c1624dd4363d64469497ca1552fe568006bc495887de",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61923,
+          "prediction_sha256": "533b319339d6156ddd3225f6df9d495929845d4bf84d18528d64f059e4ecc3ca",
+          "association_seconds": 65.71401137911016,
+          "latency_p50_p95_ms": [
+            9.877107513602823,
+            11.54562469164375
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "dc20d86218185a5cc379e4bb3985cd793b08fdbc0a1a77a63a772aa00cd06faf",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    },
+    "oof_states_holdout_PF-001_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "SN-001",
+        "PF-001"
+      ],
+      "manifest_sha256": "6cbc07fddd4c091c5a23c47ba4e75a0e3cae8bcf88caad45f8c488cf5981e900",
+      "checkpoint_sha256": "6a7934f66a921e1723818861a38ac10b0e6703223f9ae8d4ab4710860a488086",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29526,
+          "prediction_sha256": "b8e8fb9abdaef23274c78c3674113959e5717dd8692f4adace31ee5f44568482",
+          "association_seconds": 58.56919834774453,
+          "latency_p50_p95_ms": [
+            19.34262251597829,
+            24.28041954990475
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "8399886b0567c4c1c3bcc36c59acc7c589ca295d951c159897fededf601af067",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 3.9054692225181498,
+          "latency_p50_p95_ms": [
+            15.958592994138598,
+            20.120668405434113
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "965ba4f48e2ca4618d48241a2d7981efedc2f50ea03fb2d37ddc25f8a967e245",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66055,
+          "prediction_sha256": "9b2a36a6d21cbb976bfc6911262bca8a3e0867769e988458aaa407e876ca2942",
+          "association_seconds": 121.27952032315079,
+          "latency_p50_p95_ms": [
+            64.45575799443759,
+            101.721563222236
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "ad8ea5b056799605d3fc7a8d2a1e4323adb5bea8b46af56b9d7b5a974974e482",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29808,
+          "prediction_sha256": "5fa7bfcce9c5d11cb45868c6729142767bb977c618dc7696728f3973777ffa70",
+          "association_seconds": 71.37997055833694,
+          "latency_p50_p95_ms": [
+            4.573046986479312,
+            6.61884335859213
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "dc3a91ae5365298f61e53b73d683474d2f19f4c595c01a19ba4dca1d2626d01d",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "bdede46eaf1281b1c9c9aa06ce769423d53309b80c082c2f13c5463136327d2c",
+          "association_seconds": 6.708920625853352,
+          "latency_p50_p95_ms": [
+            9.742086986079812,
+            10.970085219014436
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "5ca9f2a98bbb200965a4550ecca26749b9258d0bfc21aa9ae73dc9af1ff56a47",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61933,
+          "prediction_sha256": "7db07b2020a0d86f959dc7e1ed79c0807809125e5f4b4746d90b99f077de5dd4",
+          "association_seconds": 69.8965769453207,
+          "latency_p50_p95_ms": [
+            10.578942485153675,
+            11.912871833192185
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "5fba99c0a3900ffa74b8dea659b45a93cab435d0be707c61d25ef2cf2ae5a8ff",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    },
+    "oof_states_holdout_SN-001_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "SN-015",
+        "SN-001"
+      ],
+      "manifest_sha256": "86edd4f6a8324193e80d2635aa8787589ebb092edeb60279afcb596ad5ae95e4",
+      "checkpoint_sha256": "5954cbc51dcd626a4dd4412d96e976ff08d77634b5943cd2298fbfb82e983ae6",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29526,
+          "prediction_sha256": "0e34cbeb0951deeb6e5b901b53071bf38468afe50307d2142dc41d4906a05caf",
+          "association_seconds": 34.07855262834346,
+          "latency_p50_p95_ms": [
+            11.251737014390528,
+            12.497629300924014
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "f8e96f3ed3b47fed235e9998463594b7b2ea7a26fa23ea6477198c6592198616",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 2.6133476820541546,
+          "latency_p50_p95_ms": [
+            10.759963013697416,
+            11.428297322709113
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "d00c3204cb82720524cd493197ceef92f257397467f0589735518442fca9bdf3",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66055,
+          "prediction_sha256": "fa6ea5ea1087673558084d1c0b2b1c694137db871ebb4af51c7296c75849f8b0",
+          "association_seconds": 93.74366290605394,
+          "latency_p50_p95_ms": [
+            52.96161200385541,
+            65.12072548212018
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c212ad21ed49f78bb84470743e8438da959d63b9c7fc49809994ef02eec931c3",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29806,
+          "prediction_sha256": "5c6e3c7c3e33f9c2ebe5a059fae87d104ea95f249898769ed562985a5a5685b9",
+          "association_seconds": 76.91554845648352,
+          "latency_p50_p95_ms": [
+            4.7774999984540045,
+            6.93605947017204
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "a2a5f719ffa5b186e74fc17fd4cdde7e4b5fa01a5020691934fe99c383e7319a",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "bdede46eaf1281b1c9c9aa06ce769423d53309b80c082c2f13c5463136327d2c",
+          "association_seconds": 8.159823637572117,
+          "latency_p50_p95_ms": [
+            11.127065517939627,
+            16.063410934293646
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "864ceb9690b607992c41ec854942a0eb9cc82e83bd21f3a9e84443deed965b22",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61901,
+          "prediction_sha256": "14c501a2f5ec03e8348f93fe9779708072bede584208adb3062211b91ed4557f",
+          "association_seconds": 74.77718219842063,
+          "latency_p50_p95_ms": [
+            11.087653983850032,
+            14.475618107826445
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "45b5d249b1b0601286b3508ed0683c965f639ec0faa1471825c6516efa4e9c90",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    },
+    "oof_states_holdout_SN-015_s0_v1": {
+      "status": "COMPLETE",
+      "producer_excluded_videos": [
+        "BT-001",
+        "SN-015"
+      ],
+      "manifest_sha256": "e9761a54f893de13e2e7496a974a68412816a2c77968752b28bbe818ce23acd9",
+      "checkpoint_sha256": "e4e0850f8a1f287409a2cf45e312e4aa75c3dc2e38f4268c7686b8f161713d10",
+      "videos": {
+        "BT-001": {
+          "frames": 3000,
+          "rows": 29526,
+          "prediction_sha256": "2676c0a4ad2001a25eff9b702c4c973ba0dcfbb935dcc19ce9185d52fa15b559",
+          "association_seconds": 34.79805595119251,
+          "latency_p50_p95_ms": [
+            11.448139499407262,
+            12.844381856848482
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 3000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "d13bad10a8fc1399e7a7fd04f88bce91a502e70e0887a7cfa342e860f0a116f3",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "BT-003": {
+          "frames": 243,
+          "rows": 2383,
+          "prediction_sha256": "961de71100c11121340d119c49290560549b98cf4ebae8dd15988d5997e850be",
+          "association_seconds": 2.6768433692050166,
+          "latency_p50_p95_ms": [
+            11.072953988332301,
+            11.776248109526932
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 243,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "c797f300c1e447f2b146827b83219640bd3434fc25b2dae3b16024c9723aea62",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "MSK-002": {
+          "frames": 1754,
+          "rows": 66044,
+          "prediction_sha256": "620b4167b9c2081e8fc249bb7c359d425e89411f0f2e4569c7b4ae12cec74c5c",
+          "association_seconds": 94.94813195423922,
+          "latency_p50_p95_ms": [
+            53.92318847589195,
+            65.58335775625892
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 1754,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "514d4c5876089659d743a3fe6c60eac533fc5a0c9acb0f3924cf87677dbc8fbf",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "PF-001": {
+          "frames": 15000,
+          "rows": 29806,
+          "prediction_sha256": "f499e798c185122ebde10bbcc7e66fa134887624d1aaf69cf45bcda2c4fcad37",
+          "association_seconds": 72.32494903879706,
+          "latency_p50_p95_ms": [
+            4.6160449855960906,
+            6.418047033366747
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 15000,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "396659c66fef5ba84d26acf354b8fa4f11e3849545081bb79b7e0f0adcc5b730",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-001": {
+          "frames": 684,
+          "rows": 6041,
+          "prediction_sha256": "bdede46eaf1281b1c9c9aa06ce769423d53309b80c082c2f13c5463136327d2c",
+          "association_seconds": 9.904531185340602,
+          "latency_p50_p95_ms": [
+            14.753357012523338,
+            17.980554993846454
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 684,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "4d70e38e974b8b949d5a20a627118a66e55aa8c9d24664c112762aa0a8c53631",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-015": {
+          "frames": 6570,
+          "rows": 61904,
+          "prediction_sha256": "c22117f17f8ae8f6e1f822081bb8f30a3f6cc32a2436e39e2bf9324ac06b9eb5",
+          "association_seconds": 77.66746354469797,
+          "latency_p50_p95_ms": [
+            11.377788498066366,
+            16.14292065205518
+          ],
+          "branch_statistics": {
+            "branch_expansions": 0,
+            "branch_switches": 0,
+            "frames": 6570,
+            "hypotheses_peak": 1
+          },
+          "baseline_byte_equal": null,
+          "risk_checkpoint_sha256": null,
+          "decisions_sha256": "7dc40afad48810ba12e3429d8a71aa30bc9347ed38f334aebc17f1413bc4c98e",
+          "risk_decisions": {
+            "scored_edges": 0,
+            "modified_edges": 0,
+            "calls": 0
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "scope": "Strict current/past fixed-cache replay, not end-to-end FPS. New-module validation videos exclude fitting/calibration; historical frozen GRU/encoder exposure remains. K2 heuristic branch score is not a probability; no historical output revision."
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "status": "EXACT_MATCHED_PREFIX_VERIFIED",
+  "frames_each": 64,
+  "scope": "32frames perdevvideo, same frozen J3 and all V3/RGB/IR inputs/precision/batch; matched current shared-load probes, NOT full online speed or model accuracy validation",
+  "runs": [
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_original_probe32_currentload_v1",
+      "manifest_sha256": "78b4c3d36ffd1ab30176e39b6a765546eb10216a59909d2138bf2505eda75e5b",
+      "fps": 1.0920354702902284,
+      "stage_mean_seconds": {
+        "decode": 0.007505085387492727,
+        "generation_codec": 0.3599622068441022,
+        "worker_provided_ir_validation": 1.9316858015372418e-06,
+        "worker_detector_preprocess_transfer": 0.20749509204779315,
+        "worker_detector_nms": 0.20043270172209304,
+        "worker_proposal_transfer": 0.00018325584278500173,
+        "detector_worker_roundtrip": 0.4579265663251135,
+        "crop_preparation": 0.03625926432596316,
+        "encoders_transfer": 0.04265205610954581,
+        "student_and_association": 0.011003315816196846,
+        "output": 0.0003571158285922138
+      },
+      "exact_prediction_equal": true
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_device_pad_probe32_v1",
+      "manifest_sha256": "cc7accee2bc2b8ca39bd6e70697c0c8561d21087cf39306287d470b7adccae7a",
+      "fps": 1.251607443413712,
+      "stage_mean_seconds": {
+        "decode": 0.007065686470014043,
+        "generation_codec": 0.3990718883887894,
+        "worker_provided_ir_validation": 0.0,
+        "worker_detector_preprocess_transfer": 0.05890025397275167,
+        "worker_detector_nms": 0.20356650716803415,
+        "worker_proposal_transfer": 0.00018200434533355292,
+        "detector_worker_roundtrip": 0.3107331790452008,
+        "crop_preparation": 0.019899707307558856,
+        "encoders_transfer": 0.04978207359181397,
+        "student_and_association": 0.011973289890192973,
+        "output": 0.0003916814066542429
+      },
+      "exact_prediction_equal": true
+    }
+  ]
+}

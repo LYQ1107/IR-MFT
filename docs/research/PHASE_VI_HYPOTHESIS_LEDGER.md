@@ -1,6 +1,6 @@
 # Phase VI hypothesis ledger
 
-Status: IN_PROGRESS. Observations and causal claims are separate. No experiment has yet demonstrated a Phase VI benefit.
+Status: IN_PROGRESS. Observations and causal claims are separate. Preliminary seed0 training-video signals require OOF/multiseed validation.
 
 | ID | Question / discriminating experiment | Status |
 |---|---|---|
