@@ -1,0 +1,19 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_provisional_memory",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "protected_write": false,
+  "risk_policy": "confidence",
+  "threshold": 0.2,
+  "output_policy": "current_matched_measurement",
+  "selection": "Fixed global controls; no video-specific thresholds or historical-dev choice",
+  "risk_models": {},
+  "scope": "Reject floor(10% of scored actually matched edges) per high/unconfirmed stage, preserving assignment/geometry; calibrated ranking only; no outer-video tuning",
+  "sequences": [
+    "MSK-002"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_MSK-002_s0_v1/inference.pt",
+  "reject_fraction": 0.1
+}

@@ -40,3 +40,9 @@ Independent K2 complete six-video official HOTA32.7338 versusK132.8909; IDSW785 
 Joint GT oracle on fixed training states reduces naive local opportunity estimates through one-to-one competition. SN01524621 wrong frame/track rows correspond to484 consecutive known-wrong episodes; joint stage/full N01=5712/6010, N10=0 under preserve-correct tie handling. Wrong->NULL is abstention, not correction. Not a whole-tracker ceiling.
 
 State-shift hypothesis: warm-start teacher exposure and raw-score coordinate changes are distinct from irrecoverable identity evidence. New clean bootstrap32356queries derive solely from training physical annotations/frozen proposals, independent of any historical trained tracer. Fit models exclude complete outer and inner calibration videos. Their subsequent causal replay—not cleanGT training contexts—will supply new actual accepted histories. Backbone pretraining exposure remains disclosed. No project-level termination rule is based on the number of these failed configurations.
+
+## H2 state transfer and H3 required controls
+
+Warm memory benefit is matched by a2-parameter learned-cost threshold. No-history/untrained calibrated controls lose. All18 outer-video memory replays complete: new baseline H33.4884, context32.4190, MLP32.4971, learned threshold32.3156. Absolute calibrated gates fail on actual excluded-video states. Pivot: fixed10% actual-matched write budget with seven ordering controls, all thresholds global and frozen before runs. No outer-video gate adjustment.
+
+Ordinary two-layer Transformer and explicit temporary-ID decoder trained with measured capacities105153/108416 versus candidate family109186. Four explicit masking/corruption/NULL/evidence controls complete; raw metric baseline remains stronger. Group loss/other-track information differences of the ID decoder are declared and its poor result is not a faithful official MOTIP defeat claim.

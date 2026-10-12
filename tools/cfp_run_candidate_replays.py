@@ -17,7 +17,8 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--replay-driver', default='tools/cfp_replay_candidate.py', choices=[
         'tools/cfp_replay_candidate.py', 'tools/cfp_replay_risk_memory.py',
-        'tools/cfp_replay_risk_memory_ablation.py', 'tools/cfp_replay_hypothesis_stable.py'])
+        'tools/cfp_replay_risk_memory_ablation.py', 'tools/cfp_replay_hypothesis_stable.py',
+        'tools/cfp_replay_risk_memory_isolated.py'])
     args = p.parse_args()
     plan = json.loads(args.plan.read_text())
     if plan['state'] != 'FROZEN' or args.output.exists() or not 1 <= plan['workers'] <= 2:

@@ -16060,6 +16060,114 @@
       ],
       "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
       "reason": "Evidence-guided control, no historical-dev selection"
+    },
+    {
+      "experiment_id": "OOF_candidate_graphs_all36",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_oof_query_campaign_v1.json",
+      "code": [
+        "tools/cfp_build_oof_query_campaign.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "OOF_risk12",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_oof_risk_training_v1.json",
+      "code": [
+        "tools/cfp_train_oof_risk.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "OOF_threshold6",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_oof_threshold_training_v1.json",
+      "code": [
+        "tools/cfp_train_oof_risk.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "OOF_memory18",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_oof_memory_all_controls_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_risk_memory.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "OOF_quota42",
+      "status": "RUNNING",
+      "train_config": "configs/cfp/phase_vi_oof_quota_campaign_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_quota_memory.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "JEPA_controls4",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_jepa_controls_campaign_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_jepa_controls.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "ID_decoder_warm",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_candidate_id_decoder_SN015_s0_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_id_decoder.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "Transformer_warm",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_ordinary_candidate_transformer_SN015_s0_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_transformer.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "isolated_memory_K2",
+      "status": "RUNNING",
+      "train_config": "configs/cfp/phase_vi_risk_memory_K2_campaign_v1.json",
+      "code": [
+        "tools/cfp_replay_risk_memory_isolated.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
     }
   ]
 }

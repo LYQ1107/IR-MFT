@@ -1,0 +1,3855 @@
+{
+  "status": "COMPLETE",
+  "scope": "Fixed actual-state ranking and frame ID classification, not tracking improvements. Warm SN015 and conditional OOF BT001 are distinct sets. Decoder grouping/loss/other-track raw context differs; capacities measured.",
+  "models": {
+    "ordinary_relation_OOF_BT001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 16,
+        "ema": false,
+        "ema_decay": 0.99,
+        "prediction_weight": 0.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "known_negative_missing_probability": 0.0,
+        "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+        "scope": "Raw cosine/candidate-margin relation prediction rather than learned raw identity-space projection; first3+recent5 are actual unfiltered past observations, never permanently trusted"
+      },
+      "guard": {
+        "config_sha256": "862c4358125c14cd1c220987899a78abfe1335e9e61a32682718279b41cdb489",
+        "queries_manifest_sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_relations.py": "a8161c9fe70e03d641508db5d0e7181f2270438689216afd6585d63f72aa1b8e",
+          "cfp/candidate_relation_jepa.py": "7fe82bdf966795e944e6db69dbe42f6eff11741e5dddaa171342524973ce1e2a",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_ordinary_relation_OOF_BT001_s0_v1.json": "862c4358125c14cd1c220987899a78abfe1335e9e61a32682718279b41cdb489"
+        }
+      },
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "parameters": 4372,
+      "initial_tensor_sha256": "7f19db043427c5c30daa28eb0716ac92c2402723d66c522a77a3f6d72160a46a",
+      "fit_queries": 27350,
+      "calibration_queries": 471,
+      "validation_queries": 6071,
+      "epochs": [
+        {
+          "epoch": 1,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.3791165612637997,
+          "candidate_ce": 2.3791165612637997,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "459d833b324b03d18d86305081d57b0d272ff6776989bce33603bcc6eddbd382"
+        },
+        {
+          "epoch": 2,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.0168132074177265,
+          "candidate_ce": 2.0168132074177265,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "8f364ec0e569aa11682921e19c1d6b7b11879f8da009b44cbad5a1b538fa99a2"
+        },
+        {
+          "epoch": 3,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.7087146658450365,
+          "candidate_ce": 1.7087146658450365,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "097f88913ec40925fb792dc2d80456fc0c87353d34d11c16c31415a2893bbf42"
+        },
+        {
+          "epoch": 4,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.67759739048779,
+          "candidate_ce": 1.67759739048779,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "0cb72a25d27df6a80716fd8a5a422c27603512b0eda80f744ba3942c4469d658"
+        },
+        {
+          "epoch": 5,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.591971404850483,
+          "candidate_ce": 1.591971404850483,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "8cf6f4e94d42b0e9ab032469c14191b3c450a074a8f2e76265737634be50b31a"
+        },
+        {
+          "epoch": 6,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.5454214215278625,
+          "candidate_ce": 1.5454214215278625,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "4fcc4d4793f5fdbdfb33e6f79e43b7799df1e4842245c589115ae0bf5d482b15"
+        },
+        {
+          "epoch": 7,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.5277893170714378,
+          "candidate_ce": 1.5277893170714378,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "a247d2145d9540de6a30efafd3f1a2d8f36634566a5e8cc0b9ef54eabab4b548"
+        },
+        {
+          "epoch": 8,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.4535241276025772,
+          "candidate_ce": 1.4535241276025772,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "b21bbf8d0b19998c7590abb1708852855638c0479e13a3de3ad7fefc56b19614"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 0,
+      "evidence_mode": "Visible raw RGB cosine/margin relations plus time/early-group/current geometry; cached past scalars ignored. Clean current/future identity-to-candidate relations are teacher-only.",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "scope": "Actual ordinary producer excludes outer/calibration videos; frozen detector/encoder pretraining exposure remains. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export. Synthetic candidate-missing augmentation removes known positive and every unknown current label, leaving real known negatives; natural unknowns never become wrong.",
+      "calibration": {
+        "queries": 471,
+        "known_positive": 362,
+        "null_labelled": 0,
+        "known_rank_correct": 317,
+        "unknown_predicted": 15,
+        "null_predicted": 1,
+        "null_correct": 0,
+        "N01": 0,
+        "N10": 2,
+        "no_known_correct_past": 10,
+        "rank1_percent": 87.56906077348066,
+        "net_correction": -2,
+        "positive_prediction_variance_sum": 0.04268818348646164,
+        "margin_mean": 1.7469634285904547,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 6071,
+        "known_positive": 4179,
+        "null_labelled": 52,
+        "known_rank_correct": 2135,
+        "unknown_predicted": 484,
+        "null_predicted": 3,
+        "null_correct": 0,
+        "N01": 26,
+        "N10": 48,
+        "no_known_correct_past": 621,
+        "rank1_percent": 51.08877721943048,
+        "net_correction": -22,
+        "positive_prediction_variance_sum": 0.01770230010151863,
+        "margin_mean": 0.7510161180312425,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "70b8b3508383d9cd1b8d168ecb250776e53d9bd872e2b857f020ce5c83c38590",
+      "inference_sha256": "7bafab9078c399990ae1c3a8cbcd06238bbe98d76ab57e5d2286e4900abce2b9"
+    },
+    "relation_noema_OOF_BT001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 16,
+        "ema": false,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "known_negative_missing_probability": 0.0,
+        "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+        "scope": "Raw cosine/candidate-margin relation prediction rather than learned raw identity-space projection; first3+recent5 are actual unfiltered past observations, never permanently trusted"
+      },
+      "guard": {
+        "config_sha256": "656a7a4e08a5d411d377bbaf8290d433cbea973f5066106339daebdbee0d9dac",
+        "queries_manifest_sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_relations.py": "a8161c9fe70e03d641508db5d0e7181f2270438689216afd6585d63f72aa1b8e",
+          "cfp/candidate_relation_jepa.py": "7fe82bdf966795e944e6db69dbe42f6eff11741e5dddaa171342524973ce1e2a",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_relation_noema_OOF_BT001_s0_v1.json": "656a7a4e08a5d411d377bbaf8290d433cbea973f5066106339daebdbee0d9dac"
+        }
+      },
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "parameters": 4372,
+      "initial_tensor_sha256": "7f19db043427c5c30daa28eb0716ac92c2402723d66c522a77a3f6d72160a46a",
+      "fit_queries": 27350,
+      "calibration_queries": 471,
+      "validation_queries": 6071,
+      "epochs": [
+        {
+          "epoch": 1,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.9135527200996876,
+          "candidate_ce": 2.4003080762922764,
+          "latent_prediction": 0.51324462890625,
+          "sample_order_sha256": "459d833b324b03d18d86305081d57b0d272ff6776989bce33603bcc6eddbd382"
+        },
+        {
+          "epoch": 2,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.4093281030654907,
+          "candidate_ce": 2.282975260168314,
+          "latent_prediction": 0.126352833583951,
+          "sample_order_sha256": "8f364ec0e569aa11682921e19c1d6b7b11879f8da009b44cbad5a1b538fa99a2"
+        },
+        {
+          "epoch": 3,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.077397983521223,
+          "candidate_ce": 1.968876602128148,
+          "latent_prediction": 0.10852138686459512,
+          "sample_order_sha256": "097f88913ec40925fb792dc2d80456fc0c87353d34d11c16c31415a2893bbf42"
+        },
+        {
+          "epoch": 4,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.8837929870933294,
+          "candidate_ce": 1.7866573873907328,
+          "latent_prediction": 0.09713559586089104,
+          "sample_order_sha256": "0cb72a25d27df6a80716fd8a5a422c27603512b0eda80f744ba3942c4469d658"
+        },
+        {
+          "epoch": 5,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.7867155857384205,
+          "candidate_ce": 1.7153295390307903,
+          "latent_prediction": 0.07138604467036203,
+          "sample_order_sha256": "8cf6f4e94d42b0e9ab032469c14191b3c450a074a8f2e76265737634be50b31a"
+        },
+        {
+          "epoch": 6,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.7026662267744541,
+          "candidate_ce": 1.6544557269662619,
+          "latent_prediction": 0.04821050394093618,
+          "sample_order_sha256": "4fcc4d4793f5fdbdfb33e6f79e43b7799df1e4842245c589115ae0bf5d482b15"
+        },
+        {
+          "epoch": 7,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.6591087598353624,
+          "candidate_ce": 1.6055104993283749,
+          "latent_prediction": 0.05359826871426776,
+          "sample_order_sha256": "a247d2145d9540de6a30efafd3f1a2d8f36634566a5e8cc0b9ef54eabab4b548"
+        },
+        {
+          "epoch": 8,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.5653445161879063,
+          "candidate_ce": 1.5080490037798882,
+          "latent_prediction": 0.05729551054537296,
+          "sample_order_sha256": "b21bbf8d0b19998c7590abb1708852855638c0479e13a3de3ad7fefc56b19614"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 0,
+      "evidence_mode": "Visible raw RGB cosine/margin relations plus time/early-group/current geometry; cached past scalars ignored. Clean current/future identity-to-candidate relations are teacher-only.",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "scope": "Actual ordinary producer excludes outer/calibration videos; frozen detector/encoder pretraining exposure remains. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export. Synthetic candidate-missing augmentation removes known positive and every unknown current label, leaving real known negatives; natural unknowns never become wrong.",
+      "calibration": {
+        "queries": 471,
+        "known_positive": 362,
+        "null_labelled": 0,
+        "known_rank_correct": 319,
+        "unknown_predicted": 15,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 0,
+        "N10": 1,
+        "no_known_correct_past": 10,
+        "rank1_percent": 88.12154696132596,
+        "net_correction": -1,
+        "positive_prediction_variance_sum": 0.012862262316048145,
+        "margin_mean": 1.5816348743033763,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 6071,
+        "known_positive": 4179,
+        "null_labelled": 52,
+        "known_rank_correct": 2146,
+        "unknown_predicted": 463,
+        "null_predicted": 1,
+        "null_correct": 0,
+        "N01": 3,
+        "N10": 17,
+        "no_known_correct_past": 621,
+        "rank1_percent": 51.35199808566643,
+        "net_correction": -14,
+        "positive_prediction_variance_sum": 0.013157570734620094,
+        "margin_mean": 0.9920752942316655,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "13b7aacbafef65506dcf03a50a6153d1b1851b4a413cdf2f030f89de6281a563",
+      "inference_sha256": "84ba2f7151a9ef0f2e97387498904f7db5198c8f60ea04e281d1b9db46cc42c9"
+    },
+    "relation_jepa_OOF_BT001_s0_updatecallrepair_v2": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 16,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "known_negative_missing_probability": 0.0,
+        "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+        "scope": "Raw cosine/candidate-margin relation prediction rather than learned raw identity-space projection; first3+recent5 are actual unfiltered past observations, never permanently trusted"
+      },
+      "guard": {
+        "config_sha256": "b1b57ca6b9c5fcf7738b58982ae2c47fd4fae8352f3e07e9144a661f6911abf1",
+        "queries_manifest_sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_relations_v2.py": "47fb8167184f1703c0a7a9c774efe830cd6b3f6fec742b1bd4b0412238ea6d75",
+          "cfp/candidate_relation_jepa.py": "7fe82bdf966795e944e6db69dbe42f6eff11741e5dddaa171342524973ce1e2a",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_relation_jepa_OOF_BT001_s0_v1.json": "b1b57ca6b9c5fcf7738b58982ae2c47fd4fae8352f3e07e9144a661f6911abf1"
+        }
+      },
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "parameters": 4372,
+      "initial_tensor_sha256": "7f19db043427c5c30daa28eb0716ac92c2402723d66c522a77a3f6d72160a46a",
+      "fit_queries": 27350,
+      "calibration_queries": 471,
+      "validation_queries": 6071,
+      "epochs": [
+        {
+          "epoch": 1,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.970255419611931,
+          "candidate_ce": 2.4004284273833036,
+          "latent_prediction": 0.5698269999120384,
+          "sample_order_sha256": "459d833b324b03d18d86305081d57b0d272ff6776989bce33603bcc6eddbd382"
+        },
+        {
+          "epoch": 2,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.419557126238942,
+          "candidate_ce": 2.287283280864358,
+          "latent_prediction": 0.1322738603921607,
+          "sample_order_sha256": "8f364ec0e569aa11682921e19c1d6b7b11879f8da009b44cbad5a1b538fa99a2"
+        },
+        {
+          "epoch": 3,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 2.0901804212480783,
+          "candidate_ce": 1.9864845611155033,
+          "latent_prediction": 0.10369585768785328,
+          "sample_order_sha256": "097f88913ec40925fb792dc2d80456fc0c87353d34d11c16c31415a2893bbf42"
+        },
+        {
+          "epoch": 4,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.9065026566386223,
+          "candidate_ce": 1.8043033424764872,
+          "latent_prediction": 0.10219930147286505,
+          "sample_order_sha256": "0cb72a25d27df6a80716fd8a5a422c27603512b0eda80f744ba3942c4469d658"
+        },
+        {
+          "epoch": 5,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.8089966475963593,
+          "candidate_ce": 1.7153404727578163,
+          "latent_prediction": 0.09365617216099054,
+          "sample_order_sha256": "8cf6f4e94d42b0e9ab032469c14191b3c450a074a8f2e76265737634be50b31a"
+        },
+        {
+          "epoch": 6,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.7386913802474737,
+          "candidate_ce": 1.6540892515331507,
+          "latent_prediction": 0.08460213546641171,
+          "sample_order_sha256": "4fcc4d4793f5fdbdfb33e6f79e43b7799df1e4842245c589115ae0bf5d482b15"
+        },
+        {
+          "epoch": 7,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.68169604241848,
+          "candidate_ce": 1.6060111541301012,
+          "latent_prediction": 0.07568488584365696,
+          "sample_order_sha256": "a247d2145d9540de6a30efafd3f1a2d8f36634566a5e8cc0b9ef54eabab4b548"
+        },
+        {
+          "epoch": 8,
+          "missing_augmented_cumulative": 0,
+          "steps": 64,
+          "loss": 1.579142989590764,
+          "candidate_ce": 1.5098240282386541,
+          "latent_prediction": 0.06931895826710388,
+          "sample_order_sha256": "b21bbf8d0b19998c7590abb1708852855638c0479e13a3de3ad7fefc56b19614"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Visible raw RGB cosine/margin relations plus time/early-group/current geometry; cached past scalars ignored. Clean current/future identity-to-candidate relations are teacher-only.",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "scope": "Actual ordinary producer excludes outer/calibration videos; frozen detector/encoder pretraining exposure remains. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export. Synthetic candidate-missing augmentation removes known positive and every unknown current label, leaving real known negatives; natural unknowns never become wrong.",
+      "calibration": {
+        "queries": 471,
+        "known_positive": 362,
+        "null_labelled": 0,
+        "known_rank_correct": 320,
+        "unknown_predicted": 14,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 0,
+        "N10": 1,
+        "no_known_correct_past": 10,
+        "rank1_percent": 88.39779005524862,
+        "net_correction": -1,
+        "positive_prediction_variance_sum": 0.013659242540597916,
+        "margin_mean": 1.5904174802662714,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 6071,
+        "known_positive": 4179,
+        "null_labelled": 52,
+        "known_rank_correct": 2146,
+        "unknown_predicted": 466,
+        "null_predicted": 1,
+        "null_correct": 0,
+        "N01": 3,
+        "N10": 14,
+        "no_known_correct_past": 621,
+        "rank1_percent": 51.35199808566643,
+        "net_correction": -11,
+        "positive_prediction_variance_sum": 0.01358683593571186,
+        "margin_mean": 1.0139271946719952,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "5363178c6d0acdcdf24ec291478f97b1f3fd370342f99af227dc5a0eb9b50975",
+      "inference_sha256": "ed462211eb18a96f8a5a1e37b98e4b99160109525bdd8725178a1fd0b19be8f9"
+    },
+    "ordinary_relation_missing_OOF_BT001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 16,
+        "ema": false,
+        "ema_decay": 0.99,
+        "prediction_weight": 0.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "known_negative_missing_probability": 0.25,
+        "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+        "scope": "Raw cosine/candidate-margin relation prediction rather than learned raw identity-space projection; first3+recent5 are actual unfiltered past observations, never permanently trusted"
+      },
+      "guard": {
+        "config_sha256": "3c072cac179ec69208c8e269dfb74c98ec57e43181e1a4cd199febc2ab33c652",
+        "queries_manifest_sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "1"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_relations_v2.py": "47fb8167184f1703c0a7a9c774efe830cd6b3f6fec742b1bd4b0412238ea6d75",
+          "cfp/candidate_relation_jepa.py": "7fe82bdf966795e944e6db69dbe42f6eff11741e5dddaa171342524973ce1e2a",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_ordinary_relation_missing_OOF_BT001_s0_v1.json": "3c072cac179ec69208c8e269dfb74c98ec57e43181e1a4cd199febc2ab33c652"
+        }
+      },
+      "git_commit": "433452d9e071992b51649c9fca56d898934e8005",
+      "parameters": 4372,
+      "initial_tensor_sha256": "7f19db043427c5c30daa28eb0716ac92c2402723d66c522a77a3f6d72160a46a",
+      "fit_queries": 27350,
+      "calibration_queries": 471,
+      "validation_queries": 6071,
+      "epochs": [
+        {
+          "epoch": 1,
+          "missing_augmented_cumulative": 968,
+          "steps": 64,
+          "loss": 3.0131077393889427,
+          "candidate_ce": 3.0131077393889427,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "459d833b324b03d18d86305081d57b0d272ff6776989bce33603bcc6eddbd382"
+        },
+        {
+          "epoch": 2,
+          "missing_augmented_cumulative": 1938,
+          "steps": 64,
+          "loss": 2.8300316110253334,
+          "candidate_ce": 2.8300316110253334,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "8f364ec0e569aa11682921e19c1d6b7b11879f8da009b44cbad5a1b538fa99a2"
+        },
+        {
+          "epoch": 3,
+          "missing_augmented_cumulative": 2957,
+          "steps": 64,
+          "loss": 2.58963193744421,
+          "candidate_ce": 2.58963193744421,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "097f88913ec40925fb792dc2d80456fc0c87353d34d11c16c31415a2893bbf42"
+        },
+        {
+          "epoch": 4,
+          "missing_augmented_cumulative": 3979,
+          "steps": 64,
+          "loss": 2.5213572941720486,
+          "candidate_ce": 2.5213572941720486,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "0cb72a25d27df6a80716fd8a5a422c27603512b0eda80f744ba3942c4469d658"
+        },
+        {
+          "epoch": 5,
+          "missing_augmented_cumulative": 4939,
+          "steps": 64,
+          "loss": 2.2167262472212315,
+          "candidate_ce": 2.2167262472212315,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "8cf6f4e94d42b0e9ab032469c14191b3c450a074a8f2e76265737634be50b31a"
+        },
+        {
+          "epoch": 6,
+          "missing_augmented_cumulative": 5924,
+          "steps": 64,
+          "loss": 2.0718597378581762,
+          "candidate_ce": 2.0718597378581762,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "4fcc4d4793f5fdbdfb33e6f79e43b7799df1e4842245c589115ae0bf5d482b15"
+        },
+        {
+          "epoch": 7,
+          "missing_augmented_cumulative": 6920,
+          "steps": 64,
+          "loss": 1.8421649560332298,
+          "candidate_ce": 1.8421649560332298,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "a247d2145d9540de6a30efafd3f1a2d8f36634566a5e8cc0b9ef54eabab4b548"
+        },
+        {
+          "epoch": 8,
+          "missing_augmented_cumulative": 7948,
+          "steps": 64,
+          "loss": 1.5984825752675533,
+          "candidate_ce": 1.5984825752675533,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "b21bbf8d0b19998c7590abb1708852855638c0479e13a3de3ad7fefc56b19614"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 0,
+      "evidence_mode": "Visible raw RGB cosine/margin relations plus time/early-group/current geometry; cached past scalars ignored. Clean current/future identity-to-candidate relations are teacher-only.",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "scope": "Actual ordinary producer excludes outer/calibration videos; frozen detector/encoder pretraining exposure remains. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export. Synthetic candidate-missing augmentation removes known positive and every unknown current label, leaving real known negatives; natural unknowns never become wrong.",
+      "calibration": {
+        "queries": 471,
+        "known_positive": 362,
+        "null_labelled": 0,
+        "known_rank_correct": 297,
+        "unknown_predicted": 17,
+        "null_predicted": 46,
+        "null_correct": 0,
+        "N01": 0,
+        "N10": 18,
+        "no_known_correct_past": 10,
+        "rank1_percent": 82.04419889502762,
+        "net_correction": -18,
+        "positive_prediction_variance_sum": 0.04216131567955017,
+        "margin_mean": 1.744716861445433,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 6071,
+        "known_positive": 4179,
+        "null_labelled": 52,
+        "known_rank_correct": 1726,
+        "unknown_predicted": 514,
+        "null_predicted": 562,
+        "null_correct": 17,
+        "N01": 62,
+        "N10": 387,
+        "no_known_correct_past": 621,
+        "rank1_percent": 41.30174682938502,
+        "net_correction": -325,
+        "positive_prediction_variance_sum": 0.02795398235321045,
+        "margin_mean": 0.5817388476973565,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "bae151be6ffa401ff6154e5c6abe26161f5ffa5cc0161e43597ab59214357564",
+      "inference_sha256": "37ee4eb872bdb881dca6306bd7a68290fab78558a4b890009cb9fc394b250630"
+    },
+    "relation_jepa_missing_OOF_BT001_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_BT-001_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 16,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "calibration_video": "BT-003",
+        "validation_video": "BT-001",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "known_negative_missing_probability": 0.25,
+        "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+        "scope": "Raw cosine/candidate-margin relation prediction rather than learned raw identity-space projection; first3+recent5 are actual unfiltered past observations, never permanently trusted"
+      },
+      "guard": {
+        "config_sha256": "aee3bd7e899a770b1271d3cbdfdcac9077adeced0d8dd529206057b6775dfc0b",
+        "queries_manifest_sha256": "adde321476e0dd69fa3ffe3c7eaea6ebee8cbffe2f1ebbc1a253f39a8e86d09e",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_relations_v2.py": "47fb8167184f1703c0a7a9c774efe830cd6b3f6fec742b1bd4b0412238ea6d75",
+          "cfp/candidate_relation_jepa.py": "7fe82bdf966795e944e6db69dbe42f6eff11741e5dddaa171342524973ce1e2a",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_relation_jepa_missing_OOF_BT001_s0_v1.json": "aee3bd7e899a770b1271d3cbdfdcac9077adeced0d8dd529206057b6775dfc0b"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 4372,
+      "initial_tensor_sha256": "7f19db043427c5c30daa28eb0716ac92c2402723d66c522a77a3f6d72160a46a",
+      "fit_queries": 27350,
+      "calibration_queries": 471,
+      "validation_queries": 6071,
+      "epochs": [
+        {
+          "epoch": 1,
+          "missing_augmented_cumulative": 968,
+          "steps": 64,
+          "loss": 3.5958222784101963,
+          "candidate_ce": 3.024441719055176,
+          "latent_prediction": 0.5713805628474802,
+          "sample_order_sha256": "459d833b324b03d18d86305081d57b0d272ff6776989bce33603bcc6eddbd382"
+        },
+        {
+          "epoch": 2,
+          "missing_augmented_cumulative": 1938,
+          "steps": 64,
+          "loss": 3.078582927584648,
+          "candidate_ce": 2.9407393410801888,
+          "latent_prediction": 0.13784357788972557,
+          "sample_order_sha256": "8f364ec0e569aa11682921e19c1d6b7b11879f8da009b44cbad5a1b538fa99a2"
+        },
+        {
+          "epoch": 3,
+          "missing_augmented_cumulative": 2957,
+          "steps": 64,
+          "loss": 2.8776421174407005,
+          "candidate_ce": 2.7702303007245064,
+          "latent_prediction": 0.10741183115169406,
+          "sample_order_sha256": "097f88913ec40925fb792dc2d80456fc0c87353d34d11c16c31415a2893bbf42"
+        },
+        {
+          "epoch": 4,
+          "missing_augmented_cumulative": 3979,
+          "steps": 64,
+          "loss": 2.8377505987882614,
+          "candidate_ce": 2.733805075287819,
+          "latent_prediction": 0.10394551965873688,
+          "sample_order_sha256": "0cb72a25d27df6a80716fd8a5a422c27603512b0eda80f744ba3942c4469d658"
+        },
+        {
+          "epoch": 5,
+          "missing_augmented_cumulative": 4939,
+          "steps": 64,
+          "loss": 2.5901075322180986,
+          "candidate_ce": 2.4882289562374353,
+          "latent_prediction": 0.10187859588768333,
+          "sample_order_sha256": "8cf6f4e94d42b0e9ab032469c14191b3c450a074a8f2e76265737634be50b31a"
+        },
+        {
+          "epoch": 6,
+          "missing_augmented_cumulative": 5924,
+          "steps": 64,
+          "loss": 2.3924474250525236,
+          "candidate_ce": 2.289428226649761,
+          "latent_prediction": 0.10301919828634709,
+          "sample_order_sha256": "4fcc4d4793f5fdbdfb33e6f79e43b7799df1e4842245c589115ae0bf5d482b15"
+        },
+        {
+          "epoch": 7,
+          "missing_augmented_cumulative": 6920,
+          "steps": 64,
+          "loss": 2.06964785605669,
+          "candidate_ce": 1.965569755062461,
+          "latent_prediction": 0.10407809156458825,
+          "sample_order_sha256": "a247d2145d9540de6a30efafd3f1a2d8f36634566a5e8cc0b9ef54eabab4b548"
+        },
+        {
+          "epoch": 8,
+          "missing_augmented_cumulative": 7948,
+          "steps": 64,
+          "loss": 1.7313138544559479,
+          "candidate_ce": 1.62742411904037,
+          "latent_prediction": 0.10388974146917462,
+          "sample_order_sha256": "b21bbf8d0b19998c7590abb1708852855638c0479e13a3de3ad7fefc56b19614"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Visible raw RGB cosine/margin relations plus time/early-group/current geometry; cached past scalars ignored. Clean current/future identity-to-candidate relations are teacher-only.",
+      "producer_excluded_videos": [
+        "BT-003",
+        "BT-001"
+      ],
+      "scope": "Actual ordinary producer excludes outer/calibration videos; frozen detector/encoder pretraining exposure remains. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export. Synthetic candidate-missing augmentation removes known positive and every unknown current label, leaving real known negatives; natural unknowns never become wrong.",
+      "calibration": {
+        "queries": 471,
+        "known_positive": 362,
+        "null_labelled": 0,
+        "known_rank_correct": 288,
+        "unknown_predicted": 11,
+        "null_predicted": 62,
+        "null_correct": 0,
+        "N01": 0,
+        "N10": 32,
+        "no_known_correct_past": 10,
+        "rank1_percent": 79.55801104972376,
+        "net_correction": -32,
+        "positive_prediction_variance_sum": 0.11930173635482788,
+        "margin_mean": 1.5719455386929198,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 6071,
+        "known_positive": 4179,
+        "null_labelled": 52,
+        "known_rank_correct": 1998,
+        "unknown_predicted": 369,
+        "null_predicted": 958,
+        "null_correct": 22,
+        "N01": 1,
+        "N10": 114,
+        "no_known_correct_past": 621,
+        "rank1_percent": 47.810480976310124,
+        "net_correction": -113,
+        "positive_prediction_variance_sum": 0.04851234704256058,
+        "margin_mean": 1.0129134354177445,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "5f92e62b610166e76448a3053a59b0aa450437cf7ca57ed952c3101e61c313c9",
+      "inference_sha256": "a3bd1d34782c5ca86136b84c81a7a85f92c3b070f37b424e05b1cb01182de99e"
+    },
+    "ordinary_candidate_transformer_SN015_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "ordinary_two_layer_transformer",
+        "candidate_context": true,
+        "ema": false,
+        "ema_decay": 0.99,
+        "prediction_weight": 0.0,
+        "masking": true,
+        "corruption": true,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "Supervised candidate+NULL CE only; no teacher",
+        "scope": "Same warm actual-history query set/fit4/cal1/val1, masking/corruption, optimizer and512steps\u00d764rows. Parameter count measured rather than nominal equality."
+      },
+      "guard": {
+        "config_sha256": "a10e45711304589794ea150ca89cf7abc8c25f1dfafd84f3322d747f09ca057c",
+        "queries_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_transformer.py": "fe864c950173fc3a7c98d92c743bf43e16368e9ed805a335e90e88d93622afd9",
+          "cfp/candidate_transformer.py": "570e0fb37c20cc3cbbf3299ee500d3f8638010d2b06c6efb2f5f6d1518700b99",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_ordinary_candidate_transformer_SN015_s0_v1.json": "a10e45711304589794ea150ca89cf7abc8c25f1dfafd84f3322d747f09ca057c"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 105153,
+      "initial_tensor_sha256": "45f07a6bc0d5c038a351531d870a73c76d0e15599b211f9e00b194f721d7f2cb",
+      "fit_queries": 15737,
+      "calibration_queries": 6086,
+      "validation_queries": 13007,
+      "epochs": [
+        {
+          "epoch": 1,
+          "steps": 64,
+          "loss": 1.7136222794651985,
+          "candidate_ce": 1.7136222794651985,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "3df64537d7113f64f520ea19306a77bce829794d7d4eaf3e17fceeac2c72f86a"
+        },
+        {
+          "epoch": 2,
+          "steps": 64,
+          "loss": 1.1724519077688456,
+          "candidate_ce": 1.1724519077688456,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "e059a793b28d2d42a5a6ba8af15f410349623e7593362a3e4f8a3cb705714475"
+        },
+        {
+          "epoch": 3,
+          "steps": 64,
+          "loss": 1.1459379205480218,
+          "candidate_ce": 1.1459379205480218,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "98c8232c96bf4f05df263436b49ccb84237f5a50bcdf4502c9952d796e39be08"
+        },
+        {
+          "epoch": 4,
+          "steps": 64,
+          "loss": 1.0998099194839597,
+          "candidate_ce": 1.0998099194839597,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "b58ab9893a984b4df5a2f04ab4be9c5355af455f8ba96695569c7dde6a57160b"
+        },
+        {
+          "epoch": 5,
+          "steps": 64,
+          "loss": 1.0416090255603194,
+          "candidate_ce": 1.0416090255603194,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "737fb4ff8f651ecb72aa1ba113c6f1e6db0aa75072727ed043d274aac808c8f6"
+        },
+        {
+          "epoch": 6,
+          "steps": 64,
+          "loss": 1.0344169307500124,
+          "candidate_ce": 1.0344169307500124,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "95c3a8996d2d2d57f98110f7e8c7b5a3b15e2d92e11cfd3df381fa30949154fd"
+        },
+        {
+          "epoch": 7,
+          "steps": 64,
+          "loss": 1.0289537003263831,
+          "candidate_ce": 1.0289537003263831,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "ffe70dd1de4fa8c27889d2c63027416f8e3843db98ff2caedf2b106c78f3422d"
+        },
+        {
+          "epoch": 8,
+          "steps": 64,
+          "loss": 0.9485329333692789,
+          "candidate_ce": 0.9485329333692789,
+          "latent_prediction": 0.0,
+          "sample_order_sha256": "f1d6ce765a5cb71c8c938e754d8fe23ee24775859cce4318bf46d2a54657b033"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 0,
+      "evidence_mode": "Raw visible past/current RGB plus geometry/confidence/current crowding. Cached original history scalar features and baseline costs are zeroed to prevent mask leakage.",
+      "scope": "New candidate-module heldout video, warm-start producer states; original encoder/detector/GRU exposures disclosed. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export.",
+      "calibration": {
+        "queries": 6086,
+        "known_positive": 4223,
+        "null_labelled": 48,
+        "known_rank_correct": 2344,
+        "unknown_predicted": 420,
+        "null_predicted": 15,
+        "null_correct": 2,
+        "N01": 20,
+        "N10": 181,
+        "no_known_correct_past": 1308,
+        "rank1_percent": 55.50556476438551,
+        "net_correction": -161,
+        "positive_prediction_variance_sum": 0.6395460367202759,
+        "margin_mean": 4.074845190362891,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 13007,
+        "known_positive": 10710,
+        "null_labelled": 1087,
+        "known_rank_correct": 4543,
+        "unknown_predicted": 409,
+        "null_predicted": 110,
+        "null_correct": 52,
+        "N01": 72,
+        "N10": 1979,
+        "no_known_correct_past": 2494,
+        "rank1_percent": 42.41830065359477,
+        "net_correction": -1907,
+        "positive_prediction_variance_sum": 0.5508888959884644,
+        "margin_mean": 2.11184458777124,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "8aae18ae3580bde40db1ae3450936b1111fb002ab286443c4f29a986c48f91a4",
+      "inference_sha256": "086c1020d1cf81e64c44c942bcec771bc47294765b54c8ec5aa6015fa849e8a5"
+    },
+    "candidate_id_decoder_SN015_s0_v1": {
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "in_context_identity_dictionary",
+        "candidate_context": true,
+        "ema": false,
+        "ema_decay": 0.99,
+        "prediction_weight": 0.0,
+        "masking": true,
+        "corruption": true,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "All visible candidate-conditioned predictions match stopped clean identity target when a known positive exists; NULL-only rows have no latent target",
+        "scope": "MOTIP-inspired explicit ID decoder; same512steps\u00d764track histories; group loss and other-track raw history context differ and are reported",
+        "hidden": 64,
+        "capacity": 128
+      },
+      "guard": {
+        "config_sha256": "356d0842cf2d3ee32338ba59093554fddf9fb44c9fad974c8be2cd8d74d83ffa",
+        "query_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_id_decoder.py": "48052a93a63dfe81f3b15f64ff6d7cb08fd00c332dac9e5144b12ad13473e045",
+          "configs/cfp/phase_vi_candidate_id_decoder_SN015_s0_v1.json": "356d0842cf2d3ee32338ba59093554fddf9fb44c9fad974c8be2cd8d74d83ffa",
+          "cfp/candidate_id_decoder.py": "b1dd3ec2148121d499de0dd239d7bce43d741d52c7ed1c1008bbfc5e11fb2805",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9"
+        }
+      },
+      "parameters": 108416,
+      "initial_tensor_sha256": "6f3a09644b95ed6afd037704906c371ff75dd58e3f79e4ce63404928632c2663",
+      "epochs": [
+        {
+          "epoch": 1,
+          "loss": 2.839500538961147,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3402,
+          "sample_order_sha256": "805b4f0896a5eb42ea93b22e8439ea4622712ac49e728e26acef3e5b1a7a6369"
+        },
+        {
+          "epoch": 2,
+          "loss": 2.7213696787584922,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3248,
+          "sample_order_sha256": "9e79b8671bf53293aab5e7bbf035b62daff1ca33b04a98032e12cac21ac68c7d"
+        },
+        {
+          "epoch": 3,
+          "loss": 2.663953586270509,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3172,
+          "sample_order_sha256": "a0eb2d186f70baeb76736a01c4e3c3659c55fa3ae64cd2132d71bb9dc8a11e41"
+        },
+        {
+          "epoch": 4,
+          "loss": 2.555454803026805,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3306,
+          "sample_order_sha256": "15997601f3cbe9c72244b9245fb3f06fd33cfe43e4fbc3e905e3163015c1c368"
+        },
+        {
+          "epoch": 5,
+          "loss": 2.557547924017854,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3141,
+          "sample_order_sha256": "00b6b04b4a90df5c76cd97720ded3f247524cccda627758f533e1d5967fac623"
+        },
+        {
+          "epoch": 6,
+          "loss": 2.5428008660637715,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3221,
+          "sample_order_sha256": "ca9e8acd750a72636ff6d870e82539035f98d7a64da92603c10c7204af2ee2f8"
+        },
+        {
+          "epoch": 7,
+          "loss": 2.5931669611354664,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3168,
+          "sample_order_sha256": "720aeb7781a25c938cf19012f150b3d86eb91e50468d269a253063274394f0e9"
+        },
+        {
+          "epoch": 8,
+          "loss": 2.6505611786769805,
+          "steps": 64,
+          "track_histories": 4096,
+          "known_detection_targets": 3294,
+          "sample_order_sha256": "8250152ea06d4e57af81be0055dea43a0d516c923b586d44785e872ad7294bae"
+        }
+      ],
+      "optimizer_steps": 512,
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "scope": "MOTIP-inspired ID dictionary decoder, not official MOTIP. Warm actual states/backbone exposure. Each step exactly64 supplied track histories, whole groups/truncated last group; current detections classify among supplied IDs/newborn. Additional other-track raw histories and group-oriented loss differ from per-row candidate JEPA; parameter/data budgets measured.",
+      "calibration": {
+        "frame_graphs": 599,
+        "known_detections": 3687,
+        "correct_id": 493,
+        "known_positive": 4223,
+        "rank_correct": 445,
+        "N01": 137,
+        "N10": 1721,
+        "unknown_predicted": 890,
+        "rank1_percent": 10.537532559791618,
+        "known_detection_id_accuracy": 13.371304583672362,
+        "net_correction": -1584,
+        "scope": "Pure per-track candidate ranking has no added NULL threshold. Frame ID accuracy includes explicit newborn class. Not Hungarian/MOT metrics."
+      },
+      "validation": {
+        "frame_graphs": 1313,
+        "known_detections": 9328,
+        "correct_id": 1870,
+        "known_positive": 10710,
+        "rank_correct": 937,
+        "N01": 348,
+        "N10": 5682,
+        "unknown_predicted": 531,
+        "rank1_percent": 8.748832866479924,
+        "known_detection_id_accuracy": 20.047169811320753,
+        "net_correction": -5334,
+        "scope": "Pure per-track candidate ranking has no added NULL threshold. Frame ID accuracy includes explicit newborn class. Not Hungarian/MOT metrics."
+      },
+      "checkpoint_sha256": "8e03ce63ea28127545c749dc707c010daeb5fe52d7c71232df92fca6fa82e5d7",
+      "inference_sha256": "988a95242e7fd40923e732701cb66489d25d80eff7379654c1f783bfee6b68e4"
+    },
+    "jepa_no_masking_SN015_s0_v1": {
+      "manifest_sha256": "7b6a9a55e14f0d34ef3f1b75d995834da30a48ed8b3733d87febc471e429c72f",
+      "command": [
+        "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+        "tools/cfp_train_candidate_jepa_controls.py",
+        "--config",
+        "configs/cfp/phase_vi_jepa_no_masking_SN015_s0_v1.json",
+        "--output",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/jepa_no_masking_SN015_s0_v1"
+      ],
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "cross_attention",
+        "candidate_context": true,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": false,
+        "corruption": true,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "All visible candidate-conditioned predictions match stopped clean identity target when a known positive exists; NULL-only rows have no latent target",
+        "scope": "Warm actual state ablation: identical512steps\u00d764query order; recomputed visible-history evidence blocks masked/corrupted cached cues; explicit no-NULL CE excludes absence labels but keeps same sampling"
+      },
+      "guard": {
+        "config_sha256": "31bc2632fb2885a6b9f7c457f064b14831857a42c7bae48abf6abcb811de467b",
+        "queries_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_jepa_controls.py": "5260811cfd1205e1db1375f8a7c0dc9fcef975e6235c37c3f3e839125786c7d7",
+          "cfp/candidate_jepa.py": "38b153cdd5899e1515117d1791efce25ee6b94af10a664f1da95d26b03f101c0",
+          "cfp/candidate_jepa_controls.py": "79a6fce79fea0ca7cb4ad98ad13926736af606009690ffa7d3d185b63b228f4e",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_jepa_no_masking_SN015_s0_v1.json": "31bc2632fb2885a6b9f7c457f064b14831857a42c7bae48abf6abcb811de467b"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 109186,
+      "initial_tensor_sha256": "0c98bc69e1cd5ecaa949e876693f23505a7cf6a1635c2829d97196679250cc57",
+      "fit_queries": 15737,
+      "calibration_queries": 6086,
+      "validation_queries": 13007,
+      "epochs": [
+        {
+          "epoch": 1,
+          "steps": 64,
+          "loss": 2.08819367736578,
+          "candidate_ce": 1.5110409474000335,
+          "latent_prediction": 0.5771527290344238,
+          "sample_order_sha256": "3df64537d7113f64f520ea19306a77bce829794d7d4eaf3e17fceeac2c72f86a"
+        },
+        {
+          "epoch": 2,
+          "steps": 64,
+          "loss": 1.5525748953223228,
+          "candidate_ce": 1.0807195333763957,
+          "latent_prediction": 0.4718553596176207,
+          "sample_order_sha256": "e059a793b28d2d42a5a6ba8af15f410349623e7593362a3e4f8a3cb705714475"
+        },
+        {
+          "epoch": 3,
+          "steps": 64,
+          "loss": 1.3757271189242601,
+          "candidate_ce": 0.9660473978146911,
+          "latent_prediction": 0.4096797192469239,
+          "sample_order_sha256": "98c8232c96bf4f05df263436b49ccb84237f5a50bcdf4502c9952d796e39be08"
+        },
+        {
+          "epoch": 4,
+          "steps": 64,
+          "loss": 1.1672973278909922,
+          "candidate_ce": 0.7924312525428832,
+          "latent_prediction": 0.3748660748824477,
+          "sample_order_sha256": "b58ab9893a984b4df5a2f04ab4be9c5355af455f8ba96695569c7dde6a57160b"
+        },
+        {
+          "epoch": 5,
+          "steps": 64,
+          "loss": 1.0106367925181985,
+          "candidate_ce": 0.6633854005485773,
+          "latent_prediction": 0.3472513905726373,
+          "sample_order_sha256": "737fb4ff8f651ecb72aa1ba113c6f1e6db0aa75072727ed043d274aac808c8f6"
+        },
+        {
+          "epoch": 6,
+          "steps": 64,
+          "loss": 0.9348744479939342,
+          "candidate_ce": 0.6105724740773439,
+          "latent_prediction": 0.3243019748479128,
+          "sample_order_sha256": "95c3a8996d2d2d57f98110f7e8c7b5a3b15e2d92e11cfd3df381fa30949154fd"
+        },
+        {
+          "epoch": 7,
+          "steps": 64,
+          "loss": 0.9033453688025475,
+          "candidate_ce": 0.6001123604364693,
+          "latent_prediction": 0.30323300464078784,
+          "sample_order_sha256": "ffe70dd1de4fa8c27889d2c63027416f8e3843db98ff2caedf2b106c78f3422d"
+        },
+        {
+          "epoch": 8,
+          "steps": 64,
+          "loss": 0.8112310264259577,
+          "candidate_ce": 0.5223824875429273,
+          "latent_prediction": 0.28884854121133685,
+          "sample_order_sha256": "f1d6ce765a5cb71c8c938e754d8fe23ee24775859cce4318bf46d2a54657b033"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Raw visible past/current RGB plus geometry/confidence/current crowding. Cached original history scalar features and baseline costs are zeroed to prevent mask leakage.",
+      "scope": "New candidate-module heldout video, warm-start producer states; original encoder/detector/GRU exposures disclosed. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export.",
+      "calibration": {
+        "queries": 6086,
+        "known_positive": 4223,
+        "null_labelled": 48,
+        "known_rank_correct": 2351,
+        "unknown_predicted": 439,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 15,
+        "N10": 157,
+        "no_known_correct_past": 1308,
+        "rank1_percent": 55.671323703528294,
+        "net_correction": -142,
+        "positive_prediction_variance_sum": 0.1665216088294983,
+        "margin_mean": 1.850364259658109,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 13007,
+        "known_positive": 10710,
+        "null_labelled": 1087,
+        "known_rank_correct": 3843,
+        "unknown_predicted": 410,
+        "null_predicted": 8,
+        "null_correct": 2,
+        "N01": 239,
+        "N10": 2840,
+        "no_known_correct_past": 2494,
+        "rank1_percent": 35.88235294117647,
+        "net_correction": -2601,
+        "positive_prediction_variance_sum": 0.25789886713027954,
+        "margin_mean": 1.0277579826955618,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "9d1f35e723229831207bcfc039febe526a11a417961299325a29341fd737e05e",
+      "inference_sha256": "2b673f33a294151e555662fce261de2261145f16b3231138b4e6a37637eb83ed"
+    },
+    "jepa_no_corruption_SN015_s0_v1": {
+      "manifest_sha256": "ae221157825c42bbe933d72284cf5da57a453995a24af3740eb091a1b9faba3d",
+      "command": [
+        "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+        "tools/cfp_train_candidate_jepa_controls.py",
+        "--config",
+        "configs/cfp/phase_vi_jepa_no_corruption_SN015_s0_v1.json",
+        "--output",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/jepa_no_corruption_SN015_s0_v1"
+      ],
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "cross_attention",
+        "candidate_context": true,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": false,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "All visible candidate-conditioned predictions match stopped clean identity target when a known positive exists; NULL-only rows have no latent target",
+        "scope": "Warm actual state ablation: identical512steps\u00d764query order; recomputed visible-history evidence blocks masked/corrupted cached cues; explicit no-NULL CE excludes absence labels but keeps same sampling"
+      },
+      "guard": {
+        "config_sha256": "9822060abb25745f11f49b98a2f8f19e9aadc3e3e235785719ba975c011345f8",
+        "queries_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_jepa_controls.py": "5260811cfd1205e1db1375f8a7c0dc9fcef975e6235c37c3f3e839125786c7d7",
+          "cfp/candidate_jepa.py": "38b153cdd5899e1515117d1791efce25ee6b94af10a664f1da95d26b03f101c0",
+          "cfp/candidate_jepa_controls.py": "79a6fce79fea0ca7cb4ad98ad13926736af606009690ffa7d3d185b63b228f4e",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_jepa_no_corruption_SN015_s0_v1.json": "9822060abb25745f11f49b98a2f8f19e9aadc3e3e235785719ba975c011345f8"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 109186,
+      "initial_tensor_sha256": "0c98bc69e1cd5ecaa949e876693f23505a7cf6a1635c2829d97196679250cc57",
+      "fit_queries": 15737,
+      "calibration_queries": 6086,
+      "validation_queries": 13007,
+      "epochs": [
+        {
+          "epoch": 1,
+          "steps": 64,
+          "loss": 2.0861799847334623,
+          "candidate_ce": 1.5094204228371382,
+          "latent_prediction": 0.5767595544457436,
+          "sample_order_sha256": "3df64537d7113f64f520ea19306a77bce829794d7d4eaf3e17fceeac2c72f86a"
+        },
+        {
+          "epoch": 2,
+          "steps": 64,
+          "loss": 1.5500876735895872,
+          "candidate_ce": 1.0791190098971128,
+          "latent_prediction": 0.4709686697460711,
+          "sample_order_sha256": "e059a793b28d2d42a5a6ba8af15f410349623e7593362a3e4f8a3cb705714475"
+        },
+        {
+          "epoch": 3,
+          "steps": 64,
+          "loss": 1.3730064369738102,
+          "candidate_ce": 0.9642985621467233,
+          "latent_prediction": 0.40870786271989346,
+          "sample_order_sha256": "98c8232c96bf4f05df263436b49ccb84237f5a50bcdf4502c9952d796e39be08"
+        },
+        {
+          "epoch": 4,
+          "steps": 64,
+          "loss": 1.1685305396094918,
+          "candidate_ce": 0.7965631331317127,
+          "latent_prediction": 0.371967398095876,
+          "sample_order_sha256": "b58ab9893a984b4df5a2f04ab4be9c5355af455f8ba96695569c7dde6a57160b"
+        },
+        {
+          "epoch": 5,
+          "steps": 64,
+          "loss": 1.0232784757390618,
+          "candidate_ce": 0.6787248156033456,
+          "latent_prediction": 0.3445536554791033,
+          "sample_order_sha256": "737fb4ff8f651ecb72aa1ba113c6f1e6db0aa75072727ed043d274aac808c8f6"
+        },
+        {
+          "epoch": 6,
+          "steps": 64,
+          "loss": 0.9528278866782784,
+          "candidate_ce": 0.6304643275216222,
+          "latent_prediction": 0.32236355636268854,
+          "sample_order_sha256": "95c3a8996d2d2d57f98110f7e8c7b5a3b15e2d92e11cfd3df381fa30949154fd"
+        },
+        {
+          "epoch": 7,
+          "steps": 64,
+          "loss": 0.91869383957237,
+          "candidate_ce": 0.6171900420449674,
+          "latent_prediction": 0.3015038000885397,
+          "sample_order_sha256": "ffe70dd1de4fa8c27889d2c63027416f8e3843db98ff2caedf2b106c78f3422d"
+        },
+        {
+          "epoch": 8,
+          "steps": 64,
+          "loss": 0.8266215929761529,
+          "candidate_ce": 0.5417550904676318,
+          "latent_prediction": 0.2848665011115372,
+          "sample_order_sha256": "f1d6ce765a5cb71c8c938e754d8fe23ee24775859cce4318bf46d2a54657b033"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Raw visible past/current RGB plus geometry/confidence/current crowding. Cached original history scalar features and baseline costs are zeroed to prevent mask leakage.",
+      "scope": "New candidate-module heldout video, warm-start producer states; original encoder/detector/GRU exposures disclosed. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export.",
+      "calibration": {
+        "queries": 6086,
+        "known_positive": 4223,
+        "null_labelled": 48,
+        "known_rank_correct": 2340,
+        "unknown_predicted": 439,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 15,
+        "N10": 170,
+        "no_known_correct_past": 1308,
+        "rank1_percent": 55.41084537058963,
+        "net_correction": -155,
+        "positive_prediction_variance_sum": 0.1635008156299591,
+        "margin_mean": 1.792830924042894,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 13007,
+        "known_positive": 10710,
+        "null_labelled": 1087,
+        "known_rank_correct": 4010,
+        "unknown_predicted": 411,
+        "null_predicted": 9,
+        "null_correct": 3,
+        "N01": 215,
+        "N10": 2647,
+        "no_known_correct_past": 2494,
+        "rank1_percent": 37.44164332399627,
+        "net_correction": -2432,
+        "positive_prediction_variance_sum": 0.2768513560295105,
+        "margin_mean": 1.0725728523504856,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "59abfc58fa1c2c2d9cf7eaed7c9b6c8606ff58971470217fb99545961da9debe",
+      "inference_sha256": "69ab36176febdb3bda9c1263d099562f356b2db3ede82e1c653c38553ec02401"
+    },
+    "jepa_no_null_SN015_s0_v1": {
+      "manifest_sha256": "538324708d32b09a480391796a35afc87dc2e6ed60a8c551b70c3d26af229d0b",
+      "command": [
+        "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+        "tools/cfp_train_candidate_jepa_controls.py",
+        "--config",
+        "configs/cfp/phase_vi_jepa_no_null_SN015_s0_v1.json",
+        "--output",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/jepa_no_null_SN015_s0_v1"
+      ],
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "cross_attention",
+        "candidate_context": true,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": true,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "All visible candidate-conditioned predictions match stopped clean identity target when a known positive exists; NULL-only rows have no latent target",
+        "scope": "Warm actual state ablation: identical512steps\u00d764query order; recomputed visible-history evidence blocks masked/corrupted cached cues; explicit no-NULL CE excludes absence labels but keeps same sampling",
+        "use_null": false
+      },
+      "guard": {
+        "config_sha256": "7a3a691c1d8b14fc1f02ec920cf0026d76118b2d95a0cd261fd6606ffba7a1f8",
+        "queries_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_jepa_controls.py": "5260811cfd1205e1db1375f8a7c0dc9fcef975e6235c37c3f3e839125786c7d7",
+          "cfp/candidate_jepa.py": "38b153cdd5899e1515117d1791efce25ee6b94af10a664f1da95d26b03f101c0",
+          "cfp/candidate_jepa_controls.py": "79a6fce79fea0ca7cb4ad98ad13926736af606009690ffa7d3d185b63b228f4e",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_jepa_no_null_SN015_s0_v1.json": "7a3a691c1d8b14fc1f02ec920cf0026d76118b2d95a0cd261fd6606ffba7a1f8"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 109186,
+      "initial_tensor_sha256": "0c98bc69e1cd5ecaa949e876693f23505a7cf6a1635c2829d97196679250cc57",
+      "fit_queries": 15737,
+      "calibration_queries": 6086,
+      "validation_queries": 13007,
+      "epochs": [
+        {
+          "epoch": 1,
+          "steps": 64,
+          "loss": 2.0053730364888906,
+          "candidate_ce": 1.4453419037163258,
+          "latent_prediction": 0.560031124856323,
+          "sample_order_sha256": "3df64537d7113f64f520ea19306a77bce829794d7d4eaf3e17fceeac2c72f86a"
+        },
+        {
+          "epoch": 2,
+          "steps": 64,
+          "loss": 1.4859253000468016,
+          "candidate_ce": 1.030602177605033,
+          "latent_prediction": 0.45532312290742993,
+          "sample_order_sha256": "e059a793b28d2d42a5a6ba8af15f410349623e7593362a3e4f8a3cb705714475"
+        },
+        {
+          "epoch": 3,
+          "steps": 64,
+          "loss": 1.3415943309664726,
+          "candidate_ce": 0.944431466050446,
+          "latent_prediction": 0.39716286957263947,
+          "sample_order_sha256": "98c8232c96bf4f05df263436b49ccb84237f5a50bcdf4502c9952d796e39be08"
+        },
+        {
+          "epoch": 4,
+          "steps": 64,
+          "loss": 1.1660797977820039,
+          "candidate_ce": 0.80326631013304,
+          "latent_prediction": 0.36281348764896393,
+          "sample_order_sha256": "b58ab9893a984b4df5a2f04ab4be9c5355af455f8ba96695569c7dde6a57160b"
+        },
+        {
+          "epoch": 5,
+          "steps": 64,
+          "loss": 0.9974878327921033,
+          "candidate_ce": 0.658667478710413,
+          "latent_prediction": 0.33882035594433546,
+          "sample_order_sha256": "737fb4ff8f651ecb72aa1ba113c6f1e6db0aa75072727ed043d274aac808c8f6"
+        },
+        {
+          "epoch": 6,
+          "steps": 64,
+          "loss": 0.9249996887519956,
+          "candidate_ce": 0.6088833380490541,
+          "latent_prediction": 0.3161163507029414,
+          "sample_order_sha256": "95c3a8996d2d2d57f98110f7e8c7b5a3b15e2d92e11cfd3df381fa30949154fd"
+        },
+        {
+          "epoch": 7,
+          "steps": 64,
+          "loss": 0.8947795312851667,
+          "candidate_ce": 0.6028747330419719,
+          "latent_prediction": 0.2919048028998077,
+          "sample_order_sha256": "ffe70dd1de4fa8c27889d2c63027416f8e3843db98ff2caedf2b106c78f3422d"
+        },
+        {
+          "epoch": 8,
+          "steps": 64,
+          "loss": 0.8059670114889741,
+          "candidate_ce": 0.5301995798945427,
+          "latent_prediction": 0.2757674288004637,
+          "sample_order_sha256": "f1d6ce765a5cb71c8c938e754d8fe23ee24775859cce4318bf46d2a54657b033"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Raw visible past/current RGB plus geometry/confidence/current crowding. Cached original history scalar features and baseline costs are zeroed to prevent mask leakage.",
+      "scope": "New candidate-module heldout video, warm-start producer states; original encoder/detector/GRU exposures disclosed. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export.",
+      "calibration": {
+        "queries": 6086,
+        "known_positive": 4223,
+        "null_labelled": 48,
+        "known_rank_correct": 2387,
+        "unknown_predicted": 431,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 10,
+        "N10": 132,
+        "no_known_correct_past": 1308,
+        "rank1_percent": 56.52379824769122,
+        "net_correction": -122,
+        "positive_prediction_variance_sum": 0.17649871110916138,
+        "margin_mean": 2.0836994380806764,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 13007,
+        "known_positive": 10710,
+        "null_labelled": 1087,
+        "known_rank_correct": 3956,
+        "unknown_predicted": 431,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 228,
+        "N10": 2711,
+        "no_known_correct_past": 2494,
+        "rank1_percent": 36.93744164332399,
+        "net_correction": -2483,
+        "positive_prediction_variance_sum": 0.2423192709684372,
+        "margin_mean": 0.9904847107870625,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "7f1835d817218b3a7711f24f16e2f1aff9411fe841da665da4c8fb99d37b6531",
+      "inference_sha256": "2a1f722e7d7f54a11ffaf42f26bd0a3c29c98e35b62381f8bd5eb195799a238e"
+    },
+    "jepa_recomputed_evidence_SN015_s0_v1": {
+      "manifest_sha256": "9cab78a1b98187c12f7a72e114cd969e828594d3040323839639324d7130c9bd",
+      "command": [
+        "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+        "tools/cfp_train_candidate_jepa_controls.py",
+        "--config",
+        "configs/cfp/phase_vi_jepa_recomputed_evidence_SN015_s0_v1.json",
+        "--output",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/jepa_recomputed_evidence_SN015_s0_v1"
+      ],
+      "status": "COMPLETE",
+      "config": {
+        "state": "FROZEN",
+        "hypothesis_id": "H3",
+        "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+        "seed": 0,
+        "encoder_seed": 0,
+        "device": "cuda",
+        "latent": 64,
+        "architecture": "cross_attention",
+        "candidate_context": true,
+        "ema": true,
+        "ema_decay": 0.99,
+        "prediction_weight": 1.0,
+        "masking": true,
+        "corruption": true,
+        "target_time": "current",
+        "fit_videos": [
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001"
+        ],
+        "calibration_video": "BT-001",
+        "validation_video": "SN-015",
+        "epochs": 8,
+        "steps_per_epoch": 64,
+        "batch_size": 64,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "selection": "Fixed last epoch8, whole-video inner calibration and outer validation; no historic-dev selection",
+        "teacher_objective": "All visible candidate-conditioned predictions match stopped clean identity target when a known positive exists; NULL-only rows have no latent target",
+        "scope": "Warm actual state ablation: identical512steps\u00d764query order; recomputed visible-history evidence blocks masked/corrupted cached cues; explicit no-NULL CE excludes absence labels but keeps same sampling",
+        "recoverability_evidence": true
+      },
+      "guard": {
+        "config_sha256": "a463274946cdd9fd9da426767bfe0d6f1a87e87768a898e9dfeb212221d0f49f",
+        "queries_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+        "feature_manifest_sha256": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+        "physical_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+        "runtime": {
+          "torch": "2.0.0+cu118",
+          "cuda": "11.8",
+          "cudnn": 8700,
+          "device": "cuda",
+          "physical_device": "0"
+        },
+        "sources": {
+          "tools/cfp_train_candidate_jepa_controls.py": "5260811cfd1205e1db1375f8a7c0dc9fcef975e6235c37c3f3e839125786c7d7",
+          "cfp/candidate_jepa.py": "38b153cdd5899e1515117d1791efce25ee6b94af10a664f1da95d26b03f101c0",
+          "cfp/candidate_jepa_controls.py": "79a6fce79fea0ca7cb4ad98ad13926736af606009690ffa7d3d185b63b228f4e",
+          "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/recoverability.py": "dd985bab6badf2b26e9a552d5a7ed02a56cb4b9c4e35abd3eb0fae66726fefd0",
+          "configs/cfp/phase_vi_jepa_recomputed_evidence_SN015_s0_v1.json": "a463274946cdd9fd9da426767bfe0d6f1a87e87768a898e9dfeb212221d0f49f"
+        }
+      },
+      "git_commit": "8562e785a02d8257ff4aee4f75039a48b37f2249",
+      "parameters": 109859,
+      "initial_tensor_sha256": "8d3cd5cababaa13096ed4e2580e4e3f8af7cb1feff1fd34a827219a7c952f69d",
+      "fit_queries": 15737,
+      "calibration_queries": 6086,
+      "validation_queries": 13007,
+      "epochs": [
+        {
+          "epoch": 1,
+          "steps": 64,
+          "loss": 2.0658694971352816,
+          "candidate_ce": 1.501836341805756,
+          "latent_prediction": 0.5640331618487835,
+          "sample_order_sha256": "3df64537d7113f64f520ea19306a77bce829794d7d4eaf3e17fceeac2c72f86a"
+        },
+        {
+          "epoch": 2,
+          "steps": 64,
+          "loss": 1.5359777119010687,
+          "candidate_ce": 1.0854523293673992,
+          "latent_prediction": 0.45052538299933076,
+          "sample_order_sha256": "e059a793b28d2d42a5a6ba8af15f410349623e7593362a3e4f8a3cb705714475"
+        },
+        {
+          "epoch": 3,
+          "steps": 64,
+          "loss": 1.363840077072382,
+          "candidate_ce": 0.9768919218331575,
+          "latent_prediction": 0.38694815523922443,
+          "sample_order_sha256": "98c8232c96bf4f05df263436b49ccb84237f5a50bcdf4502c9952d796e39be08"
+        },
+        {
+          "epoch": 4,
+          "steps": 64,
+          "loss": 1.1711872853338718,
+          "candidate_ce": 0.8212818680331111,
+          "latent_prediction": 0.3499054159037769,
+          "sample_order_sha256": "b58ab9893a984b4df5a2f04ab4be9c5355af455f8ba96695569c7dde6a57160b"
+        },
+        {
+          "epoch": 5,
+          "steps": 64,
+          "loss": 1.004185932688415,
+          "candidate_ce": 0.6826047664508224,
+          "latent_prediction": 0.32158117089420557,
+          "sample_order_sha256": "737fb4ff8f651ecb72aa1ba113c6f1e6db0aa75072727ed043d274aac808c8f6"
+        },
+        {
+          "epoch": 6,
+          "steps": 64,
+          "loss": 0.9275231678038836,
+          "candidate_ce": 0.6341740419156849,
+          "latent_prediction": 0.2933491291478276,
+          "sample_order_sha256": "95c3a8996d2d2d57f98110f7e8c7b5a3b15e2d92e11cfd3df381fa30949154fd"
+        },
+        {
+          "epoch": 7,
+          "steps": 64,
+          "loss": 0.8919856008142233,
+          "candidate_ce": 0.6221093675121665,
+          "latent_prediction": 0.26987623632885516,
+          "sample_order_sha256": "ffe70dd1de4fa8c27889d2c63027416f8e3843db98ff2caedf2b106c78f3422d"
+        },
+        {
+          "epoch": 8,
+          "steps": 64,
+          "loss": 0.7960807019844651,
+          "candidate_ce": 0.5461985939182341,
+          "latent_prediction": 0.24988210713490844,
+          "sample_order_sha256": "f1d6ce765a5cb71c8c938e754d8fe23ee24775859cce4318bf46d2a54657b033"
+        }
+      ],
+      "rgb_encoder": {
+        "checkpoint_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+        "checkpoint_epoch": 12,
+        "seed": 0,
+        "training_metadata": {
+          "status": "RUNNING",
+          "config": {
+            "schema_version": 1,
+            "state": "FROZEN",
+            "architecture": "ImageNet ResNet50, 2048-to-512 linear projection, BN neck, 98-class identity classifier",
+            "dimension": 512,
+            "epochs": 12,
+            "identities_per_batch": 8,
+            "observations_per_identity": 8,
+            "sampling": "Uniform distinct train composite IDs; random observation from each lifespan stratum, with replacement only for tracks shorter than K",
+            "optimizer": "AdamW",
+            "backbone_lr": 3e-05,
+            "head_lr": 0.0003,
+            "weight_decay": 0.0001,
+            "warmup_epochs": 1,
+            "cosine_min_lr_fraction": 0.1,
+            "ce_label_smoothing": 0.1,
+            "triplet_weight": 1.0,
+            "triplet_margin": 0.3,
+            "triplet_positive_minimum_frame_gap": 25,
+            "triplet_negatives": "same video, different composite identity; skip anchors without both valid positive and negative",
+            "augmentation": {
+              "horizontal_flip_probability": 0.5,
+              "erase_probability": 0.2,
+              "erase_area_fraction": [
+                0.05,
+                0.2
+              ],
+              "erase_fill": "zero in ImageNet-normalized space"
+            },
+            "amp": true,
+            "gradient_clip_norm": 5.0,
+            "seed_plan": [
+              0,
+              1,
+              2
+            ],
+            "checkpoint_selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+            "scope": "Strong fish-trained appearance baseline before CMUE/PLIM. RGB and causal IR use identical budgets and independent encoders. Final tracker configuration selection remains protocol dev HOTA/AssA/IDF1."
+          },
+          "config_sha256": "5c95b5f2c184d832a7294be816c19f1e0e6cc5e6bd112038a7f0340b9478d993",
+          "seed": 0,
+          "modality": "rgb",
+          "crop_manifest_sha256": "f90291409b974987d5ddbe68d256bbde2e3dca498ef495b1cf6e8890d245057e",
+          "pretrained_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+          "index_sha256": "5de12fcef06523b3f9c3b36d9f2e344fcdce56dff745d543b71ee59270aa09e9",
+          "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+          "git_commit": "a692b300dcdfd2dc549226c1db61eb4a6e8eb0d5",
+          "source_sha256": "01d72bae5eab131d03fd3d62083a84a05d853828514a66f9ce49057c037bc492",
+          "model_source_sha256": "927fae6f0735d3aa3e041bd4d17379d25308a56222cc47ea1d40880cf6a91425",
+          "torch": "2.0.0+cu118",
+          "cudnn": 8700,
+          "physical_visible_devices": "2",
+          "parameters": 24607808,
+          "selection": "fixed last epoch 12 for representation baseline; no retrieval/test-based selection",
+          "scope": "GT crop fish ReID training, dev only for reporting; no tracking claim",
+          "input_regime": "RGB current-frame only; no IR read",
+          "epochs": [
+            {
+              "epoch": 1,
+              "ce": 3.828381849482735,
+              "triplet": 0.41051778197288513,
+              "valid_triplet_anchor_fraction": 0.7559324866310161,
+              "train_accuracy": 0.15625,
+              "seconds": 15.52856690203771,
+              "steps": 187
+            },
+            {
+              "epoch": 2,
+              "ce": 2.9605409314925657,
+              "triplet": 0.36232114475678634,
+              "valid_triplet_anchor_fraction": 0.7513368983957219,
+              "train_accuracy": 0.3422459893048128,
+              "seconds": 12.928184902004432,
+              "steps": 187
+            },
+            {
+              "epoch": 3,
+              "ce": 2.4700341466913884,
+              "triplet": 0.34756010675175303,
+              "valid_triplet_anchor_fraction": 0.7456550802139037,
+              "train_accuracy": 0.48220254010695185,
+              "seconds": 13.406380934990011,
+              "steps": 187
+            },
+            {
+              "epoch": 4,
+              "ce": 2.1262127989753683,
+              "triplet": 0.33728321048027693,
+              "valid_triplet_anchor_fraction": 0.7442346256684492,
+              "train_accuracy": 0.5889872994652406,
+              "seconds": 13.64608005998889,
+              "steps": 187
+            },
+            {
+              "epoch": 5,
+              "ce": 1.9054863567658287,
+              "triplet": 0.33000517879577884,
+              "valid_triplet_anchor_fraction": 0.7352941176470589,
+              "train_accuracy": 0.6595922459893048,
+              "seconds": 13.10543753800448,
+              "steps": 187
+            },
+            {
+              "epoch": 6,
+              "ce": 1.6844726010439868,
+              "triplet": 0.3247973660734248,
+              "valid_triplet_anchor_fraction": 0.7444017379679144,
+              "train_accuracy": 0.7396390374331551,
+              "seconds": 12.647940756985918,
+              "steps": 187
+            },
+            {
+              "epoch": 7,
+              "ce": 1.5536969186150453,
+              "triplet": 0.3214010511808854,
+              "valid_triplet_anchor_fraction": 0.7499164438502673,
+              "train_accuracy": 0.7849264705882353,
+              "seconds": 11.734723871049937,
+              "steps": 187
+            },
+            {
+              "epoch": 8,
+              "ce": 1.4401348249160033,
+              "triplet": 0.3174912124712837,
+              "valid_triplet_anchor_fraction": 0.7491644385026738,
+              "train_accuracy": 0.8308823529411765,
+              "seconds": 12.507527754001785,
+              "steps": 187
+            },
+            {
+              "epoch": 9,
+              "ce": 1.3644256292179944,
+              "triplet": 0.31612236518910863,
+              "valid_triplet_anchor_fraction": 0.7316176470588235,
+              "train_accuracy": 0.8563669786096256,
+              "seconds": 12.537245365965646,
+              "steps": 187
+            },
+            {
+              "epoch": 10,
+              "ce": 1.294478113638526,
+              "triplet": 0.3137757172559034,
+              "valid_triplet_anchor_fraction": 0.75,
+              "train_accuracy": 0.884024064171123,
+              "seconds": 13.286010126001202,
+              "steps": 187
+            },
+            {
+              "epoch": 11,
+              "ce": 1.2448907134367182,
+              "triplet": 0.31246261609429343,
+              "valid_triplet_anchor_fraction": 0.7492479946524064,
+              "train_accuracy": 0.9036597593582888,
+              "seconds": 12.553904121974483,
+              "steps": 187
+            },
+            {
+              "epoch": 12,
+              "ce": 1.2212248830234302,
+              "triplet": 0.31254780069391996,
+              "valid_triplet_anchor_fraction": 0.7453208556149733,
+              "train_accuracy": 0.9090073529411765,
+              "seconds": 12.815230203035753,
+              "steps": 187
+            }
+          ]
+        }
+      },
+      "optimizer_steps": 512,
+      "ema_updates": 512,
+      "evidence_mode": "Raw visible past/current RGB plus geometry/confidence/current crowding. Cached original history scalar features and baseline costs are zeroed to prevent mask leakage.",
+      "scope": "New candidate-module heldout video, warm-start producer states; original encoder/detector/GRU exposures disclosed. Fixed final epoch, no historic-dev selection. Teacher never enters student forward/export.",
+      "calibration": {
+        "queries": 6086,
+        "known_positive": 4223,
+        "null_labelled": 48,
+        "known_rank_correct": 2365,
+        "unknown_predicted": 425,
+        "null_predicted": 0,
+        "null_correct": 0,
+        "N01": 13,
+        "N10": 153,
+        "no_known_correct_past": 1308,
+        "rank1_percent": 56.002841581813875,
+        "net_correction": -140,
+        "positive_prediction_variance_sum": 0.12558850646018982,
+        "margin_mean": 1.831709810749622,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "validation": {
+        "queries": 13007,
+        "known_positive": 10710,
+        "null_labelled": 1087,
+        "known_rank_correct": 4497,
+        "unknown_predicted": 386,
+        "null_predicted": 19,
+        "null_correct": 3,
+        "N01": 209,
+        "N10": 2192,
+        "no_known_correct_past": 2494,
+        "rank1_percent": 41.98879551820728,
+        "net_correction": -1983,
+        "positive_prediction_variance_sum": 0.2487407922744751,
+        "margin_mean": 1.1790847670998041,
+        "scope": "Fixed actual-state local candidate decisions, not Hungarian/MOT gains. NULL and unknown prediction counts retained."
+      },
+      "checkpoint_sha256": "6f5b115bb93766bc93f499da5ab2f23e7605218b9f8adc829c44f1095956043e",
+      "inference_sha256": "c632fac02867adfef795e6f2b1282e6f7060183fca51345979f5800a1f4a1b3a"
+    }
+  }
+}
