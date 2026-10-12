@@ -1,13 +1,74 @@
-# Association / lifecycle crossover
+# Association / lifecycle crossover results
 
-Status: IN_PROGRESS. Two seed0 diagonal full-video adaptations already reproduce both original BT-005/SN-013 files byte-for-byte (BoT candidate0 and RGB ordinary anchor GRU candidate1). The36-cell, three-seed/three-setting campaign is frozen in phase_v_protocol_v1.json; no crossed-cell result is claimed yet.
+状态：**FAILURE_DIAGNOSED**。Phase V科学目标仍IN_PROGRESS。36组完整两视频实验（4组合×3设置×3种子）及18组输出干预已完成；没有训练新模型。两个原始对角组合的全部18组运行／36个视频文件均与原输出逐字节一致。100原测试＋5适配测试＋3错误诊断测试通过，新增GT诊断不进入推理代码。
 
-The association policy owns its score formula, appearance representation/history and calibrated high-stage acceptance (.8 BoT, .97 GRU). Each receives the same three original association candidates; no lifecycle-specific or video-specific threshold search. Both lifecycles retain high/low/newborn thresholds .58/.1/.68, low IoU assignment .5, unconfirmed assignment .7,25fps/45buffer=37lostframes and output area>100. CFP GRU reads at most8 strictly past anchor+recent accepted tokens. No GT enters either adapter or replay.
+## 显式交换边界与公平预算
 
-Lifecycle remains an explicit bundle: BoT xywh Kalman versus CFP xyah; predict/GMC identity-warp; tracked/lost/unconfirmed pools; birth confirmation; reactivation/removal; duplicate handling; output filtering. The frozen BoT source and all motion/assignment dependencies are hash-checked. cfp/bot_lifecycle.py is a documented MIT-licensed adaptation of the pinned update, with two explicit association hooks and mapped track state; reference code is untouched. Five tests verify diagonal kinematics/IDs, low-feature mapping, observer purity, crossover temporal order and unique output IDs.
+关联策略负责成本公式、外观记忆表示和对应接受尺度（BoT .8、GRU .97）；各家族保留既有三个设置。生命周期负责xywh/xyah Kalman、预测、出生确认、Lost/Removed/重激活、重复抑制和输出过滤。低分IoU .5／未确认 .7、置信 .58/.1/.68、37帧lost期限及面积>100相同。BoT外观EMA只写高分观测，GRU历史包含接受的低分观测；这是评分记忆的显式差异，没有暗中统一或称之为纯输出干预。
 
-Memory is an association component rather than an unreported lifecycle side effect: BoT's appearance EMA writes high-confidence matches only. GRU accepted-history writes include low-confidence geometry matches, following its original training/deployment representation. Extra observable history on BoT tracks is written after all association stages and cannot change native BoT scores. First anchors remain untrusted observations, not GT; their eventual repair belongs to RIS.
+原BoT更新逻辑有MIT许可注明的独立适配文件及两个评分接口；所有参考依赖哈希验证，原参考仓库不修改。输入共用同一V3及冻结鱼类RGB特征，512维归一化坐标一致，GRU仅读最多8个严格过去的锚点／近期token。对角完整字节回归和独立观测器测试先通过才解释交叉结果。每个家族按三种子平均HOTA选择一个设置，不按最好种子选择。
 
-Each run stores all three actual online cost/geometry matrices, track states, current proposal indices, past accepted proposal indices, assignments and unmatched sets in bounded compressed JSONL, with no labels. Independent later analysis may join physical GT and official CLEAR events; those labels never become online inputs. Output-only interventions save confirmed-only/all-tracked/raw-current-measurement coordinates while preserving identical internal association decisions. They help separate output filtering/localization from coupled motion/lifecycle dynamics; four-cell HOTA interactions cannot be interpreted as an additive causal percentage without qualification.
+## 四组合三种子均值及样本标准差
 
-Original dev remains4834frames/21identities, only identity modules held out; detector trained on all8. Historical tuned test is excluded. Storage reserve40GiB; use existing banks, no generated images/new feature libraries; CPU replay costs are not end-to-end FPS. Actual manifests/source snapshots: /data3/liuyeqiang/IR-MFT_assets/cfp/phase5/cross_*_v1.
+| Cell | HOTA | AssA | DetA | IDF1 | MOTA | IDSW | CLR_FP | CLR_FN | Frag | MT | ML | AssRe | AssPr | DetRe | DetPr | LocA |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A: BoT＋BoT | 52.482±0.134 | 37.498±0.165 | 73.518±0.061 | 57.477±0.593 | 93.552±0.024 | 113.667±4.509 | 1085.000±21.071 | 1797.000±11.790 | 272.333±4.041 | 21.000±0.000 | 0.000±0.000 | 40.648±0.160 | 70.673±0.643 | 78.379±0.059 | 79.599±0.013 | 82.217±0.009 |
+| B: GRU＋BoT | 51.696±1.598 | 36.541±2.382 | 73.254±0.305 | 60.020±2.594 | 93.686±0.020 | 104.000±1.000 | 1115.333±5.859 | 1714.000±5.292 | 272.000±1.000 | 21.000±0.000 | 0.000±0.000 | 42.154±2.010 | 60.868±2.536 | 78.327±0.180 | 79.349±0.175 | 82.201±0.033 |
+| C: BoT＋CFP | 49.649±1.264 | 34.564±1.742 | 71.416±0.043 | 55.835±1.715 | 92.521±0.040 | 114.333±4.726 | 1239.667±6.110 | 2121.000±18.248 | 337.667±2.517 | 20.000±0.000 | 1.000±0.000 | 37.630±1.686 | 69.762±1.057 | 76.385±0.042 | 77.862±0.004 | 81.001±0.004 |
+| D: GRU＋CFP | 51.885±0.993 | 37.716±1.392 | 71.433±0.191 | 62.298±0.998 | 92.562±0.018 | 89.000±1.732 | 1344.000±6.000 | 2022.667±2.887 | 349.333±1.528 | 20.000±0.000 | 1.000±0.000 | 43.346±1.018 | 62.191±1.488 | 76.548±0.116 | 77.683±0.120 | 80.955±0.028 |
+
+每个视频的相同选择配置：
+
+| Cell | HOTA | AssA | DetA | IDF1 | MOTA | IDSW | CLR_FP | CLR_FN | Frag | MT | ML | AssRe | AssPr | DetRe | DetPr | LocA |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| A: BoT＋BoT/BT-005 | 55.506±1.879 | 40.837±2.790 | 75.537±0.134 | 65.057±1.927 | 96.105±0.130 | 32.667±1.528 | 288.333±20.502 | 393.333±8.083 | 50.667±3.055 | 10.000±0.000 | 0.000±0.000 | 45.573±2.328 | 65.731±3.139 | 79.981±0.101 | 80.441±0.068 | 82.602±0.021 |
+| A: BoT＋BoT/SN-013 | 50.410±1.290 | 35.239±1.842 | 72.236±0.091 | 52.493±2.233 | 91.887±0.053 | 81.000±3.000 | 796.667±11.930 | 1403.667±8.021 | 221.667±1.528 | 11.000±0.000 | 0.000±0.000 | 37.319±1.795 | 73.986±2.009 | 77.335±0.050 | 79.041±0.063 | 81.963±0.005 |
+| B: GRU＋BoT/BT-005 | 58.344±2.335 | 45.757±3.805 | 74.516±0.390 | 73.459±3.646 | 96.250±0.066 | 35.333±0.577 | 284.333±7.095 | 368.000±4.583 | 50.333±1.155 | 10.000±0.000 | 0.000±0.000 | 52.514±3.305 | 61.697±3.337 | 79.450±0.227 | 79.814±0.216 | 82.525±0.039 |
+| B: GRU＋BoT/SN-013 | 46.876±1.242 | 30.382±1.721 | 72.452±0.256 | 51.195±2.210 | 92.014±0.009 | 68.667±1.528 | 831.000±1.732 | 1346.000±1.000 | 221.667±0.577 | 11.000±0.000 | 0.000±0.000 | 35.227±1.335 | 60.300±2.506 | 77.594±0.153 | 79.042±0.151 | 81.989±0.029 |
+| C: BoT＋CFP/BT-005 | 50.917±2.238 | 36.264±3.257 | 71.641±0.125 | 62.323±2.854 | 94.188±0.075 | 39.667±2.082 | 425.667±16.010 | 600.667±3.786 | 97.333±1.528 | 10.000±0.000 | 0.000±0.000 | 40.628±3.187 | 66.694±1.048 | 76.459±0.046 | 77.195±0.111 | 80.416±0.019 |
+| C: BoT＋CFP/SN-013 | 48.772±0.665 | 33.408±0.881 | 71.290±0.137 | 51.570±1.077 | 91.433±0.111 | 74.667±3.215 | 814.000±14.933 | 1520.333±15.948 | 240.333±1.155 | 10.000±0.000 | 1.000±0.000 | 35.623±0.787 | 71.662±1.142 | 76.337±0.085 | 78.304±0.080 | 81.387±0.013 |
+| D: GRU＋CFP/BT-005 | 58.703±2.658 | 48.325±4.416 | 71.436±0.370 | 76.633±4.275 | 94.131±0.048 | 20.667±1.155 | 459.333±5.132 | 596.333±4.041 | 98.333±2.309 | 10.000±0.000 | 0.000±0.000 | 55.336±4.011 | 62.590±2.441 | 76.387±0.222 | 76.962±0.225 | 80.315±0.047 |
+| D: GRU＋CFP/SN-013 | 46.832±0.671 | 30.736±0.892 | 71.453±0.120 | 52.894±1.183 | 91.539±0.008 | 68.333±0.577 | 884.667±1.528 | 1426.333±1.155 | 251.000±1.000 | 10.000±0.000 | 1.000±0.000 | 35.505±1.115 | 61.850±1.043 | 76.653±0.073 | 78.159±0.079 | 81.376±0.022 |
+
+## HOTA与DetA差距来源
+
+BoT生命周期提高DetA：在BoT关联下约2.102个百分点，在GRU关联下约1.820。HOTA却有显著交互：BoT关联换到BoT生命周期提高约2.833，GRU关联换过去反而降低约0.189；GRU相对BoT的关联差，在BoT生命周期下为−0.785，在CFP下为＋2.237。因此不能给出“关联占X%、生命周期占Y%”的加性归因，也不能把简单交换认为身份恢复创新。seed0交叉GRU＋BoT达到53.171，但三种子仅51.696，不能凭单种子领先。
+
+进一步在相同内部匹配／身份编号下只改变输出策略；三个规则先已从原运行保存，seed0线索出现后冻结三种子扩展。没有改变任何内部框预测、匹配、记忆或历史文件。measurement严格输出本帧实际匹配检测框，没有GT或未来信息。此为开发诊断，后续作为更强基线，而非创新归因。
+
+| Cell | HOTA | AssA | DetA | IDF1 | MOTA | IDSW | CLR_FP | CLR_FN | Frag | MT | ML | AssRe | AssPr | DetRe | DetPr | LocA |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| bot_bot_confirmed | 52.511±0.134 | 37.514±0.166 | 73.567±0.064 | 57.537±0.591 | 93.638±0.024 | 109.667±4.509 | 1008.667±21.939 | 1837.333±11.676 | 270.667±3.512 | 21.000±0.000 | 0.000±0.000 | 40.664±0.161 | 70.707±0.644 | 78.311±0.059 | 79.733±0.021 | 82.224±0.009 |
+| bot_bot_all | 52.482±0.134 | 37.498±0.165 | 73.518±0.061 | 57.477±0.593 | 93.552±0.024 | 113.667±4.509 | 1085.000±21.071 | 1797.000±11.790 | 272.333±4.041 | 21.000±0.000 | 0.000±0.000 | 40.648±0.160 | 70.673±0.643 | 78.379±0.059 | 79.599±0.013 | 82.217±0.009 |
+| bot_bot_measurement | 52.356±0.135 | 37.421±0.166 | 73.315±0.062 | 57.454±0.585 | 93.470±0.022 | 118.000±3.000 | 1102.000±21.633 | 1814.000±9.539 | 308.333±2.517 | 21.000±0.000 | 0.000±0.000 | 40.569±0.159 | 70.519±0.645 | 78.200±0.059 | 79.417±0.013 | 82.102±0.008 |
+| gru_cfp_confirmed | 51.885±0.993 | 37.716±1.392 | 71.433±0.191 | 62.298±0.998 | 92.562±0.018 | 89.000±1.732 | 1344.000±6.000 | 2022.667±2.887 | 349.333±1.528 | 20.000±0.000 | 1.000±0.000 | 43.346±1.018 | 62.191±1.488 | 76.548±0.116 | 77.683±0.120 | 80.955±0.028 |
+| gru_cfp_all | 51.864±0.993 | 37.710±1.392 | 71.385±0.191 | 62.258±0.996 | 92.476±0.022 | 97.000±1.000 | 1398.667±6.506 | 2000.000±3.464 | 351.333±1.528 | 20.000±0.000 | 1.000±0.000 | 43.340±1.018 | 62.181±1.490 | 76.584±0.115 | 77.588±0.120 | 80.953±0.028 |
+| gru_cfp_measurement | 53.591±1.077 | 39.139±1.523 | 73.457±0.190 | 62.701±1.038 | 93.672±0.004 | 87.333±1.528 | 1087.000±1.732 | 1765.667±3.055 | 315.333±1.528 | 21.000±0.000 | 0.000±0.000 | 44.735±1.121 | 63.603±1.532 | 78.316±0.112 | 79.477±0.116 | 82.116±0.029 |
+
+GRU＋CFP当前检测框输出：HOTA53.591±1.077、AssA39.139、DetA73.457、IDF162.701、MOTA93.672、IDSW87.333；比原GRU增加HOTA约1.706、DetA约2.024。BoT输出过滤效应很小，直接测量框反而略退化。结果指向CFP xyah平滑框输出的定位损失，不能把指标的AssA/IDSW变化当作内部身份已经被修复：身份分配文件键完全相同，评测随IoU阈值和匹配变化。后续RIS/JEPA必须超过这个53.591的更强普通GRU输出基线，并保留原BoT52.482，才能证明独立身份创新。
+
+## 真实决策与后验错误分析
+
+实际在线三阶段成本／几何矩阵、轨迹池状态、候选索引、严格过去的接受观测、分配和unmatched集合在每个运行的压缩日志中。事后才接入独立当前框IoU身份标签及官方CLEAR观察事件。两种标签分开：CLEAR有连续性奖励，不能作为在线输入或独立物理监督。
+
+| Retrospective category | BoT BT | GRU BT | BoT SN | GRU SN |
+|---|---:|---:|---:|---:|
+| appearance_similar_swap_proxy | 4 | 8 | 4 | 16 |
+| crossing_overlap_wrong_match_proxy | 5 | 8 | 9 | 18 |
+| occlusion_reappearance_new_id | 7 | 1 | 33 | 19 |
+| wrong_reactivation | 0 | 3 | 3 | 4 |
+| duplicate_output_overlap_proxy | 216 | 127 | 115 | 103 |
+| premature_termination_proxy | 0 | 0 | 0 | 0 |
+| false_initialization_no_gt_overlap_proxy | 2 | 2 | 19 | 6 |
+| high_confidence_wrong_match | 1 | 3 | 7 | 5 |
+| long_term_memory_pollution | 3284 | 3508 | 3958 | 3467 |
+| true_candidate_geometry_excluded | 257 | 125 | 355 | 160 |
+| identity_inconsistent_match | 30 | 36 | 43 | 58 |
+
+这里的类别是操作定义、可重叠的帧/轨迹事件；appearance/crossing/duplicate/termination/birth带proxy的项是候选解释，不能当成已证明的独立根因。未知/歧义标签排除，未归为错误。长期污染是真实过去观测混入不同物理标签，但多数历史只是事后参考；first observation没有被当作永久真值。重复框重叠不自动证明真实重复鱼；官方FP共现另存。每类别的事件、受影响帧数和轨迹、候选召回、margin以及原矩阵索引完整保留。类别不互斥，不把HOTA变化强行分配给某类。
+
+BT-005第1049帧附近的全部真实在线矩阵另存，各算法可逐阶段对比，未据此调规则。同样分析已完成六个训练视频的BoT和GRU实际接受历史；训练视频内也存在高置信错误、交叉错误、错误重激活、几何候选排除和污染，后续纠错训练使用这些分布，开发案例只用于报告。训练日志未经SGD改变、无测试集选择。训练官方CLEAR尚未重算时相应计数为null，不能误写成零。
+
+资源：本阶段约1.1GiB新增索引／压缩决策／官方评估文本，未生成图像或特征库。最低40GiB余量，最多四GPU；交叉和事后分析在CPU运行，其耗时绝非端到端FPS。固定GT的SN-013四个歧义框处理不变；检测器训练暴露开发、两开发视频不足跨场景泛化及历史测试曾调参的限制均保留。
+
+复现：tools/cfp_phase_v_crossover_campaign.py（36组）；tools/cfp_phase_v_output_diagnosis.py（18组输出规则）；tools/cfp_analyze_crossover_events.py（固定轨迹事后分析）。完整配置、每视频指标、源快照和哈希：PHASE_V_LIFECYCLE_MEASURED.json及本机phase5各manifest。后续阶段是可恢复身份状态，RIS/JEPA尚未训练，不能声称研究目标完成。
