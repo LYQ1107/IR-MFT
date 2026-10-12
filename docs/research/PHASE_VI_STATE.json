@@ -1,6 +1,6 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "VI3_CANDIDATE_PREDICTION_AND_VI4_BRANCH_CONTROLS",
+  "stage": "EVIDENCE_GUIDED_OOF_AND_BRANCH_STABILITY",
   "branch": "research/recoverability-candidate-jepa-v1",
   "completed": [
     "Verified local/live remote baseline commit",
@@ -20,7 +20,13 @@
     "Candidate-conditioned student and training-only EMA interface implemented",
     "Independent bounded K1/K2 branch-isolation integration tests passed",
     "Full six-train-video K1 baseline outputs byte-identical",
-    "Full six-train-video simple protected-write outputs completed"
+    "Full six-train-video simple protected-write outputs completed",
+    "Five first candidate-conditioned eight-epoch controls and heldout diagnostics complete",
+    "Measured identical attention initialization and eight query orders;512 EMA updates",
+    "Three complete six-video K1/K2/protected-write official evaluations",
+    "Joint training-only oracle and persistent wrong episode diagnosis",
+    "Clean32356-query OOF bootstrap dataset independent of historical learned teacher states",
+    "First two video-excluded ordinary GRU bootstrap models completed"
   ],
   "remaining": [
     "Video-heldout OOF platform",
@@ -31,14 +37,16 @@
     "Three-seed/per-video/full-online validation",
     "Final scientific report and verified GitHub delivery"
   ],
-  "storage_free_gib": 168.1453628540039,
+  "storage_free_gib": 167.89493560791016,
   "active_jobs": [
-    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ambiguity_K2_train_s0_v1",
-    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_K1_train_s0_v1_evaluation",
-    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/protected_write_K1_train_s0_v1_evaluation",
-    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_candidate_attention_SN015_s0_v1",
-    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_jepa_ema_SN015_s0_v1"
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_replay_train_v1.json",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/K2_hysteresis_train_s0_v1",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/K2_confirmation_train_s0_v1",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-001_s0_v1",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_states_holdout_BT-003_s0_v1",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_MSK-002_s0_v1",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1"
   ],
-  "tests_passed": 152,
-  "last_confirmed_remote": "cb526428ceb00f387ff16bb3bbdc246d614c7fb3"
+  "tests_passed": 157,
+  "last_confirmed_remote": "d9459a30b2b0d8d83e17de1835df640e60cd71fa"
 }

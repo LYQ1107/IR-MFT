@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE",
+  "partition": "train",
+  "seed": 0,
+  "stride": 5,
+  "videos": {
+    "BT-001": {
+      "queries": 4285,
+      "sha256": "95b38d3a333f07e49f2287189e327eb50cdda7100567aa31f2c225f85286ffc3",
+      "feature_sha256": "61280c302a180750857e5544c9b87eba93012c22dd1e2b35d48016d41c19d842",
+      "detection_sha256": "4d3b8bd22d173d42bab70f35cbad2f99d8370f09f263fe8379010745049f7c2c",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "BT-003": {
+      "queries": 360,
+      "sha256": "b60dda8d1c7efd5b85305d8715cf3d1ccf652a5c18fedb6fd5099f23055b4d5c",
+      "feature_sha256": "92c4f1925375587504ecd38cd908a80da3505f47a8895986076c28860fdb4fb5",
+      "detection_sha256": "59cb00c2b5f9be697ade5109b27bf6ed40d6dd665da279c23dc2cf82010af597",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "MSK-002": {
+      "queries": 9519,
+      "sha256": "bd4ff38b0b779799745546e12d55faea5a04c956fa29e3587c0a6c56ae3705be",
+      "feature_sha256": "b88f96f621ba1bd5558896e511210f3c11d0aea580ea94b0eb0581635552dfe4",
+      "detection_sha256": "2e85a7d59b94af88d242864f3a5720355a257d9da33abdcddb64af526b7bbd42",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "PF-001": {
+      "queries": 5699,
+      "sha256": "baf017a84ae2b36ae949f1803ab4cea25dba94cdfe4368a77420630300595d55",
+      "feature_sha256": "a78bf07877982973d7864d0b661d737f427bd73f9254a721af091dc26dc47e5f",
+      "detection_sha256": "a38c6acabd6332a2f5905f431212a3055a97c644c682f7c64e7ddc3b59c5bdde",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "SN-001": {
+      "queries": 1030,
+      "sha256": "db8dad77cbb988d50e959d397a6fdb1ff41427101c1cb004cff02ee917a527cb",
+      "feature_sha256": "192ed5a04d347efb4dd3bca51df9b22ea9b929702a496c6208c42eacb4fec7d7",
+      "detection_sha256": "719cf8b5b354c8005ba1bb658313f45feab45b57dff4d22db03722792991715c",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "SN-015": {
+      "queries": 11463,
+      "sha256": "e4c93809a8ebe59b51f139fa218187333e830982ce2c5a604a5d07090c3b2d96",
+      "feature_sha256": "2ac3f9a4dee7d171190ee3da203bb9be6d5be763fe87f53cbb653059bb262882",
+      "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    }
+  },
+  "source_snapshots": {
+    "tools/cfp_build_oof_bootstrap_queries.py": "80dc44984ef32d4625afc7f23fefefd457e3c85e4bbfe1ebacb2e42a062316b0",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a",
+    "cfp/supervision.py": "b0cc2747dae1716a1fd7218c8cf9c10f7e1e4299343ac0d4e5ad4c628c51baec",
+    "configs/cfp/phase_vi_protocol_v1.json": "12bb2c24ac7f2ba5dc3a16537ee44902a144a0107156c3a45be1107131b58df5"
+  },
+  "scope": "Pure known physical past training supervision, NOT actual accepted online states. No historical teacher/model defines these queries. Current/future cannot enter past. Only whole-video fit subsets may optimize; frozen detector/encoder exposures remain. Unknown current labels are excluded from negative CE supervision."
+}

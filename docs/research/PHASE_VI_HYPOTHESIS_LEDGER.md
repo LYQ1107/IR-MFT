@@ -30,3 +30,13 @@ Observed engineering failure: compressed NPZ members were accessed inside each r
 12 eight-epoch seed0 risk/MLP controls completed. Context does not consistently beat ordinary MLP; SN-015 accepted-edge AUC .5573 vs .5979 and local net correction −2102 vs −1984, while PF-001/SN-001 show positive local counts. This is not online IDSW evidence. Calibration transfer is weak in multiple outer videos.
 
 Evidence update: candidate-set pooling of scalar cues is insufficient for a robust claim. Repair/pivot: examine actual assignment/acceptance changes and training-state shift; test raw candidate-history interactions and independent K2 branches. The warm-start producer limitation remains explicit; no branch-wide or project-wide NO_GO.
+
+## H3 / H4 controlled failures and discriminating extensions
+
+Five real candidate-conditioned fits: matched attention ordinary/noEMA/EMA share initialization, all eight sample orders,109186 parameters. EMA512 updates are genuine, but outer SN015 ranking39.62% loses ordinary attention46.44%, noEMA42.15% and ordinary candidateMLP54.46%. Cached masked-history scalar channels are blocked; no teacher/GT/future in student forward/export. Fit NULL labels128 versus outer known-NULL1087 expose a supervised-absence imbalance, not permission to relabel unknowns as wrong. Test raw-coordinate priors, task-aligned/residual scoring and known-only missing-candidate training separately.
+
+Independent K2 complete six-video official HOTA32.7338 versusK132.8909; IDSW785 versus679. One BT003 expansion leads15 later branch selections. Current/past hysteresis and causal two-frame challenger confirmation are registered and running, keeping the v1 scoring/branching as a control. No past output revision.
+
+Joint GT oracle on fixed training states reduces naive local opportunity estimates through one-to-one competition. SN01524621 wrong frame/track rows correspond to484 consecutive known-wrong episodes; joint stage/full N01=5712/6010, N10=0 under preserve-correct tie handling. Wrong->NULL is abstention, not correction. Not a whole-tracker ceiling.
+
+State-shift hypothesis: warm-start teacher exposure and raw-score coordinate changes are distinct from irrecoverable identity evidence. New clean bootstrap32356queries derive solely from training physical annotations/frozen proposals, independent of any historical trained tracer. Fit models exclude complete outer and inner calibration videos. Their subsequent causal replay—not cleanGT training contexts—will supply new actual accepted histories. Backbone pretraining exposure remains disclosed. No project-level termination rule is based on the number of these failed configurations.
