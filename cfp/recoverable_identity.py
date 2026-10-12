@@ -30,16 +30,33 @@ def reliability_evidence(features, frames, valid, query_frame):
 
 class RecoverableIdentityState(nn.Module):
     """Soft evidence-based restoration; the first token has no privileged truth."""
-    def __init__(self, hidden=64):
+    def __init__(self, hidden=64, semantic=False):
         super().__init__()
-        self.token_head = nn.Sequential(nn.Linear(10, hidden), nn.SiLU(), nn.Linear(hidden, 1))
+        self.semantic = semantic
+        if semantic:
+            self.feature_encoder = nn.Sequential(nn.Linear(512, 64), nn.LayerNorm(64), nn.SiLU())
+            self.time_encoder = nn.Linear(2, 64)
+            layer = nn.TransformerEncoderLayer(64, 4, 128, dropout=0., batch_first=True)
+            self.context_encoder = nn.TransformerEncoder(layer, 1, enable_nested_tensor=False)
+        self.token_head = nn.Sequential(nn.Linear(10 + (64 if semantic else 0), hidden), nn.SiLU(), nn.Linear(hidden, 1))
         self.confidence_head = nn.Sequential(nn.Linear(4, 16), nn.SiLU(), nn.Linear(16, 1))
         nn.init.zeros_(self.token_head[-1].weight)
         nn.init.zeros_(self.token_head[-1].bias)
 
     def details(self, features, frames, valid, query_frame):
         source, evidence, available = reliability_evidence(features, frames, valid, query_frame)
-        token_logits = self.token_head(evidence).squeeze(-1)
+        tokens = evidence
+        if self.semantic:
+            if source.shape[-1] != 512:
+                raise ValueError('Semantic state requires the declared512dim frozen feature space')
+            encoded = self.feature_encoder(source) + self.time_encoder(evidence[..., 6:8])
+            safe_valid = valid.clone()
+            safe_valid[~available, 0] = True
+            # All tokens are strictly before the query, so bidirectional past
+            # context does not admit any future frame or current observation.
+            context = self.context_encoder(encoded, src_key_padding_mask=~safe_valid)
+            tokens = torch.cat([evidence, context], -1)
+        token_logits = self.token_head(tokens).squeeze(-1)
         reliability = torch.sigmoid(token_logits) * valid
         weights = reliability / reliability.sum(1, keepdim=True).clamp_min(1e-8)
         prototype = F.normalize((source * weights[..., None]).sum(1), dim=-1)

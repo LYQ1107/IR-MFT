@@ -71,7 +71,7 @@ def sample_indices(groups, rng, size):
     return values
 
 
-def make_batch(rows, features, labels, device, rng=None, view='actual', perturb=False, masking=False):
+def make_batch(rows, features, labels, device, rng=None, view='actual', perturb=False, masking=False, view_rng=None):
     width = max(len(row['candidates']) for row in rows)
     past = np.zeros((len(rows), 8, 512), np.float32)
     candidates = np.zeros((len(rows), width, 512), np.float32)
@@ -83,7 +83,7 @@ def make_batch(rows, features, labels, device, rng=None, view='actual', perturb=
     for i, row in enumerate(rows):
         selected_view = view
         if view == 'mixed':
-            selected_view = 'clean' if rng.random() < .25 else 'actual'
+            selected_view = 'clean' if (view_rng or rng).random() < .25 else 'actual'
         indices = row[selected_view + '_indices'].copy()
         history_times = row[selected_view + '_frames'].copy()
         length = int(np.sum(indices >= 0))

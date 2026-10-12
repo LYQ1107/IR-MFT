@@ -18,6 +18,14 @@ from torch.nn import functional as F
 from cfp.provenance import sha256, snapshot_sources, write_json
 from cfp.recoverable_identity import RecoverableIdentityState, reliability_supervision_loss
 from cfp.recovery_training_data import load_recovery_data, sampling_groups, sample_indices, make_batch
+from cfp.predictive import LatentIdentityPredictor
+
+
+def model_details(model, features, frames, valid, query_frame):
+    if isinstance(model, RecoverableIdentityState):
+        return model.details(features, frames, valid, query_frame)
+    prediction, available = model(features, frames, valid, query_frame)
+    return prediction, available, None, None
 
 
 def auc(labels, scores):
@@ -43,7 +51,7 @@ def diagnostics(model, rows, features, labels, device, seed):
                 batch = make_batch(rows[start:start + 128], features, labels, device, rng,
                                    'actual' if noisy else view, perturb=noisy, masking=noisy)
                 past, times, valid, frame, candidates, candidate_valid, positive, correct, known = batch
-                prediction, available, token_logits, confidence = model.details(past, times, valid, frame)
+                prediction, available, token_logits, confidence = model_details(model, past, times, valid, frame)
                 candidates = F.normalize(candidates, dim=-1)
                 score = torch.einsum('bd,bkd->bk', prediction, candidates).masked_fill(~candidate_valid, -2.)
                 mean = F.normalize((F.normalize(past, dim=-1) * valid[..., None]).sum(1), dim=-1)
@@ -59,10 +67,12 @@ def diagnostics(model, rows, features, labels, device, seed):
                 counts['no_correct_history'] += int((~support).sum())
                 counts['no_correct_history_model_correct'] += int((~support & good).sum())
                 selected = known & valid
-                token_truth.extend(correct[selected].cpu().tolist())
-                token_score.extend(torch.sigmoid(token_logits[selected]).cpu().tolist())
-                support_truth.extend(support[support_known].cpu().tolist())
-                support_score.extend(torch.sigmoid(confidence[support_known]).cpu().tolist())
+                if token_logits is not None:
+                    token_truth.extend(correct[selected].cpu().tolist())
+                    token_score.extend(torch.sigmoid(token_logits[selected]).cpu().tolist())
+                if confidence is not None:
+                    support_truth.extend(support[support_known].cpu().tolist())
+                    support_score.extend(torch.sigmoid(confidence[support_known]).cpu().tolist())
                 counts['unknown_support_queries'] += int((~support_known).sum())
                 target = candidates[torch.arange(len(past), device=device), positive]
                 cosine.extend((prediction * target).sum(-1).cpu().tolist())
@@ -112,14 +122,20 @@ def main():
     groups = sampling_groups(fit, config['fit_videos'])
     steps = math.ceil(len(fit) / config['batch_size'])
     device = torch.device('cuda')
-    model = RecoverableIdentityState(config['hidden']).to(device)
+    family = config.get('model_family', 'ris')
+    if family in ('matched_gru', 'matched_transformer'):
+        if args.objective != 'association_only':
+            raise ValueError('Ordinary capacity control has association loss only')
+        model = LatentIdentityPredictor(512, 'gru' if family == 'matched_gru' else 'transformer', hidden=config['hidden']).to(device)
+    else:
+        model = RecoverableIdentityState(config['hidden'], semantic=config.get('semantic', False)).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=config['weight_decay'])
     scaler = torch.cuda.amp.GradScaler(enabled=config['amp'])
     rng = np.random.default_rng(args.seed)
     guard = dict(config_sha256=sha256(args.config), query_manifest_sha256=sha256(args.queries / 'manifest.json'),
                  feature_manifest_sha256=data_manifest['feature_manifest_sha256'], objective=args.objective, seed=args.seed,
                  torch=torch.__version__, cuda=torch.version.cuda, cudnn=torch.backends.cudnn.version(),
-                 sources={name: sha256(name) for name in [__file__, 'cfp/recoverable_identity.py', 'cfp/recovery_training_data.py']})
+                 sources={name: sha256(name) for name in [__file__, 'cfp/recoverable_identity.py', 'cfp/recovery_training_data.py', 'cfp/predictive.py']})
     args.output.mkdir(parents=True, exist_ok=True)
     record = dict(status='RUNNING', guard=guard, config=config, feature_root=data_manifest['feature_root'], rgb_encoder=data_manifest['rgb_encoder'],
                   source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
@@ -152,14 +168,14 @@ def main():
             past, times, valid, frame, candidates, candidate_valid, positive, correct, known = batch
             optimizer.zero_grad(set_to_none=True)
             with torch.autocast('cuda', dtype=torch.float16, enabled=config['amp']):
-                prediction, available, token_logits, confidence = model.details(past, times, valid, frame)
+                prediction, available, token_logits, confidence = model_details(model, past, times, valid, frame)
                 candidate_norm = F.normalize(candidates, dim=-1)
                 logits = (torch.einsum('bd,bkd->bk', prediction, candidate_norm) / .1).masked_fill(~candidate_valid, -1e4)
                 association = F.cross_entropy(logits.float(), positive)
-                reliability = reliability_supervision_loss(token_logits.float(), correct, known & valid)
+                reliability = reliability_supervision_loss(token_logits.float(), correct, known & valid) if token_logits is not None else prediction.sum() * 0.
                 support = (correct & known & valid).any(1)
                 support_known = support | ((known | ~valid).all(1))
-                confidence_loss = F.binary_cross_entropy_with_logits(confidence[support_known].float(), support[support_known].float()) if support_known.any() else confidence.sum() * 0.
+                confidence_loss = F.binary_cross_entropy_with_logits(confidence[support_known].float(), support[support_known].float()) if confidence is not None and support_known.any() else prediction.sum() * 0.
                 loss = association
                 if args.objective == 'reliability':
                     loss = loss + config['loss_weights']['token_reliability'] * reliability + config['loss_weights']['recovery_confidence'] * confidence_loss

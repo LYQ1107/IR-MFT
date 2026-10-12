@@ -21,7 +21,7 @@ from yolox.tracker import matching
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--kind', choices=['ris', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write'], required=True)
+    p.add_argument('--kind', choices=['ris', 'trained_state', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write'], required=True)
     p.add_argument('--seed', type=int, choices=[0, 1, 2], required=True)
     p.add_argument('--weight', type=float, choices=[.1, .3, .5], required=True)
     p.add_argument('--checkpoint', type=Path)
@@ -43,7 +43,7 @@ def main():
     native = load_bot_reference('/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT')
     model, mode = None, args.kind
     path = args.checkpoint
-    if args.kind == 'ris':
+    if args.kind in ('ris', 'trained_state'):
         if path is None:
             raise ValueError('Explicit completed model required')
         metadata = json.loads(path.with_name('manifest.json').read_text())
@@ -51,7 +51,11 @@ def main():
             raise ValueError('Model/encoder provenance differs')
         if metadata['config'].get('read_view', 'anchor_recent') != args.read_view:
             raise ValueError('Trained recovery state and deployment context differ')
-        model = RecoverableIdentityState(metadata['config']['hidden'])
+        family = metadata['config'].get('model_family', 'ris')
+        if family in ('matched_gru', 'matched_transformer'):
+            model = LatentIdentityPredictor(512, 'gru' if family == 'matched_gru' else 'transformer', hidden=metadata['config']['hidden'])
+        else:
+            model = RecoverableIdentityState(metadata['config']['hidden'], semantic=metadata['config'].get('semantic', False))
         checkpoint = torch.load(path, map_location='cpu', weights_only=False)
         if checkpoint['epoch'] != 8:
             raise ValueError('Fixed last epoch8 required')
