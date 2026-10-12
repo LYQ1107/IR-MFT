@@ -35,3 +35,17 @@ Full strictonline4834frame J3/ordinaryTransformer seed0runs are underway. The co
 At frozenweight.3: ordinary_transformer HOTA53.533551±1.372687; J3 HOTA52.821507±0.174273; J6 HOTA52.863515±0.527899; no_ema HOTA52.951765±0.398976. J6EMA does not improve HOTA orIDF1 over its identical-architecture/data/mask/corruption/loss noEMA control in this three-seed comparison. J3meanIDSW80 is lower than the old ordinaryGRU87.333, but HOTA/AssA/IDF1 alldecline, so do not hide the tradeoff or attribute overallidentitysuccess to that one count. OriginalordinaryGRU current-box HOTA53.591386 remainshigher than this newordinaryTransformermean. These are development results, not newblindtest orcrossscene confidence intervals.
 
 Remaining investigation is the thirdround Transformer factorial: its seed0J6 andlatentCE variants exceed54 but three-seed results/noEMA contrast are pending. Further fullonline timings are running; no FINAL_EVALUATED orvalidatedcore status yet.
+
+## Complete Transformer three-seed factorial
+
+transformer_J6: HOTA53.330703±0.775202; AssA38.789109; IDF162.699359; IDSW86.000000.
+
+transformer_no_ema: HOTA52.703377±1.196115; AssA37.816298; IDF161.678348; IDSW84.000000.
+
+transformer_latent_identity: HOTA52.426594±1.722549; AssA37.441138; IDF161.143143; IDSW81.333333.
+
+transformer_ordinary_latent_identity: HOTA53.401338±0.479787; AssA38.831112; IDF162.656675; IDSW79.000000.
+
+TransformerEMA relative to identicalnoEMA: HOTA+0.627325, AssA+0.972811, IDF1+1.021011, IDSW+2.000000 (worse count). Therefore there IS a configuration-relative EMA regularization signal; do not claim everyEMA effect iszero. It does not beatstrongordinaryGRU current-box HOTA53.591386, andtheordinarycontrastiveTransformer isalso slightlyhigher inHOTA withfewer switches. No stable independentcore contribution established. Three-seedmean challengeHOTA54/AssA40/IDF164/IDSW75 isnot met.
+
+All three evidence-driven rounds andformalcomparisons completed:40trainedmodels/82unique NNtracking settings, plus21identity-independent controls. Lifecycle/GT/candidate sources unchanged; source/weight/evaluation hashes bound. No moreparameter search justified in this frozen track-feature experiment; remaining work isfullonline measurement andfaithful finalreport. Distinguish boundednegative evidence fromproving JEPA universallyineffective.

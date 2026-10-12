@@ -13,13 +13,19 @@ from cfp.jepa_runtime import load_jepa_student
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--plan',type=Path,required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--plan',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--reuse',type=Path);args=p.parse_args()
     if args.output.exists():raise FileExistsError('Preserve previous stress diagnostic')
     plan=json.loads(args.plan.read_text())
     torch.set_num_threads(2)
     record=dict(status='RUNNING',plan_sha256=sha256(args.plan),models={},source_snapshots=snapshot_sources(args.output.parent/(args.output.stem+'_sources'),[__file__,args.plan]),scope='Train-calibration SN015 offline identity labels only. Model and visible-mean read exactlysame unmaskedpast values. Fullmean is extra-information comparator. N01/N10 are fixed-query rank changes, not tracking IDs.')
+    previous=json.loads(args.reuse.read_text()) if args.reuse else {'models':{}}
+    if args.reuse and previous['status']!='COMPLETE':raise ValueError('Only complete stress diagnostics reusable')
+    if args.reuse:record['reused_source_sha256']=sha256(args.reuse)
     for job in plan['jobs']:
         path=Path(job['checkpoint']);metadata=json.loads(path.with_name('manifest.json').read_text())
+        old=previous['models'].get(path.parent.name)
+        if old and old['checkpoint_sha256']==sha256(path) and old['manifest_sha256']==sha256(path.with_name('manifest.json')):
+            record['models'][path.parent.name]=old;write_json(args.output,record);print('Verified reuse',path.parent.name,flush=True);continue
         rows,features,labels,data=load_recovery_data(job['queries'],job['seed'])
         rows=[r for r in rows if r['sequence']=='SN-015'];maps=teacher_index_maps(job['queries'],labels)
         model,_=load_jepa_student(path,job['seed'],data['rgb_encoder']['checkpoint_sha256'])

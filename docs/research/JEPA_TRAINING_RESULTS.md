@@ -26,6 +26,8 @@ Frozen RGB encoders used sixtrain videos; V3 detector had development-video expo
 |jepa_v1_ordinary_gru_error_seed0|281344|0|58.895|38.622|-2593|
 |jepa_v1_ordinary_gru_seed0|281344|0|59.900|37.590|-2706|
 |jepa_v1_ordinary_transformer_error_seed0|289296|0|69.512|46.837|-1693|
+|jepa_v1_ordinary_transformer_error_seed1|289296|0|61.022|42.099|-2215|
+|jepa_v1_ordinary_transformer_error_seed2|289296|0|76.997|51.593|-1174|
 |jepa_v1_ordinary_transformer_seed0|289296|0|76.440|45.742|-1813|
 |jepa_v1_ordinary_transformer_seed1|289296|0|72.031|42.072|-2218|
 |jepa_v1_ordinary_transformer_seed2|289296|0|66.326|47.686|-1602|
@@ -37,8 +39,17 @@ Frozen RGB encoders used sixtrain videos; V3 detector had development-video expo
 |jepa_v3_gru_no_ema_latent_identity_seed0|281344|0|76.157|48.197|-1544|
 |jepa_v3_gru_ordinary_latent_identity_seed0|281344|0|57.252|37.937|-2668|
 |jepa_v3_transformer_J6_seed0|289296|1344|81.351|51.666|-1164|
+|jepa_v3_transformer_J6_seed1|289296|1344|75.317|47.695|-1602|
+|jepa_v3_transformer_J6_seed2|289296|1344|91.639|57.727|-502|
 |jepa_v3_transformer_latent_identity_seed0|289296|1342|87.960|55.993|-690|
+|jepa_v3_transformer_latent_identity_seed1|289296|1343|83.597|52.843|-1038|
+|jepa_v3_transformer_latent_identity_seed2|289296|1343|92.980|58.238|-446|
+|jepa_v3_transformer_no_ema_seed0|289296|0|67.440|42.036|-2219|
+|jepa_v3_transformer_no_ema_seed1|289296|0|92.104|54.770|-827|
+|jepa_v3_transformer_no_ema_seed2|289296|0|78.485|50.589|-1284|
 |jepa_v3_transformer_ordinary_latent_identity_seed0|289296|0|72.707|47.805|-1587|
+|jepa_v3_transformer_ordinary_latent_identity_seed1|289296|0|74.277|44.509|-1951|
+|jepa_v3_transformer_ordinary_latent_identity_seed2|289296|0|83.916|52.579|-1066|
 
 Fixed-history retrospective query ranking is not actual online identity correction. Original artificially masked diagnostics used unmaskedmean as comparator; use separate equal-visible stress results for a fair recovery comparison. Allocated student parameter counts include maskedtraininghead; runtime does not execute that head. Samearchitecture noEMA controls preserve the identical architecture/activeauxiliary losses. GRU/Transformer nominalcounts differ<3%; inferenceactive counts differ about5%, so no exact activecapacity equality claim.
 
@@ -48,6 +59,7 @@ All methods share frozen proposals, seedmatched RGB coordinates, CFP lifecycle a
 
 |Variant/weight|Seeds|HOTA|AssA|DetA|IDF1|MOTA|IDSW|
 |---|---:|---:|---:|---:|---:|---:|---:|
+|originalGRU_currentmeasurement|3|53.5914 ± 0.8796|39.1389 ± 1.2437|73.4570 ± 0.1552|62.7009 ± 0.8474|93.6721 ± 0.0030|87.3333 ± 1.2472|
 |r1_J3_w0.1|1|50.9050|35.2525|73.5683|59.2559|93.6657|85.0000|
 |r1_J3_w0.3|3|52.8215 ± 0.1743|37.9934 ± 0.2245|73.4947 ± 0.0754|61.3025 ± 0.8076|93.7109 ± 0.0077|80.0000 ± 1.6330|
 |r1_J3_w0.5|1|50.2103|34.9635|72.1611|57.3392|93.6829|87.0000|
@@ -76,7 +88,7 @@ All methods share frozen proposals, seedmatched RGB coordinates, CFP lifecycle a
 |r1_ordinary_gru_w0.3|1|52.8618|38.0680|73.4672|61.9129|93.7044|80.0000|
 |r1_ordinary_gru_w0.5|1|50.2453|34.8988|72.4104|57.9068|93.6140|103.0000|
 |r1_ordinary_transformer_error_w0.1|1|50.7961|35.1249|73.5201|59.2593|93.6183|87.0000|
-|r1_ordinary_transformer_error_w0.3|1|50.8759|35.2699|73.4512|58.7530|93.6743|83.0000|
+|r1_ordinary_transformer_error_w0.3|3|51.4819 ± 0.9787|36.1383 ± 1.3660|73.4296 ± 0.0414|60.2736 ± 1.7445|93.6678 ± 0.0063|85.6667 ± 3.7712|
 |r1_ordinary_transformer_error_w0.5|1|48.8267|32.7509|72.8647|54.0788|93.6549|100.0000|
 |r1_ordinary_transformer_w0.1|1|51.9850|36.7649|73.5570|60.8170|93.6786|83.0000|
 |r1_ordinary_transformer_w0.3|3|53.5336 ± 1.3727|39.0417 ± 1.9644|73.5024 ± 0.1246|62.2049 ± 1.3535|93.7008 ± 0.0206|81.6667 ± 1.8856|
@@ -103,13 +115,14 @@ All methods share frozen proposals, seedmatched RGB coordinates, CFP lifecycle a
 |r3_gru_ordinary_latent_identity_w0.3|1|53.9974|39.7547|73.3922|62.9798|93.7087|82.0000|
 |r3_gru_ordinary_latent_identity_w0.5|1|49.8889|34.0874|73.0859|56.0966|93.6829|95.0000|
 |r3_transformer_J6_w0.1|1|50.9065|35.2542|73.5691|59.2559|93.6614|85.0000|
-|r3_transformer_J6_w0.3|1|54.4027|40.4237|73.2719|64.3937|93.6872|84.0000|
+|r3_transformer_J6_w0.3|3|53.3307 ± 0.7752|38.7891 ± 1.1841|73.4001 ± 0.1005|62.6994 ± 1.2256|93.6915 ± 0.0196|86.0000 ± 2.1602|
 |r3_transformer_J6_w0.5|1|48.9723|33.0709|72.5915|54.4226|93.6700|97.0000|
 |r3_transformer_latent_identity_w0.1|1|50.8998|35.2634|73.5302|59.2610|93.6291|86.0000|
-|r3_transformer_latent_identity_w0.3|1|54.2952|40.0831|73.6009|64.1240|93.6936|82.0000|
+|r3_transformer_latent_identity_w0.3|3|52.4266 ± 1.7225|37.4411 ± 2.4328|73.5494 ± 0.0431|61.1431 ± 2.7095|93.7022 ± 0.0322|81.3333 ± 4.1096|
 |r3_transformer_latent_identity_w0.5|1|47.5078|30.8699|73.1929|52.4585|93.6570|97.0000|
+|r3_transformer_no_ema_w0.3|3|52.7034 ± 1.1961|37.8163 ± 1.7480|73.5527 ± 0.0976|61.6783 ± 1.7416|93.7008 ± 0.0226|84.0000 ± 2.1602|
 |r3_transformer_ordinary_latent_identity_w0.1|1|50.8010|35.1148|73.5554|59.2514|93.6484|86.0000|
-|r3_transformer_ordinary_latent_identity_w0.3|1|52.7645|37.9539|73.4159|62.0512|93.6915|79.0000|
+|r3_transformer_ordinary_latent_identity_w0.3|3|53.4013 ± 0.4798|38.8311 ± 0.6766|73.5002 ± 0.0809|62.6567 ± 0.6408|93.7094 ± 0.0239|79.0000 ± 0.0000|
 |r3_transformer_ordinary_latent_identity_w0.5|1|47.8550|31.3392|73.1472|52.5371|93.6614|100.0000|
 
 Full metric vectors and BT005/SN013 results, individualseed outputs, model/source/input hashes are in the adjacent measured JSON. Means combine official per-seed COMBINED_SEQ results; no averaging of video scores to invent a combined metric.

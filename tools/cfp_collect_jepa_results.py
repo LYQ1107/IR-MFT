@@ -11,7 +11,9 @@ METRICS=['HOTA','AssA','DetA','LocA','AssRe','AssPr','DetRe','DetPr','IDF1','IDP
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--campaign',type=Path,action='append',required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--allow-partial',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--campaign',type=Path,action='append',required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--report',type=Path,required=True);p.add_argument('--allow-partial',action='store_true')
+    p.add_argument('--baseline-output-diagnosis',type=Path,default=Path('/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/output_diagnosis_three_seed_v2/manifest.json'))
+    args=p.parse_args()
     inputs={};models={};runs={};groups={};complete=True
     for path in args.campaign:
         campaign=json.loads(path.read_text());inputs[str(path)]=dict(sha256=sha256(path),status=campaign['status']);complete &= campaign['status']=='COMPLETE'
@@ -37,12 +39,20 @@ def main():
     for group in groups.values():
         count=len(group['seeds']);group['seed_count']=count;group['three_seed_complete']=set(group['seeds'])=={'0','1','2'}
         group['statistics']={seq:{metric:dict(mean=float(np.mean([v['metrics'][seq][metric] for v in group['seeds'].values()])),std_population=float(np.std([v['metrics'][seq][metric] for v in group['seeds'].values()])) if count>1 else None) for metric in METRICS} for seq in ['BT-005','SN-013','COMBINED_SEQ']}
-    record=dict(status='EXPERIMENTS_COMPLETE' if complete else 'IN_PROGRESS',source_sha256=sha256(__file__),inputs=inputs,models=models,runs=runs,groups=groups,scope='All reported numbers from completed official two-video evaluations. One-seed groups diagnostic only; three seeds are not across-scene confidence intervals. Independent identity innovation still requires ordinary/noEMA/strongbaseline comparison; report status is not scientific goal status.')
+    baseline=json.loads(args.baseline_output_diagnosis.read_text())
+    if baseline['status']!='COMPLETE':raise ValueError('Completed strong baseline required')
+    baseline_runs={n:v for n,v in baseline['runs'].items() if n.startswith('cross_gru_cfp') and n.endswith('measurement')}
+    if len(baseline_runs)!=3:raise ValueError('Exactly three strong baseline seeds required')
+    strong=dict(source_path=str(args.baseline_output_diagnosis),source_sha256=sha256(args.baseline_output_diagnosis),runs=baseline_runs,
+      statistics={seq:{metric:dict(mean=float(np.mean([v['metrics'][seq][metric] for v in baseline_runs.values()])),std_population=float(np.std([v['metrics'][seq][metric] for v in baseline_runs.values()])),std_sample=float(np.std([v['metrics'][seq][metric] for v in baseline_runs.values()],ddof=1))) for metric in METRICS} for seq in ['BT-005','SN-013','COMBINED_SEQ']})
+    record=dict(status='EXPERIMENTS_COMPLETE' if complete else 'IN_PROGRESS',source_sha256=sha256(__file__),inputs=inputs,models=models,runs=runs,groups=groups,strong_baseline=strong,scope='All reported numbers from completed official two-video evaluations. One-seed groups diagnostic only; three seeds are not across-scene confidence intervals. Independent identity innovation still requires ordinary/noEMA/strongbaseline comparison; report status is not scientific goal status.')
     write_json(args.output,record)
     lines=['# Genuine Fish-JEPA training and controlled tracking results','',f"Status: {record['status']}. This table is measured; research validation and full online stages can still be pending.",'','Five fit train videos:21,443queries. SN015 calibration:10,955queries. Eightepochs,128batch,168steps/epoch, equal query order and separate augmentation RNG streams. Training-only clean current/future teacher outputs are stopped; actual EMA steps follow successful optimizer updates. All inference exports exclude teacher and optimizer. No backbone retraining or new featurebank.','','Frozen RGB encoders used sixtrain videos; V3 detector had development-video exposure. No whole-system blind-test claim. Historical7video tunedtest is not used for selection. Three seeds measure initialization/encoder variation on two development videos, not scene-generalization uncertainty.','','## Training-calibration diagnostics','','|Model|Student params|EMA updates|Clean rank1|Actual rank1|Actual N01−N10|','|---|---:|---:|---:|---:|---:|']
     for name,model in sorted(models.items()):
         c=model['diagnostics']['clean'];a=model['diagnostics']['actual'];lines.append(f"|{name}|{model['student_parameters']}|{model['ema_updates']}|{100*c['rank1']:.3f}|{100*a['rank1']:.3f}|{a['net_corrections']}|")
     lines+=['','Fixed-history retrospective query ranking is not actual online identity correction. Original artificially masked diagnostics used unmaskedmean as comparator; use separate equal-visible stress results for a fair recovery comparison. Allocated student parameter counts include maskedtraininghead; runtime does not execute that head. Samearchitecture noEMA controls preserve the identical architecture/activeauxiliary losses. GRU/Transformer nominalcounts differ<3%; inferenceactive counts differ about5%, so no exact activecapacity equality claim.','','## Fixed-proposal development tracking','','All methods share frozen proposals, seedmatched RGB coordinates, CFP lifecycle and actual current matchedmeasurement output. Original ordinaryGRU currentmeasurement three-seedmean HOTA53.591386 is a stronger output baseline than its previous51.885 Kalmanbox output. No per-video threshold.','','|Variant/weight|Seeds|HOTA|AssA|DetA|IDF1|MOTA|IDSW|','|---|---:|---:|---:|---:|---:|---:|---:|']
+    values=strong['statistics']['COMBINED_SEQ']
+    lines.append('|originalGRU_currentmeasurement|3|'+'|'.join(f"{values[k]['mean']:.4f} ± {values[k]['std_population']:.4f}" for k in ['HOTA','AssA','DetA','IDF1','MOTA','IDSW'])+'|')
     for name,group in sorted(groups.items()):
         values=group['statistics']['COMBINED_SEQ'];cells=[]
         for metric in ['HOTA','AssA','DetA','IDF1','MOTA','IDSW']:
