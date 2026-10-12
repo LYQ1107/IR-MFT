@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 import shutil
+import statistics
 import subprocess
 
 from cfp.provenance import sha256, write_json
@@ -32,6 +33,14 @@ def main():
     online = json.loads(args.online_report.read_text())
     if online['status'] != 'COMPLETE' or online['three_seed_current_frame']['runtime_variant'] != 'split_cu117_b8':
         raise ValueError('Do not finalize before corrected full-video collection')
+    diagnostic_path = root / 'phase4/terminal_detector_batch_diagnostic_v1/manifest.json'
+    diagnostic = json.loads(diagnostic_path.read_text())
+    if diagnostic['status'] != 'COMPLETE' or diagnostic['terminal_batch_size'] != 2:
+        raise ValueError('Completed terminal batch diagnosis required')
+    for frame in (2997, 2998, 2999, 3000):
+        rows = diagnostic['frames'][str(frame)]
+        if rows['8']['raw_equal'] != (frame < 2999) or rows['2']['raw_equal'] != (frame >= 2999):
+            raise ValueError('Unexpected terminal detector parity')
     parity = {}
     for seed in range(3):
         name = f'online_anchor_gru_seed{seed}_split_full_v1'
@@ -39,9 +48,24 @@ def main():
         for seq in ('BT-005', 'SN-013'):
             current = root / 'phase4' / name / (seq + '.txt')
             reference = root / 'phase3' / f'plim_v3_dev_gru_predictive_anchor_seed{seed}_w0.3' / (seq + '.txt')
-            parity[name][seq] = current.read_bytes() == reference.read_bytes()
-            if not parity[name][seq]:
-                raise ValueError('Corrected complete online output differs from its canonical reference')
+            actual, expected = current.read_text().splitlines(), reference.read_text().splitlines()
+            if len(actual) != len(expected) or [x.split(',')[:2] for x in actual] != [x.split(',')[:2] for x in expected]:
+                raise ValueError('Online frame/identity decisions differ from canonical replay')
+            differences = [dict(row=i + 1, online=a, canonical=b) for i, (a, b) in enumerate(zip(actual, expected)) if a != b]
+            if any(seq != 'SN-013' or int(x['online'].split(',')[0]) not in (2999, 3000) for x in differences):
+                raise ValueError('Unexplained difference outside the diagnosed terminal batch')
+            parity[name][seq] = dict(byte_equal=current.read_bytes() == reference.read_bytes(),
+                                    frame_identity_equal=True, differing_rows=differences,
+                                    online_sha256=sha256(current), canonical_sha256=sha256(reference))
+        measured = json.loads((root / 'phase4' / (name + '_evaluation') / 'metrics.json').read_text())['metrics']
+        original = json.loads((root / 'phase3' / f'plim_v3_dev_gru_predictive_anchor_seed{seed}_w0.3_evaluation/metrics.json').read_text())['metrics']
+        for seq in measured:
+            for field in ('HOTA', 'AssA', 'DetA', 'IDF1', 'MOTA', 'IDSW'):
+                if measured[seq][field] != original[seq][field]:
+                    raise ValueError('Principal official metrics differ')
+        parity[name]['metric_differences'] = {seq: {key: dict(online=value, canonical=original[seq][key])
+                                                   for key, value in values.items() if value != original[seq][key]}
+                                             for seq, values in measured.items()}
     selections = {}
     sources = {}
     for key, filename in [('baseline', 'baseline_selection_post_neck_v1.json'), ('first', 'plim_first_three_seed_selection_v1.json'),
@@ -59,6 +83,10 @@ def main():
         entry = selections[group][family]['selected']
         rows.append((label, entry['mean'], entry['sample_std']))
     selected('V3＋BoT-SORT＋RGB ReID', 'baseline', 'bot_sort')
+    selected('V3＋HybridSORT＋RGB ReID', 'baseline', 'hybrid_sort')
+    selected('RGB EMA', 'baseline', 'rgb')
+    selected('IR EMA', 'baseline', 'ir')
+    selected('固定 RGB／IR EMA', 'baseline', 'fixed')
     selected('原锚点普通 RGB GRU', 'anchor', 'plim_v3_dev_gru_association_anchor')
     selected('原锚点预测 RGB GRU', 'anchor', 'plim_v3_dev_gru_predictive_anchor')
     selected('原锚点预测 RGB Transformer', 'anchor', 'plim_v3_dev_transformer_predictive_anchor')
@@ -66,6 +94,18 @@ def main():
     for view, label in [('ir', 'IR'), ('rgb_ir', 'RGB＋IR'), ('two_rgb', '双 RGB')]:
         selected(label + '预测 GRU', view, f'plim_mod_dev_{view}_gru_predictive_anchor')
         selected(label + '普通 GRU', view, f'plim_mod_dev_{view}_gru_association_anchor')
+    sequence_rows = []
+    for label, group, family, phase in [('BoT-SORT', 'baseline', 'bot_sort', 'phase1'),
+                                       ('RGB预测GRU', 'anchor', 'plim_v3_dev_gru_predictive_anchor', 'phase3'),
+                                       ('RGB＋IR预测GRU', 'rgb_ir', 'plim_mod_dev_rgb_ir_gru_predictive_anchor', 'phase3')]:
+        choice = selections[group][family]['selected']
+        runs = choice.get('run_ids', choice.get('runs'))
+        measurements = [json.loads((root / phase / (run + '_evaluation') / 'metrics.json').read_text())['metrics'] for run in runs]
+        for seq in ('BT-005', 'SN-013'):
+            fields = ('HOTA', 'AssA', 'DetA', 'IDF1', 'MOTA', 'IDSW')
+            mean = {key: statistics.mean(x[seq][key] for x in measurements) for key in fields}
+            std = {key: statistics.stdev(x[seq][key] for x in measurements) for key in fields}
+            sequence_rows.append((label + '／' + seq, mean, std))
     joint = json.loads(Path('docs/research/phase4_joint_measured_seed0_20261012.json').read_text())
     joint_rows = [(name.removeprefix('joint_v1_dev_').removesuffix('_seed0'), values, None) for name, values in joint['rows'].items()]
     intervention_rows = []
@@ -85,7 +125,8 @@ def main():
                           'No candidate improves strongest native baseline HOTA across the complete selected three-seed development protocol',
                           'Corrected end-to-end runtime is causal and reproducible but does not meet camera-rate real-time performance'],
                  selection_sources=sources, corrected_online_report_sha256=sha256(args.online_report),
-                 full_trajectory_parity=parity, final_test_frozen=False, new_historical_test_evaluation=False,
+                 full_trajectory_parity=parity, terminal_batch_diagnostic_sha256=sha256(diagnostic_path),
+                 final_test_frozen=False, new_historical_test_evaluation=False,
                  limitations=['Two development videos/21 identities; dense49-fish MSK scene excluded',
                               'Historical detector trained on all8 original training videos including dev',
                               'Biological identity overlap across videos is unverified',
@@ -112,6 +153,10 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 
 第一轮十二个 RGB 时序模型／90组跟踪结果完成；实际污染历史第二轮四模型／12组完成；第三轮可观测初始锚点十二模型／99组完成；年龄饱和驱动的单次对数时间修复十二模型／36组完成；计划内 IR-only／配对 IR／双 RGB 十八模型／54组完成。原锚点 Transformer 的 seed0 HOTA53.055 没有稳定复现；三种子均值50.606。对数时间修复未带来提升，不保留。配对预测较普通配对关联有收益，但 IR 配对仅比同容量双 RGB 高约0.212个百分点，且与更便宜的普通单 RGB 锚点 GRU几乎相同，不能据此证明 IR 特有优势。双 RGB 控制循环复用已有三个冻结编码器，跨控制管线的编码器重叠已披露。
 
+相同选择配置的每序列三种子结果，不能用 combined 的提升替代每视频一致性证据：
+
+{table(sequence_rows, ['HOTA','AssA','DetA','IDF1','MOTA','IDSW'])}
+
 ## CMUE、联合关联和独立记忆写入
 
 三轮 seed0 CMUE 修复及匹配控制完成：第一轮 HOTA50.977，去掉身份排序的常数 IR 距离控制50.953，差0.024且切换更少；候选上下文遗漏修复后和排序／符号监督第三轮仍没有独立收益。第三轮校准符号 AUC0.405，实际部署接受 IR 为零。GT 仅作训练／事后分析，在线评分不读标签。
@@ -132,7 +177,9 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 
 最初共同使用 cu118/cuDNN8.7／检测批次1 的三个完整运行均值 HOTA48.901，作为保留的数值差异诊断。规范检测器使用 cu117/cuDNN8.5，身份编码器训练／导出使用 cu118；最初入口遗漏了这一差别，随后通过受控当前帧对照修复。cu117批次8在两个视频各128帧上的原始框／分数／NMS零差异，批次1不能复现规范输入。
 
-现在检测器在独立 cu117 worker 中运行，身份编码器和预测器在 cu118 中运行；双方只传当前 RGB／响应数组，检测填充是当前帧的八份副本。生成器只用当前和过去帧，在响应生成后更新 EMA，所有序列采用同一配置。两套运行栈间传递无像素／提案精度损失，没有未来图像或 GT。三个种子的完整两视频轨迹均与原规范缓存关联逐字节一致，全部生成像素也与逐帧审计的因果数据精确一致。
+现在检测器在独立 cu117 worker 中运行，身份编码器和预测器在 cu118 中运行；双方只传当前 RGB／响应数组，检测填充是当前帧的八份副本。生成器只用当前和过去帧，在响应生成后更新 EMA，所有序列采用同一配置。两套运行栈间传递无像素／提案精度损失，没有未来图像或 GT。全部生成像素与逐帧审计的因果数据精确一致，全部输出行的帧号／身份号一致，三个种子的每序列及 combined HOTA、AssA、DetA、IDF1、MOTA、IDSW 均完全一致。
+
+逐字节边界：BT-005 全部文件和 SN-013 前2,998帧完全一致；SN-013 最后两帧每种子有8行框坐标／置信度差异。缓存跨视频的4,834帧按8分批，最后未补齐批次只有2帧，在线始终采用8份当前帧。末端受控检查表明第2,997／2,998帧仅批次8精确复现、第2,999／3,000帧仅批次2精确复现，解释了差异。原始在线文件未改写；不能声称全部轨迹逐字节相同。定位敏感的LocA/MOTP/sMOTA等有约1e-5个百分点差异，机器状态保留全部逐行和指标差异。
 
 | 运行 | 全流程 FPS | p50 ms | p95 ms | 父进程峰值分配 GiB | 检测进程峰值分配 GiB |
 |---|---:|---:|---:|---:|---:|
@@ -150,18 +197,26 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 
 | 问题 | 当前可支持的回答 |
 |---|---|
-| V3和真实HOTA/AssA/DetA是否恢复 | 已精确恢复，见历史参考段；开发指标读官方输出，未用HOTA反推AssA |
-| IR何时有效、何时有害 | 正确结构优于破坏结构；但在强RGB预测上固定混合通常退化，尚无稳定的条件收益选择器 |
-| CMUE是否优于普通质量门控、反事实监督是否独立有效 | 当前三轮和联合控制均不支持，第三轮全部回退RGB |
-| PLIM是否优于EMA/普通GRU/运动 | 部分预测模型高于简单记忆；配对预测高于同容量普通配对GRU，但普通单RGB与双RGB控制使IR特有贡献不清楚 |
-| 是否减少相似鱼交叉IDSW | 一些配置总切换下降，原锚点RGB预测均值83.667对ByteTrack86；但不是所有视频/种子一致，身份盲几何控制也解释部分事件 |
-| 哪个创新点提高HOTA/AssA最多 | 未证实独立创新优势，不能将原生关联器、表示导出或候选规则收益归给CMUE/预测损失 |
-| MOTA和IDF1/HOTA是否权衡 | 完整表报告；普通RGB/配对预测IDF1较高而HOTA低于BoT，原生输出坐标/生命周期影响DetA |
-| 稳定性和每序列是否一致 | 单种子53.055不稳定；所有三设置/三种子/每视频结果保留，开发视频数少，不能宣称普适 |
-| 速度、显存和计算成本是否实测 | 已报告当前帧完整视频总延迟及父/检测进程分配峰值，非缓存重放FPS；有限算子FLOPs明确覆盖范围 |
-| 与强基线是否公平 | ProtocolA共用提案和鱼类特征/开发预算；披露原生规则与坐标差别，未声称复现其人类权重/原检测完整系统 |
-| 失败是否定位、是否完全在线 | 有具体负结果/源快照/图例；修正管线只使用当前/过去，完整像素/轨迹一致性通过 |
-| 创新是否充分、能否支撑独立方法论文 | 目前不足；可复现负结果和平台证据成立，原计划的稳定CMUE+IR独立贡献未达到 |
+| 1. V3是否准确复现 | 历史参考输入／输出精确恢复；新严格在线入口的末端批次边界单独披露 |
+| 2. 真实AssA、DetA、HOTA | 最强开发基线37.498／73.518／52.482；RGB＋IR预测37.715／71.447／51.885，均为官方三种子均值 |
+| 3. IR何时有效 | 固定融合内部正确结构优于破坏结构；配对预测优于普通配对GRU，但未证明强RGB之上的独立增益 |
+| 4. IR何时有害 | 强RGB预测上固定混合及打乱／置零辅助分支退化；没有可靠条件选择器 |
+| 5. CMUE优于质量门控吗 | 第三轮联合数值高于质量融合，却接受IR为零，与PLIM完全相同，因此不是CMUE增益 |
+| 6. 反事实监督有独立增益吗 | 三轮和常数／排序控制均不支持，不能归因反事实监督 |
+| 7. PLIM优于EMA/普通GRU/运动吗 | 部分预测高于简单记忆和ByteTrack；普通单RGBGRU更强，未普遍优于所有控制 |
+| 8. 显著减少交叉IDSW吗 | RGB预测总切换均值83.667对ByteTrack86；开发视频少且事件不一致，未证明统计显著交叉恢复提升 |
+| 9. 哪个创新点提高HOTA最多 | 配对预测相对普通配对控制约2.420个百分点，但强基线和双RGB控制限制创新归因 |
+| 10. 哪个创新点提高AssA最多 | 配对预测相对普通配对控制约3.465个百分点；未证明IR特有贡献，CMUE/拒写无独立收益 |
+| 11. MOTA受影响吗 | BoT93.552、配对预测92.611；完整表披露坐标/生命周期导致的检测与关联权衡 |
+| 12. IDF1升而HOTA不升吗 | 相对BoT配对预测IDF1由57.477至62.242，HOTA由52.482至51.885，确有权衡 |
+| 13. 三种子稳定吗 | 原锚点Transformer53.055单种子未复现，平均50.606±2.214；配对51.885±1.384，不能声称稳定领先 |
+| 14. 每序列一致吗 | 上表逐视频完整报告；收益/退化和事件不完全一致，不以combined数字替代 |
+| 15. 真实FPS/显存/延迟 | 完整RGB预测管线约1.20–1.23FPS，父/worker分配峰值及p50/p95见成本表；配对只完成前缀工程验证，不冒充完整配对速度 |
+| 16. 对HybridSORT等公平吗 | ProtocolA共用提案/鱼类特征/开发预算，HybridSORT46.657；原生输出规则不同，人类权重/原检测完整ProtocolB未复现 |
+| 17. 真实失败原因 | pre-neck窄锥、遗漏候选、历史污染、时间饱和、运行栈/末端批次等分别诊断和修复；时间修复无收益，未知标签不等于错误 |
+| 18. 完全在线吗 | 修正入口只用当前/过去，不读GT；完整像素/身份编号一致，末端数值差异明确定位 |
+| 19. 与已有模块的区别成立吗 | 反事实收益/潜在预测/独立写入有可运行设计，但目前控制实验不足以确立独立有效方法贡献 |
+| 20. 足够支撑独立方法论文吗 | 不足；可复现负结果和平台证据成立，原计划稳定CMUE＋IR独立贡献未达到 |
 '''
     report += f'''
 ## 结论、边界与资源
@@ -174,7 +229,7 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 '''
     Path('docs/research/FINAL_RESEARCH_REPORT.md').write_text(report)
     write_json(root / 'current_research_state_20261012.json', state)
-    print('Compiled bounded outcome:', state['status'], 'full trajectory parity', parity)
+    print('Compiled bounded outcome:', state['status'], 'identity parity verified; terminal batch differences retained')
 
 
 if __name__ == '__main__':
