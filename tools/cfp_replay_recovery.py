@@ -14,6 +14,7 @@ from cfp.identity_controls import MultiPrototypeMemory
 from cfp.lifecycle_crossover import load_bot_reference, make_cfp_lifecycle, DecisionRecorder
 from cfp.predictive import LatentIdentityPredictor
 from cfp.recoverable_identity import RecoverableIdentityState
+from cfp.fish_jepa import FishJEPAStudent
 from cfp.provenance import sha256, snapshot_sources, write_json
 from yolox.tracker.basetrack import BaseTrack
 from yolox.tracker import matching
@@ -21,7 +22,7 @@ from yolox.tracker import matching
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--kind', choices=['ris', 'trained_state', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write'], required=True)
+    p.add_argument('--kind', choices=['ris', 'trained_state', 'jepa', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write'], required=True)
     p.add_argument('--seed', type=int, choices=[0, 1, 2], required=True)
     p.add_argument('--weight', type=float, choices=[.1, .3, .5], required=True)
     p.add_argument('--checkpoint', type=Path)
@@ -43,7 +44,23 @@ def main():
     native = load_bot_reference('/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT')
     model, mode = None, args.kind
     path = args.checkpoint
-    if args.kind in ('ris', 'trained_state'):
+    if args.kind == 'jepa':
+        if path is None:
+            raise ValueError('Explicit student-only export required')
+        metadata = json.loads(path.with_name('manifest.json').read_text())
+        if metadata['status'] != 'COMPLETE' or sha256(path) != metadata['inference_checkpoint_sha256'] or metadata['guard']['seed'] != args.seed or metadata['rgb_encoder']['checkpoint_sha256'] != fm['rgb_encoder']['checkpoint_sha256']:
+            raise ValueError('JEPA/export/encoder provenance differs')
+        if args.read_view != 'anchor_recent':
+            raise ValueError('This frozen JEPA trial uses original8tokenview')
+        checkpoint = torch.load(path, map_location='cpu', weights_only=False)
+        if not checkpoint['teacher_removed'] or 'teacher' in checkpoint or 'optimizer' in checkpoint:
+            raise ValueError('EMA target/optimizer cannot enter inference')
+        spec = metadata['spec']
+        reliability = RecoverableIdentityState() if spec.get('ris', False) else None
+        model = FishJEPAStudent(spec.get('architecture', 'gru'), spec.get('latent', 128), reliability, spec.get('freeze_encoder', False))
+        model.load_state_dict(checkpoint['model'], strict=True)
+        mode = 'predictor'
+    elif args.kind in ('ris', 'trained_state'):
         if path is None:
             raise ValueError('Explicit completed model required')
         metadata = json.loads(path.with_name('manifest.json').read_text())

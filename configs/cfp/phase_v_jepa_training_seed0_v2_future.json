@@ -1,0 +1,39 @@
+{
+  "state": "FROZEN",
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "minimum_free_gib": 40,
+  "jobs": [
+    {
+      "variant": "future_J3",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v2_future.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v2_future_J3_seed0"
+    },
+    {
+      "variant": "future_J6",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v2_future.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v2_future_J6_seed0"
+    },
+    {
+      "variant": "future_no_ema",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v2_future.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v2_future_no_ema_seed0"
+    },
+    {
+      "variant": "future_frozen_encoder",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v2_future.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v2_future_frozen_encoder_seed0"
+    }
+  ],
+  "scope": "J3 actual-history rank61.54<mean62.29 and trackingHOTA52.632<ordinary53.104; J4mask rank61.81. Current-embedding reconstruction can optimize short-term appearance. Train-only SN015 future5..30 target diagnostic:10914/10955 available changed targets,10670/10955 current-candidate rank correct (97.40%); target retains identity information, not guaranteed anticipation. Test futuretarget with originalJ3/J6 and samebudget noEMA/freeze counterparts; noextra modelsize, nofuture inference. Currenttarget fallback if nofutureproposal is explicitly retained."
+}

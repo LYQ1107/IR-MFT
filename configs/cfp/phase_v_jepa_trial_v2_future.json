@@ -1,0 +1,73 @@
+{
+  "state": "FROZEN",
+  "round": 2,
+  "query_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+  "variants": {
+    "future_J3": {
+      "ema": true,
+      "architecture": "gru",
+      "latent": 128,
+      "future_gap": 5
+    },
+    "future_J6": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "gru",
+      "latent": 128,
+      "future_gap": 5
+    },
+    "future_no_ema": {
+      "ema": false,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "gru",
+      "latent": 128,
+      "future_gap": 5
+    },
+    "future_frozen_encoder": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "freeze_encoder": true,
+      "architecture": "gru",
+      "latent": 128,
+      "future_gap": 5
+    }
+  },
+  "epochs": 8,
+  "batch_size": 128,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "amp": true,
+  "ema_start": 0.996,
+  "ema_end": 0.999,
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "calibration_videos": [
+    "SN-015"
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "first_diagnostic_seed": 0,
+  "appearance_weights": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "minimum_free_gib": 40,
+  "losses": "EMA-target latentcosine(.5)+fixedFishReID-space decodedalignmentcosine(.5)+smallstudentlatentvariance(.05); J4 adds correspondingcleanmaskedpastlatent(.25), J5adds currentidentityCE(1). J6changesonlystructuredcorruption. All targetsstopped, noRGBpixel reconstruction.",
+  "scope": "Genuine supervised identity-aligned Track-levelJEPA; sameeightpasttokens/current-proposal coordinate512space. Separate sampling/view/corruption/mask RNGstreams guaranteeidentical sampledquery orders acrossvariants. Teacher128dim onlytrain, student-onlyinferenceexport. OrdinaryGRU281344 andTransformer289296parameters(within3%), sameNNdecoder/corpus/steps. NoViT/backboneredownload, nooldCMUE/time search. Needatleast3targetedJEPAiterations before scientific conclusion; firstfailure notstop.",
+  "diagnosis": "J3 actual-history rank61.54<mean62.29 and trackingHOTA52.632<ordinary53.104; J4mask rank61.81. Current-embedding reconstruction can optimize short-term appearance. Train-only SN015 future5..30 target diagnostic:10914/10955 available changed targets,10670/10955 current-candidate rank correct (97.40%); target retains identity information, not guaranteed anticipation. Test futuretarget with originalJ3/J6 and samebudget noEMA/freeze counterparts; noextra modelsize, nofuture inference. Currenttarget fallback if nofutureproposal is explicitly retained."
+}
