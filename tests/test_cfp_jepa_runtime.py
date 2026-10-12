@@ -9,7 +9,7 @@ from cfp.provenance import sha256
 def exported(tmp_path, extra=None):
     model=FishJEPAStudent()
     path=tmp_path/'inference_epoch8.pt'
-    guard={'seed':0}
+    guard={'seed':0,'sources':{s:sha256(s) for s in ['cfp/fish_jepa.py','cfp/predictive.py']}}
     torch.save(dict(epoch=8,model=model.state_dict(),teacher_removed=True,guard=guard,**(extra or {})),path)
     (tmp_path/'manifest.json').write_text(json.dumps(dict(status='COMPLETE',inference_checkpoint_sha256=sha256(path),guard=guard,rgb_encoder={'checkpoint_sha256':'matched'},spec={})))
     return path

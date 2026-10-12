@@ -22,9 +22,9 @@ from yolox.tracker import matching
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--kind', choices=['ris', 'trained_state', 'jepa', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write'], required=True)
+    p.add_argument('--kind', choices=['ris', 'trained_state', 'jepa', 'untrained_ris', 'last', 'ema', 'fifo', 'all_history_ema', 'anchor_only', 'multi_proto', 'ordinary_gru', 'predictive_gru', 'ordinary_transformer', 'reject_write', 'soft_write', 'constant_zero', 'constant_half'], required=True)
     p.add_argument('--seed', type=int, choices=[0, 1, 2], required=True)
-    p.add_argument('--weight', type=float, choices=[.1, .3, .5], required=True)
+    p.add_argument('--weight', type=float, choices=[0., .1, .3, .5], required=True)
     p.add_argument('--checkpoint', type=Path)
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--record-decisions', action='store_true')
@@ -50,6 +50,9 @@ def main():
         metadata = json.loads(path.with_name('manifest.json').read_text())
         if metadata['status'] != 'COMPLETE' or sha256(path) != metadata['inference_checkpoint_sha256'] or metadata['guard']['seed'] != args.seed or metadata['rgb_encoder']['checkpoint_sha256'] != fm['rgb_encoder']['checkpoint_sha256']:
             raise ValueError('JEPA/export/encoder provenance differs')
+        for source in ['cfp/fish_jepa.py', 'cfp/predictive.py']:
+            if metadata['guard']['sources'][source] != sha256(source):
+                raise ValueError('Student inference implementation differs from training')
         if args.read_view != 'anchor_recent':
             raise ValueError('This frozen JEPA trial uses original8tokenview')
         checkpoint = torch.load(path, map_location='cpu', weights_only=False)
@@ -99,10 +102,10 @@ def main():
     if model is not None:
         model.eval()
     args.output.mkdir(parents=True)
-    record = dict(status='RUNNING', kind=args.kind, seed=args.seed, appearance_weight=args.weight, partition='dev', read_view=args.read_view,
+    record = dict(status='RUNNING', kind=args.kind, association='gru', association_model=args.kind, probe=False, seed=args.seed, appearance_weight=args.weight, partition='dev', read_view=args.read_view,
                   checkpoint_path=str(path) if path else None, checkpoint_sha256=sha256(path) if path else None,
                   source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-                  source_snapshots=snapshot_sources(args.output, [__file__, 'cfp/lifecycle_crossover.py', 'cfp/recoverable_identity.py', 'cfp/identity_controls.py', 'cfp/predictive_association.py', 'cfp/association.py']),
+                  source_snapshots=snapshot_sources(args.output, [__file__, 'cfp/lifecycle_crossover.py', 'cfp/recoverable_identity.py', 'cfp/identity_controls.py', 'cfp/predictive_association.py', 'cfp/association.py', 'cfp/fish_jepa.py', 'cfp/predictive.py']),
                   feature_manifest_sha256=sha256(feature_root / 'manifest.json'), detection_manifest_sha256=sha256(detections_root / 'manifest.json'),
                   output_policy='current_matched_measurement', videos={}, scope='Protocol A recovery control; same frozen proposals, originalCFP motion/lifecycle, current boxes output. No GT/annotation reads, no future history. Cached association timing excludes whole pipeline.')
     write_json(args.output / 'manifest.json', record)

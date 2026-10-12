@@ -1,0 +1,91 @@
+{
+  "state": "FROZEN",
+  "round": 3,
+  "query_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+  "variants": {
+    "gru_latent_identity": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "gru",
+      "latent": 128,
+      "latent_identity_weight": 0.5
+    },
+    "gru_no_ema_latent_identity": {
+      "ema": false,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "gru",
+      "latent": 128,
+      "latent_identity_weight": 0.5
+    },
+    "gru_ordinary_latent_identity": {
+      "ordinary": true,
+      "architecture": "gru",
+      "latent": 128,
+      "mask": true,
+      "corruption": true,
+      "latent_identity_weight": 0.5
+    },
+    "transformer_J6": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "transformer",
+      "latent": 104,
+      "latent_identity_weight": 0.0
+    },
+    "transformer_latent_identity": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "architecture": "transformer",
+      "latent": 104,
+      "latent_identity_weight": 0.5
+    },
+    "transformer_ordinary_latent_identity": {
+      "ordinary": true,
+      "architecture": "transformer",
+      "latent": 104,
+      "mask": true,
+      "corruption": true,
+      "latent_identity_weight": 0.5
+    }
+  },
+  "epochs": 8,
+  "batch_size": 128,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "amp": true,
+  "ema_start": 0.996,
+  "ema_end": 0.999,
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "calibration_videos": [
+    "SN-015"
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "first_diagnostic_seed": 0,
+  "appearance_weights": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "minimum_free_gib": 40,
+  "losses": "Original round1recipe plus.5latentcandidateCE where specified: predictedstudentlatent versus STOPPED teacher/currentstudentencode ofcurrentproposal candidates. OrdinarylatentCE control usesCE-only +sameextra latentCE, noEMA orlatentforecastloss.",
+  "scope": "Genuine supervised identity-aligned Track-levelJEPA; sameeightpasttokens/current-proposal coordinate512space. Separate sampling/view/corruption/mask RNGstreams guaranteeidentical sampledquery orders acrossvariants. Teacher128dim onlytrain, student-onlyinferenceexport. OrdinaryGRU281344 andTransformer289296parameters(within3%), sameNNdecoder/corpus/steps. NoViT/backboneredownload, nooldCMUE/time search. Needatleast3targetedJEPAiterations before scientific conclusion; firstfailure notstop.",
+  "diagnosis": "Round1 actual61.54%J3/61.81%J4 vsmean62.29%; rawCE J5/J6damagesheldoutclean/actual, ordinaryTransformer tracking55.474 despitepoor fixedrank. Round2futureJ3 actual61.369%andJ6 50.397%,no rank improvement. Investigate latent objective lackingcandidateidentitydiscrimination withdirectstoppedteacher sameframehardnegativeCE(.5), not arbitraryextraepochs/capacity. GRUJ6with/withoutEMA andsamearchordinarylatentCE controls;TransformerfactorialJ6with/withoutlatentCE plusordinarycontrastivecontrol. ExistingordinaryTransformer remainsstrongbaseline. Sameallmodelparams/data/queryorders/8epochbudget. Raw current associationcoordinateunchanged; EMA target onlytraining."
+}

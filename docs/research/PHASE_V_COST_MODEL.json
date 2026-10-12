@@ -1,0 +1,22 @@
+{
+  "scope": "Analytical partial arithmetic cost, not profiled detector/encoder/full pipeline FLOPs. T=8 andone trackforecast; countmultiply-accumulate ofLinear/GRU/attention matmuls only. ExcludesLayerNorm/SiLU/normalization,packing,padding,CPUassignment,masking,data movement,bias andsoftmax. Teacher andmaskedpredictionhead notexecuted online. Each high/unconfirmedcost can forecastagain; perframecost dependsactualtrack/candidatecounts. MultiplyMACby2 onlyforconventional matmulFLOPs, notfull latency.",
+  "gru": {
+    "latent": 128,
+    "token_encoder_MAC": 737280,
+    "time_MAC": 2048,
+    "context_MAC": 786432,
+    "latent_predictor_MAC": 16384,
+    "raw_decoder_MAC": 65536,
+    "partial_total_MAC": 1607680
+  },
+  "transformer": {
+    "latent": 104,
+    "token_encoder_MAC": 576576,
+    "time_MAC": 1664,
+    "context_MAC": 1198080,
+    "latent_predictor_MAC": 10816,
+    "raw_decoder_MAC": 53248,
+    "partial_total_MAC": 1840384
+  },
+  "pairwise_cosine": "512MAC per track/proposal pair beforeother geometry/assignment operations"
+}

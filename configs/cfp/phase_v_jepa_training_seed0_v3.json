@@ -1,0 +1,59 @@
+{
+  "state": "FROZEN",
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "minimum_free_gib": 40,
+  "jobs": [
+    {
+      "variant": "gru_latent_identity",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_gru_latent_identity_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "gru_no_ema_latent_identity",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_gru_no_ema_latent_identity_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "gru_ordinary_latent_identity",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_gru_ordinary_latent_identity_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_J6",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_J6_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_latent_identity",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_latent_identity_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_ordinary_latent_identity",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_ordinary_latent_identity_seed0",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    }
+  ],
+  "scope": "Round1 actual61.54%J3/61.81%J4 vsmean62.29%; rawCE J5/J6damagesheldoutclean/actual, ordinaryTransformer tracking55.474 despitepoor fixedrank. Round2futureJ3 actual61.369%andJ6 50.397%,no rank improvement. Investigate latent objective lackingcandidateidentitydiscrimination withdirectstoppedteacher sameframehardnegativeCE(.5), not arbitraryextraepochs/capacity. GRUJ6with/withoutEMA andsamearchordinarylatentCE controls;TransformerfactorialJ6with/withoutlatentCE plusordinarycontrastivecontrol. ExistingordinaryTransformer remainsstrongbaseline. Sameallmodelparams/data/queryorders/8epochbudget. Raw current associationcoordinateunchanged; EMA target onlytraining."
+}
