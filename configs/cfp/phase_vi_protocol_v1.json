@@ -1,0 +1,79 @@
+{
+  "state": "FROZEN",
+  "version": 1,
+  "parent_commit": "00ae0e8f1d75b7853edfbe42d4324bac2784ff8c",
+  "parent_phase_v_protocol_sha256": "fd40cd6b6f6298b4a02d0b6908b130bc3c341b887dd722b90f5176e22ba83a3e",
+  "data_protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "task_book_sha256": "f903d0479cea1895bd15b2298e2640dd4e4c2343197e881d97c33939fd4a07d7",
+  "branch": "research/recoverability-candidate-jepa-v1",
+  "asset_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6",
+  "minimum_free_gib": 40,
+  "max_physical_gpus": 4,
+  "initial_allowed_gpus": [
+    0,
+    1
+  ],
+  "stage_output_planning_budget_gib": 12,
+  "never_delete_existing_assets": true,
+  "historical_test_selection": false,
+  "output_policy": "current_matched_measurement",
+  "baseline_gru_weight": 0.3,
+  "baseline_bot_appearance_threshold": 0.15,
+  "initial_seeds": [
+    0
+  ],
+  "formal_seeds": [
+    0,
+    1,
+    2
+  ],
+  "train_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "historical_reference_dev": [
+    "BT-005",
+    "SN-013"
+  ],
+  "candidate_selection": "train-video-heldout evidence before frozen historical-dev comparison",
+  "module_validation_folds": [
+    [
+      "BT-001"
+    ],
+    [
+      "BT-003"
+    ],
+    [
+      "MSK-002"
+    ],
+    [
+      "PF-001"
+    ],
+    [
+      "SN-001"
+    ],
+    [
+      "SN-015"
+    ]
+  ],
+  "known_exposure": [
+    "V3 trained on all eight train+dev videos",
+    "FishReID encoder trained on all six identity train videos",
+    "Historical seed0 GRU trace producer fitted five videos with SN-015 calibration; verify original metadata",
+    "BT-005/SN-013 repeatedly inspected in earlier phases",
+    "Between-video biological identity overlap unverified"
+  ],
+  "new_module_data_policy": "No frame-random splits; every supervised module excludes whole validation videos. Historical teacher traces are warm-start diagnostic data, not fully OOF tracking evidence. Regenerate with video-excluded temporal models for OOF claims. Frozen encoder/detector exposure remains disclosed.",
+  "null_supervision": "Separate known reference with absent known current candidate from unknown reference/candidate labels; unknown observations are not wrong and do not receive binary negative supervision.",
+  "changes_from_phase_v": [
+    "Candidate-set-conditioned scoring and NULL output",
+    "Recoverability and memory write actions",
+    "Bounded branch-isolated hypotheses",
+    "Video-heldout exploration; no fixed iteration-count stop",
+    "Stage-specific storage budgets with 40GiB reserve"
+  ]
+}

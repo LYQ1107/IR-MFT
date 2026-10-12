@@ -1,0 +1,1457 @@
+{
+  "status": "IN_PROGRESS",
+  "protocol": "configs/cfp/phase_vi_protocol_v1.json",
+  "experiments": [
+    {
+      "experiment_id": "VI0_baseline_audit_v1",
+      "hypothesis_id": "H0",
+      "question": "Verify preserved assets and strong baselines without altering them",
+      "status": "FAILED_PATH_REPAIRED_WITH_NEW_IMMUTABLE_V2",
+      "reason": "Required prerequisite and Phase V observed errors",
+      "code": [
+        "tools/cfp_phase_vi_baseline_audit.py"
+      ],
+      "inputs": [],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_audit_v1",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_audit_pathrepair_v2"
+      ],
+      "train_config": null,
+      "seed": [
+        0,
+        1,
+        2
+      ],
+      "git_commit": "00ae0e8f1d75b7853edfbe42d4324bac2784ff8c",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": {
+        "BoT_SORT_RGB_native": {
+          "BT-005": {
+            "HOTA": {
+              "mean": 55.50591249383584,
+              "std_population": 1.5338077465811182,
+              "std_sample": 1.8785231713259143
+            },
+            "AssA": {
+              "mean": 40.837329448661436,
+              "std_population": 2.2782499004026873,
+              "std_sample": 2.7902748812665896
+            },
+            "DetA": {
+              "mean": 75.53738065702856,
+              "std_population": 0.10968670711958976,
+              "std_sample": 0.13433823200454886
+            },
+            "LocA": {
+              "mean": 82.60213192211387,
+              "std_population": 0.017237347542039556,
+              "std_sample": 0.021111352998507357
+            },
+            "AssRe": {
+              "mean": 45.57285619003403,
+              "std_population": 1.900769894688782,
+              "std_sample": 2.327958180215617
+            },
+            "AssPr": {
+              "mean": 65.73116539272685,
+              "std_population": 2.5626169953792344,
+              "std_sample": 3.138552022431641
+            },
+            "DetRe": {
+              "mean": 79.98058122405249,
+              "std_population": 0.08273214595958461,
+              "std_sample": 0.10132577146322164
+            },
+            "DetPr": {
+              "mean": 80.44112438829137,
+              "std_population": 0.05541147230077977,
+              "std_sample": 0.06786491651663712
+            },
+            "IDF1": {
+              "mean": 65.05685648280723,
+              "std_population": 1.5732029735304092,
+              "std_sample": 1.9267722734893666
+            },
+            "IDP": {
+              "mean": 65.2438472760445,
+              "std_population": 1.5637406369528668,
+              "std_sample": 1.9151833252946406
+            },
+            "IDR": {
+              "mean": 64.87095601599418,
+              "std_population": 1.5828739339959002,
+              "std_sample": 1.9386167327209072
+            },
+            "MOTA": {
+              "mean": 96.10505270810614,
+              "std_population": 0.10622783857653881,
+              "std_sample": 0.1301020004956295
+            },
+            "IDSW": {
+              "mean": 32.666666666666664,
+              "std_population": 1.247219128924647,
+              "std_sample": 1.5275252316519468
+            },
+            "CLR_FP": {
+              "mean": 288.3333333333333,
+              "std_population": 16.73983937265296,
+              "std_sample": 20.502032419575706
+            },
+            "CLR_FN": {
+              "mean": 393.3333333333333,
+              "std_population": 6.599663291074443,
+              "std_sample": 8.082903768654761
+            },
+            "Frag": {
+              "mean": 50.666666666666664,
+              "std_population": 2.494438257849294,
+              "std_sample": 3.0550504633038935
+            },
+            "MT": {
+              "mean": 10,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          },
+          "SN-013": {
+            "HOTA": {
+              "mean": 50.410284618839356,
+              "std_population": 1.053257587676672,
+              "std_sample": 1.2899718287612811
+            },
+            "AssA": {
+              "mean": 35.238823878872125,
+              "std_population": 1.5041424575893492,
+              "std_sample": 1.8421907607748962
+            },
+            "DetA": {
+              "mean": 72.23587548631089,
+              "std_population": 0.07400824280252116,
+              "std_sample": 0.09064121581309127
+            },
+            "LocA": {
+              "mean": 81.96266039815646,
+              "std_population": 0.0038399606879935327,
+              "std_sample": 0.004702972158965397
+            },
+            "AssRe": {
+              "mean": 37.318932506120646,
+              "std_population": 1.4655224847207797,
+              "std_sample": 1.7948911470708335
+            },
+            "AssPr": {
+              "mean": 73.9862185193209,
+              "std_population": 1.6402315778687704,
+              "std_sample": 2.0088652128893103
+            },
+            "DetRe": {
+              "mean": 77.3352872954407,
+              "std_population": 0.04108640162780405,
+              "std_sample": 0.05032035967758805
+            },
+            "DetPr": {
+              "mean": 79.04143431748948,
+              "std_population": 0.05140005066278298,
+              "std_sample": 0.0629519484385113
+            },
+            "IDF1": {
+              "mean": 52.49321914661402,
+              "std_population": 1.8232975490264178,
+              "std_sample": 2.23307432219096
+            },
+            "IDP": {
+              "mean": 53.07214581475994,
+              "std_population": 1.839728843668743,
+              "std_sample": 2.2531984660344713
+            },
+            "IDR": {
+              "mean": 51.926792551236915,
+              "std_population": 1.807228778866449,
+              "std_sample": 2.2133941783479676
+            },
+            "MOTA": {
+              "mean": 91.88743880611169,
+              "std_population": 0.04368153283474517,
+              "std_sample": 0.05349873331387745
+            },
+            "IDSW": {
+              "mean": 81,
+              "std_population": 2.449489742783178,
+              "std_sample": 3.0
+            },
+            "CLR_FP": {
+              "mean": 796.6666666666666,
+              "std_population": 9.741092797468305,
+              "std_sample": 11.930353445448855
+            },
+            "CLR_FN": {
+              "mean": 1403.6666666666667,
+              "std_population": 6.548960901462833,
+              "std_sample": 8.020806277010642
+            },
+            "Frag": {
+              "mean": 221.66666666666666,
+              "std_population": 1.247219128924647,
+              "std_sample": 1.5275252316519468
+            },
+            "MT": {
+              "mean": 11,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          },
+          "COMBINED_SEQ": {
+            "HOTA": {
+              "mean": 52.48181756244467,
+              "std_population": 0.10947584694139276,
+              "std_sample": 0.13407998208272134
+            },
+            "AssA": {
+              "mean": 37.498032185699614,
+              "std_population": 0.13495309003515504,
+              "std_sample": 0.1652831048990035
+            },
+            "DetA": {
+              "mean": 73.51760485470231,
+              "std_population": 0.05016471555813702,
+              "std_sample": 0.06143897810464618
+            },
+            "LocA": {
+              "mean": 82.21748262720287,
+              "std_population": 0.007253865266555195,
+              "std_sample": 0.008884134282979057
+            },
+            "AssRe": {
+              "mean": 40.64831322271452,
+              "std_population": 0.13097826256709985,
+              "std_sample": 0.16041495534283648
+            },
+            "AssPr": {
+              "mean": 70.67322628193092,
+              "std_population": 0.5252304594007405,
+              "std_sample": 0.6432733114497051
+            },
+            "DetRe": {
+              "mean": 78.37948975881298,
+              "std_population": 0.047950564545226844,
+              "std_sample": 0.05872720800709794
+            },
+            "DetPr": {
+              "mean": 79.59932189590806,
+              "std_population": 0.010997773411993551,
+              "std_sample": 0.01346946658306588
+            },
+            "IDF1": {
+              "mean": 57.476821638053075,
+              "std_population": 0.4841947893968022,
+              "std_sample": 0.5930150850682641
+            },
+            "IDP": {
+              "mean": 57.92414028895705,
+              "std_population": 0.49387945222065566,
+              "std_sample": 0.6048763261929354
+            },
+            "IDR": {
+              "mean": 57.03636741926921,
+              "std_population": 0.4751897668481229,
+              "std_sample": 0.5819862298850035
+            },
+            "MOTA": {
+              "mean": 93.55229834341348,
+              "std_population": 0.01927785862342419,
+              "std_sample": 0.023610458480450895
+            },
+            "IDSW": {
+              "mean": 113.66666666666667,
+              "std_population": 3.681787005729087,
+              "std_sample": 4.509249752822894
+            },
+            "CLR_FP": {
+              "mean": 1085,
+              "std_population": 17.204650534085253,
+              "std_sample": 21.071307505705477
+            },
+            "CLR_FN": {
+              "mean": 1797,
+              "std_population": 9.626352718795768,
+              "std_sample": 11.789826122551595
+            },
+            "Frag": {
+              "mean": 272.3333333333333,
+              "std_population": 3.2998316455372216,
+              "std_sample": 4.041451884327381
+            },
+            "MT": {
+              "mean": 21,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          }
+        },
+        "ordinary_gru_current_measurement": {
+          "BT-005": {
+            "HOTA": {
+              "mean": 62.018034811377206,
+              "std_population": 2.3110613808127054,
+              "std_sample": 2.830460573621525
+            },
+            "AssA": {
+              "mean": 50.99499573028209,
+              "std_population": 3.8544443819282415,
+              "std_sample": 4.720710988830737
+            },
+            "DetA": {
+              "mean": 75.55338277969567,
+              "std_population": 0.3090504291905762,
+              "std_sample": 0.3785079281525276
+            },
+            "LocA": {
+              "mean": 82.54014822863564,
+              "std_population": 0.03916924480729857,
+              "std_sample": 0.047972331694020556
+            },
+            "AssRe": {
+              "mean": 57.79426853502988,
+              "std_population": 3.443810104639509,
+              "std_sample": 4.21778876370377
+            },
+            "AssPr": {
+              "mean": 65.4015597615295,
+              "std_population": 2.1004670990545535,
+              "std_sample": 2.5725363070938334
+            },
+            "DetRe": {
+              "mean": 79.87717385065717,
+              "std_population": 0.17514265940999155,
+              "std_sample": 0.21450507387427098
+            },
+            "DetPr": {
+              "mean": 80.47834933132465,
+              "std_population": 0.17695253435233838,
+              "std_sample": 0.21672170892777037
+            },
+            "IDF1": {
+              "mean": 77.60004264256547,
+              "std_population": 3.5789812751623424,
+              "std_sample": 4.383338961561608
+            },
+            "IDP": {
+              "mean": 77.89219991015389,
+              "std_population": 3.595561013977025,
+              "std_sample": 4.4036449116439025
+            },
+            "IDR": {
+              "mean": 77.31006906579427,
+              "std_population": 3.562548677540047,
+              "std_sample": 4.363213221900061
+            },
+            "MOTA": {
+              "mean": 96.50308978553254,
+              "std_population": 0.02196118861067347,
+              "std_sample": 0.02689685312058571
+            },
+            "IDSW": {
+              "mean": 21,
+              "std_population": 0.816496580927726,
+              "std_sample": 1.0
+            },
+            "CLR_FP": {
+              "mean": 241.66666666666666,
+              "std_population": 2.3570226039551585,
+              "std_sample": 2.886751345948129
+            },
+            "CLR_FN": {
+              "mean": 378.6666666666667,
+              "std_population": 2.0548046676563256,
+              "std_sample": 2.516611478423583
+            },
+            "Frag": {
+              "mean": 56.333333333333336,
+              "std_population": 0.4714045207910317,
+              "std_sample": 0.5773502691896257
+            },
+            "MT": {
+              "mean": 10,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          },
+          "SN-013": {
+            "HOTA": {
+              "mean": 47.363390403355474,
+              "std_population": 0.5703678489896203,
+              "std_sample": 0.6985550978566898
+            },
+            "AssA": {
+              "mean": 31.14545649491521,
+              "std_population": 0.7677158324219041,
+              "std_sample": 0.9402560284448517
+            },
+            "DetA": {
+              "mean": 72.13200061372356,
+              "std_population": 0.1154756656864128,
+              "std_sample": 0.1414282293199638
+            },
+            "LocA": {
+              "mean": 81.83548217395943,
+              "std_population": 0.018446076622681083,
+              "std_sample": 0.02259173774092494
+            },
+            "AssRe": {
+              "mean": 35.922353895801756,
+              "std_population": 0.939348965301555,
+              "std_sample": 1.1504628277000752
+            },
+            "AssPr": {
+              "mean": 62.37554057347269,
+              "std_population": 0.8384869203644824,
+              "std_sample": 1.0269325554453275
+            },
+            "DetRe": {
+              "mean": 77.29854132860689,
+              "std_population": 0.06743453268548665,
+              "std_sample": 0.08259009806123825
+            },
+            "DetPr": {
+              "mean": 78.81671265814906,
+              "std_population": 0.07302719530187012,
+              "std_sample": 0.08943968291807737
+            },
+            "IDF1": {
+              "mean": 52.926045045047836,
+              "std_population": 0.9719362219043499,
+              "std_sample": 1.1903739030970701
+            },
+            "IDP": {
+              "mean": 53.44575664017435,
+              "std_population": 0.979835132556339,
+              "std_sample": 1.200048053407674
+            },
+            "IDR": {
+              "mean": 52.416343657764656,
+              "std_population": 0.9641583324372494,
+              "std_sample": 1.180847972861988
+            },
+            "MOTA": {
+              "mean": 91.8258004101324,
+              "std_population": 0.012088283995570104,
+              "std_sample": 0.01480506382749951
+            },
+            "IDSW": {
+              "mean": 66.33333333333333,
+              "std_population": 0.4714045207910317,
+              "std_sample": 0.5773502691896257
+            },
+            "CLR_FP": {
+              "mean": 845.3333333333334,
+              "std_population": 0.9428090415820634,
+              "std_sample": 1.1547005383792515
+            },
+            "CLR_FN": {
+              "mean": 1387,
+              "std_population": 2.449489742783178,
+              "std_sample": 3.0
+            },
+            "Frag": {
+              "mean": 259.0,
+              "std_population": 0.816496580927726,
+              "std_sample": 1.0
+            },
+            "MT": {
+              "mean": 11,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          },
+          "COMBINED_SEQ": {
+            "HOTA": {
+              "mean": 53.591386280239576,
+              "std_population": 0.8796459137271139,
+              "std_sample": 1.077341821477851
+            },
+            "AssA": {
+              "mean": 39.1389380583822,
+              "std_population": 1.243653552487233,
+              "std_sample": 1.523158310196669
+            },
+            "DetA": {
+              "mean": 73.4569908716497,
+              "std_population": 0.1551918375825677,
+              "std_sample": 0.19007040716108622
+            },
+            "LocA": {
+              "mean": 82.11570521048087,
+              "std_population": 0.02350443105829183,
+              "std_sample": 0.028786931393620093
+            },
+            "AssRe": {
+              "mean": 44.735387922664245,
+              "std_population": 0.9149623368149458,
+              "std_sample": 1.1205954295305687
+            },
+            "AssPr": {
+              "mean": 63.603478624818365,
+              "std_population": 1.25082668962888,
+              "std_sample": 1.5319435731226896
+            },
+            "DetRe": {
+              "mean": 78.31642989007571,
+              "std_population": 0.09112960828950717,
+              "std_sample": 0.11161052038449834
+            },
+            "DetPr": {
+              "mean": 79.47737704297397,
+              "std_population": 0.0945362475921909,
+              "std_sample": 0.11578278439914126
+            },
+            "IDF1": {
+              "mean": 62.70085564698334,
+              "std_population": 0.8473853473626998,
+              "std_sample": 1.0378308582748468
+            },
+            "IDP": {
+              "mean": 63.165616001687916,
+              "std_population": 0.8558142088939451,
+              "std_sample": 1.0481540632069093
+            },
+            "IDR": {
+              "mean": 62.242884713343805,
+              "std_population": 0.8391107248128015,
+              "std_sample": 1.0276965567441576
+            },
+            "MOTA": {
+              "mean": 93.67211209401434,
+              "std_population": 0.00304387241422477,
+              "std_sample": 0.003727967128492122
+            },
+            "IDSW": {
+              "mean": 87.33333333333333,
+              "std_population": 1.247219128924647,
+              "std_sample": 1.5275252316519468
+            },
+            "CLR_FP": {
+              "mean": 1087,
+              "std_population": 1.4142135623730951,
+              "std_sample": 1.7320508075688772
+            },
+            "CLR_FN": {
+              "mean": 1765.6666666666667,
+              "std_population": 2.494438257849294,
+              "std_sample": 3.0550504633038935
+            },
+            "Frag": {
+              "mean": 315.3333333333333,
+              "std_population": 1.247219128924647,
+              "std_sample": 1.5275252316519468
+            },
+            "MT": {
+              "mean": 21,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            },
+            "ML": {
+              "mean": 0,
+              "std_population": 0.0,
+              "std_sample": 0.0
+            }
+          }
+        }
+      },
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": "88 hashes, 3 byte-identical strong GRU replays, 6 exact official reevaluations",
+      "next_step": "Retain frozen baselines; inspect recoverability"
+    },
+    {
+      "experiment_id": "VI1_recoverability_actual_traces_v1",
+      "hypothesis_id": "H1",
+      "question": "Separate candidate coverage, past-cue observability, reranking and lifecycle proxies in actual accepted-history traces",
+      "status": "COMPLETE_LOCAL_DIAGNOSIS",
+      "reason": "Required prerequisite and Phase V observed errors",
+      "code": [
+        "tools/cfp_analyze_recoverability.py",
+        "cfp/recoverability_diagnosis.py"
+      ],
+      "inputs": [],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/recoverability_train_gru_v1",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/recoverability_historical_dev_gru_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "00ae0e8f1d75b7853edfbe42d4324bac2784ff8c",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": {
+        "BT-001": {
+          "rows": 30900,
+          "unknown_reference": 454,
+          "known_reference": 30446,
+          "visible": 30446,
+          "detection_coverage": 22086,
+          "stage_coverage": 20788,
+          "geometry_appearance_coverage": 13344,
+          "cost_feasible_coverage": 13673,
+          "full_geometry_appearance_coverage": 13622,
+          "union_geometry_top3_coverage": 15069,
+          "wrong": 9094,
+          "correct": 12682,
+          "unknown_write": 7523,
+          "unmatched": 1147,
+          "high_confidence_wrong": 671,
+          "wrong_reactivation": 14,
+          "correct_column_taken_by_other_track": 7959,
+          "visible_detection_coverage": 22086,
+          "visible_stage_coverage": 20788,
+          "visible_geometry_appearance_coverage": 13344,
+          "visible_union_geometry_top3_coverage": 15069,
+          "appearance_top1_coverage": 12373,
+          "appearance_top2_coverage": 13577,
+          "appearance_top3_coverage": 14476,
+          "appearance_top5_coverage": 16171,
+          "two_axis_1x1": 17376,
+          "cue_known_correct_cue": 23921,
+          "two_axis_0x1": 6545,
+          "two_axis_0x0": 3113,
+          "cue_unverified_cue_availability": 6524,
+          "two_axis_1x0": 3412,
+          "unmatched_visible": 1147,
+          "unmatched_visible_stage_covered": 533,
+          "wrong_detector_missing_or_label_unverified": 2725,
+          "wrong_two_axis_0x1": 1876,
+          "wrong_cue_known_correct_cue": 5134,
+          "contaminated_history": 11493,
+          "contaminated_history_wrong": 8927,
+          "wrong_local_rescoring_or_acceptance_change": 5213,
+          "wrong_two_axis_1x1": 3258,
+          "wrong_local_reranking_cost_feasible": 547,
+          "cue_all_known_no_correct_cue": 1,
+          "wrong_current_stage_coverage_change": 609,
+          "wrong_two_axis_1x0": 2502,
+          "wrong_cue_unverified_cue_availability": 3960,
+          "wrong_two_axis_0x0": 1458
+        },
+        "BT-003": {
+          "rows": 2442,
+          "unknown_reference": 58,
+          "known_reference": 2384,
+          "visible": 2384,
+          "detection_coverage": 1863,
+          "stage_coverage": 1813,
+          "geometry_appearance_coverage": 1637,
+          "cost_feasible_coverage": 1637,
+          "full_geometry_appearance_coverage": 1672,
+          "union_geometry_top3_coverage": 1740,
+          "wrong": 160,
+          "correct": 1608,
+          "unknown_write": 556,
+          "unmatched": 60,
+          "high_confidence_wrong": 11,
+          "wrong_reactivation": 0,
+          "correct_column_taken_by_other_track": 194,
+          "visible_detection_coverage": 1863,
+          "visible_stage_coverage": 1813,
+          "visible_geometry_appearance_coverage": 1637,
+          "visible_union_geometry_top3_coverage": 1740,
+          "appearance_top1_coverage": 1601,
+          "appearance_top2_coverage": 1695,
+          "appearance_top3_coverage": 1733,
+          "appearance_top5_coverage": 1790,
+          "two_axis_1x1": 1806,
+          "cue_known_correct_cue": 2315,
+          "two_axis_0x1": 509,
+          "wrong_detector_missing_or_label_unverified": 25,
+          "wrong_two_axis_0x1": 28,
+          "wrong_cue_known_correct_cue": 157,
+          "contaminated_history": 429,
+          "contaminated_history_wrong": 151,
+          "unmatched_visible": 60,
+          "unmatched_visible_stage_covered": 8,
+          "two_axis_0x0": 62,
+          "cue_unverified_cue_availability": 69,
+          "wrong_two_axis_0x0": 2,
+          "wrong_cue_unverified_cue_availability": 3,
+          "wrong_local_reranking_cost_feasible": 8,
+          "wrong_two_axis_1x1": 129,
+          "two_axis_1x0": 7,
+          "wrong_two_axis_1x0": 1,
+          "wrong_current_stage_coverage_change": 5,
+          "wrong_local_rescoring_or_acceptance_change": 122
+        },
+        "MSK-002": {
+          "rows": 71128,
+          "unknown_reference": 981,
+          "known_reference": 70147,
+          "visible": 70147,
+          "detection_coverage": 49620,
+          "stage_coverage": 43334,
+          "geometry_appearance_coverage": 26293,
+          "cost_feasible_coverage": 26235,
+          "full_geometry_appearance_coverage": 26665,
+          "union_geometry_top3_coverage": 28855,
+          "wrong": 22869,
+          "correct": 25963,
+          "unknown_write": 16204,
+          "unmatched": 5111,
+          "high_confidence_wrong": 12,
+          "wrong_reactivation": 41,
+          "correct_column_taken_by_other_track": 15638,
+          "visible_detection_coverage": 49620,
+          "visible_stage_coverage": 43334,
+          "visible_geometry_appearance_coverage": 26293,
+          "visible_union_geometry_top3_coverage": 28855,
+          "appearance_top1_coverage": 20990,
+          "appearance_top2_coverage": 24874,
+          "appearance_top3_coverage": 26766,
+          "appearance_top5_coverage": 29039,
+          "two_axis_1x1": 40466,
+          "cue_known_correct_cue": 63181,
+          "two_axis_0x1": 22715,
+          "wrong_current_stage_coverage_change": 3706,
+          "wrong_two_axis_0x1": 9885,
+          "wrong_cue_known_correct_cue": 19373,
+          "contaminated_history": 29654,
+          "contaminated_history_wrong": 22468,
+          "wrong_local_rescoring_or_acceptance_change": 11299,
+          "wrong_two_axis_1x1": 9488,
+          "wrong_detector_missing_or_label_unverified": 7816,
+          "wrong_local_reranking_cost_feasible": 48,
+          "unmatched_visible": 5111,
+          "unmatched_visible_stage_covered": 1923,
+          "two_axis_0x0": 4098,
+          "cue_unverified_cue_availability": 6914,
+          "two_axis_1x0": 2868,
+          "wrong_two_axis_1x0": 1859,
+          "wrong_cue_unverified_cue_availability": 3459,
+          "wrong_two_axis_0x0": 1637,
+          "cue_all_known_no_correct_cue": 52,
+          "wrong_cue_all_known_no_correct_cue": 37
+        },
+        "PF-001": {
+          "rows": 30345,
+          "unknown_reference": 277,
+          "known_reference": 30068,
+          "visible": 30068,
+          "detection_coverage": 28827,
+          "stage_coverage": 28757,
+          "geometry_appearance_coverage": 21185,
+          "cost_feasible_coverage": 23424,
+          "full_geometry_appearance_coverage": 21238,
+          "union_geometry_top3_coverage": 28823,
+          "wrong": 11480,
+          "correct": 17336,
+          "unknown_write": 878,
+          "unmatched": 374,
+          "high_confidence_wrong": 11033,
+          "wrong_reactivation": 2,
+          "correct_column_taken_by_other_track": 11413,
+          "visible_detection_coverage": 28827,
+          "visible_stage_coverage": 28757,
+          "visible_geometry_appearance_coverage": 21185,
+          "visible_union_geometry_top3_coverage": 28823,
+          "appearance_top1_coverage": 17396,
+          "appearance_top2_coverage": 28279,
+          "appearance_top3_coverage": 28811,
+          "appearance_top5_coverage": 28827,
+          "two_axis_1x1": 26305,
+          "cue_known_correct_cue": 27519,
+          "two_axis_0x1": 1214,
+          "unmatched_visible": 374,
+          "unmatched_visible_stage_covered": 163,
+          "wrong_detector_missing_or_label_unverified": 350,
+          "wrong_two_axis_0x1": 338,
+          "wrong_cue_known_correct_cue": 9077,
+          "contaminated_history": 11905,
+          "contaminated_history_wrong": 11461,
+          "two_axis_0x0": 97,
+          "cue_unverified_cue_availability": 2549,
+          "wrong_two_axis_0x0": 39,
+          "wrong_cue_unverified_cue_availability": 2403,
+          "wrong_local_reranking_cost_feasible": 5816,
+          "wrong_two_axis_1x1": 8739,
+          "two_axis_1x0": 2452,
+          "wrong_two_axis_1x0": 2364,
+          "wrong_local_rescoring_or_acceptance_change": 5287,
+          "wrong_current_stage_coverage_change": 27
+        },
+        "SN-001": {
+          "rows": 6504,
+          "unknown_reference": 116,
+          "known_reference": 6388,
+          "visible": 6340,
+          "detection_coverage": 5179,
+          "stage_coverage": 4899,
+          "geometry_appearance_coverage": 1999,
+          "cost_feasible_coverage": 2065,
+          "full_geometry_appearance_coverage": 2053,
+          "union_geometry_top3_coverage": 3107,
+          "wrong": 3379,
+          "correct": 1844,
+          "unknown_write": 738,
+          "unmatched": 427,
+          "high_confidence_wrong": 584,
+          "wrong_reactivation": 8,
+          "correct_column_taken_by_other_track": 3014,
+          "visible_detection_coverage": 5179,
+          "visible_stage_coverage": 4899,
+          "visible_geometry_appearance_coverage": 1999,
+          "visible_union_geometry_top3_coverage": 3107,
+          "appearance_top1_coverage": 1870,
+          "appearance_top2_coverage": 2532,
+          "appearance_top3_coverage": 3075,
+          "appearance_top5_coverage": 3895,
+          "two_axis_1x1": 4516,
+          "cue_known_correct_cue": 5758,
+          "two_axis_0x1": 1242,
+          "wrong_detector_missing_or_label_unverified": 508,
+          "wrong_two_axis_0x1": 589,
+          "wrong_cue_known_correct_cue": 2928,
+          "contaminated_history": 3799,
+          "contaminated_history_wrong": 3359,
+          "wrong_local_reranking_cost_feasible": 162,
+          "wrong_two_axis_1x1": 2339,
+          "wrong_local_rescoring_or_acceptance_change": 2521,
+          "unmatched_visible": 409,
+          "unmatched_visible_stage_covered": 175,
+          "two_axis_0x0": 247,
+          "cue_unverified_cue_availability": 630,
+          "wrong_current_stage_coverage_change": 176,
+          "two_axis_1x0": 383,
+          "wrong_two_axis_0x0": 107,
+          "wrong_cue_unverified_cue_availability": 451,
+          "wrong_two_axis_1x0": 344,
+          "wrong_reference_not_visible": 12
+        },
+        "SN-015": {
+          "rows": 65982,
+          "unknown_reference": 933,
+          "known_reference": 65049,
+          "visible": 59383,
+          "detection_coverage": 54845,
+          "stage_coverage": 53469,
+          "geometry_appearance_coverage": 35639,
+          "cost_feasible_coverage": 36770,
+          "full_geometry_appearance_coverage": 36056,
+          "union_geometry_top3_coverage": 40170,
+          "wrong": 24621,
+          "correct": 32941,
+          "unknown_write": 3860,
+          "unmatched": 3627,
+          "high_confidence_wrong": 16322,
+          "wrong_reactivation": 24,
+          "correct_column_taken_by_other_track": 20316,
+          "visible_detection_coverage": 54845,
+          "visible_stage_coverage": 53469,
+          "visible_geometry_appearance_coverage": 35639,
+          "visible_union_geometry_top3_coverage": 40170,
+          "appearance_top1_coverage": 33597,
+          "appearance_top2_coverage": 36336,
+          "appearance_top3_coverage": 38900,
+          "appearance_top5_coverage": 44061,
+          "two_axis_1x1": 43245,
+          "cue_known_correct_cue": 52585,
+          "two_axis_0x1": 9340,
+          "unmatched_visible": 2839,
+          "unmatched_visible_stage_covered": 1944,
+          "wrong_current_stage_coverage_change": 729,
+          "wrong_two_axis_0x1": 5554,
+          "wrong_cue_known_correct_cue": 13852,
+          "wrong_detector_missing_or_label_unverified": 1828,
+          "contaminated_history": 26838,
+          "contaminated_history_wrong": 24525,
+          "wrong_local_reranking_cost_feasible": 2787,
+          "wrong_two_axis_1x1": 8298,
+          "wrong_reference_not_visible": 4585,
+          "wrong_local_rescoring_or_acceptance_change": 14692,
+          "two_axis_1x0": 10224,
+          "cue_unverified_cue_availability": 12464,
+          "two_axis_0x0": 2240,
+          "wrong_two_axis_1x0": 9181,
+          "wrong_cue_unverified_cue_availability": 10769,
+          "wrong_two_axis_0x0": 1588
+        }
+      },
+      "per_video_metrics": {
+        "BT-005": {
+          "rows": 18921,
+          "unknown_reference": 455,
+          "known_reference": 18466,
+          "visible": 18466,
+          "detection_coverage": 16989,
+          "stage_coverage": 16862,
+          "geometry_appearance_coverage": 13819,
+          "cost_feasible_coverage": 14036,
+          "full_geometry_appearance_coverage": 13882,
+          "union_geometry_top3_coverage": 14430,
+          "wrong": 3328,
+          "correct": 13468,
+          "unknown_write": 1291,
+          "unmatched": 379,
+          "high_confidence_wrong": 1007,
+          "wrong_reactivation": 5,
+          "correct_column_taken_by_other_track": 3370,
+          "visible_detection_coverage": 16989,
+          "visible_stage_coverage": 16862,
+          "visible_geometry_appearance_coverage": 13819,
+          "visible_union_geometry_top3_coverage": 14430,
+          "appearance_top1_coverage": 13074,
+          "appearance_top2_coverage": 13817,
+          "appearance_top3_coverage": 14181,
+          "appearance_top5_coverage": 14892,
+          "two_axis_1x1": 16821,
+          "cue_known_correct_cue": 18285,
+          "two_axis_0x1": 1464,
+          "unmatched_visible": 379,
+          "unmatched_visible_stage_covered": 183,
+          "wrong_detector_missing_or_label_unverified": 364,
+          "wrong_two_axis_0x1": 379,
+          "wrong_cue_known_correct_cue": 3321,
+          "contaminated_history": 3676,
+          "contaminated_history_wrong": 3300,
+          "two_axis_1x0": 41,
+          "cue_unverified_cue_availability": 181,
+          "wrong_local_reranking_cost_feasible": 371,
+          "wrong_two_axis_1x1": 2942,
+          "two_axis_0x0": 140,
+          "wrong_two_axis_1x0": 1,
+          "wrong_cue_unverified_cue_availability": 7,
+          "wrong_local_rescoring_or_acceptance_change": 2572,
+          "wrong_two_axis_0x0": 6,
+          "wrong_current_stage_coverage_change": 21
+        },
+        "SN-013": {
+          "rows": 29459,
+          "unknown_reference": 494,
+          "known_reference": 28965,
+          "visible": 27769,
+          "detection_coverage": 25861,
+          "stage_coverage": 25246,
+          "geometry_appearance_coverage": 19247,
+          "cost_feasible_coverage": 19397,
+          "full_geometry_appearance_coverage": 19478,
+          "union_geometry_top3_coverage": 20880,
+          "wrong": 7323,
+          "correct": 18475,
+          "unknown_write": 1576,
+          "unmatched": 1591,
+          "high_confidence_wrong": 5365,
+          "wrong_reactivation": 12,
+          "correct_column_taken_by_other_track": 6700,
+          "visible_detection_coverage": 25861,
+          "visible_stage_coverage": 25246,
+          "visible_geometry_appearance_coverage": 19247,
+          "visible_union_geometry_top3_coverage": 20880,
+          "appearance_top1_coverage": 18574,
+          "appearance_top2_coverage": 19710,
+          "appearance_top3_coverage": 20705,
+          "appearance_top5_coverage": 22518,
+          "two_axis_1x1": 21502,
+          "cue_known_correct_cue": 24350,
+          "two_axis_0x1": 2848,
+          "wrong_detector_missing_or_label_unverified": 597,
+          "wrong_two_axis_0x1": 725,
+          "wrong_cue_known_correct_cue": 3276,
+          "contaminated_history": 8003,
+          "contaminated_history_wrong": 7286,
+          "unmatched_visible": 983,
+          "unmatched_visible_stage_covered": 546,
+          "two_axis_1x0": 3744,
+          "cue_unverified_cue_availability": 4615,
+          "two_axis_0x0": 871,
+          "wrong_current_stage_coverage_change": 285,
+          "wrong_local_reranking_cost_feasible": 632,
+          "wrong_two_axis_1x1": 2551,
+          "wrong_two_axis_1x0": 3378,
+          "wrong_cue_unverified_cue_availability": 4047,
+          "wrong_local_rescoring_or_acceptance_change": 5297,
+          "wrong_two_axis_0x0": 669,
+          "wrong_reference_not_visible": 512
+        }
+      },
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": "Feasible reranking, rescoring, stage coverage and absent/unverified detections separated; not an MOT improvement",
+      "next_step": "Train heldout risk controls; implement branching and candidate prediction"
+    },
+    {
+      "experiment_id": "VI2_candidate_queries_warmstart_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Build known-only edge risk labels and explicit candidate-missing examples from actual unmodified histories",
+      "status": "COMPLETE",
+      "reason": "H1 shows persistent wrong writes and both rescoring/coverage opportunities; unknowns must be unsupervised",
+      "code": [
+        "tools/cfp_build_candidate_queries.py",
+        "cfp/candidate_graph.py",
+        "cfp/recoverability.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/cross_train_gru_cfp_s0_c1_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "train_config": null,
+      "seed": 0,
+      "git_commit": "00ae0e8f1d75b7853edfbe42d4324bac2784ff8c",
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": {
+        "BT-001": {
+          "queries": 6086,
+          "candidate_edges": 57680,
+          "known_edges": 43523,
+          "known_wrong_edges": 39300,
+          "null_eligible": 4271,
+          "target_absent_queries": 1863,
+          "feature_sha256": "61280c302a180750857e5544c9b87eba93012c22dd1e2b35d48016d41c19d842",
+          "trace_sha256": "a43562e3775ffc7f27ebeb9ad28166ddc54da8a593f0bcdd9e5d9a88679ff3f4",
+          "sha256": "f2ce705c3ade744bfff1368180bebbd1c8ccdcf5610708ea9c471364c68e9613",
+          "detection_sha256": "4d3b8bd22d173d42bab70f35cbad2f99d8370f09f263fe8379010745049f7c2c"
+        },
+        "BT-003": {
+          "queries": 478,
+          "candidate_edges": 4661,
+          "known_edges": 3583,
+          "known_wrong_edges": 3220,
+          "null_eligible": 363,
+          "target_absent_queries": 115,
+          "feature_sha256": "92c4f1925375587504ecd38cd908a80da3505f47a8895986076c28860fdb4fb5",
+          "trace_sha256": "c89fd72afb0e2e6bc15956755ad11506524fa7481252da85b1530bd981752027",
+          "sha256": "67021dba36154336f5d5b817c6bffd66dd775af11c2af98d04459f60580dc257",
+          "detection_sha256": "59cb00c2b5f9be697ade5109b27bf6ed40d6dd665da279c23dc2cf82010af597"
+        },
+        "MSK-002": {
+          "queries": 14027,
+          "candidate_edges": 497702,
+          "known_edges": 385138,
+          "known_wrong_edges": 376601,
+          "null_eligible": 8537,
+          "target_absent_queries": 5490,
+          "feature_sha256": "b88f96f621ba1bd5558896e511210f3c11d0aea580ea94b0eb0581635552dfe4",
+          "trace_sha256": "adbe9f0f64e1fd7fd2d062da66d660fb5e8b5b9f415a156c9735ab6ed27d8726",
+          "sha256": "25570c5667a68b3cba2db025289651d93ed752b544d0ce7f73c7714ac23bbd04",
+          "detection_sha256": "2e85a7d59b94af88d242864f3a5720355a257d9da33abdcddb64af526b7bbd42"
+        },
+        "PF-001": {
+          "queries": 6012,
+          "candidate_edges": 11915,
+          "known_edges": 11528,
+          "known_wrong_edges": 5786,
+          "null_eligible": 5801,
+          "target_absent_queries": 270,
+          "feature_sha256": "a78bf07877982973d7864d0b661d737f427bd73f9254a721af091dc26dc47e5f",
+          "trace_sha256": "65d32b1401bc9a232071953647375be9fbbe47fe8e6406a4c735754f8f33dbe2",
+          "sha256": "e7d1aad610f79618caeb81aaf17f2157ac8ae73314bb6d44801688ce2549234c",
+          "detection_sha256": "a38c6acabd6332a2f5905f431212a3055a97c644c682f7c64e7ddc3b59c5bdde"
+        },
+        "SN-001": {
+          "queries": 1276,
+          "candidate_edges": 10961,
+          "known_edges": 9668,
+          "known_wrong_edges": 8701,
+          "null_eligible": 1036,
+          "target_absent_queries": 309,
+          "feature_sha256": "192ed5a04d347efb4dd3bca51df9b22ea9b929702a496c6208c42eacb4fec7d7",
+          "trace_sha256": "f9be891b3668ac50aa0d2512d49d9a66626be3d7f585f4c4b2da383ab5873118",
+          "sha256": "1e9faf23fe8972ad7dcd1d807e30efa65212860ca282dfe60c63d523dab237c6",
+          "detection_sha256": "719cf8b5b354c8005ba1bb658313f45feab45b57dff4d22db03722792991715c"
+        },
+        "SN-015": {
+          "queries": 13007,
+          "candidate_edges": 120947,
+          "known_edges": 113798,
+          "known_wrong_edges": 103088,
+          "null_eligible": 11797,
+          "target_absent_queries": 2297,
+          "feature_sha256": "2ac3f9a4dee7d171190ee3da203bb9be6d5be763fe87f53cbb653059bb262882",
+          "trace_sha256": "4514bdfcd495e6b81f3d2bb1306498d9864df3aa214122d43e2527013ef23134",
+          "sha256": "091374b92c10375292cd658902efab39d0dc358dfec9d464e258e4832d8cea2f",
+          "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0"
+        }
+      },
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": "Warm-start teacher states, not genuine OOF evidence",
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_BT-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_BT-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_BT-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_BT-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_BT-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_BT-003_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_BT-003_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_BT-003_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_BT-003_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_BT-003_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_MSK-002_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_MSK-002_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_MSK-002_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_PF-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_PF-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_PF-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_SN-001_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_SN-001_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_SN-001_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_risk_context_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_risk_context_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    },
+    {
+      "experiment_id": "phase_vi_risk_warm_mlp_control_holdout_SN-015_s0_v1",
+      "hypothesis_id": "H2",
+      "question": "Does candidate-context risk improve outer-video diagnostics beyond same-input ordinary MLP?",
+      "status": "REGISTERED",
+      "reason": "Fixed-state H1 errors show confident writes and candidate competition",
+      "code": [
+        "cfp/recoverability.py",
+        "tools/cfp_train_candidate_risk.py"
+      ],
+      "inputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1"
+      ],
+      "outputs": [
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_mlp_control_holdout_SN-015_s0_v1"
+      ],
+      "train_config": "configs/cfp/phase_vi_risk_warm_mlp_control_holdout_SN-015_s0_v1.json",
+      "seed": 0,
+      "git_commit": null,
+      "checkpoint_sha256": null,
+      "parameters": null,
+      "metrics": null,
+      "per_video_metrics": null,
+      "N01": null,
+      "N10": null,
+      "cost": null,
+      "conclusion": null,
+      "next_step": null
+    }
+  ]
+}

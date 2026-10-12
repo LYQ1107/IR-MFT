@@ -1,0 +1,19 @@
+# Phase VI final research goal
+
+Status: IN_PROGRESS. Start from verified `00ae0e8`, branch `research/recoverability-candidate-jepa-v1`.
+
+Learning when and how to recover identity: given strictly past accepted observations and the current detection set, can a tracker identify recoverable ambiguity, distinguish candidate explanations, reject unsupported assignments and protect stable identity memory?
+
+The strong ordinary RGB GRU/current-measurement baseline is three-seed HOTA 53.591386, AssA 39.1389, DetA 73.4570, IDF1 62.7009, MOTA 93.6721, IDSW 87.3333. Preserve BoT-SORT/RGB (HOTA 52.4818) too. Old smoothed-box GRU 51.8853 is not the primary baseline. Detection, causal synthetic IR, FishReID coordinates, output policy and pinned official TrackEval remain frozen.
+
+Phase V established actual EMA/masked/error-corrupted training and exact resume, but not stable improvement over these strong ordinary models. Clean-history near-99% ranks concealed actual-history near-61% behavior. More retrospectively correct early cues did not improve tracking. Unknown labels were once misused as negative support; this was repaired, and Phase VI must not repeat it. The relative Transformer EMA signal was real but insufficient. Candidate-stage exclusion and contaminated writes motivate this phase; none yet proves a new mechanism.
+
+Initial hypotheses (not findings): H1 candidate availability and usable past cues separate reranking opportunity from coverage/lifecycle failure; H2 calibrated candidate-conditioned risk can protect assignments and writes beyond simple margins; H3 candidate-conditioned predictive objectives improve difficult real-history discrimination beyond matched ordinary decoders; H4 two isolated explanations recover crossing ambiguity beyond simply delaying memory; H5 evidence-driven coverage or temporal adaptations may address failures that prototype training cannot.
+
+Use full-video-heldout folds within the six train videos for architecture comparisons. Existing BT-005/SN-013 are exposed historical development references, never a new blind test. The detector has seen these videos; FishReID has seen all six train videos. Validate the historical GRU fitting split before calling any trace OOF. New supervised modules must exclude heldout videos; whole-system unseen identity/scene generalization remains unproven. Investigate external datasets using primary licensing/annotation evidence before download. The seven historically tuned test videos remain excluded from search.
+
+Scientific success requires reproducible full-video identity gains under identical inputs/output rules, independent controls of EMA versus ordinary prediction, risk versus thresholding, and branching versus delayed writes; three seeds and per-video/event evidence for promising designs, and complete strictly-current online cost measurement. A local rank/AUC gain is Level 1 evidence, not MOT success. No fixed HOTA cut-off or number of failed trials terminates research.
+
+Every failed hypothesis records observed failure, alternatives, a discriminating experiment, repair/pivot and evidence update. A final negative conclusion requires overall evidence and explicit scope/unperformed experiments, not a three-round NO_GO. Maintain the hypothesis ledger and experiment registry before every substantive run.
+
+Protect historical data, weights, logs and predictions. Use unique immutable output directories under `IR-MFT_assets/cfp/phase6`; never commit weights/data/features. Initially use only idle GPU 0/1, maximum four physical GPUs, without affecting other users. Reserve >=40 GiB, inspect remaining space each stage, reuse frozen caches. Initial 12 GiB stage plan is storage planning, not a total scientific search limit. Keep critical evidence and resumable states. Push small code/config/metrics at each completed stage and verify live remote hashes.
