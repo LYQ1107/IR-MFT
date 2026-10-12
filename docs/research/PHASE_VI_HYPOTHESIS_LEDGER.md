@@ -20,3 +20,13 @@ H0 baseline protection validated: 88 hashes, three byte-identical strong GRU rep
 H1 actual-state diagnostic complete: known wrong accepted rows are often score-infeasible with a correct stage candidate, while geometry eligibility is not a hard mask. Early-reference and rolling-reference counts differ substantially; persistent drift must not be counted as distinct ID switches. Unknown past labels prevent absence-of-evidence claims.
 
 Repair/pivot: train whole-video risk/context vs ordinary MLP to assess calibration and discrimination; then check actual Hungarian changes. Retain C independent of A/B outcome. Coverage-only intervention is a separate later hypothesis, not assumed to explain all failures. Remaining lifecycle/oracle episode analyses explicitly unperformed.
+
+## Risk warm-start loader repair
+
+Observed engineering failure: compressed NPZ members were accessed inside each row iteration, repeatedly decompressing entire arrays. Own parent/two training processes were stopped before any epoch or checkpoint existed. Original empty run directories, logs, campaign and source are retained. Repair materializes every member once and precomputes NumPy sampling groups. New immutable loadrepair_v2 outputs reuse the same config/data/budget; this is not another scientific hyperparameter search.
+
+## H2 first video-heldout evidence
+
+12 eight-epoch seed0 risk/MLP controls completed. Context does not consistently beat ordinary MLP; SN-015 accepted-edge AUC .5573 vs .5979 and local net correction −2102 vs −1984, while PF-001/SN-001 show positive local counts. This is not online IDSW evidence. Calibration transfer is weak in multiple outer videos.
+
+Evidence update: candidate-set pooling of scalar cues is insufficient for a robust claim. Repair/pivot: examine actual assignment/acceptance changes and training-state shift; test raw candidate-history interactions and independent K2 branches. The warm-start producer limitation remains explicit; no branch-wide or project-wide NO_GO.

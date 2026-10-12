@@ -1,0 +1,30 @@
+{
+  "status": "EXACT_EPOCH_BOUNDARY_RESUME_VERIFIED",
+  "scope": "Actual configured stop after epoch3, restore full state, finish epoch8; NOT asynchronous SIGTERM at an arbitrary minibatch",
+  "checks": {
+    "last.pt": {
+      "model": true,
+      "optimizer": true,
+      "epoch": true,
+      "guard": true,
+      "report": true,
+      "rng_numpy": true,
+      "rng_python": true,
+      "rng_torch": true,
+      "rng_cuda": true
+    },
+    "inference.pt": {
+      "model": true,
+      "config": true,
+      "guard": true,
+      "calibration": true,
+      "teacher_removed": true,
+      "feature_names": true
+    }
+  },
+  "continuous": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/phase_vi_risk_warm_risk_context_holdout_BT-001_s0_loadrepair_v2",
+  "resumed": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/risk_context_actual_resume_v1",
+  "continuous_manifest_sha256": "8d311baa70db3f2b308674c73423139f6f5b7728d1baa2c22130a12845b97f1d",
+  "resumed_manifest_sha256": "edd8179c41381dbe633c0c0355cc0bbe14832cde546e3ec33b4c77b9f54ac552",
+  "source_sha256": "6792a27dd62a54d0fa78b6306757e8ac10ea97345d1424350b89f01b711dc044"
+}

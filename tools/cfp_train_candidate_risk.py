@@ -31,13 +31,16 @@ def load_data(root):
         if sha256(path) != spec['sha256']:
             raise ValueError('Candidate supervision drift')
         with np.load(path, allow_pickle=False) as data:
-            for i, frame in enumerate(data['frame']):
-                lo, hi = data['candidate_offsets'][i:i + 2]
-                rows.append(dict(sequence=seq, frame=int(frame), track_id=int(data['track_id'][i]),
-                    features=data['features'][lo:hi].copy(), labels=data['risk_labels'][lo:hi].copy(),
-                    assigned=int(data['assigned'][i]), positive=int(data['positive'][i]),
-                    null_known=bool(data['null_known'][i]),
-                    correct_history=int(data['correct_history'][i]), unknown_history=int(data['unknown_history'][i])))
+            # NPZ member access decompresses on every lookup. Materialize once,
+            # otherwise per-row slicing repeatedly decompresses the whole bank.
+            arrays = {key: data[key] for key in data.files}
+            for i, frame in enumerate(arrays['frame']):
+                lo, hi = arrays['candidate_offsets'][i:i + 2]
+                rows.append(dict(sequence=seq, frame=int(frame), track_id=int(arrays['track_id'][i]),
+                    features=arrays['features'][lo:hi].copy(), labels=arrays['risk_labels'][lo:hi].copy(),
+                    assigned=int(arrays['assigned'][i]), positive=int(arrays['positive'][i]),
+                    null_known=bool(arrays['null_known'][i]),
+                    correct_history=int(arrays['correct_history'][i]), unknown_history=int(arrays['unknown_history'][i])))
     return rows, meta
 
 
@@ -150,7 +153,7 @@ def main():
     fit = [r for r in rows if r['sequence'] in fit_videos and len(r['labels']) and np.any(r['labels'] >= 0)]
     cal = [r for r in rows if r['sequence'] == config['calibration_video']]
     val = [r for r in rows if r['sequence'] == config['validation_video']]
-    groups = [[i for i, r in enumerate(fit) if r['sequence'] == seq] for seq in fit_videos]
+    groups = [np.array([i for i, r in enumerate(fit) if r['sequence'] == seq], dtype=np.int64) for seq in fit_videos]
     model = RecoverabilityEstimator(config['hidden'], config['candidate_context'], config['history_evidence']).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=config['weight_decay'])
     guard = dict(config_sha256=sha256(args.config), query_manifest_sha256=sha256(Path(config['queries']) / 'manifest.json'),
