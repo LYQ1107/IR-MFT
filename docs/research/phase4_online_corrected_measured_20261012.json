@@ -1,0 +1,3099 @@
+{
+  "status": "COMPLETE",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "source_snapshots": {
+    "tools/cfp_collect_online_results.py": "a7ce0d44e2599cc01a250b918908fb2cc871b1b89c41e6813d7942458148078d",
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "canonical_pixel_equivalence": {
+    "BT-005": {
+      "frames": 1834,
+      "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a"
+    },
+    "SN-013": {
+      "frames": 3000,
+      "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce"
+    }
+  },
+  "three_seed_current_frame": {
+    "mean": {
+      "HOTA": 51.4768514147083,
+      "DetA": 71.51220235536009,
+      "AssA": 37.08534227986029,
+      "DetRe": 76.5958017231581,
+      "DetPr": 77.72898346913536,
+      "AssRe": 42.619788801394016,
+      "AssPr": 61.91189116761535,
+      "LocA": 80.9654193444821,
+      "OWTA": 53.26006108213854,
+      "HOTA(0)": 69.0540075779711,
+      "LocA(0)": 76.80627800086582,
+      "HOTALocA(0)": 53.037311775168604,
+      "MOTA": 92.60239770990722,
+      "MOTP": 77.94937735464164,
+      "MODA": 92.78247705961273,
+      "CLR_Re": 95.66231175968375,
+      "CLR_Pr": 97.0775624034892,
+      "MTR": 95.23809523809523,
+      "PTR": 0.0,
+      "MLR": 4.761904761904762,
+      "sMOTA": 71.50826178244988,
+      "CLR_F1": 96.36474077424715,
+      "FP_per_frame": 0.2767894083574679,
+      "MOTAL": 92.77833917187593,
+      "MOTP_sum": 34645.1201734107,
+      "CLR_TP": 44445.666666666664,
+      "CLR_FN": 2015.3333333333333,
+      "CLR_FP": 1338.0,
+      "IDSW": 83.66666666666667,
+      "MT": 20.0,
+      "PT": 0.0,
+      "ML": 1.0,
+      "Frag": 350.0,
+      "CLR_Frames": 4834.0,
+      "IDF1": 61.37005396660741,
+      "IDR": 60.922781113909146,
+      "IDP": 61.82394327369238,
+      "IDTP": 28305.333333333332,
+      "IDFN": 18155.666666666668,
+      "IDFP": 17478.333333333332,
+      "Dets": 45783.666666666664,
+      "GT_Dets": 46461.0,
+      "IDs": 62.666666666666664,
+      "GT_IDs": 21.0
+    },
+    "sample_std": {
+      "HOTA": 0.8695151115372516,
+      "DetA": 0.11594575783244943,
+      "AssA": 1.3034040052310798,
+      "DetRe": 0.060603466431118504,
+      "DetPr": 0.07285571896807526,
+      "AssRe": 1.7602595800067111,
+      "AssPr": 0.05117439485992586,
+      "LocA": 0.011002696685866604,
+      "OWTA": 0.9171106765738629,
+      "HOTA(0)": 1.289156012423977,
+      "LocA(0)": 0.05941358611582913,
+      "HOTALocA(0)": 0.9503052757716457,
+      "MOTA": 0.026184380578538998,
+      "MOTP": 0.014438174364269729,
+      "MODA": 0.026738763197205605,
+      "CLR_Re": 0.006575515945209669,
+      "CLR_Pr": 0.020409345784131904,
+      "MTR": 0.0,
+      "PTR": 0.0,
+      "MLR": 0.0,
+      "sMOTA": 0.011167322551923115,
+      "CLR_F1": 0.01320922625646539,
+      "FP_per_frame": 0.0019733951208459784,
+      "MOTAL": 0.02673478608930942,
+      "MOTP_sum": 4.518222289006178,
+      "CLR_TP": 3.055050463303893,
+      "CLR_FN": 3.0550504633038935,
+      "CLR_FP": 9.539392014169456,
+      "IDSW": 1.5275252316519468,
+      "MT": 0.0,
+      "PT": 0.0,
+      "ML": 0.0,
+      "Frag": 1.7320508075688772,
+      "CLR_Frames": 0.0,
+      "IDF1": 1.4346508165407392,
+      "IDR": 1.4286260960462431,
+      "IDP": 1.4406978877277175,
+      "IDTP": 663.7539704840441,
+      "IDFN": 663.7539704840441,
+      "IDFP": 656.9629619189603,
+      "Dets": 6.8068592855540455,
+      "GT_Dets": 0.0,
+      "IDs": 1.1547005383792517,
+      "GT_IDs": 0.0
+    },
+    "runs": [
+      "online_anchor_gru_seed0_split_full_v1",
+      "online_anchor_gru_seed1_split_full_v1",
+      "online_anchor_gru_seed2_split_full_v1"
+    ],
+    "runtime_variant": "split_cu117_b8",
+    "scope": "Frozen GRU anchor candidate, complete current-frame pipeline. Explicit detector runtime/batch comes from each run config; encoderpadding128. Keep original cu118/batch1 diagnosis separate from corrected cu117/batch8 pipeline."
+  },
+  "runs": {
+    "online_anchor_gru_seed0_split_full_v1": {
+      "manifest_sha256": "40560ceb026b9f4627c0af0d77b35bffbcd1a5b96fa1474afc00066baa794a89",
+      "evaluation_sha256": "4a91ebc102a8c60115082ceed36540f6f00d8aa1bcdcfb7008ceaf4ee394eca7",
+      "protocol": "B/current-frame complete pipeline",
+      "precomputed_causal_ir": false,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 57.40059887588792,
+          "DetA": 71.46506544048022,
+          "AssA": 46.12592010102028,
+          "DetRe": 76.40905699362911,
+          "DetPr": 76.9841292788638,
+          "AssRe": 53.45350173647741,
+          "AssPr": 61.18700342481825,
+          "LocA": 80.32755255300789,
+          "OWTA": 59.32375633511832,
+          "HOTA(0)": 77.97159053105995,
+          "LocA(0)": 76.07734569002862,
+          "HOTALocA(0)": 59.31871646832809,
+          "MOTA": 94.18756815703381,
+          "MOTP": 77.0345872968182,
+          "MODA": 94.28026172300982,
+          "CLR_Re": 96.76663031624864,
+          "CLR_Pr": 97.49491842004065,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.96471214594507,
+          "CLR_F1": 97.1294091891744,
+          "FP_per_frame": 0.24863685932388221,
+          "MOTAL": 94.27355262311134,
+          "MOTP_sum": 13671.328207566326,
+          "CLR_TP": 17747,
+          "CLR_FN": 593,
+          "CLR_FP": 456,
+          "IDSW": 17,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 96.0,
+          "CLR_Frames": 1834,
+          "IDF1": 74.27961579509072,
+          "IDR": 74.0021810250818,
+          "IDP": 74.55913860352689,
+          "IDTP": 13572,
+          "IDFN": 4768,
+          "IDFP": 4631,
+          "Dets": 18203,
+          "GT_Dets": 18340,
+          "IDs": 21,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 47.67991007347931,
+          "DetA": 71.46167156781624,
+          "AssA": 31.843371146086223,
+          "DetRe": 76.66138248433928,
+          "DetPr": 78.15664492049832,
+          "AssRe": 36.64109368155721,
+          "AssPr": 62.255215737882416,
+          "LocA": 81.37160616969138,
+          "OWTA": 49.390731427276464,
+          "HOTA(0)": 63.377572616795504,
+          "LocA(0)": 77.23301907733993,
+          "HOTALocA(0)": 48.948412749884646,
+          "MOTA": 91.5472422744568,
+          "MOTP": 78.5665458766725,
+          "MODA": 91.7783862593791,
+          "CLR_Re": 94.93261263824189,
+          "CLR_Pr": 96.78425116919843,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.19990429656305,
+          "CLR_F1": 95.84949016228637,
+          "FP_per_frame": 0.2956666666666667,
+          "MOTAL": 91.77193942833952,
+          "MOTP_sum": 20974.125087236494,
+          "CLR_TP": 26696,
+          "CLR_FN": 1425,
+          "CLR_FP": 887,
+          "IDSW": 65,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 253.0,
+          "CLR_Frames": 3000,
+          "IDF1": 53.89200057446503,
+          "IDR": 53.37648021051883,
+          "IDP": 54.41757604321502,
+          "IDTP": 15010,
+          "IDFN": 13111,
+          "IDFP": 12573,
+          "Dets": 27583,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 51.75795081350856,
+          "DetA": 71.45044390406868,
+          "AssA": 37.5142423873688,
+          "DetRe": 76.56177960236033,
+          "DetPr": 77.69049146257072,
+          "AssRe": 43.2915039783613,
+          "AssPr": 61.88163057009888,
+          "LocA": 80.9578126513915,
+          "OWTA": 53.56007835554636,
+          "HOTA(0)": 69.5042128200274,
+          "LocA(0)": 76.77344235631045,
+          "HOTALocA(0)": 53.36077676459108,
+          "MOTA": 92.58948365295623,
+          "MOTP": 77.95480344441829,
+          "MODA": 92.7659757646198,
+          "CLR_Re": 95.65657217881665,
+          "CLR_Pr": 97.0667889747958,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.50180429780423,
+          "CLR_F1": 96.35652107927629,
+          "FP_per_frame": 0.27782374844848984,
+          "MOTAL": 92.7618565811059,
+          "MOTP_sum": 34645.45329480282,
+          "CLR_TP": 44443,
+          "CLR_FN": 2018,
+          "CLR_FP": 1343,
+          "IDSW": 82,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 61.96841089683134,
+          "IDR": 61.518262628871526,
+          "IDP": 62.42519547459923,
+          "IDTP": 28582,
+          "IDFN": 17879,
+          "IDFP": 17204,
+          "Dets": 45786,
+          "GT_Dets": 46461,
+          "IDs": 62,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18203,
+          "prediction_sha256": "4572504b735f7788d7f2fbfa849a8e56921d1079cbde2f1c6f4d9f1f9c7bcf80",
+          "timings_sha256": "5439e943808d33dccc8dca399c034e345e344e1063e3ff84bacdcc8dadbbdba6",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 1510.6328845941462,
+          "fps": 1.2140606885389835,
+          "latency_p50_p95_ms": [
+            806.121068977518,
+            923.0466495559084
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              6.091695016948506,
+              7.664537278469649
+            ],
+            "generation_codec": [
+              324.76058352040127,
+              356.55490767967416
+            ],
+            "worker_provided_ir_validation": [
+              0.0020980078261345625,
+              0.0034199911169707775
+            ],
+            "worker_detector_preprocess_transfer": [
+              180.59820952476002,
+              204.01647555409
+            ],
+            "worker_detector_nms": [
+              167.2347844869364,
+              172.66485766740513
+            ],
+            "worker_proposal_transfer": [
+              0.15654999879188836,
+              0.22098108602222055
+            ],
+            "detector_worker_roundtrip": [
+              392.997644492425,
+              464.9028842861298
+            ],
+            "crop_preparation": [
+              31.714049517177045,
+              43.75106063962448
+            ],
+            "encoders_transfer": [
+              35.98340548342094,
+              63.15527453843969
+            ],
+            "association": [
+              9.421644499525428,
+              11.450962218805216
+            ],
+            "output": [
+              0.19428945961408317,
+              0.2778052672510966
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18905,
+            "missing_history_rows": 0,
+            "modified_edges": 28553
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27586,
+          "prediction_sha256": "6193e208a099669db106ad00fedf0b9bab49375b992ea8cbda1b55b5781e3c03",
+          "timings_sha256": "f4f6de3c628b381598a3c9693a96e96c60c62b8bb2f65ced3e45a3ef8bbf271a",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 2467.2633549920283,
+          "fps": 1.2159220838464944,
+          "latency_p50_p95_ms": [
+            816.1693370202556,
+            860.0036750925937
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              6.164134480059147,
+              7.861847555614074
+            ],
+            "generation_codec": [
+              336.97604900225997,
+              364.06076745188324
+            ],
+            "worker_provided_ir_validation": [
+              0.0019859871827065945,
+              0.0030562194297090164
+            ],
+            "worker_detector_preprocess_transfer": [
+              182.77176850824617,
+              206.08891215815675
+            ],
+            "worker_detector_nms": [
+              167.19456249848008,
+              169.02759947115555
+            ],
+            "worker_proposal_transfer": [
+              0.15360600082203746,
+              0.20585503079928447
+            ],
+            "detector_worker_roundtrip": [
+              394.85441899159923,
+              423.93633811152534
+            ],
+            "crop_preparation": [
+              30.57578846346587,
+              40.55692615802398
+            ],
+            "encoders_transfer": [
+              35.80725999199785,
+              40.39129477459937
+            ],
+            "association": [
+              9.084934514248744,
+              11.185967898927625
+            ],
+            "output": [
+              0.18650051788426936,
+              0.26664038887247443
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29445,
+            "missing_history_rows": 0,
+            "modified_edges": 43006
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": null,
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen detector runs in its exactcu117/cuDNN8.5 stack and uses8copies ofthecurrentframe only. Encoder/predictor remaincu118 like their training/export. Current-pair private IPC, nofuture/GT. Correct runtime-parity repair, not threshold/model tuning.",
+        "detector_batch": 8,
+        "preprocessing": "lookup_uint8",
+        "detector_runtime_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 0,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 627558912,
+      "aggregate_pipeline_seconds": 3977.8962395861745,
+      "aggregate_fps": 1.2152152064436168,
+      "aggregate_latency_p50_p95_ms": [
+        813.2429244869854,
+        877.2826850443377
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark."
+    },
+    "online_anchor_gru_seed1_split_full_v1": {
+      "manifest_sha256": "eaf43e626f22c8b27602efda2630416c7464c964f2b9300c0e2a07296da9ac4e",
+      "evaluation_sha256": "b6d42fe58b762b8ec27f2dbcf503071c958476a63d1851a4778e52a2b67dffed",
+      "protocol": "B/current-frame complete pipeline",
+      "precomputed_causal_ir": false,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 55.40628385480847,
+          "DetA": 71.76137037692119,
+          "AssA": 42.80345893390039,
+          "DetRe": 76.56919015094988,
+          "DetPr": 77.1539446936114,
+          "AssRe": 49.544541841229965,
+          "AssPr": 59.36943891044514,
+          "LocA": 80.35288521142566,
+          "OWTA": 57.21151669724547,
+          "HOTA(0)": 74.93483310163165,
+          "LocA(0)": 76.22321868190649,
+          "HOTALocA(0)": 57.11774170397835,
+          "MOTA": 94.28026172300982,
+          "MOTP": 76.98076326110171,
+          "MODA": 94.38931297709924,
+          "CLR_Re": 96.81570338058889,
+          "CLR_Pr": 97.55507939124224,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.99402576140251,
+          "CLR_F1": 97.18398511261323,
+          "FP_per_frame": 0.24263904034896402,
+          "MOTAL": 94.38221902946749,
+          "MOTP_sum": 13668.704324641221,
+          "CLR_TP": 17756,
+          "CLR_FN": 584,
+          "CLR_FP": 445,
+          "IDSW": 20,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 99.0,
+          "CLR_Frames": 1834,
+          "IDF1": 71.99584028899045,
+          "IDR": 71.72300981461287,
+          "IDP": 72.27075435415637,
+          "IDTP": 13154,
+          "IDFN": 5186,
+          "IDFP": 5047,
+          "Dets": 18201,
+          "GT_Dets": 18340,
+          "IDs": 22,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 46.99541022858049,
+          "DetA": 71.59270341053895,
+          "AssA": 30.88119356273571,
+          "DetRe": 76.72876048804133,
+          "DetPr": 78.24803168392422,
+          "AssRe": 34.7721154656668,
+          "AssPr": 63.58744496390981,
+          "LocA": 81.38909842831711,
+          "OWTA": 48.66141776524518,
+          "HOTA(0)": 62.35584717790985,
+          "LocA(0)": 77.30520866872382,
+          "HOTALocA(0)": 48.20431777803375,
+          "MOTA": 91.5579104583763,
+          "MOTP": 78.56644170900103,
+          "MODA": 91.7854983819921,
+          "CLR_Re": 94.9219444543224,
+          "CLR_Pr": 96.80145058930191,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.21276016280945,
+          "CLR_F1": 95.85248491812698,
+          "FP_per_frame": 0.294,
+          "MOTAL": 91.77907549527406,
+          "MOTP_sum": 20971.740285383643,
+          "CLR_TP": 26693,
+          "CLR_FN": 1428,
+          "CLR_FP": 882,
+          "IDSW": 64,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 253.0,
+          "CLR_Frames": 3000,
+          "IDF1": 51.687733409939675,
+          "IDR": 51.18594644571672,
+          "IDP": 52.199456029011785,
+          "IDTP": 14394,
+          "IDFN": 13727,
+          "IDFP": 13181,
+          "Dets": 27575,
+          "GT_Dets": 28121,
+          "IDs": 42,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 50.50155991379872,
+          "DetA": 71.6459545076187,
+          "AssA": 35.62153418127389,
+          "DetRe": 76.6657717451762,
+          "DetPr": 77.81301164480581,
+          "AssRe": 40.62257248290073,
+          "AssPr": 61.970976453209424,
+          "LocA": 80.9780353523468,
+          "OWTA": 52.230516079029876,
+          "HOTA(0)": 67.60012114585669,
+          "LocA(0)": 76.87486228315487,
+          "HOTALocA(0)": 51.967500034123184,
+          "MOTA": 92.63253050945954,
+          "MOTP": 77.93301223880145,
+          "MODA": 92.81332730677342,
+          "CLR_Re": 95.66948623576764,
+          "CLR_Pr": 97.10110101363159,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.52115669061118,
+          "CLR_F1": 96.3799776662294,
+          "FP_per_frame": 0.2745138601572197,
+          "MOTAL": 92.80918559805845,
+          "MOTP_sum": 34640.44461002486,
+          "CLR_TP": 44449,
+          "CLR_FN": 2012,
+          "CLR_FP": 1327,
+          "IDSW": 84,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 352.0,
+          "CLR_Frames": 4834,
+          "IDF1": 59.733078916270046,
+          "IDR": 59.29274014765071,
+          "IDP": 60.18000699056274,
+          "IDTP": 27548,
+          "IDFN": 18913,
+          "IDFP": 18228,
+          "Dets": 45776,
+          "GT_Dets": 46461,
+          "IDs": 64,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18201,
+          "prediction_sha256": "4c85061bd803fce5cb7df078d7d644acd80994dae6ce57f1d95128a1945324b7",
+          "timings_sha256": "e6d13ea97d4fd2d4bfed065805d30732616e54eaeaf9acb17e0cad7785738bba",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 1545.097172414593,
+          "fps": 1.1869803613282948,
+          "latency_p50_p95_ms": [
+            831.6916925250553,
+            915.34312205913
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              5.9697190299630165,
+              6.840449088485911
+            ],
+            "generation_codec": [
+              342.39234699634835,
+              410.7139402505708
+            ],
+            "worker_provided_ir_validation": [
+              0.0022145395632833242,
+              0.0032219686545431614
+            ],
+            "worker_detector_preprocess_transfer": [
+              165.2266439923551,
+              190.19530644873157
+            ],
+            "worker_detector_nms": [
+              166.96678099106066,
+              168.30695846001618
+            ],
+            "worker_proposal_transfer": [
+              0.15075950068421662,
+              0.18318211077712473
+            ],
+            "detector_worker_roundtrip": [
+              384.3765005003661,
+              415.4768277396215
+            ],
+            "crop_preparation": [
+              31.635553488740698,
+              43.05989257409235
+            ],
+            "encoders_transfer": [
+              57.3438220017124,
+              62.25400650000665
+            ],
+            "association": [
+              9.260936989448965,
+              10.790609082323499
+            ],
+            "output": [
+              0.1971930032595992,
+              0.2730117557803168
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18925,
+            "missing_history_rows": 0,
+            "modified_edges": 28512
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27578,
+          "prediction_sha256": "d56e9eae9b8dda822ada3a6253a7eeec9964286e7d09c4f4c96bd9fd81bb4273",
+          "timings_sha256": "8a69aad5d45378097caeb6bd985ac7a26a769efe89cedf31d7e99e1a0daa6bbc",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 2376.8032686908846,
+          "fps": 1.2621995431924682,
+          "latency_p50_p95_ms": [
+            785.016961483052,
+            838.7822928576497
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              6.309278454864398,
+              8.32177100528497
+            ],
+            "generation_codec": [
+              337.392664514482,
+              359.0872087836033
+            ],
+            "worker_provided_ir_validation": [
+              0.0021735031623393297,
+              0.0029993272619321925
+            ],
+            "worker_detector_preprocess_transfer": [
+              160.89939049561508,
+              188.62662132887633
+            ],
+            "worker_detector_nms": [
+              167.00578952440992,
+              168.13136154378296
+            ],
+            "worker_proposal_transfer": [
+              0.15033449744805694,
+              0.17414370377082378
+            ],
+            "detector_worker_roundtrip": [
+              370.81036149174906,
+              405.1543554145609
+            ],
+            "crop_preparation": [
+              30.388243496418,
+              39.69153949874453
+            ],
+            "encoders_transfer": [
+              31.074497994268313,
+              34.05840218765661
+            ],
+            "association": [
+              8.981953491456807,
+              10.364032452343963
+            ],
+            "output": [
+              0.188338482985273,
+              0.26186134782619763
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29381,
+            "missing_history_rows": 0,
+            "modified_edges": 42933
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed1/epoch12.pt",
+        "ir_checkpoint": null,
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed1/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen detector runs in its exactcu117/cuDNN8.5 stack and uses8copies ofthecurrentframe only. Encoder/predictor remaincu118 like their training/export. Current-pair private IPC, nofuture/GT. Correct runtime-parity repair, not threshold/model tuning.",
+        "detector_batch": 8,
+        "preprocessing": "lookup_uint8",
+        "detector_runtime_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 0,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 627558912,
+      "aggregate_pipeline_seconds": 3921.9004411054775,
+      "aggregate_fps": 1.2325657095562137,
+      "aggregate_latency_p50_p95_ms": [
+        800.6147455016617,
+        884.4508536130888
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark."
+    },
+    "online_anchor_gru_seed2_split_full_v1": {
+      "manifest_sha256": "a3efbf08825fd55e335ea04a9d856a3ce54807d1a06a2475a5b4c62f67638c0e",
+      "evaluation_sha256": "a8db09c02f1fd26e0dc841ee0ff4e97ea13cc5a14a22733ea9302b18951be474",
+      "protocol": "B/current-frame complete pipeline",
+      "precomputed_causal_ir": false,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 58.343595880523495,
+          "DetA": 71.45413498419178,
+          "AssA": 47.66209843459014,
+          "DetRe": 76.40991792458244,
+          "DetPr": 76.96808341499654,
+          "AssRe": 55.11906480773079,
+          "AssPr": 61.18271158546117,
+          "LocA": 80.32813237840571,
+          "OWTA": 60.30520547632143,
+          "HOTA(0)": 79.20350637642635,
+          "LocA(0)": 76.07917414277314,
+          "HOTALocA(0)": 60.25737354330383,
+          "MOTA": 94.17121046892039,
+          "MOTP": 77.0402457964672,
+          "MODA": 94.26935659760088,
+          "CLR_Re": 96.7720828789531,
+          "CLR_Pr": 97.47899159663865,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.95257810227372,
+          "CLR_F1": 97.12425096451145,
+          "FP_per_frame": 0.25027262813522355,
+          "MOTAL": 94.2625121455556,
+          "MOTP_sum": 13673.102823957,
+          "CLR_TP": 17748,
+          "CLR_FN": 592,
+          "CLR_FP": 459,
+          "IDSW": 18,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 96.0,
+          "CLR_Frames": 1834,
+          "IDF1": 75.38238432703095,
+          "IDR": 75.10905125408942,
+          "IDP": 75.65771406601857,
+          "IDTP": 13775,
+          "IDFN": 4565,
+          "IDFP": 4432,
+          "Dets": 18207,
+          "GT_Dets": 18340,
+          "IDs": 21,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 47.67561381405656,
+          "DetA": 71.45221916394165,
+          "AssA": 31.841458461607512,
+          "DetRe": 76.65763926191138,
+          "DetPr": 78.15566215953196,
+          "AssRe": 36.63973709026189,
+          "AssPr": 62.258783296730556,
+          "LocA": 81.37561869123267,
+          "OWTA": 49.387804692611134,
+          "HOTA(0)": 63.38634613467875,
+          "LocA(0)": 77.22695903203936,
+          "HOTALocA(0)": 48.95134756133503,
+          "MOTA": 91.5507983357633,
+          "MOTP": 78.57197359796017,
+          "MODA": 91.7890544432986,
+          "CLR_Re": 94.93616869954839,
+          "CLR_Pr": 96.79138568631717,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.20785104173902,
+          "CLR_F1": 95.854801357198,
+          "FP_per_frame": 0.295,
+          "MOTAL": 91.78256080934995,
+          "MOTP_sum": 20976.359791447427,
+          "CLR_TP": 26697,
+          "CLR_FN": 1424,
+          "CLR_FP": 885,
+          "IDSW": 67,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 253.0,
+          "CLR_Frames": 3000,
+          "IDF1": 53.896558533651685,
+          "IDR": 53.380036271825325,
+          "IDP": 54.42317453411645,
+          "IDTP": 15011,
+          "IDFN": 13110,
+          "IDFP": 12571,
+          "Dets": 27582,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 52.17104351681762,
+          "DetA": 71.44020865439286,
+          "AssA": 38.120250270938186,
+          "DetRe": 76.5598538219378,
+          "DetPr": 77.68344730002954,
+          "AssRe": 43.94528994292002,
+          "AssPr": 61.88306647953773,
+          "LocA": 80.96041002970802,
+          "OWTA": 53.989588811839376,
+          "HOTA(0)": 70.0576887680292,
+          "LocA(0)": 76.77052936313211,
+          "HOTALocA(0)": 53.783658526791555,
+          "MOTA": 92.58517896730592,
+          "MOTP": 77.9603163807052,
+          "MODA": 92.76812810744495,
+          "CLR_Re": 95.66087686446697,
+          "CLR_Pr": 97.06479722204023,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.5018243589342,
+          "CLR_F1": 96.35772357723577,
+          "FP_per_frame": 0.27803061646669425,
+          "MOTAL": 92.76397533646346,
+          "MOTP_sum": 34649.46261540442,
+          "CLR_TP": 44445,
+          "CLR_FN": 2016,
+          "CLR_FP": 1344,
+          "IDSW": 85,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 62.40867208672086,
+          "IDR": 61.95734056520522,
+          "IDP": 62.86662735591517,
+          "IDTP": 28786,
+          "IDFN": 17675,
+          "IDFP": 17003,
+          "Dets": 45789,
+          "GT_Dets": 46461,
+          "IDs": 62,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18207,
+          "prediction_sha256": "1a9f826a4e109d2595dd82613070fd2e11b46c772b96b459b036f43e49cd3be7",
+          "timings_sha256": "5721953dad92d136ea62c02738aa1664fb0bc7cadc5f8377f94f4e2a305c7882",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 1536.0720932568074,
+          "fps": 1.1939543775653918,
+          "latency_p50_p95_ms": [
+            830.476411501877,
+            892.9031189909438
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              5.97645653760992,
+              7.476648886222392
+            ],
+            "generation_codec": [
+              331.15637151058763,
+              374.417857429944
+            ],
+            "worker_provided_ir_validation": [
+              0.001981010427698493,
+              0.0030700379284098744
+            ],
+            "worker_detector_preprocess_transfer": [
+              178.03397198440507,
+              198.78233135095797
+            ],
+            "worker_detector_nms": [
+              171.9367890036665,
+              173.60143168480136
+            ],
+            "worker_proposal_transfer": [
+              0.15240098582580686,
+              0.21301076631061727
+            ],
+            "detector_worker_roundtrip": [
+              397.128407494165,
+              426.3938750285888
+            ],
+            "crop_preparation": [
+              31.51994600193575,
+              43.136426131241016
+            ],
+            "encoders_transfer": [
+              48.87674347264692,
+              65.54408201482147
+            ],
+            "association": [
+              9.3566344876308,
+              11.532026407076046
+            ],
+            "output": [
+              0.2049664908554405,
+              0.28740621637552966
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18905,
+            "missing_history_rows": 0,
+            "modified_edges": 28538
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27585,
+          "prediction_sha256": "398c3635aacf3da29341169d580143f3d7ce88ed86aecef9a093aa3c20fc9029",
+          "timings_sha256": "b1c78fcc4bd05d9b76e3818abd2a7bc259e1d43771c543b8435d47fa98f7ffc0",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 2480.13929331291,
+          "fps": 1.2096094796323607,
+          "latency_p50_p95_ms": [
+            819.7116800292861,
+            868.623559141997
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              6.161706987768412,
+              7.549097714945673
+            ],
+            "generation_codec": [
+              335.8851874945685,
+              364.74557465116953
+            ],
+            "worker_provided_ir_validation": [
+              0.0019920116756111383,
+              0.003120288602076469
+            ],
+            "worker_detector_preprocess_transfer": [
+              181.98432549252175,
+              203.79033045028336
+            ],
+            "worker_detector_nms": [
+              172.16396049479954,
+              174.25658326828852
+            ],
+            "worker_proposal_transfer": [
+              0.15604199143126607,
+              0.21811421902384603
+            ],
+            "detector_worker_roundtrip": [
+              398.6583969963249,
+              427.68793978611933
+            ],
+            "crop_preparation": [
+              30.67219047807157,
+              40.97405635402536
+            ],
+            "encoders_transfer": [
+              36.25323952292092,
+              41.501969768432886
+            ],
+            "association": [
+              9.272760478779674,
+              11.336151984869499
+            ],
+            "output": [
+              0.20252299145795405,
+              0.28490150289144367
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29407,
+            "missing_history_rows": 0,
+            "modified_edges": 42998
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed2/epoch12.pt",
+        "ir_checkpoint": null,
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed2/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen detector runs in its exactcu117/cuDNN8.5 stack and uses8copies ofthecurrentframe only. Encoder/predictor remaincu118 like their training/export. Current-pair private IPC, nofuture/GT. Correct runtime-parity repair, not threshold/model tuning.",
+        "detector_batch": 8,
+        "preprocessing": "lookup_uint8",
+        "detector_runtime_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 0,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 627558912,
+      "aggregate_pipeline_seconds": 4016.2113865697174,
+      "aggregate_fps": 1.203621905003552,
+      "aggregate_latency_p50_p95_ms": [
+        822.3215119796805,
+        881.7842840391677
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark."
+    },
+    "online_ir_intervention_fixed_matched_none_seed0_v1": {
+      "manifest_sha256": "6637189fe26593c614b8af7bbf3b7bd2c4a11ab3cd91298aabf48b920fd707ce",
+      "evaluation_sha256": "2cc69adecbb8774297c9a09cd72364f0c826ad22143f5e22d60105c06560b715",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 54.338765716145296,
+          "DetA": 71.45990888780211,
+          "AssA": 41.347037082302734,
+          "DetRe": 76.41623141824026,
+          "DetPr": 76.98289943479956,
+          "AssRe": 48.12431610364807,
+          "AssPr": 60.65705282955722,
+          "LocA": 80.34117328071562,
+          "OWTA": 56.17742551531302,
+          "HOTA(0)": 73.68164974521248,
+          "LocA(0)": 76.09849036823968,
+          "HOTALocA(0)": 56.070623134520616,
+          "MOTA": 94.1112322791712,
+          "MOTP": 77.05262028527324,
+          "MODA": 94.23664122137406,
+          "CLR_Re": 96.75027262813522,
+          "CLR_Pr": 97.46772864597638,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.90957984415967,
+          "CLR_F1": 97.10767546860035,
+          "FP_per_frame": 0.25136314067611776,
+          "MOTAL": 94.22921631496173,
+          "MOTP_sum": 13672.216943418882,
+          "CLR_TP": 17744,
+          "CLR_FN": 596,
+          "CLR_FP": 461,
+          "IDSW": 23,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 98.0,
+          "CLR_Frames": 1834,
+          "IDF1": 69.37200711451635,
+          "IDR": 69.11668484187568,
+          "IDP": 69.62922274100521,
+          "IDTP": 12676,
+          "IDFN": 5664,
+          "IDFP": 5529,
+          "Dets": 18205,
+          "GT_Dets": 18340,
+          "IDs": 23,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 47.68887099835991,
+          "DetA": 71.47959132215573,
+          "AssA": 31.84697004838217,
+          "DetRe": 76.67223782938018,
+          "DetPr": 78.17338022551756,
+          "AssRe": 36.644155219070186,
+          "AssPr": 62.27190993939576,
+          "LocA": 81.37842546833367,
+          "OWTA": 49.39678918457723,
+          "HOTA(0)": 63.38432727990314,
+          "LocA(0)": 77.2437177972616,
+          "HOTALocA(0)": 48.96041089178108,
+          "MOTA": 91.56857864229579,
+          "MOTP": 78.57472012643684,
+          "MODA": 91.7926105046051,
+          "CLR_Re": 94.93616869954839,
+          "CLR_Pr": 96.79489503643812,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.22823879717949,
+          "CLR_F1": 95.85652220746114,
+          "FP_per_frame": 0.2946666666666667,
+          "MOTAL": 91.78621193929997,
+          "MOTP_sum": 20977.093032154844,
+          "CLR_TP": 26697,
+          "CLR_FN": 1424,
+          "CLR_FP": 884,
+          "IDSW": 63,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 251.0,
+          "CLR_Frames": 3000,
+          "IDF1": 53.897526121144665,
+          "IDR": 53.380036271825325,
+          "IDP": 54.42514774663718,
+          "IDTP": 15011,
+          "IDFN": 13110,
+          "IDFP": 12570,
+          "Dets": 27581,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 50.43658706404442,
+          "DetA": 71.4593761683292,
+          "AssA": 35.6242183482882,
+          "DetRe": 76.57118194207025,
+          "DetPr": 77.70003241625226,
+          "AssRe": 41.19189237709242,
+          "AssPr": 61.683304956126946,
+          "LocA": 80.96732041289206,
+          "OWTA": 52.2020636752368,
+          "HOTA(0)": 67.63661631499323,
+          "LocA(0)": 76.78834061086448,
+          "HOTALocA(0)": 51.93703531362054,
+          "MOTA": 92.57226491035492,
+          "MOTP": 77.9669898867571,
+          "MODA": 92.75736639331913,
+          "CLR_Re": 95.6522674931663,
+          "CLR_Pr": 97.06242082732713,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.49719114003945,
+          "CLR_F1": 96.35218489490173,
+          "FP_per_frame": 0.27823748448489866,
+          "MOTAL": 92.75320268945731,
+          "MOTP_sum": 34649.30997557373,
+          "CLR_TP": 44441,
+          "CLR_FN": 2020,
+          "CLR_FP": 1345,
+          "IDSW": 86,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 60.027968389215914,
+          "IDR": 59.59191580034868,
+          "IDP": 60.47044948237452,
+          "IDTP": 27687,
+          "IDFN": 18774,
+          "IDFP": 18099,
+          "Dets": 45786,
+          "GT_Dets": 46461,
+          "IDs": 64,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18205,
+          "prediction_sha256": "bc4ab4fc7272fb745d2e18a64ddf10bc0e6a08d731c5a71770caf8493249ba94",
+          "timings_sha256": "0cea266d9efb982fab9599cd3868acfc615320f025b4ca0578106233cec8c3f6",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 430.48446059966227,
+          "fps": 4.260316382722036,
+          "latency_p50_p95_ms": [
+            228.49069099174812,
+            293.342999368906
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              14.836994494544342,
+              21.872299909591675
+            ],
+            "provided_ir_validation": [
+              0.002621993189677596,
+              0.005130362114869058
+            ],
+            "crop_preparation": [
+              38.68410250288434,
+              60.197732661617906
+            ],
+            "encoders_transfer": [
+              141.6432590340264,
+              196.60753096104597
+            ],
+            "association": [
+              27.585856470977888,
+              43.65036125527694
+            ],
+            "output": [
+              0.22717801039107144,
+              0.4048847011290489
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18965,
+            "missing_history_rows": 0,
+            "modified_edges": 28580
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 25870,
+            "rejected_or_unavailable_edges": 1
+          },
+          "utility_counts": {
+            "evaluated_rows": 18678,
+            "accepted_rows": 18678,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 9339.0,
+            "weight_squared_sum": 4669.5
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27584,
+          "prediction_sha256": "c5041c5593a49d8f7a06475d80755cd23ed200db485be2da46babf09ffd07381",
+          "timings_sha256": "0936b3319c0401a7a35c4f41d415273e711779fb1d7b8424ab2fbafb9b8b257b",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 690.5914448120166,
+          "fps": 4.34410246830761,
+          "latency_p50_p95_ms": [
+            224.76214147172868,
+            285.74088594468776
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.757854009279981,
+              20.82194307877216
+            ],
+            "provided_ir_validation": [
+              0.0026730122044682503,
+              0.0055245152907446
+            ],
+            "crop_preparation": [
+              36.68651598854922,
+              53.261887878761584
+            ],
+            "encoders_transfer": [
+              143.03870050935075,
+              199.29137793951662
+            ],
+            "association": [
+              25.53075400646776,
+              37.574099833727814
+            ],
+            "output": [
+              0.21673401352018118,
+              0.36756808985956
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29407,
+            "missing_history_rows": 0,
+            "modified_edges": 43002
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 39042,
+            "rejected_or_unavailable_edges": 0
+          },
+          "utility_counts": {
+            "evaluated_rows": 28451,
+            "accepted_rows": 28451,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 14225.5,
+            "weight_squared_sum": 7112.75
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "fixed_matched",
+        "ir_intervention": "none"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 1121.0759054116788,
+      "aggregate_fps": 4.311929260690756,
+      "aggregate_latency_p50_p95_ms": [
+        226.28915353561752,
+        288.851867133053
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    },
+    "online_ir_intervention_fixed_matched_zero_seed0_v1": {
+      "manifest_sha256": "c6feaba857aa0aa0e63a70759fbe230e854d44ae631e71da78af62560c4ff4eb",
+      "evaluation_sha256": "a761066e6458c2a927051e9c6e3f70b8521c3524e6753d741d068b164ff60ba4",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 53.72279109877709,
+          "DetA": 71.49666817466799,
+          "AssA": 40.39379091952779,
+          "DetRe": 76.43287608333813,
+          "DetPr": 76.99966752916347,
+          "AssRe": 47.54880926097139,
+          "AssPr": 58.772340904221295,
+          "LocA": 80.33084367238098,
+          "OWTA": 55.531616824307676,
+          "HOTA(0)": 72.86546361643425,
+          "LocA(0)": 76.09704601488558,
+          "HOTALocA(0)": 55.44846537715769,
+          "MOTA": 94.10032715376227,
+          "MOTP": 77.03914855056743,
+          "MODA": 94.23664122137406,
+          "CLR_Re": 96.75027262813522,
+          "CLR_Pr": 97.46772864597638,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.88564077869512,
+          "CLR_F1": 97.10767546860035,
+          "FP_per_frame": 0.25136314067611776,
+          "MOTAL": 94.22901886581967,
+          "MOTP_sum": 13669.826518812686,
+          "CLR_TP": 17744,
+          "CLR_FN": 596,
+          "CLR_FP": 461,
+          "IDSW": 25,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 99.0,
+          "CLR_Frames": 1834,
+          "IDF1": 67.82323163223423,
+          "IDR": 67.57360959651037,
+          "IDP": 68.07470475144191,
+          "IDTP": 12393,
+          "IDFN": 5947,
+          "IDFP": 5812,
+          "Dets": 18205,
+          "GT_Dets": 18340,
+          "IDs": 23,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 46.1544167484699,
+          "DetA": 71.71696115883708,
+          "AssA": 29.742397448742146,
+          "DetRe": 76.81897214855353,
+          "DetPr": 78.32014776990333,
+          "AssRe": 35.0578580764471,
+          "AssPr": 59.32211292195946,
+          "LocA": 81.41771372657509,
+          "OWTA": 47.788173925058715,
+          "HOTA(0)": 60.98560138999447,
+          "LocA(0)": 77.38206885563815,
+          "HOTALocA(0)": 47.19192005963054,
+          "MOTA": 91.60058319405427,
+          "MOTP": 78.58028922527947,
+          "MODA": 91.81750293375059,
+          "CLR_Re": 94.95039294477436,
+          "CLR_Pr": 96.80588789790443,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.26248364582294,
+          "CLR_F1": 95.86916324075902,
+          "FP_per_frame": 0.2936666666666667,
+          "MOTAL": 91.81115419140497,
+          "MOTP_sum": 20981.72302604187,
+          "CLR_TP": 26701,
+          "CLR_FN": 1420,
+          "CLR_FP": 881,
+          "IDSW": 61,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 251.0,
+          "CLR_Frames": 3000,
+          "IDF1": 49.279212968780854,
+          "IDR": 48.80694143167028,
+          "IDP": 49.76071350881009,
+          "IDTP": 13725,
+          "IDFN": 14396,
+          "IDFP": 13857,
+          "Dets": 27582,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 49.304935565567334,
+          "DetA": 71.61724359913669,
+          "AssA": 33.97302526254677,
+          "DetRe": 76.66656471358549,
+          "DetPr": 77.79512226522583,
+          "AssRe": 40.002207400767745,
+          "AssPr": 59.15662509623086,
+          "LocA": 80.9873238211383,
+          "OWTA": 51.01314582724243,
+          "HOTA(0)": 65.93062780609796,
+          "LocA(0)": 76.87104794749617,
+          "HOTALocA(0)": 50.6815645129108,
+          "MOTA": 92.58733131013108,
+          "MOTP": 77.96501191327383,
+          "MODA": 92.77243279309528,
+          "CLR_Re": 95.66087686446697,
+          "CLR_Pr": 97.0690370629218,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.508468489388,
+          "CLR_F1": 96.35981267886567,
+          "FP_per_frame": 0.2776168804302855,
+          "MOTAL": 92.76826908923346,
+          "MOTP_sum": 34651.549544854555,
+          "CLR_TP": 44445,
+          "CLR_FN": 2016,
+          "CLR_FP": 1342,
+          "IDSW": 86,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 350.0,
+          "CLR_Frames": 4834,
+          "IDF1": 56.625617899575055,
+          "IDR": 56.21488990766449,
+          "IDP": 57.04239194531199,
+          "IDTP": 26118,
+          "IDFN": 20343,
+          "IDFP": 19669,
+          "Dets": 45787,
+          "GT_Dets": 46461,
+          "IDs": 64,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18205,
+          "prediction_sha256": "08869c36dfcb7ccdb5f31fc7b776fbaa5fc692aa074dd4b086a9f02fa23c32bd",
+          "timings_sha256": "cc9b3e17b6e58c00ac94640a7783d2a85c3bef846fbbd7177466d5f1f3b72b18",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 428.76302012294764,
+          "fps": 4.277421125250263,
+          "latency_p50_p95_ms": [
+            228.36392803583294,
+            291.41872269974556
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.790665027452633,
+              27.548624671180733
+            ],
+            "provided_ir_validation": [
+              0.0025109911803156137,
+              0.0042733707232400775
+            ],
+            "crop_preparation": [
+              38.70518651092425,
+              53.556221444159746
+            ],
+            "encoders_transfer": [
+              141.94232050795108,
+              202.2493152384413
+            ],
+            "association": [
+              27.2879840049427,
+              34.74906311603263
+            ],
+            "output": [
+              0.2306280075572431,
+              0.36086155159864575
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18965,
+            "missing_history_rows": 0,
+            "modified_edges": 28580
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 25857,
+            "rejected_or_unavailable_edges": 1
+          },
+          "utility_counts": {
+            "evaluated_rows": 18678,
+            "accepted_rows": 18678,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 9339.0,
+            "weight_squared_sum": 4669.5
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27585,
+          "prediction_sha256": "20067dd2d91e4d114947c1243ad5d3dcdce2dfaf05e2f5e1eee242e4935ecd76",
+          "timings_sha256": "0c5e6f9dff21ff308de8e7ceb339928e78d40875088dc617e9df862d2d0cd418",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 697.583562339365,
+          "fps": 4.300560050382237,
+          "latency_p50_p95_ms": [
+            227.3785519937519,
+            290.6973194592865
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.738516522105783,
+              20.29860829352401
+            ],
+            "provided_ir_validation": [
+              0.002734013833105564,
+              0.004977337084710596
+            ],
+            "crop_preparation": [
+              37.684624490793794,
+              53.36371508310549
+            ],
+            "encoders_transfer": [
+              145.394318504259,
+              205.5831208272138
+            ],
+            "association": [
+              25.79863299615681,
+              35.71822413359768
+            ],
+            "output": [
+              0.22291700588539243,
+              0.36210474208928645
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29407,
+            "missing_history_rows": 0,
+            "modified_edges": 43001
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 39041,
+            "rejected_or_unavailable_edges": 0
+          },
+          "utility_counts": {
+            "evaluated_rows": 28451,
+            "accepted_rows": 28451,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 14225.5,
+            "weight_squared_sum": 7112.75
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "fixed_matched",
+        "ir_intervention": "zero"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 1126.3465824623127,
+      "aggregate_fps": 4.291751824231903,
+      "aggregate_latency_p50_p95_ms": [
+        227.73054501158185,
+        291.0728670365643
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    },
+    "online_ir_intervention_fixed_matched_repeat_rgb_seed0_v1": {
+      "manifest_sha256": "cbfbbccbc84c596f25b7e986a6d12b63dddb4e243dacefe21e2bed51fad22c51",
+      "evaluation_sha256": "00963621a4822b8f6846631a898b090e34b58717ce2dd25ca6b6349b454facbf",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 54.71809540593738,
+          "DetA": 71.42029461396265,
+          "AssA": 41.947172671967394,
+          "DetRe": 76.4064742007691,
+          "DetPr": 76.9308117947903,
+          "AssRe": 49.97409920302931,
+          "AssPr": 57.55121430177661,
+          "LocA": 80.32273005046522,
+          "OWTA": 56.57712012813455,
+          "HOTA(0)": 74.29873134109451,
+          "LocA(0)": 76.07247429118766,
+          "HOTALocA(0)": 56.52088329813271,
+          "MOTA": 94.0567066521265,
+          "MOTP": 77.03929024384662,
+          "MODA": 94.18211559432933,
+          "CLR_Re": 96.75027262813522,
+          "CLR_Pr": 97.41421905023331,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.84215736569327,
+          "CLR_F1": 97.08111065517713,
+          "FP_per_frame": 0.2568157033805889,
+          "MOTAL": 94.17469068791702,
+          "MOTP_sum": 13669.851660868146,
+          "CLR_TP": 17744,
+          "CLR_FN": 596,
+          "CLR_FP": 471,
+          "IDSW": 23,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 97.0,
+          "CLR_Frames": 1834,
+          "IDF1": 69.95486253590481,
+          "IDR": 69.7164667393675,
+          "IDP": 70.19489431786988,
+          "IDTP": 12786,
+          "IDFN": 5554,
+          "IDFP": 5429,
+          "Dets": 18215,
+          "GT_Dets": 18340,
+          "IDs": 22,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 46.597026848688024,
+          "DetA": 71.43057530864941,
+          "AssA": 30.42826273331059,
+          "DetRe": 76.63929747201472,
+          "DetPr": 78.13696193932734,
+          "AssRe": 35.506228886348204,
+          "AssPr": 59.243754261547345,
+          "LocA": 81.36293862267581,
+          "OWTA": 48.274611498590644,
+          "HOTA(0)": 61.89558831747931,
+          "LocA(0)": 77.2095197622461,
+          "HOTALocA(0)": 47.789286493942676,
+          "MOTA": 91.5543543970698,
+          "MOTP": 78.57581479652195,
+          "MODA": 91.7890544432986,
+          "CLR_Re": 94.93616869954839,
+          "CLR_Pr": 96.79138568631717,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.21505378979221,
+          "CLR_F1": 95.854801357198,
+          "FP_per_frame": 0.295,
+          "MOTAL": 91.78258403351396,
+          "MOTP_sum": 20977.385276227466,
+          "CLR_TP": 26697,
+          "CLR_FN": 1424,
+          "CLR_FP": 885,
+          "IDSW": 66,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 252.0,
+          "CLR_Frames": 3000,
+          "IDF1": 51.28987666732492,
+          "IDR": 50.79833576330856,
+          "IDP": 51.79102313102748,
+          "IDTP": 14285,
+          "IDFN": 13836,
+          "IDFP": 13297,
+          "Dets": 27582,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 49.98103399460218,
+          "DetA": 71.41398868229632,
+          "AssA": 35.004450066431396,
+          "DetRe": 76.54739288979212,
+          "DetPr": 77.6572356497725,
+          "AssRe": 41.232179861232574,
+          "AssPr": 58.621282806498385,
+          "LocA": 80.95062805494757,
+          "OWTA": 51.7363609067982,
+          "HOTA(0)": 67.06731009478722,
+          "LocA(0)": 76.75736074469754,
+          "HOTALocA(0)": 51.47909715122076,
+          "MOTA": 92.54213211080261,
+          "MOTP": 77.96232518866726,
+          "MODA": 92.73369062224232,
+          "CLR_Re": 95.6522674931663,
+          "CLR_Pr": 97.03910736511125,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.46259645099248,
+          "CLR_F1": 96.34069674174597,
+          "FP_per_frame": 0.2805130326851469,
+          "MOTAL": 92.72949486664807,
+          "MOTP_sum": 34647.236937095615,
+          "CLR_TP": 44441,
+          "CLR_FN": 2020,
+          "CLR_FP": 1356,
+          "IDSW": 89,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 58.68542565414382,
+          "IDR": 58.26607262004691,
+          "IDP": 59.110858789877064,
+          "IDTP": 27071,
+          "IDFN": 19390,
+          "IDFP": 18726,
+          "Dets": 45797,
+          "GT_Dets": 46461,
+          "IDs": 63,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18215,
+          "prediction_sha256": "0e983abae32817d588c79d51defafdaaad8dad65f14fa7d9e71f1457d407b85b",
+          "timings_sha256": "f69ab6ba7b4329a32c2185fc2c2ba00aa23d2af035736df51632c210732e3cf6",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 418.14080937579274,
+          "fps": 4.3860822930386165,
+          "latency_p50_p95_ms": [
+            221.02440800517797,
+            285.9096849482739
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              16.154492477653548,
+              26.521540895919316
+            ],
+            "provided_ir_validation": [
+              0.002522458089515567,
+              0.004586402792483567
+            ],
+            "crop_preparation": [
+              38.99430300225504,
+              58.874362861388356
+            ],
+            "encoders_transfer": [
+              131.2722635047976,
+              189.017585341935
+            ],
+            "association": [
+              27.81210749526508,
+              41.847699639038176
+            ],
+            "output": [
+              0.23175953538157046,
+              0.3911300882464275
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18949,
+            "missing_history_rows": 0,
+            "modified_edges": 28610
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 25904,
+            "rejected_or_unavailable_edges": 1
+          },
+          "utility_counts": {
+            "evaluated_rows": 18712,
+            "accepted_rows": 18712,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 9356.0,
+            "weight_squared_sum": 4678.0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27585,
+          "prediction_sha256": "eef6b230b3f30b909eb62dca64165c4cb83ade88d87fc326deadc31ba60c58bb",
+          "timings_sha256": "2a3b1d0adf464101b0869d9f06eb73a551b46e838149a7fe4340ddb1fecbec57",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 658.655240471533,
+          "fps": 4.554734883536783,
+          "latency_p50_p95_ms": [
+            213.8824979774654,
+            274.2746926407562
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              18.19861403782852,
+              32.24398134334477
+            ],
+            "provided_ir_validation": [
+              0.002659042365849018,
+              0.0046895467676222186
+            ],
+            "crop_preparation": [
+              36.87416299362667,
+              54.33669582416768
+            ],
+            "encoders_transfer": [
+              126.83566351188347,
+              179.1164202586515
+            ],
+            "association": [
+              25.83825698820874,
+              35.69037614797707
+            ],
+            "output": [
+              0.22077601170167327,
+              0.3522191807860508
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29407,
+            "missing_history_rows": 0,
+            "modified_edges": 42984
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 39028,
+            "rejected_or_unavailable_edges": 0
+          },
+          "utility_counts": {
+            "evaluated_rows": 28450,
+            "accepted_rows": 28450,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 14225.0,
+            "weight_squared_sum": 7112.5
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "fixed_matched",
+        "ir_intervention": "repeat_rgb"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 1076.7960498473258,
+      "aggregate_fps": 4.489243808690969,
+      "aggregate_latency_p50_p95_ms": [
+        216.7537774948869,
+        279.032952088164
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    },
+    "online_ir_intervention_fixed_matched_spatial_shuffle_seed0_v1": {
+      "manifest_sha256": "bccb6a16d2d83402206e899d143cea6e71e7ebbfcac21974a1509e7d08782c4f",
+      "evaluation_sha256": "77cdf05af4e51f428f044d4a8468db91daad2fedb53f065386acdc15eda7a103",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 54.71661636738925,
+          "DetA": 71.41790385474866,
+          "AssA": 41.94634190811474,
+          "DetRe": 76.4053262928313,
+          "DetPr": 76.92965600936186,
+          "AssRe": 49.973576328786976,
+          "AssPr": 57.55076675624168,
+          "LocA": 80.32191490773067,
+          "OWTA": 56.5761575554394,
+          "HOTA(0)": 74.29873134109451,
+          "LocA(0)": 76.07051425664298,
+          "HOTALocA(0)": 56.51942701733217,
+          "MOTA": 94.0567066521265,
+          "MOTP": 77.03794304526788,
+          "MODA": 94.18211559432933,
+          "CLR_Re": 96.75027262813522,
+          "CLR_Pr": 97.41421905023331,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.84085394739547,
+          "CLR_F1": 97.08111065517713,
+          "FP_per_frame": 0.2568157033805889,
+          "MOTAL": 94.17469068791702,
+          "MOTP_sum": 13669.612613952331,
+          "CLR_TP": 17744,
+          "CLR_FN": 596,
+          "CLR_FP": 471,
+          "IDSW": 23,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 97.0,
+          "CLR_Frames": 1834,
+          "IDF1": 69.95486253590481,
+          "IDR": 69.7164667393675,
+          "IDP": 70.19489431786988,
+          "IDTP": 12786,
+          "IDFN": 5554,
+          "IDFP": 5429,
+          "Dets": 18215,
+          "GT_Dets": 18340,
+          "IDs": 22,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 43.69419852361915,
+          "DetA": 71.21710901706528,
+          "AssA": 26.834112326363837,
+          "DetRe": 76.51577113189431,
+          "DetPr": 77.99970999782498,
+          "AssRe": 31.40714268940939,
+          "AssPr": 55.53678333874379,
+          "LocA": 81.34420585268852,
+          "OWTA": 45.296518494254926,
+          "HOTA(0)": 58.19911365613941,
+          "LocA(0)": 77.08354735682701,
+          "HOTALocA(0)": 44.8619413363838,
+          "MOTA": 91.51523772269834,
+          "MOTP": 78.56971525697557,
+          "MODA": 91.75349383023364,
+          "CLR_Re": 94.9255005156289,
+          "CLR_Pr": 96.76647574856811,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.17243266845794,
+          "CLR_F1": 95.83714793472993,
+          "FP_per_frame": 0.29733333333333334,
+          "MOTAL": 91.74700019628497,
+          "MOTP_sum": 20973.399790697058,
+          "CLR_TP": 26694,
+          "CLR_FN": 1427,
+          "CLR_FP": 892,
+          "IDSW": 67,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 252.0,
+          "CLR_Frames": 3000,
+          "IDF1": 46.177320623979035,
+          "IDR": 45.73806052416344,
+          "IDP": 46.62509968824766,
+          "IDTP": 12862,
+          "IDFN": 15259,
+          "IDFP": 14724,
+          "Dets": 27586,
+          "GT_Dets": 28121,
+          "IDs": 39,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 48.363780648785756,
+          "DetA": 71.28383686360155,
+          "AssA": 32.83207394963734,
+          "DetRe": 76.47217417211266,
+          "DetPr": 77.57415087466488,
+          "AssRe": 38.74792554846586,
+          "AssPr": 56.37149931868283,
+          "LocA": 80.93865091846858,
+          "OWTA": 50.076958725890094,
+          "HOTA(0)": 65.03334807756585,
+          "LocA(0)": 76.68072097218308,
+          "HOTALocA(0)": 49.86804017822685,
+          "MOTA": 92.5184563397258,
+          "MOTP": 77.95808183232681,
+          "MODA": 92.71216719399065,
+          "CLR_Re": 95.64581046469081,
+          "CLR_Pr": 97.02408244361477,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.43628506629084,
+          "CLR_F1": 96.33001669159567,
+          "FP_per_frame": 0.2819611088125776,
+          "MOTAL": 92.70796099414683,
+          "MOTP_sum": 34643.01240464939,
+          "CLR_TP": 44438,
+          "CLR_FN": 2023,
+          "CLR_FP": 1363,
+          "IDSW": 90,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 55.59818776961263,
+          "IDR": 55.20328877983685,
+          "IDP": 55.998777319272506,
+          "IDTP": 25648,
+          "IDFN": 20813,
+          "IDFP": 20153,
+          "Dets": 45801,
+          "GT_Dets": 46461,
+          "IDs": 61,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18215,
+          "prediction_sha256": "d6f50500580c2dea57bddf0fedd9fe5405aacc391fb86afcdd746b9dd414dfcb",
+          "timings_sha256": "cf547560f67f0f1d6ae9da973d43292d8446b6881b35f30d2690cad0163b03a7",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 891.7425675416598,
+          "fps": 2.0566473629894544,
+          "latency_p50_p95_ms": [
+            474.8074024973903,
+            600.5882420227863
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.28834702912718,
+              19.37139647488948
+            ],
+            "provided_ir_validation": [
+              0.0027070054784417152,
+              0.0049462018068879825
+            ],
+            "crop_preparation": [
+              289.44074048195034,
+              393.9055057067889
+            ],
+            "encoders_transfer": [
+              136.3827515160665,
+              195.8354343048995
+            ],
+            "association": [
+              27.045429509598762,
+              37.034061146550805
+            ],
+            "output": [
+              0.22512750001624227,
+              0.3577965253498403
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18949,
+            "missing_history_rows": 0,
+            "modified_edges": 28610
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 25906,
+            "rejected_or_unavailable_edges": 1
+          },
+          "utility_counts": {
+            "evaluated_rows": 18712,
+            "accepted_rows": 18712,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 9356.0,
+            "weight_squared_sum": 4678.0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27589,
+          "prediction_sha256": "91af2bcc70e8cd545038c885975f10772cf9f9869f446f745564b67c07abf06f",
+          "timings_sha256": "b2815d3a70aa8d816f48001fa1c0851d741210666b2403c17d43e8cadee2132a",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 1219.5490380803822,
+          "fps": 2.4599256826294718,
+          "latency_p50_p95_ms": [
+            386.9595664727967,
+            528.0673609726364
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.136016969336197,
+              19.62364798528142
+            ],
+            "provided_ir_validation": [
+              0.0026180059649050236,
+              0.004163457197137174
+            ],
+            "crop_preparation": [
+              226.52937748352997,
+              338.1423291575629
+            ],
+            "encoders_transfer": [
+              119.70946646761149,
+              157.569313494605
+            ],
+            "association": [
+              25.136846001259983,
+              34.6923861565301
+            ],
+            "output": [
+              0.21648852271027863,
+              0.3472387325018644
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29349,
+            "missing_history_rows": 0,
+            "modified_edges": 42922
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 38996,
+            "rejected_or_unavailable_edges": 0
+          },
+          "utility_counts": {
+            "evaluated_rows": 28397,
+            "accepted_rows": 28397,
+            "rejected_rows": 0,
+            "missing_ir_rows": 0,
+            "weight_sum": 14198.5,
+            "weight_squared_sum": 7099.25
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "fixed_matched",
+        "ir_intervention": "spatial_shuffle"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 2111.291605622042,
+      "aggregate_fps": 2.289593719374343,
+      "aggregate_latency_p50_p95_ms": [
+        418.473421537783,
+        573.3838684333023
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    },
+    "online_ir_intervention_cmue_none_seed0_v1": {
+      "manifest_sha256": "e0cd6e37ee42fa474a02ba96f17a71cc9e766e2d08076b8cdd62ac35ee42433a",
+      "evaluation_sha256": "9cbe399eacc69b5594e5028e9d3fc23f32f44419f2ffb52bfa5d347136cc72bf",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 57.40059887588792,
+          "DetA": 71.46506544048022,
+          "AssA": 46.12592010102028,
+          "DetRe": 76.40905699362911,
+          "DetPr": 76.9841292788638,
+          "AssRe": 53.45350173647741,
+          "AssPr": 61.18700342481825,
+          "LocA": 80.32755255300789,
+          "OWTA": 59.32375633511832,
+          "HOTA(0)": 77.97159053105995,
+          "LocA(0)": 76.07734569002862,
+          "HOTALocA(0)": 59.31871646832809,
+          "MOTA": 94.18756815703381,
+          "MOTP": 77.0345872968182,
+          "MODA": 94.28026172300982,
+          "CLR_Re": 96.76663031624864,
+          "CLR_Pr": 97.49491842004065,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.96471214594507,
+          "CLR_F1": 97.1294091891744,
+          "FP_per_frame": 0.24863685932388221,
+          "MOTAL": 94.27355262311134,
+          "MOTP_sum": 13671.328207566326,
+          "CLR_TP": 17747,
+          "CLR_FN": 593,
+          "CLR_FP": 456,
+          "IDSW": 17,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 96.0,
+          "CLR_Frames": 1834,
+          "IDF1": 74.27961579509072,
+          "IDR": 74.0021810250818,
+          "IDP": 74.55913860352689,
+          "IDTP": 13572,
+          "IDFN": 4768,
+          "IDFP": 4631,
+          "Dets": 18203,
+          "GT_Dets": 18340,
+          "IDs": 21,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 47.67991007347931,
+          "DetA": 71.46167156781624,
+          "AssA": 31.843371146086223,
+          "DetRe": 76.66138248433928,
+          "DetPr": 78.15664492049832,
+          "AssRe": 36.64109368155721,
+          "AssPr": 62.255215737882416,
+          "LocA": 81.37159744566421,
+          "OWTA": 49.390731427276464,
+          "HOTA(0)": 63.377572616795504,
+          "LocA(0)": 77.23300425159594,
+          "HOTALocA(0)": 48.94840335368797,
+          "MOTA": 91.5472422744568,
+          "MOTP": 78.56653065829286,
+          "MODA": 91.7783862593791,
+          "CLR_Re": 94.93261263824189,
+          "CLR_Pr": 96.78425116919843,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.19988984935765,
+          "CLR_F1": 95.84949016228637,
+          "FP_per_frame": 0.2956666666666667,
+          "MOTAL": 91.77193942833952,
+          "MOTP_sum": 20974.121024537864,
+          "CLR_TP": 26696,
+          "CLR_FN": 1425,
+          "CLR_FP": 887,
+          "IDSW": 65,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 253.0,
+          "CLR_Frames": 3000,
+          "IDF1": 53.89200057446503,
+          "IDR": 53.37648021051883,
+          "IDP": 54.41757604321502,
+          "IDTP": 15010,
+          "IDFN": 13111,
+          "IDFP": 12573,
+          "Dets": 27583,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 51.75795081350856,
+          "DetA": 71.45044390406868,
+          "AssA": 37.5142423873688,
+          "DetRe": 76.56177960236033,
+          "DetPr": 77.69049146257072,
+          "AssRe": 43.2915039783613,
+          "AssPr": 61.88163057009888,
+          "LocA": 80.95780740399861,
+          "OWTA": 53.56007835554636,
+          "HOTA(0)": 69.5042128200274,
+          "LocA(0)": 76.77343342632115,
+          "HOTALocA(0)": 53.36077055787231,
+          "MOTA": 92.58948365295623,
+          "MOTP": 77.95479430304928,
+          "MODA": 92.7659757646198,
+          "CLR_Re": 95.65657217881665,
+          "CLR_Pr": 97.0667889747958,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.50179555348399,
+          "CLR_F1": 96.35652107927629,
+          "FP_per_frame": 0.27782374844848984,
+          "MOTAL": 92.7618565811059,
+          "MOTP_sum": 34645.44923210419,
+          "CLR_TP": 44443,
+          "CLR_FN": 2018,
+          "CLR_FP": 1343,
+          "IDSW": 82,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 61.96841089683134,
+          "IDR": 61.518262628871526,
+          "IDP": 62.42519547459923,
+          "IDTP": 28582,
+          "IDFN": 17879,
+          "IDFP": 17204,
+          "Dets": 45786,
+          "GT_Dets": 46461,
+          "IDs": 62,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18203,
+          "prediction_sha256": "4572504b735f7788d7f2fbfa849a8e56921d1079cbde2f1c6f4d9f1f9c7bcf80",
+          "timings_sha256": "c32fc42082d1476c40cbb2a44de42292a9fa881f350c99f344d31e21e5ebfca3",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 454.80182954174234,
+          "fps": 4.032525554806883,
+          "latency_p50_p95_ms": [
+            242.94248552178033,
+            304.1147259500576
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              14.802138030063361,
+              20.14484256214928
+            ],
+            "provided_ir_validation": [
+              0.002555025275796652,
+              0.00502000330016017
+            ],
+            "crop_preparation": [
+              38.97060250164941,
+              57.723578438162804
+            ],
+            "encoders_transfer": [
+              144.23397349310108,
+              200.60128311160946
+            ],
+            "association": [
+              39.07914200681262,
+              57.99518459825775
+            ],
+            "output": [
+              0.22981048095971346,
+              0.3942228620871901
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18905,
+            "missing_history_rows": 0,
+            "modified_edges": 28553
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 0,
+            "rejected_or_unavailable_edges": 187497
+          },
+          "utility_counts": {
+            "evaluated_rows": 18671,
+            "accepted_rows": 0,
+            "rejected_rows": 18671,
+            "missing_ir_rows": 0,
+            "weight_sum": 0.0,
+            "weight_squared_sum": 0.0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27586,
+          "prediction_sha256": "ddf32193c1d2144138e0b2117fb81905755280d9481e90048ef56c1e538d6ce3",
+          "timings_sha256": "27654916ee4340d17290e66edfb5da5a1173f7328f1f34e39136556551fd57a2",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 723.2064469468314,
+          "fps": 4.148193109540343,
+          "latency_p50_p95_ms": [
+            235.67540998919867,
+            298.31306790001685
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.755480504594743,
+              21.183533096336756
+            ],
+            "provided_ir_validation": [
+              0.002633489202708006,
+              0.005236259312368928
+            ],
+            "crop_preparation": [
+              36.64687447599135,
+              53.51655949198174
+            ],
+            "encoders_transfer": [
+              141.26341498922557,
+              200.01244624436353
+            ],
+            "association": [
+              36.9664695172105,
+              52.3924719163915
+            ],
+            "output": [
+              0.22246799198910594,
+              0.376120873261243
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29445,
+            "missing_history_rows": 0,
+            "modified_edges": 43006
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 0,
+            "rejected_or_unavailable_edges": 266356
+          },
+          "utility_counts": {
+            "evaluated_rows": 28455,
+            "accepted_rows": 0,
+            "rejected_rows": 28455,
+            "missing_ir_rows": 0,
+            "weight_sum": 0.0,
+            "weight_squared_sum": 0.0
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "cmue",
+        "ir_intervention": "none",
+        "utility_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 1178.0082764885738,
+      "aggregate_fps": 4.103536534063466,
+      "aggregate_latency_p50_p95_ms": [
+        238.54684049729258,
+        301.29522140778136
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    },
+    "online_ir_intervention_cmue_zero_seed0_v1": {
+      "manifest_sha256": "e6a30ba49858a67e49bc442a8bee318549dcd4ded7828c00dff458f0ae14db7a",
+      "evaluation_sha256": "ca07c8bad44c97a51bcb3a032cf984e15af91d15c4be27d361364df76c66d8c1",
+      "protocol": "A/current-frame features",
+      "precomputed_causal_ir": true,
+      "metrics": {
+        "BT-005": {
+          "HOTA": 57.40059887588792,
+          "DetA": 71.46506544048022,
+          "AssA": 46.12592010102028,
+          "DetRe": 76.40905699362911,
+          "DetPr": 76.9841292788638,
+          "AssRe": 53.45350173647741,
+          "AssPr": 61.18700342481825,
+          "LocA": 80.32755255300789,
+          "OWTA": 59.32375633511832,
+          "HOTA(0)": 77.97159053105995,
+          "LocA(0)": 76.07734569002862,
+          "HOTALocA(0)": 59.31871646832809,
+          "MOTA": 94.18756815703381,
+          "MOTP": 77.0345872968182,
+          "MODA": 94.28026172300982,
+          "CLR_Re": 96.76663031624864,
+          "CLR_Pr": 97.49491842004065,
+          "MTR": 100.0,
+          "PTR": 0.0,
+          "MLR": 0.0,
+          "sMOTA": 71.96471214594507,
+          "CLR_F1": 97.1294091891744,
+          "FP_per_frame": 0.24863685932388221,
+          "MOTAL": 94.27355262311134,
+          "MOTP_sum": 13671.328207566326,
+          "CLR_TP": 17747,
+          "CLR_FN": 593,
+          "CLR_FP": 456,
+          "IDSW": 17,
+          "MT": 10,
+          "PT": 0,
+          "ML": 0,
+          "Frag": 96.0,
+          "CLR_Frames": 1834,
+          "IDF1": 74.27961579509072,
+          "IDR": 74.0021810250818,
+          "IDP": 74.55913860352689,
+          "IDTP": 13572,
+          "IDFN": 4768,
+          "IDFP": 4631,
+          "Dets": 18203,
+          "GT_Dets": 18340,
+          "IDs": 21,
+          "GT_IDs": 10,
+          "Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 47.67991007347931,
+          "DetA": 71.46167156781624,
+          "AssA": 31.843371146086223,
+          "DetRe": 76.66138248433928,
+          "DetPr": 78.15664492049832,
+          "AssRe": 36.64109368155721,
+          "AssPr": 62.255215737882416,
+          "LocA": 81.37159744566421,
+          "OWTA": 49.390731427276464,
+          "HOTA(0)": 63.377572616795504,
+          "LocA(0)": 77.23300425159594,
+          "HOTALocA(0)": 48.94840335368797,
+          "MOTA": 91.5472422744568,
+          "MOTP": 78.56653065829286,
+          "MODA": 91.7783862593791,
+          "CLR_Re": 94.93261263824189,
+          "CLR_Pr": 96.78425116919843,
+          "MTR": 90.9090909090909,
+          "PTR": 0.0,
+          "MLR": 9.090909090909092,
+          "sMOTA": 71.19988984935765,
+          "CLR_F1": 95.84949016228637,
+          "FP_per_frame": 0.2956666666666667,
+          "MOTAL": 91.77193942833952,
+          "MOTP_sum": 20974.121024537864,
+          "CLR_TP": 26696,
+          "CLR_FN": 1425,
+          "CLR_FP": 887,
+          "IDSW": 65,
+          "MT": 10,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 253.0,
+          "CLR_Frames": 3000,
+          "IDF1": 53.89200057446503,
+          "IDR": 53.37648021051883,
+          "IDP": 54.41757604321502,
+          "IDTP": 15010,
+          "IDFN": 13111,
+          "IDFP": 12573,
+          "Dets": 27583,
+          "GT_Dets": 28121,
+          "IDs": 41,
+          "GT_IDs": 11,
+          "Frames": 3000
+        },
+        "COMBINED_SEQ": {
+          "HOTA": 51.75795081350856,
+          "DetA": 71.45044390406868,
+          "AssA": 37.5142423873688,
+          "DetRe": 76.56177960236033,
+          "DetPr": 77.69049146257072,
+          "AssRe": 43.2915039783613,
+          "AssPr": 61.88163057009888,
+          "LocA": 80.95780740399861,
+          "OWTA": 53.56007835554636,
+          "HOTA(0)": 69.5042128200274,
+          "LocA(0)": 76.77343342632115,
+          "HOTALocA(0)": 53.36077055787231,
+          "MOTA": 92.58948365295623,
+          "MOTP": 77.95479430304928,
+          "MODA": 92.7659757646198,
+          "CLR_Re": 95.65657217881665,
+          "CLR_Pr": 97.0667889747958,
+          "MTR": 95.23809523809523,
+          "PTR": 0.0,
+          "MLR": 4.761904761904762,
+          "sMOTA": 71.50179555348399,
+          "CLR_F1": 96.35652107927629,
+          "FP_per_frame": 0.27782374844848984,
+          "MOTAL": 92.7618565811059,
+          "MOTP_sum": 34645.44923210419,
+          "CLR_TP": 44443,
+          "CLR_FN": 2018,
+          "CLR_FP": 1343,
+          "IDSW": 82,
+          "MT": 20,
+          "PT": 0,
+          "ML": 1,
+          "Frag": 349.0,
+          "CLR_Frames": 4834,
+          "IDF1": 61.96841089683134,
+          "IDR": 61.518262628871526,
+          "IDP": 62.42519547459923,
+          "IDTP": 28582,
+          "IDFN": 17879,
+          "IDFP": 17204,
+          "Dets": 45786,
+          "GT_Dets": 46461,
+          "IDs": 62,
+          "GT_IDs": 21
+        }
+      },
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18203,
+          "prediction_sha256": "4572504b735f7788d7f2fbfa849a8e56921d1079cbde2f1c6f4d9f1f9c7bcf80",
+          "timings_sha256": "e55efdf7c87c4871f9dff7c4bf8563c33dfeb9c899eaf965f7d31c44ebcbed00",
+          "generated_pixels_sha256": "f06435fd0bad213f7470b10fa4a827035a7237ab2f819b1ef0535f038249052a",
+          "pipeline_seconds": 441.07606257201405,
+          "fps": 4.158012995095522,
+          "latency_p50_p95_ms": [
+            233.90381201170385,
+            298.28317950305063
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              14.759165002033114,
+              20.560379931703206
+            ],
+            "provided_ir_validation": [
+              0.002616958227008581,
+              0.0049557973397895685
+            ],
+            "crop_preparation": [
+              39.59524899255484,
+              59.33537982637062
+            ],
+            "encoders_transfer": [
+              134.2029579973314,
+              190.33062610251355
+            ],
+            "association": [
+              38.19414702593349,
+              56.68156658357475
+            ],
+            "output": [
+              0.22875648573972285,
+              0.40023144974838937
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 18905,
+            "missing_history_rows": 0,
+            "modified_edges": 28553
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 0,
+            "rejected_or_unavailable_edges": 187497
+          },
+          "utility_counts": {
+            "evaluated_rows": 18671,
+            "accepted_rows": 0,
+            "rejected_rows": 18671,
+            "missing_ir_rows": 0,
+            "weight_sum": 0.0,
+            "weight_squared_sum": 0.0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27586,
+          "prediction_sha256": "ddf32193c1d2144138e0b2117fb81905755280d9481e90048ef56c1e538d6ce3",
+          "timings_sha256": "4f4639fcfaf2481a8135d75114c2f2de370b109e10d35190b921da3cc42acdbb",
+          "generated_pixels_sha256": "cb5ae990972e596853a3fa4fea8566795a741dd1e0414c37e89f5654b100d8ce",
+          "pipeline_seconds": 701.4511358911986,
+          "fps": 4.276848160190772,
+          "latency_p50_p95_ms": [
+            228.8255764869973,
+            288.3873611659509
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              15.702170523582026,
+              21.04832762270234
+            ],
+            "provided_ir_validation": [
+              0.0026625057216733694,
+              0.005622889148071403
+            ],
+            "crop_preparation": [
+              37.64972649514675,
+              54.68276733008677
+            ],
+            "encoders_transfer": [
+              133.88034154195338,
+              188.46063569944815
+            ],
+            "association": [
+              36.07319499133155,
+              50.165213725995265
+            ],
+            "output": [
+              0.22131449077278376,
+              0.36182178009767085
+            ]
+          },
+          "ir_comparisons": 0,
+          "ir_mismatch_frames": [],
+          "prediction_counts": {
+            "predicted_rows": 29445,
+            "missing_history_rows": 0,
+            "modified_edges": 43006
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          },
+          "joint_counts": {
+            "accepted_ir_edges": 0,
+            "rejected_or_unavailable_edges": 266356
+          },
+          "utility_counts": {
+            "evaluated_rows": 28455,
+            "accepted_rows": 0,
+            "rejected_rows": 28455,
+            "missing_ir_rows": 0,
+            "weight_sum": 0.0,
+            "weight_squared_sum": 0.0
+          }
+        }
+      },
+      "config": {
+        "state": "FROZEN",
+        "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+        "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+        "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+        "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+        "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "memory": "predictor",
+        "appearance_weight": 0.3,
+        "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+        "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+        "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+        "detector_batch": 1,
+        "utility_config": "configs/cfp/cmue_trial_v3.json",
+        "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+        "utility_kind": "cmue",
+        "ir_intervention": "zero",
+        "utility_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt"
+      },
+      "parameters": {
+        "detector": 186199381,
+        "rgb_encoder": 24607808,
+        "ir_encoder": 24607808,
+        "predictor": 231040
+      },
+      "peak_gpu_memory_bytes": 1113490944,
+      "aggregate_pipeline_seconds": 1142.5271984632127,
+      "aggregate_fps": 4.2309714871576825,
+      "aggregate_latency_p50_p95_ms": [
+        230.69172847317532,
+        293.59461186104454
+      ],
+      "scope": "Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark. Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end."
+    }
+  },
+  "interpretation": "Report every declared pixel intervention and all current-frame seeds. Protocol A precomputed responses/proposals exclude detector/generator cost; never label its FPS end-to-end. Host is shared. Original cu118/batch1 seeds share physicalGPU0; corrected split-runtime seeds each use GPU0/1/2, detector and encoder share their respective GPU. No historical-test or independent-detector-holdout claim.",
+  "terminal_batch_diagnostic": {
+    "status": "COMPLETE",
+    "cache_manifest_sha256": "ca6806df0248ff07cfbd7e2786e27022b6776fa2623a8ec154f893c278331bf2",
+    "source_snapshots": {
+      "tools/cfp_check_terminal_batch.py": "b07003b71bfadaed484e1e8d8b9975509293f862c8652c06fbd1b23cd5a9a9f9",
+      "cfp/online.py": "4a34eafdb28935c4273cee264d572049660fe4da2c053f5f422ad7e23a3a8bd0",
+      "tools/cfp_cache_detections.py": "9c8dbbd88a49387b91093f08b4a1f5517d6edae9a283b29ffd376069c4c735f1"
+    },
+    "total_cache_frames": 4834,
+    "configured_batch": 8,
+    "terminal_batch_size": 2,
+    "frames": {
+      "2997": {
+        "8": {
+          "raw_equal": true,
+          "shape_equal": true,
+          "max_absolute_difference": 0.0
+        },
+        "2": {
+          "raw_equal": false,
+          "shape_equal": true,
+          "max_absolute_difference": 0.5
+        }
+      },
+      "2998": {
+        "8": {
+          "raw_equal": true,
+          "shape_equal": true,
+          "max_absolute_difference": 0.0
+        },
+        "2": {
+          "raw_equal": false,
+          "shape_equal": true,
+          "max_absolute_difference": 0.25
+        }
+      },
+      "2999": {
+        "8": {
+          "raw_equal": false,
+          "shape_equal": true,
+          "max_absolute_difference": 0.5
+        },
+        "2": {
+          "raw_equal": true,
+          "shape_equal": true,
+          "max_absolute_difference": 0.0
+        }
+      },
+      "3000": {
+        "8": {
+          "raw_equal": false,
+          "shape_equal": true,
+          "max_absolute_difference": 0.0625
+        },
+        "2": {
+          "raw_equal": true,
+          "shape_equal": true,
+          "max_absolute_difference": 0.0
+        }
+      }
+    }
+  }
+}

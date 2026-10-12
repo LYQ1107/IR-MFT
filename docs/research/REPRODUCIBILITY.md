@@ -134,3 +134,24 @@ First-round90-run temporal validation, actual-history12-run comparison andthree 
 
 
 Current-frame streaming: `CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_online.py --data-root /data3/liuyeqiang/datasets/mft26-ir-causal-v1 --protocol configs/cfp/protocol_v2.json --config configs/cfp/online_anchor_gru_seed0_b1_v1.json --output <new-immutable-output-directory>`. Replace seed config only with its matched complete pipeline seed. Optional `--max-frames64` must be written as `--max-frames 64` and marks a probe; it cannot be treated as complete evaluation. Fixed proposals require `--fixed-detections /data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_dev_detections`; `--precomputed-causal-ir` additionally excludes generator/detector work from speed. The runtime reserves30GiB and does not save generated images or feature banks.
+
+
+## Final measured state and corrected online reproduction
+
+The earlier IN_PROGRESS/resume-pending statements describe their original checkpoints. Final state: first90, actual12, anchor99, log-time36 and modality54 runs complete; predictor/utility CUDA/CPU interruption proofs complete with exact epoch-boundary recovery;100 implementation tests pass. No final method freeze or independent blind-test claim is made. Final scientific outcome and all twenty task-book answers: `FINAL_RESEARCH_REPORT.md`; raw row/metric differences: `RESEARCH_OUTCOME_20261012.json`.
+
+Use the parent cu118 environment below; the frozen split configuration launches its private cu117 detector worker on the same visible GPU. Each seed uses its matching encoder/predictor. Output must be fresh and remains immutable.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 \
+ /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_online.py \
+ --data-root /data3/liuyeqiang/datasets/mft26-ir-causal-v1 \
+ --protocol configs/cfp/protocol_v2.json \
+ --config configs/cfp/online_anchor_gru_seed0_split_v1.json \
+ --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase4/online_anchor_gru_seed0_split_reproduction_v1 \
+ --reserve-gib 30 --output-budget-gib 2
+```
+
+Repeat with matched seed1/2 configs and separate fresh outputs; at most four physical GPUs per original authorization. Official evaluation uses the same pinned TrackEval command documented above, substituting the new predictions/output paths. Preserve canonical caches. Uniform online8copies are causal; historical cache's final short batch2 explains the recorded last2frame coordinate/confidence discrepancy. Principal official metrics and all frame/identity decisions match; only BT-005 and SN-013 first2998frames are byte-identical.
+
+Terminal diagnostic command (cu117 only): `CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python tools/cfp_check_terminal_batch.py --output FRESH_DIAGNOSTIC_DIRECTORY`. This reads four current paired images, never GT, and stores only a small manifest/source snapshot. Full generated-pixel audit, official metrics, timing and source hashes: `phase4_online_corrected_measured_20261012.json`. Cost figures refer to RGB prediction full runs; paired engineering prefix is not a full paired benchmark. Data/weights/cache banks stay outside Git.

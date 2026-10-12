@@ -1,0 +1,372 @@
+{
+  "status": "GOAL_NOT_MET_WITH_EVIDENCE",
+  "task_scope": "Bounded original research hypotheses evaluated; no validated final innovative method or SOTA claim.",
+  "original_goal": "Reliable synthetic-modality identity association for online multi-object fish tracking",
+  "reasons": [
+    "CMUE has no validated independent gain; final gate accepts zero IR rows",
+    "Paired forecasting helps its ordinary paired control but is not stably superior to strong RGB/twoRGB capacity controls",
+    "No candidate improves strongest native baseline HOTA across the complete selected three-seed development protocol",
+    "Corrected end-to-end runtime is causal and reproducible but does not meet camera-rate real-time performance"
+  ],
+  "selection_sources": {
+    "configs/cfp/baseline_selection_post_neck_v1.json": "4f7791349ccf697e5f1221f14224055d0be5a1d0def3964b9acde263c7aa876e",
+    "configs/cfp/plim_first_three_seed_selection_v1.json": "d8dc078dcb22eee7a116997e2ceccfb546c49cd0bfd9d9407f5eed4e7d36ed13",
+    "configs/cfp/plim_anchor_three_seed_selection_v3.json": "cc99e9fe21f569cf7caa71ba9893eb3c155042887e9a58f9030ff1e8639a8cb1",
+    "configs/cfp/plim_log_time_three_seed_selection_v4.json": "4d62000274118670cec2781e78c2b1ef65e117af703b54943237010180e5fd4b",
+    "configs/cfp/plim_modality_ir_three_seed_selection_v1.json": "444f95db75a8c4de6f010541ccaa43aa768045313178fcfde7bc8748353dc269",
+    "configs/cfp/plim_modality_rgb_ir_three_seed_selection_v1.json": "5cc955f2b5271e608ffc225a51a32c55c14c0b1d06364f4d55ff8df4bd7bca16",
+    "configs/cfp/plim_modality_two_rgb_three_seed_selection_v1.json": "8f7db185348abe7a242255766c3db8a4cc500b0ee872fca67bdb90fe185c0f69"
+  },
+  "corrected_online_report_sha256": "b6384b808a708c3d45e026b1c4e6c865bd6d474bf6459d8477ab58d0dd300adf",
+  "full_trajectory_parity": {
+    "online_anchor_gru_seed0_split_full_v1": {
+      "BT-005": {
+        "byte_equal": true,
+        "frame_identity_equal": true,
+        "differing_rows": [],
+        "online_sha256": "4572504b735f7788d7f2fbfa849a8e56921d1079cbde2f1c6f4d9f1f9c7bcf80",
+        "canonical_sha256": "4572504b735f7788d7f2fbfa849a8e56921d1079cbde2f1c6f4d9f1f9c7bcf80"
+      },
+      "SN-013": {
+        "byte_equal": false,
+        "frame_identity_equal": true,
+        "differing_rows": [
+          {
+            "row": 27568,
+            "online": "2999,3,413.568,648.794,130.891,118.598,0.732228,-1,-1,-1",
+            "canonical": "2999,3,413.568,648.794,130.891,118.598,0.731863,-1,-1,-1"
+          },
+          {
+            "row": 27574,
+            "online": "2999,55,90.654,618.589,147.450,75.357,0.673405,-1,-1,-1",
+            "canonical": "2999,55,90.463,618.819,147.833,75.587,0.673405,-1,-1,-1"
+          },
+          {
+            "row": 27575,
+            "online": "2999,35,1636.233,664.933,128.524,131.948,0.675650,-1,-1,-1",
+            "canonical": "2999,35,1636.233,664.933,128.524,131.948,0.676015,-1,-1,-1"
+          },
+          {
+            "row": 27576,
+            "online": "2999,24,1760.573,574.114,123.629,192.033,0.615864,-1,-1,-1",
+            "canonical": "2999,24,1760.573,574.114,123.629,192.033,0.616737,-1,-1,-1"
+          },
+          {
+            "row": 27577,
+            "online": "3000,4,636.011,676.178,370.177,183.153,0.842314,-1,-1,-1",
+            "canonical": "3000,4,636.011,676.178,370.177,183.153,0.841838,-1,-1,-1"
+          },
+          {
+            "row": 27578,
+            "online": "3000,3,414.975,652.840,128.871,115.521,0.728943,-1,-1,-1",
+            "canonical": "3000,3,414.975,652.840,128.871,115.521,0.729895,-1,-1,-1"
+          },
+          {
+            "row": 27583,
+            "online": "3000,52,4.732,693.822,96.539,134.898,0.798193,-1,-1,-1",
+            "canonical": "3000,52,4.693,693.822,96.535,134.898,0.798193,-1,-1,-1"
+          },
+          {
+            "row": 27584,
+            "online": "3000,55,96.505,618.214,144.891,73.821,0.682845,-1,-1,-1",
+            "canonical": "3000,55,96.453,618.296,144.991,73.902,0.682845,-1,-1,-1"
+          }
+        ],
+        "online_sha256": "6193e208a099669db106ad00fedf0b9bab49375b992ea8cbda1b55b5781e3c03",
+        "canonical_sha256": "ddf32193c1d2144138e0b2117fb81905755280d9481e90048ef56c1e538d6ce3"
+      },
+      "metric_differences": {
+        "BT-005": {},
+        "SN-013": {
+          "LocA": {
+            "online": 81.37160616969138,
+            "canonical": 81.37159744566421
+          },
+          "LocA(0)": {
+            "online": 77.23301907733993,
+            "canonical": 77.23300425159594
+          },
+          "HOTALocA(0)": {
+            "online": 48.948412749884646,
+            "canonical": 48.94840335368797
+          },
+          "MOTP": {
+            "online": 78.5665458766725,
+            "canonical": 78.56653065829286
+          },
+          "sMOTA": {
+            "online": 71.19990429656305,
+            "canonical": 71.19988984935765
+          },
+          "MOTP_sum": {
+            "online": 20974.125087236494,
+            "canonical": 20974.121024537864
+          }
+        },
+        "COMBINED_SEQ": {
+          "LocA": {
+            "online": 80.9578126513915,
+            "canonical": 80.95780740399861
+          },
+          "LocA(0)": {
+            "online": 76.77344235631045,
+            "canonical": 76.77343342632115
+          },
+          "HOTALocA(0)": {
+            "online": 53.36077676459108,
+            "canonical": 53.36077055787231
+          },
+          "MOTP": {
+            "online": 77.95480344441829,
+            "canonical": 77.95479430304928
+          },
+          "sMOTA": {
+            "online": 71.50180429780423,
+            "canonical": 71.50179555348399
+          },
+          "MOTP_sum": {
+            "online": 34645.45329480282,
+            "canonical": 34645.44923210419
+          }
+        }
+      }
+    },
+    "online_anchor_gru_seed1_split_full_v1": {
+      "BT-005": {
+        "byte_equal": true,
+        "frame_identity_equal": true,
+        "differing_rows": [],
+        "online_sha256": "4c85061bd803fce5cb7df078d7d644acd80994dae6ce57f1d95128a1945324b7",
+        "canonical_sha256": "4c85061bd803fce5cb7df078d7d644acd80994dae6ce57f1d95128a1945324b7"
+      },
+      "SN-013": {
+        "byte_equal": false,
+        "frame_identity_equal": true,
+        "differing_rows": [
+          {
+            "row": 27560,
+            "online": "2999,3,413.568,648.794,130.891,118.598,0.732228,-1,-1,-1",
+            "canonical": "2999,3,413.568,648.794,130.891,118.598,0.731863,-1,-1,-1"
+          },
+          {
+            "row": 27566,
+            "online": "2999,56,90.654,618.589,147.450,75.357,0.673405,-1,-1,-1",
+            "canonical": "2999,56,90.463,618.819,147.833,75.587,0.673405,-1,-1,-1"
+          },
+          {
+            "row": 27567,
+            "online": "2999,35,1636.233,664.933,128.523,131.948,0.675650,-1,-1,-1",
+            "canonical": "2999,35,1636.233,664.933,128.523,131.948,0.676015,-1,-1,-1"
+          },
+          {
+            "row": 27568,
+            "online": "2999,24,1760.573,574.114,123.629,192.033,0.615864,-1,-1,-1",
+            "canonical": "2999,24,1760.573,574.114,123.629,192.033,0.616737,-1,-1,-1"
+          },
+          {
+            "row": 27569,
+            "online": "3000,4,636.011,676.178,370.177,183.153,0.842314,-1,-1,-1",
+            "canonical": "3000,4,636.011,676.178,370.177,183.153,0.841838,-1,-1,-1"
+          },
+          {
+            "row": 27570,
+            "online": "3000,3,414.975,652.840,128.871,115.521,0.728943,-1,-1,-1",
+            "canonical": "3000,3,414.975,652.840,128.871,115.521,0.729895,-1,-1,-1"
+          },
+          {
+            "row": 27575,
+            "online": "3000,53,4.732,693.822,96.539,134.898,0.798193,-1,-1,-1",
+            "canonical": "3000,53,4.693,693.822,96.535,134.898,0.798193,-1,-1,-1"
+          },
+          {
+            "row": 27576,
+            "online": "3000,56,96.505,618.214,144.891,73.821,0.682845,-1,-1,-1",
+            "canonical": "3000,56,96.453,618.296,144.991,73.902,0.682845,-1,-1,-1"
+          }
+        ],
+        "online_sha256": "d56e9eae9b8dda822ada3a6253a7eeec9964286e7d09c4f4c96bd9fd81bb4273",
+        "canonical_sha256": "101120192de499c433a4e10218c650bec2e10d73d11022c5711993d765546725"
+      },
+      "metric_differences": {
+        "BT-005": {},
+        "SN-013": {
+          "LocA": {
+            "online": 81.38909842831711,
+            "canonical": 81.38908971046952
+          },
+          "LocA(0)": {
+            "online": 77.30520866872382,
+            "canonical": 77.30519384135657
+          },
+          "HOTALocA(0)": {
+            "online": 48.20431777803375,
+            "canonical": 48.20430853230328
+          },
+          "MOTP": {
+            "online": 78.56644170900103,
+            "canonical": 78.566426488911
+          },
+          "sMOTA": {
+            "online": 71.21276016280945,
+            "canonical": 71.21274571560406
+          },
+          "MOTP_sum": {
+            "online": 20971.740285383643,
+            "canonical": 20971.736222685016
+          }
+        },
+        "COMBINED_SEQ": {
+          "LocA": {
+            "online": 80.9780353523468,
+            "canonical": 80.97803011178195
+          },
+          "LocA(0)": {
+            "online": 76.87486228315487,
+            "canonical": 76.87485335316558
+          },
+          "HOTALocA(0)": {
+            "online": 51.967500034123184,
+            "canonical": 51.967493997439604
+          },
+          "MOTP": {
+            "online": 77.93301223880145,
+            "canonical": 77.93300309866642
+          },
+          "sMOTA": {
+            "online": 71.52115669061118,
+            "canonical": 71.52114794629095
+          },
+          "MOTP_sum": {
+            "online": 34640.44461002486,
+            "canonical": 34640.44054732624
+          }
+        }
+      }
+    },
+    "online_anchor_gru_seed2_split_full_v1": {
+      "BT-005": {
+        "byte_equal": true,
+        "frame_identity_equal": true,
+        "differing_rows": [],
+        "online_sha256": "1a9f826a4e109d2595dd82613070fd2e11b46c772b96b459b036f43e49cd3be7",
+        "canonical_sha256": "1a9f826a4e109d2595dd82613070fd2e11b46c772b96b459b036f43e49cd3be7"
+      },
+      "SN-013": {
+        "byte_equal": false,
+        "frame_identity_equal": true,
+        "differing_rows": [
+          {
+            "row": 27567,
+            "online": "2999,3,413.568,648.794,130.891,118.598,0.732228,-1,-1,-1",
+            "canonical": "2999,3,413.568,648.794,130.891,118.598,0.731863,-1,-1,-1"
+          },
+          {
+            "row": 27568,
+            "online": "2999,44,1635.921,667.850,127.321,131.850,0.675650,-1,-1,-1",
+            "canonical": "2999,44,1635.921,667.850,127.321,131.850,0.676015,-1,-1,-1"
+          },
+          {
+            "row": 27573,
+            "online": "2999,55,90.654,618.589,147.450,75.357,0.673405,-1,-1,-1",
+            "canonical": "2999,55,90.463,618.819,147.833,75.587,0.673405,-1,-1,-1"
+          },
+          {
+            "row": 27575,
+            "online": "2999,24,1760.573,574.114,123.629,192.033,0.615864,-1,-1,-1",
+            "canonical": "2999,24,1760.573,574.114,123.629,192.033,0.616737,-1,-1,-1"
+          },
+          {
+            "row": 27576,
+            "online": "3000,4,636.011,676.178,370.177,183.153,0.842314,-1,-1,-1",
+            "canonical": "3000,4,636.011,676.178,370.177,183.153,0.841838,-1,-1,-1"
+          },
+          {
+            "row": 27577,
+            "online": "3000,3,414.975,652.840,128.871,115.521,0.728943,-1,-1,-1",
+            "canonical": "3000,3,414.975,652.840,128.871,115.521,0.729895,-1,-1,-1"
+          },
+          {
+            "row": 27582,
+            "online": "3000,52,4.732,693.822,96.539,134.898,0.798193,-1,-1,-1",
+            "canonical": "3000,52,4.693,693.822,96.535,134.898,0.798193,-1,-1,-1"
+          },
+          {
+            "row": 27583,
+            "online": "3000,55,96.505,618.214,144.891,73.821,0.682845,-1,-1,-1",
+            "canonical": "3000,55,96.453,618.296,144.991,73.902,0.682845,-1,-1,-1"
+          }
+        ],
+        "online_sha256": "398c3635aacf3da29341169d580143f3d7ce88ed86aecef9a093aa3c20fc9029",
+        "canonical_sha256": "66bdf022c7570921d8f5e5d9f6e3cd75cb56f2eee28f241d10f818fb6f2f79a8"
+      },
+      "metric_differences": {
+        "BT-005": {},
+        "SN-013": {
+          "LocA": {
+            "online": 81.37561869123267,
+            "canonical": 81.37560996580847
+          },
+          "LocA(0)": {
+            "online": 77.22695903203936,
+            "canonical": 77.22694420683636
+          },
+          "HOTALocA(0)": {
+            "online": 48.95134756133503,
+            "canonical": 48.95133816418054
+          },
+          "MOTP": {
+            "online": 78.57197359796017,
+            "canonical": 78.57195838015056
+          },
+          "sMOTA": {
+            "online": 71.20785104173902,
+            "canonical": 71.20783659453362
+          },
+          "MOTP_sum": {
+            "online": 20976.359791447427,
+            "canonical": 20976.355728748797
+          }
+        },
+        "COMBINED_SEQ": {
+          "LocA": {
+            "online": 80.96041002970802,
+            "canonical": 80.96040478188968
+          },
+          "LocA(0)": {
+            "online": 76.77052936313211,
+            "canonical": 76.7705204333391
+          },
+          "HOTALocA(0)": {
+            "online": 53.783658526791555,
+            "canonical": 53.783652270784955
+          },
+          "MOTP": {
+            "online": 77.9603163807052,
+            "canonical": 77.96030723974754
+          },
+          "sMOTA": {
+            "online": 71.5018243589342,
+            "canonical": 71.50181561461396
+          },
+          "MOTP_sum": {
+            "online": 34649.46261540442,
+            "canonical": 34649.45855270579
+          }
+        }
+      }
+    }
+  },
+  "terminal_batch_diagnostic_sha256": "e7ab3b9f77b67afe7b884aa615835e410e18c6bd5083488f0a934fc5748d715f",
+  "final_test_frozen": false,
+  "new_historical_test_evaluation": false,
+  "limitations": [
+    "Two development videos/21 identities; dense49-fish MSK scene excluded",
+    "Historical detector trained on all8 original training videos including dev",
+    "Biological identity overlap across videos is unverified",
+    "Native person-weight/own-detector ProtocolB and external fresh blind validation unperformed",
+    "Group interaction and joint SGD not introduced without controlled core usefulness evidence"
+  ],
+  "free_gib": 171.82390213012695,
+  "minimum_free_gib": 30,
+  "source_commit": "5dc438b564b02f80ced9779ee170b9a0ad3de947"
+}

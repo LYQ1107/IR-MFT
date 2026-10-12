@@ -1,33 +1,137 @@
-# CFP-FishMOT research evidence report
+# CFP-FishMOT bounded research evidence
 
-**IN_PROGRESS — not a final scientific conclusion.** Updated 2026-10-12. No SOTA or completed-goal claim is made.
+状态：**GOAL_NOT_MET_WITH_EVIDENCE**，2026-10-12。在线工程与复现验证完成；当前证据不支持原计划要求的独立 CMUE／合成模态贡献和最强基线上的稳定总体提升。本结论限于已记录的模型、数据与受控预算，不代表所有合成模态方法均无效。
 
-Migration checks and the historical V3 reproduction pass. The restored cu117 runtime reproduces every detection array over 15,985 frames and all seven historical MOT files exactly: HOTA 31.0911, AssA 19.6192, DetA 49.5748, IDF1 35.0443 and IDSW 560. The original tracker-disabled path is also exact. The initial cu118 run drifted to HOTA 30.907 and IDSW 568; restoring the historical stack resolved this without threshold changes. Historical test was previously tuned and is disclosed as contaminated reference evidence.
+## 研究目的与实验边界
 
-Fifteen requested codebases are audited at pinned commits. Environment, checkpoint, dataset, split and source hashes are recorded. The frozen association split uses six training videos and BT-005/SN-013 development videos. V3 had already trained on all eight videos, so this is an association holdout, not an independent whole-system detector holdout. Biological identity overlap across videos is unverified. Four duplicate SN-013 boxes are excluded from identity samples and masked as official distractors in derived evaluation GT; original data is preserved.
+研究合成伪红外何时帮助鱼类身份关联、潜在身份预测能否恢复遮挡身份，以及记忆写入能否避免污染。IR 来自 RGB 的规则响应和伪彩映射，没有真实温度或独立传感器信息。完整视频隔离：六个身份训练视频、BT-005／SN-013 两个开发视频，开发集4,834帧、21个身份。V3 曾在全部八个原训练视频上训练；此划分只隔离新增身份模块，不是整个检测系统的独立盲测。原始标注保留，SN-013 四个歧义框按冻结协议在派生 GT 中忽略。
 
-The second input is synthetic pseudocolor derived from visible RGB, not measured temperature or a second sensor. Four original generator scripts match NAS hashes. Whole-sequence median backgrounds and adaptive strategy selection are noncausal. A separate past-only EMA version is complete over all 32,085 original train frames, with response computed before the background update. Pixel/prefix equivalence and detector future-prefix checks pass. Mean generation time is about .372 seconds/frame under the eight-worker build load; this is not online FPS. Matched current RGB contrast and past RGB background-difference controls are complete.
+历史七序列15,985帧复现逐检测数组、逐轨迹文件精确一致：HOTA31.091、AssA19.619、DetA49.575、IDF135.044、MOTA52.325、IDSW560。历史测试被调过参数，只作参考，不能与下面开发集数字直接比较。15个参考项目做了固定 commit 的源码审计，并非全部训练复现。
 
-Three-seed RGB/IR fish ReID, pre/post-neck proposal banks, ordinary association grids, external association grids and independent RGB capacity controls are complete. A constant-vector control exactly reproduces all pre-neck outcomes, demonstrating a geometry acceptance effect rather than identity value. Post-neck export improves metric diversity without new SGD. Long-axis crop repair completed six encoders and 54 association runs; selected RGB HOTA 48.9386 and fixed-fusion 48.6361 are below original-crop 49.2917/49.0889, so rotation is not retained. Matched RGB background difference achieves HOTA 50.653±0.168 and IDSW 83.333±1.528, above ordinary fixed IR fusion 49.089. Synthetic thermal appearance has no established independent advantage.
+## 同检测输入的三种子完整比较（Protocol A）
 
-The current strongest completed three-seed mean HOTA is **BoT-SORT with original-crop fish RGB post-neck features: 52.4818±0.1341**, AssA 37.4980±0.1653, IDF1 57.4768±0.5930 and IDSW 113.6667±4.5092. It uses the shared causal V3 proposals and explicit precomputed fish features, not native person weights or a reproduced full system. It increases HOTA/AssA but reduces IDF1 and increases switches relative to ByteTrack (49.2967/34.0115/58.8771/86). Native motion/assignment/lifecycle settings remain disclosed rather than claimed identical.
+每个家族固定三个参数候选，以三个种子的 combined-dev 平均 HOTA 选择配置；± 为样本标准差，不是独立视频置信区间。所有使用相同 V3 因果检测输入。原生外部关联器可因坐标输出与生命周期不同改变 DetA，不能把所有 HOTA 差异解释为纯身份贡献。
 
-All twelve OOF RGB/IR teachers are trained from original ImageNet. Three seed0 CMUE trials and nine matched gate models are complete. Round1's HOTA 50.9769 is almost reproduced by an identity-ranking-free constant IR penalty (50.9528, with fewer switches). A candidate audit found 148 local-NULL omissions of correct geometry-matchable candidates. Round2 repairs complete candidate context but gives best HOTA 49.3071 and sign AUC .5082. Round3 uses ranking-only targets and sign supervision with unchanged capacity/budget; sign AUC .4047 and best HOTA 49.3071 do not establish independent usefulness. No calibration/fallback and untrained controls are measured; the entropy control is complete. Actual input-pixel interventions and combined-system ablations remain required.
+| 方法 | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| V3＋BoT-SORT＋RGB ReID | 52.482±0.134 | 37.498±0.165 | 73.518±0.061 | 57.477±0.593 | 93.552±0.024 | 113.667±4.509 |
+| V3＋HybridSORT＋RGB ReID | 46.657±1.669 | 29.934±2.115 | 72.883±0.135 | 49.375±2.870 | 92.805±0.060 | 161.000±9.539 |
+| RGB EMA | 49.292±0.694 | 34.013±0.956 | 71.499±0.043 | 59.011±1.174 | 92.564±0.002 | 87.333±2.082 |
+| IR EMA | 48.788±0.021 | 33.324±0.025 | 71.491±0.046 | 58.386±0.010 | 92.508±0.049 | 89.000±1.000 |
+| 固定 RGB／IR EMA | 49.089±0.545 | 33.864±0.779 | 71.229±0.424 | 59.118±0.551 | 92.556±0.061 | 92.000±2.646 |
+| 原锚点普通 RGB GRU | 51.885±0.993 | 37.716±1.392 | 71.433±0.191 | 62.298±0.998 | 92.562±0.018 | 89.000±1.732 |
+| 原锚点预测 RGB GRU | 51.477±0.870 | 37.085±1.303 | 71.512±0.116 | 61.370±1.435 | 92.602±0.026 | 83.667±1.528 |
+| 原锚点预测 RGB Transformer | 50.606±2.214 | 35.963±3.196 | 71.348±0.081 | 60.216±3.626 | 92.549±0.028 | 88.333±2.082 |
+| 对数时间预测 RGB GRU | 51.359±0.628 | 36.958±0.952 | 71.422±0.126 | 61.557±0.538 | 92.605±0.021 | 85.333±3.512 |
+| IR预测 GRU | 50.425±0.958 | 35.592±1.300 | 71.503±0.113 | 60.235±1.012 | 92.579±0.048 | 88.000±3.464 |
+| IR普通 GRU | 49.786±0.961 | 34.775±1.174 | 71.341±0.359 | 59.781±1.300 | 92.560±0.020 | 87.667±4.933 |
+| RGB＋IR预测 GRU | 51.885±1.384 | 37.715±2.036 | 71.447±0.213 | 62.242±1.530 | 92.611±0.013 | 86.667±3.512 |
+| RGB＋IR普通 GRU | 49.464±0.718 | 34.249±0.921 | 71.501±0.143 | 58.972±0.840 | 92.558±0.048 | 90.333±3.215 |
+| 双 RGB预测 GRU | 51.672±1.115 | 37.372±1.620 | 71.506±0.071 | 61.841±1.903 | 92.587±0.023 | 85.000±4.359 |
+| 双 RGB普通 GRU | 50.621±1.747 | 35.872±2.503 | 71.543±0.053 | 60.242±2.581 | 92.593±0.023 | 85.667±2.517 |
 
-Twelve first-round temporal models across seeds0/1/2 and four actual-history round2 models are trained with fixed stopped encoders, eight past observations and matched GRU/Transformer capacity. Firstseed0 full-video comparisons are complete: predictive Transformer gives HOTA 51.7256, AssA 37.4644, IDF1 61.9316 and IDSW 84, versus matched association-only Transformer 49.7624/34.6541/59.0992/88. GRU forecasting improves much less over ordinary GRU. These results justify three-seed tracking validation, now complete; they are not yet independent final method evidence or a comparison of like uncertainty estimates to the BoT mean.
+ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529、IDSW86。BoT 的 HOTA 最强，但 IDF1 较低、切换较多；普通 RGB GRU／配对预测有身份指标与检测指标的权衡，没有全面领先。
 
-An independently toggled write-refusal policy leaves current geometry updates unchanged. Six seed0 comparisons and retrospective physical write audits are complete. It improves EMA HOTA 50.1899→51.1402 but harms predictive GRU 51.4971→48.9655 and Transformer 51.7256→49.7085. Disabled toggles reproduce original files exactly. New BT-005 crossing switches at frame1049 are traced and rendered. Refusal yields gaps up to127 frames versus trained maximum30, but only about .5% of attempts exceed30, so this is not established as the sole cause. Actual-history training alone reduces heldout candidate ranking; its full-video comparisons are complete. A third temporal repair must follow these diagnoses and retain matched controls.
+第一轮十二个 RGB 时序模型／90组跟踪结果完成；实际污染历史第二轮四模型／12组完成；第三轮可观测初始锚点十二模型／99组完成；年龄饱和驱动的单次对数时间修复十二模型／36组完成；计划内 IR-only／配对 IR／双 RGB 十八模型／54组完成。原锚点 Transformer 的 seed0 HOTA53.055 没有稳定复现；三种子均值50.606。对数时间修复未带来提升，不保留。配对预测较普通配对关联有收益，但 IR 配对仅比同容量双 RGB 高约0.212个百分点，且与更便宜的普通单 RGB 锚点 GRU几乎相同，不能据此证明 IR 特有优势。双 RGB 控制循环复用已有三个冻结编码器，跨控制管线的编码器重叠已披露。
 
-The current suite has 76 passing tests plus one additional passing entropy-control test. Exact interrupted CUDA resume is proven for ReID, not yet for utility/predictor trainers. Source snapshots retain exact run bytes even where the checkout commit preceded the implementation. Research changes are isolated; large assets remain outside Git. Actual work uses physical GPU2 only. About29GB remains available; no original data/checkpoints/history have been deleted.
+相同选择配置的每序列三种子结果，不能用 combined 的提升替代每视频一致性证据：
 
-Full online integration, input interventions, joint CMUE/PLIM/leave-component-out comparisons, supplemental video validation, dedicated parameter/FLOP/memory/latency measurements and final frozen evaluation remain incomplete. Optional interaction is not introduced before controlled core evidence. All measured failures, per-video official metrics, commands and hashes are retained in the registry and linked experiment documents. The goal remains active.
+| 方法 | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| BoT-SORT／BT-005 | 55.506±1.879 | 40.837±2.790 | 75.537±0.134 | 65.057±1.927 | 96.105±0.130 | 32.667±1.528 |
+| BoT-SORT／SN-013 | 50.410±1.290 | 35.239±1.842 | 72.236±0.091 | 52.493±2.233 | 91.887±0.053 | 81.000±3.000 |
+| RGB预测GRU／BT-005 | 57.050±1.500 | 45.530±2.483 | 71.560±0.174 | 73.886±1.727 | 94.213±0.059 | 18.333±1.528 |
+| RGB预测GRU／SN-013 | 47.450±0.394 | 31.522±0.555 | 71.502±0.079 | 53.159±1.274 | 91.552±0.005 | 65.333±1.528 |
+| RGB＋IR预测GRU／BT-005 | 59.042±3.269 | 48.892±5.474 | 71.488±0.549 | 77.650±5.258 | 94.220±0.019 | 20.000±2.646 |
+| RGB＋IR预测GRU／SN-013 | 46.551±0.147 | 30.362±0.202 | 71.442±0.011 | 52.131±0.922 | 91.561±0.009 | 66.667±2.517 |
 
 
-Three-seed first-round tracking is now complete (90 runs). At each family's selected mean-HOTA setting: predictive GRU51.3199±0.1774, ordinary GRU51.4567±0.2952, predictive Transformer51.1208±0.7566, ordinary Transformer50.3063±1.0017. Thus forecasting is not consistently superior to matched ordinary temporal models; neither beats native BoT52.4818±0.1341. Selection uses the mean across seeds, not the favorable seed0 result. Full setting/per-video metrics are indexed by `configs/cfp/plim_first_three_seed_selection_v1.json`.
+## CMUE、联合关联和独立记忆写入
 
-Actual-history round2's twelve seed0 video runs are also complete: predictive GRU at.3 gives HOTA51.7572/AssA37.5118/IDF161.9677/IDSW85; ordinary GRU51.3927/36.9161/61.3822/82. Predictive Transformer49.5317/34.3263/59.5048/88 versus ordinary49.0639/33.6910/58.9340/89. Poor offline ranking and full-video scores have different behavior; neither substitutes for the other. These are single-seed diagnoses, not final selected means.
+三轮 seed0 CMUE 修复及匹配控制完成：第一轮 HOTA50.977，去掉身份排序的常数 IR 距离控制50.953，差0.024且切换更少；候选上下文遗漏修复后和排序／符号监督第三轮仍没有独立收益。第三轮校准符号 AUC0.405，实际部署接受 IR 为零。GT 仅作训练／事后分析，在线评分不读标签。
 
+九组冻结组合和记忆开关（seed0，未做联合 SGD）：
 
-Third targeted temporal repair is now complete: observable initial anchor plus recent history, twelve fixed models and99 declared video comparisons. Best three-seed mean settings give ordinary anchor GRU HOTA51.8853±0.9933/IDF162.2983/IDSW89, predictive anchor GRU51.4769±0.8695/61.3701/83.6667, predictive anchor Transformer50.6058±2.2142/60.2157/88.3333. Seed0's Transformer53.0551 did not generalize to seeds1/2. No stable independent forecasting benefit or strongest-baseline HOTA win is established. `phase3_anchor_measured_20261012.json` and the complete setting selection retain all controls.
+| 方法 | HOTA | AssA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|
+| plim_only | 51.758 | 37.514 | 61.968 | 92.589 | 82.000 |
+| plim_cmue | 51.758 | 37.514 | 61.968 | 92.589 | 82.000 |
+| plim_ordinary | 50.437 | 35.624 | 60.028 | 92.572 | 86.000 |
+| plim_quality | 50.437 | 35.624 | 60.028 | 92.572 | 86.000 |
+| plim_fixed_matched | 50.437 | 35.624 | 60.028 | 92.572 | 86.000 |
+| plim_uncertainty | 51.757 | 37.514 | 61.968 | 92.559 | 83.000 |
+| ema_cmue | 50.249 | 35.320 | 60.455 | 92.570 | 92.000 |
+| plim_only_safe | 50.291 | 35.391 | 60.482 | 92.572 | 88.000 |
+| plim_cmue_safe | 50.291 | 35.391 | 60.482 | 92.572 | 88.000 |
 
-A current-frame streaming entry point is implemented. Two videos each64frames reproduce canonical causal IR pixels exactly. Batch1 seed0 Transformer prefixes measured1.31/1.39FPS; batch8 current-frame duplication measured.97/1.03FPS, with generation/codec and preprocessing included. These are short-prefix integration measurements under observed load, not full-video/final-system benchmarks. No generated image or feature bank is saved. Full three-seed GRU current-frame trials, nine frozen joint/write controls and six actual-pixel IR interventions are in progress; they have no reported final metrics yet. Storage starts near174GiB available, minimum free reserve30GiB and per-online-run shared-filesystem growth budget2GiB. No cleanup of original assets was needed.
+拒绝 IR／IR 不可用时，联合评分和原 PLIM 逐值一致；PLIM-only 的完整文件与原实验逐字节一致。普通／质量／固定 IR 融合退化；独立拒写也退化。拒写后出现最长127帧记忆间隔及具体交叉失败，但只有少量超过原训练间隔，不能把它当作唯一根因。不能把“可靠写入”作为已验证改进。
+
+## 真实像素干预：固定检测框和 RGB 输入
+
+现场编码当前裁剪，检测框保持规范缓存；此部分速度排除预处理生成和检测，不能称为端到端 FPS。
+
+| 方法 | HOTA | AssA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|
+| fixed_matched_none | 50.437 | 35.624 | 60.028 | 92.572 | 86.000 |
+| fixed_matched_zero | 49.305 | 33.973 | 56.626 | 92.587 | 86.000 |
+| fixed_matched_repeat_rgb | 49.981 | 35.004 | 58.685 | 92.542 | 89.000 |
+| fixed_matched_spatial_shuffle | 48.364 | 32.832 | 55.598 | 92.518 | 90.000 |
+| cmue_none | 51.758 | 37.514 | 61.968 | 92.589 | 82.000 |
+| cmue_zero | 51.758 | 37.514 | 61.968 | 92.589 | 82.000 |
+
+正确 IR 好于置零、重复 RGB、打乱空间结构的 IR，说明在该固定融合模型内部，未破坏的辅助表征有价值；但它仍低于不加 IR 的强 PLIM 基线。CMUE 对正确／置零 IR 都完全拒绝，轨迹相同。不能把坏输入的退化当成相对强 RGB 基线的新增模态优势。
+
+## 完整当前帧流程与运行栈修复（Protocol B）
+
+最初共同使用 cu118/cuDNN8.7／检测批次1 的三个完整运行均值 HOTA48.901，作为保留的数值差异诊断。规范检测器使用 cu117/cuDNN8.5，身份编码器训练／导出使用 cu118；最初入口遗漏了这一差别，随后通过受控当前帧对照修复。cu117批次8在两个视频各128帧上的原始框／分数／NMS零差异，批次1不能复现规范输入。
+
+现在检测器在独立 cu117 worker 中运行，身份编码器和预测器在 cu118 中运行；双方只传当前 RGB／响应数组，检测填充是当前帧的八份副本。生成器只用当前和过去帧，在响应生成后更新 EMA，所有序列采用同一配置。两套运行栈间传递无像素／提案精度损失，没有未来图像或 GT。全部生成像素与逐帧审计的因果数据精确一致，全部输出行的帧号／身份号一致，三个种子的每序列及 combined HOTA、AssA、DetA、IDF1、MOTA、IDSW 均完全一致。
+
+逐字节边界：BT-005 全部文件和 SN-013 前2,998帧完全一致；SN-013 最后两帧每种子有8行框坐标／置信度差异。缓存跨视频的4,834帧按8分批，最后未补齐批次只有2帧，在线始终采用8份当前帧。末端受控检查表明第2,997／2,998帧仅批次8精确复现、第2,999／3,000帧仅批次2精确复现，解释了差异。原始在线文件未改写；不能声称全部轨迹逐字节相同。定位敏感的LocA/MOTP/sMOTA等有约1e-5个百分点差异，机器状态保留全部逐行和指标差异。
+
+| 运行 | 全流程 FPS | p50 ms | p95 ms | 父进程峰值分配 GiB | 检测进程峰值分配 GiB |
+|---|---:|---:|---:|---:|---:|
+| online_anchor_gru_seed0_split_full_v1 | 1.215 | 813.2 | 877.3 | 0.584 | 1.813 |
+| online_anchor_gru_seed1_split_full_v1 | 1.233 | 800.6 | 884.5 | 0.584 | 1.813 |
+| online_anchor_gru_seed2_split_full_v1 | 1.204 | 822.3 | 881.8 | 0.584 | 1.813 |
+
+总延迟包括解码、因果响应／JPEG、两种环境间传递、检测／NMS、裁剪、编码、预测／关联及输出。worker 子阶段与 roundtrip 重叠，不能重复相加。两个进程的独立峰值不能当作同时整卡显存，也不含全部驱动上下文。GPU0／1／2 各运行一个修正管线，主机仍与其他工作共享。这是真实完整视频测量，不能称为25FPS实时系统。参数：V3检测器186,199,381；单编码器24,607,808；RGB GRU231,040；配对GRU362,624；效用估计器5,697。算子 profiler 只计支持的卷积／矩阵乘等 FLOPs，检测单份1.400e12、编码单裁剪5.340e9；编码补齐128、检测重复8的成本不可省略，CPU生成／解码／Hungarian等未纳入该 FLOP计数。
+
+## 失败诊断与复现
+
+主要证据：pre-neck 窄锥特征的27组结果能由相同常数身份向量逐文件复现，早期增益来自几何接受规则；post-neck修复恢复表征区分，但不建立独立 IR 收益。第一轮效用监督遗漏148个正确几何候选，已单独修复并保留旧结果。实际历史存在较重身份污染；原始锚点有77%–99%的年龄编码饱和，针对性对数编码并未改善结果。单个有利种子不能替代完整均值。真实 CLEAR 交叉轨迹和错误写入图例保留在 FAILURE_ANALYSIS.md 的源记录中。
+
+100项实现测试通过。ReID 恢复验证已有记录；本轮真实中断 predictor／utility 于 epoch3，再恢复到epoch8，权重、优化器状态、每轮损失精确一致，utility 校准也一致。此结论针对记录的已完成 epoch 和源码／运行栈，不保证任意半写入文件或未来版本。每次运行都保留小型源码快照、配置／输入／权重哈希、命令、每视频官方指标与失败日志，大型数据不进 Git。
+
+## 对原任务书研究问题的回答
+
+| 问题 | 当前可支持的回答 |
+|---|---|
+| 1. V3是否准确复现 | 历史参考输入／输出精确恢复；新严格在线入口的末端批次边界单独披露 |
+| 2. 真实AssA、DetA、HOTA | 最强开发基线37.498／73.518／52.482；RGB＋IR预测37.715／71.447／51.885，均为官方三种子均值 |
+| 3. IR何时有效 | 固定融合内部正确结构优于破坏结构；配对预测优于普通配对GRU，但未证明强RGB之上的独立增益 |
+| 4. IR何时有害 | 强RGB预测上固定混合及打乱／置零辅助分支退化；没有可靠条件选择器 |
+| 5. CMUE优于质量门控吗 | 第三轮联合数值高于质量融合，却接受IR为零，与PLIM完全相同，因此不是CMUE增益 |
+| 6. 反事实监督有独立增益吗 | 三轮和常数／排序控制均不支持，不能归因反事实监督 |
+| 7. PLIM优于EMA/普通GRU/运动吗 | 部分预测高于简单记忆和ByteTrack；普通单RGBGRU更强，未普遍优于所有控制 |
+| 8. 显著减少交叉IDSW吗 | RGB预测总切换均值83.667对ByteTrack86；开发视频少且事件不一致，未证明统计显著交叉恢复提升 |
+| 9. 哪个创新点提高HOTA最多 | 配对预测相对普通配对控制约2.420个百分点，但强基线和双RGB控制限制创新归因 |
+| 10. 哪个创新点提高AssA最多 | 配对预测相对普通配对控制约3.465个百分点；未证明IR特有贡献，CMUE/拒写无独立收益 |
+| 11. MOTA受影响吗 | BoT93.552、配对预测92.611；完整表披露坐标/生命周期导致的检测与关联权衡 |
+| 12. IDF1升而HOTA不升吗 | 相对BoT配对预测IDF1由57.477至62.242，HOTA由52.482至51.885，确有权衡 |
+| 13. 三种子稳定吗 | 原锚点Transformer53.055单种子未复现，平均50.606±2.214；配对51.885±1.384，不能声称稳定领先 |
+| 14. 每序列一致吗 | 上表逐视频完整报告；收益/退化和事件不完全一致，不以combined数字替代 |
+| 15. 真实FPS/显存/延迟 | 完整RGB预测管线约1.20–1.23FPS，父/worker分配峰值及p50/p95见成本表；配对只完成前缀工程验证，不冒充完整配对速度 |
+| 16. 对HybridSORT等公平吗 | ProtocolA共用提案/鱼类特征/开发预算，HybridSORT46.657；原生输出规则不同，人类权重/原检测完整ProtocolB未复现 |
+| 17. 真实失败原因 | pre-neck窄锥、遗漏候选、历史污染、时间饱和、运行栈/末端批次等分别诊断和修复；时间修复无收益，未知标签不等于错误 |
+| 18. 完全在线吗 | 修正入口只用当前/过去，不读GT；完整像素/身份编号一致，末端数值差异明确定位 |
+| 19. 与已有模块的区别成立吗 | 反事实收益/潜在预测/独立写入有可运行设计，但目前控制实验不足以确立独立有效方法贡献 |
+| 20. 足够支撑独立方法论文吗 | 不足；可复现负结果和平台证据成立，原计划稳定CMUE＋IR独立贡献未达到 |
+
+## 结论、边界与资源
+
+在预先固定的两视频开发协议和受控迭代内，原科学成功条件未满足；没有宣布 SOTA 或完整创新方法成功。保留所有负结果、有效控制和可复现在线入口。密集场景补充交叉验证、真正新的外部盲测、原生完整系统 ProtocolB、联合 SGD 和可选群体交互没有执行，不能标为已完成；没有核心独立效用证据时，未强行添加交互模块或继续扩大参数搜索。历史七序列未用于新模型选择，也没有新方法最终盲测声明。
+
+当前剩余约171.8GiB，最低保留30GiB。本轮不新增图像/裁剪/特征银行，仅保存小模型、轨迹、指标与日志；新增受控产物约1.1GiB，原数据、权重、检测缓存、历史记录保留。最多使用三张物理GPU，符合四卡上限。代码在research/cfp-fishmot-v1；源码提交5dc438b，本轮 GitHub 同步遭TLS/EOF/SSH超时，最后确认的远端为6ffaaba，不能声称新提交已推送。
+
+主要入口：tools/cfp_run_online.py；正确配置configs/cfp/online_anchor_gru_seed{0,1,2}_split_v1.json。训练/重放/评估命令和哈希在experiment_registry及对应不可变manifest中。摘要状态：RESEARCH_OUTCOME_20261012.json；完整机器报告：/data3/liuyeqiang/IR-MFT_assets/cfp/phase4/online_measured_report_split_v1.json。

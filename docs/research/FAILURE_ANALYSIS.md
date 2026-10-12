@@ -1,6 +1,6 @@
 # Failure and repair ledger
 
-Status: historical reproduction drift RESOLVED; causal-input and representation diagnosis IN_PROGRESS, 2026-10-12. All paths below are local experiment artifacts.
+Status: bounded diagnosis COMPLETE; scientific outcome GOAL_NOT_MET_WITH_EVIDENCE, 2026-10-12. Earlier dated sections below retain their experimental scope. All paths below are local experiment artifacts.
 
 ## P0-01: full inference differs from historical V3
 
@@ -107,3 +107,8 @@ Actual-history training gives predictive GRU40.991%/Transformer43.991% on the SN
 
 
 Third anchor repair does not validate forecasting independently: predictive Transformer53.055 seed0 becomes50.606±2.214 across seeds, and ordinary anchor GRU51.885 exceeds predictive51.477. Training-only physical-anchor age audit identifies77–99% saturation of the clipped timestamp mapping and unknown initial proposal identities; unknown is not evidence of a wrong fish. One frozen log-time repair tests age encoding without changing capacity/queries/epochs/candidates. Joint CMUE accepts no rows and leaves PLIM unchanged; fixed/ordinary IR mixtures and the independent write-refusal policy worsen the measured seed0 anchor system. See ONLINE_INTEGRATION.md and machine records.
+
+
+## Complete current-frame terminal batch diagnosis
+
+Canonical cu117 cache processes4834frames across both dev videos with batch8 and an unpadded final batch2. Controlled current-pixel calls reproduce SN-013 frames2997/2998 exactly only withbatch8, and2999/3000 exactly only withbatch2. The strictly online pipeline retains uniform8current-frame copies. All3seeds have identical frame/identity decisions and principal official metrics, but8outputrows in the last2frames differ in coordinates/confidence and localization metrics differ slightly. No outputs were rewritten. Artifact: `/data3/liuyeqiang/IR-MFT_assets/cfp/phase4/terminal_detector_batch_diagnostic_v1/manifest.json`; complete row/metric deltas: `RESEARCH_OUTCOME_20261012.json`. This is a numerical/runtime boundary, not evidence for or against a new identity module.
