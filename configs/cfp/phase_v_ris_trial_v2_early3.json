@@ -1,0 +1,56 @@
+{
+  "state": "FROZEN",
+  "round": 2,
+  "module": "Soft token reliability state; baseline targeted RIS exploration, not a validated multi-prototype final method",
+  "query_manifest_sha256": "551ff582c34ac3100dc53fbaa6a31488c0df0edd289b33ab0ef34fe292fee2f4",
+  "epochs": 8,
+  "batch_size": 128,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "hidden": 64,
+  "amp": true,
+  "gradient_clip_norm": 5,
+  "contexts": "25% clean,75% exact actual accepted anchor+recent8",
+  "structured_corruption_probability": 0.25,
+  "corruption": "Nearby hard other-fish observations from the SAME past frame, first anchor or contiguous suffix; independently25% block masking leaves>=1token. Neighbors were chosen from physical training video candidates, never dev or future.",
+  "loss_weights": {
+    "association": 1.0,
+    "token_reliability": 0.2,
+    "recovery_confidence": 0.05
+  },
+  "objectives": [
+    "reliability",
+    "association_only"
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "first_diagnostic_seeds": [
+    0
+  ],
+  "appearance_weights": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "checkpoint_selection": "fixed last epoch8, no dev checkpoint fitting",
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "calibration_videos": [
+    "SN-015"
+  ],
+  "minimum_free_gib": 40,
+  "history_window": 8,
+  "source": "Frozen post-neck RGB features, no encoder SGD; counterfactual teacher target labels confined to training. Current inference model has four arguments:pastfeatures/timestamps/mask/queryframe.",
+  "success_comparison": "Strong raw-current-box ordinary RGB GRU HOTA53.591 and original BoT52.482; same-866parameter association-only head and no-training controls; formal candidates requirethree seeds.",
+  "read_view": "early3_recent5",
+  "confidence_unknown_policy": "Exclude uncertain support negatives: no known correcttoken with anyunknown token isunlabelled, neverfalse. Confidenceproxy fromround1 isnottrue recoverabilityAUC.",
+  "diagnosis": "SN0152129 no-known-correct contexts allcontainunknown tokens; zeroall-known-entirely-wrong. Simpleearly3 retentionaddsverifiedcorrectcues to490such queries butalso loses5other supports; net485. Preserveuntrustedearlycues, same8tokenbudget, sameepochs/parameters/augments. confidence_only isolates supervisionrepair; early3 additionallytestscontextretention."
+}

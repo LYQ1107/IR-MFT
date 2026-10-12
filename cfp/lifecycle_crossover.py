@@ -21,6 +21,8 @@ from .association import IdentityTrack, optional_feature
 from .bot_lifecycle import bot_lifecycle_update
 from .predictive_association import PredictiveAssociationTracker
 from .provenance import sha256
+from .reliable_writes import ReliableWritesMixin
+from .history import early_recent_history
 from yolox.tracker import matching as cfp_matching
 
 
@@ -168,15 +170,53 @@ def make_bot_lifecycle(native, parameters, association, predictor=None, weight=.
     return Tracker()
 
 
-def make_cfp_lifecycle(native, association, predictor=None, weight=.3, appearance_threshold=.15):
-    class Tracker(PredictiveAssociationTracker):
+def make_cfp_lifecycle(native, association, predictor=None, weight=.3, appearance_threshold=.15, write_policy=None, soft_write=False, memory_mode=None, read_view='anchor_recent'):
+    if read_view not in ('anchor_recent', 'early3_recent5'):
+        raise ValueError('Explicit frozen read view required')
+    class Tracker(ReliableWritesMixin, PredictiveAssociationTracker):
         def association_cost(self, tracks, detections):
+            if soft_write:
+                for track in tracks:
+                    if getattr(track, '_phase_v_soft_write', False):
+                        continue
+                    original = track.write_identity
+                    def write(frame, ema, original=original, track=track):
+                        # Observed current matched confidence, after scoring;
+                        # every accepted cue still writes, with bounded weight.
+                        return original(frame, .9 + .09 * (1 - float(track.score)))
+                    track.write_identity = write
+                    track._phase_v_soft_write = True
             if association == 'bot':
                 return bot_cost(self, tracks, detections, native, appearance_threshold)
-            return super().association_cost(tracks, detections)
+            if read_view == 'anchor_recent':
+                return super().association_cost(tracks, detections)
+            saved = []
+            for track in tracks:
+                saved.append((track, track.identity_history, track.initial_identity_rgb))
+                selected = early_recent_history(track.identity_history, getattr(track, 'early_identity_history', []))
+                track.identity_history = deque(selected, maxlen=8)
+                track.initial_identity_rgb = None  # Input already contains its independent early cues.
+            try:
+                return super().association_cost(tracks, detections)
+            finally:
+                for track, history, initial in saved:
+                    track.identity_history, track.initial_identity_rgb = history, initial
 
         def update(self, detections, features, indices):
             output = super().update(detections.copy(), (1, 1), (1, 1), features, proposal_indices=indices)
+            if read_view == 'early3_recent5':
+                for track in self.tracked_stracks:
+                    if not hasattr(track, 'early_identity_history'):
+                        track.early_identity_history = []
+                    times = {row[0] for row in track.early_identity_history}
+                    for row in track.identity_history:
+                        if row[0] not in times and len(track.early_identity_history) < 3:
+                            track.early_identity_history.append(row)
+                            times.add(row[0])
+                live = {id(track) for track in self.tracked_stracks + self.lost_stracks}
+                for track in self.removed_stracks:
+                    if id(track) not in live:
+                        track.early_identity_history = []
             if association == 'bot':
                 for track in self.tracked_stracks:
                     # Native BoT updates its appearance EMA on high-confidence
@@ -193,8 +233,8 @@ def make_cfp_lifecycle(native, association, predictor=None, weight=.3, appearanc
             return output
 
     args = SimpleNamespace(track_thresh=.58, track_buffer=45, match_thresh=.8 if association == 'bot' else .97, mot20=False)
-    return Tracker(args, predictor=predictor, memory='ema' if association == 'bot' else 'predictor',
-                   history_view='anchor_recent', appearance_weight=weight, proximity_iou=.1, ema=.9)
+    return Tracker(args, predictor=predictor, memory=memory_mode or ('ema' if association == 'bot' else 'predictor'),
+                   history_view='anchor_recent', appearance_weight=weight, proximity_iou=.1, ema=.9, write_policy=write_policy)
 
 
 class DecisionRecorder:

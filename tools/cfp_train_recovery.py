@@ -35,6 +35,7 @@ def diagnostics(model, rows, features, labels, device, seed):
         counts = dict(queries=0, model_correct=0, mean_correct=0, N01=0, N10=0, no_correct_history=0,
                       no_correct_history_model_correct=0)
         token_truth, token_score, support_truth, support_score = [], [], [], []
+        counts['unknown_support_queries'] = 0
         cosine, norms, predictions, purity, margins = [], [], [], [], []
         rng = np.random.default_rng(7000 + seed)
         with torch.inference_mode():
@@ -49,6 +50,7 @@ def diagnostics(model, rows, features, labels, device, seed):
                 baseline = torch.einsum('bd,bkd->bk', mean, candidates).masked_fill(~candidate_valid, -2.)
                 good, ordinary = score.argmax(1) == positive, baseline.argmax(1) == positive
                 support = (correct & known & valid).any(1)
+                support_known = support | ((known | ~valid).all(1))
                 counts['queries'] += len(past)
                 counts['model_correct'] += int(good.sum())
                 counts['mean_correct'] += int(ordinary.sum())
@@ -59,8 +61,9 @@ def diagnostics(model, rows, features, labels, device, seed):
                 selected = known & valid
                 token_truth.extend(correct[selected].cpu().tolist())
                 token_score.extend(torch.sigmoid(token_logits[selected]).cpu().tolist())
-                support_truth.extend(support.cpu().tolist())
-                support_score.extend(torch.sigmoid(confidence).cpu().tolist())
+                support_truth.extend(support[support_known].cpu().tolist())
+                support_score.extend(torch.sigmoid(confidence[support_known]).cpu().tolist())
+                counts['unknown_support_queries'] += int((~support_known).sum())
                 target = candidates[torch.arange(len(past), device=device), positive]
                 cosine.extend((prediction * target).sum(-1).cpu().tolist())
                 alternatives = score.clone()
@@ -102,6 +105,8 @@ def main():
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
     rows, features, labels, data_manifest = load_recovery_data(args.queries, args.seed)
+    if config.get('read_view', 'anchor_recent') != data_manifest.get('history_view', 'anchor_recent'):
+        raise ValueError('Declared training read view differs from indexed contexts')
     fit = [row for row in rows if row['sequence'] in config['fit_videos']]
     calibration = [row for row in rows if row['sequence'] in config['calibration_videos']]
     groups = sampling_groups(fit, config['fit_videos'])
@@ -153,7 +158,8 @@ def main():
                 association = F.cross_entropy(logits.float(), positive)
                 reliability = reliability_supervision_loss(token_logits.float(), correct, known & valid)
                 support = (correct & known & valid).any(1)
-                confidence_loss = F.binary_cross_entropy_with_logits(confidence.float(), support.float())
+                support_known = support | ((known | ~valid).all(1))
+                confidence_loss = F.binary_cross_entropy_with_logits(confidence[support_known].float(), support[support_known].float()) if support_known.any() else confidence.sum() * 0.
                 loss = association
                 if args.objective == 'reliability':
                     loss = loss + config['loss_weights']['token_reliability'] * reliability + config['loss_weights']['recovery_confidence'] * confidence_loss

@@ -1,0 +1,252 @@
+{
+  "status": "CODE_AUDITED",
+  "scope": "Read source text/AST only; no reference training/environment imports or external pretrained weights. Findings are mechanism audits, not benchmark reproduction or effective fish-method claims.",
+  "repositories": {
+    "GOT-JEPA": {
+      "commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+      "url": "https://github.com/chenshihfang/GOT",
+      "worktree_status": "",
+      "license_sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+      "files": {
+        "pytracking/ltr/models/tracking/tompnet_JEPA.py": {
+          "sha256": "230243d8f77c2629ef106311d0403824533687a2de9b5fed4d9d5560d3d5f7ca",
+          "lines": 456,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/models/tracking/tompnet_JEPA.py",
+          "class_functions": {
+            "ToMPnet": [
+              "__init__",
+              "extract_dino_features_spatial_intermediate_layers",
+              "resize_5d_tensor",
+              "apply_random_relocation_mask",
+              "forward",
+              "get_backbone_head_feat",
+              "extract_head_feat",
+              "extract_backbone_features",
+              "extract_features"
+            ]
+          }
+        },
+        "pytracking/ltr/models/tracking/tompnet_JEPAp.py": {
+          "sha256": "a77bb6da29c46608440f6d18415ef3b718aa433975b7ed530f838d591a84e7cf",
+          "lines": 400,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/models/tracking/tompnet_JEPAp.py",
+          "class_functions": {
+            "ToMPnet": [
+              "__init__",
+              "extract_dino_features_spatial_intermediate_layers",
+              "resize_5d_tensor",
+              "forward",
+              "get_backbone_head_feat",
+              "extract_head_feat",
+              "extract_backbone_features",
+              "extract_features"
+            ]
+          }
+        },
+        "pytracking/ltr/models/transformer/filter_predictor_JEPA_context.py": {
+          "sha256": "c7e28e4666333dd3e3d3613028157f1ac4654b17eca78220e747bd33f5fbc70c",
+          "lines": 245,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/models/transformer/filter_predictor_JEPA_context.py",
+          "class_functions": {
+            "FilterPredictor": [
+              "__init__",
+              "forward",
+              "get_positional_encoding",
+              "predict_filter",
+              "predict_cls_bbreg_filters_parallel"
+            ]
+          }
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_pretrain.py": {
+          "sha256": "b6cd0cec4a78a82e85f61ae48e08381fb178a1797e7e4b0b588bddadb8f4c7ff",
+          "lines": 179,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/train_settings/tomp/GOT_JEPA_378_pretrain.py",
+          "class_functions": {}
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_finetune.py": {
+          "sha256": "68913dbca4dde9defbf2eebdfb4492300f881b5795b3a8656883e805f95ce883",
+          "lines": 174,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/train_settings/tomp/GOT_JEPA_378_finetune.py",
+          "class_functions": {}
+        },
+        "pytracking/ltr/actors/tracking.py": {
+          "sha256": "96d1ce933ec13d5b642586fba7657c0cce48436936c8938eaae102ee799b9d09",
+          "lines": 2341,
+          "permalink": "https://github.com/chenshihfang/GOT/blob/5f382645ccb7331280a7bf07f3c5709d1072caf7/pytracking/ltr/actors/tracking.py",
+          "class_functions": {
+            "ToMPActor": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp": [
+              "__init__",
+              "off_diagonal",
+              "loss_fn",
+              "__call__",
+              "__init__",
+              "off_diagonal",
+              "loss_fn",
+              "__call__"
+            ],
+            "ToMPActor_PTcur": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_PTcurq2": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_PT": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_autocast": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_wL1": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_comlossLGHF": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_comlossLGH": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_comlossLGF": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "ToMPActor_comlossGF": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "DiMPActor": [
+              "__init__",
+              "__call__"
+            ],
+            "KLDiMPActor": [
+              "__init__",
+              "__call__"
+            ],
+            "DiMPSimpleActor": [
+              "__init__",
+              "__call__"
+            ],
+            "ToMPActor_PiVOT": [
+              "__init__",
+              "compute_iou_at_max_score_pos",
+              "__call__"
+            ],
+            "DiMPActor_clip": [
+              "__init__",
+              "__call__"
+            ],
+            "KYSActor": [
+              "__init__",
+              "__call__"
+            ],
+            "TargetCandiateMatchingActor": [
+              "__init__",
+              "__call__"
+            ]
+          }
+        }
+      }
+    },
+    "V-JEPA2": {
+      "commit": "204698b45b3712590f06245fbfba32d3be539812",
+      "url": "https://github.com/facebookresearch/vjepa2",
+      "worktree_status": "",
+      "license_sha256": "cf9b17822d1fcd4ff32ccbe14183386fb3adf6f2ff92dc184130823f7fc28173",
+      "files": {
+        "app/vjepa/train.py": {
+          "sha256": "abd6431069d541c96b9b31ec05fce954664c56d2d4ca6d67bb4c9e2ddd775a5f",
+          "lines": 536,
+          "permalink": "https://github.com/facebookresearch/vjepa2/blob/204698b45b3712590f06245fbfba32d3be539812/app/vjepa/train.py",
+          "class_functions": {}
+        },
+        "app/vjepa_2_1/train.py": {
+          "sha256": "6057c8968c90dc96935680e8f617bbe8db836fc30698a053b0aceaa985f39b93",
+          "lines": 835,
+          "permalink": "https://github.com/facebookresearch/vjepa2/blob/204698b45b3712590f06245fbfba32d3be539812/app/vjepa_2_1/train.py",
+          "class_functions": {}
+        },
+        "app/vjepa_2_1/models/predictor.py": {
+          "sha256": "30111720eb90c6dcdde44521cea53cc736020f984e5573150fd3dc7b4acc05d8",
+          "lines": 302,
+          "permalink": "https://github.com/facebookresearch/vjepa2/blob/204698b45b3712590f06245fbfba32d3be539812/app/vjepa_2_1/models/predictor.py",
+          "class_functions": {
+            "VisionTransformerPredictor": [
+              "__init__",
+              "_init_weights",
+              "_rescale_blocks",
+              "forward"
+            ]
+          }
+        },
+        "src/models/predictor.py": {
+          "sha256": "3d8481bf2544b85ed92b3feb418e3b6d85ca1f81034c931b8c860f2d3d9aac2b",
+          "lines": 261,
+          "permalink": "https://github.com/facebookresearch/vjepa2/blob/204698b45b3712590f06245fbfba32d3be539812/src/models/predictor.py",
+          "class_functions": {
+            "VisionTransformerPredictor": [
+              "__init__",
+              "_init_pos_embed",
+              "_init_weights",
+              "_rescale_blocks",
+              "forward"
+            ]
+          }
+        },
+        "configs/train_2_1/vitb16/pretrain-256px-16f.yaml": {
+          "sha256": "df44fd5da9f5bcf9d76dbc354e1bf3fd0eef1528e26fa216ab5c91523b01285e",
+          "lines": 149,
+          "permalink": "https://github.com/facebookresearch/vjepa2/blob/204698b45b3712590f06245fbfba32d3be539812/configs/train_2_1/vitb16/pretrain-256px-16f.yaml"
+        }
+      }
+    },
+    "MOTIP": {
+      "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+      "url": "https://github.com/MCG-NJU/MOTIP",
+      "worktree_status": "",
+      "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "files": {
+        "models/motip/id_decoder.py": {
+          "sha256": "a16cf34bb16fa14a17d715231af1439cb3f1c1fa15d18341e2a84c61cdf59d81",
+          "lines": 252,
+          "permalink": "https://github.com/MCG-NJU/MOTIP/blob/ffc0e905ac196a603027eca8d18fb0dff48c8bcc/models/motip/id_decoder.py",
+          "class_functions": {
+            "IDDecoder": [
+              "__init__",
+              "forward",
+              "_forward_a_layer",
+              "id_label_to_embed",
+              "generate_empty_id_embed",
+              "shuffle",
+              "dtype"
+            ]
+          }
+        },
+        "docs/GET_STARTED.md": {
+          "sha256": "139357f7528e2290affb800654001277706322e8c7830b2841d7b4b39eedc4c4",
+          "lines": 104,
+          "permalink": "https://github.com/MCG-NJU/MOTIP/blob/ffc0e905ac196a603027eca8d18fb0dff48c8bcc/docs/GET_STARTED.md"
+        }
+      }
+    }
+  }
+}

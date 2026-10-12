@@ -11,6 +11,7 @@ import numpy as np
 
 from cfp.provenance import sha256, snapshot_sources, write_json
 from cfp.recovery_supervision import physical_bank, history_view, modal_identity
+from cfp.history import early_recent_history
 
 
 def pad(values, length=8, fill=-1):
@@ -23,6 +24,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--run', type=Path, required=True)
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--history-view', choices=['anchor_recent', 'early3_recent5'], default='anchor_recent')
     args = p.parse_args()
     if args.output.exists():
         raise FileExistsError('Recovery training indices immutable')
@@ -33,7 +35,7 @@ def main():
     if shutil.disk_usage(root).free < 40 * 2**30:
         raise OSError('40GiB reserve')
     args.output.mkdir(parents=True)
-    record = dict(status='RUNNING', partition='train', teacher_replay_seed=run['seed'],
+    record = dict(status='RUNNING', partition='train', teacher_replay_seed=run['seed'], history_view=args.history_view,
                   actual_replay_manifest_sha256=sha256(args.run / 'manifest.json'), videos={},
                   source_snapshots=snapshot_sources(args.output, [__file__, 'cfp/recovery_supervision.py', 'cfp/supervision.py', 'configs/cfp/phase_v_protocol_v1.json']),
                   fit_videos=['BT-001', 'BT-003', 'MSK-002', 'PF-001', 'SN-001'], calibration_videos=['SN-015'],
@@ -48,7 +50,7 @@ def main():
         if sha256(feature_path) != json.loads(feature_path.with_suffix('.provenance.json').read_text())['features_sha256']:
             raise ValueError('Feature drift')
         labelled_by_identity = {int(identity): np.flatnonzero(labels == identity) for identity in np.unique(labels) if identity >= 0}
-        first_known, references = defaultdict(dict), {}
+        first_known, references, early_observed = defaultdict(dict), {}, defaultdict(dict)
         rows, excluded = [], Counter()
         trace = args.run / (seq + '.decisions.jsonl.gz')
         if sha256(trace) != run['videos'][seq]['decisions_sha256']:
@@ -65,6 +67,9 @@ def main():
                     history = history_view(track)
                     identifier = track['track_id']
                     for time, index in history:
+                        if len(early_observed[identifier]) < 3:
+                            early_observed[identifier][index] = time
+                    for time, index in history:
                         if labels[index] >= 0 and len(first_known[identifier]) < 5:
                             first_known[identifier][index] = time
                     if identifier not in references and len(first_known[identifier]) >= 3:
@@ -77,6 +82,9 @@ def main():
                     if identifier not in references:
                         excluded['unknown_early_multi_observation_reference'] += 1
                         continue
+                    if args.history_view == 'early3_recent5':
+                        early = sorted((time, index) for index, time in early_observed[identifier].items())
+                        history = early_recent_history(track['history'], early)
                     target = references[identifier]
                     positive = np.flatnonzero(labels[candidates] == target)
                     if not len(positive) or len(candidates) < 2:
