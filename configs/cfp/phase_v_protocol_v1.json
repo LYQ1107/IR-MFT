@@ -1,0 +1,48 @@
+{
+  "state": "FROZEN",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "parent_commit": "4f1b226343335d219af015d6c2954c0c81d28c7a",
+  "task_book_sha256": "26b302fb4c220fc37c784a9ed1435d4b21a7a203bc9ba9834969095d9de39031",
+  "minimum_free_gib": 40,
+  "new_output_budget_gib": 8,
+  "max_physical_gpus": 4,
+  "preferred_gpus": [
+    0,
+    1,
+    2
+  ],
+  "never_delete_existing_assets": true,
+  "never_change_detection_cache": true,
+  "historical_test_selection": false,
+  "lifecycle_crossover": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "bot_appearance_thresholds": [
+      0.15,
+      0.25,
+      0.35
+    ],
+    "gru_appearance_weights": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "history": "anchor_recent8",
+    "checkpoint_epoch": 8,
+    "association_acceptance_threshold": {
+      "bot": 0.8,
+      "gru": 0.97
+    },
+    "unconfirmed_threshold": 0.7,
+    "low_score_iou_threshold": 0.5,
+    "high_confidence": 0.58,
+    "low_confidence": 0.1,
+    "newborn_confidence": 0.68,
+    "lost_frames": 37,
+    "minimum_box_area": 100,
+    "scope": "Cost and its calibrated first-stage acceptance belong to association; KF/prediction, confirmation/output, lost/reactivation/deletion belong to lifecycle. Representation write policy remains explicit scorer state. Diagonal full-file parity required before crossover interpretation. Three old settings per association family and complete seeds; no video-specific thresholds."
+  }
+}
