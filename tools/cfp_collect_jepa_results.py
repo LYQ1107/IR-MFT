@@ -17,7 +17,9 @@ def main():
         campaign=json.loads(path.read_text());inputs[str(path)]=dict(sha256=sha256(path),status=campaign['status']);complete &= campaign['status']=='COMPLETE'
         if campaign['status']!='COMPLETE' and not args.allow_partial:raise ValueError('Incomplete campaign: '+str(path))
         for name,entry in campaign['runs'].items():
-            if name in runs:raise ValueError('Duplicate experiment key')
+            if name in runs:
+                if runs[name]!=entry:raise ValueError('Conflicting reused experiment')
+                continue
             spec=entry['spec'];checkpoint=Path(spec['checkpoint']);manifest_path=checkpoint.with_name('manifest.json');model=json.loads(manifest_path.read_text())
             if model['status']!='COMPLETE' or sha256(checkpoint)!=model['inference_checkpoint_sha256']:raise ValueError('Changed model')
             root=checkpoint.parent;replay=root.parent/name;evaluation=replay.with_name(name+'_evaluation')

@@ -1,0 +1,94 @@
+{
+  "state": "FROZEN",
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "minimum_free_gib": 40,
+  "jobs": [
+    {
+      "variant": "transformer_J6",
+      "seed": 1,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_J6_seed1",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_latent_identity",
+      "seed": 1,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_latent_identity_seed1",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_ordinary_latent_identity",
+      "seed": 1,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_ordinary_latent_identity_seed1",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "ordinary_transformer_error",
+      "seed": 1,
+      "config": "configs/cfp/phase_v_jepa_error_controls_v1.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v1_ordinary_transformer_error_seed1"
+    },
+    {
+      "variant": "transformer_J6",
+      "seed": 2,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_J6_seed2",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_latent_identity",
+      "seed": 2,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_latent_identity_seed2",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "transformer_ordinary_latent_identity",
+      "seed": 2,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_latent_identity.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_ordinary_latent_identity_seed2",
+      "trainer": "tools/cfp_train_jepa_v3.py"
+    },
+    {
+      "variant": "ordinary_transformer_error",
+      "seed": 2,
+      "config": "configs/cfp/phase_v_jepa_error_controls_v1.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v1_ordinary_transformer_error_seed2"
+    },
+    {
+      "variant": "transformer_no_ema",
+      "seed": 0,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_transformer_no_ema.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_no_ema_seed0"
+    },
+    {
+      "variant": "transformer_no_ema",
+      "seed": 1,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_transformer_no_ema.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_no_ema_seed1"
+    },
+    {
+      "variant": "transformer_no_ema",
+      "seed": 2,
+      "config": "configs/cfp/phase_v_jepa_trial_v3_transformer_no_ema.json",
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/recovery_train_queries_v1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_v3_transformer_no_ema_seed2"
+    }
+  ],
+  "scope": "Thirdround TransformerJ6 seed0HOTA54.4027 improvesoldGRU butstillbelowcapacitymatched ordinaryTransformer55.4745. Need identicalTransformer noEMA control andthree-seed comparison beforeany EMA attribution. Identicalmask/corruption/currenttargets/epochbudget, noadditional weightsearch. Three-seedordinaryerror/contrastivecontrol preventsaugmentationorlatentdiscriminationaloneattribution."
+}
