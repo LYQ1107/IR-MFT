@@ -132,6 +132,6 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 
 在预先固定的两视频开发协议和受控迭代内，原科学成功条件未满足；没有宣布 SOTA 或完整创新方法成功。保留所有负结果、有效控制和可复现在线入口。密集场景补充交叉验证、真正新的外部盲测、原生完整系统 ProtocolB、联合 SGD 和可选群体交互没有执行，不能标为已完成；没有核心独立效用证据时，未强行添加交互模块或继续扩大参数搜索。历史七序列未用于新模型选择，也没有新方法最终盲测声明。
 
-当前剩余约171.8GiB，最低保留30GiB。本轮不新增图像/裁剪/特征银行，仅保存小模型、轨迹、指标与日志；新增受控产物约1.1GiB，原数据、权重、检测缓存、历史记录保留。最多使用三张物理GPU，符合四卡上限。代码在research/cfp-fishmot-v1；源码提交5dc438b，本轮 GitHub 同步遭TLS/EOF/SSH超时，最后确认的远端为6ffaaba，不能声称新提交已推送。
+当前剩余约171.8GiB，最低保留30GiB。本轮不新增图像/裁剪/特征银行，仅保存小模型、轨迹、指标与日志；新增受控产物约1.1GiB，原数据、权重、检测缓存、历史记录保留。最多使用三张物理GPU，符合四卡上限。代码在research/cfp-fishmot-v1；源码提交f0e9758。此前TLS/EOF/SSH故障后连接恢复，已成功推送；本报告生成时确认远端为f0e9758，成功推送日志及哈希保留在机器状态中。
 
 主要入口：tools/cfp_run_online.py；正确配置configs/cfp/online_anchor_gru_seed{0,1,2}_split_v1.json。训练/重放/评估命令和哈希在experiment_registry及对应不可变manifest中。摘要状态：RESEARCH_OUTCOME_20261012.json；完整机器报告：/data3/liuyeqiang/IR-MFT_assets/cfp/phase4/online_measured_report_split_v1.json。

@@ -28,6 +28,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--assets-root', type=Path, required=True)
     p.add_argument('--online-report', type=Path, required=True)
+    p.add_argument('--confirmed-remote-head')
+    p.add_argument('--push-log', type=Path)
     args = p.parse_args()
     root = args.assets_root
     online = json.loads(args.online_report.read_text())
@@ -118,6 +120,20 @@ def main():
             cost_rows.append(f"| {name} | {entry['aggregate_fps']:.3f} | {entry['aggregate_latency_p50_p95_ms'][0]:.1f} | {entry['aggregate_latency_p50_p95_ms'][1]:.1f} | {entry['peak_gpu_memory_bytes']/2**30:.3f} | {child_peak/2**30:.3f} |")
     free = shutil.disk_usage(root).free / 2**30
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+    sync = dict(status='NETWORK_UNAVAILABLE', last_confirmed_remote='6ffaababd26e5a2e2628dd02a03514ac5ecb7702')
+    sync_text = '本轮 GitHub 同步遭TLS/EOF/SSH超时，最后确认的远端为6ffaaba，不能声称新提交已推送。'
+    if args.confirmed_remote_head:
+        confirmed = subprocess.check_output(['git', 'rev-parse', args.confirmed_remote_head], text=True).strip()
+        actual_remote = subprocess.check_output(['git', 'ls-remote', 'origin', 'refs/heads/research/cfp-fishmot-v1'],
+                                               text=True, timeout=30).split()[0]
+        if args.push_log is None or confirmed != actual_remote:
+            raise ValueError('Confirmed remote must match the live remote branch')
+        subprocess.check_call(['git', 'merge-base', '--is-ancestor', confirmed, commit])
+        if '-> research/cfp-fishmot-v1' not in args.push_log.read_text():
+            raise ValueError('Successful push log required')
+        sync = dict(status='PUSH_CONFIRMED', last_confirmed_remote=confirmed,
+                    push_log=str(args.push_log), push_log_sha256=sha256(args.push_log))
+        sync_text = f'此前TLS/EOF/SSH故障后连接恢复，已成功推送；本报告生成时确认远端为{args.confirmed_remote_head[:7]}，成功推送日志及哈希保留在机器状态中。'
     state = dict(status='GOAL_NOT_MET_WITH_EVIDENCE', task_scope='Bounded original research hypotheses evaluated; no validated final innovative method or SOTA claim.',
                  original_goal='Reliable synthetic-modality identity association for online multi-object fish tracking',
                  reasons=['CMUE has no validated independent gain; final gate accepts zero IR rows',
@@ -132,7 +148,7 @@ def main():
                               'Biological identity overlap across videos is unverified',
                               'Native person-weight/own-detector ProtocolB and external fresh blind validation unperformed',
                               'Group interaction and joint SGD not introduced without controlled core usefulness evidence'],
-                 free_gib=free, minimum_free_gib=30, source_commit=commit)
+                 free_gib=free, minimum_free_gib=30, source_commit=commit, github_sync=sync)
     write_json('docs/research/RESEARCH_OUTCOME_20261012.json', state)
     report = f'''# CFP-FishMOT bounded research evidence
 
@@ -223,7 +239,7 @@ ByteTrack 同一开发协议：HOTA49.297、AssA34.012、IDF158.877、MOTA92.529
 
 在预先固定的两视频开发协议和受控迭代内，原科学成功条件未满足；没有宣布 SOTA 或完整创新方法成功。保留所有负结果、有效控制和可复现在线入口。密集场景补充交叉验证、真正新的外部盲测、原生完整系统 ProtocolB、联合 SGD 和可选群体交互没有执行，不能标为已完成；没有核心独立效用证据时，未强行添加交互模块或继续扩大参数搜索。历史七序列未用于新模型选择，也没有新方法最终盲测声明。
 
-当前剩余约{free:.1f}GiB，最低保留30GiB。本轮不新增图像/裁剪/特征银行，仅保存小模型、轨迹、指标与日志；新增受控产物约1.1GiB，原数据、权重、检测缓存、历史记录保留。最多使用三张物理GPU，符合四卡上限。代码在research/cfp-fishmot-v1；源码提交{commit[:7]}，本轮 GitHub 同步遭TLS/EOF/SSH超时，最后确认的远端为6ffaaba，不能声称新提交已推送。
+当前剩余约{free:.1f}GiB，最低保留30GiB。本轮不新增图像/裁剪/特征银行，仅保存小模型、轨迹、指标与日志；新增受控产物约1.1GiB，原数据、权重、检测缓存、历史记录保留。最多使用三张物理GPU，符合四卡上限。代码在research/cfp-fishmot-v1；源码提交{commit[:7]}。{sync_text}
 
 主要入口：tools/cfp_run_online.py；正确配置configs/cfp/online_anchor_gru_seed{{0,1,2}}_split_v1.json。训练/重放/评估命令和哈希在experiment_registry及对应不可变manifest中。摘要状态：RESEARCH_OUTCOME_20261012.json；完整机器报告：{args.online_report}。
 '''
