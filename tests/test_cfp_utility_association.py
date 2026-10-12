@@ -74,3 +74,18 @@ def test_partial_missing_ir_preserves_that_edge_exactly_in_an_accepted_row():
     assert mixed[0,0]==baseline[0,0]  # Available IR on another edge must not round this RGB cost.
     assert mixed[0,1]!=baseline[0,1]
     assert tracker.utility_counts['accepted_rows']==1
+
+
+def test_uncertainty_control_rejects_equal_information_and_responds_to_entropy():
+    track=IdentityTrack([0,0,30,20],.9,np.array([1.,0.],np.float32),np.array([1.,0.],np.float32))
+    track.memory_rgb=track.memory_ir=np.array([1.,0.],np.float32);track.last_identity_frame=1;track.is_activated=True
+    rgb=np.array([.6,.8],np.float32)
+    detections=[IdentityTrack([0,0,30,20],.9,rgb,rgb),IdentityTrack([5,0,30,20],.9,rgb,rgb)]
+    baseline=AppearanceTracker(ARGS);baseline.frame_id=2
+    tracker=UtilityAssociationTracker(ARGS,kind='uncertainty');tracker.frame_id=2;tracker.candidate_context_version=2
+    assert np.array_equal(tracker.association_cost([track],detections),baseline.association_cost([track],detections))
+    assert tracker.utility_counts['rejected_rows']==1
+    detections[0].current_ir=np.array([1.,0.],np.float32);detections[1].current_ir=np.array([0.,1.],np.float32)
+    mixed=tracker.association_cost([track],detections)
+    assert tracker.utility_counts['accepted_rows']==1 and tracker.utility_counts['weight_sum']>0
+    assert not np.array_equal(mixed,baseline.association_cost([track],detections))

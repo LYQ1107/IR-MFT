@@ -1,0 +1,56 @@
+{
+  "state": "FROZEN",
+  "seed": 0,
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "execution_config_sha256": "070711c296c56b7a99352ab78b7499dedb8cf90647da6d4e0ad7f7e5cc2739b8",
+  "write_policy_sha256": "824e98e188a9877c6c5b8dac4a46f2ddc42e926f97a7199ce6ba786d070557fc",
+  "scope": "Independent write-policy toggle, unchanged epoch8 predictor/EMA/weight0.3/graph; six actual runs with observable write logs and exact disabled baseline parity. No threshold/appearance re-search.",
+  "jobs": [
+    {
+      "run_id": "plim_write_ema_seed0_ordinary",
+      "memory": "ema",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "baseline_reference": "plim_dev_ema_seed0_w0.3"
+    },
+    {
+      "run_id": "plim_write_ema_seed0_safe",
+      "memory": "ema",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "write_policy_config": "configs/cfp/plim_write_policy_v1.json"
+    },
+    {
+      "run_id": "plim_write_gru_predictive_clean_seed0_ordinary",
+      "memory": "predictor",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "checkpoint": "predictor_gru_predictive_clean_seed0/epoch8.pt",
+      "baseline_reference": "plim_dev_gru_predictive_clean_seed0_w0.3"
+    },
+    {
+      "run_id": "plim_write_gru_predictive_clean_seed0_safe",
+      "memory": "predictor",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "checkpoint": "predictor_gru_predictive_clean_seed0/epoch8.pt",
+      "write_policy_config": "configs/cfp/plim_write_policy_v1.json"
+    },
+    {
+      "run_id": "plim_write_transformer_predictive_clean_seed0_ordinary",
+      "memory": "predictor",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "checkpoint": "predictor_transformer_predictive_clean_seed0/epoch8.pt",
+      "baseline_reference": "plim_dev_transformer_predictive_clean_seed0_w0.3"
+    },
+    {
+      "run_id": "plim_write_transformer_predictive_clean_seed0_safe",
+      "memory": "predictor",
+      "appearance_weight": 0.3,
+      "save_write_audit": true,
+      "checkpoint": "predictor_transformer_predictive_clean_seed0/epoch8.pt",
+      "write_policy_config": "configs/cfp/plim_write_policy_v1.json"
+    }
+  ]
+}

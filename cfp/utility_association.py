@@ -11,10 +11,10 @@ from yolox.tracker import matching
 class UtilityAssociationTracker(AppearanceTracker):
     def __init__(self, args, model=None, kind='cmue', calibration=None, threshold=.02,
                  no_calibration=False, no_fallback=False, **kwargs):
-        if kind not in ('cmue','ordinary','quality','fixed_matched','untrained','fixed_constant_ir','fixed_row_mean_ir'):
+        if kind not in ('cmue','ordinary','quality','fixed_matched','untrained','fixed_constant_ir','fixed_row_mean_ir','uncertainty'):
             raise ValueError('Unknown utility association control')
         super().__init__(args, mode='rgb', **kwargs)
-        if kind not in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir') and model is None:
+        if kind not in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir','uncertainty') and model is None:
             raise ValueError('Gate model is required')
         self.utility_model=model
         self.utility_kind=kind
@@ -61,16 +61,20 @@ class UtilityAssociationTracker(AppearanceTracker):
                 evidence=complete['evidence']
             contexts.append((i,selected,rgb[selected],ir,evidence))
         if not contexts:return baseline
-        if self.utility_kind in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir'):values=np.zeros(len(contexts))
+        if self.utility_kind in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir','uncertainty'):values=np.zeros(len(contexts))
         else:
             self.utility_model.eval()
             with torch.inference_mode():
                 values=self.utility_model(torch.from_numpy(np.stack([row[4] for row in contexts]))).cpu().numpy()
             if not np.isfinite(values).all():raise ValueError('Nonfinite utility prediction')
         result=baseline.copy()
-        for (i,selected,rgb,ir,_),value in zip(contexts,values):
+        for (i,selected,rgb,ir,evidence),value in zip(contexts,values):
             if self.utility_kind in ('ordinary','quality','untrained'):
                 weight=float(.5/(1+np.exp(-np.clip(value,-80,80))))
+                appearance=(1-weight)*rgb+weight*ir
+            elif self.utility_kind=='uncertainty':
+                rgb_entropy=float(evidence[5]);ir_entropy=float(evidence[10])
+                weight=.5*float(np.clip((rgb_entropy-ir_entropy)/max(rgb_entropy,1e-6),0,1))
                 appearance=(1-weight)*rgb+weight*ir
             elif self.utility_kind in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir'):
                 weight=.5;appearance=.5*rgb+.5*ir

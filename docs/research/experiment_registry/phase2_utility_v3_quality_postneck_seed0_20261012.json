@@ -1,0 +1,167 @@
+{
+  "run_id": "phase2_utility_v3_quality_postneck_seed0_20261012",
+  "hypothesis": "Third utility ranking/sign repair with identical5697params/eight-epoch matched ordinary/quality models",
+  "git_commit": "6ffaababd26e5a2e2628dd02a03514ac5ecb7702",
+  "seed": 0,
+  "config": {
+    "schema_version": 3,
+    "state": "FROZEN",
+    "hypothesis": "Round1 gain is nearly reproduced by ranking-free IR penalty and round2 sign AUC remains0.508; explicitly learn candidate-ranking benefit and utility sign instead of NULL rejection magnitude.",
+    "representation": "post_neck, original crop, fixed last epoch12 teachers; this first trial is distinct from the prospective long-axis baseline repair",
+    "teacher_folds": "protocol_v2 crossfit_groups; each sequence encoded only by the teacher that did not train on it",
+    "teacher_temperature": 0.1,
+    "teacher_ir_weight": 0.5,
+    "null_distance": 0.35,
+    "candidate_policy": "Complete high/unconfirmed row context: geometry cost <= native stage threshold OR RGB-modifiable edge. All geometry fallback candidates remain present, including correct candidates with RGB cosine distance >0.35. Both teachers use this identical pool. Modify appearance only on the original shared RGB eligibility mask.",
+    "target": "Counterfactual CE on identical real candidates, when a unique true candidate and at least2 candidates are present. NULL/singleton examples receive0 ranking utility; preserve original full-context association utility separately.",
+    "physical_proposal_labels": {
+      "matching": "independent per-current-frame IoU Hungarian, no temporal continuity bonus",
+      "minimum_iou": 0.5,
+      "minimum_top_two_iou_gap": 0.15,
+      "ambiguity": "Reject nonunique physical assignments and original duplicate GT keys. Unlabeled crops remain tracker inputs but cannot anchor supervision."
+    },
+    "history": "Actual accepted RGB-baseline online histories, EMA0.9, max8 observations; original first available unambiguous past label anchors supervision only. Scoring before current writes. Also retain clean teacher-forced history indices as a diagnostic, never inference inputs.",
+    "query_frame_stride": 5,
+    "fit_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "calibration_videos": [
+      "SN-015"
+    ],
+    "calibration": "Fit scalar affine utility calibration on the held-out association-training video only; canonical dev does not fit estimator or calibration. Report near-constant/sign failure honestly.",
+    "mlp": {
+      "hidden": 64,
+      "hidden_layers": 2,
+      "activation": "SiLU",
+      "output": 1
+    },
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 8,
+    "batch_size": 512,
+    "sampling": "Uniform fit video, uniform available physical decision type (NULL/singletontrue/multitrue), uniform query in that type. Same sampling for CMUE/ordinary/quality; no utility-sign-dependent sampler.",
+    "loss": "CMUE Huber ranking-utility regression plus balanced positive/negative sign BCE on same scalar output. Ordinary/quality optimize unchanged full-context candidate CE, identical evidence/model/budget/strata.",
+    "huber_delta": 0.1,
+    "utility_threshold_candidates": [
+      0.0,
+      0.02,
+      0.05
+    ],
+    "maximum_ir_weight": 0.5,
+    "utility_full_weight_at": 0.2,
+    "association_weight_candidates": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "seed_plan": [
+      0,
+      1,
+      2
+    ],
+    "selection": "fixed epoch8; dev all-seed mean HOTA then AssA/IDF1, compare strongest completed BoT-SORT and identity-blind geometry baseline, not just ordinary RGB",
+    "controls": [
+      "fixed mixture",
+      "same-evidence ordinary CE gate",
+      "quality-only CE gate",
+      "untrained gate",
+      "no RGB fallback",
+      "no calibration",
+      "zero/noise/wrong paired/interrupted IR inputs",
+      "independent RGB and matched RGB history/contrast views"
+    ],
+    "scope": "Third targeted evidence-driven CMUE round, frozen before derivedtargets/SGD/dev;5697params/same8epochs/evidence22/sharedcandidategraph/threeweights/threshold.02. No model/depth/epoch expansion or historical test diagnosis. Target signed ranking, not complete-assignment rejection.",
+    "round": 3,
+    "parent_target_config_sha256": "c4ce549b2f004439df145cd869137dcbd14c9609ac511734ec97ab72b4f8f572",
+    "candidate_context_version": 2,
+    "teacher_association_weight": 0.3,
+    "teacher_null_policy": "Per-row NULL cost equals the native stage threshold: high/lost0.97, unconfirmed0.7. Stored explicitly in every query; legacy null_distance0.35 is unused by version2.",
+    "evidence": "Same22 fields/5697-parameter MLP, but RGB/IR summary statistics refer to complete hypothetical association costs, including geometry fallback edges. Deployment computes exactly the same fixed teacher-weight context independently of its tested final appearance weight.",
+    "diagnosis": "Round1 single-seed HOTA50.9769 versus constant-IR penalty50.9528, with more IDSW; calibration sign AUC0.5066. Local-only teacher NULL labels can omit an actually geometry-matchable positive. Preserve all Round1 artifacts; this targeted repair is not a success claim.",
+    "source_query_config_sha256": "bb6653411ed293d0aa0e9cd3379f99e09cb3f90cdb2769ebe95431249fb0b6cd",
+    "utility_target": "candidate_ranking_only",
+    "decision_type_balanced_sampling": true,
+    "ranking_sign_loss": {
+      "delta": 0.1,
+      "sign_temperature": 0.05,
+      "sign_weight": 0.05,
+      "minimum_abs_utility": 0.005
+    }
+  },
+  "detector_sha256": null,
+  "reid_sha256": [],
+  "split": {
+    "fit_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "calibration_videos": [
+      "SN-015"
+    ],
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "epochs": 8,
+  "checkpoint_selection": "Fixed epoch8; only association-training SN-015 calibrates utility",
+  "metrics": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "loss": 2.44036777123161
+      },
+      {
+        "epoch": 2,
+        "loss": 2.4213971728863926
+      },
+      {
+        "epoch": 3,
+        "loss": 2.4604810631793477
+      },
+      {
+        "epoch": 4,
+        "loss": 2.411895964456641
+      },
+      {
+        "epoch": 5,
+        "loss": 2.4327995673469873
+      },
+      {
+        "epoch": 6,
+        "loss": 2.4245921580687813
+      },
+      {
+        "epoch": 7,
+        "loss": 2.41400176545848
+      },
+      {
+        "epoch": 8,
+        "loss": 2.4262018877526987
+      }
+    ],
+    "calibration_gate_weight_mean_std": [
+      0.49991658329963684,
+      5.501091800397262e-05
+    ]
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_quality_postneck_seed0.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_quality_postneck_seed0",
+  "conclusion": "CMUE calibration signAUC0.4047, correlation0.0400, zero threshold0.02 acceptance onSN-015; no independent usefulness gain established.",
+  "status": "COMPLETE",
+  "checkpoint_sha256": "d5a7b9dffb7a7cfd3e1f61f1f4c9503c3b63216e55bfdb5a66dab6867479e222",
+  "source_snapshots": {
+    "tools/cfp_train_utility.py": "475fd0db5b8339cc0e16f648122428bc5f7d1baeb5b0056dc802a963fc2fa31b",
+    "cfp/utility.py": "12e9f2999a5fb01ee200df9aa13707cb56455857c0463f3c8edd792591e21dec",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "cfp/utility_supervision.py": "10882fe205c43585e947031fc22d99cdb75f3c37c4dda145ff48c35960cecc71",
+    "configs/cfp/cmue_trial_v3.json": "9973f5bafeb0c25c9ae628f279f8aac8572095c47a0c44a0da9ff8e18c301b4c"
+  },
+  "manifest_sha256": "af58bc2343b65c0ab0bccc0c9aa0bebf9ed3ae17f5b7958f658d5dea086e8463",
+  "config_sha256": "34a41d582a2738579d0ea5c3edbb3c272854a75d06e0b18309807298b6f30fc3"
+}

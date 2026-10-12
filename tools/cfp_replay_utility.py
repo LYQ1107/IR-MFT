@@ -24,7 +24,7 @@ def main():
     p.add_argument('--config',type=Path,required=True)
     p.add_argument('--execution-config',type=Path,required=True)
     p.add_argument('--checkpoint',type=Path)
-    p.add_argument('--kind',choices=['cmue','ordinary','quality','fixed_matched','untrained','fixed_constant_ir','fixed_row_mean_ir'],required=True)
+    p.add_argument('--kind',choices=['cmue','ordinary','quality','fixed_matched','untrained','fixed_constant_ir','fixed_row_mean_ir','uncertainty'],required=True)
     p.add_argument('--appearance-weight',type=float,required=True)
     p.add_argument('--no-calibration',action='store_true')
     p.add_argument('--no-fallback',action='store_true')
@@ -34,6 +34,7 @@ def main():
     protocol=json.loads(args.protocol.read_text());config=json.loads(args.config.read_text());execution=json.loads(args.execution_config.read_text())
     if protocol['state']!='FROZEN' or config['state']!='FROZEN' or execution['state']!='FROZEN' or args.appearance_weight not in execution['appearance_weight_candidates']:
         raise ValueError('Frozen utility execution budget required')
+    if execution.get('parent_target_config')!=args.config.name:raise ValueError('Utility execution targets another frozen trial')
     if (args.no_calibration or args.no_fallback) and args.kind!='cmue':raise ValueError('Calibration/fallback controls apply to CMUE only')
     if config['maximum_ir_weight']!=.5 or config['teacher_temperature']!=.1 or config['null_distance']!=.35:
         raise ValueError('This adapter requires its declared first-trial scale')
@@ -50,7 +51,7 @@ def main():
     if feature_meta['ir_encoder']['seed']!=seed:raise ValueError('Paired encoder seeds differ')
     torch.set_num_threads(1)
     model,checkpoint,calibration=None,None,None
-    if args.kind not in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir'):
+    if args.kind not in ('fixed_matched','fixed_constant_ir','fixed_row_mean_ir','uncertainty'):
         if args.checkpoint is None:raise ValueError('Learned/untrained gate comparison requires checkpoint provenance')
         checkpoint=torch.load(args.checkpoint,map_location='cpu')
         expected_kind='ordinary' if args.kind=='untrained' else args.kind

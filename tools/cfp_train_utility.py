@@ -14,6 +14,7 @@ from torch.nn import functional as F
 
 from cfp.provenance import sha256, write_json, snapshot_sources
 from cfp.utility import UtilityMLP, EVIDENCE_FIELDS
+from cfp.utility_supervision import ranking_sign_loss,decision_strata
 
 
 def candidate_batch(rows, config):
@@ -96,12 +97,13 @@ def main():
     if not fit or not calibration or len(fit)+len(calibration)!=len(rows):raise ValueError('Invalid association-training fit/calibration split')
     videos=config['fit_videos'];positions=[np.array([i for i,r in enumerate(fit) if r['sequence']==v]) for v in videos]
     if any(not len(x) for x in positions):raise ValueError('Every fit video requires eligible supervised queries')
+    strata=decision_strata(fit,positions) if config.get('decision_type_balanced_sampling') else None
     torch.set_num_threads(2);torch.manual_seed(args.seed)
     rng=np.random.default_rng(args.seed)
     model=UtilityMLP(config['mlp']['hidden'],quality_only=args.kind=='quality')
     optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])
     args.output.mkdir(parents=True,exist_ok=args.resume)
-    sources=snapshot_sources(args.output,[__file__,'cfp/utility.py','cfp/provenance.py',args.config])
+    sources=snapshot_sources(args.output,[__file__,'cfp/utility.py','cfp/provenance.py','cfp/utility_supervision.py',args.config])
     manifest=dict(status='RUNNING',kind=args.kind,seed=args.seed,config=config,config_sha256=sha256(args.config),
                  protocol_sha256=query_meta['protocol_sha256'],query_manifest_sha256=sha256(args.queries/'manifest.json'),
                  fit_videos=videos,calibration_videos=config['calibration_videos'],fit_queries=len(fit),calibration_queries=len(calibration),
@@ -131,11 +133,18 @@ def main():
         for _ in range(steps):
             assigned=rng.integers(0,len(videos),config['batch_size']);chosen=np.empty(config['batch_size'],dtype=np.int64)
             for v,indices in enumerate(positions):
-                slots=np.flatnonzero(assigned==v);chosen[slots]=rng.choice(indices,len(slots),replace=True)
+                slots=np.flatnonzero(assigned==v)
+                if strata is None:chosen[slots]=rng.choice(indices,len(slots),replace=True)
+                else:
+                    types=rng.integers(0,len(strata[v]),len(slots))
+                    for kind,group in enumerate(strata[v]):
+                        subset=slots[types==kind];chosen[subset]=rng.choice(group,len(subset),replace=True)
             batch=[fit[i] for i in chosen]
             output=model(torch.from_numpy(np.stack([r['evidence'] for r in batch])))
             if args.kind=='cmue':
-                loss=F.huber_loss(output,torch.tensor([r['utility'] for r in batch],dtype=torch.float32),delta=config['huber_delta'])
+                truth=torch.tensor([r['utility'] for r in batch],dtype=torch.float32)
+                if config.get('utility_target')=='candidate_ranking_only':loss=ranking_sign_loss(output,truth,**config['ranking_sign_loss'])
+                else:loss=F.huber_loss(output,truth,delta=config['huber_delta'])
             else:
                 rgb,ir,mask,target=candidate_batch(batch,config)
                 alpha=output.sigmoid().unsqueeze(1)*config['maximum_ir_weight']

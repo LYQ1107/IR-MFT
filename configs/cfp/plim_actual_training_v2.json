@@ -1,0 +1,19 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+  "query_config_sha256": "9480e9e2b77322aa7d62c4ab16e8d7e888a232ad55e61db5c1f43d0506a80022",
+  "sampling": "Same original video/physical-anchor-uniform sampling and exact pervideo rows/gaps1/5/15/30 as clean controls. Change only historical tensors from clean to actual accepted, at most8. No purity filters or GT at deployment.",
+  "precision": "FP32 predictor SGD; stopped RGB targets/features in original fixed post-neck coordinate space",
+  "gradient_clip_norm": 5.0,
+  "first_seed0_jobs": [
+    "gru predictive actual",
+    "gru association actual",
+    "transformer predictive actual",
+    "transformer association actual"
+  ],
+  "diagnostics": "SN-015 only after fixed epoch8: clean/actual teacher query cosine, same-frame rank1, variance sum, mean vector norm, by gap; not checkpoint selection.",
+  "resume": "Last completed epoch saves optimizer and CPU/CUDA/NumPy RNG and source/runtime/data guard. No real interrupted predictor proof is claimed yet.",
+  "scope": "Second targeted temporal-training round, original frozen teacher/queryconfig/encoder/model/8epoch/3setting budget preserved. Actual supervised target remains the original physical identity; complete wrong-history examples can be unidentifiable and diagnostics must disclose this. Not a safe-write policy or larger model.",
+  "round": 2,
+  "hypothesis": "Clean teacher-forced training differs from accepted online histories: current train query purity is oftenbelow0.6 and realdev purityabout0.69/0.71. Train matched predictors on actual accepted histories to quantify distribution mismatch; retain even fully contaminated histories rather than hide impossible samples."
+}

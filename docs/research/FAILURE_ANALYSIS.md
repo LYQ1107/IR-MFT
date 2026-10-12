@@ -59,7 +59,7 @@ Official dataset loader still uses removed NumPy float/int aliases; process-loca
 
 ## H1/H2 diagnosis contract
 
-H1 has two completed seed0 targeted rounds; H2 query construction is underway. Each core hypothesis gets at most three targeted evidence-driven repair rounds. Separate feature separability, crop shift, candidate recall, utility calibration, temporal collapse and memory contamination. Store per-video outcomes and events; use training/dev only for research diagnosis and historical test only for reproduction/frozen reporting.
+H1 has three completed seed0 targeted rounds; H2 has completed firstseed0 tracking, independent write refusal andactual-history round2 training. Each core hypothesis gets at most three targeted evidence-driven repair rounds. Separate feature separability, crop shift, candidate recall, utility calibration, temporal collapse and memory contamination. Store per-video outcomes and events; use training/dev only for research diagnosis and historical test only for reproduction/frozen reporting.
 
 ## I-03: completed cone repair and residual association errors
 
@@ -89,3 +89,18 @@ PLIM query construction retains sticky earliest physically known past identity a
 A broad test run passed63 tests and encountered one original pairing test's old default server path. Its existing MFT26IR_ROOT environment setting was switched to the migrated original dataset and that test passed without altering original code. Current suite invocation declares this root.
 
 First four seed0 temporal models completed eight epochs. All remain below FIFO on SN-015 query holdout; GRU predictive variance sum0.882/0.885 rules out trivial constant collapse. On canonical-dev BT-005 both predictive and ordinary GRU beat last in frozen query rank1, and ordinary GRU is slightly stronger; SN-013 favors simple memories. Thus a scene-specific temporal improvement is not yet independent forecasting evidence. The shared geometry-candidate graph is deliberately measured against all-history EMA and constant-distance controls, and full tracking is underway. Torch2.0 Transformer evaluation reports an internal float-mask-to-bool performance warning; masks contain only0/-inf and strict-past inputs remain guarded. It is not a measured speed or model-gain claim.
+
+
+## I-04: crop coverage did not predict tracking gain
+
+Six models/54 runs complete the frozen rotation repair. RGB48.9386 and fusion48.6361 mean HOTA are below original49.2917/49.0889. Rectangle coverage is not foreground or identity value. Discrete aspect-triggered rotation is a possible degradation factor, not an isolated proved cause. The variant is not retained; all originals/results are preserved.
+
+## II-02: ranking/sign supervision remains unsupported
+
+The third fixed-capacity trial removes NULL penalties and balances physical decision types equally for all gates. Sign supervision only affects CMUE loss; utility sign never controls sampling. Calibration AUC .4047/correlation .0400 and dev49.3071 below ordinary50.3556 do not establish benefit. Smaller MSE under a new target scale is not validation. These bounded experiments do not imply a universal claim about RGB preprocessing; encoder/domain limitations and two-video development remain disclosed.
+
+## III-02: write refusal can indirectly damage prediction
+
+Refusal leaves current geometry updates intact but reduces Transformer HOTA51.7256→49.7085 and increases IDSW84→90. Exact counts change BT19→24 and SN65→66. Verified new crossing1049 switches for GT3/7 persist with matched predictions; ordinary writes avoid them. Feature gaps reach127 versus38 frames, outside trained30, but only about .5% of attempts exceed30. No sole-cause claim is made. Physical purity effects differ by video; all logs/parity/cases are kept.
+
+Actual-history training gives predictive GRU40.991%/Transformer43.991% on the SN-015 candidate query holdout versus last57.820%/FIFO58.370%. Fully wrong short histories can lack the original physical identity cue, producing contradictory supervised targets. A third repair should preserve observable context or bound damaging predictions, with matched controls. No larger-network or test-tuning remedy is justified by these observations.

@@ -1,6 +1,6 @@
 # Experiment and ablation results
 
-Status: Phase 0 reproduced. All 27 pre-neck and 27 post-neck ordinary association runs, and 18 external runs per representation, are complete. All nine independent RGB post-neck capacity controls are complete; all 36 RGB auxiliary-view runs are complete. Two seed0 CMUE targeted rounds are complete without validated benefit; four seed0 PLIM/association-only temporal models are trained and full tracking comparisons are underway.
+Status: Phase 0 reproduced. All 27 pre-neck and 27 post-neck ordinary association runs, and 18 external runs per representation, are complete. All nine independent RGB post-neck capacity controls are complete; all 36 RGB auxiliary-view runs are complete. Three seed0 CMUE targeted rounds are complete without validated benefit; twelve first-round temporal models are trained, seed0tracking/write toggles are complete, seeds1/2 and actual-history round2 tracking areunderway.
 
 | Evaluation | Detections | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -63,7 +63,7 @@ The best measured mean HOTA is post-neck BoT-SORT (52.482±0.134), but its IDF1 
 
 All 27 pre-neck modality/seed/weight runs are byte-identical to corresponding constant-vector controls. The nine independent two-RGB-encoder pre-neck capacity runs also give the same measured results. Exact official CLEAR traces show the .1 geometry control preserves BT-005 GT identities 3 and 7 at crossing frame 1049, while original ByteTrack swaps them. Both remain matched at frame 1049 and 1074; this is not a disappearance of the predictions. The original change requires no identity evidence. Source cases and hashes: `phase1/clear_events_*_with_matches.json` and `constant_gate_switch_figures_v2/`.
 
-Post-neck independent RGB capacity control completes all nine runs: best mean HOTA 48.9835 at .1 (AssA 33.6044, IDF1 58.6921, IDSW 88). Fixed fusion selects .3 with HOTA 49.0889, but this small difference and adverse identity-blind comparator do not establish an IR advantage. Full three-setting outputs: `phase1/causal_dev_rgb_repeat_postneck_campaign_summary.json`. Both long-axis crop caches, six trained encoders and six paired proposal banks are complete; the 54-run declared aligned association campaign is underway.
+Post-neck independent RGB capacity control completes all nine runs: best mean HOTA 48.9835 at .1 (AssA 33.6044, IDF1 58.6921, IDSW 88). Fixed fusion selects .3 with HOTA 49.0889, but this small difference and adverse identity-blind comparator do not establish an IR advantage. Full three-setting outputs: `phase1/causal_dev_rgb_repeat_postneck_campaign_summary.json`. Both long-axis crop caches, six trained encoders and six paired proposal banks are complete; all54 declared aligned association runs are complete.
 
 
 ## Completed matched RGB auxiliary controls
@@ -80,3 +80,19 @@ All pre-neck controls still equal the constant-vector geometry control at each w
 ## Measured utility rounds, seed0 diagnosis
 
 Round1 CMUE50.9769 HOTA/86IDSW is almost reproduced by constant IR distance .5 (50.9528/85), which carries no IR identity ranking. Round2 repairs omitted geometry-matchable candidates; CMUE best is49.3071/85, below ordinary/quality best50.3556/90. These are three-setting single-seed diagnoses, not comparable uncertainty estimates to a three-seed mean or final selected CFP method. See CMUE_EXPERIMENTS.md and machine-readable `phase2_measured_rounds_20261012.json` for every setting/per-video result. No CMUE independent gain exists; PLIM/predictive/safe-write interaction ablations remain outstanding.
+
+
+## Completed crop repair2: not retained
+
+All54 runs are complete. Pre-neck results remain identical to constant geometry controls. Best post-neck three-seed means (all select .1): RGB HOTA48.9386/AssA33.5406/IDF157.6457/IDSW85.6667; IR49.3293/34.0629/58.9607/88.6667; fixed fusion48.6361/33.1086/57.6237/87.6667. Original-crop RGB and fusion select49.2917/49.0889. Rotation is not retained; do not cherry-pick its seed0 RGB50.6695. Full settings/std/metrics are in `crop_repair2_measured_selection_v1.json`.
+
+## Temporal and write diagnoses
+
+Firstseed0 predictive Transformer at .3 gives51.7256HOTA/61.9316IDF1/84IDSW versus matched ordinary49.7624/59.0992/88. GRU gives51.4971/61.7256/84 versus ordinary51.4100/61.7237/85. Three-seed tracking is complete; strongest BoT mean52.4818 remains higher HOTA. Independent refusal raises EMA50.1899→51.1402 but harms GRU/Transformer48.9655/49.7085. Exact disabled parity, physical audits, official per-video metrics and adverse cases are retained in the phase3 result files.
+
+CMUE ranking/sign round3 has best HOTA49.3071 versus ordinary/quality50.3556 and calibration sign AUC .4047. Entropy control and actual-history temporal round2 video comparisons are complete. Raw input interventions, RGB/IR forecasting variants, joint modules, supplemental validation, online costs and final freeze remain pending.
+
+
+Three-seed first-round tracking is now complete (90 runs). At each family's selected mean-HOTA setting: predictive GRU51.3199±0.1774, ordinary GRU51.4567±0.2952, predictive Transformer51.1208±0.7566, ordinary Transformer50.3063±1.0017. Thus forecasting is not consistently superior to matched ordinary temporal models; neither beats native BoT52.4818±0.1341. Selection uses the mean across seeds, not the favorable seed0 result. Full setting/per-video metrics are indexed by `configs/cfp/plim_first_three_seed_selection_v1.json`.
+
+Actual-history round2's twelve seed0 video runs are also complete: predictive GRU at.3 gives HOTA51.7572/AssA37.5118/IDF161.9677/IDSW85; ordinary GRU51.3927/36.9161/61.3822/82. Predictive Transformer49.5317/34.3263/59.5048/88 versus ordinary49.0639/33.6910/58.9340/89. Poor offline ranking and full-video scores have different behavior; neither substitutes for the other. These are single-seed diagnoses, not final selected means.

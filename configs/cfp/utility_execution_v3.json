@@ -1,0 +1,21 @@
+{
+  "state": "FROZEN",
+  "parent_target_config": "cmue_trial_v3.json",
+  "scope": "Thirdranking/sign-supervision trial, identical3appearanceweight settings and fixed0.02acceptance. No final-test authorization.",
+  "threshold": 0.02,
+  "appearance_weight_candidates": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "families": [
+    "rgb",
+    "fixed_matched",
+    "cmue",
+    "ordinary",
+    "quality"
+  ],
+  "selection": "Same three association-weight candidates per learned family, all three complete pipeline seeds for final claims. Threshold0.02 fixed before outcomes, no extra dev threshold search. Strongest measured native association and identity-blind baselines must remain in comparison.",
+  "diagnostic_controls": "Untrained, no-calibration and no-fallback evaluated at the family's frozen selected configuration, not independent extra search. No-fallback forces IR weight0.5 for rejected rows, preserves accepted capped weights; this explicit intervention must be reported.",
+  "null_policy": "Candidate CE includes NULL for supervision. Initial deployment preserves original Hungarian threshold/lifecycle; it does not implement a separately learned newborn/NULL decoder."
+}

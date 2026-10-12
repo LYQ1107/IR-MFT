@@ -1,0 +1,13 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "bb6653411ed293d0aa0e9cd3379f99e09cb3f90cdb2769ebe95431249fb0b6cd",
+  "execution_sha256": "830a6f50988cb8b805933734bcf259b2038af2d0f43da77706357b048017cbb0",
+  "formula": "alpha=0.5*clip((H_RGB-H_IR)/max(H_RGB,1e-6),0,1), normalized entropy on identical complete candidate+nativeNULL teacher association logits. No learned parameters or GT. Higher/equal IR uncertainty gives exactRGB fallback.",
+  "appearance_weights": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "seed": 0,
+  "scope": "Required uncertainty gate control with identicalRGB-definedmodifiable edges and cappedIRweight. Separate cheap rule baseline; no extra thresholdsearch/claim of calibrated usefulness."
+}

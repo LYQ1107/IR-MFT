@@ -1,0 +1,444 @@
+{
+  "run_id": "phase3_predictor_v2_gru_predictive_actual_seed0_20261012",
+  "hypothesis": "Matched temporal forecasting/association controls, fixed8epochs; clean3seeds or targetedactual-history repair",
+  "git_commit": "6ffaababd26e5a2e2628dd02a03514ac5ecb7702",
+  "seed": 0,
+  "config": {
+    "trial": {
+      "schema_version": 1,
+      "state": "FROZEN",
+      "hypothesis": "Predict current identity appearance from strictly earlier accepted latent observations, with stopped current targets and same-frame different-fish contrast to avoid average-feature collapse.",
+      "representation": "Frozen main original-crop post-neck encoders, dimension512, fixed epoch12; this first predictive trial is separate from prospective crop repair.",
+      "history_length": 8,
+      "gap_training_candidates": [
+        1,
+        5,
+        15,
+        30
+      ],
+      "history_order": "Accepted observations sorted strictly before current query, right padded, maximum8; no current candidate enters history before scoring",
+      "architectures": {
+        "gru": {
+          "hidden": 128,
+          "layers": 1
+        },
+        "transformer": {
+          "hidden": 96,
+          "heads": 4,
+          "layers": 2,
+          "feedforward": 144,
+          "dropout": 0.0
+        }
+      },
+      "prediction": "Normalized residual from last observation; output projection starts at zero. Empty history explicitly unavailable, zero output, geometry fallback.",
+      "time_features": "Known current query minus each past timestamp and consecutive accepted-observation gaps, scaled by37 and capped at2; no future motion or observations",
+      "loss": "Cosine latent prediction plus same-frame different-identity candidate CE, temperature0.1. Target/current candidate tensors stopped; encoders receive no gradient.",
+      "ordinary_temporal_control": "Same GRU/Transformer and training budget, candidate association CE only, no cosine forecasting objective",
+      "memory_controls": [
+        "last",
+        "bounded EMA0.9 from identical8 observations",
+        "FIFO normalized mean from identical8 observations",
+        "GRU association-only",
+        "Transformer association-only",
+        "GRU predictive",
+        "Transformer predictive"
+      ],
+      "clean_online_controls": "Teacher-forced physically matched histories versus actual accepted RGB-tracker histories with original past identity anchor; contamination labels are training diagnostics, never inference inputs",
+      "fit_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "calibration_videos": [
+        "SN-015"
+      ],
+      "optimizer": "AdamW",
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "epochs": 8,
+      "batch_size": 128,
+      "seed_plan": [
+        0,
+        1,
+        2
+      ],
+      "checkpoint_selection": "Fixed last epoch8, no historical test tuning",
+      "safe_writes": "Independent later ablation on same fixed predictor weights; confidence and assignment-margin refusal/damping use observable current quantities only, never GT. Geometry updates remain separate.",
+      "candidate_policy": "Same geometry-gated current proposal pool for all predictive and matched history controls. A separate bounded-EMA baseline and constant-vector control must measure any effect of widening the original RGB distance gate; do not credit a candidate-rule change to forecasting.",
+      "scope": "Prospective Phase III specification and initial module, not a trained PLIM result. Final three-seed/full-video/native strongest baseline comparisons and actual end-to-end costs remain required. SN-015 holds out temporal query fitting, not the already-trained main fish encoder."
+    },
+    "training": {
+      "state": "FROZEN",
+      "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+      "query_config_sha256": "9480e9e2b77322aa7d62c4ab16e8d7e888a232ad55e61db5c1f43d0506a80022",
+      "sampling": "Same original video/physical-anchor-uniform sampling and exact pervideo rows/gaps1/5/15/30 as clean controls. Change only historical tensors from clean to actual accepted, at most8. No purity filters or GT at deployment.",
+      "precision": "FP32 predictor SGD; stopped RGB targets/features in original fixed post-neck coordinate space",
+      "gradient_clip_norm": 5.0,
+      "first_seed0_jobs": [
+        "gru predictive actual",
+        "gru association actual",
+        "transformer predictive actual",
+        "transformer association actual"
+      ],
+      "diagnostics": "SN-015 only after fixed epoch8: clean/actual teacher query cosine, same-frame rank1, variance sum, mean vector norm, by gap; not checkpoint selection.",
+      "resume": "Last completed epoch saves optimizer and CPU/CUDA/NumPy RNG and source/runtime/data guard. No real interrupted predictor proof is claimed yet.",
+      "scope": "Second targeted temporal-training round, original frozen teacher/queryconfig/encoder/model/8epoch/3setting budget preserved. Actual supervised target remains the original physical identity; complete wrong-history examples can be unidentifiable and diagnostics must disclose this. Not a safe-write policy or larger model.",
+      "round": 2,
+      "hypothesis": "Clean teacher-forced training differs from accepted online histories: current train query purity is oftenbelow0.6 and realdev purityabout0.69/0.71. Train matched predictors on actual accepted histories to quantify distribution mismatch; retain even fully contaminated histories rather than hide impossible samples."
+    },
+    "architecture": "gru",
+    "objective": "predictive",
+    "history": "actual"
+  },
+  "detector_sha256": null,
+  "reid_sha256": [
+    "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908"
+  ],
+  "split": {
+    "fit_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "calibration_videos": [
+      "SN-015"
+    ],
+    "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60"
+  },
+  "epochs": 8,
+  "checkpoint_selection": "Fixed last epoch8; calibration reports only, no checkpoint/threshold selection",
+  "metrics": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "steps": 153,
+        "loss": 2.299927970942329,
+        "prediction_loss": 0.6546026877328461,
+        "association_loss": 1.6453252820407642,
+        "seconds": 3.493678266007919
+      },
+      {
+        "epoch": 2,
+        "steps": 153,
+        "loss": 2.0676456861246644,
+        "prediction_loss": 0.6265927323328904,
+        "association_loss": 1.4410529565187842,
+        "seconds": 3.4979744859738275
+      },
+      {
+        "epoch": 3,
+        "steps": 153,
+        "loss": 1.932828377274906,
+        "prediction_loss": 0.599181959052491,
+        "association_loss": 1.3336464119892495,
+        "seconds": 3.622129463008605
+      },
+      {
+        "epoch": 4,
+        "steps": 153,
+        "loss": 1.825935696464738,
+        "prediction_loss": 0.5794316156237733,
+        "association_loss": 1.2465040843471202,
+        "seconds": 3.6783928259974346
+      },
+      {
+        "epoch": 5,
+        "steps": 153,
+        "loss": 1.7656329667646122,
+        "prediction_loss": 0.5667316083814583,
+        "association_loss": 1.1989013583831538,
+        "seconds": 3.5970787800033577
+      },
+      {
+        "epoch": 6,
+        "steps": 153,
+        "loss": 1.7145534107108522,
+        "prediction_loss": 0.5599286353666019,
+        "association_loss": 1.1546247714485218,
+        "seconds": 3.4737723720027134
+      },
+      {
+        "epoch": 7,
+        "steps": 153,
+        "loss": 1.658889823489719,
+        "prediction_loss": 0.5484784931139229,
+        "association_loss": 1.110411330375796,
+        "seconds": 3.380510135961231
+      },
+      {
+        "epoch": 8,
+        "steps": 153,
+        "loss": 1.6235664155748155,
+        "prediction_loss": 0.545733146028581,
+        "association_loss": 1.0778332679879432,
+        "seconds": 2.9711338930064812
+      }
+    ],
+    "calibration_diagnostics": {
+      "clean": {
+        "model": {
+          "queries": 11266,
+          "true_target_cosine": 0.27643867703918934,
+          "same_frame_ce": 1.1644410244884635,
+          "same_frame_rank1_percent": 61.627906976744185,
+          "prediction_variance_sum": 0.7350830435752869,
+          "mean_vector_norm": 0.5147004723548889,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.34545907084997796,
+              "same_frame_rank1_percent": 76.10803324099723
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.2961819394659224,
+              "same_frame_rank1_percent": 66.07402031930334
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.24681915000985746,
+              "same_frame_rank1_percent": 55.26129943502824
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.2155566598253665,
+              "same_frame_rank1_percent": 48.70967741935484
+            }
+          }
+        },
+        "last": {
+          "queries": 11266,
+          "true_target_cosine": 0.6345045843578118,
+          "same_frame_ce": 0.3282614848967448,
+          "same_frame_rank1_percent": 91.73619740813066,
+          "prediction_variance_sum": 0.8520314693450928,
+          "mean_vector_norm": 0.3846661448478699,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.7960673954513264,
+              "same_frame_rank1_percent": 99.8961218836565
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.6720011399326243,
+              "same_frame_rank1_percent": 97.38751814223512
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.5699757726489445,
+              "same_frame_rank1_percent": 88.77118644067797
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.49572741201274284,
+              "same_frame_rank1_percent": 80.7168458781362
+            }
+          }
+        },
+        "ema": {
+          "queries": 11266,
+          "true_target_cosine": 0.6460015755653489,
+          "same_frame_ce": 0.3296336114900173,
+          "same_frame_rank1_percent": 91.65631102432097,
+          "prediction_variance_sum": 0.80983567237854,
+          "mean_vector_norm": 0.4360778033733368,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.7511120976317788,
+              "same_frame_rank1_percent": 99.06509695290858
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.6864666966464592,
+              "same_frame_rank1_percent": 96.37155297532655
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.604936318248734,
+              "same_frame_rank1_percent": 90.00706214689266
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.5389104455629343,
+              "same_frame_rank1_percent": 81.00358422939068
+            }
+          }
+        },
+        "fifo": {
+          "queries": 11266,
+          "true_target_cosine": 0.6735496805738919,
+          "same_frame_ce": 0.2906654259424783,
+          "same_frame_rank1_percent": 92.87235931120185,
+          "prediction_variance_sum": 0.8017988801002502,
+          "mean_vector_norm": 0.44519731402397156,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.7947877409695093,
+              "same_frame_rank1_percent": 99.58448753462605
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.7160554298338938,
+              "same_frame_rank1_percent": 97.42380261248186
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.6262386552042375,
+              "same_frame_rank1_percent": 91.13700564971752
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.5540885552920828,
+              "same_frame_rank1_percent": 83.1899641577061
+            }
+          }
+        }
+      },
+      "actual": {
+        "model": {
+          "queries": 11266,
+          "true_target_cosine": 0.19903850868625292,
+          "same_frame_ce": 1.8573765895203886,
+          "same_frame_rank1_percent": 40.99059115924019,
+          "prediction_variance_sum": 0.7329713106155396,
+          "mean_vector_norm": 0.5167478322982788,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.23670619385061564,
+              "same_frame_rank1_percent": 47.26454293628809
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.21445835553970005,
+              "same_frame_rank1_percent": 43.68650217706821
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.17991155772813594,
+              "same_frame_rank1_percent": 37.71186440677966
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.16423067801621974,
+              "same_frame_rank1_percent": 35.16129032258065
+            }
+          }
+        },
+        "last": {
+          "queries": 11266,
+          "true_target_cosine": 0.45176841714617827,
+          "same_frame_ce": 2.095537461012623,
+          "same_frame_rank1_percent": 57.81998934848216,
+          "prediction_variance_sum": 0.8508855104446411,
+          "mean_vector_norm": 0.3861529231071472,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.5425899190285792,
+              "same_frame_rank1_percent": 60.63019390581717
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.4755922079896311,
+              "same_frame_rank1_percent": 61.1756168359942
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.41464033206226963,
+              "same_frame_rank1_percent": 56.8502824858757
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.37191030673639297,
+              "same_frame_rank1_percent": 52.58064516129032
+            }
+          }
+        },
+        "ema": {
+          "queries": 11266,
+          "true_target_cosine": 0.4685866455374738,
+          "same_frame_ce": 2.063395839685547,
+          "same_frame_rank1_percent": 57.89987573229185,
+          "prediction_variance_sum": 0.8101124167442322,
+          "mean_vector_norm": 0.4357604384422302,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.5275620257067868,
+              "same_frame_rank1_percent": 60.73407202216067
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.4944538720077477,
+              "same_frame_rank1_percent": 60.74020319303338
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.4439626613846917,
+              "same_frame_rank1_percent": 57.274011299435024
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.40698239788142665,
+              "same_frame_rank1_percent": 52.795698924731184
+            }
+          }
+        },
+        "fifo": {
+          "queries": 11266,
+          "true_target_cosine": 0.48590627418171806,
+          "same_frame_ce": 2.110155415175214,
+          "same_frame_rank1_percent": 58.37031777028226,
+          "prediction_variance_sum": 0.8019576668739319,
+          "mean_vector_norm": 0.445019006729126,
+          "by_gap": {
+            "1": {
+              "queries": 2888,
+              "true_target_cosine": 0.5539915642112241,
+              "same_frame_rank1_percent": 60.97645429362881
+            },
+            "5": {
+              "queries": 2756,
+              "true_target_cosine": 0.51320574929345,
+              "same_frame_rank1_percent": 61.2844702467344
+            },
+            "15": {
+              "queries": 2832,
+              "true_target_cosine": 0.4574427151474391,
+              "same_frame_rank1_percent": 57.733050847457626
+            },
+            "30": {
+              "queries": 2790,
+              "true_target_cosine": 0.41735470721825263,
+              "same_frame_rank1_percent": 53.44086021505377
+            }
+          }
+        }
+      }
+    }
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v2_gru_predictive_actual_seed0.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v2_gru_predictive_actual_seed0",
+  "conclusion": "Measured stopped-target training/calibration, not fullvideo tracking or finalmethod selection; actual contaminated histories can be observationally unidentifiable after original context is lost.",
+  "status": "COMPLETE",
+  "source_snapshots": {
+    "tools/cfp_train_predictor.py": "843143f9c7fbf35304ce6a98a762425c9c2e3bb5d6a62cdbda788a568376dc72",
+    "cfp/predictive.py": "b81a47e374527c2d27c4d5bcb0913c8c079647b17a157f65ac27c46e4a175f44",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "configs/cfp/plim_trial_v1.json": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "configs/cfp/plim_query_v1.json": "9480e9e2b77322aa7d62c4ab16e8d7e888a232ad55e61db5c1f43d0506a80022",
+    "configs/cfp/plim_actual_training_v2.json": "2a999d9ca6048dbd95202c70bcb5f3d5495c979a3b33b5cc663dd4c1008f0de0"
+  },
+  "parameters": 231040,
+  "checkpoint_sha256": "81d238e448fa0e6edd6ce94e11561399ad84df8f8b10b29c0333d9244e177084",
+  "manifest_sha256": "a01271a1c82bf82437cb039c09b228ee080825bb7d7281a51f6f08dc8d1a2f67",
+  "config_sha256": "2053be6bdc95a57b68c7e66fb79b1d8d02fd50618d5854aa8f9e45ecf307141f"
+}

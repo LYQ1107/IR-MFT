@@ -20,6 +20,8 @@ def main():
     parser.add_argument('--data-root', type=Path, required=True)
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--control', type=Path, required=True)
+    parser.add_argument('--baseline-label', default='Original ByteTrack')
+    parser.add_argument('--control-label', default='Identity-blind geometry control')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.output.exists():
@@ -80,7 +82,7 @@ def main():
                                       fontsize=8, bbox=dict(facecolor='black', alpha=.65, edgecolor='none', pad=1))
                     axis.set_xlim(x1, x2)
                     axis.set_ylim(y2, y1)
-                    axis.set_title(f'{"Original ByteTrack" if row == 0 else "Identity-blind geometry control"}, frame {frame}', fontsize=10)
+                    axis.set_title(f'{args.baseline_label if row == 0 else args.control_label}, frame {frame}', fontsize=10)
                     axis.axis('off')
             figure.suptitle(f'{sequence}: official CLEAR switch at frame {t}, GT {identity}\nGreen = target GT; yellow = competing GT; blue = overlapping predictions; offline dev diagnosis', fontsize=11)
             output = args.output / f'{sequence}_frame{t}_gt{identity}.png'
@@ -91,7 +93,7 @@ def main():
                                 baseline_sha256=sha256(args.baseline / (sequence + '.txt')),
                                 control_sha256=sha256(args.control / (sequence + '.txt'))))
     write_json(args.output / 'manifest.json', dict(status='COMPLETE', source_sha256=sha256(__file__),
-               comparison_sha256=sha256(args.comparison), examples=reports,
+               comparison_sha256=sha256(args.comparison), baseline_label=args.baseline_label,control_label=args.control_label,examples=reports,
                scope='Offline train/dev qualitative diagnostics; occurrence difference is not automatically identity recovery or a method gain'))
 
 
