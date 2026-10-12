@@ -49,3 +49,19 @@ transformer_ordinary_latent_identity: HOTA53.401338±0.479787; AssA38.831112; ID
 TransformerEMA relative to identicalnoEMA: HOTA+0.627325, AssA+0.972811, IDF1+1.021011, IDSW+2.000000 (worse count). Therefore there IS a configuration-relative EMA regularization signal; do not claim everyEMA effect iszero. It does not beatstrongordinaryGRU current-box HOTA53.591386, andtheordinarycontrastiveTransformer isalso slightlyhigher inHOTA withfewer switches. No stable independentcore contribution established. Three-seedmean challengeHOTA54/AssA40/IDF164/IDSW75 isnot met.
 
 All three evidence-driven rounds andformalcomparisons completed:40trainedmodels/82unique NNtracking settings, plus21identity-independent controls. Lifecycle/GT/candidate sources unchanged; source/weight/evaluation hashes bound. No moreparameter search justified in this frozen track-feature experiment; remaining work isfullonline measurement andfaithful finalreport. Distinguish boundednegative evidence fromproving JEPA universallyineffective.
+
+## J7 initialization audit and correction
+
+OriginalJ7 builds its frozenRIS beforethe student, advancingTorch initialization RNG. Its comparison toJ6 is therefore not an isolatedRIS intervention; retain theoriginalnegative result withthis caveat. A separate initializationmatched trainer constructs the identicalJ6 studentfirst, thenattaches thefrozenRIS. All21common initialstudent tensors arebit-identical andall8epoch queryorders matchJ6; dropoutzero andindependentNumPysampling removeunusedconstruction-RNG effects.
+
+The corrected8epoch control hasHOTA51.738416 atweight.3 (J6seed0 53.407918), with.1/.5 HOTA50.906797/48.717224. Fairvisible-stress N01=130/N10=2183/net−2053. This control doesnot support thefrozenRIS addition; it isoneaudit correction, nota newparametersearch. Finalcount41trainedmodels/85uniqueNNsettings, plus21fixedappearance/geometrycontrols. OriginalJ7 andfailurelogs remain intact. Confidence calibration/generalfirst-wrong-anchor recovery are notestablished bythis singleablation.
+
+Originalthree-seed ordinaryGRU/predictiveGRU/ordinaryTransformer arealso evaluated onthe identicalSN015query/candidate sets withvisible-only maskpacking. This diagnosis isoffline, separatefromfulltracking, andstored inPHASE_V_JEPA_ORIGINAL_PREDICTOR_DIAGNOSIS.json. There is nofuture/GT input tolive inference.
+
+## Fullonline closure
+
+Both representative seed0systems completed4834causal frames andofficialTrackEval. Actualframe/IDpairs matchcachedProtocolA; BT005allbytes equal; SN013differences limitedtolast2frames/8rows permodel frombatch2vs8 detectorroundoff. Fullcombined FPS J3.793342/ordinaryTransformer.796214 underexplicit sharedload; not25FPS orisolateddeployment. Fullmetrics/timing/CUDAallocation/paramcounts recorded inPHASE_V_ONLINE_MEASURED.json.
+
+OrdinaryTransformer receivedworkerstopack afterallframes butits10secondexitwait timedout. Outputsandtimingalreadyclosed/hashed; originalexception/manifest preserved andcompletionmetadata recoveredwithout rerunningorchangingframes. Fullrun GPUpeak metadata waslost, therefore remainsnull. A separate64frame-per-video probe aftercleanupfix measurespeaks andverifiesexactprefix parity/cleanexit; itdoesnotreplacefullrun FPS/peaks. Cleanup acts onlyonthatownedPopen handle afterstopACK, andprocessing/receiveerrors stillpropagate; two regressiontests added,124fulltests pass.
+
+Finalscientificstatus GOAL_NOT_MET_WITH_EVIDENCE. Allthree targetedrounds, strong/ordinary/noEMA controls, formal three-seed results, fairstress andrepresentativefullonline measurement completed. No confidence-calibration/NULL-decision/4or16window/Dense/multihypothesis/newIR/independentblindtest experiment isclaimeddone. These omissions constrain scope; theydo noterase theactualconfiguration-levelTransformerEMA signal orturnfailure intoa universaltheorem aboutJEPA.

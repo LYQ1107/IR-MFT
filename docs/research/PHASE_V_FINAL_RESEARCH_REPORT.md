@@ -1,6 +1,6 @@
-# IR-MFT Phase V research report — ongoing draft
+# IR-MFT Phase V final research report
 
-**Status: IN_PROGRESS / FAILURE_DIAGNOSED.** This draft records completed evidence and explicitly identifies pending work. It is not FINAL_EVALUATED or GOAL_MET. Branch: research/identity-repair-jepa-v1.
+**Status: GOAL_NOT_MET_WITH_EVIDENCE. Stage: FINAL_EVALUATED.** 三轮针对性研究、强基线/消融、正式三种子和代表系统完整在线验证均已完成。结果没有支持独立的身份恢复核心贡献，不具备当前方法论文的充分证据。Branch: research/identity-repair-jepa-v1.
 
 ## 1. 本轮实现了什么
 
@@ -36,11 +36,11 @@
 
 ## 8. 遮挡预测/污染恢复的独立收益
 
-当前没有已验证收益。未来目标第二轮不改善J3/J6；第三轮直接潜在候选身份区分的GRU被同架构无EMA和普通对比模型超过。干净历史近99%的识别率不代表污染历史恢复。原人工掩码诊断用了未掩码均值对照，已补齐相同可见历史的公平比较并保留原始记录。J3公平压力组净N01−N10为−718，J4为−708。静态样本纠错数不是实际在线ID纠错数。
+当前没有已验证收益。未来目标第二轮不改善J3/J6；第三轮直接潜在候选身份区分的GRU被同架构无EMA和普通对比模型超过。干净历史近99%的识别率不代表污染历史恢复。原人工掩码诊断用了未掩码均值对照，已为全部41个模型补齐相同可见历史的公平比较并保留原始记录；还对9个原普通/预测GRU/Transformer完成相同样本的干净、真实、压力对照。J3公平压力组净N01−N10为−718，J4为−708。静态样本纠错数不是实际在线ID纠错数。
 
 ## 9. 多假设是否有效
 
-本轮尚未实施，没有有效性或成本证据。任务书要求在身份恢复/JEPA存在有效信号后再探索；当前正式核心验证尚未通过，不能强行把双假设加进最终方法。
+本轮尚未实施，没有有效性或成本证据。任务书要求在身份恢复/JEPA存在有效信号后再探索；完整正式核心验证未通过，不强行把双假设加进最终方法。
 
 ## 10. 合成IR是否有独立价值
 
@@ -67,38 +67,64 @@
 
 ## 12. 各视频与失败案例
 
-BT005/SN013均单独报告，禁止按视频选择阈值。J3及普通Transformer seed0实际决策观察重跑与原输出四个文件全部逐字节一致，再做物理/CLEAR诊断。J3长期污染代理计数BT0053340/SN0134932，普通Transformer1430/3695；这是匹配前历史标签的重叠统计，不是因果修复收益。原BT0051049的逐阶段矩阵保留。BT0051049的当帧污染/正确匹配、SN013第21/22帧实际错误传播与官方第22/40帧切换见JEPA_CASE_STUDIES.md。第三轮正式候选的事件诊断待候选证据确定。
+BT005/SN013均单独报告，禁止按视频选择阈值。J3及普通Transformer seed0实际决策观察重跑与原输出四个文件全部逐字节一致，再做物理/CLEAR诊断。J3长期污染代理计数BT0053340/SN0134932，普通Transformer1430/3695；这是匹配前历史标签的重叠统计，不是因果修复收益。原BT0051049的逐阶段矩阵保留。BT0051049的当帧污染/正确匹配、SN013第21/22帧实际错误传播与官方第22/40帧切换见JEPA_CASE_STUDIES.md。第三轮没有通过强普通基线的正式候选，不继续为未验证模块增加探索。
 
 ## 13. 三种子均值与方差
 
-首轮正式4个模型及第三轮Transformer5个配置各seed0/1/2均已完成。全部40个训练模型、82个唯一NN设置，复用结果不重复计数。表中使用总体标准差；旧生命周期报告中的sample_std采用样本标准差。统一比较已从原三种子重新计算，保留两种定义，不混用。它们都不是跨场景置信区间，两个开发视频的可推广性有限。21个固定外观/纯几何控制也已跑三种子，各相同控制结果完全相同，不能把重复种子当作额外场景。
+首轮正式4个模型及第三轮Transformer5个配置各seed0/1/2均已完成。全部41个训练模型、85个唯一NN设置（含初始化一致的J7修正对照），复用结果不重复计数。表中使用总体标准差；旧生命周期报告中的sample_std采用样本标准差。统一比较已从原三种子重新计算，保留两种定义，不混用。它们都不是跨场景置信区间，两个开发视频的可推广性有限。21个固定外观/纯几何控制也已跑三种子，各相同控制结果完全相同，不能把重复种子当作额外场景。
 
 ## 14. 在线耗时/参数/计算成本
 
-完整4834帧J3/普通Transformer seed0仍在执行；64帧每视频的完成探针与缓存前缀逐字节一致，但不是最终FPS。计时涵盖读取、因果IR、V3/NMS、裁剪、RGB编码、学生预测、关联和输出。缓存关联速度不是端到端速度，未声称25FPS。
+完整在线各4834帧、seed0结果如下。全流程计时包括读取、因果IR、V3/NMS、裁剪、RGB编码、学生、关联和输出，模型初次加载不在逐帧计时内；GPU/CPU共享负载，不能视作专属部署对比。不是25FPS。
+
+|代表系统|FPS|p50 ms|p95 ms|HOTA|AssA|DetA|IDF1|MOTA|IDSW|
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+|J3 seed0|0.7933|1268.02|1646.83|52.6318|37.7247|73.4850|60.1641|93.7173|80.0000|
+|ordinary_transformer seed0|0.7962|1235.38|1746.05|55.4745|41.8173|73.6349|64.0967|93.7109|79.0000|
+
+J3完整运行CUDA分配峰值：身份父进程0.5845GiB，检测子进程1.8132GiB；两个峰值不代表同一时刻的NVML总显存。普通Transformer完整运行关闭超时导致峰值元数据缺失，单独64帧/视频探针补测父/子分配峰值，明确不是完整运行峰值。完整FPS/计时/预测均来自原4834帧，不用探针替代。详见PHASE_V_ONLINE_RESULTS.md及PHASE_V_ONLINE_MEASURED.json。
 
 GRU学生281344、Transformer289296个分配参数；训练用掩码头不在在线forward执行。分配参数差小于3%，在线实际使用参数差约5%，不宣称绝对相同。8token单轨预测的线性/循环/注意力矩阵乘法部分约1.608M/1.840MMAC，排除归一化/数据移动/匹配等；不是整系统FLOPs或速度实测，见PHASE_V_COST_MODEL.json。教师不计入推理成本。
 
 ## 15. 环境/划分/评测限制
 
-检测器cu117/cuDNN8.5，身份cu118/cuDNN8.7；固定V3和FishReID权重、TrackEval版本/GT/检测/特征哈希保持不变。八视频检测训练曾含两个开发视频；身份模块五fit/一训练校准视频，冻结编码器见过六train视频。跨视频生物身份是否重复未核验。历史7视频已调参测试不用于新选择。当前batch8复制单帧的最后SN013两帧与原缓存batch2数值差异必须保留，不声称整库逐字节相同。
+检测器cu117/cuDNN8.5，身份cu118/cuDNN8.7；固定V3和FishReID权重、TrackEval版本/GT/检测/特征哈希保持不变。八视频检测训练曾含两个开发视频；身份模块五fit/一训练校准视频，冻结编码器见过六train视频。跨视频生物身份是否重复未核验。历史7视频已调参测试不用于新选择。全部4834帧/ID对与缓存相同，BT005两个模型的完整输出逐字节相同；SN0132999/3000帧各8行的框/置信度差异由原缓存batch2与当前帧复制batch8产生，详细行值已保留。不声称整库逐字节相同。
 
 ## 16. 关键失败与修复
 
-保留早期环境/命名空间/日志冲突失败及修复、RIS未知监督错误、JEPA不公平压力均值对照、训练管理器相对/绝对来源键错误。第三轮初始汇总FAILED但六模型训练完成；修复后只核验完成权重，没有重训覆盖。实际第3epoch终止本次子进程再恢复到第8epoch，学生/教师/优化器/随机状态/损失等精确一致。122项完整测试通过；新源代码或结果尚未绑定完成状态时，不提前标成功。
+保留早期环境/命名空间/日志冲突失败及修复、RIS未知监督错误、JEPA不公平压力均值对照、训练管理器相对/绝对来源键错误。第三轮初始汇总FAILED但六模型训练完成；修复后只核验完成权重，没有重训覆盖。实际第3epoch终止本次子进程再恢复到第8epoch，学生/教师/优化器/随机状态/损失等精确一致。124项完整测试通过。普通Transformer在关闭检测子进程时超过原10秒退出期限；全部4834帧预测/计时已关闭并绑定SHA，保留原异常与manifest后恢复完成元数据，不重推理或修改输出。修复仅处理已确认stop后的本任务子进程清理，并增加测试确保处理/接收错误不会被吞成成功。补充探针完整退出、与完整运行前缀逐字节一致。J7原消融因冻结RIS先构造而改变学生初始化，新增对照证明21个公共初始张量及8轮样本顺序一致，修正后HOTA51.738416仍低于J6；原结果保留但不单独归因于RIS。
 
 ## 17. 复现命令
 
-从IR-MFT根目录设置PYTHONPATH=.，使用/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python。按冻结计划执行tools/cfp_run_jepa_training.py --plan CONFIG --output NEW_JSON；完成后tools/cfp_run_recovery_campaign.py --plan REPLAY_CONFIG --output NEW_JSON --workers 3。三轮/正式配置均在configs/cfp/phase_v_jepa_*。源文件/权重/输入SHA与相应模型和评测manifest一一绑定。完整在线：CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. .../python tools/cfp_run_jepa_online.py --config configs/cfp/phase_v_online_J3_seed0_v1.json --output NEW_DIRECTORY。每个输出不可覆盖，至少40GiB安全余量；使用明确GPU0/1，不终止其他用户进程。最终精确复现命令、最优/代表权重SHA和完整在线结果待补。
+从IR-MFT根目录设置PYTHONPATH=.，使用/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python。按冻结计划执行tools/cfp_run_jepa_training.py --plan CONFIG --output NEW_JSON；完成后tools/cfp_run_recovery_campaign.py --plan REPLAY_CONFIG --output NEW_JSON --workers 3。三轮/正式配置均在configs/cfp/phase_v_jepa_*。源文件/权重/输入SHA与相应模型和评测manifest一一绑定。完整在线：CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. .../python tools/cfp_run_jepa_online.py --config configs/cfp/phase_v_online_J3_seed0_v1.json --output NEW_DIRECTORY。每个输出不可覆盖，至少40GiB安全余量；使用明确GPU0/1，不终止其他用户进程。精确命令见下方，权重/输入/代码SHA在PHASE_V_JEPA_MEASURED.json及各本地manifest。没有最优新核心方法，只有可复现的研究原型与强普通基线。
 
 ## 18. 提交与模型位置
 
-历史有效基底[4f1b226](https://github.com/LYQ1107/IR-MFT/commit/4f1b226343335d219af015d6c2954c0c81d28c7a)。本阶段公开审计/实现/测量记录见研究分支的提交，包括[39a5a6e](https://github.com/LYQ1107/IR-MFT/commit/39a5a6e167567a6112fa4a032f6b87b29096ac92)。最新提交与远端核验将在完成时补齐。大型权重、完整跟踪/事件输出留在/data3/liuyeqiang/IR-MFT_assets/cfp/phase5，Git仅含代码/配置/必要指标及SHA，没有复制原始数据和特征库。
+历史有效基底[4f1b226](https://github.com/LYQ1107/IR-MFT/commit/4f1b226343335d219af015d6c2954c0c81d28c7a)。本阶段公开审计/实现/测量记录见研究分支的提交，包括[39a5a6e](https://github.com/LYQ1107/IR-MFT/commit/39a5a6e167567a6112fa4a032f6b87b29096ac92)。最终提交与远端核验见PHASE_V_DELIVERY.json。大型权重、完整跟踪/事件输出留在/data3/liuyeqiang/IR-MFT_assets/cfp/phase5，Git仅含代码/配置/必要指标及SHA，没有复制原始数据和特征库。
 
 ## 19. 尚未执行或尚未完成
 
-尚未完成：完整在线测速及官方评测、最终报告和最后推送。条件模块尚未实施：双假设、DenseJEPA、新增IR身份/teacher视图、J8联合生命周期学习、新独立外部鱼类盲测、JEPA4/16历史窗口及全套新增adapter训练。历史8token及掩码1–4的分层诊断已经执行，不等同于训练了所有历史窗口。不把未做实验标成消融通过。历史生命周期四组合与输出干预已完成，不能把它们称作新学习的J8。
+已完成的主线没有待训练或待评测实验。未执行条件/后续实验：双假设、DenseJEPA、新增IR身份/teacher视图、J8联合生命周期学习、新独立外部鱼类盲测、JEPA4/16历史窗口及全套新增adapter训练、所有新增模型/seed1/2的完整在线重复。正式三种子准确性来自ProtocolA；ProtocolB是代表seed0完整实现/成本验证，没有三种子在线均值。历史8token及掩码1–4的分层诊断已经执行，不等同于训练了所有历史窗口。不把未做实验标成消融通过。历史生命周期四组合与输出干预已完成，不能把它们称作新学习的J8。
 
 ## 20. 独立方法论文的实验依据
 
-目前不足。存在可复现的真实JEPA训练和负结果、生命周期分解和普通输出基线增强；独立身份恢复贡献尚未验证。完整正式对照确认：Transformer配置内部存在EMA正向信号，但未超过强普通基线，直接潜在身份监督也未稳定提高。方法目标没有获得支持；在线验证结束后采用GOAL_NOT_MET_WITH_EVIDENCE，结论仅限本次冻结特征/轻量架构/有限数据和协议，不能声称JEPA方向普遍不成立。
+证据不足。存在可复现的真实JEPA训练和负结果、生命周期分解和普通输出基线增强；独立身份恢复贡献尚未验证。完整正式对照确认：Transformer配置内部存在EMA正向信号，但未超过强普通基线，直接潜在身份监督也未稳定提高。方法目标没有获得支持；完整在线验证后采用GOAL_NOT_MET_WITH_EVIDENCE，结论仅限本次冻结特征/轻量架构/有限数据和协议，不能声称JEPA方向普遍不成立。
+
+
+## 精确复现与审计入口
+
+在 `/data3/liuyeqiang/IR-MFT` 中执行；已存在模型/输出仅按哈希核验复用，不覆盖。原始数据/权重/特征需预先位于任务书路径。完整模型/每视频所有指标/命令/输入哈希保留在已提交的 measured JSON。
+
+```bash
+PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_jepa_training.py --plan configs/cfp/phase_v_jepa_training_seed0_v1.json --output /tmp/phase_v_training_verify.json
+PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_recovery_campaign.py --plan configs/cfp/phase_v_jepa_replay_seed0_v1.json --output /tmp/phase_v_replay_verify.json --workers 3
+PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_recovery_campaign.py --plan configs/cfp/phase_v_jepa_replay_formal_v3.json --output /tmp/phase_v_formal_verify.json --workers 3
+CUDA_VISIBLE_DEVICES=0 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_jepa_online.py --config configs/cfp/phase_v_online_J3_seed0_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase5/NEW_ONLINE_REPRODUCTION_DIRECTORY
+MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests
+```
+
+未来目标、第三轮及正式训练分别使用 `phase_v_jepa_training_seed0_v2_future.json`、`phase_v_jepa_training_seed0_v3.json`、`phase_v_jepa_training_formal_v1.json`、`phase_v_jepa_training_formal_v3.json`。初始化一致的额外J7控制使用 `tools/cfp_train_jepa_ris_initcontrol.py` 和 `phase_v_jepa_J7_initmatched_v1.json`，各实际执行命令绑定在该模型/回放manifest。教师只在完整训练checkpoint中，在线必须使用 `inference_epoch8.pt`。
+
+## 最终科学回答
+
+在本轮冻结512维身份特征、有限训练视频、8token轻量GRU/Transformer及严格因果协议下，JEPA确实完成了教师-学生潜在训练，但没有稳定超过强普通GRU的身份恢复/HOTA/AssA。局部EMA正向信号与更少IDSW的某些普通模型是真实观察，不能替代同时保持强基线质量的核心贡献证据。输出策略改进被纳入基线；不把它包装成JEPA成功。负结论限定于已执行方案，不否定所有JEPA、候选条件化关联或更丰富视觉/不确定性模型的可能性。

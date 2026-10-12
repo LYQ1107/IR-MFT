@@ -1,0 +1,51 @@
+{
+  "state": "FROZEN",
+  "round": 1,
+  "query_manifest_sha256": "2652aa105e3a7959a4db523cdca22db9084a42244c64f819a093d0f8f7278079",
+  "variants": {
+    "J7_initmatched": {
+      "ema": true,
+      "mask": true,
+      "identity": true,
+      "corruption": true,
+      "ris": true,
+      "ris_checkpoints": {
+        "0": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/ris_v2_confidence_only_reliability_seed0/epoch8.pt"
+      },
+      "architecture": "gru",
+      "latent": 128
+    }
+  },
+  "epochs": 8,
+  "batch_size": 128,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "amp": true,
+  "ema_start": 0.996,
+  "ema_end": 0.999,
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "calibration_videos": [
+    "SN-015"
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "first_diagnostic_seed": 0,
+  "appearance_weights": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "minimum_free_gib": 40,
+  "losses": "EMA-target latentcosine(.5)+fixedFishReID-space decodedalignmentcosine(.5)+smallstudentlatentvariance(.05); J4 adds correspondingcleanmaskedpastlatent(.25), J5adds currentidentityCE(1). J6changesonlystructuredcorruption. All targetsstopped, noRGBpixel reconstruction.",
+  "scope": "Genuine supervised identity-aligned Track-levelJEPA; sameeightpasttokens/current-proposal coordinate512space. Separate sampling/view/corruption/mask RNGstreams guaranteeidentical sampledquery orders acrossvariants. Teacher128dim onlytrain, student-onlyinferenceexport. OrdinaryGRU281344 andTransformer289296parameters(within3%), sameNNdecoder/corpus/steps. NoViT/backboneredownload, nooldCMUE/time search. Needatleast3targetedJEPAiterations before scientific conclusion; firstfailure notstop.",
+  "diagnosis": "OriginalJ7 createsRIS beforestudent andadvancesTorchinitialization RNG. Keeporiginalmodel/source; initializeidenticalJ6 studentfirstthenattachhash-pinnedfrozenRIS. Samefirstmodel/databudget/objective/augments/weights, onlyRISinputdiff. Not a newparametersearch."
+}

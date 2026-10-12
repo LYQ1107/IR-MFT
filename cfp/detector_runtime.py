@@ -67,10 +67,23 @@ class DetectorRuntime:
                 send_arrays(self.channel, {}, dict(action='stop'))
                 _, summary = receive_arrays(self.channel)
                 self.metadata.update(summary)
-                self.process_handle.wait(timeout=10)
+                try:
+                    self.process_handle.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    # All frame work and the stop acknowledgement are complete.
+                    # CUDA context teardown can exceed the grace period; retain
+                    # worker statistics before cleaning up this owned child.
+                    self.metadata['shutdown_grace_timeout_seconds'] = 10
             finally:
                 self.channel.close()
                 if self.process_handle.poll() is None:
                     self.process_handle.terminate()
-                    self.process_handle.wait(timeout=10)
+                    self.metadata['shutdown_owned_child_terminated'] = True
+                    try:
+                        self.process_handle.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        self.process_handle.kill()
+                        self.metadata['shutdown_owned_child_killed'] = True
+                        self.process_handle.wait(timeout=10)
+        self.metadata['shutdown_returncode'] = self.process_handle.poll()
         return self.metadata
