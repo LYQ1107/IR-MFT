@@ -20,6 +20,7 @@ def main():
         if job.get('write_policy_config'):command+=['--write-policy-config',job['write_policy_config']]
         if job.get('save_write_audit'):command+=['--save-write-audit']
         if job.get('checkpoint'):command+=['--checkpoint',str(args.assets_root/job['checkpoint'])]
+        if job.get('second_rgb_features_root'):command+=['--second-rgb-features-root',job['second_rgb_features_root']]
         evaluate=[sys.executable,'-u','tools/cfp_evaluate.py','--data-root',str(args.data_root),'--protocol',str(args.protocol),'--partition','dev','--derived-gt-root',str(args.derived_gt_root),'--trackeval-root',str(args.trackeval_root),'--predictions',str(out),'--output',str(evaluation)]
         if not out.exists():
             with out.with_name(out.name+'.log').open('x') as stream:subprocess.run(command,stdout=stream,stderr=subprocess.STDOUT,check=True)
@@ -29,6 +30,8 @@ def main():
         if not job.get('write_policy_config') and m.get('write_policy_config_sha256') is not None:raise ValueError('Unexpected write policy')
         if bool(job.get('save_write_audit'))!=m.get('save_write_audit',False):raise ValueError('Write audit setting changed')
         if job.get('checkpoint') and sha256(args.assets_root/job['checkpoint'])!=m['predictor_checkpoint_sha256']:raise ValueError('Model checkpoint changed')
+        if m.get('identity_representation','rgb')!=job.get('identity_representation','rgb'):raise ValueError('Campaign identity representation changed')
+        if job.get('second_rgb_features_root') and m['secondary_feature_manifest_sha256']!=sha256(Path(job['second_rgb_features_root'])/'manifest.json'):raise ValueError('Second RGB feature source changed')
         if not evaluation.exists():
             with evaluation.with_name(evaluation.name+'.log').open('x') as stream:subprocess.run(evaluate,stdout=stream,stderr=subprocess.STDOUT,check=True)
         e=json.loads((evaluation/'metrics.json').read_text())

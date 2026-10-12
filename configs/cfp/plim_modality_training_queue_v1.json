@@ -1,0 +1,207 @@
+{
+  "state": "FROZEN",
+  "time_encoding": "linear_clipped",
+  "minimum_free_gib": 30,
+  "input_sha256": {
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1/manifest.json": "b49bdb7298e4c3d2d65487b917b7e59be6d354d3bb7fc2596c9d53ca222957f0",
+    "configs/cfp/plim_anchor_query_v3.json": "c290faee84ef850e538eb2896a40a7ecb40dcfb9fd43dfe022e464c6cc7baeac",
+    "configs/cfp/plim_modality_rgb_ir_training_v1.json": "205e7e55a318ab3044dd40fe588350b4cdc15e565e3a75f30887806a529b7f86",
+    "configs/cfp/plim_modality_two_rgb_execution_v1.json": "6ef464ca4797fae3cc3d3e78999830c49a12abdf81e8a7b87f6b200d81e7b0f4",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "configs/cfp/plim_trial_v1.json": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0/manifest.json": "5c782686aafc4f3e74e7a0e2462c1b191ed1b9c179af6f380e1ffe787d951a52",
+    "configs/cfp/plim_modality_ir_training_v1.json": "b73e437ac07c66ec0b3e11985d9f70fde3c94c74c563e7cf1b4b866733e09af4",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix/manifest.json": "352d290b0c4a2e228cce46322ff803aa44928c5978db539d5c744e714f27b84a",
+    "configs/cfp/plim_modality_rgb_ir_execution_v1.json": "71e64739893425de28c5ec08d45d88e84807374a6da862f4a244004cd1cac116",
+    "configs/cfp/plim_modality_two_rgb_training_v1.json": "bc24d4c755c75f9e27ce3b8c1a65c24f40b9cde8d0863e8d3d822b43fabb700f",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed2/manifest.json": "33951baf5de04303b78567e9cbd699c01b97f701789bbb7e3a4a8339018b3fba",
+    "configs/cfp/plim_modality_ir_execution_v1.json": "84112f4825cc327a4d82d6b518be7b453210e7966280b51982c8a4c44e223130",
+    "tools/cfp_train_predictor.py": "394c88cd661c4dee10c231890d9c18b9ee4f5b47ec015673f46c380e0e7178d6",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2/manifest.json": "3cdea0b8600b2c32131d9e0e66da85ffed9bffc125f172017d6c35a9e7407405",
+    "cfp/representations.py": "a25f4cb900bb313d5e18f5215844e9a1282f52812df67ce94ba1fe539ef3085e",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed1/manifest.json": "ebed82f7a67039362ac9e7608d55591904772e4c12030c4e0dbec6b83612aab8"
+  },
+  "common_args": [
+    "--config",
+    "configs/cfp/plim_trial_v1.json",
+    "--query-config",
+    "configs/cfp/plim_anchor_query_v3.json",
+    "--history",
+    "anchor_recent",
+    "--device",
+    "cuda",
+    "--gpu-memory-fraction",
+    ".1"
+  ],
+  "jobs": [
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_predictive_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_association_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_predictive_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_association_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_predictive_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_ir_gru_association_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_ir_training_v1.json",
+      "identity_representation": "ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_predictive_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_association_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_predictive_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_association_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_predictive_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_rgb_ir_gru_association_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_rgb_ir_training_v1.json",
+      "identity_representation": "rgb_ir"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_predictive_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed1"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_association_anchor_seed0",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed1"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_predictive_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed2"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_association_anchor_seed1",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed2"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_predictive_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_mod_two_rgb_gru_association_anchor_seed2",
+      "training_config": "configs/cfp/plim_modality_two_rgb_training_v1.json",
+      "identity_representation": "two_rgb",
+      "second_rgb_features_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0"
+    }
+  ],
+  "scope": "Complete planned IR-only/RGBIR/capacity controls with existing banks.18smallmodels, no copiedfeature/imagebank. ArchitectureGRU selected for this modality diagnosis after four complete RGB repairs; predictive/association controls match perview. No threshold/epoch search expansion."
+}

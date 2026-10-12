@@ -24,6 +24,7 @@ from cfp.predictive_association import PredictiveAssociationTracker
 from cfp.joint_association import JointAssociationTracker
 from cfp.reliable_writes import ReliableWritesMixin
 from cfp.utility import UtilityMLP
+from cfp.representations import identity_view
 from cfp.provenance import sha256, write_json, snapshot_sources
 from yolox.tracker.basetrack import BaseTrack
 from yolox.tracker.byte_tracker import BYTETracker
@@ -44,7 +45,7 @@ def storage_guard(path, reserve_gib, starting_free, budget_gib):
     return free
 
 
-def load_predictor(path, protocol, execution, rgb_checkpoint):
+def load_predictor(path, protocol, execution, rgb_checkpoint, ir_checkpoint=None):
     metadata = json.loads((path.parent / 'manifest.json').read_text())
     if (metadata['status'] != 'COMPLETE' or metadata['protocol_sha256'] != sha256(protocol)
             or metadata['training_config_sha256'] != execution['training_config_sha256']
@@ -56,10 +57,15 @@ def load_predictor(path, protocol, execution, rgb_checkpoint):
     feature_meta = json.loads(feature_manifest.read_text())
     if sha256(feature_manifest) != metadata['feature_manifest_sha256'] or feature_meta['rgb_encoder']['checkpoint_sha256'] != sha256(rgb_checkpoint):
         raise ValueError('Predictor and online encoder use different latent coordinates')
+    view=metadata.get('identity_representation','rgb')
+    if view in ('ir','rgb_ir') and (ir_checkpoint is None or feature_meta['ir_encoder']['checkpoint_sha256']!=sha256(ir_checkpoint)):
+        raise ValueError('Online IR branch differs from predictor target coordinates')
+    if view=='two_rgb' and (ir_checkpoint is None or metadata['secondary_rgb_checkpoint_sha256']!=sha256(ir_checkpoint)):
+        raise ValueError('Online second RGB encoder differs from frozen capacity control')
     checkpoint = torch.load(path, map_location='cpu', weights_only=False)
     if checkpoint['epoch'] != 8:
         raise ValueError('Online predictor requires the fixed epoch8 checkpoint')
-    model = LatentIdentityPredictor(512, metadata['architecture'], time_encoding=metadata.get('time_encoding', 'linear_clipped'))
+    model = LatentIdentityPredictor(metadata.get('representation_dimension',512), metadata['architecture'], time_encoding=metadata.get('time_encoding', 'linear_clipped'))
     model.load_state_dict(checkpoint['model'], strict=True)
     return model.eval(), metadata
 
@@ -101,11 +107,17 @@ def main():
         raise ValueError('Frozen association execution changed')
     predictor = predictor_metadata = None
     if config['memory'] == 'predictor':
-        predictor, predictor_metadata = load_predictor(Path(config['predictor_checkpoint']), args.protocol, execution, config['rgb_checkpoint'])
+        predictor, predictor_metadata = load_predictor(Path(config['predictor_checkpoint']), args.protocol, execution, config['rgb_checkpoint'], config.get('ir_checkpoint'))
+    representation=predictor_metadata.get('identity_representation','rgb') if predictor_metadata else 'rgb'
+    if representation!=config.get('identity_representation','rgb'):
+        raise ValueError('Online representation must be explicitly declared and match its trained model')
+    if representation=='two_rgb' and config.get('ir_intervention')!='repeat_rgb':
+        raise ValueError('Two-RGB capacity control must encode the current RGB with both frozen branches')
     if config['memory'] not in ('bytetrack', 'predictor', 'last', 'ema', 'fifo', 'all_history_ema', 'constant_zero', 'constant_half', 'anchor_only'):
         raise ValueError('Unknown online association mode')
     utility_kwargs = {}
     if config.get('utility_kind'):
+        if representation!='rgb':raise ValueError('Frozen RGB utility cannot silently consume paired latent coordinates')
         uc_path, ue_path = Path(config['utility_config']), Path(config['utility_execution_config'])
         uc, ue = json.loads(uc_path.read_text()), json.loads(ue_path.read_text())
         if uc['state'] != 'FROZEN' or ue['state'] != 'FROZEN' or ue['parent_target_config'] != uc_path.name:
@@ -140,15 +152,18 @@ def main():
                                     rgb_checkpoint=config.get('rgb_checkpoint'), ir_checkpoint=config.get('ir_checkpoint'),
                                     detector_batch=config['detector_batch'], protocol_sha256=sha256(args.protocol),
                                     input_regime='causal_precomputed' if args.precomputed_causal_ir else 'causal',
-                                    preprocessing=config.get('preprocessing', 'original'))
+                                    preprocessing=config.get('preprocessing', 'original'), detector_runtime_python=config.get('detector_runtime_python'))
     args.output.mkdir()
     source_files = [__file__, 'cfp/online.py', 'cfp/pseudo_ir.py', 'cfp/reid.py', 'cfp/identity_data.py',
                     'cfp/predictive.py', 'cfp/predictive_association.py', 'cfp/association.py', 'cfp/history.py',
                     args.config, args.protocol, config['execution_config']]
+    source_files += ['cfp/representations.py']
     if config.get('utility_kind'):
         source_files += ['cfp/joint_association.py', 'cfp/utility.py', 'cfp/utility_association.py', 'cfp/candidate_context.py', config['utility_config'], config['utility_execution_config']]
     if policy:
         source_files += ['cfp/reliable_writes.py', config['write_policy_config']]
+    if frontend.detector_worker:
+        source_files += ['cfp/detector_runtime.py', 'tools/cfp_detector_worker.py']
     report = dict(status='RUNNING', partition='dev', config=config, config_sha256=sha256(args.config),
                   protocol_sha256=sha256(args.protocol), probe=bool(args.max_frames),
                   protocol='A/current-frame features' if args.fixed_detections else 'B/current-frame complete pipeline',
@@ -158,7 +173,7 @@ def main():
                   physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'), gpu_memory_fraction=args.gpu_memory_fraction,
                   device=torch.cuda.get_device_name(), git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
                   source_snapshots=snapshot_sources(args.output, source_files), videos={},
-                  parameters=dict(detector=sum(v.numel() for v in frontend.detector.parameters()),
+                  parameters=dict(detector=frontend.detector_parameters,
                                   rgb_encoder=sum(v.numel() for v in frontend.rgb_encoder.parameters()) if frontend.rgb_encoder else 0,
                                   ir_encoder=sum(v.numel() for v in frontend.ir_encoder.parameters()) if frontend.ir_encoder else 0,
                                   predictor=sum(v.numel() for v in predictor.parameters()) if predictor else 0),
@@ -166,6 +181,7 @@ def main():
                                policy='No generated images, feature banks, model copies or videos; stream MOT/timing only'),
                   scope='Current/past RGB only, no annotation reads. Historical V3 detector exposure to dev disclosed. Padded batches contain this frame only. Shared-load timing is not a dedicated deployment benchmark.')
     report['precomputed_causal_ir'] = args.precomputed_causal_ir
+    report['detector_runtime'] = frontend.detector_worker.metadata if frontend.detector_worker else dict(torch=torch.__version__, cuda=torch.version.cuda, cudnn=torch.backends.cudnn.version())
     if args.precomputed_causal_ir:
         report['generation_manifest_sha256'] = sha256(args.data_root / 'manifest.json')
         report['scope'] += ' Protocol A precomputed causal pixels: generator and detector costs excluded; FPS is NOT end-to-end.'
@@ -231,7 +247,8 @@ def main():
                 if config['memory'] == 'bytetrack':
                     targets = tracker.update(detections, (1, 1), (1, 1))
                 else:
-                    targets = tracker.update(detections, (1, 1), (1, 1), result['rgb_features'], result['ir_features'])
+                    view=identity_view(result['rgb_features'],result['ir_features'],representation,result['ir_features'] if representation=='two_rgb' else None)
+                    targets = tracker.update(detections, (1, 1), (1, 1), view, result['ir_features'] if representation=='rgb' else None)
                 stages['association'] = time.perf_counter() - t
                 t = time.perf_counter()
                 for target in targets:
@@ -266,6 +283,8 @@ def main():
             report['videos'][sequence].update(joint_counts=tracker.joint_counts, utility_counts=tracker.utility_scorer.utility_counts)
         write_json(args.output / 'manifest.json', report)
         print(sequence, report['videos'][sequence], flush=True)
+    worker_summary=frontend.close()
+    if worker_summary:report['detector_runtime']=worker_summary
     report.update(status='COMPLETE', peak_gpu_memory_bytes=torch.cuda.max_memory_allocated(),
                   ending_free_bytes=storage_guard(args.output, args.reserve_gib, starting_free, args.output_budget_gib))
     write_json(args.output / 'manifest.json', report)

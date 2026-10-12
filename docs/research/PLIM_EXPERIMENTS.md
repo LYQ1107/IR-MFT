@@ -53,3 +53,12 @@ All twelve fixed-epoch8 models across seeds0/1/2 and all99 full-video comparison
 At each family's selected mean-HOTA setting (all weight.3): predictive GRU51.4769±0.8695, association-only GRU51.8853±0.9933, predictive Transformer50.6058±2.2142 and association-only Transformer50.6112±1.1680. Seed0's Transformer53.0551 is not stable: seeds1/2 give50.0163/48.7460 at the same weight. Ordinary anchor GRU's IDF162.2983 improves over ByteTrack58.8771, but its IDSW89 exceeds86 and its HOTA remains below BoT52.4818. Forecasting is not independently established by this repair.
 
 Exact settings/full scalar metrics/three-seed sample deviations are in `configs/cfp/plim_anchor_three_seed_selection_v3.json`; all99 runs are registered with source snapshots and original commands. Full current-frame GRU trials and frozen utility/write composition are now running. These remain development diagnoses; no final-test freeze or completed-goal claim exists.
+
+
+## Complete planned modality prediction controls
+
+Eighteen frozen GRU models and54 full-video runs across IR-only512, RGBIR1024 and twoRGB1024 views are complete. Queries, anchor8, clipped timestamps, eight epochs and three appearance settings are unchanged. PairedRGBIR and pairedTwoRGB have identical362,624 trainable predictor parameters; IR-only231,040. TwoRGB reuses the next existing mainRGB seed consistently on train/dev; cyclic frozen encoder overlap between capacity-control pipelines is disclosed, so seedSD is descriptive rather than independent-pipeline confidence. No new feature/imagebanks are saved.
+
+Three-seed selected means (all weight.3): IRpredict50.4247±0.9583 versus IRordinary49.7862±0.9607; RGBIRpredict51.8846±1.3844 versus pairedordinary49.4645±0.7176; twoRGBpredict51.6723±1.1147 versus twoRGBordinary50.6212±1.7474. Prediction helps the paired representation, but RGBIR's0.2123pp HOTA difference over twoRGB is not stable IR-specific evidence, and ordinary singleRGBanchor51.8853 essentially matches it at lower capacity. None beats BoT52.4818. All per-video/current-proposal outcomes are registered in `phase3_modality_prediction_measured_20261012.json`.
+
+The single bounded log-age repair is complete:12 models/36 video runs. Predictive GRU51.3589±0.6283, ordinary GRU51.6848±1.8983, predictiveTransformer50.2843±1.0714, ordinaryTransformer49.5120±0.7330. Fixing timestamp saturation alone does not improve tracking, so this variant is not retained.

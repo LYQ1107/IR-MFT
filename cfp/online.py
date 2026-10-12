@@ -102,7 +102,7 @@ def identity_ir_view(rgb, ir, intervention='none'):
 class CurrentFrameFrontend:
     def __init__(self, detector_checkpoint, scripts_root, rgb_checkpoint=None,
                  ir_checkpoint=None, detector_batch=8, encoder_batch=128,
-                 input_regime='causal', protocol_sha256=None, preprocessing='original'):
+                 input_regime='causal', protocol_sha256=None, preprocessing='original', detector_runtime_python=None):
         if detector_batch not in (1, 8) or encoder_batch != 128:
             raise ValueError('Declared current-frame padding requires detector1/8 and encoder128')
         if input_regime not in ('causal', 'causal_precomputed', 'legacy_reproduction'):
@@ -122,11 +122,19 @@ class CurrentFrameFrontend:
         if preprocessing == 'lookup_uint8':
             self.transform = CurrentFrameRGBTTransform(self.exp.rgb_means, self.exp.rgb_std,
                                                        self.exp.ir_means, self.exp.ir_std)
-        self.detector = self.exp.get_model().cuda()
-        checkpoint = torch.load(detector_checkpoint, map_location='cpu', weights_only=False)
-        self.detector.load_state_dict(checkpoint['model'], strict=True)
-        del checkpoint
-        self.detector.half().eval().requires_grad_(False)
+        self.detector_worker = None
+        self.detector = None
+        if detector_runtime_python:
+            from .detector_runtime import DetectorRuntime
+            self.detector_worker = DetectorRuntime(detector_runtime_python, detector_checkpoint, scripts_root, detector_batch, preprocessing)
+            self.detector_parameters = self.detector_worker.metadata['parameters']
+        else:
+            self.detector = self.exp.get_model().cuda()
+            checkpoint = torch.load(detector_checkpoint, map_location='cpu', weights_only=False)
+            self.detector.load_state_dict(checkpoint['model'], strict=True)
+            del checkpoint
+            self.detector.half().eval().requires_grad_(False)
+            self.detector_parameters = sum(v.numel() for v in self.detector.parameters())
         self.rgb_encoder, self.rgb_metadata = self._load_encoder(rgb_checkpoint, protocol_sha256)
         self.ir_encoder, self.ir_metadata = self._load_encoder(ir_checkpoint, protocol_sha256)
         if ir_checkpoint and not rgb_checkpoint:
@@ -151,6 +159,9 @@ class CurrentFrameFrontend:
 
     def reset(self):
         self.generator = CausalPseudoIR(self.scripts_root, mode='temporal_ema', alpha=.01)
+
+    def close(self):
+        return self.detector_worker.close() if self.detector_worker else None
 
     def encode_crops(self, crops, valid, model):
         if model is None:
@@ -186,7 +197,13 @@ class CurrentFrameFrontend:
             ir = provided_ir
         timings['generation_codec' if self.input_regime == 'causal' else 'provided_ir_validation'] = time.perf_counter() - start
         raw = None
-        if fixed_proposals is None:
+        if fixed_proposals is None and self.detector_worker is not None:
+            start = time.perf_counter()
+            values, child_stages = self.detector_worker.process(rgb, ir)
+            boxes, scores, raw = values['boxes'], values['scores'], values['raw_post_nms']
+            timings.update({'worker_' + k: v for k, v in child_stages.items()})
+            timings['detector_worker_roundtrip'] = time.perf_counter() - start
+        elif fixed_proposals is None:
             start = time.perf_counter()
             image, _ = self.transform(rgb, ir, None, self.exp.test_size)
             tensor = torch.from_numpy(image)[None].repeat(self.detector_batch, 1, 1, 1).cuda().half()

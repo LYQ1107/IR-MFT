@@ -1,0 +1,41 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+  "training_config_sha256": "205e7e55a318ab3044dd40fe588350b4cdc15e565e3a75f30887806a529b7f86",
+  "candidate_policy": "Current valid RGB proposal and IoU>=0.1, shared geometry graph for every memory/model control. No feature-distance eligibility threshold. This changes original appearance graph and therefore all-history EMA and constant-distance controls are required.",
+  "history": 8,
+  "appearance_weight_candidates": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "geometry": {
+    "track_thresh": 0.58,
+    "track_buffer": 45,
+    "match_thresh": 0.97,
+    "frame_rate": 25,
+    "min_box_area": 100
+  },
+  "proximity_iou": 0.1,
+  "ema": 0.9,
+  "memory_controls": [
+    "last",
+    "ema",
+    "fifo",
+    "all_history_ema",
+    "constant_zero",
+    "constant_half",
+    "anchor_only"
+  ],
+  "trained_controls": [
+    "gru predictive anchor_recent",
+    "gru association anchor_recent",
+    "transformer predictive anchor_recent",
+    "transformer association anchor_recent"
+  ],
+  "safe_writes": false,
+  "selection": "Each memory/model receives same3setting budget; firstseed0 diagnosis only, finalall-seedmean selection required. Strongest external52.482mean and geometry-control50.760 are retained.",
+  "scope": "Same original clipped-time anchor8 and candidate graph. PairRGBIR and PairTwoRGB have identical1024dim modelcapacity; IR-only uses512. Predictive/ordinary GRU matched perview; no utility gate silently applied to a new coordinate space.",
+  "history_view": "anchor_recent",
+  "identity_representation": "rgb_ir"
+}

@@ -14,6 +14,7 @@ from cfp.predictive import LatentIdentityPredictor
 from cfp.predictive_association import PredictiveAssociationTracker
 from cfp.joint_association import JointAssociationTracker
 from cfp.utility import UtilityMLP
+from cfp.representations import identity_view
 from cfp.reliable_writes import ReliableWritesMixin
 from cfp.provenance import sha256,write_json,snapshot_sources
 from yolox.tracker.basetrack import BaseTrack
@@ -31,6 +32,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--detections',type=Path,required=True);p.add_argument('--features-root',type=Path,required=True);p.add_argument('--protocol',type=Path,required=True)
     p.add_argument('--config',type=Path,required=True);p.add_argument('--execution-config',type=Path,required=True);p.add_argument('--memory',choices=['predictor','last','ema','fifo','all_history_ema','constant_zero','constant_half','anchor_only'],required=True)
     p.add_argument('--utility-kind',choices=['cmue','ordinary','quality','fixed_matched','uncertainty']);p.add_argument('--utility-config',type=Path);p.add_argument('--utility-execution-config',type=Path);p.add_argument('--utility-checkpoint',type=Path)
+    p.add_argument('--second-rgb-features-root',type=Path)
     p.add_argument('--write-policy-config',type=Path);p.add_argument('--save-write-audit',action='store_true');p.add_argument('--checkpoint',type=Path);p.add_argument('--appearance-weight',type=float,required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
     if args.output.exists():raise FileExistsError('Predictive replay outputs are immutable')
     config=json.loads(args.config.read_text());execution=json.loads(args.execution_config.read_text());protocol=json.loads(args.protocol.read_text())
@@ -53,9 +55,18 @@ def main():
         if sha256(Path(model_metadata['features_root'])/'manifest.json')!=model_metadata['feature_manifest_sha256'] or training_features['rgb_encoder']['checkpoint_sha256']!=fm['rgb_encoder']['checkpoint_sha256']:raise ValueError('Predictor target latent coordinate space differs from deployment encoder')
         checkpoint=torch.load(args.checkpoint,map_location='cpu',weights_only=False)
         if checkpoint['epoch']!=8:raise ValueError('Fixed epoch8 checkpoint required')
-        model=LatentIdentityPredictor(512,model_metadata['architecture'],time_encoding=model_metadata.get('time_encoding','linear_clipped'));model.load_state_dict(checkpoint['model'],strict=True);model.eval()
+        model=LatentIdentityPredictor(model_metadata.get('representation_dimension',512),model_metadata['architecture'],time_encoding=model_metadata.get('time_encoding','linear_clipped'));model.load_state_dict(checkpoint['model'],strict=True);model.eval()
         if execution.get('history_view','recent')=='anchor_recent' and model_metadata['history']!='anchor_recent':raise ValueError('Anchor-context deployment requires matched anchor-context training')
     elif args.checkpoint is not None:raise ValueError('Memory controls do not use learned checkpoints')
+    representation=model_metadata.get('identity_representation','rgb') if model_metadata else 'rgb'
+    if representation in ['ir','rgb_ir'] and training_features['ir_encoder']['checkpoint_sha256']!=fm['ir_encoder']['checkpoint_sha256']:raise ValueError('IR predictor target coordinate space differs from deployment encoder')
+    if representation!='rgb' and args.utility_kind:raise ValueError('Frozen RGB utility evidence cannot silently consume a different latent view')
+    secondary=None
+    if representation=='two_rgb':
+        if args.second_rgb_features_root is None:raise ValueError('Two-RGB deployment needs its second consistent encoder bank')
+        secondary=json.loads((args.second_rgb_features_root/'manifest.json').read_text())
+        if secondary['status']!='COMPLETE' or secondary['protocol_sha256']!=sha256(args.protocol) or secondary['detection_manifest_sha256']!=fm['detection_manifest_sha256'] or secondary['rgb_encoder']['checkpoint_sha256']!=model_metadata['secondary_rgb_checkpoint_sha256'] or secondary['embedding_stage']!='post_neck' or secondary.get('encoder_role','main_baseline')!='main_baseline' or secondary.get('crop_variant','original')!='original':raise ValueError('Two-RGB deployment coordinate space changed')
+    elif args.second_rgb_features_root is not None:raise ValueError('Secondary RGB bank requires its paired trained control')
     utility_kwargs={};utility_metadata=None
     if args.utility_kind:
         if args.utility_config is None or args.utility_execution_config is None:raise ValueError('Joint utility needs frozen target/execution configurations')
@@ -72,16 +83,27 @@ def main():
         utility_metadata=dict(kind=args.utility_kind,target_config_sha256=sha256(args.utility_config),execution_sha256=sha256(args.utility_execution_config),checkpoint_sha256=sha256(args.utility_checkpoint) if args.utility_checkpoint else None,scope='Frozen utility uses trained EMA evidence; accepted IR EMA mixes with predicted RGB only on original utility subset. Not joint retraining or paired latent prediction.')
     elif any(v is not None for v in [args.utility_config,args.utility_execution_config,args.utility_checkpoint]):raise ValueError('Utility paths require a declared joint gate')
     args.output.mkdir(parents=True)
-    snapshots=snapshot_sources(args.output,[__file__,'cfp/predictive.py','cfp/predictive_association.py','cfp/association.py','cfp/provenance.py',args.config,args.execution_config,args.protocol,'cfp/reliable_writes.py','cfp/history.py']+([args.write_policy_config] if args.write_policy_config else [])+(['cfp/joint_association.py','cfp/utility_association.py','cfp/utility.py','cfp/candidate_context.py',args.utility_config,args.utility_execution_config] if args.utility_kind else []))
+    snapshots=snapshot_sources(args.output,[__file__,'cfp/predictive.py','cfp/predictive_association.py','cfp/association.py','cfp/provenance.py','cfp/representations.py',args.config,args.execution_config,args.protocol,'cfp/reliable_writes.py','cfp/history.py']+([args.write_policy_config] if args.write_policy_config else [])+(['cfp/joint_association.py','cfp/utility_association.py','cfp/utility.py','cfp/candidate_context.py',args.utility_config,args.utility_execution_config] if args.utility_kind else []))
     report=dict(status='RUNNING',partition='dev',memory=args.memory,appearance_weight=args.appearance_weight,seed=fm['rgb_encoder']['seed'],config=config,execution_config=execution,protocol_sha256=sha256(args.protocol),feature_manifest_sha256=sha256(args.features_root/'manifest.json'),rgb_encoder=fm['rgb_encoder'],ir_encoder=fm['ir_encoder'],predictor_checkpoint_sha256=sha256(args.checkpoint) if args.checkpoint else None,model_metadata=model_metadata,source_snapshots=snapshots,git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),write_policy=policy,write_policy_config_sha256=sha256(args.write_policy_config) if args.write_policy_config else None,save_write_audit=args.save_write_audit,videos={},scope='Frozen canonical association dev, historical detector exposure disclosed. Shared geometry candidate graph for every predictor/history control; unchanged low-score IoU/lifecycle, score before writes. No GT loaded. Write policy independently toggled after geometry updates. No historical test or end-to-end speed claim.')
     write_json(args.output/'manifest.json',report)
     report['joint_utility']=utility_metadata
+    report['identity_representation']=representation
+    report['secondary_feature_manifest_sha256']=sha256(args.second_rgb_features_root/'manifest.json') if secondary else None
     for sequence in protocol['dev']:
         dp=args.detections/(sequence+'.npz');fp=args.features_root/(sequence+'.npz');prov=json.loads(fp.with_suffix('.provenance.json').read_text())
         if sha256(dp)!=dm['caches'][sequence]['sha256'] or sha256(dp)!=prov['detection_sha256'] or sha256(fp)!=prov['features_sha256']:raise ValueError('Frozen deployment arrays changed')
         with np.load(dp) as a:frames,offsets,boxes,scores=[a[k] for k in ['frame_ids','offsets','boxes','scores']]
-        with np.load(fp) as a:rgb=a['rgb'];ir=a['ir'] if args.utility_kind else None
-        if not np.array_equal(frames,np.arange(1,len(frames)+1)) or len(offsets)!=len(frames)+1 or offsets[0]!=0 or offsets[-1]!=len(boxes) or np.any(np.diff(offsets)<0) or rgb.shape!=(len(boxes),512) or len(scores)!=len(boxes) or not all(np.isfinite(v).all() for v in [boxes,scores,rgb]):raise ValueError('Invalid complete deployment alignment')
+        with np.load(fp) as a:rgb=a['rgb'];ir=a['ir'];valid_rgb=a['valid_rgb'];valid_ir=a['valid_ir']
+        second_rgb=None
+        if secondary is not None:
+            sp=args.second_rgb_features_root/(sequence+'.npz');prov2=json.loads(sp.with_suffix('.provenance.json').read_text())
+            if sha256(sp)!=prov2['features_sha256'] or prov2['detection_sha256']!=sha256(dp):raise ValueError('Second RGB proposal alignment changed')
+            with np.load(sp) as a:second_rgb=a['rgb'];second_valid=a['valid_rgb']
+            if not np.array_equal(valid_rgb,second_valid):raise ValueError('Second RGB availability changes candidate graph')
+        if representation!='rgb' and not np.array_equal(valid_rgb,valid_ir):raise ValueError('Identity-view ablation requires common proposal availability')
+        rgb=identity_view(rgb,ir,representation,second_rgb)
+        ir=ir if args.utility_kind else None
+        if not np.array_equal(frames,np.arange(1,len(frames)+1)) or len(offsets)!=len(frames)+1 or offsets[0]!=0 or offsets[-1]!=len(boxes) or np.any(np.diff(offsets)<0) or rgb.shape!=(len(boxes),model_metadata.get('representation_dimension',512) if model_metadata else 512) or len(scores)!=len(boxes) or not all(np.isfinite(v).all() for v in [boxes,scores,rgb]):raise ValueError('Invalid complete deployment alignment')
         BaseTrack._count=0;g=execution['geometry'];tracker_type=ReliableJointTracker if args.utility_kind else ReliablePredictiveTracker
         tracker=tracker_type(SimpleNamespace(track_thresh=g['track_thresh'],track_buffer=g['track_buffer'],match_thresh=g['match_thresh'],mot20=False),predictor=model,memory=args.memory,write_policy=policy,history_view=execution.get('history_view','recent'),appearance_weight=args.appearance_weight,frame_rate=g['frame_rate'],ema=execution['ema'],proximity_iou=execution['proximity_iou'],**utility_kwargs)
         rows=[];latencies=[];audit_rows=[]

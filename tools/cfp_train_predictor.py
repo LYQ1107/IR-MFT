@@ -14,9 +14,10 @@ from torch.nn import functional as F
 
 from cfp.predictive import LatentIdentityPredictor,bounded_identity_prototype,latent_identity_loss
 from cfp.provenance import sha256,write_json,snapshot_sources
+from cfp.representations import identity_view
 
 
-def load_queries(root,config_path,query_config_path,partition):
+def load_queries(root,config_path,query_config_path,partition,representation='rgb',second_features_root=None):
     manifest=json.loads((root/'manifest.json').read_text())
     if manifest['status']!='COMPLETE' or manifest['partition']!=partition or manifest['config_sha256']!=sha256(config_path) or manifest['query_config_sha256']!=sha256(query_config_path):
         raise ValueError('Complete matching predictive query data required')
@@ -24,10 +25,24 @@ def load_queries(root,config_path,query_config_path,partition):
     if sha256(features_root/'manifest.json')!=manifest['feature_manifest_sha256'] or fm['status']!='COMPLETE' or fm.get('encoder_role','main_baseline')!='main_baseline' or fm['embedding_stage']!='post_neck':
         raise ValueError('Stopped main encoder coordinate space changed')
     rows=[];features={}
+    secondary=None
+    if representation=='two_rgb':
+        if second_features_root is None:raise ValueError('Matched two-RGB view requires its second existing bank')
+        second_features_root=Path(second_features_root);secondary=json.loads((second_features_root/'manifest.json').read_text())
+        if secondary['status']!='COMPLETE' or secondary['protocol_sha256']!=fm['protocol_sha256'] or secondary['detection_manifest_sha256']!=fm['detection_manifest_sha256'] or secondary['embedding_stage']!='post_neck' or secondary.get('encoder_role','main_baseline')!='main_baseline':raise ValueError('Second RGB bank does not share original proposals/protocol')
+    elif second_features_root is not None:raise ValueError('Only two-RGB controls consume a second bank')
     for sequence,report in manifest['videos'].items():
         path=root/(sequence+'.npz');fp=features_root/(sequence+'.npz')
         if sha256(path)!=report['sha256'] or sha256(fp)!=report['features_sha256']:raise ValueError('Stopped query/feature arrays changed')
-        with np.load(fp) as a:features[sequence]=a['rgb']
+        with np.load(fp) as a:rgb=a['rgb'];ir=a['ir'];valid_rgb=a['valid_rgb'];valid_ir=a['valid_ir']
+        if not np.array_equal(valid_rgb,valid_ir):raise ValueError('Modality ablation must preserve identical valid-proposal availability')
+        second_rgb=None
+        if secondary is not None:
+            sp=second_features_root/(sequence+'.npz');prov=json.loads(sp.with_suffix('.provenance.json').read_text())
+            if sha256(sp)!=prov['features_sha256'] or prov['detection_sha256']!=json.loads(fp.with_suffix('.provenance.json').read_text())['detection_sha256']:raise ValueError('Second RGB feature/proposal alignment changed')
+            with np.load(sp) as a:second_rgb=a['rgb'];second_valid=a['valid_rgb']
+            if not np.array_equal(valid_rgb,second_valid):raise ValueError('Second RGB capacity control changes proposal availability')
+        features[sequence]=identity_view(rgb,ir,representation,second_rgb)
         with np.load(path) as a:bank={k:a[k] for k in a.files}
         count=len(bank['frame']);offsets=bank['candidate_offsets']
         if len(offsets)!=count+1 or offsets[0]!=0 or offsets[-1]!=len(bank['candidate_indices']) or np.any(np.diff(offsets)<2):raise ValueError('Missing distinct same-frame training negatives')
@@ -41,6 +56,7 @@ def load_queries(root,config_path,query_config_path,partition):
                     raise ValueError('Invalid bounded causal history')
                 row[history+'_indices']=indices;row[history+'_frames']=times
             rows.append(row)
+    manifest=dict(manifest,identity_representation=representation,secondary_features_root=str(second_features_root) if secondary else None,secondary_feature_manifest_sha256=sha256(second_features_root/'manifest.json') if secondary else None,secondary_rgb_checkpoint_sha256=secondary['rgb_encoder']['checkpoint_sha256'] if secondary else None)
     return rows,features,manifest
 
 
@@ -98,6 +114,7 @@ def atomic_checkpoint(path,payload):
 def main():
     p=argparse.ArgumentParser();p.add_argument('--queries',type=Path,required=True);p.add_argument('--config',type=Path,required=True);p.add_argument('--query-config',type=Path,required=True);p.add_argument('--training-config',type=Path,required=True)
     p.add_argument('--architecture',choices=['gru','transformer'],required=True);p.add_argument('--objective',choices=['predictive','association'],required=True);p.add_argument('--history',choices=['clean','actual','anchor_recent'],required=True);p.add_argument('--seed',type=int,required=True)
+    p.add_argument('--identity-representation',choices=['rgb','ir','rgb_ir','two_rgb'],default='rgb');p.add_argument('--second-rgb-features-root',type=Path)
     p.add_argument('--device',choices=['cpu','cuda'],required=True);p.add_argument('--gpu-memory-fraction',type=float,default=.1);p.add_argument('--output',type=Path,required=True);p.add_argument('--resume',action='store_true');args=p.parse_args()
     config=json.loads(args.config.read_text());training=json.loads(args.training_config.read_text())
     if config['state']!='FROZEN' or training['state']!='FROZEN' or training['trial_sha256']!=sha256(args.config) or training['query_config_sha256']!=sha256(args.query_config) or args.seed not in config['seed_plan']:raise ValueError('Frozen matched predictive budget required')
@@ -106,17 +123,19 @@ def main():
     if args.device=='cuda':torch.cuda.set_per_process_memory_fraction(args.gpu_memory_fraction)
     if args.output.exists() and not args.resume:raise FileExistsError('Predictor runs are immutable')
     if args.resume and (not (args.output/'last.pt').is_file() or json.loads((args.output/'manifest.json').read_text())['status']=='COMPLETE'):raise ValueError('Only incomplete matching epoch checkpoints may resume')
-    rows,features,query_meta=load_queries(args.queries,args.config,args.query_config,'train')
+    if training.get('identity_representation','rgb')!=args.identity_representation:raise ValueError('Latent view differs from frozen training declaration')
+    rows,features,query_meta=load_queries(args.queries,args.config,args.query_config,'train',args.identity_representation,args.second_rgb_features_root)
     if query_meta['encoder_seed']!=args.seed:raise ValueError('Predictor seed must match its frozen encoder pipeline')
     fit=[r for r in rows if r['sequence'] in config['fit_videos']];cal=[r for r in rows if r['sequence'] in config['calibration_videos']]
     if not fit or not cal or len(fit)+len(cal)!=len(rows):raise ValueError('Invalid whole-video temporal fitting partition')
     groups=sampling_groups(fit,config['fit_videos']);device=torch.device(args.device);torch.set_num_threads(2);torch.manual_seed(args.seed);rng=np.random.default_rng(args.seed)
     torch.use_deterministic_algorithms(True);torch.backends.cudnn.benchmark=False
     time_encoding=training.get('time_encoding','linear_clipped')
-    model=LatentIdentityPredictor(512,args.architecture,time_encoding=time_encoding).to(device);optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])
+    dimension=next(iter(features.values())).shape[1]
+    model=LatentIdentityPredictor(dimension,args.architecture,time_encoding=time_encoding).to(device);optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])
     args.output.mkdir(parents=True,exist_ok=args.resume)
-    snapshots=snapshot_sources(args.output,[__file__,'cfp/predictive.py','cfp/provenance.py',args.config,args.query_config,args.training_config])
-    guard=dict(config_sha256=sha256(args.config),query_config_sha256=sha256(args.query_config),training_config_sha256=sha256(args.training_config),query_manifest_sha256=sha256(args.queries/'manifest.json'),source_snapshots=snapshots,architecture=args.architecture,objective=args.objective,history=args.history,seed=args.seed,device=args.device,torch=torch.__version__,cudnn=torch.backends.cudnn.version(),physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),gpu_memory_fraction=args.gpu_memory_fraction if args.device=='cuda' else None,time_encoding=time_encoding)
+    snapshots=snapshot_sources(args.output,[__file__,'cfp/predictive.py','cfp/provenance.py','cfp/representations.py',args.config,args.query_config,args.training_config])
+    guard=dict(config_sha256=sha256(args.config),query_config_sha256=sha256(args.query_config),training_config_sha256=sha256(args.training_config),query_manifest_sha256=sha256(args.queries/'manifest.json'),source_snapshots=snapshots,architecture=args.architecture,objective=args.objective,history=args.history,seed=args.seed,device=args.device,torch=torch.__version__,cudnn=torch.backends.cudnn.version(),physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),gpu_memory_fraction=args.gpu_memory_fraction if args.device=='cuda' else None,time_encoding=time_encoding,identity_representation=args.identity_representation,representation_dimension=dimension,secondary_features_root=query_meta['secondary_features_root'],secondary_feature_manifest_sha256=query_meta['secondary_feature_manifest_sha256'],secondary_rgb_checkpoint_sha256=query_meta['secondary_rgb_checkpoint_sha256'])
     report=dict(status='RUNNING',config=config,training_config=training,**guard,git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),parameters=sum(v.numel() for v in model.parameters()),protocol_sha256=query_meta['protocol_sha256'],encoder_seed=query_meta['encoder_seed'],features_root=query_meta['features_root'],feature_manifest_sha256=query_meta['feature_manifest_sha256'],fit_queries=len(fit),calibration_queries=len(cal),fit_videos=config['fit_videos'],calibration_videos=config['calibration_videos'],epochs=[],checkpoint_selection='Fixed last epoch8; calibration reports only, no checkpoint/threshold selection',scope='RGB latent stopped-target training. Canonical dev does not fit any parameter; SN-015 query holdout was exposed to the main fish encoder. Clean-vs-actual are retrospective histories, not deployment oracle. Cache-training latency is not online latency.')
     start_epoch=0;elapsed=0.
     if args.resume:

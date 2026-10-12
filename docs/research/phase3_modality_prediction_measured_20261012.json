@@ -1,0 +1,114 @@
+{
+  "status": "COMPLETE",
+  "rows": {
+    "ir": {
+      "plim_mod_dev_ir_gru_predictive_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 50.424707040723014,
+          "AssA": 35.59224847013636,
+          "DetA": 71.50253147379173,
+          "IDF1": 60.234681990325235,
+          "MOTA": 92.5794393864388,
+          "IDSW": 88.0
+        },
+        "std": {
+          "HOTA": 0.9582705977286832,
+          "AssA": 1.300177243619102,
+          "IDF1": 1.0117466698647364,
+          "IDSW": 3.4641016151377544
+        }
+      },
+      "plim_mod_dev_ir_gru_association_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 49.78617129556531,
+          "AssA": 34.774561046205505,
+          "DetA": 71.34097197288698,
+          "IDF1": 59.78064991695291,
+          "MOTA": 92.56006830101232,
+          "IDSW": 87.66666666666667
+        },
+        "std": {
+          "HOTA": 0.9606792082481418,
+          "AssA": 1.173540308316486,
+          "IDF1": 1.3003728880263996,
+          "IDSW": 4.932882862316247
+        }
+      }
+    },
+    "rgb_ir": {
+      "plim_mod_dev_rgb_ir_gru_predictive_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 51.88456470714681,
+          "AssA": 37.71454785967095,
+          "DetA": 71.44734535164078,
+          "IDF1": 62.24172969585191,
+          "MOTA": 92.6110070812079,
+          "IDSW": 86.66666666666667
+        },
+        "std": {
+          "HOTA": 1.3843725739669959,
+          "AssA": 2.036345074439822,
+          "IDF1": 1.5297153188076398,
+          "IDSW": 3.511884584284246
+        }
+      },
+      "plim_mod_dev_rgb_ir_gru_association_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 49.46448605494686,
+          "AssA": 34.24879215327469,
+          "DetA": 71.50136047383744,
+          "IDF1": 58.97239462376691,
+          "MOTA": 92.55791595818715,
+          "IDSW": 90.33333333333333
+        },
+        "std": {
+          "HOTA": 0.717623270774921,
+          "AssA": 0.9207561948274597,
+          "IDF1": 0.8396676539455269,
+          "IDSW": 3.214550253664318
+        }
+      }
+    },
+    "two_rgb": {
+      "plim_mod_dev_two_rgb_gru_predictive_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 51.67229627389562,
+          "AssA": 37.37221859342032,
+          "DetA": 71.50630671951417,
+          "IDF1": 61.84110716632018,
+          "MOTA": 92.5866138625227,
+          "IDSW": 85.0
+        },
+        "std": {
+          "HOTA": 1.114663694723051,
+          "AssA": 1.6203246281527035,
+          "IDF1": 1.903439418608499,
+          "IDSW": 4.358898943540674
+        }
+      },
+      "plim_mod_dev_two_rgb_gru_association_anchor": {
+        "weight": 0.3,
+        "mean": {
+          "HOTA": 50.62121608962383,
+          "AssA": 35.87162894117656,
+          "DetA": 71.54336346342511,
+          "IDF1": 60.241891515661315,
+          "MOTA": 92.59307089099819,
+          "IDSW": 85.66666666666667
+        },
+        "std": {
+          "HOTA": 1.7474053484290217,
+          "AssA": 2.503120731337211,
+          "IDF1": 2.5805907367170446,
+          "IDSW": 2.516611478423583
+        }
+      }
+    }
+  },
+  "interpretation": "RGBIR prediction51.8846 beats pairedordinary49.4645, but differs only0.2123pp from twoRGBpredict51.6723 and essentially matches ordinaryRGBanchor51.8853. All remain below BoT52.4818. Three seedSDs do not establish IR-specific superiority; cyclic twoRGB frozen encoder reuse disclosed.54runs complete; no new feature/imagebank."
+}

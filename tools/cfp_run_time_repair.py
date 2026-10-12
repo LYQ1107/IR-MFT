@@ -17,7 +17,7 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     args = p.parse_args()
     plan = json.loads(args.plan.read_text())
-    if plan['state'] != 'FROZEN' or plan['time_encoding'] != 'log1p_15000':
+    if plan['state'] != 'FROZEN' or plan['time_encoding'] not in ['log1p_15000','linear_clipped']:
         raise ValueError('Frozen bounded timestamp repair required')
     for path, expected in plan['input_sha256'].items():
         if sha256(path) != expected:
@@ -36,6 +36,9 @@ def main():
         command = [sys.executable, '-u', 'tools/cfp_train_predictor.py', *plan['common_args'],
                    '--queries', job['queries'], '--architecture', job['architecture'],
                    '--objective', job['objective'], '--seed', str(job['seed']), '--output', str(out)]
+        if job.get('training_config'):command+=['--training-config',job['training_config']]
+        if job.get('identity_representation'):command+=['--identity-representation',job['identity_representation']]
+        if job.get('second_rgb_features_root'):command+=['--second-rgb-features-root',job['second_rgb_features_root']]
         if not out.exists():
             print('Starting', out.name, flush=True)
             with out.with_name(out.name + '.log').open('x') as stream:
@@ -43,6 +46,7 @@ def main():
         manifest = json.loads((out / 'manifest.json').read_text())
         if manifest['status'] != 'COMPLETE' or manifest['time_encoding'] != plan['time_encoding'] or manifest['architecture'] != job['architecture'] or manifest['objective'] != job['objective'] or manifest['seed'] != job['seed'] or sha256(out / 'epoch8.pt') != manifest['checkpoint_sha256']:
             raise ValueError('Completed timestamp-repair model differs')
+        if manifest.get('identity_representation','rgb')!=job.get('identity_representation','rgb'):raise ValueError('Frozen representation changed')
         summary['runs'][out.name] = dict(command=command, status='COMPLETE', manifest_sha256=sha256(out / 'manifest.json'))
         write_json(args.output, summary)
         print('Completed', out.name, flush=True)
