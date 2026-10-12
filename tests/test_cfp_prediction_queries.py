@@ -49,3 +49,23 @@ def test_ambiguous_identity_does_not_become_anchor_or_negative():
     assert set(tracker.anchors.values())=={3}
     assert not tracker.rows  # One usable fish cannot supply a distinct hard negative.
     assert not tracker.clean[7]
+
+
+def test_anchor_query_view_keeps_initial_proposal_without_changing_track_outputs():
+    args=SimpleNamespace(track_thresh=.58,track_buffer=45,match_thresh=.97,mot20=False)
+    labels=np.tile([3,7],20);frames=np.repeat(np.arange(1,21),2)
+    boxes=np.array([[0,0,30,20,.9],[70,0,100,20,.9]],np.float32);features=np.eye(2,dtype=np.float32)
+    traces=[];recorders=[]
+    for enabled in [False,True]:
+        BaseTrack._count=0
+        tracker=module.PredictionRecorder(args,labels,frames,dict(history_length=8,gap_training_candidates=[1],query_frame_stride=1,record_initial_visual_anchor=enabled),0)
+        trace=[]
+        for frame in range(1,21):
+            lo=2*(frame-1);tracks=tracker.update(boxes.copy(),(1,1),(1,1),features,features,np.arange(lo,lo+2))
+            tracker.collect_writes(frame,lo,lo+2,np.ones(40,bool));trace.append([(t.track_id,*t.tlwh.tolist()) for t in tracks])
+        traces.append(trace);recorders.append(tracker)
+    assert traces[0]==traces[1]
+    rows=recorders[1].rows
+    row=next(r for r in rows if r['frame']==20 and r['anchor_id']==3)
+    assert row['actual'][0][0]==12 and row['anchor_recent'][0]==(1,0)
+    assert len(row['anchor_recent'])==8 and row['anchor_recent'][-1][0]==19

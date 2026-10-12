@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "parent_execution_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+  "hypothesis": "Actual accepted histories show substantial physical identity contamination; refuse ambiguous existing-track identity writes after geometry updates, independently of predictive scoring.",
+  "minimum_confidence": 0.68,
+  "minimum_row_margin": 0.02,
+  "minimum_column_margin": 0.02,
+  "threshold_basis": "Confidence matches original native newborn threshold0.68; one predeclared conservative0.02 row/column cost margin. No dev threshold sweep/calibration or guaranteed precision claim.",
+  "margin_definition": "Native assignment cost for the accepted current proposal versus minimum of every other row/column candidate and native stage NULL threshold0.97 or0.7. Non-best Hungarian assignments can have negative margin and are refused.",
+  "low_stage": "Original low-score IoU geometry association/update continues unchanged; identity write refused without current scored high/unconfirmed evidence.",
+  "newborn": "Native confident birth/lifecycle unchanged; allow first available identity initialization, then apply policy to every existing-track write.",
+  "rejected": "Set pending=false, preserve past identity history/prototype/timestamps; current matched detection may update geometry. No delayed future-frame rewriting or GT recovery.",
+  "appearance_weight": 0.3,
+  "memory_models": [
+    "bounded_ema",
+    "gru_predictive_clean",
+    "transformer_predictive_clean"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "budget": "Independent on/off comparison at identical fixed model weights and weight0.3; no new appearance setting search.",
+  "scope": "Same fixed write thresholds with anchor GRU weights; independent joint/PLIM on/off diagnosis, not new threshold search."
+}

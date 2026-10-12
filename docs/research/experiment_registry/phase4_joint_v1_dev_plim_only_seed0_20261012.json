@@ -1,0 +1,124 @@
+{
+  "run_id": "phase4_joint_v1_dev_plim_only_seed0_20261012",
+  "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle.",
+  "git_commit": "1db2ea538195aa8f88c028d01042f7b3c85ad97a",
+  "seed": 0,
+  "config": {
+    "state": "FROZEN",
+    "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "training_config_sha256": "4acd6e9283168067bcc4eda6fec8bb515cf4794dc349b7ea80dd47f4f8ad076a",
+    "candidate_policy": "Current valid RGB proposal and IoU>=0.1, shared geometry graph for every memory/model control. No feature-distance eligibility threshold. This changes original appearance graph and therefore all-history EMA and constant-distance controls are required.",
+    "history": 8,
+    "appearance_weight_candidates": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "geometry": {
+      "track_thresh": 0.58,
+      "track_buffer": 45,
+      "match_thresh": 0.97,
+      "frame_rate": 25,
+      "min_box_area": 100
+    },
+    "proximity_iou": 0.1,
+    "ema": 0.9,
+    "memory_controls": [
+      "last",
+      "ema",
+      "fifo",
+      "all_history_ema",
+      "constant_zero",
+      "constant_half",
+      "anchor_only"
+    ],
+    "trained_controls": [
+      "gru predictive anchor_recent",
+      "gru association anchor_recent",
+      "transformer predictive anchor_recent",
+      "transformer association anchor_recent"
+    ],
+    "safe_writes": false,
+    "selection": "Each memory/model receives same3setting budget; firstseed0 diagnosis only, finalall-seedmean selection required. Strongest external52.482mean and geometry-control50.760 are retained.",
+    "scope": "Third memory-context trial; allcontrols see same anchor+recent8token view/candidate graph, first rawaccepted appearance has noGT label. Same3setting budget, canonicaldev only. Track storesrecent8+oneinitialpair; no extra learnedparameters or safe-write toggle.",
+    "history_view": "anchor_recent"
+  },
+  "detector_sha256": "c448238beaa8540860d17f6a022d99b29b1407649823398a8553fa0890b6d786",
+  "reid_sha256": {
+    "rgb": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+    "ir": "4e1dcdc8bc3f607b5afc72c23f4fe86f317a25b77a4b98204c27962f691bccaf"
+  },
+  "split": "canonical dev, fixed proposals; historical detector exposure disclosed",
+  "epochs": 8,
+  "checkpoint_selection": "Frozen original epoch8 component weights, appearanceweight0.3, no additional search",
+  "metrics": {
+    "HOTA": 51.75795081350856,
+    "AssA": 37.5142423873688,
+    "DetA": 71.45044390406868,
+    "IDF1": 61.96841089683134,
+    "MOTA": 92.58948365295623,
+    "IDSW": 82
+  },
+  "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/joint_v1_dev_plim_only_seed0.log",
+  "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/joint_v1_dev_plim_only_seed0",
+  "conclusion": "Measured joint/write diagnosis; no independent CMUE/full-model gain established.",
+  "status": "COMPLETE",
+  "manifest_sha256": "78b84b6b68971f4d79ff79008d04d2848f3b6b692b223e71ec798228c77191ce",
+  "source_snapshots": {
+    "tools/cfp_replay_predictor.py": "8bff0399086ba9abe924f7eed18d560c3505a3fa27dd4869b81ed06f7fc60fd8",
+    "cfp/predictive.py": "b81a47e374527c2d27c4d5bcb0913c8c079647b17a157f65ac27c46e4a175f44",
+    "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+    "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "configs/cfp/plim_trial_v1.json": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "configs/cfp/plim_anchor_execution_v3.json": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "cfp/reliable_writes.py": "20afddb545c055aaecde9bfb7751538bb439e8ac07fcd567b95fd9b87834d224",
+    "cfp/history.py": "488798e5a87662cf7044d6ebbd1d3da0184cecfb3a99cfb46a68e60c10a98e04"
+  },
+  "commands": [
+    [
+      "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+      "-u",
+      "tools/cfp_replay_predictor.py",
+      "--detections",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_dev_detections",
+      "--features-root",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_detection_features_postneck_seed0",
+      "--protocol",
+      "configs/cfp/protocol_v2.json",
+      "--config",
+      "configs/cfp/plim_trial_v1.json",
+      "--execution-config",
+      "configs/cfp/plim_anchor_execution_v3.json",
+      "--appearance-weight",
+      ".3",
+      "--memory",
+      "predictor",
+      "--checkpoint",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+      "--output",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/joint_v1_dev_plim_only_seed0"
+    ],
+    [
+      "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+      "-u",
+      "tools/cfp_evaluate.py",
+      "--data-root",
+      "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+      "--protocol",
+      "configs/cfp/protocol_v2.json",
+      "--partition",
+      "dev",
+      "--derived-gt-root",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+      "--trackeval-root",
+      "/data3/liuyeqiang/CFP-FishMOT_references/TrackEval",
+      "--predictions",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/joint_v1_dev_plim_only_seed0",
+      "--output",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/joint_v1_dev_plim_only_seed0_evaluation"
+    ]
+  ],
+  "config_sha256": "22213ade4c1f1e9554fa70853a39dc3095ca241f96a05fee1c170f4e36b7e5e0"
+}

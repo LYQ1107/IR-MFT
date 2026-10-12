@@ -1,0 +1,41 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+  "training_config_sha256": "acc8ecb207f77427bb0a9d8e8531810f7e1c7d33c0ee3a6c1db76a019997e73b",
+  "candidate_policy": "Current valid RGB proposal and IoU>=0.1, shared geometry graph for every memory/model control. No feature-distance eligibility threshold. This changes original appearance graph and therefore all-history EMA and constant-distance controls are required.",
+  "history": 8,
+  "appearance_weight_candidates": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "geometry": {
+    "track_thresh": 0.58,
+    "track_buffer": 45,
+    "match_thresh": 0.97,
+    "frame_rate": 25,
+    "min_box_area": 100
+  },
+  "proximity_iou": 0.1,
+  "ema": 0.9,
+  "memory_controls": [
+    "last",
+    "ema",
+    "fifo",
+    "all_history_ema",
+    "constant_zero",
+    "constant_half",
+    "anchor_only"
+  ],
+  "trained_controls": [
+    "gru predictive anchor_recent",
+    "gru association anchor_recent",
+    "transformer predictive anchor_recent",
+    "transformer association anchor_recent"
+  ],
+  "safe_writes": false,
+  "selection": "Four matched families receive original3appearance settings and all3seeds. Compare against existing clipped-time anchor families and strongest BoT; one final bounded timestamp repair.",
+  "scope": "Only predictor timestamp mapping changes from round3; current candidate graph/memory/weights unchanged. Existing seven memory controls are reused with exact default-time/prototype parity tests.",
+  "history_view": "anchor_recent",
+  "time_encoding": "log1p_15000"
+}

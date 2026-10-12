@@ -35,7 +35,7 @@ def load_queries(root,config_path,query_config_path,partition):
             lo,hi=offsets[i:i+2];candidates=bank['candidate_indices'][lo:hi];positive=int(bank['positive_index'][i])
             if not 0<=positive<len(candidates) or np.any(candidates<0) or np.any(candidates>=len(features[sequence])):raise ValueError('Invalid stopped current target index')
             row=dict(sequence=sequence,frame=int(bank['frame'][i]),identity=int(bank['anchor_id'][i]),gap=int(bank['requested_gap'][i]),positive=positive,candidates=candidates,purity=float(bank['history_purity'][i]))
-            for history in ['clean','actual']:
+            for history in ['clean','actual']+(['anchor_recent'] if 'anchor_recent_history_indices' in bank else []):
                 indices=bank[history+'_history_indices'][i];times=bank[history+'_history_frames'][i];valid=indices>=0;length=int(valid.sum())
                 if not 0<length<=8 or not np.array_equal(valid,np.arange(len(indices))<length) or np.any(indices[valid]>=len(features[sequence])) or np.any(times[valid]<=0) or np.any(times[valid]>row['frame']-row['gap']) or np.any(np.diff(times[valid])<=0):
                     raise ValueError('Invalid bounded causal history')
@@ -45,7 +45,7 @@ def load_queries(root,config_path,query_config_path,partition):
 
 
 def make_batch(rows,features,history,device):
-    if history not in ['clean','actual']:raise ValueError('Unknown observational history')
+    if history not in ['clean','actual','anchor_recent']:raise ValueError('Unknown observational history')
     width=max(len(r['candidates']) for r in rows);dimension=next(iter(features.values())).shape[1];length=len(rows[0][history+'_indices'])
     past=np.zeros((len(rows),length,dimension),np.float32);candidates=np.zeros((len(rows),width,dimension),np.float32)
     candidate_valid=np.zeros((len(rows),width),bool);valid=np.zeros((len(rows),length),bool);times=[]
@@ -97,11 +97,13 @@ def atomic_checkpoint(path,payload):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--queries',type=Path,required=True);p.add_argument('--config',type=Path,required=True);p.add_argument('--query-config',type=Path,required=True);p.add_argument('--training-config',type=Path,required=True)
-    p.add_argument('--architecture',choices=['gru','transformer'],required=True);p.add_argument('--objective',choices=['predictive','association'],required=True);p.add_argument('--history',choices=['clean','actual'],required=True);p.add_argument('--seed',type=int,required=True)
-    p.add_argument('--device',choices=['cpu','cuda'],required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--resume',action='store_true');args=p.parse_args()
+    p.add_argument('--architecture',choices=['gru','transformer'],required=True);p.add_argument('--objective',choices=['predictive','association'],required=True);p.add_argument('--history',choices=['clean','actual','anchor_recent'],required=True);p.add_argument('--seed',type=int,required=True)
+    p.add_argument('--device',choices=['cpu','cuda'],required=True);p.add_argument('--gpu-memory-fraction',type=float,default=.1);p.add_argument('--output',type=Path,required=True);p.add_argument('--resume',action='store_true');args=p.parse_args()
     config=json.loads(args.config.read_text());training=json.loads(args.training_config.read_text())
     if config['state']!='FROZEN' or training['state']!='FROZEN' or training['trial_sha256']!=sha256(args.config) or training['query_config_sha256']!=sha256(args.query_config) or args.seed not in config['seed_plan']:raise ValueError('Frozen matched predictive budget required')
     if args.device=='cuda' and (os.environ.get('CUDA_VISIBLE_DEVICES')!='2' or torch.cuda.device_count()!=1):raise ValueError('This first predictor experiment reserves only physical GPU2')
+    if not 0<args.gpu_memory_fraction<=1:raise ValueError('Valid per-process CUDA memory fraction required')
+    if args.device=='cuda':torch.cuda.set_per_process_memory_fraction(args.gpu_memory_fraction)
     if args.output.exists() and not args.resume:raise FileExistsError('Predictor runs are immutable')
     if args.resume and (not (args.output/'last.pt').is_file() or json.loads((args.output/'manifest.json').read_text())['status']=='COMPLETE'):raise ValueError('Only incomplete matching epoch checkpoints may resume')
     rows,features,query_meta=load_queries(args.queries,args.config,args.query_config,'train')
@@ -110,10 +112,11 @@ def main():
     if not fit or not cal or len(fit)+len(cal)!=len(rows):raise ValueError('Invalid whole-video temporal fitting partition')
     groups=sampling_groups(fit,config['fit_videos']);device=torch.device(args.device);torch.set_num_threads(2);torch.manual_seed(args.seed);rng=np.random.default_rng(args.seed)
     torch.use_deterministic_algorithms(True);torch.backends.cudnn.benchmark=False
-    model=LatentIdentityPredictor(512,args.architecture).to(device);optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])
+    time_encoding=training.get('time_encoding','linear_clipped')
+    model=LatentIdentityPredictor(512,args.architecture,time_encoding=time_encoding).to(device);optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])
     args.output.mkdir(parents=True,exist_ok=args.resume)
     snapshots=snapshot_sources(args.output,[__file__,'cfp/predictive.py','cfp/provenance.py',args.config,args.query_config,args.training_config])
-    guard=dict(config_sha256=sha256(args.config),query_config_sha256=sha256(args.query_config),training_config_sha256=sha256(args.training_config),query_manifest_sha256=sha256(args.queries/'manifest.json'),source_snapshots=snapshots,architecture=args.architecture,objective=args.objective,history=args.history,seed=args.seed,device=args.device,torch=torch.__version__,cudnn=torch.backends.cudnn.version(),physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'))
+    guard=dict(config_sha256=sha256(args.config),query_config_sha256=sha256(args.query_config),training_config_sha256=sha256(args.training_config),query_manifest_sha256=sha256(args.queries/'manifest.json'),source_snapshots=snapshots,architecture=args.architecture,objective=args.objective,history=args.history,seed=args.seed,device=args.device,torch=torch.__version__,cudnn=torch.backends.cudnn.version(),physical_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),gpu_memory_fraction=args.gpu_memory_fraction if args.device=='cuda' else None,time_encoding=time_encoding)
     report=dict(status='RUNNING',config=config,training_config=training,**guard,git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),parameters=sum(v.numel() for v in model.parameters()),protocol_sha256=query_meta['protocol_sha256'],encoder_seed=query_meta['encoder_seed'],features_root=query_meta['features_root'],feature_manifest_sha256=query_meta['feature_manifest_sha256'],fit_queries=len(fit),calibration_queries=len(cal),fit_videos=config['fit_videos'],calibration_videos=config['calibration_videos'],epochs=[],checkpoint_selection='Fixed last epoch8; calibration reports only, no checkpoint/threshold selection',scope='RGB latent stopped-target training. Canonical dev does not fit any parameter; SN-015 query holdout was exposed to the main fish encoder. Clean-vs-actual are retrospective histories, not deployment oracle. Cache-training latency is not online latency.')
     start_epoch=0;elapsed=0.
     if args.resume:
@@ -137,7 +140,7 @@ def main():
         write_json(args.output/'manifest.json',report);print(json.dumps(entry),flush=True)
     atomic_checkpoint(args.output/'epoch8.pt',dict(model=model.state_dict(),metadata=report,epoch=config['epochs']))
     diagnostics={}
-    for history in ['clean','actual']:
+    for history in ['clean','actual']+(['anchor_recent'] if args.history=='anchor_recent' else []):
         diagnostics[history]={'model':diagnose(model,cal,features,history,device)}
         for mode in ['last','ema','fifo']:diagnostics[history][mode]=diagnose(None,cal,features,history,device,mode)
     report.update(status='COMPLETE',checkpoint_sha256=sha256(args.output/'epoch8.pt'),calibration_diagnostics=diagnostics,total_seconds=elapsed+time.monotonic()-start,peak_gpu_memory_bytes=torch.cuda.max_memory_allocated() if args.device=='cuda' else None)

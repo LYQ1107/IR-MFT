@@ -4,16 +4,19 @@ import torch
 
 from .association import AppearanceTracker
 from .predictive import bounded_identity_prototype
+from .history import anchor_recent_history
 from yolox.tracker import matching
 
 
 class PredictiveAssociationTracker(AppearanceTracker):
-    def __init__(self,args,predictor=None,memory='predictor',**kwargs):
-        if memory not in ['predictor','last','ema','fifo','all_history_ema','constant_zero','constant_half']:
+    def __init__(self,args,predictor=None,memory='predictor',history_view='recent',**kwargs):
+        if history_view not in ['recent','anchor_recent']:raise ValueError('Unknown causal history view')
+        if memory not in ['predictor','last','ema','fifo','all_history_ema','constant_zero','constant_half','anchor_only']:
             raise ValueError('Unknown bounded-memory association control')
         if memory=='predictor' and predictor is None:raise ValueError('Trained temporal model required')
         super().__init__(args,mode='rgb',**kwargs)
         self.predictor=predictor;self.memory_mode=memory
+        self.history_view=history_view
         self.prediction_counts=dict(predicted_rows=0,missing_history_rows=0,modified_edges=0)
 
     def association_cost(self,tracks,detections):
@@ -23,6 +26,9 @@ class PredictiveAssociationTracker(AppearanceTracker):
         selected=[];histories=[]
         for i,track in enumerate(tracks):
             history=list(track.identity_history)
+            if self.history_view=='anchor_recent':
+                anchor=None if track.initial_identity_rgb is None else (track.initial_identity_frame,track.initial_identity_rgb,track.initial_identity_ir)
+                history=anchor_recent_history(history,anchor,8)
             if not history:
                 self.prediction_counts['missing_history_rows']+=1;continue
             if len(history)>8 or any(frame>=self.frame_id for frame,_,_ in history):raise ValueError('Predict before current identity writes from at most8 past observations')
@@ -43,7 +49,11 @@ class PredictiveAssociationTracker(AppearanceTracker):
             if not available[row]:continue
             track=tracks[i]
             if self.memory_mode=='all_history_ema':p=track.memory_rgb
+            elif self.memory_mode=='anchor_only':p=track.initial_identity_rgb
             else:p=prototype[row]
+            if p is None:
+                self.prediction_counts['missing_history_rows']+=1
+                continue
             costs=np.array([float(np.clip((1-p@d.current_rgb)/2,0,1)) if d.current_rgb is not None else 1. for d in detections],np.float64)
             if self.memory_mode=='constant_zero':costs[:]=0.
             elif self.memory_mode=='constant_half':costs[:]=.5

@@ -1,0 +1,23 @@
+{
+  "state": "FROZEN",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "sequences": [
+    "BT-005",
+    "SN-013"
+  ],
+  "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+  "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+  "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+  "ir_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_ir_causal_seed0/epoch12.pt",
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+  "memory": "predictor",
+  "appearance_weight": 0.3,
+  "execution_config": "configs/cfp/plim_anchor_execution_v3.json",
+  "execution_config_sha256": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+  "scope": "Frozen actual-current-pixel IR intervention with unchanged cached detection boxes and RGB pixels/encoder; no GT inference. Canonical-dev seed0 diagnosis, no test/parameter search. Uses precomputed verified causal response and encodes current crops; generator/detector cost excluded.",
+  "detector_batch": 1,
+  "utility_config": "configs/cfp/cmue_trial_v3.json",
+  "utility_execution_config": "configs/cfp/utility_execution_v3.json",
+  "utility_kind": "fixed_matched",
+  "ir_intervention": "spatial_shuffle"
+}

@@ -1,10 +1,11 @@
 """Bounded causal latent identity predictors and stopped-target losses."""
+import math
 import torch
 from torch import nn
 from torch.nn import functional as F
 
 
-def checked_history(features, frames, valid, query_frame):
+def checked_history(features, frames, valid, query_frame, time_encoding='linear_clipped'):
     if features.ndim!=3 or frames.shape!=features.shape[:2] or valid.shape!=frames.shape or query_frame.shape!=(len(features),):
         raise ValueError('Aligned batched accepted histories required')
     if not 1<=features.shape[1]<=16 or not torch.isfinite(features).all() or not torch.isfinite(frames).all() or not torch.isfinite(query_frame).all():
@@ -17,19 +18,25 @@ def checked_history(features, frames, valid, query_frame):
     if features.shape[1]>1 and torch.any(valid[:,1:] & (frames[:,1:]<=frames[:,:-1])):
         raise ValueError('Accepted history timestamps must increase strictly')
     source=F.normalize(features.detach().float(),dim=-1)*valid[...,None]
-    age=((query_frame[:,None]-frames).float()/37).clamp(0,2)*valid
+    if time_encoding not in ('linear_clipped','log1p_15000'):raise ValueError('Unknown declared temporal encoding')
+    raw_age=(query_frame[:,None]-frames).float()
+    age=(raw_age/37).clamp(0,2)*valid if time_encoding=='linear_clipped' else torch.log1p(raw_age.clamp_min(0))/math.log(15001)*valid
     gap=torch.zeros_like(age)
-    if features.shape[1]>1:gap[:,1:]=((frames[:,1:]-frames[:,:-1]).float()/37).clamp(0,2)*valid[:,1:]
+    if features.shape[1]>1:
+        raw_gap=(frames[:,1:]-frames[:,:-1]).float()
+        gap[:,1:]=(raw_gap/37).clamp(0,2)*valid[:,1:] if time_encoding=='linear_clipped' else torch.log1p(raw_gap.clamp_min(0))/math.log(15001)*valid[:,1:]
     times=torch.stack([age,gap],-1)
     last=source[torch.arange(len(source),device=source.device),(lengths-1).clamp_min(0)]*available[:,None]
     return source,times,lengths,available,last
 
 
 class LatentIdentityPredictor(nn.Module):
-    def __init__(self,dimension=512,architecture='gru',hidden=None):
+    def __init__(self,dimension=512,architecture='gru',hidden=None,time_encoding='linear_clipped'):
         super().__init__()
         if architecture not in ('gru','transformer'):raise ValueError('Unknown temporal predictor')
         self.architecture=architecture
+        if time_encoding not in ('linear_clipped','log1p_15000'):raise ValueError('Unknown declared temporal encoding')
+        self.time_encoding=time_encoding
         hidden=hidden or (128 if architecture=='gru' else 96)
         self.input=nn.Linear(dimension+2,hidden)
         if architecture=='gru':
@@ -42,7 +49,7 @@ class LatentIdentityPredictor(nn.Module):
         nn.init.zeros_(self.output.weight);nn.init.zeros_(self.output.bias)
 
     def forward(self,features,frames,valid,query_frame):
-        source,times,lengths,available,last=checked_history(features,frames,valid,query_frame)
+        source,times,lengths,available,last=checked_history(features,frames,valid,query_frame,self.time_encoding)
         tokens=F.silu(self.input(torch.cat([source,times],-1)))
         if self.architecture=='gru':
             packed=nn.utils.rnn.pack_padded_sequence(tokens,lengths.clamp_min(1).cpu(),batch_first=True,enforce_sorted=False)

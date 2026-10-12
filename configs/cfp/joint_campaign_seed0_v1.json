@@ -1,0 +1,189 @@
+{
+  "state": "FROZEN",
+  "minimum_free_gib": 30,
+  "scope": "Nine predeclared seed0 composition/leave-component-out/write controls, appearanceweight fixed0.3. No joint SGD or predictive-utility re-labeling; utility evidence remains EMA-based. Not final-model selection.",
+  "common_replay_args": [
+    "--detections",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_dev_detections",
+    "--features-root",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/causal_dev_detection_features_postneck_seed0",
+    "--protocol",
+    "configs/cfp/protocol_v2.json",
+    "--config",
+    "configs/cfp/plim_trial_v1.json",
+    "--execution-config",
+    "configs/cfp/plim_anchor_execution_v3.json",
+    "--appearance-weight",
+    ".3"
+  ],
+  "common_evaluate_args": [
+    "--data-root",
+    "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+    "--protocol",
+    "configs/cfp/protocol_v2.json",
+    "--partition",
+    "dev",
+    "--derived-gt-root",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+    "--trackeval-root",
+    "/data3/liuyeqiang/CFP-FishMOT_references/TrackEval"
+  ],
+  "input_sha256": {
+    "configs/cfp/plim_anchor_execution_v3.json": "304d036de925cf171dc92dce3188cc20607faffe0e921c9cb1f5043b508dd695",
+    "configs/cfp/cmue_trial_v3.json": "9973f5bafeb0c25c9ae628f279f8aac8572095c47a0c44a0da9ff8e18c301b4c",
+    "configs/cfp/utility_execution_v3.json": "646b6d66fc8515abf46c34065b9f154c5d25a15dfe6b4d783428eb4ce2b3405e",
+    "configs/cfp/plim_anchor_write_policy_v3.json": "f20d9ff7e0730ac65d96c382102769669f51deb5cf882735234e4d00a4c2c29d",
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt": "2065dcd82ad912de7034d71195b9e2a376a35f0650bf2c9d27a540e03ea6ef3a",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt": "4c6e45aae353fceb50500d992618d4031620ec034bbd9e8e70abf7673022c878",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_ordinary_postneck_seed0/epoch8.pt": "c77bbe716d8a00fc8e774a30779ec982500799f2ad89ce7ef3affc74e9cfc59d",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_quality_postneck_seed0/epoch8.pt": "d5a7b9dffb7a7cfd3e1f61f1f4c9503c3b63216e55bfdb5a66dab6867479e222"
+  },
+  "jobs": [
+    {
+      "run_id": "joint_v1_dev_plim_only_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle.",
+      "baseline_reference": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/plim_v3_dev_gru_predictive_anchor_seed0_w0.3"
+    },
+    {
+      "run_id": "joint_v1_dev_plim_cmue_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "cmue",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json",
+        "--utility-checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_ordinary_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "ordinary",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json",
+        "--utility-checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_ordinary_postneck_seed0/epoch8.pt"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_quality_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "quality",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json",
+        "--utility-checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_quality_postneck_seed0/epoch8.pt"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_fixed_matched_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "fixed_matched",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_uncertainty_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "uncertainty",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_ema_cmue_seed0",
+      "args": [
+        "--memory",
+        "ema",
+        "--utility-kind",
+        "cmue",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json",
+        "--utility-checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_only_safe_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--write-policy-config",
+        "configs/cfp/plim_anchor_write_policy_v3.json"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    },
+    {
+      "run_id": "joint_v1_dev_plim_cmue_safe_seed0",
+      "args": [
+        "--memory",
+        "predictor",
+        "--checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_predictive_anchor_seed0/epoch8.pt",
+        "--utility-kind",
+        "cmue",
+        "--utility-config",
+        "configs/cfp/cmue_trial_v3.json",
+        "--utility-execution-config",
+        "configs/cfp/utility_execution_v3.json",
+        "--utility-checkpoint",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/utility_v3_cmue_postneck_seed0/epoch8.pt",
+        "--write-policy-config",
+        "configs/cfp/plim_anchor_write_policy_v3.json"
+      ],
+      "hypothesis": "Frozen composition of existing anchor RGB predictor with existing IR-utility weights; compare against same graph/weights and independent write toggle."
+    }
+  ]
+}

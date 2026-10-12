@@ -28,6 +28,10 @@ class UtilityAssociationTracker(AppearanceTracker):
 
     def association_cost(self, tracks, detections):
         baseline=super().association_cost(tracks,detections)
+        # Observable gate decisions for joint PLIM integration; no GT labels.
+        # Clearing per call prevents reuse across association stages/frames.
+        self.last_ir_weights=np.zeros(baseline.shape,np.float64)
+        self.last_ir_distances=np.zeros(baseline.shape,np.float64)
         if not tracks or not detections or self.appearance_weight==0:
             return baseline
         raw_geometry=matching.iou_distance(tracks,detections)
@@ -86,6 +90,9 @@ class UtilityAssociationTracker(AppearanceTracker):
             self.utility_counts['evaluated_rows']+=1
             self.utility_counts['accepted_rows' if weight>0 else 'rejected_rows']+=1
             self.utility_counts['weight_sum']+=weight;self.utility_counts['weight_squared_sum']+=weight**2
+            available=np.array([tracks[i].memory_ir is not None and detections[j].current_ir is not None for j in selected],bool)
+            self.last_ir_weights[i,selected[available]]=weight
+            self.last_ir_distances[i,selected[available]]=ir[available]
             if weight>0:
                 # Preserve unchanged/missing-IR edges in the original precision.
                 # utility_mix returns FP32; copying such edges would round RGB costs.

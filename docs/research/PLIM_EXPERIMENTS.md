@@ -44,3 +44,12 @@ A bounded history containing only the wrong fish may have no observable cue for 
 Three-seed first-round tracking is now complete (90 runs). At each family's selected mean-HOTA setting: predictive GRU51.3199±0.1774, ordinary GRU51.4567±0.2952, predictive Transformer51.1208±0.7566, ordinary Transformer50.3063±1.0017. Thus forecasting is not consistently superior to matched ordinary temporal models; neither beats native BoT52.4818±0.1341. Selection uses the mean across seeds, not the favorable seed0 result. Full setting/per-video metrics are indexed by `configs/cfp/plim_first_three_seed_selection_v1.json`.
 
 Actual-history round2's twelve seed0 video runs are also complete: predictive GRU at.3 gives HOTA51.7572/AssA37.5118/IDF161.9677/IDSW85; ordinary GRU51.3927/36.9161/61.3822/82. Predictive Transformer49.5317/34.3263/59.5048/88 versus ordinary49.0639/33.6910/58.9340/89. Poor offline ranking and full-video scores have different behavior; neither substitutes for the other. These are single-seed diagnoses, not final selected means.
+
+
+## Completed third repair: observable anchor plus recent history
+
+All twelve fixed-epoch8 models across seeds0/1/2 and all99 full-video comparisons are complete. The first actually accepted available visual observation is retained without GT selection; the input remains at most8 tokens (anchor plus latest7). Native removed/lost object reactivation required retaining the anchor while the object can still match; regression tests cover that lifecycle boundary. The failed initial build is retained separately; valid runs use the repaired query manifests.
+
+At each family's selected mean-HOTA setting (all weight.3): predictive GRU51.4769±0.8695, association-only GRU51.8853±0.9933, predictive Transformer50.6058±2.2142 and association-only Transformer50.6112±1.1680. Seed0's Transformer53.0551 is not stable: seeds1/2 give50.0163/48.7460 at the same weight. Ordinary anchor GRU's IDF162.2983 improves over ByteTrack58.8771, but its IDSW89 exceeds86 and its HOTA remains below BoT52.4818. Forecasting is not independently established by this repair.
+
+Exact settings/full scalar metrics/three-seed sample deviations are in `configs/cfp/plim_anchor_three_seed_selection_v3.json`; all99 runs are registered with source snapshots and original commands. Full current-frame GRU trials and frozen utility/write composition are now running. These remain development diagnoses; no final-test freeze or completed-goal claim exists.

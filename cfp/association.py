@@ -43,6 +43,10 @@ class IdentityTrack(STrack):
         self.identity_history = deque(maxlen=8)
         self.current_proposal_index = proposal_index
         self.identity_proposals = deque(maxlen=8)
+        self.initial_identity_frame = 0
+        self.initial_identity_rgb = None
+        self.initial_identity_ir = None
+        self.initial_proposal_index = None
 
     def update(self, new_track, frame_id):
         super().update(new_track, frame_id)
@@ -69,6 +73,11 @@ class IdentityTrack(STrack):
         if self.current_ir is not None:
             self.memory_ir = self.current_ir.copy() if self.memory_ir is None else normalize(ema * self.memory_ir + (1 - ema) * self.current_ir)
         if self.current_rgb is not None:
+            if self.initial_identity_rgb is None:
+                self.initial_identity_frame = int(frame_id)
+                self.initial_identity_rgb = self.current_rgb.copy()
+                self.initial_identity_ir = None if self.current_ir is None else self.current_ir.copy()
+                self.initial_proposal_index = self.current_proposal_index
             self.identity_history.append((int(frame_id), self.current_rgb.copy(), None if self.current_ir is None else self.current_ir.copy()))
             self.identity_proposals.append((int(frame_id), self.current_proposal_index))
         self.last_identity_frame, self.pending = int(frame_id), False
@@ -270,4 +279,12 @@ class AppearanceTracker(BYTETracker):
             track.current_rgb = track.current_ir = None
             track.identity_history.clear()
             track.identity_proposals.clear()
+        # Original BYTETracker can leave a newly removed object in the lost
+        # pool for one update. Preserve its initial cue while it can reactivate.
+        live_objects = {id(track) for track in self.tracked_stracks + self.lost_stracks}
+        for track in self.removed_stracks:
+            if id(track) not in live_objects:
+                track.initial_identity_rgb = track.initial_identity_ir = None
+                track.initial_identity_frame = 0
+                track.initial_proposal_index = None
         return output_stracks

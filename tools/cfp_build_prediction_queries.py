@@ -11,6 +11,7 @@ from types import SimpleNamespace
 import numpy as np
 
 from cfp.association import AppearanceTracker
+from cfp.history import anchor_recent_history
 from cfp.provenance import sha256,write_json,snapshot_sources
 from cfp.supervision import independent_proposal_labels
 from yolox.tracker.basetrack import BaseTrack
@@ -51,9 +52,15 @@ class PredictionRecorder(AppearanceTracker):
             if any(t>=self.frame_id or self.frame_of_proposal[index]!=t for t,index in actual+clean):
                 raise ValueError('Current/future latent observation in predictor inputs')
             purity=float(np.mean([self.labels[index]==identity for _,index in actual]))
-            self.rows.append(dict(frame=self.frame_id,track_id=track.track_id,anchor_id=identity,requested_gap=gap,
+            row=dict(frame=self.frame_id,track_id=track.track_id,anchor_id=identity,requested_gap=gap,
                               positive_index=int(positive[0]),candidate_indices=np.array(chosen,np.int64),
-                              actual=actual,clean=clean,purity=purity))
+                              actual=actual,clean=clean,purity=purity)
+            if self.config.get('record_initial_visual_anchor'):
+                first=(track.initial_identity_frame,track.initial_proposal_index)
+                if first[1] is None or first[0]>cutoff or self.frame_of_proposal[first[1]]!=first[0]:
+                    raise ValueError(f'Initial visual anchor is not a valid accepted past proposal: frame={self.frame_id}, track={track.track_id}, cutoff={cutoff}, first={first}, actual_first={actual[0]}')
+                row['anchor_recent']=anchor_recent_history(actual,first,self.config['history_length'])
+            self.rows.append(row)
         return result
 
     def collect_writes(self,frame,lo,hi,valid_rgb):
@@ -71,7 +78,7 @@ class PredictionRecorder(AppearanceTracker):
 def save_rows(path,rows,length):
     values={k:np.array([r[k] for r in rows],np.int64) for k in ['frame','track_id','anchor_id','requested_gap','positive_index']}
     values['history_purity']=np.array([r['purity'] for r in rows],np.float32)
-    for key in ['actual','clean']:
+    for key in ['actual','clean']+(['anchor_recent'] if rows and 'anchor_recent' in rows[0] else []):
         indices=np.full((len(rows),length),-1,np.int64);times=np.zeros((len(rows),length),np.int64)
         for i,r in enumerate(rows):
             n=len(r[key]);times[i,:n]=[v[0] for v in r[key]];indices[i,:n]=[v[1] for v in r[key]]
@@ -108,7 +115,7 @@ def main():
     policy=defaultdict(set)
     for r in protocol['ambiguous_identity_keys']:policy[(r['sequence'],r['frame_id'])].add(r['track_id'])
     args.output.mkdir(parents=True)
-    sources=snapshot_sources(args.output,[__file__,'tools/cfp_build_utility_queries.py','cfp/association.py','cfp/supervision.py','cfp/provenance.py',args.config,args.query_config,args.protocol])
+    sources=snapshot_sources(args.output,[__file__,'tools/cfp_build_utility_queries.py','cfp/association.py','cfp/history.py','cfp/supervision.py','cfp/provenance.py',args.config,args.query_config,args.protocol])
     report=dict(status='RUNNING',partition=args.partition,encoder_seed=seed,config_sha256=sha256(args.config),query_config_sha256=sha256(args.query_config),protocol_sha256=sha256(args.protocol),config=config,
                 features_root=str(args.features_root),feature_manifest_sha256=sha256(args.features_root/'manifest.json'),source_snapshots=sources,
                 source_sha256=sha256(__file__),git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),videos={},

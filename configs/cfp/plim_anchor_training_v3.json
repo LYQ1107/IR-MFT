@@ -1,0 +1,19 @@
+{
+  "state": "FROZEN",
+  "trial_sha256": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+  "query_config_sha256": "c290faee84ef850e538eb2896a40a7ecb40dcfb9fd43dfe022e464c6cc7baeac",
+  "sampling": "Same video/anchor-UIDuniform sampling and originalrows/gaps; historical tensors firstaccepted+recent7, no GT-dependent anchor selection orpurity filter.",
+  "precision": "FP32 predictor SGD; stopped RGB targets/features in original fixed post-neck coordinate space",
+  "gradient_clip_norm": 5.0,
+  "first_seed0_jobs": [
+    "gru predictive anchor_recent",
+    "gru association anchor_recent",
+    "transformer predictive anchor_recent",
+    "transformer association anchor_recent"
+  ],
+  "diagnostics": "SN-015 only after fixed epoch8: clean/actual teacher query cosine, same-frame rank1, variance sum, mean vector norm, by gap; not checkpoint selection.",
+  "resume": "Last completed epoch saves optimizer and CPU/CUDA/NumPy RNG and source/runtime/data guard. No real interrupted predictor proof is claimed yet.",
+  "scope": "Third targeted temporal memory repair. Same231k/230k parameters,8epochs, stopped mainRGB512targets. Newlongstate oneinitialRGB/IRpair, disclosedstoragecost; compareanchoronly/last/EMA/FIFO andsamearchitectures association-only. No safe-write policy or futuretarget input.",
+  "round": 3,
+  "hypothesis": "Actual-history training can discard all original visual identity evidence after repeatedwrong assignments. Restore one observable firstaccepted appearance plusrecent7 at identical8token/model/epoch budget."
+}

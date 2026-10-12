@@ -1,0 +1,117 @@
+{
+  "state": "FROZEN",
+  "time_encoding": "log1p_15000",
+  "minimum_free_gib": 30,
+  "input_sha256": {
+    "configs/cfp/plim_trial_v1.json": "44f2e72a3de820a5a40627969cce6b04eab977a19a4ca2306b5a0c4b04a11378",
+    "configs/cfp/plim_anchor_query_v3.json": "c290faee84ef850e538eb2896a40a7ecb40dcfb9fd43dfe022e464c6cc7baeac",
+    "configs/cfp/plim_log_time_training_v4.json": "acc8ecb207f77427bb0a9d8e8531810f7e1c7d33c0ee3a6c1db76a019997e73b",
+    "configs/cfp/plim_log_time_execution_v4.json": "2cee42cca66536b888d99b1644b82006e1e0bf3dbce1f2f8b26b194a090fb6c9",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "tools/cfp_train_predictor.py": "d9fc8d79a42ae57a2f799a24db4dc24a9f0bdb6f65444069b9f10dd818bb21ac",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix/manifest.json": "352d290b0c4a2e228cce46322ff803aa44928c5978db539d5c744e714f27b84a",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1/manifest.json": "b49bdb7298e4c3d2d65487b917b7e59be6d354d3bb7fc2596c9d53ca222957f0",
+    "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2/manifest.json": "3cdea0b8600b2c32131d9e0e66da85ffed9bffc125f172017d6c35a9e7407405"
+  },
+  "common_args": [
+    "--config",
+    "configs/cfp/plim_trial_v1.json",
+    "--query-config",
+    "configs/cfp/plim_anchor_query_v3.json",
+    "--training-config",
+    "configs/cfp/plim_log_time_training_v4.json",
+    "--history",
+    "anchor_recent",
+    "--device",
+    "cuda",
+    "--gpu-memory-fraction",
+    ".1"
+  ],
+  "jobs": [
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_predictive_log_anchor_seed0"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_association_log_anchor_seed0"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "predictive",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_predictive_log_anchor_seed0"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "association",
+      "seed": 0,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed0_lifecycle_fix",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_association_log_anchor_seed0"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_predictive_log_anchor_seed1"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_association_log_anchor_seed1"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "predictive",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_predictive_log_anchor_seed1"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "association",
+      "seed": 1,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed1",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_association_log_anchor_seed1"
+    },
+    {
+      "architecture": "gru",
+      "objective": "predictive",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_predictive_log_anchor_seed2"
+    },
+    {
+      "architecture": "gru",
+      "objective": "association",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_gru_association_log_anchor_seed2"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "predictive",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_predictive_log_anchor_seed2"
+    },
+    {
+      "architecture": "transformer",
+      "objective": "association",
+      "seed": 2,
+      "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/prediction_train_queries_anchor_seed2",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v4_transformer_association_log_anchor_seed2"
+    }
+  ],
+  "scope": "One evidence-directed timestamp-only repair, twelve fixed models. Reuse original query/features; no image/data copies, tiny checkpoints outsideGit. No test use, furtherarchitecture/threshold search is outside this declaration."
+}
