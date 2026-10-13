@@ -6,7 +6,7 @@
       "name": "FishMAE",
       "github": "https://github.com/Wynne-cc/FishMAE",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FishMAE",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition_command": [
         "git",
         "-c",
@@ -37,7 +37,25 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "inspected_findings": {
+        "source_files": [
+          "mae-fish/train_mae.py",
+          "engine_pretrain.py",
+          "models_mae.py",
+          "mae-fish/fish_reid_mae/train.py",
+          "mae-fish/fish_reid_mae/model.py",
+          "mae-fish/fish_reid_mae/sampler.py",
+          "mae-fish/fish_reid_mae/loss.py"
+        ],
+        "sampler": "p is stored but unused in iteration; final global index shuffle does not enforce P distinct identities x K observations per batch",
+        "position_embedding": "MAE pretrain adds patch positional embedding; ReID manual backbone forward omits patch positional embedding",
+        "training_entry": "train_mae.py calls train_one_epoch with4 args, while imported engine requires epoch and loss_scaler too and dereferences args.accum_iter",
+        "checkpoint": "Pretrain saves raw state_dict exports and wrapped resume model_state_dict separately; ReID strict=False loader must not receive wrapped resume dictionary unchecked",
+        "license": "No LICENSE/COPYING path in exact Git tree; direct source transplantation not approved",
+        "paper_identity": "README lacks a verified paper citation; paper year/title and dataset sampling/validation still unverified",
+        "reproduction_status": "SOURCE_ADAPTATION_REQUIRED_NO_EXTERNAL_EXECUTION"
+      }
     },
     "Fish_Re_Identification": {
       "name": "Fish_Re_Identification",
@@ -68,7 +86,7 @@
       "name": "SU-T",
       "github": "https://github.com/vranlee/SU-T",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/SU-T",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "479be89a27129f6879c62710a83abac6a8b261ee",
       "origin": "https://github.com/vranlee/SU-T",
@@ -111,7 +129,7 @@
       "name": "TIDE",
       "github": "https://github.com/vranlee/TIDE",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TIDE",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
       "origin": "https://github.com/vranlee/TIDE",
@@ -373,7 +391,7 @@
       "name": "DINOv3",
       "github": "https://github.com/facebookresearch/dinov3",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/DINOv3",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "6876159a11b4df116f30f667f8c9888617df0751",
       "origin": "https://github.com/facebookresearch/dinov3",
@@ -703,7 +721,7 @@
       "name": "MOTIP",
       "github": "https://github.com/MCG-NJU/MOTIP",
       "local_path": "/data3/liuyeqiang/research_references/N72R20/MOTIP",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
       "origin": "https://github.com/MCG-NJU/MOTIP",

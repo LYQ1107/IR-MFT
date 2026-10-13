@@ -102,6 +102,21 @@ def main():
         entry['required_unverified_fields']=['paper_year_scene_contribution','license_and_weight_access','training_entry_and_sampler',
             'inference_entry_and_temporal_scope','core_model_files_and_shapes','loss_and_positive_negative_construction',
             'pretrained_sources','GPU_CUDA_dependencies','IR_MFT_compatibility','mechanisms_to_port_and_exclude','novelty_overlap']
+        if name in {'MOTIP','DINOv3','SU-T','TIDE'}:
+            entry['audit_status']='PARTIAL_SOURCE_READ'
+        if name=='FishMAE' and (path/'mae-fish/fish_reid_mae/model.py').exists():
+            entry['audit_status']='PARTIAL_SOURCE_READ'
+            entry['inspected_findings']={
+                'source_files':['mae-fish/train_mae.py','engine_pretrain.py','models_mae.py',
+                                'mae-fish/fish_reid_mae/train.py','mae-fish/fish_reid_mae/model.py',
+                                'mae-fish/fish_reid_mae/sampler.py','mae-fish/fish_reid_mae/loss.py'],
+                'sampler':'p is stored but unused in iteration; final global index shuffle does not enforce P distinct identities x K observations per batch',
+                'position_embedding':'MAE pretrain adds patch positional embedding; ReID manual backbone forward omits patch positional embedding',
+                'training_entry':'train_mae.py calls train_one_epoch with4 args, while imported engine requires epoch and loss_scaler too and dereferences args.accum_iter',
+                'checkpoint':'Pretrain saves raw state_dict exports and wrapped resume model_state_dict separately; ReID strict=False loader must not receive wrapped resume dictionary unchecked',
+                'license':'No LICENSE/COPYING path in exact Git tree; direct source transplantation not approved',
+                'paper_identity':'README lacks a verified paper citation; paper year/title and dataset sampling/validation still unverified',
+                'reproduction_status':'SOURCE_ADAPTATION_REQUIRED_NO_EXTERNAL_EXECUTION'}
         registry['repositories'][name]=entry
     write_json(D/'PHASE_VII_REPOSITORY_REGISTRY.json',registry)
     audit=['# Phase VII30-reference source audit','',
@@ -132,6 +147,14 @@ def main():
               'TIDE atfba27aefd1da11bfc7f946240dd66d85ea02a39c: README points to2026 arXiv and MFT-Edge; src/track.py and src/lib/tracker/mc_bot_sort.py form a current-frame tracker route. '
               'src/lib/tracker/matching.py defines AGC variants, including AGCv1 adding inverse center-distance to IoU. Zero-distance numerical behavior and which AGC variant is actually called must be checked before a faithful geometry control. '
               'README training/reid64 and dual-branch network are not equivalent to our frozen V3/RGB pipeline. MIT top-level license verified; full network/active metric/loss/dataset audit remains pending.','',
+              'FishMAE atcffcdeaf61c8c3a9768711a4615ff4af3899ca30 (public blobs verified against exact Git tree): '
+              'mae-fish/train_mae.py calls imported engine_pretrain.py::train_one_epoch with4 arguments, but the engine requires epoch/loss_scaler and reads args.accum_iter; the raw example is not runnable as written. '
+              'models_mae.py base uses patch16/embed768/depth12; normal pretraining adds patch positional embeddings, but mae-fish/fish_reid_mae/model.py manually bypasses forward_encoder and omits patch positional embedding. '
+              'The ReID classifier applies BN/linear to CLS features; train.py optimizes CE+normalized batch-hard triplet, not dense local identity evidence. '
+              'sampler.py stores p without using it, iterates identity chunks then globally shuffles indices; it does not enforce the advertised P×K batch structure. '
+              'Pretrain exports both raw state dictionaries and wrapped resume dictionaries; MAEReID.load_state_dict(strict=False) must not silently accept the wrong container. '
+              'The exact tree has no LICENSE/COPYING file and README has no verified paper citation. No external code was copied/executed; paper identity, lawful reuse, dataset construction and evaluation remain unresolved. '
+              'A controlled FishMAE-style experiment must use an independently implemented correct sampler/forward/checkpoint adapter and verified permissible base, not claim faithful runnable original training.','',
               'All other projects, and unresolved fields above, require actual source reading and primary paper/weight references. No row is marked AUDIT_COMPLETE.','']
     (D/'PHASE_VII_30_PAPERS_CODE_AUDIT.md').write_text('\n'.join(audit))
     state=dict(status='IN_PROGRESS',stage='SOURCE_AUDIT_AND_A0_DIAGNOSTICS',branch='research/evidence-fishmot-v1',
