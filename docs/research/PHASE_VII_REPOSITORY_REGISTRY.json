@@ -804,26 +804,14 @@
       "name": "TransReID",
       "github": "https://github.com/damo-cv/TransReID",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TransReID",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
       "origin": "https://github.com/damo-cv/TransReID",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/TransReID', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TransReID",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
@@ -912,32 +900,155 @@
         "datasets/preprocessing.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "datasets/sampler_ddp.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "datasets/vehicleid.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "TransReID: Transformer-based Object Re-Identification, ICCV2021; primary https://arxiv.org/abs/2102.04378 submitted2021-02-08/revised03-26. Person/vehicle cropReID withViTglobalfeatures,JigsawPatchModule(JPM) andcamera/viewSideInformationEmbeddings(SIE). Exactdec55046fcdfadee14e2c28e2df89305d8f7557a inspected; generictransformer/parts notnewfishidentityoronlineMOTsystem.",
+        "code_and_pretrained_license": "ExactLICENSE MIT2021heshuting555 acquired/verified againstGitblob. NestedViT/timm/GoogleJAX pretrainedimplementation references retain separateattribution; noexternalcodeexecuted/copied. READMEDeiT/Facebook andJAXViTImageNetpretrain, GDrivebenchmarkweights: exactweightlicenses/payloadhash/access notindependentlyverified, soofficialpretrainedaccuracyreproductionexcluded untilvalidated. MITcodeprovenance notcertificationofallunderlyingdataset/modelrights.",
+        "entrypoints_and_training_inference": "train.py ->datasets.make_dataloader/model.make_model/processor.do_train; test.py ->do_inference. model.make_model selectsbuild_transformer_local onlyJPMTrue; config/defaults.py andconfigs/transformer_base.yml leaveJPM/SIEFalse, so genericbaseconfig isnotfullpaper method. Actualconfigs/Market/vit_transreid_stride.yml enablesJPM,rearrange,SIEcamera,ViTB16,overlapstride12 at256x128, CE+triplet. Benchmarksstaticcropquery/gallery evaluator, notfishonlineassignments; optionalre-ranking isfuturegallery-dependentandexcludedonline.",
+        "core_model_files_and_shapes": "model/make_model.py andmodel/backbones/vit_pytorch.py. ViTB patch16/768D/12blocks12heads, overlappingConv2Dstride configured; currentMFT128x256stride16=>128patches+CLS, official256x128stride12=>210patches+CLS. Globalbranch768BN/IDclassifier. JPMusesbaseblocks[:-1], CLSplus shifted/shuffledpatchgroups, clonedlastblock/normglobalb1/localb2; 4separateBN/classifierheads, outputs5CElogits/5features train; inferconcatglobal+eachlocal/4 =>3840. Fourbranches hardcoded, divide_lengthchange alone isnotK8. Earlierattention/CLS mixesallimagepatches, so localnotpixel-independentpartmask. Namedvit_smallfactory768/8blocks differsdeit_small384/12; noassumptionallSmall384.",
+        "loss_and_positive_negative_construction": "loss/make_loss.py constructsCE(optionallabelsmoothing) andhardestbatchEuclideantriplet; NO_MARGIN=True usesSoftMargin(distnegative-distpositive), otherwiseMarginRanking. ForJPMlistsloss=.5global+.5mean4local forbothCE/triplet. ActualRandomIdentitySampler groupspid, samplesPdistinctIDs withK4/replacementforshortIDs, B64=>P16, orDDPidentitysampler; noframe/trackgap/sameframefish-hardnegatives. Positives samepid withinbatch, negatives differentpid. CenterLoss isallocatedCUDA/2048evenunused; declaredNOcentertransformerpathdoesnotusecenterloss andmustnotclaim768-centercompatibility.",
+        "pretrained_sources": "ImageNetinitialization: localjx_vit_base_p16_224-80ecf9dd.pth orDeiTcheckpoint perREADME; supervisedMarket1501/MSMT17/Duke/OccludedDuke/VeRi/VehicleIDbenchmarkfits. Sourceload_param unwrapsmodel/state_dict,dropshead/disttokens,resizes2Dposgrid, catchesmismatchedparametercopies andmerelyprints errors. Therefore pretrainedloaded message isnotstrictvalidity; newfishadaptermustverifyallintendedtensors/exclusions/hash. Officialperson/vehicletrainedweightsneitherdownloadednorpermissive-weights-certified; nofishoverlapclaimfromsourcealone.",
+        "future_information_and_online_path": "Cropencoder onlycurrentimageplus optionallyknowncamera/viewmetadata, nofuturevideo requirement. Supervisedtraining usesdatasetcropIDs; physicalGT labels neveronline feature inputs. Originalutils/metrics.py removes SAMEpidANDsamecamera galleryrows; mappingcamera=video inMFT wouldremoveallwithin-video positives. ItsstaticcrosscameraquerygalleryR1/mAP cannotservepast-onlyfishprotocol unchanged. OptionalRE_RANKING gallery-wide future retrieval notdeployedonline. Noofficialmulti-object lifecycle/Hungarian/NULL route.",
+        "GPU_CUDA_dependencies": "requirements torch/torchvision/timm/yacs/OpenCV, READMEtestedtorch1.6/vision.7/timm.3.2/CUDA10.1. TraininghardcodedCUDA AMP+optionalNCCLDDP andunusedCenterLoss.cuda allocation; currenttorch2modulescompatibility notexecuted. BackboneordinaryTorchattention/Conv2D, no mandatoryexternaldeformableCUDAoperator. trainset_seed simultaneouslydeterministicTrue/benchmarkTrue means do notassume exactresume; checkpoints inprocessor lackourfullRNG/provenance guards.",
+        "IR_MFT_compatibility": "StrongA1/A2global/JPM/SIE controls iflawfulpretrainedweightsareverified. Need horizontalfish128x256configuredpatchgrid, samecropnormalization/matchedpreBN/BN/outputscaling, composite(video,fish) classifier andreal sameframehardnegative/temporalphysicalsampling. Camera/viewSIEmustbeobservableandfit-only; outeruntrainedcameraembedding cannotbe indexedaslegitimatelearnedsceneprior. New768/3840coordinate cannotblindlyreuseold512GRU. Replacecrosscameraevalfilter withpast-onlysamevideo/unknownpreservingprotocol.",
+        "mechanisms_to_port_and_exclude": "ComparecurrentglobalCLS, original4jigsawbranches, simplegeometricpool andlearnedK4/K8controls withcapacityandcrop/coordinateparity. Partsare shuffledtokens notannotatedhead/body/tail. Exclude originaldatasetIDcollisions, samecamera-positive removal, defaultverticalpersonresizewithoutdeclaration, benchmarkweightaccessassumptions, silentpartialcheckpointload and mereDEVIDE_LENGTH8changeasfull8partimplementation. Fixed-cameraSIE/projectionoutputweightedconcat mustbeablationcontrolled; fullnativeMOTintegration remainsindependent.",
+        "novelty_overlap": "PureViTcropReID, shifted/shuffledpatchrepresentation, partclassification/triplet, BNneck andcamera/viewembeddings establishedTransReID. EvidenceFishMOTlocalpatchidentityclaimaloneoverlapsJPM; needphysicalfishpersistence/visibility/crop-robustness andstrictcausalsetassociationgains aboveequivalentglobal/JPM/aggregation controls, notjustbackbonemigration."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "591a7f094eb4dd685eccc80d4722b7d1cec7ff8855371e7264be751bc6aa27c7",
+          "git_blob_sha1": "de0abb48c3875a9ad47c0ec2a5aaf479f55f5483",
+          "bytes": 14079,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "LICENSE": {
+          "sha256": "41bdd950521659c65a55ac02ff48d0626ff4c6cfc7861e0e4fd1032c79e2c99a",
+          "git_blob_sha1": "524670cd75c083257a41bb73f75a62e8d869bf70",
+          "bytes": 1069,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "requirements.txt": {
+          "sha256": "c2d94b5c4a29e0dae66697c91a03edffc09a2e1d8cfac9d5babcf440b835e5dd",
+          "git_blob_sha1": "576940f1227655f4e72913ff2b023562580bb0b6",
+          "bytes": 41,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "train.py": {
+          "sha256": "fe8cd14c6890e00ebb6d7d49c9bb188f2e7537165100ca2c45119b343f699dd5",
+          "git_blob_sha1": "2659d63c9c4155416cd95e566b1b092a6da46683",
+          "bytes": 2734,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "test.py": {
+          "sha256": "d6e75caa83f74fa6fe24dd7221ff4a6268bdefa1d0d3bd8d4b8c5ae9a2256f53",
+          "git_blob_sha1": "ab9051523a8fa2edaad0d95f20ad0fc9b8750868",
+          "bytes": 2389,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "config/defaults.py": {
+          "sha256": "0aed2d175d83ff287070b4ca6dba6fb52f651adc787740ee7ce041858d53f2b0",
+          "git_blob_sha1": "6d20acac597eeb453f57d3045e6c49d05389e7ce",
+          "bytes": 6411,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "configs/transformer_base.yml": {
+          "sha256": "f9ad40f69bbb5f5b9600b64e386c8fc11345304f5f70e80f9234765b8c8e6f96",
+          "git_blob_sha1": "ea2662d2a238d9f90f47137e0d1477d5e6be9b8e",
+          "bytes": 1084,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "configs/Market/vit_transreid_stride.yml": {
+          "sha256": "181a2fdc728a701196dced6807bfaf5fd03ee2696568f5b61f7acadef725e62d",
+          "git_blob_sha1": "b2a841ad06579101d8498bf2c953460192bb359b",
+          "bytes": 1178,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "model/make_model.py": {
+          "sha256": "ac93a317deeb589da1c0d0b578aad6240ef4fc6c9a052d388d6c6bf4f1810ce7",
+          "git_blob_sha1": "1313492018b499f1494b9f8a94cc85ed232dd191",
+          "bytes": 18043,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "model/backbones/vit_pytorch.py": {
+          "sha256": "5a592523eb0b19e7aee1b3a99b818f35312f471d19b5453389cf021f03dd5bf1",
+          "git_blob_sha1": "9ebeb3d398d646239ca96cb970a4bbe4fea3aec2",
+          "bytes": 23944,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "processor/processor.py": {
+          "sha256": "bdba0c267d7284627b3632ccbf83c24732dfbf018e4af485bb26ae1824a3b341",
+          "git_blob_sha1": "f6f5c12337daad3747106043d759b940402d66f8",
+          "bytes": 6892,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "loss/make_loss.py": {
+          "sha256": "f84427932e74d9ecd4ad49c5bfbc11401a301241c08923d41684e18e0f10a1a3",
+          "git_blob_sha1": "05447b8e1aa69d70afcfc17e752e50ac623d555e",
+          "bytes": 3634,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "loss/triplet_loss.py": {
+          "sha256": "c2c9f47b3f462f8a0b5dce178e77979c18c878a90a3187378712f811e06ec54c",
+          "git_blob_sha1": "b61bbbe11cdc948f6b615c6bfee88b0fea36ca0d",
+          "bytes": 4748,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "loss/center_loss.py": {
+          "sha256": "05ef6f93d39ce4c30f83f77112a6570dcae164a2f8b4aaf642510e717c4a1998",
+          "git_blob_sha1": "027ad64a803208496c441313e1e27678ac9c7107",
+          "bytes": 2335,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "datasets/make_dataloader.py": {
+          "sha256": "5c7fbfa5bde9fcf7e6386dd7ebf2497fdbc37ed843b5152b43f6eadaf48742c6",
+          "git_blob_sha1": "c1f2c17432b43723273432f277152bda06d759a5",
+          "bytes": 4419,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "datasets/sampler.py": {
+          "sha256": "9616ea253ce9e3c691c1abc198921e33733a0d59c0a34eee97e2e7e7d433e6bb",
+          "git_blob_sha1": "7584cf11286e44bc0ef152f519026554b4a1c131",
+          "bytes": 2433,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        },
+        "utils/metrics.py": {
+          "sha256": "60c67732b652a7b748d67d7e7ed772eec471f6fc654111a9f2a2f16d54289bc9",
+          "git_blob_sha1": "0fb9fbaa5a6ea90dcc7fa3c8a2f5e0bfa91a8aa6",
+          "bytes": 4677,
+          "verified_against_commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+          "inspection_scope": "Actualglobal/JPMforward, configurations, sampling/loss/train/infer/metric/pretrainloader/license paths read. Genericbaseconfig distinguishedfromfullJPM andcrosscameraevaluationfromsamevideopast-onlyfishretrieval; noofficialmodel executed."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/transreid_semantic_source_proof_v1.json"
     },
     "CLIP-ReID": {
       "name": "CLIP-ReID",
       "github": "https://github.com/Syliz517/CLIP-ReID",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CLIP-ReID",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
       "origin": "https://github.com/Syliz517/CLIP-ReID",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/CLIP-ReID', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CLIP-ReID",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
@@ -1046,7 +1157,142 @@
         "datasets/keypoint_train.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); ValueError('Public text blob exceeds acquisition budget'); ValueError('Public text blob exceeds acquisition budget')\")",
         "datasets/occ_duke.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "datasets/preprocessing.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "CLIP-ReID: Exploiting Vision-Language Model for Image Re-Identification without Concrete Text Labels, primary https://arxiv.org/abs/2211.13977 submitted2022-11-25/revised2023-01-01, AAAI2023. Person/vehicle staticcropReID learnsidentity-specific softtexttokens usingfixedCLIPencoders, thenfitsvisualencoderagainstfrozen learnedtextdescriptions; no actualfishtext/anatomicalannotationsorjointMOTidentitydecoder. Exacteb1898b72c882875f478bebfc6d41644eece0a5d actualtwostage source inspected.",
+        "code_and_pretrained_license": "TopLICENSE MIT2023Syliz517; embeddedmodifiedOpenAI CLIP requirespreservingupstreamattribution, upstreamMIT2021OpenAI primary https://github.com/openai/CLIP/blob/main/LICENSE verified. BenchmarkCLIPReIDGDriveweights anddatasets separateterms/payloadhash unverified, excludedofficialreproduction. BaseCLIPpublicmodelsource/URLs/SHA are known butnoactualweightacquired/executed. No externalcodecopiedorforeigninstallcommandsrun; thisisa source-fieldauditnotweight-licensecertificationforallderivatives.",
+        "entrypoints_and_training_inference": "train_clipreid.py ->datasets.make_dataloader_clipreid ->model.make_model_clipreid ->processor_clipreid_stage1.do_train_stage1 ->stage2.do_train_stage2. train.py isbaselinefine-tune, nottwostageCLIPReID. test_clipreid.py usesimageembedding-onlyinference. solver/make_optimizer_prompt.py stage1updatesprompt_learneronly,stage2freezestext_encoder/promptparameters andfitsimage/BN/classifier. Stage1cachealltrainingimagefeatures underno_grad once. Actualsourceiters=num_image//batch,range(iters+1) includesemptylastbatchifexactlydivisible; adaptationrequiresguardratherthanassumingREADMEcommandsalwaysrun.",
+        "core_model_files_and_shapes": "model/make_model_clipreid.py andmodel/clip/model.py. ViTB16imageRGBcrop patch16/stride16 at256x128=>128patches+CLS, width768/12blocks, outputlast-layer768andCLIPprojected512; inferenceconcat768+512=1280 before/afterBN. RN50 branch2048+projected1024=>3072. Imagevisualforwardreturnsblock11/block12/projectedalltokens; usedCLS. Text77tokencontext/width512, pretrainedtextattentioncausalwithintext(EOTargmaxselector), perclass4learned512tokens plus fixedperson/vehicleprefix. No newfishparts learned fromtext. OptionalSIE camera/viewcurrentmetadata.",
+        "loss_and_positive_negative_construction": "Stage1loss/supcontrast.py actualtemperature1.0, unnormalizedtext/imageprojection dotlogits, maxsubtractstability, positivesall equalIDcrossmodalpairs withinbatch/averagedpositivecounts; bidirectionalimage\u2192text+text\u2192image objectives, notassumeddiagonalCLIPtemp.07. Stage2loss/make_loss.py sumsCEover2imageheads andtriplets over3featurestages, thenimage\u2192allfit-IDtextCE; suppliedViTconfigweights.25CE/1triplet/1i2t,smoothingon,NO_MARGIN sourcecontrols. Stage1randomorderallcachedknowntrainingimages; stage2RandomIdentitySampler B64/K4=>P16 withshortIDreplacement. No frame/gap/sameframecrossfish hardnegative construction inoriginalsampler; physical(video,fish) andunknown-labelguardsrequiredforMFT.",
+        "pretrained_sources": "ModifiedOpenAI CLIP ViTB16/RN50 originalcontrastiveimage-captionwebpretrain, sourceexactpublicAzureEdgeURLs andSHA256downloadcheck (ViTB16expected5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f). build_model unwrapsJIT/state, resizesrectangular2Dposgrid andstrictload_state_dict. Officialperson/vehiclebenchmarkfitMarket/MSMT/Duke/OccludedDuke/VeRi/VehicleID. Upstreammodelcard https://github.com/openai/CLIP/blob/main/model-card.md notescuratedwebcaptiondata/unreleasedcorpus; nozerofishoverlapcertification. No datasets/modelweightsdownloaded; all sourcesstayoutsideGit.",
+        "future_information_and_online_path": "Imageinference onlycurrentcrop/observableoptionalcamera/view, returns1280/3072descriptorwithoutGTphysicalIDortextpromptlookup. ID-specificpromptsandall-fit-IDtextcacheareoffline trainingtargets; do notmislabelthem asnecessaryGTonline inputs. Fulltrainimagecache legalonlyfromfitvideos; bothouter/inner mustbeexcluded frompromptdictionary/imagefitting. Textcausalmask doesnotexpressvideocausality. Originalutils/metrics.py excludes SAMEpid+camera positives andoptionallygalleryre-ranks; replacewithsamevideo/past-onlyunknownpreservingfishprotocol. NoofficialMOTlifecycles/assignment route.",
+        "GPU_CUDA_dependencies": "READMEtorch1.8/vision.9/CUDA10.2, yacs/timm/scikitimage/tqdm/ftfy/regex; coreTorchvisionTransformer andtokenizer package. PromptLearnerconstructs tokenizedprompts.cuda unconditionally, originaltrainingCUDAAMP/DataParallel/NCCL andunusedcentercriterion allocations, soCPUfullconstructorisnotvalidated. Stage1storesallcachedimagefeatures onGPU, memoryscaleswithtrainingobservations; notfreeonlinecachecost. Newfishprotocolmustboundcaches/checkpointmodel/optimizer/scaler/RNG andneverrunoriginalscriptwithallvisibleuserGPUs.",
+        "IR_MFT_compatibility": "UsefulA1fine-grainedvision-languageinitialization/twostagecontrastiveIDcontrol, nottaskrequiredmainfoundationsolemodel. Needfishneutralprompttext,compositefit-onlyIDs,currenthorizontalcropresolution/normalization declared,mappednewdescriptorcoordinate andfreshhistoryproducer. TrainingphysicalIDtextdictionarynotquery-timephysicalannotation; unknownouterIDs cannotbeassignedpromptindicesorlookedupbyGT. Originalbefore/afterBNandprojectedconcat mustbecomparedonsamepools, notold512GRU reusedin1280coordinates.",
+        "mechanisms_to_port_and_exclude": "ComparefrozenCLIPimagebackbone,ordinaryvisualfine-tune,fit-onlylearnedIDprompts andtwostageimage-textconstraint onidenticalcrops/matchedsupervision. Exclude originalperson/vehicleprompt semantics asfishanatomy,futuregalleryreranking,samecamera-positive filtering, benchmarkweightreuseassumptions andemptylastbatch. Stage1optim-onlyfreezing doesnotmeanalltextparametersrequires_gradFalse; originalmaycalculateunoptimizedgradients. Textanchorsforidentityclasses areestablishedlabels, notgenuinelynewmultitargetNULLdictionaryrouting.",
+        "novelty_overlap": "Identity-specificsoftpromptlearning, crossmodalmulti-positivecontrastive andfrozenlearnedtextanchors forvisualReID alreadyestablishedCLIP-ReID. AnyuseofCLIPinitialization/prompts doesnotalonejustifynewEvidenceFishMOTcontribution. Needfish-specificcrop/partpersistentphysicalidentityandcausalsetcompetition gains abovefrozen/image-finetune/twostagecontrastive controls."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "ead72b91852b17991fad0a6ec1697280cd6e2182584f07c71b2a4dccda25aac1",
+          "git_blob_sha1": "99b76bdf7292b4be5c04c30b4479cbe66e71422d",
+          "bytes": 9870,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "LICENSE": {
+          "sha256": "418d11035badfb4f4c15f8936dcaf1eb2256339b4f32011555acded8e3f34cf7",
+          "git_blob_sha1": "685c6de995874ffffbbfa548e2d4927b2ae73a29",
+          "bytes": 1065,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "train_clipreid.py": {
+          "sha256": "27e8d136995a0bf71c42232351ad2c7ad17cf2b288f3d16c29bc538cdde37d9d",
+          "git_blob_sha1": "f06009e885ff3756be8fcb20dd6572c7ab61bcf5",
+          "bytes": 3661,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "test_clipreid.py": {
+          "sha256": "ac3e3f13a81aef0ed19497032f398ba2419960cf6b08a0c651c54495b836c182",
+          "git_blob_sha1": "f26e1a9d8b140b596902d54f320363b62715e4ac",
+          "bytes": 2606,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "config/defaults.py": {
+          "sha256": "642c0cb456f53975c5f91854eb2ca86ee72a65e7e23903358ad43f85ff8ce7c2",
+          "git_blob_sha1": "3510be74904cc2f2a312207ad5d9c945b4e8a491",
+          "bytes": 7907,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "configs/person/vit_clipreid.yml": {
+          "sha256": "5bd03d2b750e3ecafe2e8f031be3218abd8e55d8bd591b8339a676a9be1268e2",
+          "git_blob_sha1": "9c020344006745ffa1e36da58fde339fdd9ea8f7",
+          "bytes": 1696,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "datasets/make_dataloader_clipreid.py": {
+          "sha256": "1d8a5be7713f64db55f6f495ea8d7644f8445d141fe7447c91e0b100ca83d389",
+          "git_blob_sha1": "af5a7811115e708d54846c11427b44c7629fd643",
+          "bytes": 4496,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "datasets/sampler.py": {
+          "sha256": "9616ea253ce9e3c691c1abc198921e33733a0d59c0a34eee97e2e7e7d433e6bb",
+          "git_blob_sha1": "7584cf11286e44bc0ef152f519026554b4a1c131",
+          "bytes": 2433,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "model/make_model_clipreid.py": {
+          "sha256": "b854c08c3f4c4c51f778158f6ae13edeb443f70e0e87b6b14840296d5d11b17b",
+          "git_blob_sha1": "127a23f77dced18e1978afa6fee8d2d97bfdc00a",
+          "bytes": 9999,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "model/clip/model.py": {
+          "sha256": "31990f19a71d646b9d807d95f0a0398ddeebef985b1207e8c4cf8c6b735e59ad",
+          "git_blob_sha1": "5698d1d11cb773f85fc2609c602abbd87c2725ad",
+          "bytes": 19154,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "model/clip/clip.py": {
+          "sha256": "4898d0e683126fbc83d450465593042159ca7162de3199c5e9e89e0e0d1d5d3d",
+          "git_blob_sha1": "a3499fb548ac9b27b9d4aa9bc5e76f26b1c1bfb9",
+          "bytes": 8359,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "processor/processor_clipreid_stage1.py": {
+          "sha256": "f6061a40e547647e9d4e43b87d94e0c8858d51f7e6a6c248d941513cec05a4ee",
+          "git_blob_sha1": "5d101ec97d5186425dbc887a793b9ffc25f6a140",
+          "bytes": 3861,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "processor/processor_clipreid_stage2.py": {
+          "sha256": "6660037c3af8cd8a1cbbff7162d9746cb77d6168e71635078845ca2e427ca4dd",
+          "git_blob_sha1": "861a301ec1292c134b10ba16ba09c67366f4c33d",
+          "bytes": 8914,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "solver/make_optimizer_prompt.py": {
+          "sha256": "e357c64c5b54992cbcab36117d7048cb2904769eb872650a3719b204f08b1a20",
+          "git_blob_sha1": "d593877af1aa4aeabd70f31386dce26c5545927d",
+          "bytes": 2384,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "loss/make_loss.py": {
+          "sha256": "880c7afe0519f0f407a2d5dbb468c4d4aa9c87d045ccdcc8bdfd1b4eca9f39fb",
+          "git_blob_sha1": "f8b9deff06bd10b7b840dde115a900561825c830",
+          "bytes": 3654,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "loss/supcontrast.py": {
+          "sha256": "bc21c9763cc795b623089894b711aedaf0cde0c01fd8a1c5d641982513b10f6b",
+          "git_blob_sha1": "8069df5f05b01e380da82c960bbbbad9c6de31ca",
+          "bytes": 1127,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        },
+        "utils/metrics.py": {
+          "sha256": "60c67732b652a7b748d67d7e7ed772eec471f6fc654111a9f2a2f16d54289bc9",
+          "git_blob_sha1": "0fb9fbaa5a6ea90dcc7fa3c8a2f5e0bfa91a8aa6",
+          "bytes": 4677,
+          "verified_against_commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+          "inspection_scope": "Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/config/weightloader/license inspected. InitialcriticalsourceTLSgapsfollowedbyverifiedpinnedcontents; noforeigncodeexecuted orweightsdownloaded."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/clip_reid_semantic_source_proof_v1.json"
     },
     "DINOv3": {
       "name": "DINOv3",
@@ -1679,7 +1925,7 @@
       "name": "V-JEPA2",
       "github": "https://github.com/facebookresearch/vjepa2",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/V-JEPA2",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "204698b45b3712590f06245fbfba32d3be539812",
       "origin": "https://github.com/facebookresearch/vjepa2",
@@ -1696,19 +1942,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/V-JEPA2",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "204698b45b3712590f06245fbfba32d3be539812",
@@ -1716,7 +1950,230 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "V-JEPA2, primary https://arxiv.org/abs/2506.09985 (2025-06-11), video understanding/prediction and action-conditioned robot planning; V-JEPA2.1, primary https://arxiv.org/abs/2603.14482 (2026-03-15/revised06-11), dense visible+masked latent prediction, deep layer supervision and image/video tokenizers. Exact registered204698b45b3712590f06245fbfba32d3be539812 includes both; pinned README still hasTODO2.1paper URL, resolved via primarypaper. Neither is fish-MOT identity training.",
+        "code_and_pretrained_license": "LICENSE MITMeta; APACHE-LICENSE and explicit Apache2 notices in src/datasets/utils/video/{randaugment,randerase}.py and worker_init_fn.py remain separate. Officialpublisher https://huggingface.co/facebook/vjepa2-vitl-fpc64-256 declares MIT for that0.3B F32model; this verifies model-card terms, not exact transported weights or all2.1checkpoint terms. Other publichubweights are not downloaded/independently byte verified. No reference code copied/executed or environment changed.",
+        "entrypoints_and_training_inference": "app/main.py ->app.scaffold.main ->app.vjepa.train.main orapp.vjepa_2_1.train.main selectedconfigapp; main_distributed.py Submitit variant. app/vjepa_droid forACposttraining. hubconf.py ->src/hub/backbones.py returns encoder/predictor; evals/hub/preprocessor.py wrapsclip preprocessing. Exactconfigvitl16pretrain25616f is internetvideo pretraining, not cropReID;2.1vitb16config includes densecontextloss. No officialfish tracker/MOT association entry exists. Source-entry limitation: configs/train_2_1/vitb16/pretrain-256px-16f.yaml selects vit_base, but app/vjepa_2_1/train.py onlyassigns embed_dim_encoder for vit_large/giant_xformers/gigantic_xformers, elseprints unrecognizedwithoutassigning. This Base training entry is not certifiedrunnable; hubBaseinference is a separatepath. This is source-control-flow evidence, not an executedtrainingfailure.",
+        "core_model_files_and_shapes": "src/models/{vision_transformer,predictor,ac_predictor}.py andapp/vjepa_2_1/models/{vision_transformer,predictor}.py. Input[B,3,T,H,W], Conv3Dpatch16tubelet2 tokens[B,(T/2)*(H/16)*(W/16),D]; V2ViTL1024/24layers/16heads,25616f =>2048tokens. V2predictor384/12layers/12heads in registeredconfig, maskedtargetslots projectedtoencoderD.2.1ViTB768/12layers;38416f =>4608tokens; distinctimagepatch tokenizer atT1.2.1predictor returns(z_pred,z_context), deep-layerconcatenatedtargetcoordinates/configdistillation maydifferfromencoderD. ACaction/state7dims. No old512GRU coordinate compatibility.",
+        "loss_and_positive_negative_construction": "app/vjepa/train.py: stoppedfullclipteacher thenlayernorm, selectedmaskedtargetregions; predictor sees keptcontext+maskpositiontokens only. Meanabs(z-h)**loss_exp/loss_exp, exp1 inconfigs, no IDCE/physicalfishpositive-negative construction. EMAafteroptimizer.2.1train: separate maskedprediction loss plus visiblecontext loss weightedlambda/imgvideo=.5 inVitBconfig withdistanceweighting/progressive schedule, targetmulti-layer chunksnormalized independently; no claim thatonlymaskedlossproducesdensefeatures. Data uses weightedDistributedWeightedSampler acrossK710/SSv2/HowTo (declaredweights.335/.100/.565), Decordrandomclips/fps4;2.1addsImageNetdata.3Dmaskgenerator derivesdisjointcontext/targetfromactualcomplementthenbatchtruncates, additionalfull_complement modes explicit. Temporalspan masks neednotpast-only.",
+        "pretrained_sources": "PrimaryV2paper describesover1millionhour internetvideo/imagepretraining and<62hoursDroidposttraining. Publictrainingconfig lists K710/SSv2/HowTo; it doesnotprove completeprivatecuratedpretrainingmembership orzerofishoverlap.2.1config addsImageNet anddeepdense/distillation variants. src/hub/backbones.py dl.fbaipublicfiles/vjepa2 filenames; V2loadkeys target_encoder bydefault, AC encoder/predictor,2.1Base/Largeema_encoder+teacher1664distillationcoords; strictness differsbysize/codepath. No giant checkpointacquisition, fullpretrainingreproduction orfishclassificationaccuracyclaimed.",
+        "future_information_and_online_path": "OrdinaryV2/2.1encoder andmaskedpredictor use bidirectionalclipattention withattn_maskNone/is_causalFalse; sourcevideo loader sampleswholeclips andofficialrecognitionprobes usemulti-segment/multi-viewclips. Thus earlierframe embeddingsmaydependonlaterframeswithinclip. A strictonline fish adaptation can onlyencodeanexplicitpast-through-currentwindow andaccountrecomputation/tubeletendpadding; cannotcreditcachedfullvideoembeddingascausal. ACpredictor hasframecausalblockmask butthatdoesnotmake itsvideoencodercausal. EMAfullcurrent/futureteacher permittedonlyoffline trainingtargets; no teacher/futureframe onlineinputs.",
+        "GPU_CUDA_dependencies": "requirements torch>=2,torchvision,timm,einops,decord,iopath,submitit,webdataset,transformers etc; app usesNCCL/DDP,BF16AMP,CUDA SDPA optionalactivationcheckpointing. Pretrainconfig16nodes\u00d78GPU is not our4GPU smallMFTbudget. Ordinaryattention hasTorchmatmulfallback; massiveV2.1Gvariants mayusexformersnamedarchitecture butruntimecompatibility notexecuted. Hubdependencies torch/timm/einops; currentenvironment installation unchanged. Head/cache timings cannotincludeencoderclipcomputationforfree.",
+        "IR_MFT_compatibility": "UsefulpriorforEMA/stoppedlocalprediction/deepdense supervision and image/video tokenization. Nativevideoclip/globalactiontasks do not providefishphysicalIDs/candidatecompetition; directclipfeaturefittingwithouter/innerexposureinvalid. Object-centriclocalgeometry/currentcandidate relation needsindependentfishsupervisionandnewcoordinateproducer. Largefullclipbackbone maydominate rawruntime. AdaptmatchedlocalTemporal/contrastive/noEMA/noPrediction/noID ratherthan claimofficialfullworldmodelreproduction.",
+        "mechanisms_to_port_and_exclude": "Retain actualmaskcomplements, stoppedEMA,localtargetprediction, visible-vs-masked/deep-losscontrols withdeclaredinputprovenance. Exclude unrestrictedfuturecontext/fullvideo caches/robotactions asfishsensors, giantpretraining, blindper-frameassignmentofbidirectionalclipembeddings andsilentteacher/studentcoordinate mismatch.3Dspatiallocaltokens aregeometricnotannotatedanatomy orocclusion. Configchecks/hashguards neededbecause checkpointhelper/hubstrictness differ; never assume strict=False validweightload.",
+        "novelty_overlap": "Dense visible+maskedprediction anddeepintermediatelayers alreadyexplicitV-JEPA2.1mechanisms; EMA,masktokens,latentvideo prediction andactionconditioning establishedV2. GenericpatchTransformerpluslatentloss is not novelty. EvidenceFishMOTmustprovephysicalidentityinformation/onlineassociationincrement overmatchedlocaltemporal/contrastive/deepdensecontrols, beyond loweringpredictionloss."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "55f8485d734a08d23170322cd13ad5ac2f4d63b3d1fd542b10ec0907042c5bb6",
+          "git_blob_sha1": "18fab9146ff2499ee27721c9280f72537479141c",
+          "bytes": 21574,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "LICENSE": {
+          "sha256": "cf9b17822d1fcd4ff32ccbe14183386fb3adf6f2ff92dc184130823f7fc28173",
+          "git_blob_sha1": "a45a376fb0fcd4a3de06b6c096e62028929a2dcb",
+          "bytes": 1087,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "APACHE-LICENSE": {
+          "sha256": "a41e2fae9915ae56028f8dbd0bf27995f1907613cbcd2d81a61b010ad34e9fe9",
+          "git_blob_sha1": "2e66bec2e791c2dfa1f8d9bd205180fc06ffc053",
+          "bytes": 11349,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "requirements.txt": {
+          "sha256": "86df4afafef209576d308aee6a6a2d13523805c1885f3e294f3a9541e6b2be23",
+          "git_blob_sha1": "d24b0b351dee9fbe273d40598feedaadbb9aa7ab",
+          "bytes": 212,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "hubconf.py": {
+          "sha256": "6a61c46a80c82ed10331a19822d58e9a19f062e52845e1787fc810979ff03c7b",
+          "git_blob_sha1": "39f303d5d8a87cc754593e951b9d6c5bd910b938",
+          "bytes": 543,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/main.py": {
+          "sha256": "9b10e22441060453f6754dc0e64bd91ae9b3c19a3c8714492bd0b4e5b3c96ed6",
+          "git_blob_sha1": "32cd18319c972772d9bfa6d152139379079d8b80",
+          "bytes": 2554,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/scaffold.py": {
+          "sha256": "a962e73f7dcc70e9c07286c71ffc908189dd96e294d272e3d1adda26050ab8be",
+          "git_blob_sha1": "60a41bc43b289c556cc8df9975c93a129d8ead94",
+          "bytes": 515,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa/train.py": {
+          "sha256": "abd6431069d541c96b9b31ec05fce954664c56d2d4ca6d67bb4c9e2ddd775a5f",
+          "git_blob_sha1": "69a735db7049ca218dd913b53516c3976bdca42c",
+          "bytes": 19557,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa_2_1/train.py": {
+          "sha256": "6057c8968c90dc96935680e8f617bbe8db836fc30698a053b0aceaa985f39b93",
+          "git_blob_sha1": "f8fe59499e7e7a8ef64621242537e69b1e7e5d50",
+          "bytes": 32478,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa_2_1/utils.py": {
+          "sha256": "bb19dedfb34c495520de5defd53256c25d21749e9d3581aa1a427c1430ab3a23",
+          "git_blob_sha1": "d5d32fd6269d325f2e0b53974536718fb977615d",
+          "bytes": 11560,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa_2_1/wrappers.py": {
+          "sha256": "6cd07b4f67f22f1b5010adb98518260dfb931a45566bf1f2447e90a8e82c798e",
+          "git_blob_sha1": "d31dfb8010cc15ffba879b383d0da97525dd8345",
+          "bytes": 4566,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa_2_1/models/vision_transformer.py": {
+          "sha256": "d2932eabeba684d8f558302a13cfd4be70a0170ee5112f5a794652d0a29089b9",
+          "git_blob_sha1": "c8797fbb50d98c2ac2ed239267f9399a8bbb7071",
+          "bytes": 18195,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "app/vjepa_2_1/models/predictor.py": {
+          "sha256": "30111720eb90c6dcdde44521cea53cc736020f984e5573150fd3dc7b4acc05d8",
+          "git_blob_sha1": "a8e7f968aac96ddbb3c681eff40b3242f2825548",
+          "bytes": 10679,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/models/vision_transformer.py": {
+          "sha256": "9d4fd4e3603311803c105cc5114e2bc12ff28bc11870637dd3969511d9dead74",
+          "git_blob_sha1": "be2bbfc50f7b828dedbb8da648038f00f0592595",
+          "bytes": 14590,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/models/predictor.py": {
+          "sha256": "3d8481bf2544b85ed92b3feb418e3b6d85ca1f81034c931b8c860f2d3d9aac2b",
+          "git_blob_sha1": "968c5cc553f1ed3931a02b42d9b5d87a3020f6f0",
+          "bytes": 9496,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/models/ac_predictor.py": {
+          "sha256": "5a520ad92b3f78b231aa153a5bbd9f800f880024974109a04d19aed6a0900643",
+          "git_blob_sha1": "3d4007db7eb6b48a32ce982accef898e4bb69b59",
+          "bytes": 6951,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/models/utils/modules.py": {
+          "sha256": "b93f6c7e0747deb216419c000c2878f11a9189024a9adeacfd437e172396dff0",
+          "git_blob_sha1": "4b36564f56bdfd6ac7e51f7fedc5ee6b8c498cd3",
+          "bytes": 23001,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/models/utils/patch_embed.py": {
+          "sha256": "1823c40b34410e70eb313360e21678e18a0ee5465b5d47de9f3d967c074f5a9d",
+          "git_blob_sha1": "f6405f0e804a6278b712ae255570700cfa7445b7",
+          "bytes": 1343,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/masks/multiseq_multiblock3d.py": {
+          "sha256": "7ef7cf95b0bee9940ac7654aeb3535278bbafdd6d93b643f4142fd19769456d9",
+          "git_blob_sha1": "cd8e2f2f079c42b8f8190f9af1ff07005db6b6d2",
+          "bytes": 10248,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/datasets/data_manager.py": {
+          "sha256": "6849784a95abaf4d18292460e695a559de514364078d6143c0fee9c4590a7172",
+          "git_blob_sha1": "d4e1a53478aa051bf4989ec524055fd64e37f6f3",
+          "bytes": 2548,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/datasets/video_dataset.py": {
+          "sha256": "44cee1d4d7a643acb9f26402dcec961f3193240489bb1d2ee89e00515630af4b",
+          "git_blob_sha1": "05ec2a38ec55b6a817559d232397aabfcd32eec5",
+          "bytes": 13651,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/datasets/utils/video/randaugment.py": {
+          "sha256": "b0914ae5823aa6ced7b594a3156d2e2ee9a906ebf950b40d24c1a96f5da2acbd",
+          "git_blob_sha1": "aeb536372c2ebe0d62425636228eccfbdbc86184",
+          "bytes": 16955,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/datasets/utils/video/randerase.py": {
+          "sha256": "81be3544ef18564e4c086daad9f596a1b6312bdd8eae15a0157e551eb08f3ab6",
+          "git_blob_sha1": "13226caff18b54f2f2969eb9d98b0866b5d7026e",
+          "bytes": 6957,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/datasets/utils/worker_init_fn.py": {
+          "sha256": "73205faa33d0fa0b8b8e59ac7f1d79a234346ed13b3100ee0df0a550d4d780a2",
+          "git_blob_sha1": "32c93e91b42a21469d3e31b19c368da5927fd0a3",
+          "bytes": 3073,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "src/hub/backbones.py": {
+          "sha256": "391cdde1e9a1da47cb8094bbea5fbbe8acac0135b27e82f1a6ab19c0b39cc692",
+          "git_blob_sha1": "435c72ea192361c990baf67e8734f9e4fb64371b",
+          "bytes": 10164,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "evals/hub/preprocessor.py": {
+          "sha256": "1f0776605ef69689a99ac79527b391712680e96c0d95735035355ae0e0aea58b",
+          "git_blob_sha1": "42c28a77d152083c6fcb9b4a1a748731f02d34b8",
+          "bytes": 510,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "configs/train/vitl16/pretrain-256px-16f.yaml": {
+          "sha256": "45d3528ae0e0b08a2da40a54958eff4ecd86321f58cde26d93d84faf9799b48b",
+          "git_blob_sha1": "535736f64af6492584a189d015f133e0d6ed8ed8",
+          "bytes": 1628,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "configs/train_2_1/vitb16/pretrain-256px-16f.yaml": {
+          "sha256": "df44fd5da9f5bcf9d76dbc354e1bf3fd0eef1528e26fa216ab5c91523b01285e",
+          "git_blob_sha1": "dca536f36308f9611daa0c10c5176103494818be",
+          "bytes": 2444,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        },
+        "configs/eval_2_1/vitb-384/ssv2.yaml": {
+          "sha256": "ddf34d1445ff65d90190a34fc03c16e5b0cdbb7fe31e01b4fed2d3f5b0dbe45b",
+          "git_blob_sha1": "66aebaaedb177c0341dda03216cf65023aa2c187",
+          "bytes": 3760,
+          "verified_against_commit": "204698b45b3712590f06245fbfba32d3be539812",
+          "inspection_scope": "Actual entry/config/encoder/predictor/mask/loss/data/hub/license paths manually inspected. Bidirectionalclip encoder distinguished from framecausalACpredictor and strictonlineadaptation. Officialcode/modelnotexecuted; pretrainedpayloadexcluded."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/vjepa2_semantic_source_proof_v1.json",
+      "semantic_followup": {
+        "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/vjepa2_base_config_source_limitation_v1.json",
+        "scope": "Static source path audit; no reference code execution"
+      }
     },
     "DINO-Tracker": {
       "name": "DINO-Tracker",
@@ -1844,7 +2301,7 @@
       "name": "GOT-JEPA",
       "github": "https://github.com/chenshihfang/GOT",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/GOT-JEPA",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
       "origin": "https://github.com/chenshihfang/GOT",
@@ -1889,19 +2346,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/GOT-JEPA",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
@@ -1909,32 +2354,151 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "GOT-JEPA: Generic Object Tracking with Model Adaptation and Occlusion Handling using Joint-Embedding Predictive Architecture, primary https://arxiv.org/abs/2602.14771 submitted2026-02-16/revised06-16, TCSVT2026. Single-target tracking-model/filter prediction under corrupted current observations plus object-conditioned point visibility(OccuSolver), not multi-object physical-ID assignment. Registeredrepohead5f382645ccb7331280a7bf07f3c5709d1072caf7 primarilyGOT-Edit/ICLR2026; READMEpoints canonicalGOT-JEPA release84e9324317e4afe62c06b2c51a97563f79730a2e. Both actualsourceversions inspected andrelease31textblobs materialized from existingGitobjects without alteringhistoricalcheckout.",
+        "code_and_pretrained_license": "TopLICENSE AGPLv3, nestedpytracking/LICENSE GPLv3; embeddedCoTracker2/co_tracker/LICENSE.md CCAttribution-NonCommercial4.0. These are not unrestrictedMIT-compatible source copying. Keep reference-only; no codeexecuted/copiedintoIR-MFT. DINOv2 externalApache2 source/weightterms separate; fullToMP/GOTJEPA/CoTrackercheckpointsGoogleDrive/localtar lack independentlyverified exactweightlicenses/access/hashes, excludedfromofficialsystemreproduction. No newweights downloaded.",
+        "entrypoints_and_training_inference": "Published84e releaseREADME uses pytracking/ltr/run_training_dsA.py tomp GOT_JEPA_378_pretrain, thenfinetune andPT. Pretrain->tompnet_JEPA/ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp; finetune->tompnet_JEPAp/ToMPActor; PT->tompnet_PT/ToMPActor_PTcur. Evaluation run_experiment.py myexperiments_gotjepa GOT_JEPA ->trackerlist(tomp,got_jepa_378)->tracker/tomp/__init__.py imports.tomp.ToMP; checkpointwrapper loadsGOT_JEPA_378.tarconstructor. Currentheaddefaultentry isGOT-Edit andseparate tomp_gotejepa.py exists; cannot assumeREADMEheadline/defaultentry sameJEPApaperbaseline.",
+        "core_model_files_and_shapes": "Bothsourceversions pytracking/ltr/models/tracking/{tompnet_JEPA,tompnet_JEPAp,tompnet_PT}.py, transformer/{heads,filter_predictor_JEPA_context,transformer_JEPA_context}.py. Inputpasttrainframes2,currenttest1 as[T,B,3,H,W], boxes[T,B,4]; searchcrop432 thenresizes378=27*14, DINOv2ViTL intermediate1024features4layers averaged andbkMlp1024map. Head256/6encoder6decoderlayers/nhead8; cls/regtrackingfilters[B,256,1,1], predictors256\u2192256, covarianceexpansion256\u21921024\u21921024. Pretrainreturn8filtertensors, finetunescoremaps+bbox offsets; PToutputsperpointpositions[B,T,P,2]/visibility[B,T,P] plustrackingmaps. This predictsfilterlatentparameters, not Klocalfishidentitytokens.",
+        "loss_and_positive_negative_construction": "PretrainSmoothL1(predictedcls/regfilters,clean stoppedtargetfilters), invariancescale10000 andoffdiagonalexpandedfeature covariance; actualfinaloverride scale800, not400classname. Criticalsource limitation in BOTHregisteredhead andpaperrelease: actorclassdefines__call__twice, lastbodyends bare(loss_breg_filter,inv)expression withunassignednames/no lossstatsreturn. AST confirms2definitions; originalentrynotrunnableascompleteactor. Finetune GIoU+LBHinge(MSEpositiveheatmap/negativeReLUpred)weights1/100; PTaddsbox/classsupervision. DiMPSampler equalLaSOT/GOT10k/TrackingNet/COCO datasets, visible sameobjectpast/currentframes(maxgap200); no physical-IDCE/PK orsameframecrossfishhardnegatives. Relocation swaps0\u201330%spatialvectors, leavingmanycleanvectors; it is corruption, not stricthidden-targettokenexclusion.",
+        "pretrained_sources": "PretrainloadsToMPL.tar; frozenDINOv2ViTL andbkMlp+Headtarget initializedfromtrainedToMP. FinetuneloadsGOTJEPApretrain, PTloadsfinetune andCoTracker2localcheckpoint. DINO backbone helper unpinnedtorch.hubfacebookresearch/dinov2; futurecanonicalMFTadaptermustpinexecutedsource/weights independently. TrainingLaSOT/GOT10k/TrackingNet/COCO, nofishidentityand noverifiedzerooverlap. Officialmodel/data terms unverified: sourceaudit only, nofaithfulfullweightaccuracyclaimed.",
+        "future_information_and_online_path": "Trainingclean currentframe supplies stoppedtracking-filtertargets; contextsamepastpluscorruptedcurrentfeaturemap, notfutureforecast orEMA targetupdate. Pretrainfreezes targetparameters thenreenablescontext; context/targetsharethe SAMEfeature_extractor module andcanreenablesharedparameters; headBNbuffersnotexplicitteacher.eval. CannotcallentireteacherimmutableEMA. PublishedtrackerSOTinitializedwith suppliedfirstframebbox; laterusescurrentsearchcrop/pastmemory. OccuSolver re-encodesboundedstoredpast-through-currentpatchwindow usingCoTracker2 bidirectionalwithinwindow, backward_trackingFalse; currentoutputsneednoexternalfutureframe. ItdoesnotautomaticallymakeallpointembeddingsframecausalorprovideMOTIDs. Sourceparamsuse_gt_box/plot_iouflagsaloneareNOTproofonlineperframeGTuse; evaluatedinitialbbox protocolstillincompatiblewith detector-onlyblindMOT. Future/GT inputclaimsneedactualcalltrace, notnames.",
+        "GPU_CUDA_dependencies": "OfficialREADME CUDA11.7/PyTorch2.0; install_gojepa.sh createsownPython3.9environment thenmanyforce-reinstall/pipsteps, deepspeed/accelerate/transformers/peft andCoTrackerinstallation. Do notruninstallscript insharedworkspace. Trainingtorchrun/deepspeed shim, MultiGPU, BF16/AMP;DINOv2hugebackbone/pointnetwork costs substantial. Currentsourcepretrainentry hasactiveactorstub beforeanyfaithfulexperiment. No external runtime validated, no GPU allocated for referencecode.",
+        "IR_MFT_compatibility": "Modeladaptation/corrupted-currentteacher/object-conditionedpointvisibility are usefulresearchmechanisms, butnativeSOT requiresinitbbox/searchregion/Gaussianlabels and256trackingfilters, notMFT candidate-ID localfeatures. Existing128x256RGB512/GRU coordinates differfrom378squareDINO1024 andfilters. CoTracker2visibility ispredictedpointconfidence, notgroundtruth fishocclusion. RepeatedperfishSOT wouldaddmajorlatency andbirth/lifecyclechanges; noMOTcomparisonclaimfromSOTbenchmarkresults.",
+        "mechanisms_to_port_and_exclude": "Independently implement current/past-localcorruption andidentity-discriminativeteacher targets withrealmaskexclusion+EMA/noEMA/noIDcontrols; assesspointvisibilityonlyasobservableproxy. ExcludeAGPL/GPL/CCBYNCsourcecopyintoMITtree, brokenpretrainactorduplicate, sharedteacher/contextparams, blindpublicHubupdates andbenchmarkinitbboxasonlineGTfishidentity. PreservepaperreleasevsnewGOT-Edit provenance. Originalfilterpredictions/occsolveradaptation mustnotbe relabeledDensefishIDevidenceorjointMOTassociation.",
+        "novelty_overlap": "GOTJEPA establishesclean-vs-corruptcurrent tracking-modelprediction andobject-awarepointvisibility/refinement. GenericJEPAadaptation, corruptionrobustnessorpointocclusion module alonecannotbeclaimedEvidenceFishMOTnovelty. GenuinecontributionrequiresfinegrainedphysicalIDpersistence andsetcompetitionovermatchedSOT-independenttemporal/localcontrols, nofuture/GT atonlineassignment."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "e10505a0e3f7ba18747a7f119dff6617d77bd22bd35b9608d1e12f5789f48d96",
+          "git_blob_sha1": "33c6f0f440898905ae76ae69366c8cda44653778",
+          "bytes": 7074,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "LICENSE": {
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "git_blob_sha1": "0ad25db4bd1d86c452db3f9602ccdbe172438f52",
+          "bytes": 34523,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/LICENSE": {
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+          "git_blob_sha1": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7",
+          "bytes": 35149,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_pretrain.py": {
+          "sha256": "b6cd0cec4a78a82e85f61ae48e08381fb178a1797e7e4b0b588bddadb8f4c7ff",
+          "git_blob_sha1": "a5d5bb084c22ff4b8c1d2e927adb8e97ab242729",
+          "bytes": 9265,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_finetune.py": {
+          "sha256": "68913dbca4dde9defbf2eebdfb4492300f881b5795b3a8656883e805f95ce883",
+          "git_blob_sha1": "61980853bfed7a6f6cbd855f3a36f201c1373898",
+          "bytes": 9331,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/train_settings/tomp/GOT_JEPA_378_PT.py": {
+          "sha256": "afbf658fafc88eb6b434abc34ec97951ac063f7ec5a4671bf56fc96b88e44963",
+          "git_blob_sha1": "b8aa001552d6a881a39cf50ced03b10e310139b5",
+          "bytes": 9665,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/models/tracking/tompnet_JEPA.py": {
+          "sha256": "230243d8f77c2629ef106311d0403824533687a2de9b5fed4d9d5560d3d5f7ca",
+          "git_blob_sha1": "a33c6d87f141027e022c44b3bb64074284d41287",
+          "bytes": 16740,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/models/tracking/tompnet_JEPAp.py": {
+          "sha256": "a77bb6da29c46608440f6d18415ef3b718aa433975b7ed530f838d591a84e7cf",
+          "git_blob_sha1": "4c9691179ffe27d4bb4417f41913394b59c1d757",
+          "bytes": 14330,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/models/tracking/tompnet_PT.py": {
+          "sha256": "4affad11ba917b385e12c58f3afddc88de8f73841315677363eb9d118792432e",
+          "git_blob_sha1": "e55b18dae84dfcd08ecfd38740ce49cc0e5df265",
+          "bytes": 24006,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/models/transformer/filter_predictor_JEPA_context.py": {
+          "sha256": "c7e28e4666333dd3e3d3613028157f1ac4654b17eca78220e747bd33f5fbc70c",
+          "git_blob_sha1": "e9e4d73bd367c1605bb44a75cbe088c90c108dde",
+          "bytes": 9924,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/actors/tracking.py": {
+          "sha256": "96d1ce933ec13d5b642586fba7657c0cce48436936c8938eaae102ee799b9d09",
+          "git_blob_sha1": "870ffcd6de9fff6eab40bc67741a7d392a584349",
+          "bytes": 93719,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/models/backbone/resnet.py": {
+          "sha256": "ad30ef599f1f6500d019b46e1d4b32d2f501b1b376df5ea8023a623cdd50f9b6",
+          "git_blob_sha1": "ee4655e7c3028fc8e7076e8da195cc2340c0a9e1",
+          "bytes": 26772,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/ltr/data/sampler.py": {
+          "sha256": "076f0b09d30540d5cbac7cc5e6088495ae4347f00df4dfc64169511659c6f5c5",
+          "git_blob_sha1": "b82b8a9f90b5919e86ac37b8fb910235ced5a29a",
+          "bytes": 61595,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/pytracking/tracker/tomp/__init__.py": {
+          "sha256": "9cafcfa03e9ef0cc0cdede4ccd1de7ab3405d56a7fb1aa94569802f2b96feafe",
+          "git_blob_sha1": "1b654adf23ae55803f58443a5b520a04056bcda8",
+          "bytes": 307,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        },
+        "pytracking/pytracking/tracker/tomp/tomp_gotejepa.py": {
+          "sha256": "367bd7ce95ff1bb549d9858d524a3ebb415835682d37d62dd9a9253e7b219310",
+          "git_blob_sha1": "ede89d50b20104d49fe07fbfb89281e194b52a84",
+          "bytes": 54304,
+          "verified_against_commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+          "inspection_scope": "Actual registeredheadGOTJEPAmodel/config/actor/entry sources read; canonicalpaperrelease84e also read fromisolatedexactGitblobs, avoidingGOT-Edit/defaultentryconflation. Sourceprovenance is notexecutedofficialreproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/got_jepa_semantic_source_proof_v1.json",
+      "paper_release_source_proof": {
+        "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/got_jepa_release_source_v1.json",
+        "sha256": "27ba08cdc3cd62fb56f7b183547ee6e14b7b7dbacbe13f8f5794e505a39ed8d9",
+        "commit": "84e9324317e4afe62c06b2c51a97563f79730a2e",
+        "scope": "31exactsourceblob acquisitionproofs; actualentry/model/actor/data/loss/runtime/license lines read, not31completefileexhaustiveclaims"
+      },
+      "semantic_followup": {
+        "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/got_jepa_feature_aggregation_correction_v1.json",
+        "scope": "Fieldcorrectedafterliteralcanonicalforwardread; earlier spec/proofretainedasdraftversion"
+      }
     },
     "CoTracker3": {
       "name": "CoTracker3",
       "github": "https://github.com/facebookresearch/co-tracker",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CoTracker3",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
       "origin": "https://github.com/facebookresearch/co-tracker",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/CoTracker3', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CoTracker3",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
@@ -2018,7 +2582,142 @@
         "cotracker/datasets/dr_dataset.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "cotracker/datasets/real_dataset.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "cotracker/evaluation/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "CoTracker3: Simpler and Better Point Tracking by Pseudo-Labelling Real Videos, primary https://arxiv.org/abs/2410.11831 submitted2024-10-15. Joint tracking of visible/occluded pixelpoints using simplerarchitecture andrealvideo teacherpseudo-labels. Online andoffline pointtracker variants, not box-levelphysicalfish-IDMOT orlearnedNULL/newborn competition. Exact82e02e8029753ad4ef13cf06be7f4fc5facdda4d sources/hub/model/loss/dataentry verified.",
+        "code_and_pretrained_license": "LICENSE.md CCAttribution-NonCommercial4.0, officialpublisher https://huggingface.co/facebook/cotracker3 explicitly cc-by-nc-4.0. READMEseparates PIPsMIT andTAP-Vid/LocoTrackApache2 portions; preserveindividualnotices ratherthan labelwholeprojectMIT. Referenceauditonly, no codecopied/executed inIR-MFT andno weightsdownloaded. Exactpayload checkpointsha/delivery notverified; modelcardlicenseisnotabyte-validityorcommercialreusecertificate.",
+        "entrypoints_and_training_inference": "train_on_kubric.py usesLightningLite/DDP model+loss; train_on_real_data.py teacherspseudolabelrealclips. hubconf.py->_make_cotracker_predictor->CoTrackerOnlinePredictor/CoTrackerPredictor. build_cotracker.py hasduplicatefunctiondefinition; laterdefinitionactive andstrictmodelstate load supportswrappedmodel. Onlinehubversion3 window16, offlinehubwindow60 despiteofflinefunctiondocstring16; offlineconstructor/modelarchitecture distinct. online_demo.py streamsimageio chunks andinitializesquerystate once; demo/fullvideo route notstrictperframeMOT.",
+        "core_model_files_and_shapes": "cotracker/models/core/cotracker/{cotracker3_online,cotracker3_offline,cotracker,blocks}.py pluspredictor.py. RGB[B,T,3,H,W] resized384x512, query[B,N,3](frame,x,y); BasicEncoderstride4 produces128dimmap, fourcorrlevels/radius3, local4D7x7x7x7correlationflatten2401->384->256; updateformerinput1110 hidden384,3time/3spaceblocks with64virtualtracks. Rawoutputscoords[B,T,N,2],visibleprob/confidence[B,T,N] anditerativetrainstates. Wrappermultipliesvis*confidence then>.6Boolean; supportsoptional6x6gridqueries. Outputpoints/Booleanconfidence are not fishID embeddings orGTocclusion.",
+        "loss_and_positive_negative_construction": "Kubrictrain sampledqueriedvisiblepoints (firstvisible/randomquerytime), shuffleddataloader, temporal/spatial/appearanceaugmentations andsynthetictrajectory/visibilitytargets. sequence_loss gamma.8 iterationweights, L1 orHuberdelta6, valid+visible/invisible masks; weightsvisibleflow.05/invisible.01; BCEvisible andconfidencewithin12pixelerror(gradientstoppedcoordinateerror, visibilitymasked). Realtrainingchoosesrandomonline/offlineCoTracker/TAPIRteacher underno_grad, currentclip fullteacher pointpseudo-labels andvis>.9; teacherlabelsnotphysicalfishID orindependently annotatedocclusion. No PKIDCE/sameframecrossfishnegatives. real_dataset.py __init__ deliberatelyraisesValueError requiringuser-collectedunreleasedrealvideos; originalscaleddatareproductionunavailable.",
+        "pretrained_sources": "BaselineKubricMOVI-f; scaledcheckpoint fine-tunes withunreleasedrealvideo pseudo-labelpipeline initializedfrombaseline. hubURLs officialfacebook/cotracker3 scaled_online.pth/scaled_offline.pth, separateweights notjustAPIsamecheckpoint. Teacherensemble includesotherpointtrackers, dataset/license terms separate. No truezerofishdataoverlap certification: unpublishedcorpus/stopwordfilternotproof. No benchmarkweightsloaded orscientificMFTpointvisibilityresultclaimed.",
+        "future_information_and_online_path": "Offlineencoder/updateformer canattendwholeinputvideoT andoptionalbackward_tracking reversesvideo; notstrictonline. Onlinepredictor initialcall storesqueries/initializesmodel andreturns(None,None), then16framewindows/step8; modelretainsstate andonline_ind+=8, checksT<=window, padsremainingwithlastobservedframe. Temporalattentionwithinwindow isbidirectional; earlierpointoutputs maydependonlaterframeswithinwindow/arecomputedwithdelay. online_demo processesobservedchunks beforeappendnextframe, causalwithrespect tolatestavailableframe, butnot automaticallyzero-latencyperframefeedback. StrictMFTadaptationmustdeclarechunkdelay/prefixrecomputation/emissionpolicy andneverprovidebeyondcurrentframe. Pseudo teacherfuturewithintrainclipisoffline supervisiononly.",
+        "GPU_CUDA_dependencies": "PyTorch/torchvision/einops/OpenCV/imageio+FFMPEG/scipy/Hydra/evaluation/LightningLite fortraining; coreconv/correlation/grid sampling/attentionordinaryTorch, GPUrecommended, no obligatorynewcustomCUDAkernelidentified ininspectedpath. setup.py install_requires emptydoesnotprove dependenciesabsent. trainingdefault32GPU/50kKubric andscaledrealsteps outside4GPUbudget; wrapperfullwindow recomputation/pointcountmaydominaterawlatency. Source/runtimepackagesnotinstalled/executed; currenttorch2compatibility remainsunmeasured.",
+        "IR_MFT_compatibility": "Potentialindependentobservablepoint-motion/visibility proxy onpredictedcurrentfishregions orboundedpastcropwindows. Need detector-derivedbirthquerypoints/pointownership andGT-freecurrentbox conditioning; pointqueryindex cannotbeusedasphysicalfishidentity. Changesinpointvisibilitythreshold/padding/window/occlusion/lifecycle mustbeisolated. Cachefullsequencepointtracks cannotcountasstrictonline input; offline/online originalbenchmarks incomparablewithMFTsameinputHungarianuntilproperadaptation.",
+        "mechanisms_to_port_and_exclude": "Independently test localpointcorrespondence/confidence asobservableevidence withexplicitpast-window/latency/sourcebounds; comparecheapcausalopticalflow andgeometry controls. ExcludeCCBYNCsourcecopyintoMITrepo, offlinefullvideo/backwardpredictions ascurrentinputs, unreleasedrealvideosaspublicreproduction, pretrainedmodellicensingassumptions andprovidedqueryIDasfishIDtruth. vis*confidence wrappermask iscombinedprediction, notpureocclusionGT. No replacingfullMOTwithSOT/pointmetrics.",
+        "novelty_overlap": "Jointspatiotemporalpointattention, virtualpoints, confidence/occludedpointprediction andteacherpseudo-labeling areestablished. Learnedlocalcorrespondence/visibility aloneoverlappriorwork; EvidenceFishMOTmustdemonstratephysicalidentitypersistence andsameinputcausalassignmentimprovements beyondpointtrackerproxy/cost/runtimeconfounds."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "214ec02decccf2b5d10477398018f7b6b69d20e2b9e16d483f130595424adabf",
+          "git_blob_sha1": "d7e05175054166c16aeaac5ddf937c5ffcc0f1b2",
+          "bytes": 17804,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "LICENSE.md": {
+          "sha256": "1d8ca66080a2701508a70be4ddad4be28c509bcc3397a682fb8edf767fdd7a00",
+          "git_blob_sha1": "e395ca3e2cdebf48a6375a3c1022d10caabba7db",
+          "bytes": 19332,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "setup.py": {
+          "sha256": "efe939de63c26ad3045fcde411893429f83d4cdfe1909a184897cf9aa803e5ab",
+          "git_blob_sha1": "a7aae5f0df37891ec89037a731d3acb029df7a39",
+          "bytes": 462,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "hubconf.py": {
+          "sha256": "7f43a7007762cf71d771fa218047b7e9011f1ec0705270aa7e5b10de157274f3",
+          "git_blob_sha1": "e8365279946241259b1b3ce5fdd7454043faf043",
+          "bytes": 4048,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "online_demo.py": {
+          "sha256": "003576e27e2f496e255c86e6df59b19ff2a18c3ee56e4d1dd3f408918340840f",
+          "git_blob_sha1": "5514f86f1b578d32833d0f955b93ee6558dfc779",
+          "bytes": 3261,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/predictor.py": {
+          "sha256": "783536d6c77790fa6c8e005f2df1d6bd4f0d8955c2c67d464bfb4e64d366375f",
+          "git_blob_sha1": "da7e7aba1c4ad988a111c2c81bb492de966a375e",
+          "bytes": 11500,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/build_cotracker.py": {
+          "sha256": "72a2d04fafb26c7f2ee0d7236fa63d5a7adbc9a9f1bab1d68f41bdd1ea657c89",
+          "git_blob_sha1": "8710a836e27fb250552fa0873abc778e819751e6",
+          "bytes": 1500,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/core/cotracker/cotracker3_online.py": {
+          "sha256": "4c8bfce5546d85ba22c6b5292b870ad2aa0af1e0b6ba5a22e644c39bb496475e",
+          "git_blob_sha1": "8748a4f7eb59b63e717914cc2d1b54af0ad891ae",
+          "bytes": 20945,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/core/cotracker/cotracker3_offline.py": {
+          "sha256": "41cff5b775ca071ff12bce23ef7887cb639171da84a32e0d75194661101ce238",
+          "git_blob_sha1": "01990373612a7440ac6147acf5efd7f24e4dd5e2",
+          "bytes": 8701,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/core/cotracker/cotracker.py": {
+          "sha256": "711df4fc7d109824e52f8e111df396a2e7d844796084f1f6a4419690c14e6b28",
+          "git_blob_sha1": "5f23f9c856c05f6060312c25054b90c317bfdba7",
+          "bytes": 21682,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/core/cotracker/blocks.py": {
+          "sha256": "65a742fbec3d6a6eed26d40fc7d1179c609b7a35e2cd4b1146ea7800089d6823",
+          "git_blob_sha1": "12dd7992e8ff80a81a58d6a1b3bb25edcd975669",
+          "bytes": 13946,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/models/core/cotracker/losses.py": {
+          "sha256": "fe23dacbfa563f9499e39f78338aad046145211d80f4674e723a6625afb22043",
+          "git_blob_sha1": "e9286ec8951404fb20c509cfd6ee08b0a32ab66d",
+          "bytes": 4228,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/utils/train_utils.py": {
+          "sha256": "235bd0cfeb0285125f0d372649fe97496847b1afefccf05188f0d0694f417151",
+          "git_blob_sha1": "5463295cfff6bee5508a1238beed117ef0072a06",
+          "bytes": 8703,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "train_on_real_data.py": {
+          "sha256": "55a3a89ddb3fff612f0e442669167b548fb2c6890164ba8953721b1f39de683f",
+          "git_blob_sha1": "72fc56519f5a92fb73d883bc4b5a435ee38385e1",
+          "bytes": 29722,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "train_on_kubric.py": {
+          "sha256": "64c99af55f078700ebc8d5f563ffdee8e4ec8f3f52ae724abca8555a03291f54",
+          "git_blob_sha1": "e293cb26b28ee2eb8ace0c9a59b0170425292c19",
+          "bytes": 24538,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/datasets/kubric_movif_dataset.py": {
+          "sha256": "c8cb9537c44cfbff1c13b2251a5947126f0baa65fe7ced48edf2218493c6c663",
+          "git_blob_sha1": "208196f2ddf71434c11d471745ed19e01af5c7f5",
+          "bytes": 20085,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        },
+        "cotracker/datasets/real_dataset.py": {
+          "sha256": "889edb66f65151dfac3271c91ecc47c1490508f54cc1fe0f7860e699f9a1da1e",
+          "git_blob_sha1": "5a51e9d15e46a02a4361816ae6e77660edd62aad",
+          "bytes": 8417,
+          "verified_against_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+          "inspection_scope": "Actualonline/offlinehubbuilder/predictor/coretemporalwindows/loss/data/train/licensepaths read, includingstateinitialization/stepdelay andprivate-realdataerror; noexternalcode/weights executed."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/cotracker3_semantic_source_proof_v1.json"
     },
     "SAM2": {
       "name": "SAM2",
@@ -2370,9 +3069,9 @@
     "COVTrack": {
       "name": "COVTrack",
       "github": "https://github.com/zekunqian/COVTrack",
-      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/COVTrack",
+      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_COVTrack",
       "audit_status": "NOT_AUDITED",
-      "status": "ACQUISITION_FAILED",
+      "status": "PINNED_SOURCE_SNAPSHOT_READY",
       "error": "RuntimeError('Three source acquisition attempts failed; see preserved log')",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/COVTrack",
       "required_unverified_fields": [
@@ -2389,12 +3088,210 @@
         "novelty_overlap"
       ],
       "source_http_followup": {
-        "semantic_audit": "NOT_COMPLETE",
-        "status": "ACQUISITION_FAILED",
-        "error": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+        "commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_COVTrack",
+        "status": "SELECTED_SOURCE_COMPLETE",
+        "semantic_audit": "NOT_COMPLETE"
       },
-      "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "6c1b021ac2fc5e08b05c28f67d17efa1cce02cb0",
+          "sha256": "4a074aa893b2efa7030b38ef9b01669ed5a0ab6a8c4274a3232d4693d9d7571d",
+          "bytes": 11343,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "README.md": {
+          "git_blob_sha": "da56c01ac4ad82bf3d1a343434e870e0683af68b",
+          "sha256": "f816db21e12f2bc770d9c912a82e631d2b3e6a4b7c27b1d2a1daffe928410d89",
+          "bytes": 9973,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "7d7f92a84025ef20efe836fc9d8bc6eab41cee09",
+          "sha256": "0f1d72c2360176798521b5eec202d06275d782686ade9b3c8203869128f18ddf",
+          "bytes": 93,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tools/train.py": {
+          "git_blob_sha": "71f08331c646f0a042ae5eb850e604c4ce4f41eb",
+          "sha256": "ae1f27bef43dbeebb1d41f1f48843e6c68cab79b4f2666c4130e7b4ccb8097aa",
+          "bytes": 6629,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/apis/train.py": {
+          "git_blob_sha": "969a26c1151f308913817d34dbd2a984360acff9",
+          "sha256": "e02640df360efdd0402de303ffec1f320b487e044cd83ff1da031a902dbcb469",
+          "bytes": 4836,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "run_later.py": {
+          "git_blob_sha": "1c527e354b017564ffa3a60d5b4a6d577c2c36a8",
+          "sha256": "7eb37762cce0dd4b7b4b2c71c381663217739c4594ca8e822d96d09cb4f0286b",
+          "bytes": 6906,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "setup.py": {
+          "git_blob_sha": "54da445c35e6dc96589f23271d3b1474ed39bd96",
+          "sha256": "a2364ec042dd8dfe3374f2b9dfe12790efbc9599eece839315faaeae8f570de7",
+          "bytes": 3345,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "docs/GET_STARTED.md": {
+          "git_blob_sha": "ce708c32ad38cfbe54e438c57d182405679c25cd",
+          "sha256": "b1789ca9d611a1054b4e2aca0bd852d746be2f3ec2bfd8d022235bafa2049ecc",
+          "bytes": 7022,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "docs/INSTALL.md": {
+          "git_blob_sha": "2566357869dc49fd3601639bda8124163d87d26e",
+          "sha256": "00c2f451af369c106a70a863c482e933e644fcc8d48153e02541d6731eccbc13",
+          "bytes": 531,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/__init__.py": {
+          "git_blob_sha": "779cc85ce8316947d611c8abcd9699aa6cf04c78",
+          "sha256": "d805bb87afc2c15b06f13a28ed687dc04599177be0c9d4be17cb0e0f1d2f6213",
+          "bytes": 92,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/version.py": {
+          "git_blob_sha": "05910dd28184a1514fb0d51a8b3fb64f46001580",
+          "sha256": "06ec52d80df4f37d6272d1b5223c9ba0659efc5611cbff4ffbcafbc9d6a900e2",
+          "bytes": 100,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tools/eval_teta_from_formated_results.py": {
+          "git_blob_sha": "181ee8e8fd844ae37ac9215c2b3fb9c0ed277991",
+          "sha256": "dbc149c370ff373869e2bc5f4a2f16e0a636750e2a9988107ae872038588f6ec",
+          "bytes": 43128,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tools/inference.py": {
+          "git_blob_sha": "90ac79ff0b163070e56047d90928b00cad63297b",
+          "sha256": "df3066f75825a5bd0a293538f8561b121ade3ac2c5c1d72d57398facef8634b5",
+          "bytes": 6354,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tools/test.py": {
+          "git_blob_sha": "43b82428eaedd17950742fd0f5214405e0306c48",
+          "sha256": "c85055c3cec701ceaad70f151d324054173eccaeac0808e3d2ed2188e52f55fb",
+          "bytes": 27033,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tools/to_bdd100k.py": {
+          "git_blob_sha": "86ce98ec6337be4860b0b56faf46499c8d7519c5",
+          "sha256": "a3de9fcd284841d060233863ef38ca2e78832a73baca3711c885f3e1519c1b88",
+          "bytes": 1937,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/_base_/faster_rcnn_r50_fpn.py": {
+          "git_blob_sha": "1ef8e7b2579504e7614429609524ae38239701cc",
+          "sha256": "b8a7255c186f09ebf2b3a0b2ec7fc43411ad4dedf6da628f18d7aa3097d69b5b",
+          "bytes": 3632,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/_base_/qdtrack_faster_rcnn_r50_fpn.py": {
+          "git_blob_sha": "be37b4fe1b8ea9f0c7a8dd19836cd171f1f45038",
+          "sha256": "98c3f9f84043d75b155adc74e5b2eae6ee6a99f45ed76b8a7ca4e770ff66729a",
+          "bytes": 1557,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/ovtrack-custom/ovtrack_r50.py": {
+          "git_blob_sha": "213f56737ed36a73b8be4d3933dbe922c4ce7065",
+          "sha256": "47d1e2943b786ea046bdc8c7b4efe8ef399383d4cb2778c985cd9c94c09a8d41",
+          "bytes": 7757,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/ovtrack-tao/ovtrack_r50.py": {
+          "git_blob_sha": "307b0bab88819387da57a1d589e9d0536c0d0dd5",
+          "sha256": "63a221cd1884ca937a6283a28d2cc6332d66bf3d74b9d3d781c6f9fdb205410f",
+          "bytes": 10469,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/ovtrack-tao/ovtrack_r50_self_train_fintune_tao.py": {
+          "git_blob_sha": "4da6dbf686fe516b2c785a83de163be525f7c575",
+          "sha256": "ce5592a27744790d8299d84da02b96d7339a557fb8c528df3f2a454746449e95",
+          "bytes": 14905,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/ovtrack-teta/ovtrack_r50.py": {
+          "git_blob_sha": "66eafbca636322171ed55332b0f16abd0ae39f38",
+          "sha256": "5c99c3eb61f02d339fd5681b5a03615e27e5901d41a833225e25a027773c5d08",
+          "bytes": 12561,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/uncertainty-ovtrack-teta/ovtrack_r50_ctao_train.py": {
+          "git_blob_sha": "1099e6caaca06620c0638e178204bd534b556f18",
+          "sha256": "282468d93c21b153b755047398b2fe8e95a8d67c003175309e337f9ed5bb600a",
+          "bytes": 13410,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/apis/__init__.py": {
+          "git_blob_sha": "0469b6855a3e498e5b85f31af4cf7340ed58df88",
+          "sha256": "02456a5dc4f68a433bc0eafce802ebb518f71fc735ba13b511137ae5008e6176",
+          "bytes": 252,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/apis/inference.py": {
+          "git_blob_sha": "fd0369f5c0a4468c63c7f40d1a393280d084392b",
+          "sha256": "1b9a2a9f0735d82dfb3d2e7083bafed25a5b8867a1bff47acc5e6f3982893012",
+          "bytes": 4865,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/apis/test.py": {
+          "git_blob_sha": "53a3676e60a532a599a02cd40ad6ddf23468e80c",
+          "sha256": "3fdd786363a5afa5178e33ef600edba75eb280c9ea224fa425f18be445cd0e8a",
+          "bytes": 4029,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/core/__init__.py": {
+          "git_blob_sha": "56cc1751c2ed8dbe69925ba17a10981b1bec6a70",
+          "sha256": "44e68cbf098903f9e3ffb5993fa7c618c05a46bf1ce1e7ba88822b9c1a5ce579",
+          "bytes": 128,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/CustomVideoDataset.py": {
+          "git_blob_sha": "02f66294cb520be6c85cf5b41daeb3cd8a7c81db",
+          "sha256": "27a6548695952abf70f3069261a096f2e56e05924780eefc93e6dd80eacbacb6",
+          "bytes": 231,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/__init__.py": {
+          "git_blob_sha": "85840e81303b93a23818b657e354c4453621c4ba",
+          "sha256": "f9dca3312066a961b72cfa5e388fed09ec3b8052c93413f4b5a5b8655e6953b4",
+          "bytes": 1123,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/bdd_video_dataset.py": {
+          "git_blob_sha": "9552acbe0a3900ec0b24c1dd59843b1b738ce4d5",
+          "sha256": "f18e4978ed37b49522168a1f0089ddcb6fab5c69e9b1cfbe152ae64612b962a1",
+          "bytes": 13332,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/builder.py": {
+          "git_blob_sha": "d929f337a2ad8ff3d9279cf0e56677c29a740960",
+          "sha256": "849656eb9b778e649a7110393d241798bf6d9cfc09b513e23d5174381f91b4a0",
+          "bytes": 5875,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/coco_video_dataset.py": {
+          "git_blob_sha": "6183d33f447b11d49cc327fc98cf658659e0a91a",
+          "sha256": "58cbabf6741580aeccc9de54f75c8be50b324d0aabd311c8e9791889b82d5679",
+          "bytes": 12977,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "ovtrack/datasets/custom_video_dataset.py": {
+          "git_blob_sha": "aa47165cb51a0adb0ebb299ba7d37fea98075318",
+          "sha256": "2b92f4fb27e82db209fc8094c8413183352079881a99b059f0a990c0d52567a3",
+          "bytes": 9590,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {},
+      "commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+      "previous_inventory_status": "ACQUISITION_FAILED",
+      "source_acquisition_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/covtrack_pinned_source_followup_v2.json",
+      "source_acquisition_manifest_sha256": "98d3cb5210b392718ea258a3b31cbbaaf28df0a34cb9a84fbcf5ca593f9480bf"
     },
     "TrackTrack": {
       "name": "TrackTrack",
