@@ -21,3 +21,16 @@ DINOv2 frozen47,751crop extraction completed with synchronized per-batch cache e
 DINO supervised firstfold seed0 training loops take55.34/63.86/75.05/73.43seconds for global/simple/capacity/patch attention, excluding data verification, final heldout encoding and diagnostics; peak allocated GPU memory is about0.64–0.66GB. All four use3,551,232trainable backbone parameters; heads175,872/323,329/1,595,714/1,595,714. These cache-based fitting costs are not raw online FPS. Complete decode/IR/detection batch8/RGB crop batch128/memory/assignment/output accounting, same-coordinate producer and full native all-frame timing remain pending.
 
 LocalJEPA v1 adapter/control training and diagnostics run CPU-only with two threads perworker, leaving the four registeredGPU0-3visual workers intact. Each first-seed model completes1200actual CPUupdates; all optimizer/EMA/parameter-change and per-epoch walltime fields are numeric/hash-linked. Cached scene forward-time quantiles are not raw RGB/IR/decode/detection/crop/native-assignment/output FPS. Future inference should compare directcontext evidence with training-onlyprediction overhead separately.
+
+## Current RGB native extraction and first context identity replay
+
+Each native frame decodes only its current RGB, uses unchanged causalV3current proposals and fixed padded128 FP32 encoder calls. Normalized crop pixels use the exact registered FP16 quantization. No future minibatching, annotation, GT box, identity label or teacher enters feature production. The complete four runs have synchronized timings:
+
+| Video / encoder | Frames | RGB decode (s) | Crop/mask (s) | Resize/transfer (s) | Encoder (s) | Elapsed (s) | p50 / p95 (ms) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| SN-001 / supervised_DINO_global_embedding384 | 684 | 4.75 | 15.93 | 26.38 | 46.33 | 110.24 | 159.75 / 168.88 |
+| SN-001 / frozen_DINO_CLS384 | 684 | 4.81 | 16.48 | 25.98 | 45.90 | 110.44 | 159.94 / 170.67 |
+| SN-015 / supervised_DINO_global_embedding384 | 6570 | 43.00 | 137.16 | 245.80 | 432.37 | 1015.89 | 153.50 / 161.39 |
+| SN-015 / frozen_DINO_CLS384 | 6570 | 43.88 | 142.41 | 243.39 | 424.40 | 1009.72 | 152.71 / 160.68 |
+
+Peak allocated GPU memory is about0.5GB perproducer, with CUDA context additional. Separate CPU cache replay for V2full6570SN015frames takes249.55s; teacher and prediction decoder are excluded. These are shared-machine single-run stage timings, not isolated repeatable latency estimates, and they omit causalIR/V3generation/detection. No complete raw FPS is claimed. An idle-GPU check is performed twice before native allocation; onlyGPU0–3 are used. Latest space/campaign snapshot supersedes earlier historical free-space and finished-GPU paragraphs.

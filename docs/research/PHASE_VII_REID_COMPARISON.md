@@ -172,3 +172,41 @@ All72 K4fits/paired diagnostics now complete: six distinct outer videos, inner n
 | SN-015 | 57.937 | 63.386 ±0.716 | 63.016 ±0.420 | 62.857 ±0.991 | 62.857 ±0.572 |
 
 Global mean improves over frozen DINO in6/6 outer videos; PF001 has one improving seed and two equal-baseline seeds. Macro over videos then sampleSD across three seeds: frozen33.869%, global36.198±0.419%, simple36.260±0.377%, capacity36.191±0.241%, patch attention35.980±0.309%. Local spatial attention does not consistently exceed global/capacity; simple pooling has only a small macro difference. No new local novelty, biological-identity disjointness, external-scene or native-MOT claim. K8 continues under the unchanged registered recipe. PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json contains full primary actual/paired GT/detector allgapR1/R5/mAP/AUC/EER, perseed/fold support/hash/update/time evidence; all raw/local descriptors remain in linked exact diagnostics.
+
+## Completed K8 confirmation and native producer
+
+All144 supervised DINO fits/diagnostics are complete: K4/K8 × sixouter/inner folds × four controls × three seeds. The unchanged registered K8 recipe gives actual-detector gap25 macroR1 (mean ± sampleSD over training seeds), frozen33.869%:
+
+| K8 control | Rank1 (%) |
+|---|---:|
+| global | 36.028 ±0.151 |
+| simple | 36.061 ±0.204 |
+| global_capacity | 36.371 ±0.087 |
+| patch_attention | 36.013 ±0.352 |
+
+Patchattention36.013±0.352% does not beat matched active-capacity CLS36.371±0.087%. Full actual/paired GT/detector allgap/R1/R5/mAP/AUC/EER, sampling/source/fit-only/checkpoint proofs are in PHASE_VII_DINOV2_FISH_ALL_FOLDS_K8_MEASURED.json. The previous deterministic restart audit certifies its separately controlled execution, not all144 original uncontrolled fits.
+
+Current-only native RGB/proposal encoding is now complete for frozen and fit-only global seed0 on SN001684frames and SN0156570frames, fixed FP32 current-frame padding128. Exact registered FP16 crop-pixel quantization is retained. Matched512detector-crop samples per producer/video give maximum component difference1.535e-6 and cosine difference2.384e-7 against the training feature operator; this is measured numerical agreement, not byte equality. Allsix/allthree-seed global/patchattention and frozen feature extraction plus last/FIFO/EMA actual endogenous-history fullvideo replay/official scoring are active under immutable sources. Native matched-capacity and stronger same-input source adaptations, newly fitted ordinary GRU coordinates and full raw decode/causalIR/V3 profiling remain required.
+
+## First complete-video current-producer comparisons
+
+Fixed currentRGB/crops/proposals,384coordinate guards, last4 endogenous accepted observations, unchanged tracker lifecycle/geometry and fixed appearanceweight0.3/proximityIoU0.1. Every run covers all684SN001or6570SN015frames, including empty states; labels/GT/teacher/future are excluded online. Metrics use the pinned official TrackEval and audited same GT only after replay. No outer parameter/threshold selection.
+
+| Video / producer / memory | HOTA | AssA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|
+| native_identity_context_full_SN-015_s0_v2 | 30.694 | 13.405 | 25.298 | 91.032 | 146 |
+| native_identity_frozen_SN-001_ema_s0_v1 | 43.018 | 30.899 | 60.428 | 78.966 | 26 |
+| native_identity_frozen_SN-001_fifo_s0_v1 | 43.023 | 30.907 | 60.443 | 78.996 | 24 |
+| native_identity_frozen_SN-001_last_s0_v1 | 42.508 | 30.198 | 58.581 | 78.981 | 25 |
+| native_identity_frozen_SN-015_ema_s0_v1 | 30.717 | 13.405 | 26.475 | 91.003 | 153 |
+| native_identity_frozen_SN-015_fifo_s0_v1 | 32.225 | 14.786 | 30.445 | 91.019 | 152 |
+| native_identity_frozen_SN-015_last_s0_v1 | 30.421 | 13.155 | 26.650 | 91.024 | 152 |
+| native_identity_global_SN-001_ema_s0_v1 | 43.018 | 30.899 | 60.428 | 78.966 | 26 |
+| native_identity_global_SN-001_fifo_s0_v1 | 43.016 | 30.897 | 60.443 | 78.996 | 24 |
+| native_identity_global_SN-001_last_s0_v1 | 42.501 | 30.189 | 58.581 | 78.981 | 25 |
+| native_identity_global_SN-015_ema_s0_v1 | 32.252 | 14.797 | 29.313 | 90.992 | 157 |
+| native_identity_global_SN-015_fifo_s0_v1 | 32.042 | 14.633 | 29.527 | 90.992 | 156 |
+| native_identity_global_SN-015_last_s0_v1 | 32.162 | 14.727 | 29.798 | 91.019 | 157 |
+| native_identity_local_global_SN-015_s0_v1 | 31.017 | 13.664 | 26.362 | 91.003 | 145 |
+
+The stronger offline crop retrieval does not yet yield stable native tracking gains: globalFIFO is32.042vsfrozen32.225HOTA onSN015 and43.016vs43.023onSN001. Identical SN001IDF1 is not identical prediction bytes. V2contextfullseed0has30.694HOTA/25.298IDF1/146switches, versusfrozenFIFO32.225/30.445/152; fewer switches does not establish better identity continuity. Original Bglobal native31.017/26.362/145also underperforms FIFO despite strong clean-group retrieval. This distinguishes clean-history ranking from endogenous association and fragmentation; no positive local/JEPA/native contribution is claimed. The three-seed/fullsix campaigns retain all controls. Metrics/report/prediction hashes and all official rawalpha arrays are in PHASE_VII_NATIVE_CURRENT_IDENTITY_METRICS_MEASURED.json and linked external TrackEval reports.

@@ -1,0 +1,19 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "first_video": "SN-015",
+  "seed_plan": [0, 1, 2],
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "output": "Confirmednative tracks filtered bynativeKFbox area100; coordinates are actual current matched proposal measurements, matching frozen PhaseVII output protocol.",
+  "ordinary_controls": ["last", "fifo", "ema"],
+  "model_cost": "Known prototype pairlogits divided by the exact fitted common logit_scale, clampcosine[-1,1], appearance=(1-cosine)/2. No outer-selected threshold/calibration or changed geometry/lifecycle/proposal graph. Modelchanges only confirmedhigh-stage cues; unconfirmed/low/writes remain matchingordinaryFIFO.",
+  "scope": "Allnative frames, endogenous actual assigned proposal memories, no GT/physicalIDs/teacher/future. CommoncacheProtocolA fixedcausalV3 proposals/newcurrent-crop coordinate guards; decode/IR/detector/encoder excludedfromreplaytiming. Complete rawonline component/fullpipeline profile remains required. No original512GRU reused on384 or newJEPA superiority claim."
+}

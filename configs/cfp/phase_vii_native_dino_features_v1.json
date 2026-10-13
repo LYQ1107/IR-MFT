@@ -1,0 +1,17 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "first_video": "SN-015",
+  "seed_plan": [0, 1, 2],
+  "encoders": ["frozen", "global", "patch_attention"],
+  "first_local_count": 4,
+  "encoder_batch_padding": 128,
+  "precision": "FP32; TF32disabled; registered normalizedcropFP16pixelquantization",
+  "native_frame_order": "Every native frame in source proposal cache, current-image-only forward, including zero proposals. No future-frame crop minibatching or GT boxes/IDs/annotation files loaded.",
+  "proposals": "Exact frozen causalV3trainproposalcache allrows/order/scores; cacheProtocolA conditioning, historicaldetector exposure explicit. RawIR/V3batch8generation/detection profiling still separately required.",
+  "features": ["embedding384_FP32", "rawCLS384_FP32", "realK4local384_FP16", "contentFractionK4_FP32", "validBool"],
+  "coordinate_guards": "Exact pretrained/candidate encoder checkpointSHA, mode and fieldkind. A/B source coordinates differ even if all384; no old512GRU or frozenBGRU silently reused on adaptedAfeatures.",
+  "max_feature_bytes_per_video": 1073741824,
+  "reserve_gib": 40,
+  "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required."
+}

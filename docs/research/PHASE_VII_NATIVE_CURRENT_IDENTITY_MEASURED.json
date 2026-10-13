@@ -1,0 +1,986 @@
+{
+  "status": "IN_PROGRESS",
+  "completed_stage": "FOUR_FULL_NATIVE_CURRENT_FEATURE_PRODUCERS_AND_CONTEXT_IDENTITY_REPAIR",
+  "native_feature_runs": [
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/manifest.json",
+      "manifest_sha256": "a70eb15239190de79b0672f4867c33f2348384f5eacee3c6bbf457334984a93d",
+      "evidence": {
+        "status": "COMPLETE_NATIVE_CURRENT_DINO_FEATURES",
+        "config": {
+          "state": "FROZEN",
+          "videos": [
+            "BT-001",
+            "BT-003",
+            "MSK-002",
+            "PF-001",
+            "SN-001",
+            "SN-015"
+          ],
+          "first_video": "SN-015",
+          "seed_plan": [
+            0,
+            1,
+            2
+          ],
+          "encoders": [
+            "frozen",
+            "global",
+            "patch_attention"
+          ],
+          "first_local_count": 4,
+          "encoder_batch_padding": 128,
+          "precision": "FP32; TF32disabled; registered normalizedcropFP16pixelquantization",
+          "native_frame_order": "Every native frame in source proposal cache, current-image-only forward, including zero proposals. No future-frame crop minibatching or GT boxes/IDs/annotation files loaded.",
+          "proposals": "Exact frozen causalV3trainproposalcache allrows/order/scores; cacheProtocolA conditioning, historicaldetector exposure explicit. RawIR/V3batch8generation/detection profiling still separately required.",
+          "features": [
+            "embedding384_FP32",
+            "rawCLS384_FP32",
+            "realK4local384_FP16",
+            "contentFractionK4_FP32",
+            "validBool"
+          ],
+          "coordinate_guards": "Exact pretrained/candidate encoder checkpointSHA, mode and fieldkind. A/B source coordinates differ even if all384; no old512GRU or frozenBGRU silently reused on adaptedAfeatures.",
+          "max_feature_bytes_per_video": 1073741824,
+          "reserve_gib": 40,
+          "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required."
+        },
+        "config_sha256": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f",
+        "video": "SN-001",
+        "physical_gpu": "2",
+        "encoder": {
+          "backbone_pretrained_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "source_reference": "dinov2.models.vision_transformer",
+          "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+          "imported_source_proofs": {
+            "dinov2/__init__.py": {
+              "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+              "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+            },
+            "dinov2/hub/__init__.py": {
+              "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+              "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+            },
+            "dinov2/hub/utils.py": {
+              "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+              "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+            },
+            "dinov2/hub/backbones.py": {
+              "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+              "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+            },
+            "dinov2/layers/dino_head.py": {
+              "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+              "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+            },
+            "dinov2/layers/layer_scale.py": {
+              "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+              "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+            },
+            "dinov2/layers/mlp.py": {
+              "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+              "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+            },
+            "dinov2/layers/patch_embed.py": {
+              "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+              "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+            },
+            "dinov2/layers/swiglu_ffn.py": {
+              "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+              "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+            },
+            "dinov2/layers/attention.py": {
+              "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+              "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+            },
+            "dinov2/layers/drop_path.py": {
+              "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+              "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+            },
+            "dinov2/layers/block.py": {
+              "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+              "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+            },
+            "dinov2/layers/__init__.py": {
+              "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+              "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+            },
+            "dinov2/models/vision_transformer.py": {
+              "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+              "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+            },
+            "dinov2/models/__init__.py": {
+              "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+              "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
+            }
+          },
+          "trained_encoder": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_global_SN-001_k4_s0_v2",
+            "checkpoint_sha256": "578d5f6befb5334662af62843521ac0acc44692ab8de29046c2bfdd324689eef",
+            "manifest_sha256": "d96c5609ca8463454d129cfcd348ce9736f84cf7457756bb7ee79b7b1dac23db",
+            "fit": [
+              "BT-001",
+              "BT-003",
+              "MSK-002",
+              "PF-001"
+            ],
+            "inner": "SN-015",
+            "outer": "SN-001",
+            "seed": 0,
+            "count": 4,
+            "mode": "global"
+          },
+          "dimension": 384,
+          "crop_hw": [
+            128,
+            256
+          ],
+          "model_hw": [
+            126,
+            252
+          ],
+          "crop_margin": 0.05,
+          "pixel_quantization": "NormalizedcropFP32->FP16->FP32, exact registered pilot input bytes",
+          "encoder_precision": "FP32; TF32disabled",
+          "encoder_batch_padding": 128,
+          "coordinate_kind": "supervised_DINO_global_embedding384",
+          "local_kind": "current real content-weighted geometricK4; no anatomy/GTocclusion",
+          "fitting_scope": "Onlyfourfitting videos; distinctinner/outer excluded from visualgradients/state. Frozen inheriteddetector exposure remains explicit.",
+          "coordinate_sha256": "578d5f6befb5334662af62843521ac0acc44692ab8de29046c2bfdd324689eef"
+        },
+        "frame_paths_sha256": "68865f581231c0773ed5c1e9ca764741fab92bdaed6e1686d46d5c62089d65aa",
+        "detection_sha256": "719cf8b5b354c8005ba1bb658313f45feab45b57dff4d22db03722792991715c",
+        "detection_manifest_sha256": "bcc5cfeaae047f3b17f461e32b94f3fe5a33ba59968cd28c34cdec1bbd16e1e9",
+        "source_commit": "a2edc66a004b8e899537f5df5b9a46933c26cf95",
+        "sources": {
+          "tools/cfp_extract_native_dino_features.py": "4357a8e7a4aaa4983cd85af35617a1f00dd60b6a6a03911229966912b6b073fa",
+          "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+          "cfp/dinov2_identity.py": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1",
+          "cfp/dinov2_fish_encoder.py": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0",
+          "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+          "cfp/identity_data.py": "2452b3e794f7648d0367c16ac3b78851f1cbaa228f09e72b6da0ffdb1cc90a48",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+          "configs/cfp/phase_vii_native_dino_features_v1.json": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f"
+        },
+        "completed_frames": 684,
+        "frames": 684,
+        "proposals": 7718,
+        "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required.",
+        "guard": "No annotations/GTbbox/physicalIDs/teacher/futureimages loaded by feature production; metadata framepaths only, original currentproposal rows unchanged.",
+        "stage_seconds": {
+          "rgb_decode_seconds": 4.754550112011202,
+          "current_crop_and_mask_seconds": 15.930678589102172,
+          "resize_transfer_seconds": 26.382262075072504,
+          "encoder_seconds": 46.333176051099144,
+          "feature_transfer_seconds": 0.26840529984474415
+        },
+        "elapsed_seconds": 110.2438006070006,
+        "current_input_digest": "05a5d6971e057787301df1f1310a63c2e23f61ba25ff772a25c6c6077182371f",
+        "current_frame_latency_p50_p95_ms": [
+          159.75365499980398,
+          168.87732979994325
+        ],
+        "empty_proposal_frames": 0,
+        "valid_crop_proposals": 7718,
+        "peak_gpu_allocated_bytes": 505154560,
+        "artifacts": {
+          "embedding": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/embedding.npy",
+            "sha256": "e0427b2fd98ef0713744b8fb03d30a02482decbe907d934e73f68fa62821ecb8",
+            "shape": [
+              7718,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "raw_cls": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/raw_cls.npy",
+            "sha256": "8331b9b14e34d26901fc014e55c9107e56fbebd2d2a7f64b94cded33408a760e",
+            "shape": [
+              7718,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "local4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/local4.npy",
+            "sha256": "bdeda7e6aa61fd673d02856aa782b041e8eab7246830965ebbe641358cb31875",
+            "shape": [
+              7718,
+              4,
+              384
+            ],
+            "dtype": "float16"
+          },
+          "visibility4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/visibility4.npy",
+            "sha256": "30d989f99c676e5bfb4072df564b950433c9eaed63ba5d10406ba687abc71f56",
+            "shape": [
+              7718,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "valid": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-001_k4_s0_v1/valid.npy",
+            "sha256": "5ce043b850993cc38c8215175033319305588e8524aad941724d75a1d09776aa",
+            "shape": [
+              7718
+            ],
+            "dtype": "bool"
+          }
+        },
+        "frame_ids_sha256": "5d2ae94c47529690bf2e2ceade2c8a05060ed4334274f5f1f210197b17aed49a",
+        "offsets_sha256": "6fdc0b154b2cf6b84128ef8d6fdf27d1b349c4b098be86c7b9999cea828092fa"
+      }
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/manifest.json",
+      "manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "evidence": {
+        "status": "COMPLETE_NATIVE_CURRENT_DINO_FEATURES",
+        "config": {
+          "state": "FROZEN",
+          "videos": [
+            "BT-001",
+            "BT-003",
+            "MSK-002",
+            "PF-001",
+            "SN-001",
+            "SN-015"
+          ],
+          "first_video": "SN-015",
+          "seed_plan": [
+            0,
+            1,
+            2
+          ],
+          "encoders": [
+            "frozen",
+            "global",
+            "patch_attention"
+          ],
+          "first_local_count": 4,
+          "encoder_batch_padding": 128,
+          "precision": "FP32; TF32disabled; registered normalizedcropFP16pixelquantization",
+          "native_frame_order": "Every native frame in source proposal cache, current-image-only forward, including zero proposals. No future-frame crop minibatching or GT boxes/IDs/annotation files loaded.",
+          "proposals": "Exact frozen causalV3trainproposalcache allrows/order/scores; cacheProtocolA conditioning, historicaldetector exposure explicit. RawIR/V3batch8generation/detection profiling still separately required.",
+          "features": [
+            "embedding384_FP32",
+            "rawCLS384_FP32",
+            "realK4local384_FP16",
+            "contentFractionK4_FP32",
+            "validBool"
+          ],
+          "coordinate_guards": "Exact pretrained/candidate encoder checkpointSHA, mode and fieldkind. A/B source coordinates differ even if all384; no old512GRU or frozenBGRU silently reused on adaptedAfeatures.",
+          "max_feature_bytes_per_video": 1073741824,
+          "reserve_gib": 40,
+          "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required."
+        },
+        "config_sha256": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f",
+        "video": "SN-001",
+        "physical_gpu": "3",
+        "encoder": {
+          "backbone_pretrained_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "source_reference": "dinov2.models.vision_transformer",
+          "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+          "imported_source_proofs": {
+            "dinov2/__init__.py": {
+              "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+              "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+            },
+            "dinov2/hub/__init__.py": {
+              "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+              "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+            },
+            "dinov2/hub/utils.py": {
+              "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+              "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+            },
+            "dinov2/hub/backbones.py": {
+              "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+              "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+            },
+            "dinov2/layers/dino_head.py": {
+              "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+              "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+            },
+            "dinov2/layers/layer_scale.py": {
+              "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+              "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+            },
+            "dinov2/layers/mlp.py": {
+              "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+              "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+            },
+            "dinov2/layers/patch_embed.py": {
+              "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+              "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+            },
+            "dinov2/layers/swiglu_ffn.py": {
+              "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+              "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+            },
+            "dinov2/layers/attention.py": {
+              "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+              "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+            },
+            "dinov2/layers/drop_path.py": {
+              "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+              "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+            },
+            "dinov2/layers/block.py": {
+              "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+              "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+            },
+            "dinov2/layers/__init__.py": {
+              "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+              "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+            },
+            "dinov2/models/vision_transformer.py": {
+              "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+              "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+            },
+            "dinov2/models/__init__.py": {
+              "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+              "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
+            }
+          },
+          "trained_encoder": null,
+          "dimension": 384,
+          "crop_hw": [
+            128,
+            256
+          ],
+          "model_hw": [
+            126,
+            252
+          ],
+          "crop_margin": 0.05,
+          "pixel_quantization": "NormalizedcropFP32->FP16->FP32, exact registered pilot input bytes",
+          "encoder_precision": "FP32; TF32disabled",
+          "encoder_batch_padding": 128,
+          "coordinate_kind": "frozen_DINO_CLS384",
+          "local_kind": "current real content-weighted geometricK4; no anatomy/GTocclusion",
+          "fitting_scope": "No fish fitting for frozen source; privatepretrain/video/biological overlap unverified",
+          "coordinate_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+        },
+        "frame_paths_sha256": "68865f581231c0773ed5c1e9ca764741fab92bdaed6e1686d46d5c62089d65aa",
+        "detection_sha256": "719cf8b5b354c8005ba1bb658313f45feab45b57dff4d22db03722792991715c",
+        "detection_manifest_sha256": "bcc5cfeaae047f3b17f461e32b94f3fe5a33ba59968cd28c34cdec1bbd16e1e9",
+        "source_commit": "a2edc66a004b8e899537f5df5b9a46933c26cf95",
+        "sources": {
+          "tools/cfp_extract_native_dino_features.py": "4357a8e7a4aaa4983cd85af35617a1f00dd60b6a6a03911229966912b6b073fa",
+          "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+          "cfp/dinov2_identity.py": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1",
+          "cfp/dinov2_fish_encoder.py": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0",
+          "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+          "cfp/identity_data.py": "2452b3e794f7648d0367c16ac3b78851f1cbaa228f09e72b6da0ffdb1cc90a48",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+          "configs/cfp/phase_vii_native_dino_features_v1.json": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f"
+        },
+        "completed_frames": 684,
+        "frames": 684,
+        "proposals": 7718,
+        "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required.",
+        "guard": "No annotations/GTbbox/physicalIDs/teacher/futureimages loaded by feature production; metadata framepaths only, original currentproposal rows unchanged.",
+        "stage_seconds": {
+          "rgb_decode_seconds": 4.812804465000227,
+          "current_crop_and_mask_seconds": 16.480257072988024,
+          "resize_transfer_seconds": 25.977180321984633,
+          "encoder_seconds": 45.895138594001764,
+          "feature_transfer_seconds": 0.28461873112246394
+        },
+        "elapsed_seconds": 110.44306815199525,
+        "current_input_digest": "05a5d6971e057787301df1f1310a63c2e23f61ba25ff772a25c6c6077182371f",
+        "current_frame_latency_p50_p95_ms": [
+          159.93506949962466,
+          170.66813704986998
+        ],
+        "empty_proposal_frames": 0,
+        "valid_crop_proposals": 7718,
+        "peak_gpu_allocated_bytes": 498118144,
+        "artifacts": {
+          "embedding": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/embedding.npy",
+            "sha256": "f3422881148183a00c00c9855cca3f32feb0debf965b27f2a200ccb7397335e4",
+            "shape": [
+              7718,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "raw_cls": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/raw_cls.npy",
+            "sha256": "f3422881148183a00c00c9855cca3f32feb0debf965b27f2a200ccb7397335e4",
+            "shape": [
+              7718,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "local4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/local4.npy",
+            "sha256": "cf38242e61f8f2916d4cef7a3e4c468a7f94f8d95de5ed595f594185bff33993",
+            "shape": [
+              7718,
+              4,
+              384
+            ],
+            "dtype": "float16"
+          },
+          "visibility4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/visibility4.npy",
+            "sha256": "30d989f99c676e5bfb4072df564b950433c9eaed63ba5d10406ba687abc71f56",
+            "shape": [
+              7718,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "valid": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-001_k4_v1/valid.npy",
+            "sha256": "5ce043b850993cc38c8215175033319305588e8524aad941724d75a1d09776aa",
+            "shape": [
+              7718
+            ],
+            "dtype": "bool"
+          }
+        },
+        "frame_ids_sha256": "5d2ae94c47529690bf2e2ceade2c8a05060ed4334274f5f1f210197b17aed49a",
+        "offsets_sha256": "6fdc0b154b2cf6b84128ef8d6fdf27d1b349c4b098be86c7b9999cea828092fa"
+      }
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/manifest.json",
+      "manifest_sha256": "86e0f695757b851b2a53ce0cf798583f81dac702e803e2e01ca45d9d0360ed6b",
+      "evidence": {
+        "status": "COMPLETE_NATIVE_CURRENT_DINO_FEATURES",
+        "config": {
+          "state": "FROZEN",
+          "videos": [
+            "BT-001",
+            "BT-003",
+            "MSK-002",
+            "PF-001",
+            "SN-001",
+            "SN-015"
+          ],
+          "first_video": "SN-015",
+          "seed_plan": [
+            0,
+            1,
+            2
+          ],
+          "encoders": [
+            "frozen",
+            "global",
+            "patch_attention"
+          ],
+          "first_local_count": 4,
+          "encoder_batch_padding": 128,
+          "precision": "FP32; TF32disabled; registered normalizedcropFP16pixelquantization",
+          "native_frame_order": "Every native frame in source proposal cache, current-image-only forward, including zero proposals. No future-frame crop minibatching or GT boxes/IDs/annotation files loaded.",
+          "proposals": "Exact frozen causalV3trainproposalcache allrows/order/scores; cacheProtocolA conditioning, historicaldetector exposure explicit. RawIR/V3batch8generation/detection profiling still separately required.",
+          "features": [
+            "embedding384_FP32",
+            "rawCLS384_FP32",
+            "realK4local384_FP16",
+            "contentFractionK4_FP32",
+            "validBool"
+          ],
+          "coordinate_guards": "Exact pretrained/candidate encoder checkpointSHA, mode and fieldkind. A/B source coordinates differ even if all384; no old512GRU or frozenBGRU silently reused on adaptedAfeatures.",
+          "max_feature_bytes_per_video": 1073741824,
+          "reserve_gib": 40,
+          "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required."
+        },
+        "config_sha256": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f",
+        "video": "SN-015",
+        "physical_gpu": "0",
+        "encoder": {
+          "backbone_pretrained_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "source_reference": "dinov2.models.vision_transformer",
+          "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+          "imported_source_proofs": {
+            "dinov2/__init__.py": {
+              "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+              "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+            },
+            "dinov2/hub/__init__.py": {
+              "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+              "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+            },
+            "dinov2/hub/utils.py": {
+              "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+              "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+            },
+            "dinov2/hub/backbones.py": {
+              "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+              "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+            },
+            "dinov2/layers/dino_head.py": {
+              "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+              "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+            },
+            "dinov2/layers/layer_scale.py": {
+              "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+              "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+            },
+            "dinov2/layers/mlp.py": {
+              "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+              "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+            },
+            "dinov2/layers/patch_embed.py": {
+              "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+              "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+            },
+            "dinov2/layers/swiglu_ffn.py": {
+              "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+              "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+            },
+            "dinov2/layers/attention.py": {
+              "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+              "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+            },
+            "dinov2/layers/drop_path.py": {
+              "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+              "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+            },
+            "dinov2/layers/block.py": {
+              "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+              "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+            },
+            "dinov2/layers/__init__.py": {
+              "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+              "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+            },
+            "dinov2/models/vision_transformer.py": {
+              "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+              "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+            },
+            "dinov2/models/__init__.py": {
+              "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+              "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
+            }
+          },
+          "trained_encoder": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_global_SN-015_k4_s0_v2",
+            "checkpoint_sha256": "5badbba96247f222899ae1049674357f7e5a4233d6445131b43a645472ff832e",
+            "manifest_sha256": "29c8a9ab9c59d00bf902afef4ec74cbaac5117ac13e659a1012c08c6fd86da84",
+            "fit": [
+              "BT-003",
+              "MSK-002",
+              "PF-001",
+              "SN-001"
+            ],
+            "inner": "BT-001",
+            "outer": "SN-015",
+            "seed": 0,
+            "count": 4,
+            "mode": "global"
+          },
+          "dimension": 384,
+          "crop_hw": [
+            128,
+            256
+          ],
+          "model_hw": [
+            126,
+            252
+          ],
+          "crop_margin": 0.05,
+          "pixel_quantization": "NormalizedcropFP32->FP16->FP32, exact registered pilot input bytes",
+          "encoder_precision": "FP32; TF32disabled",
+          "encoder_batch_padding": 128,
+          "coordinate_kind": "supervised_DINO_global_embedding384",
+          "local_kind": "current real content-weighted geometricK4; no anatomy/GTocclusion",
+          "fitting_scope": "Onlyfourfitting videos; distinctinner/outer excluded from visualgradients/state. Frozen inheriteddetector exposure remains explicit.",
+          "coordinate_sha256": "5badbba96247f222899ae1049674357f7e5a4233d6445131b43a645472ff832e"
+        },
+        "frame_paths_sha256": "de9b203a4043305b16f88ddd137dbed4d8ea118951022aeaac0beb1c4a00df00",
+        "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+        "detection_manifest_sha256": "bcc5cfeaae047f3b17f461e32b94f3fe5a33ba59968cd28c34cdec1bbd16e1e9",
+        "source_commit": "a2edc66a004b8e899537f5df5b9a46933c26cf95",
+        "sources": {
+          "tools/cfp_extract_native_dino_features.py": "4357a8e7a4aaa4983cd85af35617a1f00dd60b6a6a03911229966912b6b073fa",
+          "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+          "cfp/dinov2_identity.py": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1",
+          "cfp/dinov2_fish_encoder.py": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0",
+          "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+          "cfp/identity_data.py": "2452b3e794f7648d0367c16ac3b78851f1cbaa228f09e72b6da0ffdb1cc90a48",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+          "configs/cfp/phase_vii_native_dino_features_v1.json": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f"
+        },
+        "completed_frames": 6570,
+        "frames": 6570,
+        "proposals": 69190,
+        "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required.",
+        "guard": "No annotations/GTbbox/physicalIDs/teacher/futureimages loaded by feature production; metadata framepaths only, original currentproposal rows unchanged.",
+        "stage_seconds": {
+          "rgb_decode_seconds": 43.00192850227904,
+          "current_crop_and_mask_seconds": 137.15511092312227,
+          "resize_transfer_seconds": 245.7954951130232,
+          "encoder_seconds": 432.3679774068587,
+          "feature_transfer_seconds": 2.4253554691022146
+        },
+        "elapsed_seconds": 1015.8890825750059,
+        "current_input_digest": "e243ce4ff16c44b7ef72b194f701c71858e22bee797f6358c3deb3e553f4c8f1",
+        "current_frame_latency_p50_p95_ms": [
+          153.50404099808657,
+          161.38559414757762
+        ],
+        "empty_proposal_frames": 0,
+        "valid_crop_proposals": 69190,
+        "peak_gpu_allocated_bytes": 505159168,
+        "artifacts": {
+          "embedding": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/embedding.npy",
+            "sha256": "ec54ebd63c594299bb73c72fa9b4d04acb8c43dfb5b29997b3bafdb8220e0db0",
+            "shape": [
+              69190,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "raw_cls": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/raw_cls.npy",
+            "sha256": "a5284d710ec9bada23cd3d93c475d8f751a927a675198c1a65a80578323d0661",
+            "shape": [
+              69190,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "local4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/local4.npy",
+            "sha256": "e57f409ee6bdf4be368ba421fe6b420f346d68767a14b85bf0943f4b5b7a04dc",
+            "shape": [
+              69190,
+              4,
+              384
+            ],
+            "dtype": "float16"
+          },
+          "visibility4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/visibility4.npy",
+            "sha256": "3dedccec0816a354f1132538a821d168c6d4aa0c185b5762ce1aed0ac0282ce7",
+            "shape": [
+              69190,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "valid": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1/valid.npy",
+            "sha256": "4ecc9a5ef51239bcd7ecd803cab9470582b0a04910fab2a7ad89953657811f5a",
+            "shape": [
+              69190
+            ],
+            "dtype": "bool"
+          }
+        },
+        "frame_ids_sha256": "f4d36545e84e3e6d3db99ae5bf09e94a16698becac4f6769a390ca8fbb18d46c",
+        "offsets_sha256": "d185f1d0fd64311366230839504c7c19ffd191e9302c36356a8a7a77323f6269"
+      }
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/manifest.json",
+      "manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "evidence": {
+        "status": "COMPLETE_NATIVE_CURRENT_DINO_FEATURES",
+        "config": {
+          "state": "FROZEN",
+          "videos": [
+            "BT-001",
+            "BT-003",
+            "MSK-002",
+            "PF-001",
+            "SN-001",
+            "SN-015"
+          ],
+          "first_video": "SN-015",
+          "seed_plan": [
+            0,
+            1,
+            2
+          ],
+          "encoders": [
+            "frozen",
+            "global",
+            "patch_attention"
+          ],
+          "first_local_count": 4,
+          "encoder_batch_padding": 128,
+          "precision": "FP32; TF32disabled; registered normalizedcropFP16pixelquantization",
+          "native_frame_order": "Every native frame in source proposal cache, current-image-only forward, including zero proposals. No future-frame crop minibatching or GT boxes/IDs/annotation files loaded.",
+          "proposals": "Exact frozen causalV3trainproposalcache allrows/order/scores; cacheProtocolA conditioning, historicaldetector exposure explicit. RawIR/V3batch8generation/detection profiling still separately required.",
+          "features": [
+            "embedding384_FP32",
+            "rawCLS384_FP32",
+            "realK4local384_FP16",
+            "contentFractionK4_FP32",
+            "validBool"
+          ],
+          "coordinate_guards": "Exact pretrained/candidate encoder checkpointSHA, mode and fieldkind. A/B source coordinates differ even if all384; no old512GRU or frozenBGRU silently reused on adaptedAfeatures.",
+          "max_feature_bytes_per_video": 1073741824,
+          "reserve_gib": 40,
+          "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required."
+        },
+        "config_sha256": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f",
+        "video": "SN-015",
+        "physical_gpu": "1",
+        "encoder": {
+          "backbone_pretrained_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+          "source_reference": "dinov2.models.vision_transformer",
+          "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+          "imported_source_proofs": {
+            "dinov2/__init__.py": {
+              "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+              "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+            },
+            "dinov2/hub/__init__.py": {
+              "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+              "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+            },
+            "dinov2/hub/utils.py": {
+              "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+              "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+            },
+            "dinov2/hub/backbones.py": {
+              "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+              "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+            },
+            "dinov2/layers/dino_head.py": {
+              "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+              "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+            },
+            "dinov2/layers/layer_scale.py": {
+              "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+              "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+            },
+            "dinov2/layers/mlp.py": {
+              "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+              "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+            },
+            "dinov2/layers/patch_embed.py": {
+              "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+              "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+            },
+            "dinov2/layers/swiglu_ffn.py": {
+              "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+              "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+            },
+            "dinov2/layers/attention.py": {
+              "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+              "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+            },
+            "dinov2/layers/drop_path.py": {
+              "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+              "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+            },
+            "dinov2/layers/block.py": {
+              "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+              "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+            },
+            "dinov2/layers/__init__.py": {
+              "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+              "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+            },
+            "dinov2/models/vision_transformer.py": {
+              "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+              "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+            },
+            "dinov2/models/__init__.py": {
+              "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+              "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
+            }
+          },
+          "trained_encoder": null,
+          "dimension": 384,
+          "crop_hw": [
+            128,
+            256
+          ],
+          "model_hw": [
+            126,
+            252
+          ],
+          "crop_margin": 0.05,
+          "pixel_quantization": "NormalizedcropFP32->FP16->FP32, exact registered pilot input bytes",
+          "encoder_precision": "FP32; TF32disabled",
+          "encoder_batch_padding": 128,
+          "coordinate_kind": "frozen_DINO_CLS384",
+          "local_kind": "current real content-weighted geometricK4; no anatomy/GTocclusion",
+          "fitting_scope": "No fish fitting for frozen source; privatepretrain/video/biological overlap unverified",
+          "coordinate_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+        },
+        "frame_paths_sha256": "de9b203a4043305b16f88ddd137dbed4d8ea118951022aeaac0beb1c4a00df00",
+        "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+        "detection_manifest_sha256": "bcc5cfeaae047f3b17f461e32b94f3fe5a33ba59968cd28c34cdec1bbd16e1e9",
+        "source_commit": "a2edc66a004b8e899537f5df5b9a46933c26cf95",
+        "sources": {
+          "tools/cfp_extract_native_dino_features.py": "4357a8e7a4aaa4983cd85af35617a1f00dd60b6a6a03911229966912b6b073fa",
+          "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+          "cfp/dinov2_identity.py": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1",
+          "cfp/dinov2_fish_encoder.py": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0",
+          "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+          "cfp/identity_data.py": "2452b3e794f7648d0367c16ac3b78851f1cbaa228f09e72b6da0ffdb1cc90a48",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+          "configs/cfp/phase_vii_native_dino_features_v1.json": "22f447105a4046228c0edab592aec1cacd6ed652dcadc68a4f03931bc68a130f"
+        },
+        "completed_frames": 6570,
+        "frames": 6570,
+        "proposals": 69190,
+        "scope": "Actual full-native-frame current-proposalRGBfeatureproducer, no GT/teacher/future/currentidentity input. Same suppliedRGB/boxes to frozen and excluded-video supervised encoders. Feature/decode/crop/pad128time measured; not complete rawonline RGB->IR->V3->tracker speed until wholepipeline measured. All6/3seeds/nativeordinarymemory/MOT/C/D/strongsource/external remain required.",
+        "guard": "No annotations/GTbbox/physicalIDs/teacher/futureimages loaded by feature production; metadata framepaths only, original currentproposal rows unchanged.",
+        "stage_seconds": {
+          "rgb_decode_seconds": 43.87597751666908,
+          "current_crop_and_mask_seconds": 142.41047302880906,
+          "resize_transfer_seconds": 243.38572956070857,
+          "encoder_seconds": 424.4033810431647,
+          "feature_transfer_seconds": 2.4087454229884315
+        },
+        "elapsed_seconds": 1009.7167518969945,
+        "current_input_digest": "e243ce4ff16c44b7ef72b194f701c71858e22bee797f6358c3deb3e553f4c8f1",
+        "current_frame_latency_p50_p95_ms": [
+          152.70940949994838,
+          160.67592270374007
+        ],
+        "empty_proposal_frames": 0,
+        "valid_crop_proposals": 69190,
+        "peak_gpu_allocated_bytes": 498118144,
+        "artifacts": {
+          "embedding": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/embedding.npy",
+            "sha256": "7e9632a295f6d65d8d830dda1ac301b59cc4cab4901e109228fad7523e0f67ca",
+            "shape": [
+              69190,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "raw_cls": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/raw_cls.npy",
+            "sha256": "7e9632a295f6d65d8d830dda1ac301b59cc4cab4901e109228fad7523e0f67ca",
+            "shape": [
+              69190,
+              384
+            ],
+            "dtype": "float32"
+          },
+          "local4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/local4.npy",
+            "sha256": "94278cdd524fde9696318592cbd2bfcd631576fa3c0a1545d4aaac3e753eb9f2",
+            "shape": [
+              69190,
+              4,
+              384
+            ],
+            "dtype": "float16"
+          },
+          "visibility4": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/visibility4.npy",
+            "sha256": "3dedccec0816a354f1132538a821d168c6d4aa0c185b5762ce1aed0ac0282ce7",
+            "shape": [
+              69190,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "valid": {
+            "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_frozen_SN-015_k4_v1/valid.npy",
+            "sha256": "4ecc9a5ef51239bcd7ecd803cab9470582b0a04910fab2a7ad89953657811f5a",
+            "shape": [
+              69190
+            ],
+            "dtype": "bool"
+          }
+        },
+        "frame_ids_sha256": "f4d36545e84e3e6d3db99ae5bf09e94a16698becac4f6769a390ca8fbb18d46c",
+        "offsets_sha256": "d185f1d0fd64311366230839504c7c19ffd191e9302c36356a8a7a77323f6269"
+      }
+    }
+  ],
+  "proofs": {
+    "native_dino_current_feature_comparison_v1.json": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_current_feature_comparison_v1.json",
+      "sha256": "aa49aa6c39c585f005b3e6e71fa7d30ac586590bf1e3268af3e5b0e3005d8a91",
+      "evidence": {
+        "scope": "Read-only matched cached detector crop vs actual current RGB/proposal feature comparison; differences measured, no threshold selected from tracking results",
+        "measurements": [
+          {
+            "video": "SN-001",
+            "mode": "frozen",
+            "rows": 512,
+            "max_component_error": 1.1771917343139648e-06,
+            "mean_component_error": 1.1283910339443537e-07,
+            "max_cosine_error": 2.384185791015625e-07,
+            "native_sha": "f3422881148183a00c00c9855cca3f32feb0debf965b27f2a200ccb7397335e4"
+          },
+          {
+            "video": "SN-001",
+            "mode": "global",
+            "rows": 512,
+            "max_component_error": 7.292255759239197e-07,
+            "mean_component_error": 8.712484600437165e-08,
+            "max_cosine_error": 2.384185791015625e-07,
+            "native_sha": "e0427b2fd98ef0713744b8fb03d30a02482decbe907d934e73f68fa62821ecb8"
+          },
+          {
+            "video": "SN-015",
+            "mode": "frozen",
+            "rows": 512,
+            "max_component_error": 1.5348196029663086e-06,
+            "mean_component_error": 1.2501580215484864e-07,
+            "max_cosine_error": 2.384185791015625e-07,
+            "native_sha": "7e9632a295f6d65d8d830dda1ac301b59cc4cab4901e109228fad7523e0f67ca"
+          },
+          {
+            "video": "SN-015",
+            "mode": "global",
+            "rows": 512,
+            "max_component_error": 7.576309144496918e-07,
+            "mean_component_error": 1.1120200582581674e-07,
+            "max_cosine_error": 2.384185791015625e-07,
+            "native_sha": "ec54ebd63c594299bb73c72fa9b4d04acb8c43dfb5b29997b3bafdb8220e0db0"
+          }
+        ]
+      }
+    },
+    "native_identity_fifo_adapter_parity_v1.json": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_fifo_adapter_parity_v1.json",
+      "sha256": "ee75dd6b600dcc309c451d3ff7badebd5d36bcc362feb2cb2ef3a9b854755ecf",
+      "evidence": {
+        "status": "VERIFIED_ACTUAL_NATIVE_FIFO_ADAPTER_PARITY",
+        "video": "SN-015",
+        "frames": 512,
+        "association_calls": 1024,
+        "maximum_cost_error": 3.632158041000366e-08,
+        "exact_output_lifecycle_history": true,
+        "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+        "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+        "sources": {
+          "tools/cfp_verify_native_identity_fifo_parity.py": "3cbbf5ab75015571f3e4078d07c9c1acfe7e5fbbead34a7c1cd397ad9185b422",
+          "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+          "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2"
+        },
+        "scope": "Actual native prefix512 only; exact FIFOmodel replacing learned cue must preserve accepted measurements/localIDs/memories/lifecycle. Not a learned gain or whole-video byte parity claim."
+      }
+    },
+    "local_dense_context_no_prediction_alias_v2.json": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_no_prediction_alias_v2.json",
+      "sha256": "19ea6c2c00394da7c7aaa18ca0e6f940ad61025f2b676694a5301753391cd23f",
+      "evidence": {
+        "status": "EXACT_REAL_LOCAL_TEMPORAL_NO_PREDICTION_ALIAS",
+        "runs": [
+          "local_dense_local_temporal_SN-015_k4_s0_v1",
+          "local_dense_context_no_prediction_SN-015_k4_s0_v2"
+        ],
+        "model_tensors": 61,
+        "differences": [],
+        "scope": "Different semantic ablation labels refer to the exact same learned final model here; do not count as independent evidence."
+      }
+    }
+  },
+  "scope": "All4 producers complete, actual measurements/proofs retained. Allsix/three-seed feature/replay matrix and local model onpolicy matrix active; no whole raw onlineFPS, positiveJEPA/localnativegain or finalgoal completion claimed."
+}

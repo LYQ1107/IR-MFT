@@ -62,3 +62,37 @@ All entries use the same current pools/unknowns/support: inner447 and outer564 q
 A read-only fixed-full-checkpoint diagnostic reads innerBT001 only and rejects outer query requests. Keeping the same learned currentencoder/relation scorer and supports, encoder-only FIFO37.584%, temporalcontextpool37.584%, regionalprediction26.846%. Thus a measured inference decoder bottleneck is present; a blanket localencoder-information-loss explanation is unsupported on this inner pool. This motivates a separately registered representation-learning control: keep masked prediction as a training-only auxiliary objective and use encoder/context evidence for identity decisions, as ordinary JEPA downstream evaluation does. No new recipe is selected from outerSN015; the original model/results remain preserved. K8/allfold/onpolicy/native/rawonline, strongsource and finalnovelty work remain outstanding.
 
 The genuine localJEPA fullseed1 real epoch2exit/fresh-process resume now exactly matches continuous8epochCPUtraining:250tensor/1array/1626scalar leaves acrossstudent, independentEMAteacher+1200updatecounter, AdamW, scheduler, all RNG, per-epoch targetmask/inputdigest/losses and allGT/verified-detector scene metrics/supports. Teachergradientsremainabsent; noCUDAallocation. Walltime/filepaths/containerbytes excluded; no crosshardware guarantee. Exact proof is PHASE_VII_LOCAL_DENSE_RESTART_MEASURED.json.
+
+## Completed first-fold three-seed confirmation
+
+All27 original V1 fits are COMPLETE at the fixed final epoch8, 1200 successful optimizer updates each. Same sampled scene/mask digests and frozen exact query supports are verified; no outer checkpoint or threshold selection. These are offline clean physical groups, not native track histories. SN-015 GT-history/current-detector gap25 supported564 of793 queries, target-present576, verified-positive-absent217 and history-absent17. Mean ± sampleSD over seeds0/1/2:
+
+| Model | Rank1 (%) |
+|---|---:|
+| global | 72.813 ±0.369 |
+| global_gru | 51.537 ±0.369 |
+| local_attention | 65.307 ±1.589 |
+| local_temporal | 63.948 ±0.800 |
+| local_contrastive | 49.527 ±2.888 |
+| no_ema | 44.740 ±1.245 |
+| no_prediction | 43.203 ±1.647 |
+| no_id | 25.591 ±1.609 |
+| full | 45.095 ±1.181 |
+
+Frozen CLS FIFO is64.894%. The fullJEPA45.095±1.181% result is below global72.813±0.369% and ordinary local-temporal63.948±0.800%. All12 history/current/gap protocols, R1/R5/mAP/AUC/EER and immutable source/checkpoint/support proofs are preserved in PHASE_VII_LOCAL_DENSE_THREE_SEED_MEASURED.json. NoID removes explicit ID losses but retains supervised GT temporal grouping; verified-positive absence does not certify physical absence or NULL.
+
+## Registered context-identity V2 repair
+
+The innerBT001-only frozen-model stage diagnosis motivated a separately owned V2 class/config/trainer: past local-temporal context supplies identity scores; regional masked prediction remains an auxiliary training objective. Deployment uses `.online()` and never executes the prediction decoder or teacher. Decoder perturbation cannot change identity scores; local/temporal/predictor gradient paths and stoppedteacher behavior are tested. V1 files and negative evidence remain unchanged.
+
+V2fullseed0 has1200 successful optimizer/EMA updates. Offline supported SN015 detector R1 is63.652%, innerBT00136.242%, while the matched V2no_prediction seed0 is64.716%/36.913%. It restores the decoder bottleneck without establishing an extra identity benefit. The V2 no_prediction and local_temporal are exact control aliases; V2no_predictionseed0 student tensors equal the completed original local_temporalseed0, verified outsideGit in local_dense_context_no_prediction_alias_v2.json. Do not count these labels as independent evidence. V2three-seed completion and allfold/K8/native positive effects remain pending; the actual V2restart proof below is now verified.
+
+## Actual native history integration
+
+New features are encoded from each current RGB frame and original causal V3 proposals, including empty states. Native scoring uses only each track’s accepted proposal references with exact strictly-past timestamps, last4 slots/max age1500, plus current candidate observations. No physicalID, GT history, future frame or teacher enters replay. Frozen384DINO B coordinates are checkpoint-guarded; supervised384A features are a different producer and cannot silently feed these B models. The common learned logit scale is explicitly inverted into bounded cosine-cost units, preserving the small relation residual. Geometry/lifecycle/low/unconfirmed/writes remain the registered ordinary tracker.
+
+The actual first512SN015frames parity audit replaces the learned cue with exact FIFO and reproduces accepted boxes/localIDs/lifecycle/history exactly, maximum association-cost difference3.6322e-8 across1024calls. It certifies this native prefix, not full-video learned parity. The first V2full native6570frame replay is complete; official evaluation and matched three-seed V1global/GRU/localAttention/localTemporal/full/ablations plus V2full are running. Offline crop R1 is not reported as nativeMOT improvement.
+
+The first full6570SN015frame contextV2seed0 official result is HOTA30.694/AssA13.405/IDF125.298/MOTA91.032/IDSW146. Same-current frozenFIFO is32.225/14.786/30.445/91.019/152. Original Bglobal model gives31.017/13.664/26.362/91.003/145. Fewer switches accompanies weaker identity continuity; clean physical-history retrieval is not endogenous native performance. No recipe is selected from outerSN015; matched native allseed controls continue.
+
+The separate V2contextfullseed1 real epoch2exit/fresh-process resume exactly matches its completed uninterrupted8epoch execution:250tensor/1array/1626scalar leaves across student, independent stoppedEMAteacher and1200updatecount, optimizer/scheduler, all RNG, observed-input/mask digests, losses and all heldout protocol identity/discrimination/support metrics. Both use the same guarded V2class/config/trainer bytes. Walltime, containerbytes and per-run outputpaths are excluded; no crosshardware guarantee. PHASE_VII_LOCAL_DENSE_CONTEXT_RESTART_MEASURED.json preserves the actual proof. This is execution correctness, not identity or tracking superiority.

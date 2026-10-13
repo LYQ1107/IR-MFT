@@ -1,0 +1,70 @@
+{
+  "state": "FROZEN",
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "first_outer": "SN-015",
+  "first_inner": "BT-001",
+  "inner_rule": "Next video in declared cycle; four fitting videos exclude both distinct heldout videos.",
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "modes": [
+    "global",
+    "global_gru",
+    "local_attention",
+    "local_temporal",
+    "local_contrastive",
+    "no_ema",
+    "no_prediction",
+    "no_id",
+    "full"
+  ],
+  "local_counts": [
+    4,
+    8
+  ],
+  "first_count": 4,
+  "dimension": 384,
+  "attention_heads": 6,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "minimum_past_gaps": [
+    1,
+    25,
+    100
+  ],
+  "query_cap_per_physical_identity": 64,
+  "identities_per_training_scene": 8,
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "prediction_weight": 1.0,
+  "relation_weight_inside_identity_objective": 0.5,
+  "ema_decay": 0.99,
+  "target_mask_probability": 0.5,
+  "target_horizon_frames": 0,
+  "device": "cpu",
+  "threads_per_process": 2,
+  "checkpoint_selection": "Fixed finalepoch8; fitting/inner diagnostics before any outer recipe selection. No threshold or seed/checkpoint search on outer.",
+  "observations": "Exact official frozen DINOv2 current crops, real adaptive K4/K8spatial384tokens/CLS/content fractions. Fixed cached backbone, genuine learned local encoder/temporal context/regional predictor/candidate relation; no old512PLIM or mutable sharedteacher.",
+  "temporal_mask": "Entire currenttarget frame withheld from predictioncontext. History strictly earlier, leftpadded and observed. Random currentKtarget subset selects trainingloss only, never input metadata. Cached tokens are globally mixed within their own past/current crop; this is temporal target exclusion, not pixelmask isolation of pastparts.",
+  "identity_objective": "Physical fit-only currentGT/known-detector cosineclassifierCE plus0.5known same-frame candidate relationCE. Unknown proposals remain scored/galleried but excluded from labeled negatives/softmaxdenominator. GT supervisedbranch never supplies currenttarget to historypredictor.",
+  "teacher": "Independent stopped localEMAencoder asv1. CurrentGT trainingtarget only; full/no_ema/no_id regionalpredictor trained through denseobjective only, never used for identityscores. local_contrastive uses temporalcontext representation vsinstant stopped currentGT teacher. no_id removes explicitIDloss but retains physicalGT correspondence grouping.",
+  "history_protocol": "Training physicalclean groups use strict past uniqueGT or verified unique-detector crop perframe50/50. Evaluation GT and verified-detector histories separately, fullcurrent GT/detector inventories/unknowns and currently-absent pastknown fish. This is clean physical diagnostic, not endogenous actual native memories; on-policy/native adaptation remains required.",
+  "comparison": "Same immutable features/scenes/currentGT/known-detector supervision/past masks/target masks/1200attempts/384width/8epochs/seeds0,1,2. Identityscore uses directencoder/context evidence in everymode; full/noEMA/noIDdecoder is training-only. Active training/inference capacity and exact NoPrediction/LocalTemporal alias reported. V1 original models/sources/results preserved.",
+  "scope": "Separate genuine localJEPA representation-learning pilot; follows onlyfitting/inner decoder diagnosis. Fixed backbone/learnedlocal-temporal adapter, no teacher/predictor/currentGT/physicalIDs online. Firstfold K4 controls initially, allfold/K8/onpolicy/allnative/rawonline/strongsource/external/finalnovelty remain required. No latentloss-only identity gain claim.",
+  "representation_version": "CONTEXT_IDENTITY_TRAINING_ONLY_REGIONAL_PREDICTOR_V2",
+  "first_stage_evidence": "InnerBT001only fixedv1checkpoint: encoderFIFO/context37.5839R1 vsregionalprediction26.8456; explicitouterstage query rejected. No outer value selects hyperparameters.",
+  "control_aliases": {
+    "no_prediction": "local_temporal exact same active inference/training architecture/objective; do not count as independent confirmations"
+  }
+}
