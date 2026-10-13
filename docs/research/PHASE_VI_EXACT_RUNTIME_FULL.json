@@ -1,0 +1,308 @@
+{
+  "status": "COMPLETE",
+  "scope": "Complete4834-frame unchanged frozen J3. New device-pad/unused-IR-crop path compared to preserved historical original; timing comparison across full runs is not controlled for shared load. Controlled matched prefix speed remains separate.",
+  "prediction_parity": {
+    "BT-005": {
+      "full_bytes_equal": true,
+      "frames": 1834
+    },
+    "SN-013": {
+      "full_bytes_equal": true,
+      "frames": 3000
+    }
+  },
+  "runs": {
+    "original_historical": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/jepa_online_J3_seed0_full_v1",
+      "manifest_sha256": "eda4c37d1f91b523217da8db3aa482448dd503777f38efbe20c3ee31e61dca88",
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18204,
+          "prediction_sha256": "9366d6deb27adc2c0645e7b3e471617ecd806a3fe66a2dd83c9dc3bdab27b5a4",
+          "timing_sha256": "6396a744a5b9d31d407daf69b01d2efc616bbab7eda6947a566848c2fd7deed2",
+          "pipeline_seconds": 2573.2476736170356,
+          "fps": 0.7127180250869802,
+          "latency_p50_p95_ms": [
+            1401.6581120085903,
+            1772.5674462271852
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              10.19720546901226,
+              15.900447027524931
+            ],
+            "generation_codec": [
+              605.142877495382,
+              820.0567719584795
+            ],
+            "worker_provided_ir_validation": [
+              0.003662455128505826,
+              0.006560157635249195
+            ],
+            "worker_detector_preprocess_transfer": [
+              297.6786614744924,
+              383.0984625295968
+            ],
+            "worker_detector_nms": [
+              243.37271001422778,
+              368.64138256642036
+            ],
+            "worker_proposal_transfer": [
+              0.215859996387735,
+              0.3806370834354311
+            ],
+            "detector_worker_roundtrip": [
+              628.8198310066946,
+              800.3748077782802
+            ],
+            "crop_preparation": [
+              61.48432398913428,
+              113.46948121208695
+            ],
+            "encoders_transfer": [
+              55.5637555080466,
+              96.51225449342745
+            ],
+            "student_and_association": [
+              19.56808549584821,
+              51.830137704382565
+            ],
+            "output": [
+              0.5974570231046528,
+              0.7288268447155132
+            ]
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27589,
+          "prediction_sha256": "3ed16faf6fcbea9a1335a96ff6cb0b247a4aaf329e66bf16d0a2b3c1593bb04e",
+          "timing_sha256": "e6cd8465038377a0325180389fa1ffba91b3cbecf015843517666dc6b2bdf0c7",
+          "pipeline_seconds": 3519.9647350781015,
+          "fps": 0.8522812658046234,
+          "latency_p50_p95_ms": [
+            1207.0007260190323,
+            1479.9071618908783
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              9.51639749109745,
+              14.259378542192273
+            ],
+            "generation_codec": [
+              556.3552219828125,
+              667.6459180307575
+            ],
+            "worker_provided_ir_validation": [
+              0.00301000545732677,
+              0.005298200994729995
+            ],
+            "worker_detector_preprocess_transfer": [
+              266.8870050110854,
+              342.6609907328382
+            ],
+            "worker_detector_nms": [
+              171.93448598845862,
+              318.44624854566064
+            ],
+            "worker_proposal_transfer": [
+              0.2097229880746454,
+              0.37775918026454686
+            ],
+            "detector_worker_roundtrip": [
+              523.2321009680163,
+              697.6940352964447
+            ],
+            "crop_preparation": [
+              53.39871102478355,
+              77.63389223546255
+            ],
+            "encoders_transfer": [
+              39.497866499004886,
+              65.18830666609573
+            ],
+            "student_and_association": [
+              16.800905024865642,
+              24.108721164520823
+            ],
+            "output": [
+              0.5283795180730522,
+              0.6742602272424847
+            ]
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "combined_fps": 0.7933417835724526,
+      "parent_peak_gpu_bytes": 627558912,
+      "runtime": {
+        "torch": "2.0.0+cu118",
+        "cuda": "11.8",
+        "cudnn": 8700,
+        "physical_gpu": "0"
+      }
+    },
+    "device_pad_current": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/online_J3_device_pad_full_v1",
+      "manifest_sha256": "3a58b1a5259501ec6ec8727d2b1f894ff22030226f7259b013df3ee7b5aa14d3",
+      "videos": {
+        "BT-005": {
+          "frames": 1834,
+          "output_rows": 18204,
+          "prediction_sha256": "9366d6deb27adc2c0645e7b3e471617ecd806a3fe66a2dd83c9dc3bdab27b5a4",
+          "timing_sha256": "8ebe7e107f2e7c91239ac8c5430a252324d0d15bc780dcee3d6bebccb80fee2b",
+          "pipeline_seconds": 1541.383472364454,
+          "fps": 1.1898401876508236,
+          "latency_p50_p95_ms": [
+            780.3809744946193,
+            1116.1835659033386
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              7.153103506425396,
+              11.58285970741417
+            ],
+            "generation_codec": [
+              396.17947599617764,
+              654.1106830845819
+            ],
+            "worker_provided_ir_validation": [
+              0.0,
+              0.0
+            ],
+            "worker_detector_preprocess_transfer": [
+              61.02896502125077,
+              88.77557350788265
+            ],
+            "worker_detector_nms": [
+              168.01376349758357,
+              173.28344375418965
+            ],
+            "worker_proposal_transfer": [
+              0.1630320039112121,
+              0.22982161899562922
+            ],
+            "detector_worker_roundtrip": [
+              288.48050101078115,
+              342.4337479140376
+            ],
+            "crop_preparation": [
+              20.581068965839222,
+              33.94206493394449
+            ],
+            "encoders_transfer": [
+              55.928529996890575,
+              64.5078118192032
+            ],
+            "student_and_association": [
+              13.072835514321923,
+              20.945819589542225
+            ],
+            "output": [
+              0.43681898387148976,
+              0.6735990027664229
+            ]
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        },
+        "SN-013": {
+          "frames": 3000,
+          "output_rows": 27589,
+          "prediction_sha256": "3ed16faf6fcbea9a1335a96ff6cb0b247a4aaf329e66bf16d0a2b3c1593bb04e",
+          "timing_sha256": "1a20a6b80011467c8c29b033d90e4e1f3354c72da168911ca99238fb59790332",
+          "pipeline_seconds": 2408.1315861231415,
+          "fps": 1.2457790999825342,
+          "latency_p50_p95_ms": [
+            753.9747104747221,
+            1065.5493987491354
+          ],
+          "stage_latency_p50_p95_ms": {
+            "decode": [
+              7.305327017093077,
+              12.502065175794995
+            ],
+            "generation_codec": [
+              388.15745600732043,
+              630.4675313585901
+            ],
+            "worker_provided_ir_validation": [
+              0.0,
+              0.0
+            ],
+            "worker_detector_preprocess_transfer": [
+              59.529793506953865,
+              86.61053052346688
+            ],
+            "worker_detector_nms": [
+              167.90401699836366,
+              174.12108475109562
+            ],
+            "worker_proposal_transfer": [
+              0.1607449958100915,
+              0.24578352458775038
+            ],
+            "detector_worker_roundtrip": [
+              281.1777559982147,
+              333.2763976184651
+            ],
+            "crop_preparation": [
+              19.918948994018137,
+              33.494385462836355
+            ],
+            "encoders_transfer": [
+              37.10398997645825,
+              45.61452655470929
+            ],
+            "student_and_association": [
+              12.287660472793505,
+              20.789270731620487
+            ],
+            "output": [
+              0.3899249713867903,
+              0.6520903523778543
+            ]
+          },
+          "write_counts": {
+            "accepted_existing": 0,
+            "rejected_existing": 0,
+            "newborn_initializations": 0,
+            "rejected_low_or_unscored": 0,
+            "rejected_confidence": 0,
+            "rejected_margin": 0
+          }
+        }
+      },
+      "combined_fps": 1.2239477324213834,
+      "parent_peak_gpu_bytes": 652593664,
+      "runtime": {
+        "torch": "2.0.0+cu118",
+        "cuda": "11.8",
+        "cudnn": 8700,
+        "physical_gpu": "1"
+      }
+    }
+  }
+}

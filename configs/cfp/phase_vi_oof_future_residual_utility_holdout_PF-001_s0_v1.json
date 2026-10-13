@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_provisional_memory",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "protected_write": false,
+  "risk_policy": "risk_gate",
+  "threshold": 0.2,
+  "output_policy": "current_matched_measurement",
+  "selection": "Fixed global controls; no video-specific thresholds or historical-dev choice",
+  "risk_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_context_holdout_PF-001_s0_v1"
+  },
+  "scope": "Original ordinary GRU anchor/recent prior remains untouched; supplementary observed first3/recent5 branch contributes bounded0.05 corrections only inside native appearance region. No new row-level NULL gate; original threshold/lifecycle/current boxes retained. No GT/future/teacher inference.",
+  "sequences": [
+    "PF-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/inference.pt",
+  "model_family": "future_residual_utility",
+  "student_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/future_residual_utility_holdout_PF-001_s0_v1"
+  },
+  "residual": true,
+  "use_null": false
+}

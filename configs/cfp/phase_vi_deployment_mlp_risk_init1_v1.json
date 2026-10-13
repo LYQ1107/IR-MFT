@@ -1,0 +1,29 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2",
+  "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+  "seed": 1,
+  "device": "cpu",
+  "hidden": 32,
+  "candidate_context": false,
+  "history_evidence": true,
+  "validation_video": null,
+  "calibration_video": "SN-015",
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "epochs": 8,
+  "steps_per_epoch": 64,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "selection": "Fixed epoch8, same query sampling and original risk architecture; no dev or outer tuning",
+  "scope": "Frozen5-fit/1cal deployment model for previously exposed dev references only; no outer evaluation/tuning in this trainer. Risk init/sampling seeds0,1,2 share frozen canonical detector/RGB0/GRU0. Fixed10% write budget selected by training-internal controlled evidence.",
+  "model_family": "context",
+  "encoder_seed": 0,
+  "producer_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_association_anchor_seed0/manifest.json"
+}

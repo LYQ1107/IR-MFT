@@ -1,0 +1,22 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_provisional_memory",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "protected_write": false,
+  "risk_policy": "risk_gate",
+  "threshold": 0.2,
+  "output_policy": "current_matched_measurement",
+  "selection": "Fixed global controls; no video-specific thresholds or historical-dev choice",
+  "risk_models": {
+    "SN-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_mlp_holdout_SN-001_init1_v1"
+  },
+  "scope": "Fixed10% matched write quota; risk init/sampling seed1/2 while entire detector/encoder/ordinary producer staysseed0. Compare same frozen baseline; no mixing with pipeline seeds.",
+  "sequences": [
+    "SN-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_SN-001_s0_v1/inference.pt",
+  "reject_fraction": 0.1,
+  "risk_initialization_seed": 1
+}

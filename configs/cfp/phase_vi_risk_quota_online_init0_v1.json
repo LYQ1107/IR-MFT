@@ -1,0 +1,24 @@
+{
+  "state": "FROZEN",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "sequences": [
+    "BT-005",
+    "SN-013"
+  ],
+  "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+  "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+  "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+  "ir_checkpoint": null,
+  "appearance_weight": 0.3,
+  "scope": "Frozen representative full online risk method. Canonical encoder0/ordinaryGRU0, fit5/calSN15 riskMLP init0. Exposed dev references; no architecture/threshold choice from these metrics. Raw decode and causal IR/V3/currentRGB encoding included; no cached detections/features/GT/future/teacher.",
+  "detector_batch": 8,
+  "preprocessing": "lookup_uint8",
+  "detector_runtime_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python",
+  "seed": 0,
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "output_budget_gib": 2,
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_association_anchor_seed0/epoch8.pt",
+  "risk_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/deployment_mlp_risk_init0_v1/inference.pt",
+  "risk_initialization_seed": 0,
+  "reject_fraction": 0.1
+}

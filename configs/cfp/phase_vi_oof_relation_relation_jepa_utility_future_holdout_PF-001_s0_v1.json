@@ -1,0 +1,24 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_provisional_memory",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "protected_write": false,
+  "risk_policy": "risk_gate",
+  "threshold": 0.2,
+  "output_policy": "current_matched_measurement",
+  "selection": "Fixed global controls; no video-specific thresholds or historical-dev choice",
+  "risk_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_context_holdout_PF-001_s0_v1"
+  },
+  "scope": "Full actual outer-video candidate-relative replay; identical first3+recent5 unfiltered history view; direct raw-mean eligibility controls; strict teacher-free student/checkpoint/producer coordinate validation",
+  "sequences": [
+    "PF-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/inference.pt",
+  "model_family": "relation_jepa_utility_future",
+  "student_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/relation_jepa_utility_future_holdout_PF-001_s0_v1"
+  }
+}

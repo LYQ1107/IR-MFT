@@ -1,0 +1,31 @@
+{
+  "state": "FROZEN",
+  "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_candidate_queries_early3_holdout_PF-001_s0_v1",
+  "seed": 0,
+  "encoder_seed": 0,
+  "device": "cuda",
+  "latent": 16,
+  "ema": true,
+  "ema_decay": 0.99,
+  "prediction_weight": 1.0,
+  "masking": true,
+  "corruption": false,
+  "target_time": "current",
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "SN-015"
+  ],
+  "calibration_video": "SN-001",
+  "validation_video": "PF-001",
+  "epochs": 8,
+  "steps_per_epoch": 64,
+  "batch_size": 64,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "known_negative_missing_probability": 0.0,
+  "selection": "Fixed epoch8; genuine excluded-video accepted producer states; no historic-dev choice",
+  "scope": "Frozen18-fit hypothesis based on retained-cue train oracle; known-only GT supervision applies to actual masked past tokens, never student inputs. Utility weight .2 fixed globally, no per-outer tuning. Future target strictly +5..30 or masked, no current fallback.",
+  "utility_weight": 0.2
+}

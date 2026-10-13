@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_provisional_memory",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "protected_write": false,
+  "risk_policy": "risk_gate",
+  "threshold": 0.2,
+  "output_policy": "current_matched_measurement",
+  "selection": "Registered 2026-10-13 after seed0 report: fixed epoch8 and scale0.05; initialization/query/mask seeds varied, frozen encoder/producer seed0. No outer-video choice.",
+  "risk_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_context_holdout_PF-001_s0_v1"
+  },
+  "scope": "Original ordinary GRU anchor/recent prior remains untouched; supplementary observed first3/recent5 branch contributes bounded0.05 corrections only inside native appearance region. No new row-level NULL gate; original threshold/lifecycle/current boxes retained. No GT/future/teacher inference.Preserve causal unmasked ordinary prior; masking only supplementary residual branch. Bounded0.05 corrections inside original native appearance region. Association loss only where range permits a correction; full-video evaluation includes all cases. Candidate-centered teacher latent prediction; no future fallback/GT student input. Same4389-parameter four-family budgets fixed globally. Extension isolates initialization/sampling variability or known-cue utility supervision; not full pipeline seeds.",
+  "sequences": [
+    "PF-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/inference.pt",
+  "model_family": "ordinary_residual_no_utility_init0",
+  "student_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ordinary_residual_no_utility_holdout_PF-001_init0_v1"
+  },
+  "residual": true,
+  "use_null": false
+}

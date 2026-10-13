@@ -16111,7 +16111,7 @@
     },
     {
       "experiment_id": "OOF_quota42",
-      "status": "RUNNING",
+      "status": "COMPLETE",
       "train_config": "configs/cfp/phase_vi_oof_quota_campaign_v1.json",
       "code": [
         "tools/cfp_replay_oof_quota_memory.py"
@@ -16159,7 +16159,7 @@
     },
     {
       "experiment_id": "isolated_memory_K2",
-      "status": "RUNNING",
+      "status": "COMPLETE",
       "train_config": "configs/cfp/phase_vi_risk_memory_K2_campaign_v1.json",
       "code": [
         "tools/cfp_replay_risk_memory_isolated.py"
@@ -16168,6 +16168,79 @@
         0
       ],
       "reason": "Controlled mechanism/actual-state shift diagnosis; frozen parameters, no historical-dev choice"
+    },
+    {
+      "experiment_id": "cue_utility_current_future18",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_cue_utility_campaign_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_cue_utility.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Discriminating teacher/utility/actual-action or repeated-seed controls; fixed budgets and no outer-specific tuning"
+    },
+    {
+      "experiment_id": "cue_utility_noema6",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_cue_utility_noema_campaign_v1.json",
+      "code": [
+        "tools/cfp_train_candidate_cue_utility.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Discriminating teacher/utility/actual-action or repeated-seed controls; fixed budgets and no outer-specific tuning"
+    },
+    {
+      "experiment_id": "candidate_relation_full_replays30",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_oof_relation_replays_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_candidate_relation.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Discriminating teacher/utility/actual-action or repeated-seed controls; fixed budgets and no outer-specific tuning"
+    },
+    {
+      "experiment_id": "C_pipeline_seeds1_2",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_K2_hysteresis_three_seed_extension_v1.json",
+      "code": [
+        "tools/cfp_replay_hypothesis_stable.py"
+      ],
+      "seed": [
+        1,
+        2
+      ],
+      "reason": "Discriminating teacher/utility/actual-action or repeated-seed controls; fixed budgets and no outer-specific tuning"
+    },
+    {
+      "experiment_id": "residual_seed0_four_family24",
+      "status": "COMPLETE",
+      "train_config": "configs/cfp/phase_vi_residual_relation_training_v1.json",
+      "replay_config": "configs/cfp/phase_vi_oof_residual_replays_v1.json",
+      "official_results": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_residual_official_v1.json",
+      "seed": [
+        0
+      ],
+      "reason": "Bounded native-region correction retains strong ordinary costs; full six-video official evaluation."
+    },
+    {
+      "experiment_id": "residual_discriminating54",
+      "status": "REGISTERED",
+      "train_config": "configs/cfp/phase_vi_residual_discriminating_training_v1.json",
+      "replay_config": "configs/cfp/phase_vi_residual_discriminating_replays_v1.json",
+      "seed": [
+        0,
+        1,
+        2
+      ],
+      "encoder_and_producer_seed": 0,
+      "reason": "After EMA33.681668 and noEMA33.681693 nearly tie, repeat ordinary/noEMA/EMA with init/query seeds1/2 and remove utility for all3 at init0. Fixed epochs8, scale0.05, no tuning/outer-video selection; full video replay. Separate initialization seeds from pipeline seeds."
     }
   ]
 }
