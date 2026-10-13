@@ -1,0 +1,139 @@
+{
+  "status": "IN_PROGRESS",
+  "base_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
+  "branch": "research/evidence-fishmot-v1",
+  "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
+  "experiments": [
+    {
+      "experiment_id": "VII_SOURCE_INVENTORY_V1",
+      "hypothesis": "All30 references need exact source commits and semantic audits before architecture adoption",
+      "status": "INVENTORY_COMPLETE_AUDIT_PENDING",
+      "config": "configs/cfp/phase_vii_reference_inventory_v1.json",
+      "command": "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_prepare_phase_vii_references.py --plan configs/cfp/phase_vii_reference_inventory_v1.json --fetch-missing --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_inventory_v1.json",
+      "scope": "Inventory alone is not semantic source audit. Existing14 targets are reused without pull; source-only missing clones omit binaries/models/data, max128MiB source per repository and40GiB reserve. No external project code executed.",
+      "source_commit_at_stage_collection": "042608779d936bcd442d8c266734a6d4d47636c1",
+      "inventory_path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_inventory_v3.json",
+      "inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
+      "source_ready": 16,
+      "acquisition_failed": 14,
+      "failure_notes": [
+        "v1 aborted at preserved external-reference symlink validation; summary was left RUNNING but process is terminal.",
+        "v2 preserved15 acquisition/checkout failures, predominantly intermittent TLS; incomplete new sparse clones not discarded.",
+        "Some exact Git heads are available without materialized source; those are not audited."
+      ]
+    },
+    {
+      "experiment_id": "VII_A0_INHERITED_RANK_REPRODUCTION_V1",
+      "hypothesis": "Published raw mean/GRU and verified-cue ranks reproduce on identical actual states, pools and denominators",
+      "status": "COMPLETE",
+      "seed": 0,
+      "parameters": 231040,
+      "fit_videos": [],
+      "evaluation_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "inputs": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+      "commands": [
+        "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_candidate_raw_controls.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/inherited_raw_rank_reproduction_v1.json",
+        "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_retained_cues.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/inherited_cue_rank_reproduction_v1.json"
+      ],
+      "scope": "Offline six-train-video diagnosis of inherited warmed states, not new OOF training or online GT use. Oracle is training-only verified retained cues. Unknown labels excluded from known-error claims.",
+      "source_commit_at_stage_collection": "042608779d936bcd442d8c266734a6d4d47636c1",
+      "all_six_videos_exact": true,
+      "raw_output_sha256": "3c875d2d7c141e63a180af788722a43a1b26c1df488cc32e7d247d13e20a90df",
+      "cue_output_sha256": "b5d0214bd4e4f78192ef4d7a436552a90262d0cdbeccb722218bb2200166d6fb",
+      "checkpoint_sha256": "f5bd6520914f5bcb98f2a905b66219bd5622cca3451048b4858c1b53ed37fe53",
+      "query_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8"
+    },
+    {
+      "experiment_id": "VII_A0_GEOMETRY_RETRIEVAL_DECOMPOSITION_V1",
+      "hypothesis": "Pure cosine ranking is a different decision problem from confidence-fused geometry/blended actual row cost; normalized GRU output may alter retained identity evidence",
+      "status": "COMPLETE",
+      "seed": 0,
+      "fit_videos": [],
+      "evaluation_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "parameters": 231040,
+      "inputs": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+      "command": "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_identity_evidence.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_geometry_decomposition_v1.json",
+      "scope": "Same actual states, current pools and native appearance blending region. Pure last/FIFO/EMA/GRU, geometry-only, unchanged saved row cost and each native blend. PairAUC/EER/mAP/Rank1/5 and gap/density/overlap proxies; unknowns explicit. No new training, GT history correction, full Hungarian or MOT improvement claim.",
+      "source_commit_at_stage_collection": "042608779d936bcd442d8c266734a6d4d47636c1",
+      "output_sha256": "302d0a6459d18d2f3d468bd9b9f914792b64e2fa671c94881af9a87d9bd4c543",
+      "checkpoint_sha256": "f5bd6520914f5bcb98f2a905b66219bd5622cca3451048b4858c1b53ed37fe53",
+      "query_manifest_sha256": "0c3d9183e87e9aab248002eed29f27aec887e01ffada6d3c8976025af3fabfb8",
+      "conclusion": "Native blended row scores reproduce actual costs; geometry largely explains weak-GRU/strong-row discrepancy inSN015. PF001 reverses pure-rank contrast. No blanket GRU information-loss or full MOT causation claim.",
+      "next_experiment": "Shared candidate-label support and clean/mixed/unknown actual history stratification; inspect original query producer shift, then two-crop/local evidence."
+    },
+    {
+      "experiment_id": "VII_A0_HISTORY_SUPPORT_AND_ELIGIBLE_POOL_V2",
+      "status": "COMPLETE",
+      "hypothesis": "Native appearance-region candidate support and actual history contamination interact with the scene-specific pure-rank discrepancy",
+      "fit_videos": [],
+      "seed": 0,
+      "parameters": 231040,
+      "inputs": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1",
+      "command": "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_identity_evidence.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase6/candidate_queries_warmstart_s0_v1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_geometry_decomposition_v2.json",
+      "scope": "Extend fixed-state six-video diagnosis with all-verified/some-verified/no-verified actual history support. Unknown past tokens do not become wrong. Extra eligibility-restricted retrieval reports its own denominator and missing-positive queries; it is not a change to the deployed candidate graph. No new fitting or threshold search.",
+      "source_commit_at_stage_collection": "042608779d936bcd442d8c266734a6d4d47636c1",
+      "output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
+      "checkpoint_sha256": "f5bd6520914f5bcb98f2a905b66219bd5622cca3451048b4858c1b53ed37fe53",
+      "source_snapshots": {
+        "tools/cfp_diagnose_identity_evidence.py": "c5a9a2589229825617dd3b0c08db8e821b1934de3e30e510c6dfd57ee1395b76",
+        "cfp/identity_evidence.py": "77e844ef6d53a85329f63dc063c83fdef19909b847390daa2a2af962527c4002",
+        "cfp/candidate_training_data.py": "c3faad3a70b840d83c2b91e53c001b53616b715f527e294f85e888c76338339d",
+        "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+        "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+        "cfp/lifecycle_crossover.py": "90a5d50b6f6cffe67a8a0468b1d4688d112eff2b5569c879f153f6eeb6a83fb7"
+      },
+      "conclusion": "On SN015 all-verified actual histories FIFO99.595/GRU52.651. Contamination alone insufficient. Restricted native region FIFO94.111/GRU84.508 on7081 supported queries; smaller denominator is explicit.",
+      "next_experiment": "Inspect training/trace producer shift and train same-video hard-negative local/joint controls under true encoder-level outer exclusion; no large JEPA before source audit/target discrimination."
+    },
+    {
+      "experiment_id": "VII_SOURCE_ACQUISITION_REPAIR_V3",
+      "status": "COMPLETE_WITH_PRESERVED_ACQUISITION_FAILURES",
+      "hypothesis": "Source-only snapshots can be completed despite transient transport failures without changing old reference commits or overwriting modified files",
+      "command": "OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_prepare_phase_vii_references.py --plan configs/cfp/phase_vii_reference_inventory_v1.json --fetch-missing --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_inventory_v3.json",
+      "scope": "Own partial sparse clones are checked against exact HEAD blob hashes before safe checkout; old references are read only. Fresh snapshots omit binary weights and media; successful acquisition is not semantic audit completion.",
+      "source_commit_at_stage_collection": "042608779d936bcd442d8c266734a6d4d47636c1",
+      "inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
+      "source_ready": 16
+    }
+  ],
+  "pending": [
+    "30 semantic source audits",
+    "rank discrepancy mechanism diagnosis",
+    "two-crop diagnostic platform",
+    "controlled visual/local feature training",
+    "joint identity competition",
+    "DenseJEPA controls",
+    "independent motion/occlusion",
+    "selective combinations",
+    "three-seed full-video/full-online validation",
+    "final20-question scientific audit"
+  ],
+  "validation": {
+    "project_tests": 191,
+    "warnings": 18,
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_startup_v1.log",
+    "log_sha256": "15582e5fbbd44c097a0dbe8f28da8d61c894c3f02656c47188f51da0bbc9eacd"
+  },
+  "execution_failures": [
+    {
+      "stage": "startup_collector",
+      "error": "Exact floating-point percent comparison differed at roundoff despite equal query counts; fixed tolerance1e-10 with explicit denominator check.",
+      "repaired": true,
+      "scientific_metric_vectors_changed": false
+    }
+  ]
+}
