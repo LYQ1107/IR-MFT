@@ -1095,7 +1095,7 @@
       "name": "DINOv2",
       "github": "https://github.com/facebookresearch/dinov2",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REPAIRED_OWN_PARTIAL_SOURCE_CLONE",
       "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
       "origin": "https://github.com/facebookresearch/dinov2",
@@ -1293,7 +1293,75 @@
           "acquisition": "VERIFIED_EXISTING"
         }
       },
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "source_read_proofs": {
+        "LICENSE": {
+          "git_blob_sha": "5471dc10377b76db85a2feca7a99a7eef4980ba8",
+          "sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7"
+        },
+        "MODEL_CARD.md": {
+          "git_blob_sha": "21b9bf295c8cab14e782e1a7a1d051be9e501088",
+          "sha256": "70ca59606bee0a5fbb1baec80e7e29a93cd7cfbe26ca1910c52a852c4aab09d0"
+        },
+        "dinov2/hub/backbones.py": {
+          "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+          "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+        },
+        "dinov2/models/vision_transformer.py": {
+          "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+          "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+        },
+        "dinov2/layers/patch_embed.py": {
+          "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+          "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+        },
+        "dinov2/train/train.py": {
+          "git_blob_sha": "4e86b8daaff01e32acd1f30edcfd65aed03df4db",
+          "sha256": "04c4829d6cb428df546536cba4b2a313fae38bac084abf82758bf69483b03e89"
+        },
+        "dinov2/train/ssl_meta_arch.py": {
+          "git_blob_sha": "3ccf15e904ebeb6134dfb4f5c99da4fc8d41b8e4",
+          "sha256": "a97cdcc721e9312f5e088f78257dbbeb98cb3af40e3e3b975aefbd6bfd1996c4"
+        },
+        "dinov2/data/samplers.py": {
+          "git_blob_sha": "6562197d94652bb9a75a5fc722fcb2c65ca161be",
+          "sha256": "5f19029f6da99de6c81ec5e8d313d85739c66020cf8447b5b35e7f80c9071ebb"
+        },
+        "dinov2/data/augmentations.py": {
+          "git_blob_sha": "05b1eaa942c14f75b88d9e14732e141e8909b0a1",
+          "sha256": "10e949f266c7cffa57ffc8c5cf9dc094a8e701cdc74f1a3fefd2e02f78f8cdf7"
+        },
+        "dinov2/loss/dino_clstoken_loss.py": {
+          "git_blob_sha": "c31808e36e6c38ee6dae13ba0443bf1946242117",
+          "sha256": "49f0b2b75c2feba83b3fc9dfb40ef5eb4e3db350ab1e12a63d75d3060a88f7df"
+        },
+        "dinov2/loss/ibot_patch_loss.py": {
+          "git_blob_sha": "6732cda0c311c69f193669ebc950fc8665871442",
+          "sha256": "19c0ffc85c8af01657ad2e6cffc2d4d311415b10807f63c2d6341195c7a62ddb"
+        },
+        "dinov2/loss/koleo_loss.py": {
+          "git_blob_sha": "b5cbcd91e0fc0b857f477b0910f957f02a6c4335",
+          "sha256": "ddccd75b7985d5e584f0fe6f3fb1ac474b9cbd9a6fd6fb6c6ae471ca479085d1"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "04c159c443b89330ff3c84257c41b011f9791257",
+          "sha256": "553faa42e1ad3975631e46df26bcfd76ec3add6beacb9ede3f8ef22393f5eefc"
+        }
+      },
+      "inspected_findings": {
+        "paper": "DINOv2: Learning Robust Visual Features without Supervision; primary arXiv2304.07193, submitted2023/revised2024. General image/pixel features, not individual fish labels.",
+        "license": "Apache2 code LICENSE and MODEL_CARD explicit model license; official ViTS14 public pretrained URL found. Live HEAD attempt failed TLS, no weights acquired.",
+        "training": "dinov2/train/train.py main; SSLMetaArch.forward_backward student global2/local8 views, teacher no-grad and EMA; defaultsharded-infinite sampler, no fishID PK/hard-frame sampling.",
+        "inference": "hub/backbones.py dinov2_vits14 and vision_transformer.forward_features normalized CLS/register/patch dictionary. Single current crop, no temporal future input.",
+        "shape": "Small14: dim384,12blocks,6heads; patch_embed asserts H/W multiples14. Raw128x256 fails direct source contract despite model-card truncation wording. Use declared resize/pad, e.g126x252 ->162spatial patches. NonregisterS14 hasCLS+162, registervariant adds4.",
+        "loss": "DINO teacher-distribution CE for other global/current local views; iBOT teacher-stopped masked patch CE with inverse mask-count weighting; KoLeo normalized batch nearest-neighbor negative-log distance excludes self and same-image otherglobal view by cropchunk. No physical-ID positives/negatives or cross-frame association loss.",
+        "pretrained": "ViTS14 distilled from pretrainedViTg; LVD142M curated142Mimages. Exact fishdataset overlap cannot be verified from private corpus; do not claim zero external overlap.",
+        "dependency": "torch2.0/torchvision0.15/xformers0.0.18 official requirements; SSLMetaArch raises ifxformers missing, FSDP/AMP/CUDA distributed training. Inference fallback and current environment execution still untested.",
+        "compatibility": "Current-only RGB backbone fits frozen-global/local crop controls, new384dimension coordinate must create matched producer and exclude outer/inner videos for learned fish adapters. Old512GRU cannot be reused across latent spaces.",
+        "port": "Use frozenCLS/patchTokens as A1/A2 controls, then independent supervised fish adapters/local pooling. Do not repeat142M-pretraining or download giant/register/depthheads unnecessarily.",
+        "novelty_overlap": "Teacher EMA, patchdistillation and localtoken features are prior mechanisms; merely adoptingDINOpatches or EMAis not new identity prediction.",
+        "remaining": "Verify actual lawful small-weight delivery and executable inference/preprocessing route; task-level full semantic audit not yet marked complete."
+      }
     },
     "I-JEPA": {
       "name": "I-JEPA",

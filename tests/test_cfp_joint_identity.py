@@ -1,8 +1,11 @@
 import pytest
 import torch
+import numpy as np
+from types import SimpleNamespace
 
 from cfp.joint_identity_decoder import JointFishIDDecoder, bounded_joint_cost, decode_joint_assignment
 from cfp.joint_identity_supervision import joint_identity_targets, joint_identity_loss
+from cfp.online_joint_identity import install_joint_identity
 
 
 def inputs(n=3, m=4):
@@ -118,3 +121,50 @@ def test_joint_residual_initially_exactly_preserves_cost_and_remains_bounded():
     changed = bounded_joint_cost(base, torch.full_like(base, 1000.), legal, .03)
     assert (changed - base).abs().max() <= .030001
     assert changed[0, 0] == base[0, 0]
+
+
+def online_fixture():
+    class Predictor:
+        def __call__(self, history, times, valid, frame):
+            assert (times[valid] < frame[:, None].expand_as(times)[valid]).all()
+            return torch.nn.functional.normalize(history[:, 0], dim=-1), valid.any(1)
+
+    class Tracker:
+        def __init__(self):
+            self.history_view = 'anchor_recent'
+            self.predictor = Predictor()
+            self.frame_id = 2
+            self.args = SimpleNamespace(track_thresh=.58)
+
+        def association_cost(self, tracks, detections):
+            return np.full((len(tracks), len(detections)), .25, np.float64)
+
+    feature = np.ones(8, np.float32) / np.sqrt(8)
+    tracks = [SimpleNamespace(is_activated=True, initial_identity_rgb=feature, initial_identity_ir=None,
+        initial_identity_frame=1, identity_history=[(1, feature, None)], start_frame=1, end_frame=1,
+        state=1, tlbr=np.array([0., 0., 10., 10.]))]
+    detections = [SimpleNamespace(score=.8, current_rgb=feature, tlbr=np.array([0., 0., 10., 10.]))]
+    return Tracker(), tracks, detections
+
+
+def test_online_zero_residual_exact_parity_and_low_stage_unmodified():
+    tracker, tracks, detections = online_fixture()
+    tracker = install_joint_identity(tracker, model())
+    np.testing.assert_array_equal(tracker.association_cost(tracks, detections), np.array([[.25]]))
+    assert tracker.joint_counts['scored_frames'] == 1
+    detections[0].score = .5
+    np.testing.assert_array_equal(tracker.association_cost(tracks, detections), np.array([[.25]]))
+    assert tracker.joint_counts['scored_frames'] == 1
+
+
+def test_online_full_null_prevents_high_stage_old_match_without_fabricated_birth():
+    class NullHead(JointFishIDDecoder):
+        def forward(self, **kwargs):
+            assert set(kwargs) == {'history', 'times', 'valid', 'frame', 'detections', 'detection_valid',
+                                   'geometry', 'appearance', 'track_state', 'confidence', 'codes'}
+            m, n = len(kwargs['detections']), len(kwargs['history'])
+            return dict(logits=torch.cat([torch.full((m, n), -10.), torch.zeros(m, 1)], dim=1))
+    tracker, tracks, detections = online_fixture()
+    tracker = install_joint_identity(tracker, NullHead(dimension=8, hidden=16, capacity=8), route='full')
+    assert tracker.association_cost(tracks, detections)[0, 0] > .97
+    assert tracker.joint_counts['null_detections'] == 1

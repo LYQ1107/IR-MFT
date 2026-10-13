@@ -1,0 +1,451 @@
+{
+  "status": "COMPLETE_CONDITIONAL_HEAD_PROBE",
+  "models": {
+    "joint": {
+      "guard": {
+        "config_sha256": "380b1a4af0a3cc0485300dc3f712979bdcf3dbd8a50ee2638286e1d571c44fde",
+        "query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
+        "source_sha256": {
+          "/data3/liuyeqiang/IR-MFT/tools/cfp_train_joint_identity.py": "276736a91dd95de655a1cd7a00b6d628f36d2cd5b0db3e613c5efa9a8c451807",
+          "cfp/joint_identity_decoder.py": "566aba8859a0b1aa5b268f8683f0d28f0c6342c1e1551ce62262a0fd9a636372",
+          "cfp/joint_identity_supervision.py": "6142c20fcce44788d4ae7c819818d7d6b1bbca80a471dd10840abb7b84d3936f",
+          "cfp/joint_identity_training_data.py": "41c26cb5e0503fb19685629e1f3d960cbd55b0d0310507e72ef3b77d8857600c",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+        },
+        "architecture": "joint",
+        "seed": 0,
+        "torch": "2.0.0+cu118",
+        "device": "cuda",
+        "physical_devices": "0"
+      },
+      "config": {
+        "state": "FROZEN",
+        "purpose": "First full-frame supervised head probe and matched independent pair control; conditional association research, not full MOT or new encoder claim",
+        "fit_videos": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "PF-001"
+        ],
+        "calibration_videos": [
+          "SN-001"
+        ],
+        "outer_videos": [
+          "SN-015"
+        ],
+        "encoder_exposure": "Inherited RGB encoder saw all6; inherited GRU fit5 including calibrationSN001 and calibratedSN015. This is conditional heldout new association head only.",
+        "dimension": 512,
+        "hidden": 64,
+        "heads": 4,
+        "capacity": 128,
+        "epochs": 8,
+        "steps_per_epoch": 400,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "ranking_weight": 0.1,
+        "consistency_weight": 0.1,
+        "residual_loss_weight": 1.0,
+        "maximum_delta": 0.03,
+        "residual_temperature": 0.1,
+        "unmatched_cost": 0.97,
+        "checkpoint_selection": "Fixed last epoch8. Calibration and outer diagnostic only after training; no threshold/checkpoint selection.",
+        "sampling": "Uniform fit video, then uniform actual high-stage frame, random distinct local dictionary codes per frame; no physical-label input to model",
+        "null_semantics": "Known no match to supplied historical set; not verified newborn. Unknown detection/track identities and nonunique assignments unsupervised.",
+        "routes": [
+          "Baseline GRU costs plus bounded full-set residual, same original lifecycle",
+          "Separate full learned ID assignment, private unmatched slot per detection"
+        ],
+        "comparisons": [
+          "Independent same-input pair scorer",
+          "Full-set joint head"
+        ],
+        "resume": "Atomic completed-epoch model/optimizer/scheduler/Python/NumPy/CPU/CUDA RNG plus exact source/config/data/runtime guards; incomplete epoch replayed from checkpoint"
+      },
+      "evaluations": {
+        "SN-001": {
+          "full_id": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 233,
+            "existing_correct": 208,
+            "null_correct": 25,
+            "false_old_match_on_null": 156,
+            "unmatched_existing": 78,
+            "accuracy_percent": 26.598173515981735,
+            "existing_accuracy_percent": 29.928057553956833,
+            "null_recall_percent": 13.812154696132596
+          },
+          "baseline_gru": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          },
+          "bounded_joint": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          }
+        },
+        "SN-015": {
+          "full_id": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4716,
+            "existing_correct": 3777,
+            "null_correct": 939,
+            "false_old_match_on_null": 2173,
+            "unmatched_existing": 1316,
+            "accuracy_percent": 52.72219116825042,
+            "existing_accuracy_percent": 64.75227155837476,
+            "null_recall_percent": 30.173521850899743
+          },
+          "baseline_gru": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 15,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          },
+          "bounded_joint": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 17,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          }
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "mean_loss": 4.253131963014603,
+          "sampled_frames": 400,
+          "supervised_detections": 3478,
+          "seconds": 18.294263454999964
+        },
+        {
+          "epoch": 2,
+          "mean_loss": 4.118034815043211,
+          "sampled_frames": 400,
+          "supervised_detections": 3290,
+          "seconds": 17.213401404998876
+        },
+        {
+          "epoch": 3,
+          "mean_loss": 3.898099403679371,
+          "sampled_frames": 400,
+          "supervised_detections": 3230,
+          "seconds": 17.089749779999693
+        },
+        {
+          "epoch": 4,
+          "mean_loss": 3.56904903838411,
+          "sampled_frames": 400,
+          "supervised_detections": 3444,
+          "seconds": 16.971095180999328
+        },
+        {
+          "epoch": 5,
+          "mean_loss": 3.56013537183404,
+          "sampled_frames": 400,
+          "supervised_detections": 3359,
+          "seconds": 17.13235232199986
+        },
+        {
+          "epoch": 6,
+          "mean_loss": 3.8630511368717997,
+          "sampled_frames": 400,
+          "supervised_detections": 3533,
+          "seconds": 17.20772782399945
+        },
+        {
+          "epoch": 7,
+          "mean_loss": 3.601270029069856,
+          "sampled_frames": 400,
+          "supervised_detections": 3510,
+          "seconds": 17.100688214999536
+        },
+        {
+          "epoch": 8,
+          "mean_loss": 3.7845752552896736,
+          "sampled_frames": 400,
+          "supervised_detections": 3492,
+          "seconds": 16.795363280998572
+        }
+      ],
+      "parameters": 150533,
+      "checkpoint_sha256": "ce5db93b345dddc21aff47e9eefc7c6870c95ac84fbcff75060cbb000a490d68",
+      "elapsed_training_seconds": 137.80464146299528,
+      "peak_gpu_memory_bytes": 25137152,
+      "scope": "Fixed-state frozen-feature full high-stage set conditional head probe. Inherited encoder/teacher exposures disclosed. This is not a full-video/endogenous MOT or complete online runtime result.",
+      "source_commit": "3b5340caafbaed99cd9dd63efda682712698a916",
+      "optimizer_gradient_participating_parameters": 142084
+    },
+    "pair": {
+      "guard": {
+        "config_sha256": "380b1a4af0a3cc0485300dc3f712979bdcf3dbd8a50ee2638286e1d571c44fde",
+        "query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
+        "source_sha256": {
+          "/data3/liuyeqiang/IR-MFT/tools/cfp_train_joint_identity.py": "276736a91dd95de655a1cd7a00b6d628f36d2cd5b0db3e613c5efa9a8c451807",
+          "cfp/joint_identity_decoder.py": "566aba8859a0b1aa5b268f8683f0d28f0c6342c1e1551ce62262a0fd9a636372",
+          "cfp/joint_identity_supervision.py": "6142c20fcce44788d4ae7c819818d7d6b1bbca80a471dd10840abb7b84d3936f",
+          "cfp/joint_identity_training_data.py": "41c26cb5e0503fb19685629e1f3d960cbd55b0d0310507e72ef3b77d8857600c",
+          "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+          "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+        },
+        "architecture": "pair",
+        "seed": 0,
+        "torch": "2.0.0+cu118",
+        "device": "cuda",
+        "physical_devices": "1"
+      },
+      "config": {
+        "state": "FROZEN",
+        "purpose": "First full-frame supervised head probe and matched independent pair control; conditional association research, not full MOT or new encoder claim",
+        "fit_videos": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "PF-001"
+        ],
+        "calibration_videos": [
+          "SN-001"
+        ],
+        "outer_videos": [
+          "SN-015"
+        ],
+        "encoder_exposure": "Inherited RGB encoder saw all6; inherited GRU fit5 including calibrationSN001 and calibratedSN015. This is conditional heldout new association head only.",
+        "dimension": 512,
+        "hidden": 64,
+        "heads": 4,
+        "capacity": 128,
+        "epochs": 8,
+        "steps_per_epoch": 400,
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001,
+        "ranking_weight": 0.1,
+        "consistency_weight": 0.1,
+        "residual_loss_weight": 1.0,
+        "maximum_delta": 0.03,
+        "residual_temperature": 0.1,
+        "unmatched_cost": 0.97,
+        "checkpoint_selection": "Fixed last epoch8. Calibration and outer diagnostic only after training; no threshold/checkpoint selection.",
+        "sampling": "Uniform fit video, then uniform actual high-stage frame, random distinct local dictionary codes per frame; no physical-label input to model",
+        "null_semantics": "Known no match to supplied historical set; not verified newborn. Unknown detection/track identities and nonunique assignments unsupervised.",
+        "routes": [
+          "Baseline GRU costs plus bounded full-set residual, same original lifecycle",
+          "Separate full learned ID assignment, private unmatched slot per detection"
+        ],
+        "comparisons": [
+          "Independent same-input pair scorer",
+          "Full-set joint head"
+        ],
+        "resume": "Atomic completed-epoch model/optimizer/scheduler/Python/NumPy/CPU/CUDA RNG plus exact source/config/data/runtime guards; incomplete epoch replayed from checkpoint"
+      },
+      "evaluations": {
+        "SN-001": {
+          "full_id": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 221,
+            "existing_correct": 200,
+            "null_correct": 21,
+            "false_old_match_on_null": 160,
+            "unmatched_existing": 67,
+            "accuracy_percent": 25.228310502283104,
+            "existing_accuracy_percent": 28.776978417266186,
+            "null_recall_percent": 11.602209944751381
+          },
+          "baseline_gru": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          },
+          "bounded_joint": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          }
+        },
+        "SN-015": {
+          "full_id": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4627,
+            "existing_correct": 4331,
+            "null_correct": 296,
+            "false_old_match_on_null": 2816,
+            "unmatched_existing": 665,
+            "accuracy_percent": 51.727221911682506,
+            "existing_accuracy_percent": 74.24995714040803,
+            "null_recall_percent": 9.511568123393316
+          },
+          "baseline_gru": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 15,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          },
+          "bounded_joint": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 17,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          }
+        }
+      },
+      "epochs": [
+        {
+          "epoch": 1,
+          "mean_loss": 4.213046187460423,
+          "sampled_frames": 400,
+          "supervised_detections": 3478,
+          "seconds": 11.756251036000322
+        },
+        {
+          "epoch": 2,
+          "mean_loss": 3.940590793155134,
+          "sampled_frames": 400,
+          "supervised_detections": 3290,
+          "seconds": 11.446939194998777
+        },
+        {
+          "epoch": 3,
+          "mean_loss": 3.6335716768726707,
+          "sampled_frames": 400,
+          "supervised_detections": 3230,
+          "seconds": 11.514195085999745
+        },
+        {
+          "epoch": 4,
+          "mean_loss": 3.339027724880725,
+          "sampled_frames": 400,
+          "supervised_detections": 3444,
+          "seconds": 11.522652595000181
+        },
+        {
+          "epoch": 5,
+          "mean_loss": 3.4165127697214484,
+          "sampled_frames": 400,
+          "supervised_detections": 3359,
+          "seconds": 11.5858262010006
+        },
+        {
+          "epoch": 6,
+          "mean_loss": 3.7677981237880886,
+          "sampled_frames": 400,
+          "supervised_detections": 3533,
+          "seconds": 11.53513481400114
+        },
+        {
+          "epoch": 7,
+          "mean_loss": 3.522597430087626,
+          "sampled_frames": 400,
+          "supervised_detections": 3510,
+          "seconds": 11.425798623999071
+        },
+        {
+          "epoch": 8,
+          "mean_loss": 3.737096865158528,
+          "sampled_frames": 400,
+          "supervised_detections": 3492,
+          "seconds": 11.467386570999224
+        }
+      ],
+      "parameters": 150533,
+      "checkpoint_sha256": "b92f0883bbb33a900009b9b1cd9fdf4aa4b595b2c4b59f4c7dec481038dd5956",
+      "elapsed_training_seconds": 92.25418412199906,
+      "peak_gpu_memory_bytes": 25548800,
+      "scope": "Fixed-state frozen-feature full high-stage set conditional head probe. Inherited encoder/teacher exposures disclosed. This is not a full-video/endogenous MOT or complete online runtime result.",
+      "source_commit": "3b5340caafbaed99cd9dd63efda682712698a916",
+      "optimizer_gradient_participating_parameters": 83845
+    }
+  }
+}

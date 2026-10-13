@@ -13,3 +13,20 @@ The warm-source builder reads all tracks, including unknown references, from eac
 The preregistered probe `configs/cfp/phase_vii_joint_probe_v1.json` fits BT-001/BT-003/MSK-002/PF-001, uses SN-001 for post-training calibration diagnosis and evaluates SN-015 only after fixed epoch8. A same-input independent pair scorer shares memory pooling, confidence, status, local dictionary and geometry/appearance inputs but has no set attention. Both use8epochs×400 uniformly sampled video/frame steps at seed0. This is an initial conditional head probe; three seeds, all outer folds, ordinary full-set Transformer, MOTIP-head adaptation, attention/motion/NULL/memory ablations, teacher-to-endogenous transition and all-frame online metrics remain pending.
 
 Resume checkpoints include model, optimizer, scheduler, Python/NumPy-generator/globalNumPy/CPU/CUDA RNG and exact source/config/data/runtime/device guards. Checkpoint choice is fixed last epoch; historical dev/test videos never fit this probe. Cache/head training time is not complete online latency.
+
+## First registered training result
+
+Both seed0 heads completed8×400steps on the same sampled frames and local dictionary permutations. Joint training took137.80s and pair92.25s. Both allocate150,533parameters; the optimizer states show142,084participating joint parameters versus83,845pair parameters, so this is a matched-input/training-budget control, not an equal-effective-parameter comparison. Peak PyTorch allocated memory was25.14/25.55MB; CUDA context/reservation uses more and these are not complete-system memory figures.
+
+| Fixed actual teacher snapshots | Baseline GRU | Pair full ID | Joint full ID |
+|---|---:|---:|---:|
+| SN-001 all known assignment accuracy (%) |26.3699|25.2283|26.5982|
+| SN-001 existing-ID accuracy (%) |31.2230|28.7770|29.9281|
+| SN-001 no-old-match recall (%) |7.7348|11.6022|13.8122|
+| SN-015 all known assignment accuracy (%) |54.8239|51.7272|52.7222|
+| SN-015 existing-ID accuracy (%) |83.6619|74.2500|64.7523|
+| SN-015 no-old-match recall (%) |0.7712|9.5116|30.1735|
+
+SN-001 has876supervised detections(695existing/181NULL); SN-015 has8,945(5,833existing/3,112NULL). Unknown/nonunique assignments remain excluded from measurement, not from model inputs. The0.03bounded residual in either head leaves assignment accuracy unchanged on these frozen states, although some existing-target unmatched counts change. The full joint head trades existing-ID recall for better NULL detection and is not superior to the baseline overall. These are not HOTA/IDF1 results. Detailed reproducible evidence is in `PHASE_VII_JOINT_PROBE_MEASURED.json`; checkpoints stay outside Git.
+
+`cfp/online_joint_identity.py` now integrates both routes into the original native lifecycle with matching AnchorRecent memory. It processes the whole confirmed/lost high-stage set before writes; low/unconfirmed stages remain native. The full route's private-NULL global assignment is encoded into the native high-stage matrix, so unmatched high detections subsequently follow the existing confirmation/birth path. NULL does not force a fabricated birth or mark a physical identity as known. All-frame disabled byte parity, joint/pair bounded/full replays and pinned official TrackEval metrics are preregistered for SN-001/SN-015; results remain IN_PROGRESS. Raw online detector/encoder/generator/decode profiling is still pending.

@@ -122,7 +122,7 @@
     },
     {
       "experiment_id": "VII_C_FULLSET_PROBE_JOINT_S0_V1",
-      "status": "REGISTERED",
+      "status": "COMPLETE",
       "hypothesis": "Full-set competition versus same-input independent pair ID scoring with supervised no-old-match and bounded residual",
       "seed": 0,
       "fit_videos": [
@@ -142,11 +142,113 @@
       "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_joint_s0_v1",
       "command": "CUDA_VISIBLE_DEVICES=0 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_joint_identity.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_actual_queries_s0_v2 --config configs/cfp/phase_vii_joint_probe_v1.json --architecture joint --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_joint_s0_v1",
       "checkpoint_selection": "Fixed final epoch8, no calibration threshold selection",
-      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT."
+      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT.",
+      "manifest_sha256": "a12d946b00fa1f6f5dfceedb660a05e58146a9893047c9cf5e828d1406e628d1",
+      "checkpoint_sha256": "ce5db93b345dddc21aff47e9eefc7c6870c95ac84fbcff75060cbb000a490d68",
+      "metrics": {
+        "SN-001": {
+          "full_id": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 233,
+            "existing_correct": 208,
+            "null_correct": 25,
+            "false_old_match_on_null": 156,
+            "unmatched_existing": 78,
+            "accuracy_percent": 26.598173515981735,
+            "existing_accuracy_percent": 29.928057553956833,
+            "null_recall_percent": 13.812154696132596
+          },
+          "baseline_gru": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          },
+          "bounded_joint": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          }
+        },
+        "SN-015": {
+          "full_id": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4716,
+            "existing_correct": 3777,
+            "null_correct": 939,
+            "false_old_match_on_null": 2173,
+            "unmatched_existing": 1316,
+            "accuracy_percent": 52.72219116825042,
+            "existing_accuracy_percent": 64.75227155837476,
+            "null_recall_percent": 30.173521850899743
+          },
+          "baseline_gru": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 15,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          },
+          "bounded_joint": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 17,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          }
+        }
+      },
+      "parameters_allocated": 150533,
+      "optimizer_gradient_participating_parameters": 142084,
+      "training_seconds": 137.80464146299528,
+      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement."
     },
     {
       "experiment_id": "VII_C_FULLSET_PROBE_PAIR_S0_V1",
-      "status": "REGISTERED",
+      "status": "COMPLETE",
       "hypothesis": "Full-set competition versus same-input independent pair ID scoring with supervised no-old-match and bounded residual",
       "seed": 0,
       "fit_videos": [
@@ -166,7 +268,117 @@
       "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_pair_s0_v1",
       "command": "CUDA_VISIBLE_DEVICES=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_joint_identity.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_actual_queries_s0_v2 --config configs/cfp/phase_vii_joint_probe_v1.json --architecture pair --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_pair_s0_v1",
       "checkpoint_selection": "Fixed final epoch8, no calibration threshold selection",
-      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT."
+      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT.",
+      "manifest_sha256": "688409fbc2776ffb65e66d51a5aa1c7a238f7526753c2c4430024093012bb9da",
+      "checkpoint_sha256": "b92f0883bbb33a900009b9b1cd9fdf4aa4b595b2c4b59f4c7dec481038dd5956",
+      "metrics": {
+        "SN-001": {
+          "full_id": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 221,
+            "existing_correct": 200,
+            "null_correct": 21,
+            "false_old_match_on_null": 160,
+            "unmatched_existing": 67,
+            "accuracy_percent": 25.228310502283104,
+            "existing_accuracy_percent": 28.776978417266186,
+            "null_recall_percent": 11.602209944751381
+          },
+          "baseline_gru": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          },
+          "bounded_joint": {
+            "frames": 137,
+            "detections": 1175,
+            "supervised": 876,
+            "existing": 695,
+            "null": 181,
+            "correct": 231,
+            "existing_correct": 217,
+            "null_correct": 14,
+            "false_old_match_on_null": 167,
+            "unmatched_existing": 1,
+            "accuracy_percent": 26.36986301369863,
+            "existing_accuracy_percent": 31.223021582733814,
+            "null_recall_percent": 7.734806629834254
+          }
+        },
+        "SN-015": {
+          "full_id": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4627,
+            "existing_correct": 4331,
+            "null_correct": 296,
+            "false_old_match_on_null": 2816,
+            "unmatched_existing": 665,
+            "accuracy_percent": 51.727221911682506,
+            "existing_accuracy_percent": 74.24995714040803,
+            "null_recall_percent": 9.511568123393316
+          },
+          "baseline_gru": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 15,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          },
+          "bounded_joint": {
+            "frames": 1314,
+            "detections": 12194,
+            "supervised": 8945,
+            "existing": 5833,
+            "null": 3112,
+            "correct": 4904,
+            "existing_correct": 4880,
+            "null_correct": 24,
+            "false_old_match_on_null": 3088,
+            "unmatched_existing": 17,
+            "accuracy_percent": 54.82392397987702,
+            "existing_accuracy_percent": 83.66192353848791,
+            "null_recall_percent": 0.7712082262210797
+          }
+        }
+      },
+      "parameters_allocated": 150533,
+      "optimizer_gradient_participating_parameters": 83845,
+      "training_seconds": 92.25418412199906,
+      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement."
+    },
+    {
+      "experiment_id": "VII_C_FULLVIDEO_JOINT_PAIR_CAMPAIGN_S0_V1",
+      "status": "REGISTERED",
+      "hypothesis": "Fixed-row decision metrics do not establish endogenous MOT; preserve full baseline parity and test both head routes",
+      "plan_sha256": "54f464c32336fdf97a57d7da7dd24120d97f269d2f28bdba51a81b36dd9ffb18",
+      "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_joint_replays.py --plan configs/cfp/phase_vii_joint_replay_campaign_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_replay_campaign_s0_v1.json",
+      "scope": "Full SN001 calibration/SN015 conditional-head outer videos, same frozen V3/RGB inputs and measured output, no new tuning; raw online runtime and all outer folds pending."
     }
   ],
   "source_http_followup": {
@@ -175,7 +387,9 @@
     "reason": "Git transport materialized16 of30 projects; fetch only bounded public audit entry files at exact tree hashes through independent HTTP endpoint, preserving historical checkouts and modified files",
     "command": "PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_fetch_reference_audit_sources.py --plan configs/cfp/phase_vii_reference_inventory_v1.json --maximum-files 24 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_audit_http_v1.json",
     "scope": "No weights/data/archive or external code execution. Selected-file acquisition is not30 complete semantic audits; every absent file and failure stays explicit.",
-    "summary_sha256": "4278c0e4c0f8488ce4fc91612547e23f4a71f86324164a001db898d986e1738c"
+    "summary_sha256": "4278c0e4c0f8488ce4fc91612547e23f4a71f86324164a001db898d986e1738c",
+    "cov_followup_summary": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_audit_cov_http_v2.json",
+    "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
     "30 semantic source audits",
@@ -190,10 +404,10 @@
     "final20-question scientific audit"
   ],
   "validation": {
-    "project_tests": 200,
+    "project_tests": 202,
     "warnings": 18,
-    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_joint_v2.log",
-    "log_sha256": "594ece489286a97ebca2705863ae7c5cd868adddcea3144e240d39b39230c458"
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_online_joint_v1.log",
+    "log_sha256": "d377465faf63effb01f1ce344a5b78f76039deff3f8bbccb1279efb39c1ca9f7"
   },
   "execution_failures": [
     {
