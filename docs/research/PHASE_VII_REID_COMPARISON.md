@@ -157,3 +157,18 @@ All twelve completed trained evaluations reproduce the frozen same-input operato
 | SN015 |60.317|66.032 ±0.420|0.94340 /0.14131|0.97509 ±0.00157 /0.08057 ±0.00418|65.079 ±0.275|
 
 R1 uses minimum25frame earlier galleries. AUC/EER uses nearest strictly earlier known-positive versus current-frame known-different-fish edges (not the25frame subset): BT001630positive/4362negative, SN015633/5187. Edges repeat fish/frames and are not independent biological samples. Query-level uncertainty and training-seed SD are distinct. Unknowns remain in the actual detector pool but not negative labels; paired keys restrict support explicitly. Current-crop supervised identity improves both ranking and this specific discrimination test; a local-only or native-association causal gain remains unestablished. Full allgap/perview/perproducer/rank5/mAP/unknowns/loss/gradient/checkpoint/source/seed evidence is in PHASE_VII_DINOV2_FISH_THREE_SEED_MEASURED.json.
+
+## All-six-fold K4 supervised confirmation
+
+All72 K4fits/paired diagnostics now complete: six distinct outer videos, inner next in the declared cycle, four fit videos and seeds0/1/2. Source/data/pretrain/sampling/capacity/frozen-prefix/checkpoint and exact diagnostic-support guards passed. Fixed finalepoch8, no outer checkpoint/threshold/architecture selection. Actual detector gap25R1 mean ± sampleSD across training seeds:
+
+| Outer video | Frozen DINO CLS | Global | Simple real parts | CLS-only capacity | Real patch attention |
+|---|---:|---:|---:|---:|---:|
+| BT-001 | 19.872 | 20.353 ±0.278 | 20.726 ±0.245 | 20.139 ±0.490 | 20.085 ±0.791 |
+| BT-003 | 16.949 | 21.846 ±3.405 | 22.222 ±2.844 | 22.222 ±2.609 | 22.222 ±2.139 |
+| MSK-002 | 4.431 | 4.850 ±0.191 | 4.916 ±0.106 | 4.905 ±0.125 | 4.894 ±0.152 |
+| PF-001 | 74.603 | 75.661 ±1.833 | 75.397 ±1.587 | 76.190 ±1.375 | 74.603 ±0.794 |
+| SN-001 | 29.423 | 31.090 ±1.110 | 31.282 ±1.280 | 30.833 ±0.909 | 31.218 ±1.094 |
+| SN-015 | 57.937 | 63.386 ±0.716 | 63.016 ±0.420 | 62.857 ±0.991 | 62.857 ±0.572 |
+
+Global mean improves over frozen DINO in6/6 outer videos; PF001 has one improving seed and two equal-baseline seeds. Macro over videos then sampleSD across three seeds: frozen33.869%, global36.198±0.419%, simple36.260±0.377%, capacity36.191±0.241%, patch attention35.980±0.309%. Local spatial attention does not consistently exceed global/capacity; simple pooling has only a small macro difference. No new local novelty, biological-identity disjointness, external-scene or native-MOT claim. K8 continues under the unchanged registered recipe. PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json contains full primary actual/paired GT/detector allgapR1/R5/mAP/AUC/EER, perseed/fold support/hash/update/time evidence; all raw/local descriptors remain in linked exact diagnostics.

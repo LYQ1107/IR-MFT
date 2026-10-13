@@ -3092,6 +3092,70 @@
       "status": "IN_PROGRESS_METADATA_ONLY",
       "measured": "docs/research/PHASE_VII_EXTERNAL_DATA_AUDIT_MEASURED.json",
       "scope": "Four preliminary primary candidates, Kaggle version4 exact hash and primary terms discrepancy preserved; no raw external payload/learning/external performance or completed overlap audit claim."
+    },
+    {
+      "experiment_id": "VII_A_DINOV2_ALL_FOLDS_K4_V1",
+      "status": "COMPLETE_72_ACTUAL_FITS_AND_MATCHED_DIAGNOSTICS",
+      "config": "configs/cfp/phase_vii_dinov2_fish_training_v1.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "local_count": 4,
+      "measured": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json",
+      "scope": "Globalmeanpositive6/6cropfolds, local incremental superiority notestablished; notnativeMOT/externalnovelty."
+    },
+    {
+      "experiment_id": "VII_B_GENUINE_LOCAL_DENSE_JEPA_PILOT_V1",
+      "status": "FIRST_SEED_NINE_MODELS_COMPLETE_THREE_SEEDS_RUNNING",
+      "config": "configs/cfp/phase_vii_local_dense_jepa_v1.json",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "count": 4,
+      "measured": "docs/research/PHASE_VII_LOCAL_DENSE_FIRST_SEED_MEASURED.json",
+      "scope": "Real localencoder/temporalcontext/maskedregionalpredictor/currentrelation/independentstoppedEMAteacher; fixedfrozenbackbone384observations, CPUonly. Sameactualinputmasks/past/current/querysupport; latentlossdecreases butidentitynotaboveglobal/localTemporal/frozen. Offlinecleanphysicalgroups, notactualnative memory."
+    },
+    {
+      "experiment_id": "VII_B_LOCAL_DENSE_INNER_STAGE_V1",
+      "status": "COMPLETE_INNER_ONLY_DIAGNOSIS",
+      "measured": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_inner_stage_diagnosis_v1",
+      "scope": "Fixedfullcheckpoint innerBT001GT-history/actualdet gap25: encoderFIFO/context37.5839 vsprediction26.8456; samecandidateencoder/scorer/support. Explicitouterrequest rejected beforebank/weight load. Motivatestraining-onlyauxpredictor/directcontextrepresentation, noouterrecipe selection."
+    },
+    {
+      "experiment_id": "VII_B_LOCAL_DENSE_REAL_RESTART_V1",
+      "status": "EXACT_LOCAL_DENSE_RESTART_STATE_VERIFIED",
+      "measured": "docs/research/PHASE_VII_LOCAL_DENSE_RESTART_MEASURED.json",
+      "seed": 1,
+      "mode": "full",
+      "device": "CPU",
+      "stop_epoch": 2,
+      "final_epoch": 8,
+      "counts": {
+        "tensor_leaves": 250,
+        "array_leaves": 1,
+        "scalar_leaves": 1626
+      },
+      "scope": "Actualstudent/independentEMAteacher/allRNG/optimizer/scheduler/masks/losses/inputdigests/identitysupport exact; no walltime/container/crosshardware claim."
     }
   ],
   "source_http_followup": {

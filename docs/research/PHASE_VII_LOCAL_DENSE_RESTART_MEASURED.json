@@ -1,0 +1,71 @@
+{
+  "status": "COMPLETE_ACTUAL_LOCAL_DENSE_RESTART_AUDIT",
+  "proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_full_exact_restart_v1.json",
+  "proof_sha256": "9f3d62b1d7372481d5518293d5fa26f3458468e3a0243fe97fcbaf4a2b7ac7bf",
+  "measured": {
+    "status": "EXACT_LOCAL_DENSE_RESTART_STATE_VERIFIED",
+    "guard": {
+      "mode": "full",
+      "seed": 1,
+      "local_count": 4,
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "config_sha256": "796fc703eedaad7aef9639158c1c81db3ffb19102c06842b6d20ee5a2090b41d",
+      "feature_manifest_sha256": "6a81ba1b295505abdc29aaa0a1f25693c5caa1d4b171e934fe229ddd26cb7532",
+      "index_manifest_sha256": "074c1ecba257e0ee3e2f0a9f7f80a3ba4669812d8cc982e7a8cfa631a103003f",
+      "legacy_manifest_sha256": "c0f1c834234a1ebc399d327d9374b9969eb8bdccf85f4d12dabb3904469285b7",
+      "backbone_weight_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+      "source_sha256": {
+        "/data3/liuyeqiang/IR-MFT/tools/cfp_train_local_dense_jepa.py": "340c6458edb94b46cbf88aa8f55e6cfd8e6396e93e76b4a1c035ac017c517554",
+        "cfp/local_dense_jepa.py": "37c761b9ac21fc629ffadf638e7ff6d549ce695e656576a13d9ab634422d1e4f",
+        "cfp/local_dense_data.py": "ac4bd9b54f1d7dbf9b89859d9b1517710429c7e4ba695f4a50dd361ab88b1770",
+        "cfp/local_dense_training.py": "71803a4aad823b8beb4aa063e8cd2690daef225348713a036295043402450306",
+        "cfp/local_dense_evaluation.py": "3a643d2cd3efe8f839df1331a45383662bf060a81f28ce32935023929748deea",
+        "cfp/identity_evidence.py": "77e844ef6d53a85329f63dc063c83fdef19909b847390daa2a2af962527c4002",
+        "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+      },
+      "torch": "2.0.0+cu118",
+      "threads": 2,
+      "deterministic_algorithms": true,
+      "cuda_visible_devices": "",
+      "teacher_decay": 0.99,
+      "initial_student_sha256": "f86831077457c428188667bcb7bc2ab0b9cec7efcd073c63d096cb06c6603d65",
+      "initial_teacher_sha256": "feb20f82fd5c93aef2dd2d1f1f89a7a602da9e2c803c7a59f1736bb0881f5f6c"
+    },
+    "counts": {
+      "tensor_leaves": 250,
+      "array_leaves": 1,
+      "scalar_leaves": 1626
+    },
+    "differences": [],
+    "compared_state_fields": [
+      "student",
+      "teacher",
+      "optimizer",
+      "scheduler",
+      "rng_sampler",
+      "rng_target_mask",
+      "rng_torch",
+      "rng_numpy",
+      "rng_python"
+    ],
+    "continuous": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_full_SN-015_k4_s1_v1",
+    "restarted": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_full_SN-015_k4_s1_restart_v1",
+    "manifest_sha256": [
+      "582ed6469d2d5960e8209fe2107aa6412219856dc3b073b525eb839df8dd24b7",
+      "bb5b18533af301193960dc845be41707fc4da054c707f0eceab95b8370eba674"
+    ],
+    "stop_log_sha256": "7b801444e05a370b0ae570c68287e5163ddd6a0e6b3ef541e1206a997f998ad9",
+    "sources": {
+      "tools/cfp_verify_local_dense_restart.py": "34e918963b19f734de8a6398ae5d16855727574df2103e0fa9c9d13970ec6fa0"
+    },
+    "scope": "Actual full localJEPA seed1 CPU uninterrupted8epochs versusepoch2exit/freshprocessresume; student/independentEMAteacher/updatecount/AdamW/scheduler/all CPU+sampler+mask RNG, losses, exact observed-input digest and identity/support metrics. Excludes walltime/container bytes/filepaths; no crosshardware guarantee."
+  },
+  "scope": "Exact actualCPUfullseed1student/independentEMAteacher/optimizer/scheduler/allRNG/inputmasks/teacherupdates/losses/identitysupport metrics. No allfold/nativeMOT/JEPA superiority/crosshardware claim."
+}
