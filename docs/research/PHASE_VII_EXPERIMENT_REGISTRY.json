@@ -2585,6 +2585,139 @@
       "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_hf_pinned_provenance_v1.json",
       "output_sha256": "88e1060d725ba2a9d9fb694a19399a2a2c0a5dfdfbefb1c23df98b4f7dec6f96",
       "scope": "Publisher exact commit/file SHA/bytes verified; all TLS delivery attempts failed; no weights acquired."
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_IDENTITY_GLOBAL_SN-015_S1_V1",
+      "status": "COMPLETE",
+      "mode": "global",
+      "seed": 1,
+      "physical_gpu": 0,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "command": "CUDA_VISIBLE_DEVICES=0 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode global --seed 1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1",
+      "scope": "Same fixed8epoch visual pilot across registered3seeds. Globalseed1 controlled epoch2 restart versus uninterrupted sameGPU0. No hyperparameter or checkpoint selection from outer.",
+      "manifest_sha256": "df89752b61ee1c2bedba8b9c52515281212238f0507f9dd68067f1fd27e8dc7f",
+      "checkpoint_sha256": "11a298d2434ac559190f55d77151c17e3c8ea4dbb1b6b94db9c25dbea0222836"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_IDENTITY_LEARNED_SN-015_S1_V1",
+      "status": "COMPLETE",
+      "mode": "learned",
+      "seed": 1,
+      "physical_gpu": 1,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s1_v1",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "command": "CUDA_VISIBLE_DEVICES=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode learned --seed 1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s1_v1",
+      "scope": "Same fixed8epoch visual pilot across registered3seeds. Globalseed1 controlled epoch2 restart versus uninterrupted sameGPU0. No hyperparameter or checkpoint selection from outer.",
+      "manifest_sha256": "3fc6c0a8e83436fe10465cdc213ab9b2c168f432adc3e597be686e07df6eca35",
+      "checkpoint_sha256": "d890532ce597fc06eb00a54a3b79386e3b4eb133b3b66f1e63cc00fed9f15f22"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_IDENTITY_GLOBAL_SN-015_S2_V1",
+      "status": "COMPLETE",
+      "mode": "global",
+      "seed": 2,
+      "physical_gpu": 2,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s2_v1",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "command": "CUDA_VISIBLE_DEVICES=2 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode global --seed 2 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s2_v1",
+      "scope": "Same fixed8epoch visual pilot across registered3seeds. Globalseed1 controlled epoch2 restart versus uninterrupted sameGPU0. No hyperparameter or checkpoint selection from outer.",
+      "manifest_sha256": "8a243ee2e8b9677723a31ed0b7d9befab5b2eb84ce1b39af530ea068278f9ee2",
+      "checkpoint_sha256": "9e535c955cc7301043c87aa19c904a447376cfc2cd026ffb85cc7cafab46e1eb"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_IDENTITY_LEARNED_SN-015_S2_V1",
+      "status": "COMPLETE",
+      "mode": "learned",
+      "seed": 2,
+      "physical_gpu": 3,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s2_v1",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "command": "CUDA_VISIBLE_DEVICES=3 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode learned --seed 2 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s2_v1",
+      "scope": "Same fixed8epoch visual pilot across registered3seeds. Globalseed1 controlled epoch2 restart versus uninterrupted sameGPU0. No hyperparameter or checkpoint selection from outer.",
+      "manifest_sha256": "8171b8ef413431edec8a15280df5ee326dabfa0604c0aa6704ef55fe39b0db2b",
+      "checkpoint_sha256": "ee0a8c11f16038f9915662b62e4bb1e33838b183acd545bf4183acd163efb071"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_IDENTITY_GLOBAL_SN-015_S1_V1__RESTART_EPOCH2",
+      "status": "COMPLETE",
+      "mode": "global",
+      "seed": 1,
+      "physical_gpu": 0,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1__restart_epoch2",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "command": "CUDA_VISIBLE_DEVICES=0 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode global --seed 1 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1__restart_epoch2 --stop-after-epoch 2; same command --resume in second fresh process",
+      "scope": "Same fixed8epoch visual pilot across registered3seeds. Globalseed1 controlled epoch2 restart versus uninterrupted sameGPU0. No hyperparameter or checkpoint selection from outer.",
+      "manifest_sha256": "e6ae5457f28873a009dba43decfd5664323d5c0a60eb6cbdb91a06d6692a502e",
+      "checkpoint_sha256": "5aa07cf94c8dcaac470376e0721321c14640444e521c4c4c94fee68dee9889b6"
+    },
+    {
+      "experiment_id": "VII_A1_A2_FIT_INNER_STAGE_DIAGNOSIS_V1",
+      "status": "COMPLETE_FIT_INNER_VISUAL_STAGE_DIAGNOSIS",
+      "config": "configs/cfp/phase_vii_visual_stage_diagnosis_v1.json",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_feature_stage_diagnosis_fit_inner_s0_v1.json",
+      "artifact": {
+        "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_feature_stage_diagnosis_fit_inner_s0_v1.json",
+        "sha256": "ead93cd3fd5db489b002f17a1ca97d261f99be74dd6a604620c0486eecd73668"
+      },
+      "scope": "Fitting and inner-only sparse offline diagnosis, never read/evaluate outerSN015 crops or labels. Does not select a winner from outer scores. New-head artifacts do not change online tracker."
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_THREE_SEED_FIRST_FOLD_V1",
+      "status": "COMPLETE_FIRST_FOLD_VISUAL_THREE_SEED_CONTROLS",
+      "summary": "docs/research/PHASE_VII_VISUAL_THREE_SEED_MEASURED.json",
+      "sha256": "c1c11bf35832454a9235814a3eb86e18b2de85546f48ea94f1b634850a56de45",
+      "scope": "Sparse past-only current crop retrieval at gaps1/25/100, retaining unknown detector gallery rows. Known-positive-supported conditional R1/R5/mAP; no native MOT or new-coordinate GRU claim.",
+      "conclusion": "Neither new trained head beats frozen rawImageNet outer detectorR1. Seed0 local-versus-global difference is not stable across3seeds; no retained visual gain or universal local superiority."
+    },
+    {
+      "experiment_id": "VII_A1_VISUAL_REAL_RESTART_STATE_EQUIVALENCE_V1",
+      "status": "EXACT_RESTART_STATE_VERIFIED",
+      "summary": "docs/research/PHASE_VII_VISUAL_RESTART_MEASURED.json",
+      "sha256": "2052b2775f60f2ac52ce0ec64063a2dfaab9772631426516824cb4e12076d44c",
+      "scope": "Actual epoch2 early exit then fresh-process resume versus uninterrupted seed1/global8epoch run on same physicalGPU0. Tensor/optimizer/scaler/all RNG, training losses/update counts and retrieval exact equality; no crosshardware determinism claim."
+    },
+    {
+      "experiment_id": "VII_SOURCE_IJEPA_CRITICAL_BLOBS_V1",
+      "status": "EXACT_SOURCE_FIELDS_VERIFIED",
+      "proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/ijepa_critical_api_sources_v1.json",
+      "sha256": "3e948ec1a5fe8ea2cc1d44cf5b9305f072f9cb31628568cdbb75ba77e5a31e86",
+      "scope": "Pinned code/license/masksource acquired by publicGitHubAPI; full semantic audit complete, no codeexecution orpretrainedweights."
     }
   ],
   "source_http_followup": {

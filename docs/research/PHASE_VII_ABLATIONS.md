@@ -22,3 +22,16 @@ Required next controls include global/local fixed-input retrieval, independently
 ## Executed visual/local controls
 
 Four stopped-ImageNet adapters (global, equal-two-projection dualglobal, simpleK8, learnedK8) and two actual backbone fits(global/learnedK8) complete the first outerSN015/innerBT001 seed0 pilot. They share current crops and physical known-ID/same-frame/temporal supervision. Exact rows appear in REID_COMPARISON and VISUAL_PILOT_MEASURED. Simple geometric strip mean and concatenation plus inherited raw/preBN/BN diagnose representation choices; the dualglobal control tests projection capacity without local pixels. None establishes an outer detector retrieval gain above frozen ImageNet. K4train, transformer/fish-pretrain controls, noCE/nohard-negative, raw-versus-projection and full online/all-fold/three-seed remain pending.
+
+## Registered three-seed first-fold visual confirmation
+
+All global/local ImageNet-initialized backbone runs now complete for seeds0/1/2 at the same registered fixed epoch8 and split. Statistics below are mean ± sample SD across training seeds, not query-level independent uncertainty. Crop/query/gallery counts remain the same for each corresponding view.
+
+| Model | Inner BT001 GT | Inner BT001 detector | Outer SN015 GT | Outer SN015 detector |
+|---|---:|---:|---:|---:|
+| global | 20.000 ± 1.198 | 12.927 ± 1.857 | 45.163 ± 0.364 | 42.804 ± 2.224 |
+| learned | 18.995 ± 1.770 | 12.553 ± 1.203 | 44.111 ± 1.516 | 43.757 ± 3.308 |
+
+Frozen ImageNet detector R1 is14.744% oninnerBT001 and53.651% onouterSN015. All new CNNs remain below the outer baseline; the seed0local-vs-global contrast is not stable across seeds. This confirms the negative first recipe, without declaring all local identity learning ineffective or selecting a lucky seed. Only this first fold is confirmed; all six outer/inner folds, stronger pretrained controls, actual localJEPA, repairedC/D and native/rawonline remain unfinished. Complete gap1/25/100R1/R5/mAP, sample denominators, AMP skips, losses, checkpoint/source/data hashes are in PHASE_VII_VISUAL_THREE_SEED_MEASURED.json.
+
+A real globalseed1epoch2early exit and new-process resume onphysicalGPU0 reproduces continuous8epochtraining exactly:818tensor leaves,1NumPyarray and996scalar leaves across model/optimizer/scheduler/AMP/allRNG; training losses/update counts and retrieval are equal. The verification excludes walltime and serialized container bytes and does not certify crosshardware determinism. Stop/resume logs and both complete manifests are hash-linked in PHASE_VII_VISUAL_RESTART_MEASURED.json. Historical seed0source snapshots are preserved; the early-stop CLI added for seed1/2 does not pretend source equality to the previous run.

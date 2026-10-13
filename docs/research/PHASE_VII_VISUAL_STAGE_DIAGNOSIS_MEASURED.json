@@ -1,0 +1,2514 @@
+{
+  "status": "COMPLETE_FIT_INNER_VISUAL_STAGE_DIAGNOSIS",
+  "config": {
+    "state": "FROZEN",
+    "fit": [
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "inner": "BT-001",
+    "excluded_outer": "SN-015",
+    "models": [
+      "global",
+      "learned"
+    ],
+    "stages": [
+      "backbone_raw2048",
+      "head_pre_layernorm256",
+      "head_layernorm256"
+    ],
+    "frozen_controls": [
+      "imagenet_raw2048",
+      "imagenet_orthogonal_projection256"
+    ],
+    "orthogonal_projection_seed": 73,
+    "query_cap_per_identity_per_view": 64,
+    "minimum_past_gaps": [
+      1,
+      25,
+      100
+    ],
+    "batch_size": 128,
+    "hypothesis": "Separate backbone changes, projection compression and LayerNorm effects after negative first visual fits. Read existing fixed-last checkpoints; no retraining or checkpoint selection.",
+    "scope": "Fitting and inner-only sparse offline diagnosis, never read/evaluate outerSN015 crops or labels. Does not select a winner from outer scores. New-head artifacts do not change online tracker."
+  },
+  "model_proofs": {
+    "global": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s0_v1/epoch8.pt",
+      "sha256": "5379fb4ab50f2db18e256b513611016c468ef89b4eb986ededc643ec32691e30",
+      "manifest_sha256": "6c37338a4e22a93fe236e904857f5a3ceb54c1ee97bb5016087c3dc06244a514"
+    },
+    "learned": {
+      "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s0_v1/epoch8.pt",
+      "sha256": "08c7fe886b357de1fe6030b0936066e67604a59ede5b37b4fc09bc877574c271",
+      "manifest_sha256": "aad526428cb883f3f1345dfff41fc76daa99ba6c2428b0533c29bfbb28697506"
+    }
+  },
+  "config_sha256": "61d052f8f8757ff8eadc3a16e9096ffde460f9da91493178a62e02f1fce48032",
+  "source_commit": "6254f1f525afbbe25dfb24e74b484cd5daa7fad5",
+  "feature_manifest_sha256": "c0f1c834234a1ebc399d327d9374b9969eb8bdccf85f4d12dabb3904469285b7",
+  "crop_manifest_sha256": "4bb5804f9e1960fdcf19335e713d666b67ccc45d7a7e01069c084ecc4f7da406",
+  "physical_devices": "0",
+  "videos": {
+    "BT-003": {
+      "measurements": {
+        "imagenet_raw2048": {
+          "gt": {
+            "1": {
+              "queries": 260,
+              "supported_queries": 250,
+              "missing_target": 10,
+              "rank1_percent": 68.4,
+              "rank5_percent": 81.6,
+              "mAP_percent": 34.75697942176875,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 260,
+              "supported_queries": 220,
+              "missing_target": 40,
+              "rank1_percent": 12.727272727272727,
+              "rank5_percent": 39.54545454545455,
+              "mAP_percent": 19.506020480730022,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 260,
+              "supported_queries": 160,
+              "missing_target": 100,
+              "rank1_percent": 10.625,
+              "rank5_percent": 31.874999999999996,
+              "mAP_percent": 20.342364347104688,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 200,
+              "supported_queries": 190,
+              "missing_target": 10,
+              "rank1_percent": 60.526315789473685,
+              "rank5_percent": 79.47368421052632,
+              "mAP_percent": 31.23172552358917,
+              "unknown_selected": 42
+            },
+            "25": {
+              "queries": 200,
+              "supported_queries": 177,
+              "missing_target": 23,
+              "rank1_percent": 17.51412429378531,
+              "rank5_percent": 42.3728813559322,
+              "mAP_percent": 18.441943144741618,
+              "unknown_selected": 52
+            },
+            "100": {
+              "queries": 200,
+              "supported_queries": 131,
+              "missing_target": 69,
+              "rank1_percent": 12.977099236641221,
+              "rank5_percent": 32.82442748091603,
+              "mAP_percent": 18.17803355291461,
+              "unknown_selected": 49
+            }
+          }
+        },
+        "imagenet_orthogonal_projection256": {
+          "gt": {
+            "1": {
+              "queries": 260,
+              "supported_queries": 250,
+              "missing_target": 10,
+              "rank1_percent": 69.6,
+              "rank5_percent": 82.39999999999999,
+              "mAP_percent": 34.78809597509292,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 260,
+              "supported_queries": 220,
+              "missing_target": 40,
+              "rank1_percent": 14.545454545454545,
+              "rank5_percent": 40.0,
+              "mAP_percent": 19.98251000674322,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 260,
+              "supported_queries": 160,
+              "missing_target": 100,
+              "rank1_percent": 13.125,
+              "rank5_percent": 35.625,
+              "mAP_percent": 21.512653331320724,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 200,
+              "supported_queries": 190,
+              "missing_target": 10,
+              "rank1_percent": 58.94736842105262,
+              "rank5_percent": 74.21052631578947,
+              "mAP_percent": 29.049072813881892,
+              "unknown_selected": 44
+            },
+            "25": {
+              "queries": 200,
+              "supported_queries": 177,
+              "missing_target": 23,
+              "rank1_percent": 14.124293785310735,
+              "rank5_percent": 38.983050847457626,
+              "mAP_percent": 16.750461008340732,
+              "unknown_selected": 52
+            },
+            "100": {
+              "queries": 200,
+              "supported_queries": 131,
+              "missing_target": 69,
+              "rank1_percent": 11.450381679389313,
+              "rank5_percent": 33.587786259541986,
+              "mAP_percent": 16.510736771396044,
+              "unknown_selected": 48
+            }
+          }
+        },
+        "global": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 92.4,
+                "rank5_percent": 98.4,
+                "mAP_percent": 74.1582501228202,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 70.45454545454545,
+                "rank5_percent": 89.0909090909091,
+                "mAP_percent": 65.32558486979148,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 66.25,
+                "rank5_percent": 88.75,
+                "mAP_percent": 65.27692605675013,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 82.63157894736842,
+                "rank5_percent": 96.3157894736842,
+                "mAP_percent": 60.71605485300993,
+                "unknown_selected": 30
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 63.2768361581921,
+                "rank5_percent": 87.00564971751412,
+                "mAP_percent": 54.785616020209204,
+                "unknown_selected": 42
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 47.32824427480916,
+                "rank5_percent": 83.20610687022901,
+                "mAP_percent": 48.98213323497775,
+                "unknown_selected": 44
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 97.2,
+                "rank5_percent": 98.8,
+                "mAP_percent": 86.0454536940494,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 86.81818181818181,
+                "rank5_percent": 95.45454545454545,
+                "mAP_percent": 83.18337796610902,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 81.25,
+                "rank5_percent": 93.75,
+                "mAP_percent": 81.8046736659449,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 87.89473684210526,
+                "rank5_percent": 98.42105263157895,
+                "mAP_percent": 74.40747221154726,
+                "unknown_selected": 22
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 76.27118644067797,
+                "rank5_percent": 92.65536723163842,
+                "mAP_percent": 71.96711020230802,
+                "unknown_selected": 35
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 65.64885496183206,
+                "rank5_percent": 93.12977099236642,
+                "mAP_percent": 68.5508924943484,
+                "unknown_selected": 39
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 97.2,
+                "rank5_percent": 98.8,
+                "mAP_percent": 86.01514236487138,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 86.81818181818181,
+                "rank5_percent": 95.45454545454545,
+                "mAP_percent": 83.15648570858968,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 81.25,
+                "rank5_percent": 93.75,
+                "mAP_percent": 81.79519074131649,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 87.89473684210526,
+                "rank5_percent": 98.42105263157895,
+                "mAP_percent": 74.41989952800286,
+                "unknown_selected": 22
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 76.27118644067797,
+                "rank5_percent": 92.65536723163842,
+                "mAP_percent": 72.01294425191858,
+                "unknown_selected": 35
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 65.64885496183206,
+                "rank5_percent": 93.12977099236642,
+                "mAP_percent": 68.50684063986903,
+                "unknown_selected": 39
+              }
+            }
+          }
+        },
+        "learned": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 88.4,
+                "rank5_percent": 92.80000000000001,
+                "mAP_percent": 52.13814792933648,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 55.00000000000001,
+                "rank5_percent": 70.0,
+                "mAP_percent": 38.27791869709398,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 46.875,
+                "rank5_percent": 66.25,
+                "mAP_percent": 40.75320845416347,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 76.84210526315789,
+                "rank5_percent": 89.47368421052632,
+                "mAP_percent": 43.86989121560541,
+                "unknown_selected": 31
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 41.24293785310734,
+                "rank5_percent": 69.49152542372882,
+                "mAP_percent": 32.47799919153619,
+                "unknown_selected": 47
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 28.24427480916031,
+                "rank5_percent": 63.358778625954194,
+                "mAP_percent": 29.80224721273066,
+                "unknown_selected": 42
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 93.2,
+                "rank5_percent": 98.8,
+                "mAP_percent": 75.04970538524553,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 79.54545454545455,
+                "rank5_percent": 92.72727272727272,
+                "mAP_percent": 69.36337740858428,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 77.5,
+                "rank5_percent": 95.0,
+                "mAP_percent": 71.83845274300722,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 80.52631578947368,
+                "rank5_percent": 95.26315789473684,
+                "mAP_percent": 61.157990471972646,
+                "unknown_selected": 30
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 61.5819209039548,
+                "rank5_percent": 89.26553672316385,
+                "mAP_percent": 53.09820526034803,
+                "unknown_selected": 50
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 57.25190839694656,
+                "rank5_percent": 79.38931297709924,
+                "mAP_percent": 52.760229349931365,
+                "unknown_selected": 44
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 260,
+                "supported_queries": 250,
+                "missing_target": 10,
+                "rank1_percent": 93.2,
+                "rank5_percent": 98.8,
+                "mAP_percent": 75.01537941183672,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 260,
+                "supported_queries": 220,
+                "missing_target": 40,
+                "rank1_percent": 79.0909090909091,
+                "rank5_percent": 92.72727272727272,
+                "mAP_percent": 69.28234867673775,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 260,
+                "supported_queries": 160,
+                "missing_target": 100,
+                "rank1_percent": 77.5,
+                "rank5_percent": 95.0,
+                "mAP_percent": 71.82874409637583,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 200,
+                "supported_queries": 190,
+                "missing_target": 10,
+                "rank1_percent": 80.52631578947368,
+                "rank5_percent": 95.26315789473684,
+                "mAP_percent": 61.14061422045963,
+                "unknown_selected": 30
+              },
+              "25": {
+                "queries": 200,
+                "supported_queries": 177,
+                "missing_target": 23,
+                "rank1_percent": 61.5819209039548,
+                "rank5_percent": 89.26553672316385,
+                "mAP_percent": 53.075483508290546,
+                "unknown_selected": 50
+              },
+              "100": {
+                "queries": 200,
+                "supported_queries": 131,
+                "missing_target": 69,
+                "rank1_percent": 57.25190839694656,
+                "rank5_percent": 79.38931297709924,
+                "mAP_percent": 52.73316058095092,
+                "unknown_selected": 44
+              }
+            }
+          }
+        }
+      },
+      "seconds": 3.190619800996501
+    },
+    "MSK-002": {
+      "measurements": {
+        "imagenet_raw2048": {
+          "gt": {
+            "1": {
+              "queries": 3136,
+              "supported_queries": 3087,
+              "missing_target": 49,
+              "rank1_percent": 45.740200842241656,
+              "rank5_percent": 64.10754778101717,
+              "mAP_percent": 7.059617671286092,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 3136,
+              "supported_queries": 3038,
+              "missing_target": 98,
+              "rank1_percent": 13.13364055299539,
+              "rank5_percent": 28.341013824884794,
+              "mAP_percent": 4.868757511216034,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 3136,
+              "supported_queries": 2938,
+              "missing_target": 198,
+              "rank1_percent": 5.037440435670524,
+              "rank5_percent": 14.908100748808714,
+              "mAP_percent": 3.535987701655314,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 3136,
+              "supported_queries": 3087,
+              "missing_target": 49,
+              "rank1_percent": 27.567217363135732,
+              "rank5_percent": 45.05992873339812,
+              "mAP_percent": 5.487994312830091,
+              "unknown_selected": 686
+            },
+            "25": {
+              "queries": 3136,
+              "supported_queries": 3024,
+              "missing_target": 112,
+              "rank1_percent": 4.398148148148148,
+              "rank5_percent": 13.293650793650794,
+              "mAP_percent": 2.8209446086152217,
+              "unknown_selected": 869
+            },
+            "100": {
+              "queries": 3136,
+              "supported_queries": 2931,
+              "missing_target": 205,
+              "rank1_percent": 1.6376663254861823,
+              "rank5_percent": 6.653019447287615,
+              "mAP_percent": 2.0055522745763605,
+              "unknown_selected": 866
+            }
+          }
+        },
+        "imagenet_orthogonal_projection256": {
+          "gt": {
+            "1": {
+              "queries": 3136,
+              "supported_queries": 3087,
+              "missing_target": 49,
+              "rank1_percent": 43.76417233560091,
+              "rank5_percent": 62.06673145448656,
+              "mAP_percent": 6.828506301858275,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 3136,
+              "supported_queries": 3038,
+              "missing_target": 98,
+              "rank1_percent": 12.738643844634629,
+              "rank5_percent": 27.682685977616856,
+              "mAP_percent": 4.769761300689756,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 3136,
+              "supported_queries": 2938,
+              "missing_target": 198,
+              "rank1_percent": 5.513955071477195,
+              "rank5_percent": 14.669843430905377,
+              "mAP_percent": 3.4751594478587533,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 3136,
+              "supported_queries": 3087,
+              "missing_target": 49,
+              "rank1_percent": 26.012309685779073,
+              "rank5_percent": 43.18108195659216,
+              "mAP_percent": 5.3496470448815785,
+              "unknown_selected": 738
+            },
+            "25": {
+              "queries": 3136,
+              "supported_queries": 3024,
+              "missing_target": 112,
+              "rank1_percent": 4.19973544973545,
+              "rank5_percent": 12.632275132275133,
+              "mAP_percent": 2.745959781738871,
+              "unknown_selected": 904
+            },
+            "100": {
+              "queries": 3136,
+              "supported_queries": 2931,
+              "missing_target": 205,
+              "rank1_percent": 1.6717843739338112,
+              "rank5_percent": 6.345957011258956,
+              "mAP_percent": 1.9955432342177126,
+              "unknown_selected": 901
+            }
+          }
+        },
+        "global": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 57.88791707159054,
+                "rank5_percent": 74.95950761256883,
+                "mAP_percent": 9.649833065877829,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 19.749835418038185,
+                "rank5_percent": 38.70967741935484,
+                "mAP_percent": 6.83493769771075,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 7.556160653505787,
+                "rank5_percent": 19.469026548672566,
+                "mAP_percent": 4.575037321818439,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 30.644638807904112,
+                "rank5_percent": 49.59507612568837,
+                "mAP_percent": 5.8028937150657605,
+                "unknown_selected": 730
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 5.522486772486772,
+                "rank5_percent": 15.343915343915343,
+                "mAP_percent": 2.9208059748490554,
+                "unknown_selected": 931
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 2.2176731490958717,
+                "rank5_percent": 7.91538723984988,
+                "mAP_percent": 2.0880475849139204,
+                "unknown_selected": 911
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 43.01911240686751,
+                "rank5_percent": 63.97797214123745,
+                "mAP_percent": 7.799615777415185,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 14.68071099407505,
+                "rank5_percent": 31.731402238314683,
+                "mAP_percent": 5.6430810647911684,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 5.95643294758339,
+                "rank5_percent": 17.494894486044927,
+                "mAP_percent": 4.061744843726451,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 18.658892128279884,
+                "rank5_percent": 38.51635892452219,
+                "mAP_percent": 4.730315961606185,
+                "unknown_selected": 830
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 3.935185185185185,
+                "rank5_percent": 14.120370370370368,
+                "mAP_percent": 2.575703584857967,
+                "unknown_selected": 952
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 1.842374616171955,
+                "rank5_percent": 7.301262367792562,
+                "mAP_percent": 2.0047630316702203,
+                "unknown_selected": 947
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 42.88953676708779,
+                "rank5_percent": 63.94557823129252,
+                "mAP_percent": 7.790950604317907,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 14.713627386438446,
+                "rank5_percent": 31.797235023041477,
+                "mAP_percent": 5.636511743784106,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 6.024506466984343,
+                "rank5_percent": 17.426820966643973,
+                "mAP_percent": 4.061201526371025,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 18.658892128279884,
+                "rank5_percent": 38.48396501457726,
+                "mAP_percent": 4.729905878266771,
+                "unknown_selected": 835
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 4.001322751322752,
+                "rank5_percent": 14.054232804232806,
+                "mAP_percent": 2.577882397254042,
+                "unknown_selected": 956
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 1.842374616171955,
+                "rank5_percent": 7.36949846468782,
+                "mAP_percent": 2.0050309328291367,
+                "unknown_selected": 948
+              }
+            }
+          }
+        },
+        "learned": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 66.99060576611598,
+                "rank5_percent": 81.76222870100422,
+                "mAP_percent": 12.32533132023593,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 26.53061224489796,
+                "rank5_percent": 46.576695194206714,
+                "mAP_percent": 9.072153221802354,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 10.993873383253915,
+                "rank5_percent": 22.77059223961879,
+                "mAP_percent": 5.934888977742665,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 29.608033689666343,
+                "rank5_percent": 48.5584710074506,
+                "mAP_percent": 5.581799540523705,
+                "unknown_selected": 701
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 4.662698412698413,
+                "rank5_percent": 14.914021164021163,
+                "mAP_percent": 2.694095184532933,
+                "unknown_selected": 888
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 1.4670760832480383,
+                "rank5_percent": 7.437734561583078,
+                "mAP_percent": 1.98249829879559,
+                "unknown_selected": 885
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 41.950113378684804,
+                "rank5_percent": 64.26951733074182,
+                "mAP_percent": 7.830313441521919,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 15.207373271889402,
+                "rank5_percent": 33.607636603028304,
+                "mAP_percent": 5.73701824656901,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 6.262763784887679,
+                "rank5_percent": 17.56296800544588,
+                "mAP_percent": 4.274868707936622,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 19.047619047619047,
+                "rank5_percent": 37.3501781665047,
+                "mAP_percent": 4.7867961418498455,
+                "unknown_selected": 856
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 4.1005291005291005,
+                "rank5_percent": 13.326719576719576,
+                "mAP_percent": 2.587057457297229,
+                "unknown_selected": 975
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 1.7741385192766974,
+                "rank5_percent": 6.891845786421016,
+                "mAP_percent": 1.931436271811424,
+                "unknown_selected": 957
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 41.98250728862974,
+                "rank5_percent": 64.36669906057662,
+                "mAP_percent": 7.823689610284609,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3038,
+                "missing_target": 98,
+                "rank1_percent": 15.273206056616196,
+                "rank5_percent": 33.6405529953917,
+                "mAP_percent": 5.7358649982964,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2938,
+                "missing_target": 198,
+                "rank1_percent": 6.296800544588155,
+                "rank5_percent": 17.597004765146355,
+                "mAP_percent": 4.272856573556942,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 3136,
+                "supported_queries": 3087,
+                "missing_target": 49,
+                "rank1_percent": 19.015225137674115,
+                "rank5_percent": 37.28539034661484,
+                "mAP_percent": 4.783489203485891,
+                "unknown_selected": 858
+              },
+              "25": {
+                "queries": 3136,
+                "supported_queries": 3024,
+                "missing_target": 112,
+                "rank1_percent": 4.067460317460317,
+                "rank5_percent": 13.35978835978836,
+                "mAP_percent": 2.587027173756087,
+                "unknown_selected": 979
+              },
+              "100": {
+                "queries": 3136,
+                "supported_queries": 2931,
+                "missing_target": 205,
+                "rank1_percent": 1.7400204708290685,
+                "rank5_percent": 6.8236096895257585,
+                "mAP_percent": 1.931850965796946,
+                "unknown_selected": 959
+              }
+            }
+          }
+        }
+      },
+      "seconds": 145.1293620530014
+    },
+    "PF-001": {
+      "measurements": {
+        "imagenet_raw2048": {
+          "gt": {
+            "1": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 93.65079365079364,
+              "rank5_percent": 100.0,
+              "mAP_percent": 56.5839613769987,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 78.57142857142857,
+              "rank5_percent": 96.82539682539682,
+              "mAP_percent": 56.28925944743608,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 77.77777777777779,
+              "rank5_percent": 96.82539682539682,
+              "mAP_percent": 56.242687175571696,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 87.3015873015873,
+              "rank5_percent": 99.20634920634922,
+              "mAP_percent": 55.996015698695224,
+              "unknown_selected": 3
+            },
+            "25": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 70.63492063492063,
+              "rank5_percent": 99.20634920634922,
+              "mAP_percent": 55.7882901492626,
+              "unknown_selected": 5
+            },
+            "100": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 69.04761904761905,
+              "rank5_percent": 98.4126984126984,
+              "mAP_percent": 55.68676573704013,
+              "unknown_selected": 5
+            }
+          }
+        },
+        "imagenet_orthogonal_projection256": {
+          "gt": {
+            "1": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 91.26984126984127,
+              "rank5_percent": 99.20634920634922,
+              "mAP_percent": 55.681812033163524,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 74.60317460317461,
+              "rank5_percent": 96.03174603174604,
+              "mAP_percent": 55.352856171896235,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 73.80952380952381,
+              "rank5_percent": 96.03174603174604,
+              "mAP_percent": 55.31099051515067,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 89.68253968253968,
+              "rank5_percent": 100.0,
+              "mAP_percent": 55.2947689491546,
+              "unknown_selected": 2
+            },
+            "25": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 79.36507936507937,
+              "rank5_percent": 100.0,
+              "mAP_percent": 55.08995780216798,
+              "unknown_selected": 4
+            },
+            "100": {
+              "queries": 128,
+              "supported_queries": 126,
+              "missing_target": 2,
+              "rank1_percent": 76.19047619047619,
+              "rank5_percent": 99.20634920634922,
+              "mAP_percent": 55.028986951989765,
+              "unknown_selected": 4
+            }
+          }
+        },
+        "global": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 96.03174603174604,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 84.24983193370275,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 86.5079365079365,
+                "rank5_percent": 95.23809523809523,
+                "mAP_percent": 84.12181673208153,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 86.5079365079365,
+                "rank5_percent": 95.23809523809523,
+                "mAP_percent": 84.10852904896643,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 96.03174603174604,
+                "rank5_percent": 100.0,
+                "mAP_percent": 85.96668414706119,
+                "unknown_selected": 2
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.06349206349206,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 86.01012693309633,
+                "unknown_selected": 2
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.06349206349206,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 85.96940055343156,
+                "unknown_selected": 2
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 91.26984126984127,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 87.51049599624935,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 84.92063492063492,
+                "rank5_percent": 93.65079365079364,
+                "mAP_percent": 87.51588387543487,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 84.92063492063492,
+                "rank5_percent": 93.65079365079364,
+                "mAP_percent": 87.45265509997826,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 97.61904761904762,
+                "rank5_percent": 100.0,
+                "mAP_percent": 88.98850212634905,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.85714285714286,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 89.02811559945846,
+                "unknown_selected": 3
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.85714285714286,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 88.99989693658465,
+                "unknown_selected": 3
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 91.26984126984127,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 87.52025322026698,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 84.92063492063492,
+                "rank5_percent": 93.65079365079364,
+                "mAP_percent": 87.52640964641866,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 84.92063492063492,
+                "rank5_percent": 93.65079365079364,
+                "mAP_percent": 87.46174903396742,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 97.61904761904762,
+                "rank5_percent": 100.0,
+                "mAP_percent": 89.00288964027811,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.85714285714286,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 89.04461789657881,
+                "unknown_selected": 3
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.85714285714286,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 89.02057421228749,
+                "unknown_selected": 3
+              }
+            }
+          }
+        },
+        "learned": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 93.65079365079364,
+                "rank5_percent": 97.61904761904762,
+                "mAP_percent": 73.91802795449452,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 88.88888888888889,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 73.77883505361228,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 88.88888888888889,
+                "rank5_percent": 94.44444444444444,
+                "mAP_percent": 73.75788022316956,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 94.44444444444444,
+                "rank5_percent": 100.0,
+                "mAP_percent": 71.18370723353202,
+                "unknown_selected": 6
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 93.65079365079364,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 71.1818039782169,
+                "unknown_selected": 4
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 94.44444444444444,
+                "rank5_percent": 98.4126984126984,
+                "mAP_percent": 71.15669366497647,
+                "unknown_selected": 3
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 95.23809523809523,
+                "rank5_percent": 97.61904761904762,
+                "mAP_percent": 87.73011038130903,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 89.68253968253968,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 87.67763031237129,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 89.68253968253968,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 87.59709429989556,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.06349206349206,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 86.60606129875428,
+                "unknown_selected": 6
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 90.47619047619048,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 86.66520736834406,
+                "unknown_selected": 6
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 90.47619047619048,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 86.62140262938507,
+                "unknown_selected": 6
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 95.23809523809523,
+                "rank5_percent": 97.61904761904762,
+                "mAP_percent": 87.72984933305963,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 89.68253968253968,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 87.6771872269192,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 89.68253968253968,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 87.59688513084029,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 92.06349206349206,
+                "rank5_percent": 96.82539682539682,
+                "mAP_percent": 86.60341503035882,
+                "unknown_selected": 6
+              },
+              "25": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 90.47619047619048,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 86.66254281054519,
+                "unknown_selected": 6
+              },
+              "100": {
+                "queries": 128,
+                "supported_queries": 126,
+                "missing_target": 2,
+                "rank1_percent": 90.47619047619048,
+                "rank5_percent": 96.03174603174604,
+                "mAP_percent": 86.61861235450982,
+                "unknown_selected": 6
+              }
+            }
+          }
+        }
+      },
+      "seconds": 10.077790744002414
+    },
+    "SN-001": {
+      "measurements": {
+        "imagenet_raw2048": {
+          "gt": {
+            "1": {
+              "queries": 630,
+              "supported_queries": 617,
+              "missing_target": 13,
+              "rank1_percent": 74.39222042139384,
+              "rank5_percent": 88.16855753646678,
+              "mAP_percent": 31.721876071780265,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 630,
+              "supported_queries": 582,
+              "missing_target": 48,
+              "rank1_percent": 34.192439862542955,
+              "rank5_percent": 64.43298969072166,
+              "mAP_percent": 24.854380285227702,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 630,
+              "supported_queries": 515,
+              "missing_target": 115,
+              "rank1_percent": 22.718446601941746,
+              "rank5_percent": 51.45631067961165,
+              "mAP_percent": 21.061935202900774,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 560,
+              "supported_queries": 547,
+              "missing_target": 13,
+              "rank1_percent": 67.64168190127971,
+              "rank5_percent": 84.27787934186472,
+              "mAP_percent": 29.915172478242503,
+              "unknown_selected": 53
+            },
+            "25": {
+              "queries": 560,
+              "supported_queries": 520,
+              "missing_target": 40,
+              "rank1_percent": 32.30769230769231,
+              "rank5_percent": 60.38461538461538,
+              "mAP_percent": 23.447727055782565,
+              "unknown_selected": 92
+            },
+            "100": {
+              "queries": 560,
+              "supported_queries": 467,
+              "missing_target": 93,
+              "rank1_percent": 22.698072805139187,
+              "rank5_percent": 47.96573875802998,
+              "mAP_percent": 19.584652427333644,
+              "unknown_selected": 95
+            }
+          }
+        },
+        "imagenet_orthogonal_projection256": {
+          "gt": {
+            "1": {
+              "queries": 630,
+              "supported_queries": 617,
+              "missing_target": 13,
+              "rank1_percent": 73.74392220421394,
+              "rank5_percent": 88.0064829821718,
+              "mAP_percent": 30.800552455397334,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 630,
+              "supported_queries": 582,
+              "missing_target": 48,
+              "rank1_percent": 33.50515463917525,
+              "rank5_percent": 62.54295532646048,
+              "mAP_percent": 23.919090906137694,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 630,
+              "supported_queries": 515,
+              "missing_target": 115,
+              "rank1_percent": 22.135922330097088,
+              "rank5_percent": 52.038834951456316,
+              "mAP_percent": 20.455543318116636,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 560,
+              "supported_queries": 547,
+              "missing_target": 13,
+              "rank1_percent": 66.72760511882998,
+              "rank5_percent": 83.72943327239489,
+              "mAP_percent": 28.97461124226275,
+              "unknown_selected": 65
+            },
+            "25": {
+              "queries": 560,
+              "supported_queries": 520,
+              "missing_target": 40,
+              "rank1_percent": 31.346153846153847,
+              "rank5_percent": 59.03846153846154,
+              "mAP_percent": 22.27834864196721,
+              "unknown_selected": 94
+            },
+            "100": {
+              "queries": 560,
+              "supported_queries": 467,
+              "missing_target": 93,
+              "rank1_percent": 21.627408993576015,
+              "rank5_percent": 47.75160599571734,
+              "mAP_percent": 18.654997936822422,
+              "unknown_selected": 85
+            }
+          }
+        },
+        "global": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 92.70664505672609,
+                "rank5_percent": 97.89303079416531,
+                "mAP_percent": 72.10117134078308,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 81.61512027491409,
+                "rank5_percent": 94.3298969072165,
+                "mAP_percent": 69.07383900497818,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 77.47572815533981,
+                "rank5_percent": 91.45631067961165,
+                "mAP_percent": 67.31597730779217,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 85.37477148080438,
+                "rank5_percent": 97.25776965265082,
+                "mAP_percent": 61.5329138812419,
+                "unknown_selected": 57
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 69.23076923076923,
+                "rank5_percent": 90.38461538461539,
+                "mAP_percent": 57.51602577334298,
+                "unknown_selected": 81
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 63.811563169164884,
+                "rank5_percent": 84.79657387580299,
+                "mAP_percent": 53.646582569251166,
+                "unknown_selected": 75
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 95.46191247974069,
+                "rank5_percent": 98.70340356564019,
+                "mAP_percent": 87.85088546617837,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 91.5807560137457,
+                "rank5_percent": 96.90721649484536,
+                "mAP_percent": 86.97999886836321,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 89.32038834951457,
+                "rank5_percent": 97.47572815533981,
+                "mAP_percent": 86.39194429811025,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 87.38574040219378,
+                "rank5_percent": 97.25776965265082,
+                "mAP_percent": 75.36328638039636,
+                "unknown_selected": 53
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 80.0,
+                "rank5_percent": 94.8076923076923,
+                "mAP_percent": 73.29888726694716,
+                "unknown_selected": 67
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 77.94432548179871,
+                "rank5_percent": 93.79014989293361,
+                "mAP_percent": 72.3372355977232,
+                "unknown_selected": 59
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 95.62398703403565,
+                "rank5_percent": 98.70340356564019,
+                "mAP_percent": 87.87440528833008,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 91.5807560137457,
+                "rank5_percent": 96.90721649484536,
+                "mAP_percent": 87.00540001493383,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 89.126213592233,
+                "rank5_percent": 97.66990291262137,
+                "mAP_percent": 86.41270543992331,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 87.38574040219378,
+                "rank5_percent": 97.25776965265082,
+                "mAP_percent": 75.38450140251662,
+                "unknown_selected": 53
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 80.0,
+                "rank5_percent": 94.8076923076923,
+                "mAP_percent": 73.30475137170586,
+                "unknown_selected": 67
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 77.94432548179871,
+                "rank5_percent": 93.79014989293361,
+                "mAP_percent": 72.34015100306165,
+                "unknown_selected": 59
+              }
+            }
+          }
+        },
+        "learned": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 91.08589951377634,
+                "rank5_percent": 95.9481361426256,
+                "mAP_percent": 58.03955062071836,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 72.68041237113401,
+                "rank5_percent": 87.62886597938144,
+                "mAP_percent": 52.77241374407207,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 60.58252427184466,
+                "rank5_percent": 77.86407766990291,
+                "mAP_percent": 47.99274396737459,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 81.35283363802559,
+                "rank5_percent": 93.41864716636198,
+                "mAP_percent": 47.46783214809112,
+                "unknown_selected": 68
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 60.76923076923077,
+                "rank5_percent": 81.53846153846153,
+                "mAP_percent": 42.90158367311665,
+                "unknown_selected": 103
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 54.17558886509636,
+                "rank5_percent": 74.08993576017131,
+                "mAP_percent": 39.53987018989481,
+                "unknown_selected": 94
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 95.2998379254457,
+                "rank5_percent": 97.89303079416531,
+                "mAP_percent": 84.50709957970028,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 91.23711340206185,
+                "rank5_percent": 97.59450171821305,
+                "mAP_percent": 82.9650830361027,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 87.76699029126213,
+                "rank5_percent": 97.47572815533981,
+                "mAP_percent": 82.84966785286689,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 83.72943327239489,
+                "rank5_percent": 95.42961608775137,
+                "mAP_percent": 71.59495003867599,
+                "unknown_selected": 65
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 76.34615384615384,
+                "rank5_percent": 92.88461538461539,
+                "mAP_percent": 69.00684030439157,
+                "unknown_selected": 78
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 73.66167023554604,
+                "rank5_percent": 93.14775160599572,
+                "mAP_percent": 67.98937580722843,
+                "unknown_selected": 69
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 630,
+                "supported_queries": 617,
+                "missing_target": 13,
+                "rank1_percent": 95.2998379254457,
+                "rank5_percent": 97.89303079416531,
+                "mAP_percent": 84.49500658260826,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 630,
+                "supported_queries": 582,
+                "missing_target": 48,
+                "rank1_percent": 91.06529209621993,
+                "rank5_percent": 97.59450171821305,
+                "mAP_percent": 82.95736698650165,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 630,
+                "supported_queries": 515,
+                "missing_target": 115,
+                "rank1_percent": 87.76699029126213,
+                "rank5_percent": 97.47572815533981,
+                "mAP_percent": 82.83663476302424,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 560,
+                "supported_queries": 547,
+                "missing_target": 13,
+                "rank1_percent": 83.72943327239489,
+                "rank5_percent": 95.42961608775137,
+                "mAP_percent": 71.57575223444591,
+                "unknown_selected": 65
+              },
+              "25": {
+                "queries": 560,
+                "supported_queries": 520,
+                "missing_target": 40,
+                "rank1_percent": 76.34615384615384,
+                "rank5_percent": 92.6923076923077,
+                "mAP_percent": 68.97911828224188,
+                "unknown_selected": 78
+              },
+              "100": {
+                "queries": 560,
+                "supported_queries": 467,
+                "missing_target": 93,
+                "rank1_percent": 73.44753747323341,
+                "rank5_percent": 93.14775160599572,
+                "mAP_percent": 67.9720654438871,
+                "unknown_selected": 70
+              }
+            }
+          }
+        }
+      },
+      "seconds": 7.3266023180003685
+    },
+    "BT-001": {
+      "measurements": {
+        "imagenet_raw2048": {
+          "gt": {
+            "1": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 65.71428571428571,
+              "rank5_percent": 80.7936507936508,
+              "mAP_percent": 16.149479832097725,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 20.952380952380953,
+              "rank5_percent": 50.15873015873016,
+              "mAP_percent": 14.20306726976819,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 640,
+              "supported_queries": 610,
+              "missing_target": 30,
+              "rank1_percent": 14.918032786885247,
+              "rank5_percent": 40.98360655737705,
+              "mAP_percent": 12.969928768627323,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 55.87301587301587,
+              "rank5_percent": 72.53968253968253,
+              "mAP_percent": 11.693929127455089,
+              "unknown_selected": 113
+            },
+            "25": {
+              "queries": 640,
+              "supported_queries": 624,
+              "missing_target": 16,
+              "rank1_percent": 14.743589743589745,
+              "rank5_percent": 39.1025641025641,
+              "mAP_percent": 9.650201960382805,
+              "unknown_selected": 177
+            },
+            "100": {
+              "queries": 640,
+              "supported_queries": 613,
+              "missing_target": 27,
+              "rank1_percent": 9.787928221859707,
+              "rank5_percent": 32.13703099510604,
+              "mAP_percent": 8.635677848700956,
+              "unknown_selected": 169
+            }
+          }
+        },
+        "imagenet_orthogonal_projection256": {
+          "gt": {
+            "1": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 64.28571428571429,
+              "rank5_percent": 80.0,
+              "mAP_percent": 15.986047786307637,
+              "unknown_selected": 0
+            },
+            "25": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 20.634920634920633,
+              "rank5_percent": 50.317460317460316,
+              "mAP_percent": 14.082732868718384,
+              "unknown_selected": 0
+            },
+            "100": {
+              "queries": 640,
+              "supported_queries": 610,
+              "missing_target": 30,
+              "rank1_percent": 14.754098360655737,
+              "rank5_percent": 41.47540983606557,
+              "mAP_percent": 12.891294699698008,
+              "unknown_selected": 0
+            }
+          },
+          "detector": {
+            "1": {
+              "queries": 640,
+              "supported_queries": 630,
+              "missing_target": 10,
+              "rank1_percent": 54.285714285714285,
+              "rank5_percent": 70.7936507936508,
+              "mAP_percent": 11.383689277957703,
+              "unknown_selected": 118
+            },
+            "25": {
+              "queries": 640,
+              "supported_queries": 624,
+              "missing_target": 16,
+              "rank1_percent": 15.705128205128204,
+              "rank5_percent": 38.46153846153847,
+              "mAP_percent": 9.515734170741284,
+              "unknown_selected": 178
+            },
+            "100": {
+              "queries": 640,
+              "supported_queries": 613,
+              "missing_target": 27,
+              "rank1_percent": 10.114192495921696,
+              "rank5_percent": 32.62642740619902,
+              "mAP_percent": 8.559896594487567,
+              "unknown_selected": 174
+            }
+          }
+        },
+        "global": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 66.82539682539682,
+                "rank5_percent": 82.22222222222221,
+                "mAP_percent": 16.75899952990668,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 23.015873015873016,
+                "rank5_percent": 53.333333333333336,
+                "mAP_percent": 14.812837409623553,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 15.245901639344261,
+                "rank5_percent": 42.459016393442624,
+                "mAP_percent": 13.394044100323693,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 54.920634920634924,
+                "rank5_percent": 73.17460317460316,
+                "mAP_percent": 11.779356345918519,
+                "unknown_selected": 127
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 14.903846153846153,
+                "rank5_percent": 38.30128205128205,
+                "mAP_percent": 9.564940302970099,
+                "unknown_selected": 194
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 11.582381729200652,
+                "rank5_percent": 31.810766721044047,
+                "mAP_percent": 8.623218375058878,
+                "unknown_selected": 193
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 49.682539682539684,
+                "rank5_percent": 74.44444444444444,
+                "mAP_percent": 15.790133275969866,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 20.476190476190474,
+                "rank5_percent": 50.79365079365079,
+                "mAP_percent": 14.425222561132573,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 14.262295081967213,
+                "rank5_percent": 44.42622950819673,
+                "mAP_percent": 13.133933544493924,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 38.57142857142858,
+                "rank5_percent": 64.12698412698413,
+                "mAP_percent": 10.676209294549777,
+                "unknown_selected": 164
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 12.01923076923077,
+                "rank5_percent": 36.69871794871795,
+                "mAP_percent": 9.038764926356164,
+                "unknown_selected": 207
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 9.135399673735726,
+                "rank5_percent": 30.505709624796083,
+                "mAP_percent": 8.559728016293382,
+                "unknown_selected": 210
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 49.682539682539684,
+                "rank5_percent": 74.44444444444444,
+                "mAP_percent": 15.789926199329122,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 20.158730158730158,
+                "rank5_percent": 50.79365079365079,
+                "mAP_percent": 14.42333313095242,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 14.098360655737704,
+                "rank5_percent": 44.42622950819673,
+                "mAP_percent": 13.133550555621998,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 38.25396825396825,
+                "rank5_percent": 63.96825396825396,
+                "mAP_percent": 10.672312178437242,
+                "unknown_selected": 164
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 12.01923076923077,
+                "rank5_percent": 36.69871794871795,
+                "mAP_percent": 9.036737406813248,
+                "unknown_selected": 205
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 9.135399673735726,
+                "rank5_percent": 30.831973898858074,
+                "mAP_percent": 8.561926457294629,
+                "unknown_selected": 208
+              }
+            }
+          }
+        },
+        "learned": {
+          "backbone_raw2048": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 70.7936507936508,
+                "rank5_percent": 84.44444444444444,
+                "mAP_percent": 16.299478738969714,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 25.238095238095237,
+                "rank5_percent": 52.38095238095239,
+                "mAP_percent": 14.437763802634734,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 14.262295081967213,
+                "rank5_percent": 41.147540983606554,
+                "mAP_percent": 12.716912034072402,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 54.920634920634924,
+                "rank5_percent": 72.06349206349206,
+                "mAP_percent": 11.160354630621457,
+                "unknown_selected": 114
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 16.346153846153847,
+                "rank5_percent": 38.30128205128205,
+                "mAP_percent": 9.035795765415305,
+                "unknown_selected": 177
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 12.561174551386623,
+                "rank5_percent": 30.99510603588907,
+                "mAP_percent": 8.38349100176937,
+                "unknown_selected": 176
+              }
+            }
+          },
+          "head_pre_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 49.682539682539684,
+                "rank5_percent": 74.76190476190476,
+                "mAP_percent": 15.437654362661357,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 20.317460317460316,
+                "rank5_percent": 47.77777777777778,
+                "mAP_percent": 14.238302780489501,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 14.59016393442623,
+                "rank5_percent": 38.68852459016394,
+                "mAP_percent": 12.745871922091872,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 33.49206349206349,
+                "rank5_percent": 61.111111111111114,
+                "mAP_percent": 10.58663370921401,
+                "unknown_selected": 164
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 13.942307692307693,
+                "rank5_percent": 39.58333333333333,
+                "mAP_percent": 9.006122477145851,
+                "unknown_selected": 196
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 11.256117455138662,
+                "rank5_percent": 35.07340946166394,
+                "mAP_percent": 8.451069365152485,
+                "unknown_selected": 195
+              }
+            }
+          },
+          "head_layernorm256": {
+            "gt": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 49.84126984126984,
+                "rank5_percent": 74.60317460317461,
+                "mAP_percent": 15.434183556277157,
+                "unknown_selected": 0
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 20.317460317460316,
+                "rank5_percent": 47.93650793650794,
+                "mAP_percent": 14.233594624846003,
+                "unknown_selected": 0
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 610,
+                "missing_target": 30,
+                "rank1_percent": 14.59016393442623,
+                "rank5_percent": 38.85245901639344,
+                "mAP_percent": 12.745214467042473,
+                "unknown_selected": 0
+              }
+            },
+            "detector": {
+              "1": {
+                "queries": 640,
+                "supported_queries": 630,
+                "missing_target": 10,
+                "rank1_percent": 33.49206349206349,
+                "rank5_percent": 61.26984126984127,
+                "mAP_percent": 10.58653547591195,
+                "unknown_selected": 165
+              },
+              "25": {
+                "queries": 640,
+                "supported_queries": 624,
+                "missing_target": 16,
+                "rank1_percent": 13.942307692307693,
+                "rank5_percent": 39.743589743589745,
+                "mAP_percent": 9.005212591819102,
+                "unknown_selected": 198
+              },
+              "100": {
+                "queries": 640,
+                "supported_queries": 613,
+                "missing_target": 27,
+                "rank1_percent": 11.256117455138662,
+                "rank5_percent": 35.23654159869494,
+                "mAP_percent": 8.451529528346965,
+                "unknown_selected": 197
+              }
+            }
+          }
+        }
+      },
+      "seconds": 19.828588002001197
+    }
+  },
+  "scope": "Fitting and inner-only sparse offline diagnosis, never read/evaluate outerSN015 crops or labels. Does not select a winner from outer scores. New-head artifacts do not change online tracker.",
+  "source_snapshots": {
+    "tools/cfp_diagnose_visual_feature_stages.py": "1c0e13d09a4c514b14a96e4cdffacca883a6c7102fb06fd5b3cd00e2c74343be",
+    "cfp/crop_retrieval.py": "cbb49958f27e8e20afd991149ea3464b92c852fea9e846320f03f208497af8d7",
+    "cfp/trainable_local_identity.py": "3b424b94a413e21c14a002f7f8008b1a5d7091170718d9c6f9542498394de124",
+    "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+    "configs/cfp/phase_vii_visual_stage_diagnosis_v1.json": "61d052f8f8757ff8eadc3a16e9096ffde460f9da91493178a62e02f1fce48032"
+  },
+  "peak_gpu_allocated_bytes": 753268224,
+  "original_artifact": {
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_feature_stage_diagnosis_fit_inner_s0_v1.json",
+    "sha256": "ead93cd3fd5db489b002f17a1ca97d261f99be74dd6a604620c0486eecd73668"
+  }
+}

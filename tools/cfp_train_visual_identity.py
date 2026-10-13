@@ -34,8 +34,12 @@ def main():
     parser.add_argument('--seed', type=int, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--stop-after-epoch', type=int,
+        help='Checkpoint and exit early for controlled restart verification; never report COMPLETE')
     args = parser.parse_args()
     config = json.loads(args.config.read_text())
+    if args.stop_after_epoch is not None and not 1 <= args.stop_after_epoch < config['epochs']:
+        raise ValueError('Early stop must be before the registered final epoch')
     if (config['state'] != 'FROZEN' or args.mode not in config['modes'] or args.seed not in config['seed_plan']
             or not os.environ.get('CUDA_VISIBLE_DEVICES') or args.output.exists() and not args.resume):
         raise ValueError('Registered visual fitting, explicit idle GPU and new or matching incomplete output required')
@@ -160,6 +164,11 @@ def main():
             rng_torch=torch.get_rng_state(), rng_cuda=torch.cuda.get_rng_state_all()))
         write_json(args.output / 'manifest.json', report)
         print(json.dumps(entry), flush=True)
+        if args.stop_after_epoch == epoch:
+            report.update(status='CHECKPOINTED_EARLY_STOP', stopped_after_epoch=epoch)
+            write_json(args.output / 'manifest.json', report)
+            print(json.dumps({'status': report['status'], 'epoch': epoch}), flush=True)
+            return
     model.eval()
     for video in (config['inner'], config['outer']):
         embeddings = []

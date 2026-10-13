@@ -1,0 +1,15 @@
+{
+  "state": "FROZEN",
+  "fit": ["BT-003", "MSK-002", "PF-001", "SN-001"],
+  "inner": "BT-001",
+  "excluded_outer": "SN-015",
+  "models": ["global", "learned"],
+  "stages": ["backbone_raw2048", "head_pre_layernorm256", "head_layernorm256"],
+  "frozen_controls": ["imagenet_raw2048", "imagenet_orthogonal_projection256"],
+  "orthogonal_projection_seed": 73,
+  "query_cap_per_identity_per_view": 64,
+  "minimum_past_gaps": [1, 25, 100],
+  "batch_size": 128,
+  "hypothesis": "Separate backbone changes, projection compression and LayerNorm effects after negative first visual fits. Read existing fixed-last checkpoints; no retraining or checkpoint selection.",
+  "scope": "Fitting and inner-only sparse offline diagnosis, never read/evaluate outerSN015 crops or labels. Does not select a winner from outer scores. New-head artifacts do not change online tracker."
+}

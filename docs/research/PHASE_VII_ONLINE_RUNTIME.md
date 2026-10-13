@@ -11,3 +11,5 @@ The inherited roughly1.2FPS complete-system bottleneck remains a required invest
 ## Sparse visual pilot costs
 
 Sparse extraction produced47,751observations and3.462GiBfeatures plus9.38GBnormalized crop cache. Four frozen-ImageNet adapter fits take about19–24seconds each; two genuine backbone fits take99.23seconds(global)/101.68seconds(learned). Precise per-run seconds, allocated/gradient parameters and peak PyTorch allocated memory are in VISUAL_PILOT_MEASURED. AMP overflow skips and effective optimizer updates are explicitly recorded. These costs exclude full raw video decode, causal IR/V3detector and complete crop encoding; they are training/cache measurements, not online FPS. Only idle physical GPU0–3 were used; other users' GPU4–9 jobs were untouched. Free space remains above40GiB.
+
+Global/local backbone controls now complete all three registered seeds at the first fold, with a real epoch2stop/newprocessresume equivalence proof. Runtime remains training/cache-only; no raw onlineFPS claim. Current free space is about148GiB after the crop/features and checkpoint assets; all our GPU0–3 processes have completed, other users' GPU4–9 work is untouched.

@@ -1,6 +1,6 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "PAIRED_CROP_AND_ACTUAL_VISUAL_FITTING_COMPLETE_FIRST_FOLD",
+  "stage": "FIRST_FOLD_VISUAL_THREE_SEED_AND_RESTART_VERIFIED",
   "branch": "research/evidence-fishmot-v1",
   "baseline_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
   "completed": [
@@ -24,12 +24,17 @@
     "All-six actual-pool and same-paired-key crop R1/R5/mAP/AUC/EER diagnosis complete",
     "Four fit-only ImageNet adapters and two genuinely gradient-trained visual ResNet50 controls complete firstfoldseed0",
     "ByteTrack/BoT-SORT/DINOv2 all11source-field audits complete with explicit weights/dependency restrictions",
-    "DINOv2 licensed random CPU architecture source smoke complete; pretrained TLS access failed"
+    "DINOv2 licensed random CPU architecture source smoke complete; pretrained TLS access failed",
+    "6254f1f525afbbe25dfb24e74b484cd5daa7fad5 pushed and independently exact-ref verified",
+    "Fitting/inner-only raw2048/preLN256/LN256/frozenrandomprojection diagnosis complete; noouterqueryread",
+    "Global/local actualvisualbackbone seed0/1/2firstfold fixed8epoch fits complete; nooutergain abovefrozenImageNet",
+    "ActualsameGPU0globalseed1epoch2exit/newprocessresume matchescontinuous state/loss/retrievalexactly",
+    "HybridSORT/I-JEPA completeall11source-field audits;5of30complete, officialweightreproductionexcluded"
   ],
   "pending": [
-    "27 remaining semantic source audits",
+    "25 remaining semantic source audits",
     "Stronger pretrained fish/transformer visual controls and raw/projection/crop-stability diagnosis",
-    "All-six-fold/three-seed visual and local fitting plus new-coordinate native tracker",
+    "Remaining visual/local folds and seeds plus new-coordinate native tracker",
     "Actual local DenseJEPA and matched temporal/contrastive/noEMA/noPrediction/noID",
     "Repair C loss/NULL common-cost saturation; ordinaryTransformer/MOTIP/same-input/on-policy controls",
     "Independent filter/geometry/occlusion/motion experiments",
@@ -38,25 +43,28 @@
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
-  "storage_free_gib": 149.20851516723633,
-  "source_audit_complete": 3,
+  "storage_free_gib": 147.36094665527344,
+  "source_audit_complete": 5,
   "active_jobs": [],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
     "Diagnose fine-tuned raw2048 versus pre256/LN256 on fitting/inner only, then targeted detector-crop robustness",
-    "Continue27semantic audits and lawful exact small pretrained model transport with bounded retries",
+    "Continue25semantic audits and lawful exact small pretrained model transport with bounded retries",
     "Implement real localDenseJEPA matchedcontrols and centered C evidence residual without impossible boundedNULLloss",
     "Independent motion then allfold/3seed/fullrawonline and20question audit"
   ],
   "validation": {
     "project_tests": 216,
     "warnings": 18,
-    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_visual_identity_v2.log",
-    "log_sha256": "877c7274874709ec68d341e2a1fbc78ab6014983a51db4b4621daae6abdf1bcb"
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_visual_three_seed_v1.log",
+    "log_sha256": "2f53ff2f1259a8939923aeb38f5b32001a69a52262941831d6f36a6ed80453af"
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
   "http_source_acquisition_status": "ACQUISITION_COMPLETE_WITH_EXPLICIT_GAPS",
   "http_source_acquisition_sha256": "4278c0e4c0f8488ce4fc91612547e23f4a71f86324164a001db898d986e1738c",
-  "visual_pilot_measured_sha256": "6856e50d3dbd3460782b85e76f2a698ab998ac9e11baaa46cecb4de14b3b3806"
+  "visual_pilot_measured_sha256": "6856e50d3dbd3460782b85e76f2a698ab998ac9e11baaa46cecb4de14b3b3806",
+  "visual_stage_diagnosis_sha256": "d542cd539080f1f12ece4e52dcb1beb2116e5f83e8e1edea4ac4d5ac515fb8ab",
+  "visual_three_seed_sha256": "c1c11bf35832454a9235814a3eb86e18b2de85546f48ea94f1b634850a56de45",
+  "visual_restart_sha256": "2052b2775f60f2ac52ce0ec64063a2dfaab9772631426516824cb4e12076d44c"
 }

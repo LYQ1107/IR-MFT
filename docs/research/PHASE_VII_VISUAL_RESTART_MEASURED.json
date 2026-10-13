@@ -1,0 +1,54 @@
+{
+  "status": "EXACT_RESTART_STATE_VERIFIED",
+  "continuous": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1",
+  "restarted": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s1_v1__restart_epoch2",
+  "epoch": 8,
+  "guard": {
+    "mode": "global",
+    "seed": 1,
+    "config_sha256": "f8404ed2d7a5384cc66c0e86627be2a5098b5db9cc990a84759b8487fcb0fb04",
+    "feature_manifest_sha256": "c0f1c834234a1ebc399d327d9374b9969eb8bdccf85f4d12dabb3904469285b7",
+    "crop_manifest_sha256": "4bb5804f9e1960fdcf19335e713d666b67ccc45d7a7e01069c084ecc4f7da406",
+    "initialization_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+    "source_sha256": {
+      "/data3/liuyeqiang/IR-MFT/tools/cfp_train_visual_identity.py": "2b8479cd151e721dd7ee8f51db723cf28cfc90a365cf2b8bd8981c7c6b9fbbdd",
+      "cfp/trainable_local_identity.py": "3b424b94a413e21c14a002f7f8008b1a5d7091170718d9c6f9542498394de124",
+      "cfp/local_identity_encoder.py": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356",
+      "cfp/local_identity_training.py": "632449ea5344112763a85d2c6cf802a7fc0b12e3ec50318666e81b217dbfcf4f",
+      "cfp/crop_retrieval.py": "cbb49958f27e8e20afd991149ea3464b92c852fea9e846320f03f208497af8d7",
+      "cfp/reid.py": "b00c8c3a6ba9935c0d186ab4eeee7f6dda3563bb6e8fa8fc915f68ee2e4499a8",
+      "tools/cfp_train_reid.py": "c483bad43c2bc8927273080bfac980a46f902e55aaf0ec2d770cee40b326f097"
+    },
+    "physical_devices": "0",
+    "torch": "2.0.0+cu118",
+    "cudnn": 8700
+  },
+  "compared_state_fields": [
+    "model",
+    "optimizer",
+    "scheduler",
+    "scaler",
+    "rng_sampler",
+    "rng_augmentation",
+    "rng_python",
+    "rng_numpy",
+    "rng_torch",
+    "rng_cuda"
+  ],
+  "counts": {
+    "tensor_leaves": 818,
+    "array_leaves": 1,
+    "scalar_leaves": 996
+  },
+  "differences": [],
+  "stop_log_sha256": "9c804d67fd8b773ec4971a8b314c8149e735f96c7fa592656b1461d499382d9e",
+  "manifest_sha256": [
+    "df89752b61ee1c2bedba8b9c52515281212238f0507f9dd68067f1fd27e8dc7f",
+    "e6ae5457f28873a009dba43decfd5664323d5c0a60eb6cbdb91a06d6692a502e"
+  ],
+  "scope": "Actual epoch2 early exit then fresh-process resume versus uninterrupted seed1/global8epoch run on same physicalGPU0. Tensor/optimizer/scaler/all RNG, training losses/update counts and retrieval exact equality; no crosshardware determinism claim.",
+  "original_artifact": {
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_s1_restart_state_proof_v1.json",
+    "sha256": "7e6c39a1278acd4e1dc3af8fb8ce7a10ac946ff497dffa364587ad88211f6c9d"
+  }
+}

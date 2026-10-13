@@ -1417,7 +1417,7 @@
       "name": "I-JEPA",
       "github": "https://github.com/facebookresearch/ijepa",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/I-JEPA",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition_command": [
         "git",
         "-c",
@@ -1436,19 +1436,7 @@
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/I-JEPA', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/I-JEPA",
       "commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
@@ -1556,7 +1544,136 @@
         "src/models/vision_transformer.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "src/utils/logging.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "src/utils/schedulers.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture; primary https://arxiv.org/abs/2301.08243 submitted2023-01-19/revised2023-04-13, officialrepoCVPR2023. Static-image semantic feature learning via context-to-masked-region latent prediction, not object-track/fish-identity temporal association.",
+        "code_and_pretrained_license": "Exact LICENSEblob108b5f002fc31efe11d881de2cd05329ebe8cc37 SHA336255dc30193e8e15d689d9481bb05673d89055718f3a96923a7ffb99adbbaf is CCAttribution-NonCommercial4.0. Verified primary https://github.com/facebookresearch/ijepa/blob/52c1ae95d05f743e000e8f10a1f3a79b10cff048/LICENSE and subsequently exact APIblob. Do not call Apache/MIT orcopy intoMITproject silently. Source-only audit; no codecopied/executed. Officiallargefullcheckpoint separate weightterms/provenance not independently certified, soexclude completedofficialweightreproduction. Independentlyimplemented EMA/latentprediction algorithms canbefairmechanismcontrols withappropriatecitation.",
+        "entrypoints_and_training_inference": "main.py --fname --devices launches localmultiprocessing ->src.train.main; main_distributed.py usesSubmitit/SLURM. src.helper.init_model builds contextencoder/predictor and train deepcopycreates EMAteacher. No standalonefishReID/MOTinferenceentry inselectedofficialsystem; src.models.vision_transformer.VisionTransformer.forward is currentimagefeature route. Checkpointkeys encoder/predictor/target_encoder/opt/scaler; checkpointhelper catchesexceptions andsets epoch0 afterpossiblypartialload, unsafe toassumeexactresume. Officialsave lacksallRNGstates/atomicwrites; ourprotocolrequiresstrongerfullstate.",
+        "core_model_files_and_shapes": "src/models/vision_transformer.py andsrc/masks/utils.py. ViTH14 config224square =>256patch tokens1280dims,32blocks16heads; noCLS token inforward. Predictor maps1280\u2192384,12blocks16heads, appends masktokens+2Dposition andprojects384\u21921280targets. apply_masks gathers[B,N,D]usingperbatchtokenindices andconcatenatesmaskviewsbatchwise. Config giant16dim1408depth40heads16. interpolate_pos_encoding erroneouslytreatsfirstpatchasCLS andreshapesNpatches-1assquare onsizechange; nativeequalgridbypassesit, rectangularfishinputnotvalidblindport. Newcorrectrectangularpositions/visiblemaskneeded.",
+        "loss_and_positive_negative_construction": "Trainforward_target no_gradfullcurrentimage EMAencoder, F.layer_normlastfeaturedim thenonlypredictedregions. Contextencoder receivesmaskselectedtokens beforetransformer; predictor seescontext+targetpositions/masktokens, notactualtargetfeatures. SmoothL1 latentprediction +distributedAllReduce; noCE/ID/contrastivepairs/explicitnegatives orfishPKsampler. ImageFolderDistributedSampler shuffled perepoch; sameimagecontext-target supervision. Multiblock config1context4targets, contextarea.85\u20131,target.15\u2013.2,min_keep10, allow_overlapFalse. Contextdisjointnessconstraints relax after20failedtries bydroppingacceptable-regions, soflagaloneisnotastrictnonoverlapguarantee. Anewsmallfishmasker mustverifyactualtargetexclusion.",
+        "pretrained_sources": "Officialpretrainingfromscratch onImageNet1k orImageNet22k; init_modeltruncatednormal notexternalfoundationload. README supplieslargeViTH/Gfullcheckpointsdl.fbaipublicfiles forIN1K/IN22Kplusconfigs/logs. Noofficialcheckpointsdownloaded andnoassertionofzero fish-dataoverlap. FrozenImageNet/realfinetunedfishlocaltokens forindependentDenseJEPA aredifferentproducers andmustbepairedwithmatchedTemporal/contrastivecontrols, notdeclaredofficialIJepa reproduction.",
+        "future_information_and_online_path": "Staticimagepartial-observationtask hasnofuturevideo input. Fullsameimagefeaturesappearonlystoppedteachertrain target; contextreceiveskeptregions andtargetpositions. EMAteacherupdateafteroptimizer0.996\u21921inViTH1kconfig; teacherdisabledgrad. Itsmechanismscanextendtosamefishfuturetargets onlyduringtraining; strictonlineheadmustconsumehistory/currentobservationsonlyandneverGT/futureteacherfeatures. Officialmaskrelaxationactualtargetoverlapmustnotbehidden.",
+        "GPU_CUDA_dependencies": "READMEPython>=3.8,pytorch,torchvision,pyyaml,numpy,opencv,submitit. TrainingusesCUDA BF16/GradScaler optional, DistributedDataParallel andNCCL init; largeconfigbatch128perGPU,distributedworld; submititSLURMnotrequiredforlocalentry. ModelTensorattentionusesordinaryTorch(qkv/matmul),noexternalflash/xformersrequirementseen. Currenttorch2architecture/trainnotexecuted; noenvironmentinstallation. CPUcurrentcropinferencecouldbeindependentlyadapted,butnotclaimedvalidated.",
+        "IR_MFT_compatibility": "Transferlatentprediction/EMA/regionmasking principles, notblindViTH/Gfulltraining forMFTsmallcrop. Native224square/image-onlyfeatureproducerhasnophysicalIDs/candidatecompetition ortrackmemory. Current128x256fishcrop requiresrealrectangularlocalpositions andvisible-imageextent;1280teachercoordinatecannotreuse512GRU. Cleanknownphysicaltracktraining andunknown/corruptiontestseparate; pervideoouterANDinnerexcludedfromidentity/temporaladapterfitting.",
+        "mechanisms_to_port_and_exclude": "Independentlyimplement localobject-centriccontext/predictor/stoppedEMA withactual8strip orspatialtokens, current/futuretrainingtargets physicallyaligned, verifiedmasked/futuretargetnotincontext. MatchedlocalTemporalTransformer/contrastive/noEMA/noPrediction/noIDandrawglobal/localretrievalneeded. Exclude copyingCCBYNCcodeintoMITtree, downloadinghugefulltrainingmodels,brittlecheckpointcatch-and-restart,brokenrectangleposinterpolation andunverifiednonoverlapmaskflag. NoRGB\u2192GTonlinefilter orfutureteacherinference.",
+        "novelty_overlap": "EMAteacher,stoppedlatenttargets,regioncontextmasking,predictorandno-pixelreconstruction establishedIJepa mechanisms. RenamingexistingglobalPLIMoraddingJEPAregressiondoesnotestablishnewfinegrainedidentityevidence. Contributionrequiresobjectphysicalidentity,localpersistentdiscrimination andstrictcausalsetassociation improvements overmatchedordinarytemporal/contrastive/noEMAcontrols."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "c33e2cd78dc1d1429a947339157b1009334bc4b8d57bbc8e92f5018fa2ca8293",
+          "git_blob_sha1": "17a6c81991683d7c9d5ed45ed46eba8cbd94c42a",
+          "bytes": 8500,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "LICENSE": {
+          "sha256": "336255dc30193e8e15d689d9481bb05673d89055718f3a96923a7ffb99adbbaf",
+          "git_blob_sha1": "108b5f002fc31efe11d881de2cd05329ebe8cc37",
+          "bytes": 19333,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "main.py": {
+          "sha256": "854fe0b12ec8d4986fcf279a89774310b5e1699678e75e07ff0b0e96b1d266a3",
+          "git_blob_sha1": "6149439262e58158ca04d1f937649553fcb5ed3e",
+          "bytes": 1725,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "main_distributed.py": {
+          "sha256": "8d9b9e4f16df8153d377f7d2c55b0b1d7bf308b96c3503791d5b7cee1ba3fe46",
+          "git_blob_sha1": "7cb38466667eb18d7dc9e292438e7aae506daec5",
+          "bytes": 2867,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "configs/in1k_vith14_ep300.yaml": {
+          "sha256": "e6acaafdca403624a430e6cb9a15641d92636ed6d71863dfc275d65162e66d84",
+          "git_blob_sha1": "4c9992e39fa5da1d62bd425ccc05c5c0c0b34e15",
+          "bytes": 984,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "configs/in22k_vitg16_ep44.yaml": {
+          "sha256": "13d058dac2ac33a33afde6cc8732cc87ff7718e3fbf96d44680c2008c2ef2152",
+          "git_blob_sha1": "21802b2a081d94e6bb7de9e33acf27704e6f82b4",
+          "bytes": 1191,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/train.py": {
+          "sha256": "6b5467b6663ace871ede718168b152d6759a2ec26b94bb688ae6e46c80e835aa",
+          "git_blob_sha1": "0f387d6b293a7708037235f2bc34a8cb12953dc4",
+          "bytes": 13680,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/helper.py": {
+          "sha256": "bd9854f2d4143ce82160b36af5ebd4d9f5462087c2afc7722168ccf20c4c9f06",
+          "git_blob_sha1": "5af8cd33c64e7ddbf6bac9f15ff56c8facfc2744",
+          "bytes": 4618,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/transforms.py": {
+          "sha256": "441acaef22ca3bd121f98f95bfcad2b271ecacef0ab4ba72d4f3dc28c57fd44c",
+          "git_blob_sha1": "c03376c9bab36b97fb7d6897aacebfb56e7a24fc",
+          "bytes": 2087,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/masks/multiblock.py": {
+          "sha256": "a06c593636f81e760bd26b615b2a7a976790dcc027d4b9244f3e8e7a2e5a8804",
+          "git_blob_sha1": "c82bf0f68cf612ec19dda95b6fa28c8c56553917",
+          "bytes": 6329,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/masks/utils.py": {
+          "sha256": "124da04a7513329a14793389d89a98db87498caf7623a10bc772b097c74d97ec",
+          "git_blob_sha1": "a6d25b182fa5973ac6b253932243f3f2f4ca0f98",
+          "bytes": 609,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/models/vision_transformer.py": {
+          "sha256": "69be453a6367460fd0c94588af6531c022a2469ff72e0a793c16fd110dd498c0",
+          "git_blob_sha1": "2349fa40bf8fcfaceef9f828990fff7019709d11",
+          "bytes": 17320,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/utils/tensors.py": {
+          "sha256": "66cac858005d01e93ad6f481f384a9d75cb1fb8ad2bff0fd7e9a127f384429c0",
+          "git_blob_sha1": "901190e753049fc6297d4a1ffbaa5867ac8ea4e0",
+          "bytes": 2221,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/utils/distributed.py": {
+          "sha256": "292eeb63ff515eec39603ff7170dedbfe87dab0eb204c3ad32fc767031da5210",
+          "git_blob_sha1": "2adab7090831a5845f75560582a21ba5a5dd290d",
+          "bytes": 3014,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/utils/schedulers.py": {
+          "sha256": "0e26275a7fc43ee4ba1d77f39100dead7a9a7ae7f180b740e11b31143df77b6d",
+          "git_blob_sha1": "df02e2b0cdd05774df60bdfa45b12dc9c389cb0f",
+          "bytes": 2138,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        },
+        "src/datasets/imagenet1k.py": {
+          "sha256": "41509bf7d154f10f6c233714b8a9e86a430333eca931f797119e08844f767f87",
+          "git_blob_sha1": "0c6c318ef3ca1c0910960de3bc5ad76a5f1062f1",
+          "bytes": 6993,
+          "verified_against_commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+          "scope": "Actual relevant source/config/license reading; no external code executed/copied or checkpoint downloaded."
+        }
+      },
+      "license_status": "CC_BY_NC_4_0_EXACT_SOURCE_VERIFIED_NO_EXTERNAL_CODE_PORT",
+      "critical_source_acquisition_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/ijepa_critical_api_sources_v1.json"
     },
     "V-JEPA2": {
       "name": "V-JEPA2",
@@ -3057,7 +3174,7 @@
       "name": "HybridSORT",
       "github": "https://github.com/ymzis69/HybridSORT",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
       "origin": "https://github.com/ymzis69/HybridSORT",
@@ -3086,19 +3203,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
@@ -3106,7 +3211,218 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "Hybrid-SORT: Weak Cues Matter for Online Multi-Object Tracking; primary https://arxiv.org/abs/2308.00783 submitted2023-08-01, revised2024-01-20, acceptedAAAI2024. Pedestrian MOT17/MOT20/DanceTrack. Heuristic training-free association adds confidence/height/four-corner motion cues to spatial/appearance evidence; not fish identity representation learning.",
+        "code_and_pretrained_license": "TopMIT2021YifuZhang retained fromByteTrack/OCSORT; nestedfast_reid Apache2. Filter source explicitly retains MIT RogerRLabbe2014-2018 attribution. Preserve individual notices if reused. YOLOX/ReID GoogleDrive weights and dataset licenses/access not independently verified; exclude official-weight reproduction until verified. No external HybridSORT code/weight executed or copied.",
+        "entrypoints_and_training_inference": "tools/train.py -> yolox.core.Trainer forYOLOX; fast_reid/tools/train_net.py -> DefaultTrainer foroptionalReID. tools/run_hybrid_sort_dance.py -> MOTEvaluatorDance.evaluate_hybrid_sort_reid -> Hybrid_Sort_ReID.update; exp values overwrite matching CLIargs via utils.args.args_merge_params_form_exp. DancevalReIDexp uses HMIoU, inertia.05, IoUthreshold.15, TCMbothstages, appearanceweights4.0/4.4, Byteon; generic CLIdefaults not active benchmark settings. max_age30/min_hits3 defaulttrackerconstructor; evaluator does not pass track_buffer to constructor.",
+        "core_model_files_and_shapes": "trackers/hybrid_sort_tracker/{hybrid_sort_reid,association,kalmanfilter_score_new}.py. Current[Ndet,5]xyxyscore orYOLOXobject/classscore; measured[cx,cy,area,confidence,aspect]5; state9 includes velocitiescx/cy/area/confidence and constantaspect, covariance9x9. Track prediction matrix[Ntrack,6]adds Kalman/simpleconfidence. Raw FastReIDResNeSt50x emits2048, GeMP+BNneck on stretchedRGB384x128, paircost[Ndets,Ntracks], outputs[matched,5]xyxy+ID. Named orig7state option still assigns9stateF/H and is not a verified compatible path.",
+        "loss_and_positive_negative_construction": "Hybridassociation has no learnedloss. YOLOX5*IoU+BCEobj+BCEclass+optionalL1; SimOTAtop10IoUs dynamicKclamp>=1/conflictslowestcost. OptionalReIDconfig resolvesBaseSBS/Bagtricks: CElabel smoothing.1, CircleSoftmaxscale64margin.35, hardest unnormalized Euclidean triplet softmargin0; positive equalglobalphysicalpid, negative differentpid. ActualNaiveIdentitySampler B64K16 =>P4, identitycontiguous chunks withreplacement forshortids. Dancecrop generator offsets sequenceIDs then CUHKSYSUids; no sameframe hardfishnegative requirement. Dataset camregex captures a singledigit after underscore, potentially truncating>=1000cammetadata; Naive sampler groupspid only.",
+        "pretrained_sources": "YOLOX COCOinitialization plusCrowdHuman/MOT17/Cityperson/ETHZ orMOT20; DanceTrackdetector suppliedviaByteTrack/OCSORT. ResNeStbackbonePRETRAIN URLgithubzhanghang1989/ResNeSt check_hash; ReID DanceTrack+CUHKSYSU jointly fit; MOT17BoTSORTSBS, MOT20DeepOCSORTcheckpoint mentionedbecauseBoTweightreportedcorrupt. Exactofficialmodel hashes/weightlicenses unavailable; excluded as completed reproduction. NewfixedV3/fish-adaptedcontrols must disclose changing producer/pretrain.",
+        "future_information_and_online_path": "Currentdetector/crop pluspasttrack states. OptionalECC usesformer_frame/currentrawimage and transformscurrenttrackstate, causal. ORU freeze/unfreeze linearly rebuilds latent missing-frame state after current reappearance usingpast+current endpoints; nofuture beyondcurrent and no rewrite of emitted pastoutputs in tracker. Separate tools/interpolation.py fills earlier outputs usinglater endpoints acrosscomplete resultfiles: exclude fromstrict online. Evaluator silentlyloads dance_detections/{video}/{frame}_detetcion.pkl whenexists; cacheprovenance/raw costmust beaudited independently, not freeonlineinputs. None outputs bypass frame_count/aging inupdate, unlikeemptyNx5; strict empty-frame semantics need wrapperrepair withparityproof.",
+        "GPU_CUDA_dependencies": "CoreassociationCPU NumPy/SciPy/lap/FilterPy/OpenCV; obsolete np.float aliases incompatibleNumPy>=1.24 withoutisolatedfix. OfficialdetectorCUDA/NCCL/AMP, optionalTensorRT andYOLOXextension; optionalFastReIDCUDAhalf(batch16), existingCPUbranch still casts patcheshalf and is not certifiedCPUequivalent. requirementsPython torch>=1.7/torchvision>=.10, testedREADME3.8/1.10/.11; exactnewenvironment execution not validated.",
+        "IR_MFT_compatibility": "HMIoU/confidence/fourcornerdirection andrawFIFO/EMA longtermbank are useful isolatedcontrols on frozenV3; vertical height/pedestrianstretch notfishinvariant. HMIoUverticaloverlap ratio is unclipped beforeIoUmultiplication; zerodegenerate boxes canbe undefined. Normalizedfeature norm0 unguarded. Fulltracker alsochanges9statecoordinates/ORU/lifecycle/currentmeasurementoutput; replacingwholetracker confoundsfilter/geometry/ReID. Current IR-MFT128x256RGB512 and originalGRU differfromofficial384x128RGB2048; noblindfeature-coordinateport.",
+        "mechanisms_to_port_and_exclude": "Independently test confidence difference, HMIoU andobserved fourcornerdirections withunchangedlifecycle andoutput; comparetrueFIFOmean/smoothedpastfeatures. TCM modifiesHungariancost andpostmatchgate, so isolateacceptance threshold withuniformcostcontrol. Exclude offlineinterpolation, unverifiedcachedetectioninput, detectorretuning, uncheckedorig7branch andunlicensedweights fromstrictcontrol. Lowconfidence/rematch stages explicitly avoidfeatureupdate; retainifclaimingfaithful adaptedhistory. No wholeexternalcodecopied.",
+        "novelty_overlap": "Confidence-awarecosts, height geometry, fourcornerdirection, ORU, featureEMA/longtermmean andlowconfidencerecovery established; cannotbeclaimedEvidenceFishMOTnovelty. Weakcuesevidencecomplementarity relevant toC/D; novel contribution requires genuinelylearnedfish/localidentityandsetcompetition gains aboveindependentmatchedcontrols."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "2ebbaee7842daa9e8cded8bc717f0b30c713034a3c9d3bf7e2cf68d4f8e4809e",
+          "git_blob_sha1": "cff380a19ef7eaed7b6ace325bfac825bd220544",
+          "bytes": 18737,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "LICENSE": {
+          "sha256": "e9d83751678cbaba6dfba902ea39215c423d93425e58f8450d6001f7261696f9",
+          "git_blob_sha1": "dfba850f8da707522d7b1d71636ba3ed6c7d0a28",
+          "bytes": 1067,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/LICENSE": {
+          "sha256": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df",
+          "git_blob_sha1": "f632668fe3fa3d7727567d0324975f3e5c501413",
+          "bytes": 11347,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "requirements.txt": {
+          "sha256": "354de54dce08f744cb2ded59cf1b2bd97949f419be8130b2b45333566a1629ca",
+          "git_blob_sha1": "49fb53462c487db1727b4ffc8cdce4aff8b1c96f",
+          "bytes": 316,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "tools/run_hybrid_sort_dance.py": {
+          "sha256": "9fee9f92f5513ecf6d38abaebaeb5421b2c59e407273723610c5f52200a67782",
+          "git_blob_sha1": "1a24284eb56c73730530d0bad8531381f031eb18",
+          "bytes": 8246,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "tools/train.py": {
+          "sha256": "ed97d7ba58307505d5db247c10dd82c29f8d22ceee0eed95e2004e451b9c82dc",
+          "git_blob_sha1": "d05360911952b3f5a8e4c0e8dbd51dfff34f8ea8",
+          "bytes": 3437,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "tools/interpolation.py": {
+          "sha256": "a4e515e831a391bf4c3e3df09f442d7c9471623f8257e85d58fae42739b64e2c",
+          "git_blob_sha1": "4496930f60223a2d6695e5747d06b7aa0cbbaff8",
+          "bytes": 8266,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "utils/args.py": {
+          "sha256": "80bd7eea198d5c8abb9cd17425926f8f2a630c6ed3e25345c6ac66464b769e55",
+          "git_blob_sha1": "9a976ae5105a611ff239ea69f9d9bd7c4f76d018",
+          "bytes": 8822,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "exps/example/mot/yolox_dancetrack_val_hybrid_sort_reid.py": {
+          "sha256": "0cc325ade9c17bed4e9719c54c809e58743f0fc78988e50c34554d9f0fbeaa9f",
+          "git_blob_sha1": "0b48468a265b2ec78fdefba0b739b85348bdf688",
+          "bytes": 5963,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "yolox/evaluators/mot_evaluator_dance.py": {
+          "sha256": "3480a9c4289b03162d47b8fa8b8ce54090365bd9115131df9c48da7549ebf28a",
+          "git_blob_sha1": "014a38e4e641df015052e51021549846863e8b76",
+          "bytes": 70462,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "yolox/models/yolo_head.py": {
+          "sha256": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8",
+          "git_blob_sha1": "ba8238f17d317eeb4f6c4dc7470f3a6db3ce3ece",
+          "bytes": 24079,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "trackers/hybrid_sort_tracker/hybrid_sort_reid.py": {
+          "sha256": "b9a1817920636aeb11e1ff951e8fc1a2226370559e6af8b9ab1acb3251654a51",
+          "git_blob_sha1": "56a3d3e886e8daae901db06625e110dcba504b83",
+          "bytes": 28949,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "trackers/hybrid_sort_tracker/kalmanfilter_score_new.py": {
+          "sha256": "df528a0ed2b2abdc08300fdafb42c5c99656c9c089f3331d933d5dd2d23d31c1",
+          "git_blob_sha1": "2e63201e1f6c4db584569398e8514dbc87f2ef1d",
+          "bytes": 59474,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "trackers/hybrid_sort_tracker/association.py": {
+          "sha256": "696c195f805dc1dee2bafa670820cb297ffbea9135a9dca1b6428c4f1ea24bd8",
+          "git_blob_sha1": "3dabb4b5fc570692208527cb751b181d33b1ad74",
+          "bytes": 31610,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fast_reid_interfece.py": {
+          "sha256": "71206b3d4efeba96d89bda26e2f19fe14ae986783137d5641bdca9a8833e66a6",
+          "git_blob_sha1": "e4852a345165e6f77fcbaa7c786022d4f0b61ea3",
+          "bytes": 5259,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/tools/train_net.py": {
+          "sha256": "b23311e5310625bfbf0f611296da33e7e29cafae92ac24cc14dde00f5c682967",
+          "git_blob_sha1": "c160ac9a2ced7c8310657e478111a14780ca0023",
+          "bytes": 2537,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/configs/CUHKSYSU_DanceTrack/sbs_S50.yml": {
+          "sha256": "7618a88f5dd9deae8a172221adfe5780381677c3882c4b8db02394c9f8a5000f",
+          "git_blob_sha1": "9a550fe32349ae74734972df9f67e8515cc3dd40",
+          "bytes": 258,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/configs/Base-SBS.yml": {
+          "sha256": "b3cf56efeaf2376ac27230bf7e3ed2bf603e3eb081c18e533da8a6243ef7bae6",
+          "git_blob_sha1": "bdfe6a28d59c7ed1741375beaa9cf0548740c03f",
+          "bytes": 944,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/configs/Base-bagtricks.yml": {
+          "sha256": "2054e2d0e3be7fe7daf6a5814a5ffaf98279c05cf59e805fe81d6c43179327e3",
+          "git_blob_sha1": "9bfb11fd986e911e6ad937acb66d2b1b582cc757",
+          "bytes": 1112,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/datasets/generate_cuhksysu_dance_patches.py": {
+          "sha256": "426854104f0d66323e75288e4c6b4ed95481b8749b8ab0385aedaca6139991e1",
+          "git_blob_sha1": "191ca2016f657dd32eb4d93e0dda11d9ce1dd8c8",
+          "bytes": 6381,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/data/datasets/cuhksysu_dancetrack.py": {
+          "sha256": "1be28c70829de00ba49c9c51aac5b8dc7804cb6486209126f9a381d51078281c",
+          "git_blob_sha1": "6952bb43307fe4c5dbe148840ec7d8c1e511e1f5",
+          "bytes": 3064,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/data/build.py": {
+          "sha256": "83d14599f3aa1c8f8092b30954499c536c93553727a6703353d6b2bca19ca529",
+          "git_blob_sha1": "a9f3b8d8e61cffbc85c6c7d0d2ae6cde17e7a1cd",
+          "bytes": 6233,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/data/samplers/triplet_sampler.py": {
+          "sha256": "edf33dcb9739a231f8399c576eebc986966692521c86348ff160c8955b855edd",
+          "git_blob_sha1": "0569c92789a43a3e5039de66e62041886d9845e3",
+          "bytes": 10108,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/modeling/meta_arch/baseline.py": {
+          "sha256": "17cb0622293d801e6fe2e9f97dacce96528a117d8cb78a6a2c301a34dda912d5",
+          "git_blob_sha1": "3a06193e671a87fd214949c9e11472c3568a2cd8",
+          "bytes": 6381,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/modeling/heads/embedding_head.py": {
+          "sha256": "a7ff5a7ee831eb9af1ea336bc4cfef1751b42596e198f1c47f8945f5be647619",
+          "git_blob_sha1": "c45507424a554efb268f67fc4abb0f966447d7fd",
+          "bytes": 4861,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/modeling/losses/triplet_loss.py": {
+          "sha256": "aa6dca160a8a51ed5b0d34a1ca83a0fb0bc421ee82bbb4126c965d8738ce5823",
+          "git_blob_sha1": "527500833473b2416cda9b67342f7cf3e1d1044d",
+          "bytes": 3957,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/modeling/losses/cross_entroy_loss.py": {
+          "sha256": "522e2a617529d7f677553032b36fc3e665b45105a4f746e969af01fbdeb59f68",
+          "git_blob_sha1": "be44df55205c6a6ba0b5892b9fd5b8c085868b21",
+          "bytes": 1610,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        },
+        "fast_reid/fastreid/modeling/backbones/resnest.py": {
+          "sha256": "54a81e879585941b7f8b9f46ace5662de917b298456ff7302a0644820a36fd09",
+          "git_blob_sha1": "a56a2f3890bb5141e8d21e87ff63807440fd682b",
+          "bytes": 15306,
+          "verified_against_commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+          "scope": "Actual relevant entry/config/association/filter/forward/sampler/loss/license source lines read; no external code executed or transplanted."
+        }
+      }
     },
     "BoT-SORT": {
       "name": "BoT-SORT",
