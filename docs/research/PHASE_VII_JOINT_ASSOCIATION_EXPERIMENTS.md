@@ -50,3 +50,21 @@ MeMOTR exacteb7a177 has cross-track memory attention and score-gated detached fe
 ## Final three source audit constraints
 
 MOTRv2 exact1aac7c3 actual config10learned256queries plus current proposal anchors/history queries differs from parser300; GT denoising stays training-only, and default QIMv2 does not invoke declared drop/FP methods. TrackTrack exactee7f1c5 uses nonlearned mutual-argmin competition/TAI and two-NMS inventories, with offline _post linking/smoothing excluded. COVTrack exact9b0ced5 supplies learned confidence-conditioned cue fusion plus input-row greedy memo assignment, not N+1fishIDwords. All three require same inputs/lifecycle controls; source completion is not trained migration.
+
+## Registered centered-cost / separate-NULL repair, three-seed complete fits
+
+Allnine controlled fits (pair, parameter-matched crossTransformer, fullset joint ×seeds0/1/2) completed fixed8×400 CPUupdates each:28800actual optimizer updates. Per-epoch sampled-frame/local-code digests match across allthree architectures for eachseed. CrossTransformer keeps the full cross-set conditioning but replaces each set-self-attention with independently gradient-active per-token FFN of exactly4h²+4hparameters. Pair has lower activecapacity; allocated parametercount alone is not an equalityclaim. Same physical known/unknown/nonunique masks and original512conditionalwarmdata retained, with inheritedencoder/GRU exposure explicitly disclosed.
+
+The bounded route now removes per-candidate common legal-edge shifts before tanh, then zero-centers the bounded edits; every edit≤0.03 and illegaledges unchanged. Uniformpositive correction becomes exactzero, so it cannot reproduce a threshold-only improvement. Conditionalranking trains only knownexisting-IDcompetition; NULL/unknown are excluded from this objective. FullN+1 privateNULL classification remains a separate existing/NULL-group-balanced objective on only verified labels. No fabricated newborn labels or unknown hardnegatives. Untraineduniformcentered control reproduces all684SN001/6570SN015 original baseline predictionbytes exactly, zerochangededges.
+
+The actual jointseed1 epoch2exit/freshresume equals uninterrupted8epochtraining exactly:197tensor/1array/931scalar leaves acrossmodel/optimizer/scheduler/allRNG, digests, losses, gradients and all fixed-state metrics. Walltime/containerbytes excluded; no crosshardware guarantee. Full rawproof is hash-linked in PHASE_VII_CENTERED_JOINT_THREE_SEED_MEASURED.json.
+
+| Architecture | InnerSN001 existing-ID accuracy | InnerSN001 NULL recall | OuterSN015 existing-ID accuracy | OuterSN015 NULL recall |
+|---|---:|---:|---:|---:|
+| pair | 24.029 ±2.173 | 20.994 ±4.385 | 54.860 ±4.562 | 46.572 ±11.419 |
+| cross_transformer | 25.995 ±1.717 | 23.573 ±3.552 | 42.928 ±2.754 | 67.909 ±1.132 |
+| joint | 23.741 ±1.295 | 29.650 ±3.237 | 38.739 ±2.752 | 69.751 ±2.523 |
+
+First jointseed0 actualnative bounded HOTA46.219/31.538 onSN001/SN015 versus original46.238/31.983; fullroute28.120/13.225, withSN015IDSW2206. The threshold confound is removed without establishing a positive learned contribution; balancing NULL still costs existing-ID continuity. All18sameinput model/route replays (36fullvideos) continue and onlycompletedofficial rowscount as evidence. No outerthreshold/recipe search.
+
+Inner-only graph audit records2of801selectedexisting edges outside the original .97feasiblecost graph, and451of695knownphysicalexisting targets outside that graph. This separates candidate-feasibility/support limits from model identity/NULL errors. The latter targets are not relabelledNULL; forcing them toNULL would fabricate labels. The2edge observation alone doesnot explain native degradation or justify a broadgraphfix. On-policy history/labelcoverage, rawcue preservation, dictionary sensitivity, currentset competition and matched expanded-graph controls remain meaningful next diagnoses. Outer graph diagnosis is rejected before model/query loading.

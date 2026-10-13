@@ -96,3 +96,23 @@ The actual first512SN015frames parity audit replaces the learned cue with exact 
 The first full6570SN015frame contextV2seed0 official result is HOTA30.694/AssA13.405/IDF125.298/MOTA91.032/IDSW146. Same-current frozenFIFO is32.225/14.786/30.445/91.019/152. Original Bglobal model gives31.017/13.664/26.362/91.003/145. Fewer switches accompanies weaker identity continuity; clean physical-history retrieval is not endogenous native performance. No recipe is selected from outerSN015; matched native allseed controls continue.
 
 The separate V2contextfullseed1 real epoch2exit/fresh-process resume exactly matches its completed uninterrupted8epoch execution:250tensor/1array/1626scalar leaves across student, independent stoppedEMAteacher and1200updatecount, optimizer/scheduler, all RNG, observed-input/mask digests, losses and all heldout protocol identity/discrimination/support metrics. Both use the same guarded V2class/config/trainer bytes. Walltime, containerbytes and per-run outputpaths are excluded; no crosshardware guarantee. PHASE_VII_LOCAL_DENSE_CONTEXT_RESTART_MEASURED.json preserves the actual proof. This is execution correctness, not identity or tracking superiority.
+
+## Completed V2 context-identity three-seed confirmation
+
+All27 V2 firstfold fits are COMPLETE. Same observed scene/mask digests, frozen exact query support and1200successful optimizer updates each are verified. Identity reads pastcontext and never executes decoder/teacher online. SN015cleanGT-history/currentdetector gap25R1, mean±sampleSD:
+
+| Mode | Rank1 (%) |
+|---|---:|
+| global | 72.813 ±0.369 |
+| global_gru | 51.537 ±0.369 |
+| local_attention | 65.307 ±1.589 |
+| local_temporal | 63.948 ±0.800 |
+| local_contrastive | 65.366 ±1.599 |
+| no_ema | 63.889 ±0.892 |
+| no_prediction | 63.948 ±0.800 |
+| no_id | 64.657 ±1.083 |
+| full | 63.652 ±1.064 |
+
+Fullcontext63.652±1.064 does not exceed ordinarylocalTemporal63.948±0.800 or global72.813±0.369; localcontrastive65.366±1.599 is an established same-input control, notJEPA novelty. NoID64.657±1.083 removes explicitIDloss but retains annotated temporal grouping. NoPrediction and localTemporal are exactaliases, not two independent confirmations. Separate originalnegativeV1, exact V2restart and all12 protocols/R1R5mAP/AUCEER/supports remain preserved. The scientific PNG/SVG/PDF context_identity_three_seed_controls_v2 is generated from the exact reports and visually inspected.
+
+Allsix K4 outer/inner-fold confirmation is now running on four CPUworkers: eight distinct modes ×sixfolds×three seeds=144unique fits.24 unique firstfold fits reused,120new fits planned; three firstfold noPrediction duplicates retained but never counted as independent. Same source/config, fixedepoch8, no outerselected recipe. Explicit outsideGit storage plan budgets all remaining checkpoints and12GiBnativefeature margin, estimated minimumfree45.12GiB; runtime stops before40GiBreserve. K8, truepixelmask/candidate-target identity diagnosis, strongerbaselines, allnative and finalnovelty remain pending.

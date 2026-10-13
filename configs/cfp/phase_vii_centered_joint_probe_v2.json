@@ -1,0 +1,60 @@
+{
+  "state": "FROZEN",
+  "purpose": "Registered first cost/NULLrepair from prior fitting/inner-only residual diagnosis; same-input pair/crossTransformer/fullset controls; not a novel fullmethod claim",
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001"
+  ],
+  "calibration_videos": [
+    "SN-001"
+  ],
+  "outer_videos": [
+    "SN-015"
+  ],
+  "encoder_exposure": "Inherited RGB encoder saw all6; inherited GRU fit5 including calibrationSN001 and calibratedSN015. This is conditional heldout new association head only.",
+  "dimension": 512,
+  "hidden": 64,
+  "heads": 4,
+  "capacity": 128,
+  "epochs": 8,
+  "steps_per_epoch": 400,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "ranking_weight": 0.1,
+  "consistency_weight": 0.1,
+  "residual_loss_weight": 1.0,
+  "maximum_delta": 0.03,
+  "residual_temperature": 0.1,
+  "unmatched_cost": 0.97,
+  "checkpoint_selection": "Fixed last epoch8. Calibration and outer diagnostic only after training; no threshold/checkpoint selection.",
+  "sampling": "Uniform fit video, then uniform actual high-stage frame, random distinct local dictionary codes per frame; no physical-label input to model",
+  "null_semantics": "Known no match to supplied historical set; not verified newborn. Unknown detection/track identities and nonunique assignments unsupervised.",
+  "routes": [
+    "Baseline GRU costs plus bounded full-set residual, same original lifecycle",
+    "Separate full learned ID assignment, private unmatched slot per detection"
+  ],
+  "comparisons": [
+    "Independent pair: no cross/currentset competition",
+    "Parameter-matched crossTransformer: same cross-set conditioning, each track/candidate set-self-attention replaced by independently gradient-active per-token FFN with exactly4h\u00b2+4hparameters; no unused extra capacity",
+    "Fullset joint: track/detection self-attention plus same cross-set conditioning"
+  ],
+  "resume": "CPU deterministic completed-epoch atomic model/optimizer/scheduler/allRNG/source/data guard. Register actual epoch2exit/freshprocessresume against completed seed1.",
+  "representation_version": "CENTERED_CONDITIONAL_RANKING_SEPARATE_BALANCED_NULL_V2",
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "architectures": [
+    "pair",
+    "cross_transformer",
+    "joint"
+  ],
+  "bounded_training": "Zero-mean per-detection legal-edge relative identity correction <=0.03. Knownexisting classification/ranking/consistency only; NULL/unknown excluded from this objective. Cannot use uniform edge shifts to imitate native threshold changes.",
+  "full_training": "Existing/NULL classification group-balanced within actual observed supervised frame, same masks for unknowns/nonunique tracks/detections. Native N+1 privateNULL global assignment unchanged. No fabricated birth labels.",
+  "source_diagnosis": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_residual_calibration_diagnosis_v1.json",
+  "novelty": "Existing centeredcost/conditionalranking/classbalanced supervision are repair controls; no learnedgain or originality claimed. Encoder/GRU exposure remains inherited/conditional.",
+  "scope": "Conditional original512FishReID/GRU high-stage warmsets, not new384encoder independent OOF or nativehistory data. Fullnative replay mandatory and allsix/newproducer/3seed finalmethod still required."
+}

@@ -21,3 +21,20 @@ DiffMOT exacteada72e supplies a genuine five-record8-D history-conditioned nonli
 ## Final three source audit constraints
 
 TrackTrack uses linear8DcxcywhKF with detector-score-scaled measurement covariance and corner-angle/confidence terms; default offline AFLink/gradientboosting interpolation is excluded. COVTrack motion cue in the active fusion is raw4Dbox position, not nonlinear dynamics. Source-name/paper language alone does not establish learned swimming/occlusion; motion must be isolated against same-input KF/UKF/geometry/lifecycle controls.
+
+## Independent native linear UKF control: all six complete videos
+
+The owned NativeUnscentedFilter uses17sigma points (alpha1,beta2,kappa0) with exactly the original8D XYAH constant-velocity F/H, same initialization and height-dependentQ/R. No jitter/eigenvalue clipping, changed observed state, noise tuning or nonlinear fish-motion claim. Gaussian transform tests and160prediction/update steps with observation gaps match the native linear KF numerically. Track activation/update/reactivation and lost-state velocity reset remain native; only the process-local filter implementation changes. It is an8D control, not officialSU-T9Dfulltracker reproduction.
+
+All27251frames across6videos complete. Fresh KF andUKF predictions are exactbyte-equal to each other and each original GRU native reference, all6; pinned official metrics remain unchanged. Complete currentproposals/512RGBcoordinates/history/nativegraph/lifecycle/output remain fixed. Single-run CPUassociationtime (sharedmachine, notisolatedruntimebenchmark):
+
+| Video | Frames | KF (s) | UKF (s) | Exact output bytes |
+|---|---:|---:|---:|---|
+| SN-001 | 684 | 6.70 | 10.35 | Yes |
+| SN-015 | 6570 | 66.24 | 84.60 | Yes |
+| PF-001 | 15000 | 61.52 | 73.66 | Yes |
+| BT-001 | 3000 | 30.89 | 39.86 | Yes |
+| BT-003 | 243 | 2.43 | 3.12 | Yes |
+| MSK-002 | 1754 | 89.41 | 109.38 | Yes |
+
+UKF alone with the same linear motion/observation model provides no nativeMOT improvement here. This isolates filtering from changes in state, nonlinear dynamics, appearance or lifecycle. It doesnot exclude a genuinely different nonlinear fish-motion model after error-source evidence. FishIoU/AGCIoU/source-faithful versus repaired definitions, observable overlap/density/conflict states and learned nonlinearity remain required. Neither this cacheassociationtime nor official metric evaluation is complete rawFPS. Full proof and parameter/runtime/source/input/outputSHA references are in PHASE_VII_LINEAR_UNSCENTED_MOTION_MEASURED.json.
