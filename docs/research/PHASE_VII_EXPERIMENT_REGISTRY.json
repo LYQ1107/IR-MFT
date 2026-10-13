@@ -3003,6 +3003,95 @@
       "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_two_crop_retrieval_v1.json",
       "sha256": "790212aa220e49c40cbd2f85c90ab3f899ab69bfb13d564df384d608807da4d2",
       "scope": "Seven frozen controls on identical actual/paired pools, physical identities/unknowns/query/gap masks; no new-head training or native-MOT gain."
+    },
+    {
+      "experiment_id": "VII_A_DINOV2_FISH_THREE_SEED_K4_V1",
+      "status": "COMPLETE_FIRST_FOLD_TWELVE_FITS_AND_MATCHED_DIAGNOSTICS",
+      "config": "configs/cfp/phase_vii_dinov2_fish_training_v1.json",
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "modes": [
+        "global",
+        "simple",
+        "global_capacity",
+        "patch_attention"
+      ],
+      "K": 4,
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "fixed_epochs": 8,
+      "attempted_steps": 1200,
+      "producer_base_commit": "e421998d0c33e255e99383863d99a91894e4457b",
+      "fresh_initialization": "Official exact Apache DINOv2S S14;175tensors strictload, final2blocks/norm gradient-fitted",
+      "scope": "Sparse same-current-crop pilot; heldout gradients/labels/state excluded. Not native MOT, JEPA or innovation proof. AMPrecord failure/failed uncontrolled numerical replay preserved.",
+      "measured": "docs/research/PHASE_VII_DINOV2_FISH_THREE_SEED_MEASURED.json",
+      "measured_sha256": "cb3b399a50bf30ecaf951a45303b1a4ad018c3ab63850fba85ac0b463817bf9a"
+    },
+    {
+      "experiment_id": "VII_A_DINOV2_DETERMINISTIC_REAL_RESTART_V1",
+      "status": "EXACT_RESTART_STATE_VERIFIED",
+      "config": "configs/cfp/phase_vii_dinov2_fish_deterministic_v1.json",
+      "seed": 1,
+      "mode": "global",
+      "physical_gpu": 0,
+      "checkpoint_epoch": 2,
+      "final_epoch": 8,
+      "scope": "Separate execution-only deterministic workspace/algorithm policy; actual continuous versus checkpoint exit/fresh process resume. Does not retroactively certify twelve uncontrolled-workspace fits.",
+      "measured": "docs/research/PHASE_VII_DINOV2_FISH_RESTART_MEASURED.json",
+      "counts": {
+        "tensor_leaves": 295,
+        "array_leaves": 1,
+        "scalar_leaves": 1248
+      },
+      "differences": 0
+    },
+    {
+      "experiment_id": "VII_A_DINOV2_ALL_FOLDS_K4_K8_THREE_SEEDS_V1",
+      "status": "RUNNING_ALL_FOUR_MODE_DRIVERS",
+      "config": "configs/cfp/phase_vii_dinov2_fish_training_v1.json",
+      "planned_runs": 144,
+      "six_outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "inner": "next in declared cycle",
+      "fit": "other4",
+      "modes": [
+        "global",
+        "simple",
+        "global_capacity",
+        "patch_attention"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "K": [
+        4,
+        8
+      ],
+      "max_gpus": 4,
+      "scope": "Preregistered same budget/inputs/loss, no outer-value recipe/checkpoint selection; reserve40GiB, check idleGPU0-3 and every source before each job, actual terminal failure halts own driver. Native-allframe/JEPA/strong-source/external work unfinished."
+    },
+    {
+      "experiment_id": "VII_EXTERNAL_FISH_PRIMARY_METADATA_V1",
+      "status": "IN_PROGRESS_METADATA_ONLY",
+      "measured": "docs/research/PHASE_VII_EXTERNAL_DATA_AUDIT_MEASURED.json",
+      "scope": "Four preliminary primary candidates, Kaggle version4 exact hash and primary terms discrepancy preserved; no raw external payload/learning/external performance or completed overlap audit claim."
     }
   ],
   "source_http_followup": {

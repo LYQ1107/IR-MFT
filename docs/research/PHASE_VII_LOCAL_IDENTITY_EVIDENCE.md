@@ -55,3 +55,34 @@ Licensed official S14 weight strict175tensor-loaded into the exact audited sourc
 | SN-015 | 5860 | 71.587 | 57.143 | 61.746→60.317 | 57.302 | 51.429/50.794 |
 
 DINO CLS improves over pairedImageNet onBT001/PF001/SN015 and falls below it onBT003/MSK002/SN001. Fixed K4/K8concatenation is not consistently better than CLS; PF001/SN015 show substantial degradation. These current-crop measurements support testing identity supervision/domain adaptation and local correspondence with matchedcapacity controls; they do not demonstrate new local learning, stoppedJEPA or full nativeMOT benefit. Frozen descriptors/configs were fixed before this evaluation; do not select recipes on outerSN015. Actual nearest-past positive/current-frame hardnegative and crop stability metrics remain separately available.
+
+## Actual supervised DINO first-fold three-seed controls
+
+Fresh official DINOv2S is fitted only on BT003/MSK002/PF001/SN001; innerBT001 and outerSN015 never update visual weights, running state or classifier labels. The first ten blocks/patch/special/position tokens are immutable; final two blocks and final norm receive nonzero finite gradients and change. NoBN modules exist. Current crop alone produces CLS384 and162patch384; geometric K4regions and padding/declared-erasure fractions are not fish anatomy or occlusion labels. Finalepoch8/1200attempted steps is fixed, AdamW backbone1e-5/head3e-4 and the same true same-frame/temporal mixed GT/detector sampler, loss and augmentation apply to all four modes. Matching projection remains384 and begins as identity.
+
+| Mode | InnerBT001 actual detectorR1 | OuterSN015 actual detectorR1 | Trainable backbone | Trainable head |
+|---|---:|---:|---:|---:|
+| Frozen DINO CLS |19.872|57.937|0|0|
+| global |22.756 ±0.424|63.386 ±0.716|3,551,232|175,872|
+| simple real-patch pooling |22.543 ±0.370|63.016 ±0.420|3,551,232|323,329|
+| same active architecture, CLS content only |22.436 ±0.734|62.857 ±0.991|3,551,232|1,595,714|
+| real regional patch attention |22.009 ±0.334|62.857 ±0.572|3,551,232|1,595,714|
+
+Mean ± sampleSD is across seeds0/1/2, with identical fixed crop/query/gallery support. Global improves+5.450pp over frozen DINO on the outer actual detector pool; each seed is above that baseline. Patch attention does not exceed global or the capacity control in the mean. It still has real patch/query gradients and learned observed-region reliability, rather than renamed global tokens. The capacity control repeats current CLS with the same static spatial positions/masks; exact architecture/active-parameter count and patch-perturbation invariance tests distinguish capacity from spatial image content. This is an established supervised A control, not DenseJEPA, joint identity association or novel research evidence.
+
+Paired keys/actual unknown-containing pools are evaluated separately at gaps1/25/100 with R1/R5/mAP/AUC/EER and nearest-past-positive/current-frame-known-negative edge supports. The new evaluator reproduces both the frozen same-input reference and training evaluator metrics exactly. Full local descriptor/paired evidence and checkpoint/source/data hashes are recorded after the measured-stage collector finishes. All six folds/K4/K8/three seeds are preregistered; bounded drivers preserve failures and require40GiBfree/no other-user GPU interference. Native full-frame/raw-online and same-coordinate ordinary history producer remain outstanding.
+
+The original uncontrolled-workspace DINO continuous/restart pair differs already in epoch1, before the restart boundary, despite equal first finite gradients, sampling coverage and update counts. Its failed comparison is retained. A separate deterministic execution recipe fixes cuBLAS workspace before CUDA initialization and enables strict deterministic algorithms; its actual continuous/epoch2exit/fresh-resume audit is reported separately, without retroactive certification of the original twelve fits.
+
+The separately registered deterministic DINO global seed1 audit now verifies exact continuous versus epoch2exit/fresh-process resume:295tensor/1array/1248scalar leaves, all training losses/updates/coverage and heldout retrieval/feature hashes match. Both actual execution guards record strict algorithms and :4096:8workspace configured beforeCUDA. The failed uncontrolled comparison is retained and is not retroactively certified. Full proof is PHASE_VII_DINOV2_FISH_RESTART_MEASURED.json; this does not certify all uncontrolled allfold executions or crosshardware determinism.
+
+## Same-pair identity discrimination
+
+All twelve completed trained evaluations reproduce the frozen same-input operator and training evaluator exactly, including absent targets/unknowns/query and edge counts. On paired detector keys:
+
+| Video | Frozen R1 | Global three-seed R1 | Frozen AUC / EER | Global three-seed AUC / EER | Patch-attention three-seed R1 |
+|---|---:|---:|---:|---:|---:|
+| BT001 |25.160|29.274 ±0.648|0.91164 /0.17217|0.94453 ±0.00112 /0.13748 ±0.00220|28.793 ±0.245|
+| SN015 |60.317|66.032 ±0.420|0.94340 /0.14131|0.97509 ±0.00157 /0.08057 ±0.00418|65.079 ±0.275|
+
+R1 uses minimum25frame earlier galleries. AUC/EER uses nearest strictly earlier known-positive versus current-frame known-different-fish edges (not the25frame subset): BT001630positive/4362negative, SN015633/5187. Edges repeat fish/frames and are not independent biological samples. Query-level uncertainty and training-seed SD are distinct. Unknowns remain in the actual detector pool but not negative labels; paired keys restrict support explicitly. Current-crop supervised identity improves both ranking and this specific discrimination test; a local-only or native-association causal gain remains unestablished. Full allgap/perview/perproducer/rank5/mAP/unknowns/loss/gradient/checkpoint/source/seed evidence is in PHASE_VII_DINOV2_FISH_THREE_SEED_MEASURED.json.

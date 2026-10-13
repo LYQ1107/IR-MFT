@@ -144,3 +144,16 @@ Licensed official S14 weight strict175tensor-loaded into the exact audited sourc
 | SN-015 | 5860 | 71.587 | 57.143 | 61.746→60.317 | 57.302 | 51.429/50.794 |
 
 DINO CLS improves over pairedImageNet onBT001/PF001/SN015 and falls below it onBT003/MSK002/SN001. Fixed K4/K8concatenation is not consistently better than CLS; PF001/SN015 show substantial degradation. These current-crop measurements support testing identity supervision/domain adaptation and local correspondence with matchedcapacity controls; they do not demonstrate new local learning, stoppedJEPA or full nativeMOT benefit. Frozen descriptors/configs were fixed before this evaluation; do not select recipes on outerSN015. Actual nearest-past positive/current-frame hardnegative and crop stability metrics remain separately available.
+
+Actual DINO fish-supervised firstfold three-seed controls now complete at fixed epoch8: actual detector gap25R1 outerSN015 global63.386±0.716%, simple63.016±0.420%, capacity62.857±0.991%, patch attention62.857±0.572%, versus frozenDINO57.937%. InnerBT001 global22.756±0.424% versus19.872%. All four exclude both heldout videos from visual gradients/classifier labels and preserve384dimensions. The mean patch-attention result does not surpass global/capacity. Paired GT/detector support and AUC/EER are separate; full trained diagnostics and measured hashes are recorded after collection. This does not establish improved native tracking, novelty or external-scene generalization. Allfold/K8/three-seed jobs use the same frozen recipe.
+
+## Same-pair identity discrimination
+
+All twelve completed trained evaluations reproduce the frozen same-input operator and training evaluator exactly, including absent targets/unknowns/query and edge counts. On paired detector keys:
+
+| Video | Frozen R1 | Global three-seed R1 | Frozen AUC / EER | Global three-seed AUC / EER | Patch-attention three-seed R1 |
+|---|---:|---:|---:|---:|---:|
+| BT001 |25.160|29.274 ±0.648|0.91164 /0.17217|0.94453 ±0.00112 /0.13748 ±0.00220|28.793 ±0.245|
+| SN015 |60.317|66.032 ±0.420|0.94340 /0.14131|0.97509 ±0.00157 /0.08057 ±0.00418|65.079 ±0.275|
+
+R1 uses minimum25frame earlier galleries. AUC/EER uses nearest strictly earlier known-positive versus current-frame known-different-fish edges (not the25frame subset): BT001630positive/4362negative, SN015633/5187. Edges repeat fish/frames and are not independent biological samples. Query-level uncertainty and training-seed SD are distinct. Unknowns remain in the actual detector pool but not negative labels; paired keys restrict support explicitly. Current-crop supervised identity improves both ranking and this specific discrimination test; a local-only or native-association causal gain remains unestablished. Full allgap/perview/perproducer/rank5/mAP/unknowns/loss/gradient/checkpoint/source/seed evidence is in PHASE_VII_DINOV2_FISH_THREE_SEED_MEASURED.json.

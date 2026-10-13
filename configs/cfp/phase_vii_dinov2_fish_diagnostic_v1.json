@@ -1,0 +1,10 @@
+{
+  "state": "FROZEN",
+  "maximum_queries_per_physical_identity_per_view": 64,
+  "minimum_past_gaps": [1, 25, 100],
+  "batch_size": 64,
+  "features": ["embedding", "raw_global", "global_feature", "local_concat", "local_reliability_mean"],
+  "pool_rule": "Same immutable records, valid flags, past-only galleries and unique paired (frame,physicalID) keys as official frozen DINO diagnostic. Actual unknown candidates retained; no unknown identity negatives.",
+  "local_rule": "Global head has no local descriptors. For other heads, L2-normalized same-region concat and reliability-weighted mean of local unit tokens are diagnostics only; no anatomy or local correspondence improvement claim.",
+  "scope": "Heldout current-crop retrieval/discrimination after fixed finalepoch8 only. Actual and unique-paired GT/detector pools, rank1/rank5/mAP, nearest strictly earlier same-fish positive vs current-frame known-different-fish AUC/EER. Exact sample counts and same-input frozen reference parity required. Not full MOT, JEPA or online speed. No hyperparameter/checkpoint selection from outer results."
+}

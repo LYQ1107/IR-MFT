@@ -1,6 +1,6 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "THIRTY_SOURCE_AUDITS_AND_PRETRAINED_DINOV2_CROP_DIAGNOSTIC",
+  "stage": "DINO_FISH_SUPERVISED_THREE_SEED_AND_EXACT_DETERMINISTIC_RESTART_ALL_FOLDS_RUNNING",
   "branch": "research/evidence-fishmot-v1",
   "baseline_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
   "completed": [
@@ -57,10 +57,16 @@
     "Frozen DINOv2 CLS384 and162realpatch384/K4K8/content-mask features on exact47,751two-crop observations extracted; no future/IDinput toencoder",
     "Seven same-query actualpool/uniquepaired feature controls and gap1/25/100 R1/R5/mAP/AUC/EER measured on all6trainvideos; inheritedFishpost/ImageNet legacy metrics/counts exactly reproduced",
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
-    "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit"
+    "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
+    "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
+    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
+    "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
+    "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
+    "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim"
   ],
   "pending": [
-    "Supervised/domain/self-supervised local fish identity adapters and matched strong pretrained controls; all30source-field audit prerequisite completed",
+    "Allfold/K8 localfish supervision; independent maskedfishselfsupervision and strong TransReID/FDTA-style same-input controls",
     "All visual/local folds and seeds plus new-coordinate native tracker",
     "FishMAE-style legally independent masked fish-crop self-supervision and TransReID-/FDTA-style same-input identity controls",
     "Actual local DenseJEPA and matched temporal/contrastive/noEMA/noPrediction/noID",
@@ -71,22 +77,84 @@
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
-  "storage_free_gib": 140.9691390991211,
+  "storage_free_gib": 129.0548858642578,
   "source_audit_complete": 30,
-  "active_jobs": [],
+  "active_jobs": [
+    {
+      "mode": "global",
+      "physical_gpu": 0,
+      "driver_pid": 453058,
+      "driver_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_allfold_global_driver_v1.json",
+      "completed_at_snapshot": 4,
+      "registered_total_per_mode": 36,
+      "active_at_snapshot": {
+        "name": "dinov2_fish_global_BT-001_k4_s1_v2",
+        "phase": "training",
+        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_global_BT-001_k4_s1_v2",
+        "pid": 455531
+      },
+      "source_guarded": true
+    },
+    {
+      "mode": "simple",
+      "physical_gpu": 1,
+      "driver_pid": 443832,
+      "driver_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_allfold_simple_driver_v1.json",
+      "completed_at_snapshot": 7,
+      "registered_total_per_mode": 36,
+      "active_at_snapshot": {
+        "name": "dinov2_fish_simple_BT-003_k4_s1_v2",
+        "phase": "diagnostic",
+        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_simple_BT-003_k4_s1_v2.diagnostic.json",
+        "pid": 455279
+      },
+      "source_guarded": true
+    },
+    {
+      "mode": "global_capacity",
+      "physical_gpu": 2,
+      "driver_pid": 443883,
+      "driver_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_allfold_global_capacity_driver_v1.json",
+      "completed_at_snapshot": 7,
+      "registered_total_per_mode": 36,
+      "active_at_snapshot": {
+        "name": "dinov2_fish_global_capacity_BT-003_k4_s1_v2",
+        "phase": "training",
+        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_global_capacity_BT-003_k4_s1_v2",
+        "pid": 454425
+      },
+      "source_guarded": true
+    },
+    {
+      "mode": "patch_attention",
+      "physical_gpu": 3,
+      "driver_pid": 443907,
+      "driver_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_allfold_patch_attention_driver_v1.json",
+      "completed_at_snapshot": 7,
+      "registered_total_per_mode": 36,
+      "active_at_snapshot": {
+        "name": "dinov2_fish_patch_attention_BT-003_k4_s1_v2",
+        "phase": "training",
+        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_fish_patch_attention_BT-003_k4_s1_v2",
+        "pid": 454316
+      },
+      "source_guarded": true
+    }
+  ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Use fit/inner-only evidence to implement matched DINOv2 fish/global/local identity learning; no representation/threshold selection on outer video",
-    "Implement genuine local/temporal context, masked predictor, candidate relation and stopped EMA target with noEMA/noPrediction/noID/contrastive controls",
-    "RepairCcommon-costNULLsaturation, preserveobservableidentitycues; isolateindependentmotion/occlusion",
-    "Finishremainingvisual/localfolds+3seeds, nativeallvideo/rawonline, externaldataauditand20finalscientificquestions"
+    "Monitor four guarded36run-per-mode DINO drivers; all6folds/K4K8/3seeds with fixed recipe, stop only on actual terminal error or source/space/idle-GPU guard rejection. Do not mutate their guarded sources/configs while active.",
+    "Integrate new384coordinate encoder with matched ordinary history producer/native lifecycle; do not load old512GRU into384 or choose thresholds from outer results",
+    "Implement legally independent maskedfish self-supervision and TransReID/FDTA-style same-input controls; continue genuine stoppedEMA local/temporal JEPA and matching noEMA/noPrediction/noID/contrastive controls",
+    "Repair C NULL common-cost saturation with same-input/on-policy full competition; isolate independent motion/observableocclusion then allnative allvideo/rawonline",
+    "Finish primary externaldata terms/identity/splits/cadence/overlap/modality before any externalpayload use; preserve20finalquestion labels and no finalgoalcompletion claim"
   ],
   "validation": {
-    "project_tests": 219,
+    "project_tests": 226,
     "warnings": 18,
-    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
-    "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
-    "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity."
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_fish_training_final_v2.log",
+    "log_sha256": "0feff809095edc241d56e6a2c618f2c53799d8a65cc3f8dbd8fb06426c60882f",
+    "scope": "Full project suite after actual DINO fish training/head/data/overflow and deterministic launch/restart/evaluation tools; additionally actual exact paired/reference parity and fresh-process strict replay verified."
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
@@ -102,5 +170,9 @@
     "sha256": "b280be7e91cddbf0fc5c72ff7d76591a45113884c6289bad16e2b81fff5d8731",
     "scope": "Available-source/provenance verification only, with explicit missing-source/model/weight/license exclusions; no blanket fullsystem reproduction."
   },
-  "dinov2_frozen_measured_sha256": "7d52a23ca9e8c7497601e1f854d955662a4f1d0fefd65689d3532736c635c0bd"
+  "dinov2_frozen_measured_sha256": "7d52a23ca9e8c7497601e1f854d955662a4f1d0fefd65689d3532736c635c0bd",
+  "dinov2_fish_three_seed_sha256": "cb3b399a50bf30ecaf951a45303b1a4ad018c3ab63850fba85ac0b463817bf9a",
+  "dinov2_fish_restart_sha256": "4525961f526d3d07e47c28496a9e7ead6dcd7ebe68ed7b59d2975af5fec1a533",
+  "external_data_initial_audit_sha256": "43c9057d40e75964ebe404006962fd8f585b89de6f3680e4c248a6c6466b2e6d",
+  "allfold_registered_total": 144
 }

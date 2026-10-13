@@ -1,0 +1,77 @@
+{
+  "status": "IN_PROGRESS_PRIMARY_METADATA_AUDIT_ONLY",
+  "checked_date_UTC": "2026-10-13",
+  "payloads_acquired": false,
+  "brackishmot_primary_metadata": {
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_dataset_metadata_v1/brackishmot_kaggle.json",
+    "sha256": "0523b835c56c8107d7d0e0577d305625938c9b74a186f5c403e7622d13a4fc56",
+    "version": 4,
+    "declared_license": "CC BY-SA 4.0",
+    "total_bytes": 2234753716,
+    "primary_metadata_url": "https://www.kaggle.com/api/v1/datasets/view/maltepedersen/brackishmot"
+  },
+  "entries": [
+    {
+      "name": "BrackishMOT",
+      "primary_sources": [
+        "https://vap.aau.dk/brackishmot/",
+        "https://www.kaggle.com/api/v1/datasets/view/maltepedersen/brackishmot"
+      ],
+      "declared_license": "CC BY-SA 4.0 on creator Kaggle metadata version4",
+      "annotation": "Creator describes MOTChallenge-format annotations,98real sequences plus synthetic; actual perfile identity/split/cadence not inspected",
+      "modality": "Optical real/synthetic current-image source; no verified IR",
+      "overlap": "Unresolved against MFT25/MFT26/BT-series and original Brackish/modifiedM4FT. No independent external-OOF claim",
+      "allowed_stage": "Metadata audit only; need attribution/derivative terms, exact file list/identity/split/cadence/frame overlap before selection",
+      "source_discrepancy": "Secondary fish-datasets index labels CC BY-NC-SA; direct creator version4 metadata instead declares CC BY-SA. Use exact primary record and retain discrepancy; do not infer dataset terms from generator license."
+    },
+    {
+      "name": "FishTrack23",
+      "primary_sources": [
+        "https://openaccess.thecvf.com/content/WACV2024/html/Dawkins_FishTrack23_An_Ensemble_Underwater_Dataset_for_Multi-Object_Tracking_WACV_2024_paper.html",
+        "https://openaccess.thecvf.com/content/WACV2024/papers/Dawkins_FishTrack23_An_Ensemble_Underwater_Dataset_for_Multi-Object_Tracking_WACV_2024_paper.pdf"
+      ],
+      "annotation": "Paper approx850kboxes/26ktracks, ensemble provider subsets and CSV/COCOvariant; IDs across clips not verified",
+      "cadence": "Paper says annotated5Hz or10Hz although native videos mayhigher",
+      "modality": "Paper says optical, some blackandwhite; not verified IR",
+      "license": "Primary per-provider dataset/image license not yet verified; paper/code availability not dataset permission",
+      "overlap": "Unknown perorganization/video and MFT25/MFT26/private pretrain",
+      "acquisition": "CVF web-open403 retained; primary search-index PDF text available, dataset payload not downloaded"
+    },
+    {
+      "name": "Fish4Knowledge trajectory ground truth",
+      "primary_sources": [
+        "https://groups.inf.ed.ac.uk/vision/DATASETS/FISH4KNOWLEDGE/WEBSITE/GROUNDTRUTH/BEHAVIOR/"
+      ],
+      "annotation": "3102trajectory structures from93videos, bbox/frame/class normalvsrare; page explicitly no raw images. Within-trajectory identity only, concurrent-video linkage unknown",
+      "cadence": "5fps",
+      "modality": "No current image payload in this trajectory release; no verified IR",
+      "license": "Citation requested, explicit reuse/redistribution terms not yet verified",
+      "overlap": "Unknown vsunderlying originalfish videos/MFT25/MFT26",
+      "decision": "Cannot supply cropReID from this release; geometry-only eligibility conditional on terms and video mapping"
+    },
+    {
+      "name": "3D Zebrafish Tracking Dataset",
+      "primary_sources": [
+        "https://tore.tuhh.de/entities/product/01d8baa1-b6a5-4163-924a-01f40ff3bc81",
+        "https://doi.org/10.15480/882.17350"
+      ],
+      "release": "2026-07-02/version1.0.0",
+      "declared_license": "CC BY-NC4.0 in official institutional record",
+      "annotation": "Synchronized stereoRGB with2/5/10fish/manual frames; actual identity continuity/annotation coverage/video groups/split/cadence not inspected",
+      "modality": "StereoRGB, no verified IR",
+      "size": "Official record67.89GBzip; no payload acquisition, retain40GiB reserve plus running144-fit matrix",
+      "overlap": "Unknown across stereo viewpoints/biological fish/recording sessions and MFT26",
+      "acquisition": "Small DSpace bundle API attempt returned non-JSON; preserve metadata acquisition failure, no raw video/model data downloaded"
+    }
+  ],
+  "required_before_use": [
+    "Primary data/payload-specific terms and attribution",
+    "Exact release/file digests and identity granularity",
+    "Whole-video/session/physical-fish splits incl stereo camera grouping",
+    "Actual annotation/native sampling cadence",
+    "Video/frame/perceptual overlap with MFT25/MFT26 and originalBrackish",
+    "Real RGB/IR/missingmodality provenance; synthetic IR cannot claim real paired IR",
+    "Pretrain/external exposure disclosed, no privateDINO corpus zero-overlap claim"
+  ],
+  "checked_local_date_Asia_Shanghai": "2026-10-14"
+}
