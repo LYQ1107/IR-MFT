@@ -1,6 +1,6 @@
 # IR-MFT Phase VI research report
 
-**Status: IN_PROGRESS.** This living report contains verified completed evidence; AB mechanism controls, potential whole-pipeline expansion and final deployment selection are unresolved. The research goal is not marked achieved.
+**Status: FINAL_SCOPED_CONCLUSION.** The measured evidence supports retaining the strong ordinary GRU/current-measurement baseline and not deploying the candidate modules. The conclusion is scoped to the frozen detector/ReID exposure and six-video association protocol; it is not a claim that all recoverability mechanisms are impossible.
 
 ## 1. Research question and exploration route
 
@@ -62,11 +62,41 @@ AB has a seed0 positive signal; adding C lowers HOTA. This is not a final archit
 
 These are three initialization/query/mask seed repetitions, not three encoder/producer pipelines or independent scene confidence intervals. EMA and noEMA are nearly equal; no independent EMA advantage is established. Ordinary residual-only CE is worse. Utility-off controls do not remove the small predictive signal. Exact per-video vectors and both SD conventions are in the measured JSON.
 
+## 9b. Identity-coordinate and ordinary-producer seed replication
+
+The following comparison changes the frozen RGB coordinate, excluded-video ordinary producer and residual-module seed together. Each seed has a matching disabled baseline assembled from its own actual causal state replay; seed0 metrics are not used as its baseline. The detector and its exposure remain shared, and this is conditional association evidence rather than whole-system unseen-scene validation.
+
+| Identity-coordinate family | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 32.4620 | 18.3441 | 57.9923 | 34.7112 | 69.6769 | 668.0000 |
+| ordinary_B_identity_seed1 | 31.9575 | 17.7805 | 58.0217 | 34.0111 | 69.6797 | 670.0000 |
+| predictive_B_identity_seed1 | 32.0543 | 17.9154 | 57.9221 | 34.0978 | 69.6650 | 674.0000 |
+| margin_only_identity_seed1 | 32.6062 | 18.5141 | 57.9310 | 35.0303 | 69.6719 | 665.0000 |
+| predictive_margin_identity_seed1 | 32.4878 | 18.4018 | 57.9124 | 34.9705 | 69.6562 | 670.0000 |
+| identity_baseline_seed2 | 33.4296 | 19.5006 | 57.9575 | 35.9141 | 69.6944 | 663.0000 |
+| ordinary_B_identity_seed2 | 33.1713 | 19.2016 | 57.9613 | 35.9293 | 69.6926 | 663.0000 |
+| predictive_B_identity_seed2 | 33.5907 | 19.6910 | 57.9367 | 36.3037 | 69.6884 | 666.0000 |
+| margin_only_identity_seed2 | 33.2970 | 19.3502 | 57.9622 | 35.5832 | 69.6792 | 665.0000 |
+| predictive_margin_identity_seed2 | 33.4909 | 19.5811 | 57.9300 | 36.0004 | 69.6751 | 665.0000 |
+
+| Seed/family | ΔHOTA | ΔAssA | ΔDetA | ΔIDF1 | ΔMOTA | ΔIDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| margin_only_identity_seed1 | +0.1442 | +0.1700 | -0.0612 | +0.3191 | -0.0051 | -3.0000 |
+| margin_only_identity_seed2 | -0.1325 | -0.1504 | +0.0047 | -0.3309 | -0.0152 | +2.0000 |
+| ordinary_B_identity_seed1 | -0.5046 | -0.5636 | +0.0294 | -0.7001 | +0.0028 | +2.0000 |
+| ordinary_B_identity_seed2 | -0.2583 | -0.2989 | +0.0038 | +0.0152 | -0.0018 | +0.0000 |
+| predictive_B_identity_seed1 | -0.4077 | -0.4287 | -0.0702 | -0.6134 | -0.0120 | +6.0000 |
+| predictive_B_identity_seed2 | +0.1611 | +0.1904 | -0.0208 | +0.3897 | -0.0060 | +3.0000 |
+| predictive_margin_identity_seed1 | +0.0258 | +0.0577 | -0.0799 | +0.2593 | -0.0207 | +2.0000 |
+| predictive_margin_identity_seed2 | +0.0613 | +0.0805 | -0.0275 | +0.0863 | -0.0193 | +2.0000 |
+
+Both seeds are retained in the measured evidence; no family is selected by a heldout result. The ordinary residual control separates the predictive loss from the bounded residual mechanism, while margin-only separates the write-order mechanism from learned risk. Exact per-video vectors, state hashes and replay/evaluation commands are in PHASE_VI_SYNTHESIS_MEASURED.json and identity_extended_official_v1.json. Across the three available identity seeds, predictive+fixed-margin changes HOTA by +0.9314, +0.0258 and +0.0613 while changing IDSW by +16, +2 and +2; the seed1/2 effect is too small and the identity-switch direction is unfavorable for deployment.
+
 ## 10. Earlier negative results and ordinary explanations
 
 Warm context-write HOTA33.2667 is matched by a2-parameter cost threshold33.3015. Regenerated state gates lose (context32.4190/MLP32.4971/threshold32.3156 vs33.4884). Quota risk context three-init mean33.7378 and MLP33.7456 do not exceed fixed margin33.8863. Raw-relation cost replacement gives HOTA26.8804–27.6981 and13,777–15,796IDSW; native geometry/eligibility restores stability. These negative findings remain preserved, not omitted in favor of AB.
 
-AB initialization repeats yield HOTA34.1118±0.1784. Fixed margin+B reaches34.4198 and noEMA+B with learned A reaches34.3855, so the learned risk network and EMA target are not required by the present positive signal. Temperature/bias removal reproduces all six complete AB predictions and memory/quota counts byte-for-byte; this quota method does not require risk probability calibration. This is not a claim that absolute calibrated gates are unnecessary. The simpler noEMA prediction+fixed-margin budget now undergoes independently frozen RGB1/2, excluded-video producer1/2 and matched ordinary/noEMA module1/2 replication. The detector remains fixed and backbone exposure remains.
+AB initialization repeats yield HOTA34.1118±0.1784. Fixed margin+B reaches34.4198 and noEMA+B with learned A reaches34.3855, so the learned risk network and EMA target are not required by the present positive signal. Temperature/bias removal reproduces all six complete AB predictions and memory/quota counts byte-for-byte; this quota method does not require risk probability calibration. This is not a claim that absolute calibrated gates are unnecessary. The simpler noEMA prediction+fixed-margin budget completed independently frozen RGB1/2, excluded-video producer1/2 and matched ordinary/noEMA module1/2 replication. Its seed1/2 gains are small and its IDSW rises; the detector remains fixed and backbone exposure remains. The deployment recommendation therefore stays with ordinary GRU/current measurements.
 
 ## 11. Paired error corrections and official events
 
@@ -84,7 +114,7 @@ A higher HOTA with negative common-birth net counts does not imply fabricated me
 
 ## 12. Complete online result and numerical parity
 
-The representative canonical riskMLP deployment completed4,834 raw frames: HOTA53.1035,AssA38.3609,DetA73.5676, IDF162.1078,MOTA93.6700,IDSW87. BT005 HOTA59.9983/IDF174.5622/IDSW21; SN013 HOTA48.1678/IDF153.9370/IDSW66. It preserves ordinary cached current frame/ID outputs, so no deployment identity gain is demonstrated. BT005 is fully byte-equal to cache. SN013 has7 numeric rows only at2999/3000, at most0.338px/score0.000952, with equal IDs and memory/quota counters. Complete byte equality must not be claimed. AB itself has not yet received final deployment validation.
+The representative canonical riskMLP deployment completed4,834 raw frames: HOTA53.1035,AssA38.3609,DetA73.5676, IDF162.1078,MOTA93.6700,IDSW87. BT005 HOTA59.9983/IDF174.5622/IDSW21; SN013 HOTA48.1678/IDF153.9370/IDSW66. It preserves ordinary cached current frame/ID outputs, so no deployment identity gain is demonstrated. BT005 is fully byte-equal to cache. SN013 has7 numeric rows only at2999/3000, at most0.338px/score0.000952, with equal IDs and memory/quota counters. Complete byte equality must not be claimed. The identity-coordinate candidate was not retained for raw online deployment because its matched seed1/2 improvements were small and IDSW increased; a raw candidate deployment remains an explicit unperformed follow-up rather than a claimed result.
 
 ## 13. Parameters, latency and countable operations
 
@@ -94,11 +124,11 @@ Exact dense affine count: detector single item 1,399,816,800,000 FLOPs; actual e
 
 ## 14. Teacher, risk and branching novelty audit
 
-EMA necessity: unproven; same-input noEMA performs nearly identically. Candidate risk necessity: unproven; margin and ordinary thresholds explain much of the benefit. K2 necessity: unproven; C is marginal and lowers AB. AB complementarity still requires repeated seeds and fixed-margin/noEMA controls. Three-seed baseline variance does not establish scene generalization. No CVPR-ready novelty or guaranteed recovery claim follows from these results.
+EMA necessity: unproven; same-input noEMA performs nearly identically. Candidate risk necessity: unproven; margin and ordinary thresholds explain much of the benefit. K2 necessity: unproven; C is marginal and lowers AB. AB complementarity was tested with repeated initialization, noEMA and fixed-margin controls; the identity-coordinate expansion does not establish a deployment-level candidate gain. Three-seed baseline variance does not establish scene generalization. No CVPR-ready novelty or guaranteed recovery claim follows from these results.
 
 ## 15. Open scientific questions and unperformed experiments
 
-Completed: AB coupled initialization1/2, noEMA and fixed-margin controls, full-trajectory no-calibration equivalence. Pending: complete identity-coordinate/producer/module seed expansion and matched frozen final deployment on exposed references. Independent external data, faithful full MOTIP/GOT reproduction, larger local hypothesis groups, learned branch selection, joint competing-track training and detector/encoder retraining remain unperformed. No claim of general impossibility, information-theoretic bound or exhausted possible architectures is made.
+Completed: AB coupled initialization1/2, noEMA and fixed-margin controls, full-trajectory no-calibration equivalence, and identity-coordinate/producer/module seed expansion with matching baselines. Unperformed follow-ups include raw online deployment of the unretained candidate, independent external data, faithful full MOTIP/GOT reproduction, larger local hypothesis groups, learned branch selection, joint competing-track training and detector/encoder retraining remain unperformed. No claim of general impossibility, information-theoretic bound or exhausted possible architectures is made.
 
 ## 16. External data and primary research references
 
@@ -106,11 +136,11 @@ MOTIP, GOT-JEPA, V-JEPA2, HybridSORT, BoT-SORT and uncertainty/multiple-trajecto
 
 ## 17. Reproducibility and recommended current practice
 
-Preserve the strong ordinary GRU/current-measurement baseline for deployment. Treat AB as a research candidate pending controls; do not replace the deployed baseline based on a single aggregate. Replay frozen plans with cfp_run_residual_relation_campaign.py, cfp_run_oof_candidate_relation_campaign.py, cfp_run_oof_combination_campaign.py and cfp_run_oof_combination_extension.py; aggregate/evaluate with cfp_evaluate_oof_families.py. The event runner verifies original CLEAR counts and known-only paired labels. Actual-resume tools and full online collector have independent source/checkpoint/output hashes.
+Preserve the strong ordinary GRU/current-measurement baseline for deployment. The measured candidate families remain research diagnostics and should not replace the baseline; the representative risk method also preserves ordinary current frame/ID outputs. Replay frozen plans with cfp_run_residual_relation_campaign.py, cfp_run_oof_candidate_relation_campaign.py, cfp_run_oof_combination_campaign.py and cfp_run_oof_combination_extension.py; aggregate/evaluate with cfp_evaluate_oof_families.py. The event runner verifies original CLEAR counts and known-only paired labels. Actual-resume tools and full online collector have independent source/checkpoint/output hashes.
 
 ## 18. Engineering invariants and delivery
 
-Independent switches, empty/missing/unknown/nonfinite/future/history/gap and branch-isolation guards are retained. Current input must precede the write; only matched current measurements are emitted. Historical assets are never overwritten, new outputs are immutable,>=40GiB reserve is maintained and only reserved idleGPU0/1 are used. The project suite last passed186tests; the additional paired-support test passed separately. Branch research/recoverability-candidate-jepa-v1 was last independently verified atc82bd59; later evidence/code changes are not claimed published until a new live remote hash is checked. Weights, datasets, proposal features and large traces remain local.
+Independent switches, empty/missing/unknown/nonfinite/future/history/gap and branch-isolation guards are retained. Current input must precede the write; only matched current measurements are emitted. Historical assets are never overwritten, new outputs are immutable,>=40GiB reserve is maintained and only reserved idleGPU0/1 are used. The project suite last passed187tests; the additional paired-support and identity-evidence checks are recorded with the stage artifacts. The final live remote hash and branch are recorded in PHASE_VI_STATE.json after delivery verification. Weights, datasets, proposal features and large traces remain local.
 
 ## 19. Hypothesis status and discriminating evidence
 
@@ -119,7 +149,7 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | H0 reproducibility/causality |88 hashes, exact disabled outputs, actual resume, full online numerical audit, isolation guards |Supported in tested scope |
 | H1 recoverability taxonomy |Current candidate availability, accepted history, unknown labels and joint competition are distinct |Supported diagnostically; no universal recovery ceiling |
 | H2 candidate-conditioned risk |Ordinary margin/threshold controls explain benefits; absolute gates fail transfer |Learned context necessity unproven |
-| H3 predictive candidate relations |Repeated predictive residual improves vs CE-only; EMA adds no independent benefit |Small conditional signal; identity-coordinate replication pending |
+| H3 predictive candidate relations |Repeated predictive residual improves vs CE-only; EMA adds no independent benefit; identity seed1/2 matched gains are small and IDSW increases |Scoped signal, not retained for deployment |
 | H4 alternative trajectory explanations |C is marginal and lowers AB; correct retained challengers rare in some scenes |Necessary contribution unproven |
 | H5 coverage/temporal alternatives |Geometry prior restoration helps; full graph/retained-cue oracles are scoped |Learned coverage/trajectory conditioning remains open |
 
@@ -139,6 +169,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | BC | 34.8347 | 21.6099 | 56.2549 | 42.8888 | 64.5800 | 94.0000 |
 | C | 34.5755 | 21.1951 | 56.5143 | 43.1135 | 64.6300 | 89.0000 |
 
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 35.1205 | 21.8120 | 56.6873 | 43.1716 | 64.5633 | 89.0000 |
+| ordinary_B_identity_seed1 | 32.9213 | 19.1161 | 56.8705 | 37.9296 | 64.6000 | 88.0000 |
+| predictive_B_identity_seed1 | 33.2998 | 19.6634 | 56.5503 | 40.0927 | 64.4233 | 93.0000 |
+| margin_only_identity_seed1 | 36.4107 | 23.5755 | 56.3624 | 45.5666 | 64.5600 | 92.0000 |
+| predictive_margin_identity_seed1 | 33.9186 | 20.4410 | 56.4310 | 41.5672 | 64.4200 | 95.0000 |
+| identity_baseline_seed2 | 34.7865 | 21.4456 | 56.5352 | 43.0350 | 64.6533 | 85.0000 |
+| ordinary_B_identity_seed2 | 34.5194 | 21.0566 | 56.7148 | 42.5932 | 64.6700 | 81.0000 |
+| predictive_B_identity_seed2 | 35.5689 | 22.3943 | 56.5837 | 44.1772 | 64.5967 | 86.0000 |
+| margin_only_identity_seed2 | 33.9851 | 20.4218 | 56.6970 | 40.8744 | 64.6133 | 90.0000 |
+| predictive_margin_identity_seed2 | 34.7713 | 21.3858 | 56.6505 | 42.0085 | 64.5733 | 90.0000 |
+
 **BT-003**
 
 | Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
@@ -151,6 +196,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | B0 | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
 | BC | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
 | C | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
+
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 55.4460 | 55.8792 | 55.0359 | 79.2853 | 62.7572 | 6.0000 |
+| ordinary_B_identity_seed1 | 55.4385 | 55.8726 | 55.0276 | 79.2437 | 62.6749 | 6.0000 |
+| predictive_B_identity_seed1 | 55.4385 | 55.8726 | 55.0276 | 79.2437 | 62.6749 | 6.0000 |
+| margin_only_identity_seed1 | 55.2323 | 55.5400 | 54.9558 | 78.9954 | 62.8395 | 7.0000 |
+| predictive_margin_identity_seed1 | 55.2248 | 55.5333 | 54.9475 | 78.9539 | 62.7572 | 7.0000 |
+| identity_baseline_seed2 | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
+| ordinary_B_identity_seed2 | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
+| predictive_B_identity_seed2 | 55.5189 | 55.9681 | 55.0939 | 79.2437 | 62.5926 | 8.0000 |
+| margin_only_identity_seed2 | 55.3053 | 55.6293 | 55.0136 | 78.9539 | 62.6749 | 9.0000 |
+| predictive_margin_identity_seed2 | 55.2582 | 55.5719 | 54.9770 | 78.8458 | 62.4691 | 9.0000 |
 
 **MSK-002**
 
@@ -165,6 +225,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | BC | 24.3747 | 13.7486 | 43.5294 | 29.5646 | 45.1660 | 390.0000 |
 | C | 24.3305 | 13.6925 | 43.5422 | 29.4951 | 45.1484 | 395.0000 |
 
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 24.4717 | 13.8418 | 43.5773 | 29.9027 | 45.1965 | 387.0000 |
+| ordinary_B_identity_seed1 | 24.5004 | 13.8749 | 43.5734 | 29.9468 | 45.1848 | 391.0000 |
+| predictive_B_identity_seed1 | 24.4922 | 13.8676 | 43.5679 | 29.9134 | 45.2164 | 391.0000 |
+| margin_only_identity_seed1 | 24.6645 | 14.0641 | 43.5543 | 30.1309 | 45.1941 | 383.0000 |
+| predictive_margin_identity_seed1 | 24.6578 | 14.0584 | 43.5482 | 30.0960 | 45.2129 | 385.0000 |
+| identity_baseline_seed2 | 24.5325 | 13.9100 | 43.5934 | 29.9910 | 45.2023 | 389.0000 |
+| ordinary_B_identity_seed2 | 24.5325 | 13.9100 | 43.5934 | 29.9910 | 45.2023 | 389.0000 |
+| predictive_B_identity_seed2 | 24.5119 | 13.8878 | 43.5897 | 29.9906 | 45.2000 | 389.0000 |
+| margin_only_identity_seed2 | 24.5988 | 13.9844 | 43.5712 | 30.1882 | 45.2000 | 387.0000 |
+| predictive_margin_identity_seed2 | 24.6966 | 14.0990 | 43.5734 | 30.2700 | 45.2023 | 385.0000 |
+
 **PF-001**
 
 | Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
@@ -177,6 +252,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | B0 | 47.6058 | 28.6089 | 79.2624 | 47.2846 | 98.2633 | 19.0000 |
 | BC | 47.6058 | 28.6089 | 79.2624 | 47.2846 | 98.2633 | 19.0000 |
 | C | 47.6058 | 28.6089 | 79.2624 | 47.2846 | 98.2633 | 19.0000 |
+
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 42.3546 | 22.6476 | 79.2673 | 39.8475 | 98.2867 | 19.0000 |
+| ordinary_B_identity_seed1 | 42.3546 | 22.6476 | 79.2673 | 39.8475 | 98.2867 | 19.0000 |
+| predictive_B_identity_seed1 | 42.3546 | 22.6476 | 79.2673 | 39.8475 | 98.2867 | 19.0000 |
+| margin_only_identity_seed1 | 42.3546 | 22.6476 | 79.2673 | 39.8475 | 98.2867 | 19.0000 |
+| predictive_margin_identity_seed1 | 42.3546 | 22.6476 | 79.2673 | 39.8475 | 98.2867 | 19.0000 |
+| identity_baseline_seed2 | 45.9286 | 26.5092 | 79.6434 | 45.2902 | 98.3067 | 15.0000 |
+| ordinary_B_identity_seed2 | 45.9286 | 26.5092 | 79.6434 | 45.2902 | 98.3067 | 15.0000 |
+| predictive_B_identity_seed2 | 45.9286 | 26.5092 | 79.6434 | 45.2902 | 98.3067 | 15.0000 |
+| margin_only_identity_seed2 | 45.9286 | 26.5092 | 79.6434 | 45.2902 | 98.3067 | 15.0000 |
+| predictive_margin_identity_seed2 | 45.9286 | 26.5092 | 79.6434 | 45.2902 | 98.3067 | 15.0000 |
 
 **SN-001**
 
@@ -191,6 +281,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | BC | 42.8490 | 30.6584 | 60.1447 | 60.4435 | 78.9656 | 26.0000 |
 | C | 42.8490 | 30.6584 | 60.1447 | 60.4435 | 78.9656 | 26.0000 |
 
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 42.4969 | 30.1472 | 60.1937 | 58.5397 | 79.0862 | 25.0000 |
+| ordinary_B_identity_seed1 | 43.0117 | 30.8546 | 60.2207 | 60.4006 | 79.1013 | 24.0000 |
+| predictive_B_identity_seed1 | 43.0289 | 30.8778 | 60.2213 | 60.4006 | 79.1013 | 24.0000 |
+| margin_only_identity_seed1 | 42.4969 | 30.1472 | 60.1937 | 58.5397 | 79.0862 | 25.0000 |
+| predictive_margin_identity_seed1 | 43.0289 | 30.8778 | 60.2213 | 60.4006 | 79.1013 | 24.0000 |
+| identity_baseline_seed2 | 42.0134 | 29.4019 | 60.3452 | 58.2887 | 79.0561 | 27.0000 |
+| ordinary_B_identity_seed2 | 42.0134 | 29.4019 | 60.3452 | 58.2887 | 79.0561 | 27.0000 |
+| predictive_B_identity_seed2 | 42.0134 | 29.4019 | 60.3452 | 58.2887 | 79.0561 | 27.0000 |
+| margin_only_identity_seed2 | 42.0134 | 29.4019 | 60.3452 | 58.2887 | 79.0561 | 27.0000 |
+| predictive_margin_identity_seed2 | 42.0134 | 29.4019 | 60.3452 | 58.2887 | 79.0561 | 27.0000 |
+
 **SN-015**
 
 | Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
@@ -203,6 +308,21 @@ Independent switches, empty/missing/unknown/nonfinite/future/history/gap and bra
 | B0 | 33.2215 | 15.7235 | 70.7147 | 30.1673 | 91.0492 | 137.0000 |
 | BC | 33.5890 | 16.0557 | 70.7804 | 30.8158 | 91.0189 | 141.0000 |
 | C | 33.2215 | 15.7235 | 70.7147 | 30.1673 | 91.0492 | 137.0000 |
+
+*Identity-coordinate seed families (matching seed baseline):*
+
+| Method / scope | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|---:|
+| identity_baseline_seed1 | 32.4226 | 14.9186 | 71.0310 | 29.9040 | 91.0269 | 142.0000 |
+| ordinary_B_identity_seed1 | 31.7482 | 14.3070 | 71.0498 | 29.8462 | 91.0364 | 142.0000 |
+| predictive_B_identity_seed1 | 31.8904 | 14.4748 | 70.8392 | 29.1397 | 91.0269 | 141.0000 |
+| margin_only_identity_seed1 | 31.9622 | 14.5015 | 71.0232 | 29.5490 | 91.0109 | 139.0000 |
+| predictive_margin_identity_seed1 | 32.9202 | 15.3986 | 70.9095 | 31.1135 | 90.9998 | 140.0000 |
+| identity_baseline_seed2 | 33.8305 | 16.2798 | 70.7914 | 31.2619 | 91.0364 | 139.0000 |
+| ordinary_B_identity_seed2 | 33.0629 | 15.5767 | 70.7030 | 31.5233 | 91.0221 | 143.0000 |
+| predictive_B_identity_seed2 | 33.9808 | 16.4477 | 70.6896 | 32.0069 | 91.0460 | 141.0000 |
+| margin_only_identity_seed2 | 33.7448 | 16.2061 | 70.7577 | 30.9686 | 91.0030 | 137.0000 |
+| predictive_margin_identity_seed2 | 33.8954 | 16.3740 | 70.6560 | 31.7134 | 91.0125 | 139.0000 |
 
 ## 21. Exact reproduction entry points
 
@@ -220,4 +340,4 @@ Campaign commands and immutable outputs are recorded in each measured official J
 
 Latest verified delivery is recorded in PHASE_VI_STATE.json and local phase6/github_delivery evidence. Current new evidence is only claimed published after a live remote hash check. [Scientific summary figure](figures/phase_vi_synthesis.svg) depicts completed matrix/model-initialization controls, not final identity-pipeline generalization.
 
-The report remains IN_PROGRESS until the original goal completion audit has adequate evidence for a supported result or scoped final scientific conclusion.
+This is a scoped final scientific conclusion: the candidate mechanisms remain valuable diagnostics, but the available three-seed evidence does not justify replacing the strong ordinary baseline. External and raw candidate-deployment follow-ups remain explicit.

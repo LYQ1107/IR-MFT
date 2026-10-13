@@ -35,6 +35,31 @@ def verified_official(name):
     return dict(path=str(path), sha256=sha256(path), result=result)
 
 
+def verified_identity_seed_evidence():
+    """Verify the seed1/2 replay families and their matching disabled baselines."""
+    path = A / 'identity_extended_official_v1.json'
+    result = json.loads(path.read_text())
+    if result.get('status') != 'COMPLETE':
+        raise ValueError('Complete identity-coordinate evidence required')
+    for family, entry in result['families'].items():
+        evaluation = Path(entry['evaluation_command'][entry['evaluation_command'].index('--output') + 1]) / 'metrics.json'
+        if sha256(evaluation) != entry['evaluation_sha256']:
+            raise ValueError('Identity evaluation drift: ' + family)
+        record = json.loads(evaluation.read_text())
+        if record['metrics'] != entry['metrics']:
+            raise ValueError('Identity metric payload drift: ' + family)
+        if family.startswith('identity_baseline_'):
+            aggregate = Path(entry['evaluation_command'][entry['evaluation_command'].index('--predictions') + 1])
+        else:
+            aggregate = Path(entry['aggregate_command'][entry['aggregate_command'].index('--output') + 1])
+        if sha256(aggregate / 'manifest.json') != entry['aggregate_manifest_sha256']:
+            raise ValueError('Identity aggregate drift: ' + family)
+        for sequence, artifact in record['artifacts'].items():
+            if sha256(aggregate / (sequence + '.txt')) != artifact['prediction_sha256']:
+                raise ValueError(f'Identity prediction drift: {family}/{sequence}')
+    return dict(path=str(path), sha256=sha256(path), result=result)
+
+
 def statistics(vectors):
     return {key: dict(mean=float(np.mean([m[key] for m in vectors])),
                       std_population=float(np.std([m[key] for m in vectors])),
@@ -49,9 +74,10 @@ def table(groups):
 
 
 def main():
-    report = dict(status='IN_PROGRESS', scientific_success='UNPROVEN', official={}, model_seed_statistics={},
+    report = dict(status='FINAL_SCOPED_CONCLUSION', scientific_success='SCOPED_NEGATIVE', official={}, model_seed_statistics={},
                   scope='Association-module heldout videos with frozen detector/ReID exposure. '
-                        'Initialization/query repeats retain encoder/producer0. No blind generalization claim.')
+                        'Identity-coordinate seed expansion changes RGB/ordinary-producer/module seeds together but retains detector exposure. '
+                        'No blind whole-system generalization claim.')
     names = {
         'quota': 'oof_quota_official_v1.json', 'risk_repeats': 'oof_quota_risk_init_official_v1.json',
         'relation': 'oof_relation_official_v1.json', 'relation_extra': 'oof_relation_extra_official_v1.json',
@@ -66,6 +92,9 @@ def main():
     simple = A / 'predictive_margin_seed0_official_v1.json'
     if simple.exists() and json.loads(simple.read_text())['status'] == 'COMPLETE':
         report['official']['simple_seed0'] = verified_official(simple.name)
+    identity_path = A / 'identity_extended_official_v1.json'
+    if identity_path.exists():
+        report['official']['identity'] = verified_identity_seed_evidence()
     report['no_calibration'] = json.loads((D / 'PHASE_VI_AB_NO_CALIBRATION_PROOF.json').read_text())
     base = report['official']['residual0']['result']['families']
     repeated = report['official']['residual_repeats']['result']['families']
@@ -79,6 +108,21 @@ def main():
         records = [report['official']['combinations']['result']['families']['AB']['metrics'],
                    ext['AB_init1']['metrics'], ext['AB_init2']['metrics']]
         report['model_seed_statistics']['AB'] = {seq: statistics([m[seq] for m in records]) for seq in sequences}
+    if 'identity' in report['official'] and 'simple_seed0' in report['official']:
+        identity_result = report['official']['identity']['result']
+        seed_rows = [dict(seed=0,
+                          baseline=report['official']['combinations']['result']['families']['B0']['metrics']['COMBINED_SEQ'],
+                          candidate=report['official']['simple_seed0']['result']['families']['predictive_margin_identity_seed0']['metrics']['COMBINED_SEQ'])]
+        for seed in (1, 2):
+            seed_rows.append(dict(seed=seed,
+                                  baseline=identity_result['families'][f'identity_baseline_seed{seed}']['metrics']['COMBINED_SEQ'],
+                                  candidate=identity_result['families'][f'predictive_margin_identity_seed{seed}']['metrics']['COMBINED_SEQ']))
+        deltas = [{field: row['candidate'][field] - row['baseline'][field] for field in FIELDS} for row in seed_rows]
+        report['identity_conclusion'] = dict(
+            candidate_family='predictive_margin_identity', seeds=seed_rows,
+            delta_statistics=statistics(deltas), decision='DO_NOT_RETAIN_FOR_DEPLOYMENT',
+            reason='Seed1/2 gains are small (+0.0258/+0.0613 HOTA) and each adds 2 IDSW; seed0 has a larger gain but +16 IDSW. '
+                   'The candidate therefore does not establish reliable identity recovery beyond the ordinary baseline in this scope.')
     events_path = A / 'combination_event_evidence_v1/manifest.json'
     events = json.loads(events_path.read_text())
     report['events'] = dict(path=str(events_path), sha256=sha256(events_path), status=events['status'], paired=events['paired'])
@@ -104,9 +148,13 @@ def main():
     write_json(D / 'PHASE_VI_SYNTHESIS_MEASURED.json', report)
 
     combo = report['official']['combinations']['result']['families']
+    identity = report['official'].get('identity')
+    identity_result = identity['result'] if identity else None
+    identity_complete = identity_result is not None
     lines = ['# IR-MFT Phase VI research report', '',
-             '**Status: IN_PROGRESS.** This living report contains verified completed evidence; AB mechanism controls, '
-             'potential whole-pipeline expansion and final deployment selection are unresolved. The research goal is not marked achieved.', '',
+             '**Status: FINAL_SCOPED_CONCLUSION.** The measured evidence supports retaining the strong ordinary GRU/current-measurement '
+             'baseline and not deploying the candidate modules. The conclusion is scoped to the frozen detector/ReID exposure and six-video '
+             'association protocol; it is not a claim that all recoverability mechanisms are impossible.', '',
              '## 1. Research question and exploration route', '',
              'Can strictly past accepted observations and the current candidate set identify recoverable ambiguity, '
              'separate plausible identities and protect stable memory? The route was baseline reproduction → actual-error taxonomy '
@@ -175,6 +223,34 @@ def main():
     lines += ['', 'These are three initialization/query/mask seed repetitions, not three encoder/producer pipelines or independent scene confidence intervals. '
               'EMA and noEMA are nearly equal; no independent EMA advantage is established. Ordinary residual-only CE is worse. '
               'Utility-off controls do not remove the small predictive signal. Exact per-video vectors and both SD conventions are in the measured JSON.', '',
+              '## 9b. Identity-coordinate and ordinary-producer seed replication', '']
+    if identity_complete:
+        identity_families = identity_result['families']
+        lines += ['The following comparison changes the frozen RGB coordinate, excluded-video ordinary producer and residual-module seed together. '
+                  'Each seed has a matching disabled baseline assembled from its own actual causal state replay; seed0 metrics are not used as its baseline. '
+                  'The detector and its exposure remain shared, and this is conditional association evidence rather than whole-system unseen-scene validation.', '',
+                  '| Identity-coordinate family | HOTA | AssA | DetA | IDF1 | MOTA | IDSW |',
+                  '|---|---:|---:|---:|---:|---:|---:|']
+        for family in ('identity_baseline_seed1', 'ordinary_B_identity_seed1', 'predictive_B_identity_seed1',
+                       'margin_only_identity_seed1', 'predictive_margin_identity_seed1',
+                       'identity_baseline_seed2', 'ordinary_B_identity_seed2', 'predictive_B_identity_seed2',
+                       'margin_only_identity_seed2', 'predictive_margin_identity_seed2'):
+            metrics = identity_families[family]['metrics']['COMBINED_SEQ']
+            lines.append('| ' + family + ' | ' + ' | '.join(f'{metrics[k]:.4f}' for k in FIELDS) + ' |')
+        lines += ['', '| Seed/family | ΔHOTA | ΔAssA | ΔDetA | ΔIDF1 | ΔMOTA | ΔIDSW |',
+                  '|---|---:|---:|---:|---:|---:|---:|']
+        for key, comparison in sorted(identity_result['comparisons'].items()):
+            delta = comparison['delta_combined']
+            lines.append('| ' + key + ' | ' + ' | '.join(f'{delta[k]:+.4f}' for k in FIELDS) + ' |')
+        lines += ['', 'Both seeds are retained in the measured evidence; no family is selected by a heldout result. '
+                  'The ordinary residual control separates the predictive loss from the bounded residual mechanism, while margin-only separates '
+                  'the write-order mechanism from learned risk. Exact per-video vectors, state hashes and replay/evaluation commands are in '
+                  'PHASE_VI_SYNTHESIS_MEASURED.json and identity_extended_official_v1.json. Across the three available identity seeds, '
+                  'predictive+fixed-margin changes HOTA by +0.9314, +0.0258 and +0.0613 while changing IDSW by +16, +2 and +2; '
+                  'the seed1/2 effect is too small and the identity-switch direction is unfavorable for deployment.', '']
+    else:
+        lines += ['Identity-coordinate seed replication is still running; its results are not included in this snapshot.', '']
+    lines += [
               '## 10. Earlier negative results and ordinary explanations', '',
               'Warm context-write HOTA33.2667 is matched by a2-parameter cost threshold33.3015. Regenerated state gates lose '
               '(context32.4190/MLP32.4971/threshold32.3156 vs33.4884). Quota risk context three-init mean33.7378 and MLP33.7456 '
@@ -184,8 +260,9 @@ def main():
               'so the learned risk network and EMA target are not required by the present positive signal. '
               'Temperature/bias removal reproduces all six complete AB predictions and memory/quota counts byte-for-byte; '
               'this quota method does not require risk probability calibration. This is not a claim that absolute calibrated gates are unnecessary. '
-              'The simpler noEMA prediction+fixed-margin budget now undergoes independently frozen RGB1/2, '
-              'excluded-video producer1/2 and matched ordinary/noEMA module1/2 replication. The detector remains fixed and backbone exposure remains.', '',
+              'The simpler noEMA prediction+fixed-margin budget completed independently frozen RGB1/2, excluded-video producer1/2 and '
+              'matched ordinary/noEMA module1/2 replication. Its seed1/2 gains are small and its IDSW rises; the detector remains fixed '
+              'and backbone exposure remains. The deployment recommendation therefore stays with ordinary GRU/current measurements.', '',
               '## 11. Paired error corrections and official events', '',
               'N01/N10 pair only common observed-birth references with known birth/current labels. Newborn/disappeared support and unknowns '
               'are separate; persistent decisions are counted separately from consecutive episodes. These do not equal official IDSW.', '',
@@ -204,7 +281,9 @@ def main():
               'IDF162.1078,MOTA93.6700,IDSW87. BT005 HOTA59.9983/IDF174.5622/IDSW21; SN013 HOTA48.1678/IDF153.9370/IDSW66. '
               'It preserves ordinary cached current frame/ID outputs, so no deployment identity gain is demonstrated. '
               'BT005 is fully byte-equal to cache. SN013 has7 numeric rows only at2999/3000, at most0.338px/score0.000952, '
-              'with equal IDs and memory/quota counters. Complete byte equality must not be claimed. AB itself has not yet received final deployment validation.', '',
+              'with equal IDs and memory/quota counters. Complete byte equality must not be claimed. The identity-coordinate candidate '
+              'was not retained for raw online deployment because its matched seed1/2 improvements were small and IDSW increased; a raw '
+              'candidate deployment remains an explicit unperformed follow-up rather than a claimed result.', '',
               '## 13. Parameters, latency and countable operations', '',
               'Complete decode/causal IR/detector/NMS/RGB crop+encoding/GRU/risk/lifecycle/output costs3907.5533seconds, '
               '1.2371FPS,p50739.5ms,p951116.8ms. Parent/worker peaks are652,593,664/1,947,126,784bytes (separate process peaks). '
@@ -219,12 +298,13 @@ def main():
               '## 14. Teacher, risk and branching novelty audit', '',
               'EMA necessity: unproven; same-input noEMA performs nearly identically. Candidate risk necessity: unproven; margin and '
               'ordinary thresholds explain much of the benefit. K2 necessity: unproven; C is marginal and lowers AB. '
-              'AB complementarity still requires repeated seeds and fixed-margin/noEMA controls. Three-seed baseline variance does not establish scene generalization. '
+              'AB complementarity was tested with repeated initialization, noEMA and fixed-margin controls; the identity-coordinate expansion '
+              'does not establish a deployment-level candidate gain. Three-seed baseline variance does not establish scene generalization. '
               'No CVPR-ready novelty or guaranteed recovery claim follows from these results.', '',
               '## 15. Open scientific questions and unperformed experiments', '',
-              'Completed: AB coupled initialization1/2, noEMA and fixed-margin controls, full-trajectory no-calibration equivalence. '
-              'Pending: complete identity-coordinate/producer/module seed expansion and matched frozen final deployment on exposed references. '
-              'Independent external data, faithful full MOTIP/GOT reproduction, larger local hypothesis groups, learned branch selection, '
+              'Completed: AB coupled initialization1/2, noEMA and fixed-margin controls, full-trajectory no-calibration equivalence, '
+              'and identity-coordinate/producer/module seed expansion with matching baselines. '
+              'Unperformed follow-ups include raw online deployment of the unretained candidate, independent external data, faithful full MOTIP/GOT reproduction, larger local hypothesis groups, learned branch selection, '
               'joint competing-track training and detector/encoder retraining remain unperformed. '
               'No claim of general impossibility, information-theoretic bound or exhausted possible architectures is made.', '',
               '## 16. External data and primary research references', '',
@@ -232,8 +312,8 @@ def main():
               'in PHASE_VI_RELATED_WORK_AND_EXTERNAL_DATA.md. FishTrack23, Fraunhofer, FISHTRAC and SFISHTRACK have unresolved '
               'license/access/cadence/overlap checks; none is claimed as a new blind test. Synthetic IR is computed from RGB and is not an independent sensor.', '',
               '## 17. Reproducibility and recommended current practice', '',
-              'Preserve the strong ordinary GRU/current-measurement baseline for deployment. Treat AB as a research candidate pending controls; '
-              'do not replace the deployed baseline based on a single aggregate. '
+              'Preserve the strong ordinary GRU/current-measurement baseline for deployment. The measured candidate families remain research '
+              'diagnostics and should not replace the baseline; the representative risk method also preserves ordinary current frame/ID outputs. '
               'Replay frozen plans with cfp_run_residual_relation_campaign.py, cfp_run_oof_candidate_relation_campaign.py, '
               'cfp_run_oof_combination_campaign.py and cfp_run_oof_combination_extension.py; aggregate/evaluate with '
               'cfp_evaluate_oof_families.py. The event runner verifies original CLEAR counts and known-only paired labels. '
@@ -242,22 +322,29 @@ def main():
               'Independent switches, empty/missing/unknown/nonfinite/future/history/gap and branch-isolation guards are retained. '
               'Current input must precede the write; only matched current measurements are emitted. Historical assets are never overwritten, '
               'new outputs are immutable,>=40GiB reserve is maintained and only reserved idleGPU0/1 are used. '
-              'The project suite last passed186tests; the additional paired-support test passed separately. '
-              'Branch research/recoverability-candidate-jepa-v1 was last independently verified atc82bd59; later evidence/code changes '
-              'are not claimed published until a new live remote hash is checked. Weights, datasets, proposal features and large traces remain local.', '',
+              'The project suite last passed187tests; the additional paired-support and identity-evidence checks are recorded with the stage artifacts. '
+              'The final live remote hash and branch are recorded in PHASE_VI_STATE.json after delivery verification. '
+              'Weights, datasets, proposal features and large traces remain local.', '',
               '## 19. Hypothesis status and discriminating evidence', '',
               '| Hypothesis | Current evidence | Status |',
               '|---|---|---|',
               '| H0 reproducibility/causality |88 hashes, exact disabled outputs, actual resume, full online numerical audit, isolation guards |Supported in tested scope |',
               '| H1 recoverability taxonomy |Current candidate availability, accepted history, unknown labels and joint competition are distinct |Supported diagnostically; no universal recovery ceiling |',
               '| H2 candidate-conditioned risk |Ordinary margin/threshold controls explain benefits; absolute gates fail transfer |Learned context necessity unproven |',
-              '| H3 predictive candidate relations |Repeated predictive residual improves vs CE-only; EMA adds no independent benefit |Small conditional signal; identity-coordinate replication pending |',
+              '| H3 predictive candidate relations |Repeated predictive residual improves vs CE-only; EMA adds no independent benefit; identity seed1/2 matched gains are small and IDSW increases |Scoped signal, not retained for deployment |',
               '| H4 alternative trajectory explanations |C is marginal and lowers AB; correct retained challengers rare in some scenes |Necessary contribution unproven |',
               '| H5 coverage/temporal alternatives |Geometry prior restoration helps; full graph/retained-cue oracles are scoped |Learned coverage/trajectory conditioning remains open |', '',
               '## 20. Per-video matrix', '']
     for seq in (s for s in sequences if s != 'COMBINED_SEQ'):
         lines += ['', '**' + seq + '**', '']
         lines += table([(kind, entry['metrics'][seq]) for kind, entry in sorted(combo.items())])
+        if identity_complete:
+            lines += ['', '*Identity-coordinate seed families (matching seed baseline):*', '']
+            names = ('identity_baseline_seed1', 'ordinary_B_identity_seed1', 'predictive_B_identity_seed1',
+                     'margin_only_identity_seed1', 'predictive_margin_identity_seed1',
+                     'identity_baseline_seed2', 'ordinary_B_identity_seed2', 'predictive_B_identity_seed2',
+                     'margin_only_identity_seed2', 'predictive_margin_identity_seed2')
+            lines += table([(name, identity_result['families'][name]['metrics'][seq]) for name in names])
     lines += ['', '## 21. Exact reproduction entry points', '',
               'Use the preserved runtime and local frozen artifacts under /data3/liuyeqiang/IR-MFT_assets/cfp. '
               'The repository alone does not contain dataset/weights/features. The pinned TrackEval is '
@@ -276,7 +363,7 @@ def main():
               'Current new evidence is only claimed published after a live remote hash check. '
               '[Scientific summary figure](figures/phase_vi_synthesis.svg) depicts completed matrix/model-initialization controls, '
               'not final identity-pipeline generalization.', '',
-              'The report remains IN_PROGRESS until the original goal completion audit has adequate evidence for a supported result or scoped final scientific conclusion.', '']
+              'This is a scoped final scientific conclusion: the candidate mechanisms remain valuable diagnostics, but the available three-seed evidence does not justify replacing the strong ordinary baseline. External and raw candidate-deployment follow-ups remain explicit.', '']
     (D / 'PHASE_VI_FINAL_RESEARCH_REPORT.md').write_text('\n'.join(lines))
     print(json.dumps({k: v['COMBINED_SEQ']['HOTA'] for k, v in report['model_seed_statistics'].items()}))
 

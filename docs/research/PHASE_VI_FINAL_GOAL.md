@@ -1,6 +1,6 @@
 # Phase VI final research goal
 
-Status: IN_PROGRESS. Start from verified `00ae0e8`, branch `research/recoverability-candidate-jepa-v1`.
+Status: FINAL_SCOPED_CONCLUSION. Start from verified `00ae0e8`, branch `research/recoverability-candidate-jepa-v1`.
 
 Learning when and how to recover identity: given strictly past accepted observations and the current detection set, can a tracker identify recoverable ambiguity, distinguish candidate explanations, reject unsupported assignments and protect stable identity memory?
 

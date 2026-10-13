@@ -12,7 +12,8 @@ import numpy as np
 def main():
     data = json.loads(Path('docs/research/PHASE_VI_SYNTHESIS_MEASURED.json').read_text())
     matrix = data['official']['combinations']['result']['families']
-    fig, axes = plt.subplots(2, 2, figsize=(12.5, 8.5), constrained_layout=True)
+    identity = data['official'].get('identity')
+    fig, axes = plt.subplots(2, 3, figsize=(17.5, 8.5), constrained_layout=True)
     families = ['B0', 'A', 'B', 'C', 'AB', 'AC', 'BC', 'ABC']
     ax = axes[0, 0]
     scores = [matrix[f]['metrics']['COMBINED_SEQ']['HOTA'] for f in families]
@@ -39,6 +40,27 @@ def main():
             va='top', fontsize=8)
     ax.legend(loc='lower right', fontsize=8)
 
+    ax = axes[0, 2]
+    if identity:
+        families = identity['result']['families']
+        labels = ['base s1', 'pred+margin s1', 'base s2', 'pred+margin s2']
+        keys = ['identity_baseline_seed1', 'predictive_margin_identity_seed1',
+                'identity_baseline_seed2', 'predictive_margin_identity_seed2']
+        scores = [families[k]['metrics']['COMBINED_SEQ']['HOTA'] for k in keys]
+        colors = ['#94a3b8', '#2563eb', '#94a3b8', '#2563eb']
+        ax.bar(np.arange(4), scores, color=colors)
+        for i, score in enumerate(scores):
+            ax.annotate(f'{score:.3f}', (i, score), xytext=(0, 5), textcoords='offset points',
+                        ha='center', fontsize=8)
+        ax.set_xticks(np.arange(4), labels, rotation=18)
+        ax.set_ylabel('HOTA')
+        ax.set_title('C. Identity-coordinate replication')
+        ax.text(.03, .97, 'Each seed uses its own actual-state baseline', transform=ax.transAxes,
+                va='top', fontsize=8)
+    else:
+        ax.text(.5, .5, 'Identity replication pending', ha='center', va='center')
+        ax.set_axis_off()
+
     ax = axes[1, 0]
     sequences = [s for s in matrix['B0']['metrics'] if s != 'COMBINED_SEQ']
     x = np.arange(len(sequences))
@@ -48,8 +70,25 @@ def main():
     ax.axhline(0, color='#64748b', linewidth=1)
     ax.set_xticks(x, sequences, rotation=20)
     ax.set_ylabel('Per-video HOTA change vs corresponding B0')
-    ax.set_title('C. Benefit varies across complete videos')
+    ax.set_title('E. Benefit varies across complete videos')
     ax.legend(fontsize=8)
+
+    ax = axes[1, 2]
+    if identity:
+        sequences = [s for s in families['identity_baseline_seed1']['metrics'] if s != 'COMBINED_SEQ']
+        x = np.arange(len(sequences))
+        for offset, seed, color in [(-.16, 1, '#2563eb'), (.16, 2, '#7c3aed')]:
+            values = [identity['result']['comparisons'][f'predictive_margin_identity_seed{seed}']['delta_per_video'][s]['HOTA']
+                      for s in sequences]
+            ax.bar(x + offset, values, width=.30, label=f'seed{seed}', color=color)
+        ax.axhline(0, color='#64748b', linewidth=1)
+        ax.set_xticks(x, sequences, rotation=20)
+        ax.set_ylabel('HOTA Δ vs matching baseline')
+        ax.set_title('D. Predictive + fixed margin, per video')
+        ax.legend(fontsize=8)
+    else:
+        ax.text(.5, .5, 'Identity replication pending', ha='center', va='center')
+        ax.set_axis_off()
 
     ax = axes[1, 1]
     variants = ['C', 'AB', 'AC', 'BC', 'ABC']
@@ -62,13 +101,13 @@ def main():
     ax.bar(x+.18, values[:, 1], width=.35, label='N10: correct → wrong', color='#dc2626')
     ax.set_xticks(x, variants)
     ax.set_ylabel('Known frame/track decisions on common birth support')
-    ax.set_title('D. Local corrections are not official IDSW')
+    ax.set_title('F. Local corrections are not official IDSW')
     ax.legend(fontsize=8)
     ax.text(.03, .97, 'Unknown and changed births excluded', transform=ax.transAxes, va='top', fontsize=8)
     for ax in axes.flat:
         ax.spines[['top', 'right']].set_visible(False)
         ax.grid(axis='y', alpha=.2)
-    fig.suptitle('Phase VI: completed matrix and initialization controls\nFrozen backbones exposed; identity-pipeline replication pending', fontsize=13)
+    fig.suptitle('Phase VI: completed controls and identity-coordinate replication\nFrozen detector exposure remains shared; deltas use matching per-seed baselines', fontsize=13)
     output = Path('docs/research/figures'); output.mkdir(exist_ok=True)
     fig.savefig(output / 'phase_vi_synthesis.png', dpi=160)
     svg = output / 'phase_vi_synthesis.svg'

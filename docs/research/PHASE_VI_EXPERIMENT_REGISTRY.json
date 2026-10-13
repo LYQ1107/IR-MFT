@@ -16359,7 +16359,7 @@
     },
     {
       "experiment_id": "identity_pipeline_seed_expansion",
-      "status": "BOOTSTRAP_COMPLETE",
+      "status": "COMPLETE",
       "hypothesis_id": "H3_simple_predictive_budget_transfer",
       "train_config": "configs/cfp/phase_vi_identity_seed_bootstrap_training_v1.json",
       "code": [
@@ -16374,14 +16374,15 @@
     },
     {
       "experiment_id": "identity_pipeline_actual_states_and_comparisons",
-      "status": "ACTUAL_STATES_RUNNING",
+      "status": "COMPLETE_SCOPED_CONCLUSION",
       "hypothesis_id": "H3_simple_predictive_budget_transfer",
       "code": [
         "tools/cfp_run_identity_state_campaign.py",
         "tools/cfp_replay_oof_gru.py",
         "tools/cfp_build_oof_query_campaign.py",
         "tools/cfp_train_residual_relation.py",
-        "tools/cfp_replay_oof_combination_extension.py"
+        "tools/cfp_replay_oof_combination_extension.py",
+        "tools/cfp_collect_identity_seed_evidence.py"
       ],
       "state_plan": "configs/cfp/phase_vi_identity_states_v1.json",
       "query_plan": "configs/cfp/phase_vi_identity_early_queries_v1.json",
@@ -16392,7 +16393,7 @@
         1,
         2
       ],
-      "reason": "12 new producers generate genuine six-video accepted histories in RGB1/2 coordinates.24 matched ordinaryCE/noEMA residual fits then48 whole-video ordinary/predictive/margin/combined replays; seed0 noEMA+margin anchor separately frozen. Detector/backbone exposure still disclosed; no independent scene claim. Open outcome, not final retention decision."
+      "reason": "12 new producers generated genuine six-video accepted histories in RGB1/2 coordinates.24 matched ordinaryCE/noEMA residual fits and48 whole-video ordinary/predictive/margin/combined replays completed, with8 family official evaluations and two matching seed1/2 disabled-baseline evaluations. Seed1/2 predictive+margin gains were small and each added2 IDSW; seed0 gain was larger but added16 IDSW. Detector/backbone exposure remains disclosed; no independent scene claim. Candidate is not retained for deployment; ordinary GRU/current-measurement remains recommended."
     }
   ],
   "validation": {
