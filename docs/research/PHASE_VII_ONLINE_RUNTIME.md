@@ -1,0 +1,9 @@
+# Phase VII online runtime
+
+Status: IN_PROGRESS. Current measurements time native association/output on frozen V3/RGB caches; no new complete raw online FPS is claimed.
+
+The disabled replay covers684SN-001frames and6,570SN-015frames, with exact historical prediction-byte parity. Its association/output time is4.79s/49.19s; SN-015 p50/p95is7.35/8.96ms. Joint bounded adds new full-set CPU head work and reaches97.54swith p50/p95=14.63/16.58ms; full learned joint reaches111.92swith p50/p95=16.86/19.46ms. The untrained common cost control takes69.62son SN-015with p50/p95=10.49/11.94ms; even its wrapper currently recomputes observable GRU appearance, so it is not a minimum-overhead threshold implementation. These figures are single-run CPU association measurements, not complete-system speed or a statistically confirmed performance comparison.
+
+Training the small heads used two previously idle A100devices and finished in137.80s(joint)/92.25s(pair). PyTorch peak allocated memory was25.14/25.55MB; nvidia-smi showed about540MiBper process including CUDA context. The allocated model has150,533parameters in both modes, with142,084/83,845participating optimizer parameters. This does not include visual encoders, detector, IR construction or raw decode.
+
+The inherited roughly1.2FPS complete-system bottleneck remains a required investigation. A new raw all-frame profiler must include decode, causal IR construction, preprocessing, V3 detector/batch8, RGB crop/encoding/padding128, memory/model work, assignment, writes and output. Report FPS, p50/p95, memory, parameters, countable operations and incremental overhead on the same complete inputs. Every batching/precision/cache optimization first requires input/output/numerical parity; cached replay speed cannot substitute for ProtocolC. All full raw comparisons and new visual-encoder costs remain pending.

@@ -11,6 +11,7 @@ import numpy as np
 import torch
 
 from cfp.joint_identity_decoder import JointFishIDDecoder
+from cfp.joint_identity_controls import UniformPositiveResidual
 from cfp.lifecycle_crossover import load_bot_reference, make_cfp_lifecycle
 from cfp.online_joint_identity import install_joint_identity
 from cfp.predictive import LatentIdentityPredictor
@@ -46,7 +47,11 @@ def main():
     predictor = LatentIdentityPredictor().eval()
     predictor.load_state_dict(torch.load(checkpoint, map_location='cpu', weights_only=False)['model'], strict=True)
     joint = None
-    if cfg['route'] != 'disabled':
+    if cfg.get('residual_control') is not None:
+        if cfg['residual_control'] != 'uniform_positive_limit' or cfg['route'] != 'bounded':
+            raise ValueError('Declared untrained uniform-positive bounded control required')
+        joint = UniformPositiveResidual()
+    elif cfg['route'] != 'disabled':
         path = Path(cfg['model_root']) / 'epoch8.pt'
         meta = json.loads(path.with_name('manifest.json').read_text())
         if meta['status'] != 'COMPLETE' or sha256(path) != meta['checkpoint_sha256']:
@@ -64,12 +69,12 @@ def main():
     native = load_bot_reference('/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT')
     args.output.mkdir(parents=True)
     report = dict(status='RUNNING', config=cfg, config_sha256=sha256(args.config), videos={}, partition='train',
-        baseline_checkpoint_sha256=sha256(checkpoint), joint_checkpoint_sha256=meta['checkpoint_sha256'] if joint else None,
+        baseline_checkpoint_sha256=sha256(checkpoint), joint_checkpoint_sha256=meta['checkpoint_sha256'] if joint and not cfg.get('residual_control') else None,
         detection_manifest_sha256=sha256(detection_root / 'manifest.json'), feature_manifest_sha256=sha256(features_root / 'manifest.json'),
         protocol_sha256=sha256(protocol_path), source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         scope='All frames, endogenous current/past native lifecycle and measured confirmed output; frozen V3/RGB caches. Conditional new-head heldout replay only, inherited encoder/GRU exposure. This excludes raw decode, generator, detector and encoders, so it is not end-to-end FPS.',
         source_snapshots=snapshot_sources(args.output / 'sources', [__file__, args.config, 'cfp/online_joint_identity.py',
-            'cfp/joint_identity_decoder.py', 'cfp/lifecycle_crossover.py', 'cfp/predictive.py', 'cfp/history.py']))
+            'cfp/joint_identity_decoder.py', 'cfp/joint_identity_controls.py', 'cfp/lifecycle_crossover.py', 'cfp/predictive.py', 'cfp/history.py']))
     write_json(args.output / 'manifest.json', report)
     for video in cfg['sequences']:
         dp, fp = detection_root / (video + '.npz'), features_root / (video + '.npz')

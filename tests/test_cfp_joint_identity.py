@@ -6,6 +6,7 @@ from types import SimpleNamespace
 from cfp.joint_identity_decoder import JointFishIDDecoder, bounded_joint_cost, decode_joint_assignment
 from cfp.joint_identity_supervision import joint_identity_targets, joint_identity_loss
 from cfp.online_joint_identity import install_joint_identity
+from cfp.joint_identity_controls import UniformPositiveResidual
 
 
 def inputs(n=3, m=4):
@@ -155,6 +156,16 @@ def test_online_zero_residual_exact_parity_and_low_stage_unmodified():
     detections[0].score = .5
     np.testing.assert_array_equal(tracker.association_cost(tracks, detections), np.array([[.25]]))
     assert tracker.joint_counts['scored_frames'] == 1
+
+
+def test_uniform_residual_control_is_only_the_fixed_cost_threshold_effect():
+    tracker, tracks, detections = online_fixture()
+    tracker = install_joint_identity(tracker, UniformPositiveResidual(dimension=8, capacity=8))
+    expected = np.array([[.25 + float(torch.tensor(.03))]])
+    np.testing.assert_array_equal(tracker.association_cost(tracks, detections), expected)
+    # Different current visual identity cannot change this untrained control.
+    detections[0].current_rgb *= -1
+    np.testing.assert_array_equal(tracker.association_cost(tracks, detections), expected)
 
 
 def test_online_full_null_prevents_high_stage_old_match_without_fabricated_birth():
