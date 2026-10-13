@@ -13,3 +13,7 @@ TIDE exactfba27ae default track.py calls JDETracker, using XYAH Kalman, appearan
 ## Additional eight source audit constraints
 
 M4FT spatial eight-direction selective scan is current-image detector processing, not temporal fish motion; its README default tracker is BYTETracker, with SORT on a separate entry. PFTrack uses predicted center offsets and geometric assignment. DM3T adds six confidence association stages/velocity smoothing and random noise even in eval, so detection, lifecycle and stochasticity controls are required. SAMURAI uses a model-global SOT XYAH Kalman state and mask-quality gates; same-input MOT adaptation needs per-track state/reset and detector-origin prompts. None establishes a trained nonlinear fish-motion gain.
+
+## Additional three source audit constraints
+
+DiffMOT exacteada72e supplies a genuine five-record8-D history-conditioned nonlinear4-D next-box-delta predictor: six-layer history Transformer and one-step decoupled diffusion with weighted drift/noise SmoothL1. Training records need actual frame-spacing checks; default inference samples random initial noise. The public evaluation reads cached detections/ReID, has an uncached ReID-name mismatch and does not include full raw encoding. A motion-only port must preserve native inputs/lifecycle and compare matched deterministic regression/KF/UKF before combinations; no training/gain claimed from this audit.

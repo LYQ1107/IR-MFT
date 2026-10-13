@@ -2596,7 +2596,7 @@
         "code_and_pretrained_license": "TopLICENSE MIT2023Syliz517; embeddedmodifiedOpenAI CLIP requirespreservingupstreamattribution, upstreamMIT2021OpenAI primary https://github.com/openai/CLIP/blob/main/LICENSE verified. BenchmarkCLIPReIDGDriveweights anddatasets separateterms/payloadhash unverified, excludedofficialreproduction. BaseCLIPpublicmodelsource/URLs/SHA are known butnoactualweightacquired/executed. No externalcodecopiedorforeigninstallcommandsrun; thisisa source-fieldauditnotweight-licensecertificationforallderivatives.",
         "entrypoints_and_training_inference": "train_clipreid.py ->datasets.make_dataloader_clipreid ->model.make_model_clipreid ->processor_clipreid_stage1.do_train_stage1 ->stage2.do_train_stage2. train.py isbaselinefine-tune, nottwostageCLIPReID. test_clipreid.py usesimageembedding-onlyinference. solver/make_optimizer_prompt.py stage1updatesprompt_learneronly,stage2freezestext_encoder/promptparameters andfitsimage/BN/classifier. Stage1cachealltrainingimagefeatures underno_grad once. Actualsourceiters=num_image//batch,range(iters+1) includesemptylastbatchifexactlydivisible; adaptationrequiresguardratherthanassumingREADMEcommandsalwaysrun.",
         "core_model_files_and_shapes": "model/make_model_clipreid.py andmodel/clip/model.py. ViTB16imageRGBcrop patch16/stride16 at256x128=>128patches+CLS, width768/12blocks, outputlast-layer768andCLIPprojected512; inferenceconcat768+512=1280 before/afterBN. RN50 branch2048+projected1024=>3072. Imagevisualforwardreturnsblock11/block12/projectedalltokens; usedCLS. Text77tokencontext/width512, pretrainedtextattentioncausalwithintext(EOTargmaxselector), perclass4learned512tokens plus fixedperson/vehicleprefix. No newfishparts learned fromtext. OptionalSIE camera/viewcurrentmetadata.",
-        "loss_and_positive_negative_construction": "Stage1loss/supcontrast.py actualtemperature1.0, unnormalizedtext/imageprojection dotlogits, maxsubtractstability, positivesall equalIDcrossmodalpairs withinbatch/averagedpositivecounts; bidirectionalimage\u2192text+text\u2192image objectives, notassumeddiagonalCLIPtemp.07. Stage2loss/make_loss.py sumsCEover2imageheads andtriplets over3featurestages, thenimage\u2192allfit-IDtextCE; suppliedViTconfigweights.25CE/1triplet/1i2t,smoothingon,NO_MARGIN sourcecontrols. Stage1randomorderallcachedknowntrainingimages; stage2RandomIdentitySampler B64/K4=>P16 withshortIDreplacement. No frame/gap/sameframecrossfish hardnegative construction inoriginalsampler; physical(video,fish) andunknown-labelguardsrequiredforMFT.",
+        "loss_and_positive_negative_construction": "Stage1loss/supcontrast.py actualtemperature1.0, unnormalizedtext/imageprojection dotlogits, maxsubtractstability, positivesall equalIDcrossmodalpairs withinbatch/averagedpositivecounts; bidirectionalimage→text+text→image objectives, notassumeddiagonalCLIPtemp.07. Stage2loss/make_loss.py sumsCEover2imageheads andtriplets over3featurestages, thenimage→allfit-IDtextCE; suppliedViTconfigweights.25CE/1triplet/1i2t,smoothingon,NO_MARGIN sourcecontrols. Stage1randomorderallcachedknowntrainingimages; stage2RandomIdentitySampler B64/K4=>P16 withshortIDreplacement. No frame/gap/sameframecrossfish hardnegative construction inoriginalsampler; physical(video,fish) andunknown-labelguardsrequiredforMFT.",
         "pretrained_sources": "ModifiedOpenAI CLIP ViTB16/RN50 originalcontrastiveimage-captionwebpretrain, sourceexactpublicAzureEdgeURLs andSHA256downloadcheck (ViTB16expected5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f). build_model unwrapsJIT/state, resizesrectangular2Dposgrid andstrictload_state_dict. Officialperson/vehiclebenchmarkfitMarket/MSMT/Duke/OccludedDuke/VeRi/VehicleID. Upstreammodelcard https://github.com/openai/CLIP/blob/main/model-card.md notescuratedwebcaptiondata/unreleasedcorpus; nozerofishoverlapcertification. No datasets/modelweightsdownloaded; all sourcesstayoutsideGit.",
         "future_information_and_online_path": "Imageinference onlycurrentcrop/observableoptionalcamera/view, returns1280/3072descriptorwithoutGTphysicalIDortextpromptlookup. ID-specificpromptsandall-fit-IDtextcacheareoffline trainingtargets; do notmislabelthem asnecessaryGTonline inputs. Fulltrainimagecache legalonlyfromfitvideos; bothouter/inner mustbeexcluded frompromptdictionary/imagefitting. Textcausalmask doesnotexpressvideocausality. Originalutils/metrics.py excludes SAMEpid+camera positives andoptionallygalleryre-ranks; replacewithsamevideo/past-onlyunknownpreservingfishprotocol. NoofficialMOTlifecycles/assignment route.",
         "GPU_CUDA_dependencies": "READMEtorch1.8/vision.9/CUDA10.2, yacs/timm/scikitimage/tqdm/ftfy/regex; coreTorchvisionTransformer andtokenizer package. PromptLearnerconstructs tokenizedprompts.cuda unconditionally, originaltrainingCUDAAMP/DataParallel/NCCL andunusedcentercriterion allocations, soCPUfullconstructorisnotvalidated. Stage1storesallcachedimagefeatures onGPU, memoryscaleswithtrainingobservations; notfreeonlinecachecost. Newfishprotocolmustboundcaches/checkpointmodel/optimizer/scaler/RNG andneverrunoriginalscriptwithallvisibleuserGPUs.",
@@ -3392,13 +3392,13 @@
         "paper_year_scenario_contribution": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture; primary https://arxiv.org/abs/2301.08243 submitted2023-01-19/revised2023-04-13, officialrepoCVPR2023. Static-image semantic feature learning via context-to-masked-region latent prediction, not object-track/fish-identity temporal association.",
         "code_and_pretrained_license": "Exact LICENSEblob108b5f002fc31efe11d881de2cd05329ebe8cc37 SHA336255dc30193e8e15d689d9481bb05673d89055718f3a96923a7ffb99adbbaf is CCAttribution-NonCommercial4.0. Verified primary https://github.com/facebookresearch/ijepa/blob/52c1ae95d05f743e000e8f10a1f3a79b10cff048/LICENSE and subsequently exact APIblob. Do not call Apache/MIT orcopy intoMITproject silently. Source-only audit; no codecopied/executed. Officiallargefullcheckpoint separate weightterms/provenance not independently certified, soexclude completedofficialweightreproduction. Independentlyimplemented EMA/latentprediction algorithms canbefairmechanismcontrols withappropriatecitation.",
         "entrypoints_and_training_inference": "main.py --fname --devices launches localmultiprocessing ->src.train.main; main_distributed.py usesSubmitit/SLURM. src.helper.init_model builds contextencoder/predictor and train deepcopycreates EMAteacher. No standalonefishReID/MOTinferenceentry inselectedofficialsystem; src.models.vision_transformer.VisionTransformer.forward is currentimagefeature route. Checkpointkeys encoder/predictor/target_encoder/opt/scaler; checkpointhelper catchesexceptions andsets epoch0 afterpossiblypartialload, unsafe toassumeexactresume. Officialsave lacksallRNGstates/atomicwrites; ourprotocolrequiresstrongerfullstate.",
-        "core_model_files_and_shapes": "src/models/vision_transformer.py andsrc/masks/utils.py. ViTH14 config224square =>256patch tokens1280dims,32blocks16heads; noCLS token inforward. Predictor maps1280\u2192384,12blocks16heads, appends masktokens+2Dposition andprojects384\u21921280targets. apply_masks gathers[B,N,D]usingperbatchtokenindices andconcatenatesmaskviewsbatchwise. Config giant16dim1408depth40heads16. interpolate_pos_encoding erroneouslytreatsfirstpatchasCLS andreshapesNpatches-1assquare onsizechange; nativeequalgridbypassesit, rectangularfishinputnotvalidblindport. Newcorrectrectangularpositions/visiblemaskneeded.",
-        "loss_and_positive_negative_construction": "Trainforward_target no_gradfullcurrentimage EMAencoder, F.layer_normlastfeaturedim thenonlypredictedregions. Contextencoder receivesmaskselectedtokens beforetransformer; predictor seescontext+targetpositions/masktokens, notactualtargetfeatures. SmoothL1 latentprediction +distributedAllReduce; noCE/ID/contrastivepairs/explicitnegatives orfishPKsampler. ImageFolderDistributedSampler shuffled perepoch; sameimagecontext-target supervision. Multiblock config1context4targets, contextarea.85\u20131,target.15\u2013.2,min_keep10, allow_overlapFalse. Contextdisjointnessconstraints relax after20failedtries bydroppingacceptable-regions, soflagaloneisnotastrictnonoverlapguarantee. Anewsmallfishmasker mustverifyactualtargetexclusion.",
+        "core_model_files_and_shapes": "src/models/vision_transformer.py andsrc/masks/utils.py. ViTH14 config224square =>256patch tokens1280dims,32blocks16heads; noCLS token inforward. Predictor maps1280→384,12blocks16heads, appends masktokens+2Dposition andprojects384→1280targets. apply_masks gathers[B,N,D]usingperbatchtokenindices andconcatenatesmaskviewsbatchwise. Config giant16dim1408depth40heads16. interpolate_pos_encoding erroneouslytreatsfirstpatchasCLS andreshapesNpatches-1assquare onsizechange; nativeequalgridbypassesit, rectangularfishinputnotvalidblindport. Newcorrectrectangularpositions/visiblemaskneeded.",
+        "loss_and_positive_negative_construction": "Trainforward_target no_gradfullcurrentimage EMAencoder, F.layer_normlastfeaturedim thenonlypredictedregions. Contextencoder receivesmaskselectedtokens beforetransformer; predictor seescontext+targetpositions/masktokens, notactualtargetfeatures. SmoothL1 latentprediction +distributedAllReduce; noCE/ID/contrastivepairs/explicitnegatives orfishPKsampler. ImageFolderDistributedSampler shuffled perepoch; sameimagecontext-target supervision. Multiblock config1context4targets, contextarea.85–1,target.15–.2,min_keep10, allow_overlapFalse. Contextdisjointnessconstraints relax after20failedtries bydroppingacceptable-regions, soflagaloneisnotastrictnonoverlapguarantee. Anewsmallfishmasker mustverifyactualtargetexclusion.",
         "pretrained_sources": "Officialpretrainingfromscratch onImageNet1k orImageNet22k; init_modeltruncatednormal notexternalfoundationload. README supplieslargeViTH/Gfullcheckpointsdl.fbaipublicfiles forIN1K/IN22Kplusconfigs/logs. Noofficialcheckpointsdownloaded andnoassertionofzero fish-dataoverlap. FrozenImageNet/realfinetunedfishlocaltokens forindependentDenseJEPA aredifferentproducers andmustbepairedwithmatchedTemporal/contrastivecontrols, notdeclaredofficialIJepa reproduction.",
-        "future_information_and_online_path": "Staticimagepartial-observationtask hasnofuturevideo input. Fullsameimagefeaturesappearonlystoppedteachertrain target; contextreceiveskeptregions andtargetpositions. EMAteacherupdateafteroptimizer0.996\u21921inViTH1kconfig; teacherdisabledgrad. Itsmechanismscanextendtosamefishfuturetargets onlyduringtraining; strictonlineheadmustconsumehistory/currentobservationsonlyandneverGT/futureteacherfeatures. Officialmaskrelaxationactualtargetoverlapmustnotbehidden.",
+        "future_information_and_online_path": "Staticimagepartial-observationtask hasnofuturevideo input. Fullsameimagefeaturesappearonlystoppedteachertrain target; contextreceiveskeptregions andtargetpositions. EMAteacherupdateafteroptimizer0.996→1inViTH1kconfig; teacherdisabledgrad. Itsmechanismscanextendtosamefishfuturetargets onlyduringtraining; strictonlineheadmustconsumehistory/currentobservationsonlyandneverGT/futureteacherfeatures. Officialmaskrelaxationactualtargetoverlapmustnotbehidden.",
         "GPU_CUDA_dependencies": "READMEPython>=3.8,pytorch,torchvision,pyyaml,numpy,opencv,submitit. TrainingusesCUDA BF16/GradScaler optional, DistributedDataParallel andNCCL init; largeconfigbatch128perGPU,distributedworld; submititSLURMnotrequiredforlocalentry. ModelTensorattentionusesordinaryTorch(qkv/matmul),noexternalflash/xformersrequirementseen. Currenttorch2architecture/trainnotexecuted; noenvironmentinstallation. CPUcurrentcropinferencecouldbeindependentlyadapted,butnotclaimedvalidated.",
         "IR_MFT_compatibility": "Transferlatentprediction/EMA/regionmasking principles, notblindViTH/Gfulltraining forMFTsmallcrop. Native224square/image-onlyfeatureproducerhasnophysicalIDs/candidatecompetition ortrackmemory. Current128x256fishcrop requiresrealrectangularlocalpositions andvisible-imageextent;1280teachercoordinatecannotreuse512GRU. Cleanknownphysicaltracktraining andunknown/corruptiontestseparate; pervideoouterANDinnerexcludedfromidentity/temporaladapterfitting.",
-        "mechanisms_to_port_and_exclude": "Independentlyimplement localobject-centriccontext/predictor/stoppedEMA withactual8strip orspatialtokens, current/futuretrainingtargets physicallyaligned, verifiedmasked/futuretargetnotincontext. MatchedlocalTemporalTransformer/contrastive/noEMA/noPrediction/noIDandrawglobal/localretrievalneeded. Exclude copyingCCBYNCcodeintoMITtree, downloadinghugefulltrainingmodels,brittlecheckpointcatch-and-restart,brokenrectangleposinterpolation andunverifiednonoverlapmaskflag. NoRGB\u2192GTonlinefilter orfutureteacherinference.",
+        "mechanisms_to_port_and_exclude": "Independentlyimplement localobject-centriccontext/predictor/stoppedEMA withactual8strip orspatialtokens, current/futuretrainingtargets physicallyaligned, verifiedmasked/futuretargetnotincontext. MatchedlocalTemporalTransformer/contrastive/noEMA/noPrediction/noIDandrawglobal/localretrievalneeded. Exclude copyingCCBYNCcodeintoMITtree, downloadinghugefulltrainingmodels,brittlecheckpointcatch-and-restart,brokenrectangleposinterpolation andunverifiednonoverlapmaskflag. NoRGB→GTonlinefilter orfutureteacherinference.",
         "novelty_overlap": "EMAteacher,stoppedlatenttargets,regioncontextmasking,predictorandno-pixelreconstruction establishedIJepa mechanisms. RenamingexistingglobalPLIMoraddingJEPAregressiondoesnotestablishnewfinegrainedidentityevidence. Contributionrequiresobjectphysicalidentity,localpersistentdiscrimination andstrictcausalsetassociation improvements overmatchedordinarytemporal/contrastive/noEMAcontrols."
       },
       "source_read_proofs": {
@@ -3556,7 +3556,7 @@
         "loss_and_positive_negative_construction": "app/vjepa/train.py: stoppedfullclipteacher thenlayernorm, selectedmaskedtargetregions; predictor sees keptcontext+maskpositiontokens only. Meanabs(z-h)**loss_exp/loss_exp, exp1 inconfigs, no IDCE/physicalfishpositive-negative construction. EMAafteroptimizer.2.1train: separate maskedprediction loss plus visiblecontext loss weightedlambda/imgvideo=.5 inVitBconfig withdistanceweighting/progressive schedule, targetmulti-layer chunksnormalized independently; no claim thatonlymaskedlossproducesdensefeatures. Data uses weightedDistributedWeightedSampler acrossK710/SSv2/HowTo (declaredweights.335/.100/.565), Decordrandomclips/fps4;2.1addsImageNetdata.3Dmaskgenerator derivesdisjointcontext/targetfromactualcomplementthenbatchtruncates, additionalfull_complement modes explicit. Temporalspan masks neednotpast-only.",
         "pretrained_sources": "PrimaryV2paper describesover1millionhour internetvideo/imagepretraining and<62hoursDroidposttraining. Publictrainingconfig lists K710/SSv2/HowTo; it doesnotprove completeprivatecuratedpretrainingmembership orzerofishoverlap.2.1config addsImageNet anddeepdense/distillation variants. src/hub/backbones.py dl.fbaipublicfiles/vjepa2 filenames; V2loadkeys target_encoder bydefault, AC encoder/predictor,2.1Base/Largeema_encoder+teacher1664distillationcoords; strictness differsbysize/codepath. No giant checkpointacquisition, fullpretrainingreproduction orfishclassificationaccuracyclaimed.",
         "future_information_and_online_path": "OrdinaryV2/2.1encoder andmaskedpredictor use bidirectionalclipattention withattn_maskNone/is_causalFalse; sourcevideo loader sampleswholeclips andofficialrecognitionprobes usemulti-segment/multi-viewclips. Thus earlierframe embeddingsmaydependonlaterframeswithinclip. A strictonline fish adaptation can onlyencodeanexplicitpast-through-currentwindow andaccountrecomputation/tubeletendpadding; cannotcreditcachedfullvideoembeddingascausal. ACpredictor hasframecausalblockmask butthatdoesnotmake itsvideoencodercausal. EMAfullcurrent/futureteacher permittedonlyoffline trainingtargets; no teacher/futureframe onlineinputs.",
-        "GPU_CUDA_dependencies": "requirements torch>=2,torchvision,timm,einops,decord,iopath,submitit,webdataset,transformers etc; app usesNCCL/DDP,BF16AMP,CUDA SDPA optionalactivationcheckpointing. Pretrainconfig16nodes\u00d78GPU is not our4GPU smallMFTbudget. Ordinaryattention hasTorchmatmulfallback; massiveV2.1Gvariants mayusexformersnamedarchitecture butruntimecompatibility notexecuted. Hubdependencies torch/timm/einops; currentenvironment installation unchanged. Head/cache timings cannotincludeencoderclipcomputationforfree.",
+        "GPU_CUDA_dependencies": "requirements torch>=2,torchvision,timm,einops,decord,iopath,submitit,webdataset,transformers etc; app usesNCCL/DDP,BF16AMP,CUDA SDPA optionalactivationcheckpointing. Pretrainconfig16nodes×8GPU is not our4GPU smallMFTbudget. Ordinaryattention hasTorchmatmulfallback; massiveV2.1Gvariants mayusexformersnamedarchitecture butruntimecompatibility notexecuted. Hubdependencies torch/timm/einops; currentenvironment installation unchanged. Head/cache timings cannotincludeencoderclipcomputationforfree.",
         "IR_MFT_compatibility": "UsefulpriorforEMA/stoppedlocalprediction/deepdense supervision and image/video tokenization. Nativevideoclip/globalactiontasks do not providefishphysicalIDs/candidatecompetition; directclipfeaturefittingwithouter/innerexposureinvalid. Object-centriclocalgeometry/currentcandidate relation needsindependentfishsupervisionandnewcoordinateproducer. Largefullclipbackbone maydominate rawruntime. AdaptmatchedlocalTemporal/contrastive/noEMA/noPrediction/noID ratherthan claimofficialfullworldmodelreproduction.",
         "mechanisms_to_port_and_exclude": "Retain actualmaskcomplements, stoppedEMA,localtargetprediction, visible-vs-masked/deep-losscontrols withdeclaredinputprovenance. Exclude unrestrictedfuturecontext/fullvideo caches/robotactions asfishsensors, giantpretraining, blindper-frameassignmentofbidirectionalclipembeddings andsilentteacher/studentcoordinate mismatch.3Dspatiallocaltokens aregeometricnotannotatedanatomy orocclusion. Configchecks/hashguards neededbecause checkpointhelper/hubstrictness differ; never assume strict=False validweightload.",
         "novelty_overlap": "Dense visible+maskedprediction anddeepintermediatelayers alreadyexplicitV-JEPA2.1mechanisms; EMA,masktokens,latentvideo prediction andactionconditioning establishedV2. GenericpatchTransformerpluslatentloss is not novelty. EvidenceFishMOTmustprovephysicalidentityinformation/onlineassociationincrement overmatchedlocaltemporal/contrastive/deepdensecontrols, beyond loweringpredictionloss."
@@ -4128,8 +4128,8 @@
         "paper_year_scenario_contribution": "GOT-JEPA: Generic Object Tracking with Model Adaptation and Occlusion Handling using Joint-Embedding Predictive Architecture, primary https://arxiv.org/abs/2602.14771 submitted2026-02-16/revised06-16, TCSVT2026. Single-target tracking-model/filter prediction under corrupted current observations plus object-conditioned point visibility(OccuSolver), not multi-object physical-ID assignment. Registeredrepohead5f382645ccb7331280a7bf07f3c5709d1072caf7 primarilyGOT-Edit/ICLR2026; READMEpoints canonicalGOT-JEPA release84e9324317e4afe62c06b2c51a97563f79730a2e. Both actualsourceversions inspected andrelease31textblobs materialized from existingGitobjects without alteringhistoricalcheckout.",
         "code_and_pretrained_license": "TopLICENSE AGPLv3, nestedpytracking/LICENSE GPLv3; embeddedCoTracker2/co_tracker/LICENSE.md CCAttribution-NonCommercial4.0. These are not unrestrictedMIT-compatible source copying. Keep reference-only; no codeexecuted/copiedintoIR-MFT. DINOv2 externalApache2 source/weightterms separate; fullToMP/GOTJEPA/CoTrackercheckpointsGoogleDrive/localtar lack independentlyverified exactweightlicenses/access/hashes, excludedfromofficialsystemreproduction. No newweights downloaded.",
         "entrypoints_and_training_inference": "Published84e releaseREADME uses pytracking/ltr/run_training_dsA.py tomp GOT_JEPA_378_pretrain, thenfinetune andPT. Pretrain->tompnet_JEPA/ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp; finetune->tompnet_JEPAp/ToMPActor; PT->tompnet_PT/ToMPActor_PTcur. Evaluation run_experiment.py myexperiments_gotjepa GOT_JEPA ->trackerlist(tomp,got_jepa_378)->tracker/tomp/__init__.py imports.tomp.ToMP; checkpointwrapper loadsGOT_JEPA_378.tarconstructor. Currentheaddefaultentry isGOT-Edit andseparate tomp_gotejepa.py exists; cannot assumeREADMEheadline/defaultentry sameJEPApaperbaseline.",
-        "core_model_files_and_shapes": "Bothsourceversions pytracking/ltr/models/tracking/{tompnet_JEPA,tompnet_JEPAp,tompnet_PT}.py, transformer/{heads,filter_predictor_JEPA_context,transformer_JEPA_context}.py. Inputpasttrainframes2,currenttest1 as[T,B,3,H,W], boxes[T,B,4]; searchcrop432 thenresizes378=27*14, DINOv2ViTL intermediate1024features4layers averaged andbkMlp1024map. Head256/6encoder6decoderlayers/nhead8; cls/regtrackingfilters[B,256,1,1], predictors256\u2192256, covarianceexpansion256\u21921024\u21921024. Pretrainreturn8filtertensors, finetunescoremaps+bbox offsets; PToutputsperpointpositions[B,T,P,2]/visibility[B,T,P] plustrackingmaps. This predictsfilterlatentparameters, not Klocalfishidentitytokens.",
-        "loss_and_positive_negative_construction": "PretrainSmoothL1(predictedcls/regfilters,clean stoppedtargetfilters), invariancescale10000 andoffdiagonalexpandedfeature covariance; actualfinaloverride scale800, not400classname. Criticalsource limitation in BOTHregisteredhead andpaperrelease: actorclassdefines__call__twice, lastbodyends bare(loss_breg_filter,inv)expression withunassignednames/no lossstatsreturn. AST confirms2definitions; originalentrynotrunnableascompleteactor. Finetune GIoU+LBHinge(MSEpositiveheatmap/negativeReLUpred)weights1/100; PTaddsbox/classsupervision. DiMPSampler equalLaSOT/GOT10k/TrackingNet/COCO datasets, visible sameobjectpast/currentframes(maxgap200); no physical-IDCE/PK orsameframecrossfishhardnegatives. Relocation swaps0\u201330%spatialvectors, leavingmanycleanvectors; it is corruption, not stricthidden-targettokenexclusion.",
+        "core_model_files_and_shapes": "Bothsourceversions pytracking/ltr/models/tracking/{tompnet_JEPA,tompnet_JEPAp,tompnet_PT}.py, transformer/{heads,filter_predictor_JEPA_context,transformer_JEPA_context}.py. Inputpasttrainframes2,currenttest1 as[T,B,3,H,W], boxes[T,B,4]; searchcrop432 thenresizes378=27*14, DINOv2ViTL intermediate1024features4layers averaged andbkMlp1024map. Head256/6encoder6decoderlayers/nhead8; cls/regtrackingfilters[B,256,1,1], predictors256→256, covarianceexpansion256→1024→1024. Pretrainreturn8filtertensors, finetunescoremaps+bbox offsets; PToutputsperpointpositions[B,T,P,2]/visibility[B,T,P] plustrackingmaps. This predictsfilterlatentparameters, not Klocalfishidentitytokens.",
+        "loss_and_positive_negative_construction": "PretrainSmoothL1(predictedcls/regfilters,clean stoppedtargetfilters), invariancescale10000 andoffdiagonalexpandedfeature covariance; actualfinaloverride scale800, not400classname. Criticalsource limitation in BOTHregisteredhead andpaperrelease: actorclassdefines__call__twice, lastbodyends bare(loss_breg_filter,inv)expression withunassignednames/no lossstatsreturn. AST confirms2definitions; originalentrynotrunnableascompleteactor. Finetune GIoU+LBHinge(MSEpositiveheatmap/negativeReLUpred)weights1/100; PTaddsbox/classsupervision. DiMPSampler equalLaSOT/GOT10k/TrackingNet/COCO datasets, visible sameobjectpast/currentframes(maxgap200); no physical-IDCE/PK orsameframecrossfishhardnegatives. Relocation swaps0–30%spatialvectors, leavingmanycleanvectors; it is corruption, not stricthidden-targettokenexclusion.",
         "pretrained_sources": "PretrainloadsToMPL.tar; frozenDINOv2ViTL andbkMlp+Headtarget initializedfromtrainedToMP. FinetuneloadsGOTJEPApretrain, PTloadsfinetune andCoTracker2localcheckpoint. DINO backbone helper unpinnedtorch.hubfacebookresearch/dinov2; futurecanonicalMFTadaptermustpinexecutedsource/weights independently. TrainingLaSOT/GOT10k/TrackingNet/COCO, nofishidentityand noverifiedzerooverlap. Officialmodel/data terms unverified: sourceaudit only, nofaithfulfullweightaccuracyclaimed.",
         "future_information_and_online_path": "Trainingclean currentframe supplies stoppedtracking-filtertargets; contextsamepastpluscorruptedcurrentfeaturemap, notfutureforecast orEMA targetupdate. Pretrainfreezes targetparameters thenreenablescontext; context/targetsharethe SAMEfeature_extractor module andcanreenablesharedparameters; headBNbuffersnotexplicitteacher.eval. CannotcallentireteacherimmutableEMA. PublishedtrackerSOTinitializedwith suppliedfirstframebbox; laterusescurrentsearchcrop/pastmemory. OccuSolver re-encodesboundedstoredpast-through-currentpatchwindow usingCoTracker2 bidirectionalwithinwindow, backward_trackingFalse; currentoutputsneednoexternalfutureframe. ItdoesnotautomaticallymakeallpointembeddingsframecausalorprovideMOTIDs. Sourceparamsuse_gt_box/plot_iouflagsaloneareNOTproofonlineperframeGTuse; evaluatedinitialbbox protocolstillincompatiblewith detector-onlyblindMOT. Future/GT inputclaimsneedactualcalltrace, notnames.",
         "GPU_CUDA_dependencies": "OfficialREADME CUDA11.7/PyTorch2.0; install_gojepa.sh createsownPython3.9environment thenmanyforce-reinstall/pipsteps, deepspeed/accelerate/transformers/peft andCoTrackerinstallation. Do notruninstallscript insharedworkspace. Trainingtorchrun/deepspeed shim, MultiGPU, BF16/AMP;DINOv2hugebackbone/pointnetwork costs substantial. Currentsourcepretrainentry hasactiveactorstub beforeanyfaithfulexperiment. No external runtime validated, no GPU allocated for referencecode.",
@@ -5678,7 +5678,7 @@
       "name": "TCEI",
       "github": "https://github.com/1941Zpf/TCEI",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TCEI",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
       "origin": "https://github.com/1941Zpf/TCEI",
@@ -5690,19 +5690,7 @@
       "status": "SOURCE_READY",
       "license_status": "NO_TOP_LEVEL_LICENSE_VERIFIED",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TCEI",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
@@ -5710,13 +5698,185 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[Dual-level Adaptation for Multi-Object Tracking: Building Test-Time Calibration from Experience and Intuition](https://arxiv.org/abs/2603.21629), submitted23March2026, CVPR2026 per primary arXiv comments, adapts MOT under distribution shifts with current-video intuition caches and experience accumulated from earlier test videos. Released configs target DanceTrack, SportsMOT and BFT; default is human DanceTrack, not infrared fish. Published headline gains are not reproduced here.",
+        "code_and_pretrained_license": "Exact full Git tree contains no project LICENSE, COPYING or NOTICE. Acknowledged MOTIP/DETR/TENT/TDA/FSTTA/PURA origins and individual copyright headers do not grant a project-wide license. Baidu full tracker checkpoints have unverified access/terms/hash and training exposure. Therefore no TCEI execution, source transplant or weight loading is authorized by this source audit; independently cleared calibration mechanisms can be tested with proper attribution and separately labelled implementations.",
+        "entrypoints_and_training_inference": "README provides submit_and_evaluate.py with runtime_option/config inheritance and Baidu pretrained model. It builds MOTIP, loads checkpoint[model], then creates a fresh RuntimeTracker per video and sequential batch1,shuffleFalse image loader. w_pos/w_neg caches are created outside the video loop, pos/neg inside get_results_of_one_sequence. No train.py/train_engine is in this exact tree despite training configs/sampler/criterion and SetCriterion.get_loss importing train helpers: full training entry and producer are explicit missing-source exclusions.",
+        "core_model_files_and_shapes": "MOTIP builder uses ResNet50/FrozenBN, four deformable-DETR feature levels, hidden256,300 queries and6encoder/6decoder layers/8heads; trajectory adapter is residual FFNs. IDDecoder concatenates feature256 and local-ID256 to512,16heads and6layers, same-frame self-attention after first layer and strict-past cross-attention. Dictionary has50IDs+newborn. Runtime extracts detector object256 and final decoder ID256 separately; normalized cache keys are256, values/logits51. No K4/K8 fish parts, EMA predictor or learned fish nonlinear motion.",
+        "loss_and_positive_negative_construction": "Available IDCriterion excludes first frame/padded unknowns, sums CE by default or optional sigmoid focal, normalized by distributed valid-label count. Deformable criterion declares classification and L1/GIoU with2/5/2 weights, but imports absent train helpers. NaiveSampler enumerates legal forward clips30frames/interval<=4; transforms randomly bind physical IDs to50words/group, simulate history occlusion/switches, label newborn from cumulative strictly prior presence. TCEI inference is under no_grad/eval: entropy-ranked positive and uncertain negative caches adjust logits without optimizer/backprop or a newly trained contrastive loss. Entropy uses natural-log softmax divided by log2(51), not a matching-base normalized entropy.",
+        "pretrained_sources": "Backbone explicitly requests torchvision ResNet50 IMAGENET1K_V1 on main process, frozenBN and partial layer training. Config names COCO deformable-DETR pretrain, with BFT class15 bird specialization. Full Baidu tracker checkpoint[model] and historical MOTIP weight provenance are not downloaded or verified; current constructor/checkpoint source does not prove checkpoint training membership or fish/IR overlap. Official trained TCEI reproduction and weight-license claims remain excluded.",
+        "future_information_and_online_path": "Current image is detected and past trajectory attention masks time>=query; no future frame/GT is passed in sequential inference. Cache updates use preliminary current-frame predictions before recalibrating each row, so self-inclusion and within-frame candidate order matter; this is current-observation use, not future leakage. Wide ID caches persist across videos and GPU-partitioned sequence order; video-independent outer folds must reset them or explicitly preregister causal sequential exposure without training/selection on outer GT. Model/trajectory uses past frames only; clips/GT labels are offline training structures.",
+        "GPU_CUDA_dependencies": "README declares Python3.12,torch2.4.0/vision0.19,cuda12.1,accelerate/einops and compiled MultiScaleDeformableAttention; ops/setup requires available CUDA/CUDA_HOME rather than a CPU fallback. Inference and cache helpers call bare .cuda(), requiring device mapping. Reported FPS begins after10frames, omits those frames and final writes/evaluation, and lacks explicit CUDA synchronization; it cannot supply this task's complete raw all-frame profile. No foreign CUDA compilation or inference occurred.",
+        "IR_MFT_compatibility": "Default detector/query256 features,50-word dictionary/object-max assignment and cross-video cache exposure differ from frozen V3/RGB crop proposals and independent fish folds. Adapt to identical proposals, feature coordinates, lifecycle/geometry, observable past history, dynamic IDs/unknown/absence. Positive narrow cache min-max affinity divides by max-min without epsilon and becomes undefined with one/equal affinity; helpers hardcode label50 and negative probability indexing mixes candidate count with ID columns. These are inspected static limits needing disclosed repairs, not measured tracker outcomes.",
+        "mechanisms_to_port_and_exclude": "Test independent entropy-conditioned positive/negative observable cache calibration against no-cache/positive-only/negative-only/current-video-only and fixed causal experience controls, including row permutation/state reset. Exclude unknown-licensed project code/weights, cross-outer-video unregistered exposure, teacher/GT inference and paper FPS as raw runtime. fisher_inner's p argument is unused and implements elementwise relative difference; fisher_orthogonalize is not a verified Fisher-metric projection. lambda_object is stored but absent from active object_and_id formula. Do not silently rename these source behaviors as mathematically validated operators.",
+        "novelty_overlap": "TCEI already combines current-object evidence, learned joint ID tokens, entropy/quality-conditioned positive/negative memory and prior-video calibration. Broad claims that reliable evidence memory or test-time identity calibration alone is novel are weakened by this prior work. EvidenceFishMOT must establish supervised fish-local spatial evidence, explicitly stopped causal training targets and genuine same-input full-set association contributions independently of inherited MOTIP and cache calibration. Source audit establishes overlap and exclusions, not successful migration or positive native MOT gain."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "2026ad0bb2725231f853b3a32d55fa439e7450017a0383dcb48d1fa02aa0029a",
+          "git_blob_sha1": "0a3c64b8ff19736f2abbaf0470bca4f472e5cc9e",
+          "bytes": 5188,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "submit_and_evaluate.py": {
+          "sha256": "33ef4985c4f74464d7e722346060779e6fe0c9bf6d8b7e4959b95e7bf210a3fb",
+          "git_blob_sha1": "9ac3647baf6c0f1b73e201ad68823ec2631f314e",
+          "bytes": 20998,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "runtime_option.py": {
+          "sha256": "68481f17c2f7c4a5efc3884b24070eaf0a3032d8d6de277b7f65c3f4e721383d",
+          "git_blob_sha1": "25f61e949773aafda4de7a3ff17dc7fc2c6910e3",
+          "bytes": 6875,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "configs/dancetrack.yaml": {
+          "sha256": "079813a13316f1fb8ef6f9289a47c7672256a3018b62360dfd1f128f3e22db23",
+          "git_blob_sha1": "967144f8eedb85961dc3cecee53b0bcd36f98106",
+          "bytes": 4133,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "configs/bft.yaml": {
+          "sha256": "da25e0b52e36114397a46fa3edc9c58d42832ec08a155b9f332361b8e9108db4",
+          "git_blob_sha1": "8ff740aca1bea5484b8fd606fb081be4bc52e1b9",
+          "bytes": 1169,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "TCEI/tcei.py": {
+          "sha256": "6b2e4cf428359f1ae3a46458b2a2d680d0eb18a33d6bf4901fed42207974cb73",
+          "git_blob_sha1": "1175f5f1cc66c457c0d2988206d64d21926e2ab0",
+          "bytes": 5363,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/runtime_tracker.py": {
+          "sha256": "2416c4a4419ce1f9cb95f2a4668b13f95499b91561f3a84b4fa2b153fa27bfc9",
+          "git_blob_sha1": "f5811f851250f07b4666f052d2d7085d5be9b13b",
+          "bytes": 29831,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/motip/__init__.py": {
+          "sha256": "8812c67436375efcde65d77c242386a75aebe8ff53a08b2b3abb7ac088479eab",
+          "git_blob_sha1": "1966e93f81f1de61100c9c949a3a22c3d806eb39",
+          "bytes": 3256,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/motip/motip.py": {
+          "sha256": "53f6b650601d9e73113b6bb14594f975ece0031cda432e0fbd3cc16912620a37",
+          "git_blob_sha1": "1fde8042ec028dffa8626238f50039213dce3a11",
+          "bytes": 1795,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/motip/id_decoder.py": {
+          "sha256": "ca1742d6b9ae99af088928d726c273b008c28b0dd5813afd98208186da255243",
+          "git_blob_sha1": "56916c9b20dd8ce938de381019e344b861429bfe",
+          "bytes": 12306,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/motip/id_criterion.py": {
+          "sha256": "4f8cb62f8ef3485ba206fcab0c971408bdc46519c1d4fa833faba96249f82207",
+          "git_blob_sha1": "c11d4dde96bb84d762bf99384fc520bc6489585c",
+          "bytes": 3310,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/motip/trajectory_modeling.py": {
+          "sha256": "edd1dd2561649345f13de40ecbffd6d2496fd9d580197acc4c2eb197f31519ca",
+          "git_blob_sha1": "976147850d3f2ff8c84dd66e9d842fe4c2a2f1a3",
+          "bytes": 1353,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/deformable_detr/backbone.py": {
+          "sha256": "07fb7802cd8b14ed5f93059fbe33f68ac25dd1a33cc49abbfef0bae4658a1b3b",
+          "git_blob_sha1": "1325a2f84f70828b2b081d1be9bf744071d6d8b4",
+          "bytes": 5034,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/deformable_detr/deformable_detr.py": {
+          "sha256": "2a2db03f0c8c8e97c2eb1f646a3acf5da7a44bdb0ac2dab49c132922f1456536",
+          "git_blob_sha1": "7383d4285e3f379db02bcd61a975edfb510ddb46",
+          "bytes": 25312,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/misc.py": {
+          "sha256": "d14d9dede66e480ea33ad60624f72f9bc34ad96b470b54c9e77dc49128d045ee",
+          "git_blob_sha1": "a7f1f861610335e2de3c9d5c3dbaf07c2d9718d9",
+          "bytes": 10643,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "models/ops/setup.py": {
+          "sha256": "8204665221c766a656fbc59b6ba570dc09a8e47ca0b3963320a88abd77fd1f95",
+          "git_blob_sha1": "ecf6e17e65a3ec3f3078df79008860ddeade89a0",
+          "bytes": 2019,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "data/naive_sampler.py": {
+          "sha256": "418daa50eaa58dd1043ab3b7fe0d4bd14f627a038c4a5d2175f15fe99ad27346",
+          "git_blob_sha1": "9f50c8ed66e17a303533497a2f13e3489eef97fd",
+          "bytes": 6823,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "data/transforms.py": {
+          "sha256": "a2f67c124e5d22d6e67b85f2677acc513fb6c73954f3559915c028ac200551a0",
+          "git_blob_sha1": "6123b5a5e15c54307fc5e6dd914eb6f6e529e979",
+          "bytes": 28273,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        },
+        "data/seq_dataset.py": {
+          "sha256": "7c2ffae9a92f0ce63fce84846d4bee4d8d4c8301e184a9323cfa17956a0fd0a5",
+          "git_blob_sha1": "ff8cf5bd4f179dc81e587d69d3b09dcbde525047",
+          "bytes": 1601,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+          "inspection_scope": "Manual targeted reading of current-frame and cross-video cache calibration, MOTIP-derived attention/loss/sampling, actual inference entry/reset/timing and declared training/weight dependencies. Exact full-tree license/train-entry inventory distinguishes absent releases. No reference script/model imported or executed, no payload downloaded; static issues are not claimed observed runtime failures."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/tcei_semantic_source_proof_v1.json",
+      "source_coverage_exclusions": [
+        "No project LICENSE/COPYING/NOTICE in exact Git tree; reuse/execution and checkpoint terms unverified.",
+        "Training train.py/train_engine absent at this pin; available sampler/criterion/config cannot reproduce full training producer."
+      ]
     },
     "MeMOTR": {
       "name": "MeMOTR",
       "github": "https://github.com/MCG-NJU/MeMOTR",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MeMOTR",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition_command": [
         "git",
         "-c",
@@ -5737,19 +5897,7 @@
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/MeMOTR', 'status', '--porcelain'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MeMOTR",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
@@ -5902,7 +6050,183 @@
           "acquisition": "VERIFIED_EXISTING"
         }
       },
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[MeMOTR: Long-Term Memory-Augmented Transformer for Multi-Object Tracking](https://arxiv.org/abs/2307.15700),ICCV2023, introduces long-term track memory and customized memory attention in an end-to-end Transformer tracker. Primary arXiv2024revision adds SportsMOT; original contexts include DanceTrack/MOT17/BDD100K rather than fish-specific IR. Repository explicitly notes released DanceTrack configuration differs from paper for stable convergence. Source config and published benchmarks are distinct, and no headline tracking scores are reproduced here.",
+        "code_and_pretrained_license": "Top LICENSE is MIT2023Multimedia Computing Group,NanjingUniversity; read TrackEval is MIT2020JonathonLuiten. Deformable-DETR op/setup retains Apache2.0/SenseTime and external convolution origins. DAB-Deformable-DETR COCO checkpoints and GoogleDrive trained trackers have not been acquired/hash-verified, and their data/payload exposure/terms are separate from top code MIT. No new reference source copied or executed; licensed independent memory/query adaptation must preserve applicable notices and declare replacement frozen detector inputs.",
+        "entrypoints_and_training_inference": "main.py chooses train_engine.train,submit_engine.submit or eval_engine.evaluate, sets configured visible GPUs and optional NCCL. Training seeds, builds model/pretrain, dataset/Random or DistributedSampler, AdamW and MultiStepLR, loops clips and updates query states per frame. submit_engine.Submitter uses fresh RuntimeTracker and empty TrackInstances per sequence, batch1/shuffleFalse, current image forward followed by tracker and query postprocess. Sequential submit source was inspected; eval-engine variants/paper systems not executed. Checkpoint helper stores model/optimizer/scheduler/counters, but no explicit RNG/worker/sampler state exact-resume guarantee.",
+        "core_model_files_and_shapes": "Default DanceTrack uses ResNet50/FrozenBN three backbone levels512/1024/2048 projected256 plus fourth level, six deformable encoder/decoder layers8heads,300new detection queries and persistent track queries. DAB query256/anchor4, output boxes4 and class1; decoder merges track/detection queries from layer1 onward. QueryUpdater has vector confidence MLP256, short fusion512->256 and8-head memory attention across all active tracks, FFN2048. q=short+box_position, k=detached long+position, v=current outputs; long memory residual then confidence-threshold gated query update. This is genuine cross-track mixing, not an N+1 ID-classifier or K-part fish predictor.",
+        "loss_and_positive_negative_construction": "ClipCriterion retains GT physical IDs to match existing track queries; Hungarian detector queries match remaining current GT with class/L1/GIoU costs2/5/2. Sigmoid focal class(alpha.25,gamma2), box L1/GIoU and auxiliary losses normalized by total clip GT, not a fish-ID InfoNCE/JEPA prediction loss. Query train selection keeps highscore or known IDs, marks IoU<.5 IDs unknown; optional TP drop/FP insertion default0 and fake negative track if empty are training scaffolds. DanceTrack clips progress2/3/4/5frames at epochs6/10/14, random forward interval<=10; current GT remains offline supervision only.",
+        "pretrained_sources": "Backbone code requests torchvision ResNet50_Weights.DEFAULT with FrozenBN; default model initial pretrain is COCO DAB-Deformable-DETR r50 from author GoogleDrive. Other detector variant and DanceTrack/SportsMOT/MOT17/BDD100K final models have separate configs/weights. Pretrain loader maps names/shapes, slices COCO class heads, fills absent new parameters with initialization then strictFalse; named pretrain source alone cannot prove complete tensor coverage. No checkpoint loaded/hash-verified and no fish/IR overlap certification; newly adapted coordinates require their own matching training producer.",
+        "future_information_and_online_path": "Submitter reads only current image plus prior TrackInstances; runtime updates output boxes/scores, births new query identities, maintains disappear counters and then updates memory for the next frame. No future frame/GT is supplied. Long feature memory is detached on read and updated0.99old+0.01current only when score>.5; this is feature EMA, not a separately stopped EMA teacher network or future target predictor. Current full-set attention is compatible with causality. Training clips/GT matching do not justify any inference GT inputs; each independent video starts empty state.",
+        "GPU_CUDA_dependencies": "README Python3.10,torch1.13.1/vision0.14.1,cuda11.7,compiled deformable attention; published training script8GPUs>=32GB, checkpoint variant claimed lower memory. Our scope permits at most4idle GPUs, so the8GPU default is not run. Config-visible GPU list0-7 cannot be applied on this shared workstation unchanged. CUDA checkpoint/nonreentrant and weights API compatibility require controlled environment validation. No inference/raw runtime/compilation was measured; complete ProtocolC costs must include detector and query attention/memory updates.",
+        "IR_MFT_compatibility": "Query-native detection,300new queries, score/memory thresholds.5, miss30 and result area>100 differ from V3 detection proposals/RGB crop features/native lifecycle. Fixed-input adaptation must separate query-memory benefit from jointly changed detection, duplicate births, output/lifecycle and active-track pruning. Runtime supports batch1; confidence network emits a256vector rather than supervised pixel occlusion/anatomical visibility. Optional Motion is simple average box delta and disabled USE_MOTIONFalse, not learned nonlinear fish dynamics; per-track state and all-zero/fullset cases must remain explicit.",
+        "mechanisms_to_port_and_exclude": "Port cleared confidence-conditioned short/long observable feature memory and cross-track attention as a matched temporal/fullset control against recent-anchor FIFO/globalGRU/local Transformer, with identical coordinate/training exposure and lifecycle. Isolate long-memory rate, detached read, gating and cross-track mixing independently; don't label feature memory EMA as JEPA teacher or current detector query updates as identity prediction. Exclude8GPU defaults, absent payload provenance, paper benchmark gains/FPS as measured fish evidence and disabled average-motion option as a nonlinear result. Source/official/checkpoint-repaired adaptations require distinct labels.",
+        "novelty_overlap": "Long-term identity evidence stability, confidence weighting, short/long memory fusion and joint cross-track memory attention already exist in MeMOTR. EvidenceFishMOT cannot claim those alone as new, or compare a new local/head model only to outdated globalGRU without this strong mechanism control. Novelty needs observed spatial-local fish evidence and genuinely stopped prediction/candidate competition gains under same inputs, seed/fold/resource fairness. Completed source fields establish relevant prior mechanisms and reproducible adaptation constraints; no trained transplant or positive fish MOT result is asserted."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "537dc31bc26e86453b9d3e52def2533298e9befa8e7187ed5359a60a7583211e",
+          "git_blob_sha1": "a63e2e86b4760ef9891fbcadaacaf187144aa625",
+          "bytes": 10458,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "LICENSE": {
+          "sha256": "74ea0a2469c5ffd7395eb39868b1e8c01edb8c9c5f4a488879b1e51807eec584",
+          "git_blob_sha1": "8dab812e71086316b759d749f2aa0e42b9d162dc",
+          "bytes": 1103,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "TrackEval/LICENSE": {
+          "sha256": "f7e548c5729e464d878dd4abf691e323bbea028a756d08395d88b83e43dd2d86",
+          "git_blob_sha1": "70cbbf9ec0874865fcf827702be7f850251d4314",
+          "bytes": 1072,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "configs/train_dancetrack.yaml": {
+          "sha256": "8cb007a36e89637c240962f70a055ace81539bac1cf20d2fead5115acfea3f0b",
+          "git_blob_sha1": "eaf0e9436e7442b2ea19dbb6bf2065c52ae1a8a7",
+          "bytes": 2451,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "main.py": {
+          "sha256": "6660e779dbd7ce51a5d86765d5832448e46bca98037649840c797bbe88ef3717",
+          "git_blob_sha1": "26e510207f4259952942f9f6b03d26312ea97539",
+          "bytes": 4761,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "train_engine.py": {
+          "sha256": "7ecb0d5bb2fe7980eecc08cb9c6a108a465681d2c7aa44294e4aba3e73fb7197",
+          "git_blob_sha1": "1f94d9f3e98dad9ef8a62ecc98753576efb49fd0",
+          "bytes": 13957,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "submit_engine.py": {
+          "sha256": "67d72cb34750bd853e2f77ce9b6977d6bce0f2a22a8cf34cb56097541f84ad9b",
+          "git_blob_sha1": "c2563d385bcce063b0c6db348d9eaa96c7246f87",
+          "bytes": 12018,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "data/__init__.py": {
+          "sha256": "451d04680a95accd6531e4ad596103f346c7bc0d9e71d9b7140760b95bf3ae2e",
+          "git_blob_sha1": "94fa3b1604bb06741696a69931392b6dd6d71c29",
+          "bytes": 2236,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "data/dancetrack.py": {
+          "sha256": "e08b4a1a7bd189f123a3d93130a5ae8df603ca91c8d0b79c3bbc8823dc404901",
+          "git_blob_sha1": "1e32b0097ef52440f16f316596cc1f39655f3eeb",
+          "bytes": 7902,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "data/seq_dataset.py": {
+          "sha256": "2411743e654fe7b90bec234821b39b14b673d2fea1be48fc60c49ad93229eef1",
+          "git_blob_sha1": "502c50b7fb9ccfec4e492781f980cc1a86e953fb",
+          "bytes": 1778,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/memotr.py": {
+          "sha256": "e87609757872ce1e04c26ea53f178f8e34cea999e4b3102312bc2b739f6f395d",
+          "git_blob_sha1": "621d3d2dcbdbde61b30d37f21fac935bb39a1751",
+          "bytes": 15095,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/query_updater.py": {
+          "sha256": "112864688ef785a40d8837e678ada82d25d974ac8610c93f823ec91392c570b4",
+          "git_blob_sha1": "3b119cc92f671370542cb4b712b447330c3eca8d",
+          "bytes": 14882,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/runtime_tracker.py": {
+          "sha256": "7131244468d26e281dba24b36b57b062ca1a1f2cf0ac9f3c6e805f8415bac6be",
+          "git_blob_sha1": "2112c61e78d3291d3fcd5365461f26e07223c618",
+          "bytes": 4852,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/motion.py": {
+          "sha256": "373d4816effb3956e9658821d57b89692dd2c3adc030aa275e88fc3b128a4bdf",
+          "git_blob_sha1": "456cb3698af8cca0a76b7d1f3e57ceab02244360",
+          "bytes": 1004,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/backbone.py": {
+          "sha256": "242524bee6fc943f7b5458fa74b4afa95475fe53d8f26a233733b975def6628f",
+          "git_blob_sha1": "91392769549b54ccad531d88d08d8f10b384e740",
+          "bytes": 5577,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/deformable_decoder.py": {
+          "sha256": "b82bc9af31f8185553c7aff38ad276b26ec604c42e3a813955c92eaf59ceac6e",
+          "git_blob_sha1": "62e5ccdc6b5adb5e29ce720c12addbd600279fed",
+          "bytes": 13987,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/criterion.py": {
+          "sha256": "cbc5d014cce11d516398e29570f0cafacc38bc04adc94b2bc503d528ff5f1b94",
+          "git_blob_sha1": "c00e48dd8f3465bf89e624ec5f51e01f44d4b630",
+          "bytes": 24685,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/utils.py": {
+          "sha256": "36f59bff24a1d6333c119c12f91f512301ecdc39f59d0913f4dd4d131ea6a65d",
+          "git_blob_sha1": "8210bf94fd3e3da6a161e8d06fc4dbadc67e8d98",
+          "bytes": 7555,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "models/ops/setup.py": {
+          "sha256": "167e8f8ffa224514c1f195b5091b5ed6f7cfcabfe8b967719ddede3c402a103f",
+          "git_blob_sha1": "a0131bc21cf1b45b90fcf174e2c53e4c08e9c641",
+          "bytes": 2559,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        },
+        "structures/track_instances.py": {
+          "sha256": "332f8878de4e4f7f6d4b8d417f9037c16855ef2b60f4d975819a3c5ba2adc009",
+          "git_blob_sha1": "cace11f5405fb63f63f42d6f6a554fe121f8fc39",
+          "bytes": 5396,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+          "inspection_scope": "Manual targeted reading of long/short feature memory, confidence gating and active cross-track attention, query-native detection/identity lifecycle, clip loss/sampling, sequential submit path and checkpoint/license/CUDA requirements. Exact blob verification records these20read paths; no foreign code/model execution, pretrained payload acquisition or official result reproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/memotr_semantic_source_proof_v1.json"
     },
     "MOTRv2": {
       "name": "MOTRv2",
@@ -6100,7 +6424,7 @@
       "name": "DiffMOT",
       "github": "https://github.com/ShuCvlab/DiffMOT",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DiffMOT",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "eada72e74e54c153b30674d277b97882edc568b8",
       "origin": "https://github.com/ShuCvlab/DiffMOT",
@@ -6137,19 +6461,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DiffMOT",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "eada72e74e54c153b30674d277b97882edc568b8",
@@ -6302,7 +6614,199 @@
           "acquisition": "VERIFIED_EXISTING"
         }
       },
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[DiffMOT: A Real-time Diffusion-based Multiple Object Tracker with Non-linear Prediction](https://arxiv.org/abs/2403.02075),CVPR2024, targets nonlinear pedestrian/dancer/sports motion using decoupled history-conditioned diffusion motion prediction. This is genuine learned motion prior work, not a fish-specific identity model. Published HOTA/FPS on DanceTrack/SportsMOT/MOT17/MOT20 and RTX3090 detector settings are author benchmark claims; this audit does not reproduce those systems or substitute their FPS for IR-MFT measurements.",
+        "code_and_pretrained_license": "Top project LICENSE is MIT2024LVWEIYI. Read vendor FastReID and YOLOX LICENSE files are Apache2.0, deep-person-reid is MIT2018KaiyangZhou; acknowledged DDM-Public/Deep-OC-SORT and untouched vendor parts retain their provenance rather than automatically inheriting top MIT. Public release motion, detector and ReID checkpoint links do not independently establish exact payload hashes/exposure/reuse terms. No pretrained assets acquired or reference code copied; isolated lawful motion adaptation can avoid changing vendor detector/ReID/lifecycle.",
+        "entrypoints_and_training_inference": "main.py loads YAML/EasyDict, creates DiffMOT and selects train or eval. _build always builds model, GT-based train loader and optimizer even for evaluation. Training uses Adam1e-4, DataParallel GPUs0-3, shuffled trajectory-window batches2048/16workers,800epochs. Eval loads ddpm checkpoint, loops per-frame detection text/cache features with a fresh diffmottracker per video; image read is commented and update called with img=None. It is a cached tracking entry, not the full detector+encoder raw path. Declared seed is not applied in read entry/training and scheduler is constructed but not stepped.",
+        "core_model_files_and_shapes": "D2MP generates four normalized cxcywh deltas from five historical8-D [box,delta] records. History_motion_embedding projects8->256, six8-head Transformer layers with a appended learned CLS token; actual output selects en_out[0], not appended CLS. HMINet conditions MFL gates on256history+[log(t)/4,sin,cos], expands4->128->256->512 then two3-layer4-head encoders at512/256 and contracts256->128->4. Those head encoders receive length1 tokens, while the history encoder genuinely processes the historical window. This is not full-set N-byM ID competition or anatomical/local appearance JEPA.",
+        "loss_and_positive_negative_construction": "Preprocessing writes per-ID normalized center/size GT rows after mark/class filtering. With interval5, dataset sets internal interval6, forms five8-D conditions from six past rows and supervises next-row delta4. It assumes row adjacency without validating original frame-ID spacing; no temporal gap conditioning or fish-ID/cross-fish contrastive sampling. D2MP_OB trains continuous t in[eps,1], Gaussian noise, C=-target_delta, noisy x=(1-t)x0+sqrt(t)e; predicts C and reconstructs noise. Weighted SmoothL1 terms use(t²-t+1)/t and(t²-t+1)/(1-t+eps), averaged; active weightTrue, no EMA/JEPA/noID target. augment is assigned but not consumed by read dataset.",
+        "pretrained_sources": "README links motion models trained on DanceTrack800/SportsMOT1200/MOT17+20combined800epochs, YOLOX detector weights inherited from ByteTrack/DanceTrack/MixSort, and pedestrian/dancer/sports ReID from BoT-SORT/Deep-OC-SORT or authors. Public GitHub releases/GoogleDrive cached embeddings remain unacquired. Eval strips module prefixes from checkpoint['ddpm']; training saves epoch/Adam state but no RNG/loader state and has no matching resume entry. There is no verified fish/IR exposure claim or exact-resume reproduction from these declarations.",
+        "future_information_and_online_path": "Tracker predicts active/lost tracks before association from their own past observed/predicted conditions, updates matched histories afterward, and appends its own predictions for absence. No future image/GT enters read online update. Dataset's next-row GT is training supervision only; row spacing assumptions still require explicit cadence validation. Default multi_predict_diff calls sample1,bestofTrue: Gaussian x_T remains an input to the denoiser even though the reverse route forcibly uses one step and final transition noise has zero variance. Hence repeated inference needs seeded RNG controls; stochastic sampling is not evidence of noncausality.",
+        "GPU_CUDA_dependencies": "README Python3.9,torch2.0.1/vision0.15.2 plus requirement.txt einops/EasyDict/numpy/lap/cython_bbox/torchreid/FastReID. Motion/feature paths use direct .cuda(), optional hardcoded pedestrian ReID paths, and np.float/np.int aliases incompatible with modern NumPy. No CUDA/reference execution occurred. Read Timer uses unsynchronized wall time around loading cached detection/tracker update, excludes detector, image encoding and final cache/result writes. Public FPS table cannot prove ProtocolC all-frame costs on this workstation.",
+        "IR_MFT_compatibility": "Adapt only learned box-delta propagation first, keeping V3 proposals/RGB encoder/native high-low association/lifecycle/output thresholds fixed versus KF/UKF; separate any changed association from motion gains. Full DiffMOT combines IoU plus margin-weighted appearance/high-low association0.1/0.5/0.7 thresholds and30-frame lost buffer, so direct full-tracker score comparison confounds those choices. Cache key validates only feature row count, not identical bbox/order/hash. Default EmbeddingComputer dataset is 'dancetrack' while uncached initializer accepts 'dance', and img=None cannot crop; disclosed raw-path repairs and input parity are necessary.",
+        "mechanisms_to_port_and_exclude": "Port independently licensed history-conditioned next-box-delta learning as a D control, compare a matched deterministic regression Transformer and small nonlinear predictor against same-window KF/UKF with fixed sampling seeds. Validate real frame intervals, missing observations, short-history repeat padding, normalized width/height and prediction accumulation. Exclude official cached FPS as raw performance, mismatched pretrained ReID/data, unchanged vendor lifecycle when claiming isolated motion contribution, GT at inference, and old checkpoint resume claims without RNG/optimizer-producer checks. No fish anatomical visibility or ground-truth turns are supplied by this source.",
+        "novelty_overlap": "History-conditioned learned nonlinear fish propagation, one-step diffusion prediction and confidence-adaptive motion/appearance association overlap DiffMOT and cannot alone establish a new contribution. EvidenceFishMOT must demonstrate that independently trained motion helps observed fish trajectories under same detector/features/lifecycle and allfold/seed validation, and keep it distinct from dense local identity evidence and joint competition. Source audit supports selecting and fairly adapting this strong motion prior; it does not establish a transplanted model, positive MOT improvement or complete-system speed."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "c6aac7c1360698477f9f3413bbfac61704ca11982faffcf67656478670d65e32",
+          "git_blob_sha1": "238a4f1e23b407f88130c2ce8572e33250d0835a",
+          "bytes": 8788,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "LICENSE": {
+          "sha256": "7b6e8bf666ca922ab03280d0e68223c638fc1193f80aad091990786e78b385ec",
+          "git_blob_sha1": "c9c1c7355b9a5ee917d208b16d76b6bc9495608a",
+          "bytes": 1064,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "requirement.txt": {
+          "sha256": "de1b1c33e1fa05565fb601444567c3338a6fa2fd17b144008be2ece713c12ff7",
+          "git_blob_sha1": "c28143e05f99f7b7cd8b342a8a790aa4d16f344a",
+          "bytes": 106,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "main.py": {
+          "sha256": "afc99ed01bf96a202edc6a8191349bb5f6c51fbddfe2519dc6a89db5ab4a6250",
+          "git_blob_sha1": "618b33af6929b072fe78da0458a4269265647728",
+          "bytes": 770,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "diffmot.py": {
+          "sha256": "2937af6b1240fc397013849800a04acd7c3c85d4731670f5d9bdbe49867faaea",
+          "git_blob_sha1": "a6f5920af64c88c518742fcca92c4f4e5d372fb5",
+          "bytes": 7579,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "configs/dancetrack.yaml": {
+          "sha256": "ce3e71559cc1c3a86062596bc919a8d081d4ec08ee16ffa8b92b6278e188e691",
+          "git_blob_sha1": "fb58fd7a249838450559935ac94fc88bdfd19460",
+          "bytes": 734,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "configs/dancetrack_test.yaml": {
+          "sha256": "765321f43b74b0240430fb982df0180199f4c85212a6c2c81f4d48b9aff5aaeb",
+          "git_blob_sha1": "2ccb334700cbe6b4e3b12b0430c57bc37d7b28d0",
+          "bytes": 734,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "dataset/dataset.py": {
+          "sha256": "db795a658e43a4020197f47fd87962c9a93da276cd95996756f813477625b60a",
+          "git_blob_sha1": "6ce90545746211f42d6337a1afce467fb4083491",
+          "bytes": 3310,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "dancetrack_data_process.py": {
+          "sha256": "576e7dfea13542e2084fdc398217ae5c4f4ce4c96a729bfdbf6ce102cb247990",
+          "git_blob_sha1": "5f0c672b8d1c48c0d5c06d2bea915787ff629b62",
+          "bytes": 1559,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "models/autoencoder.py": {
+          "sha256": "1d03898e8b0a295877133e64a9c863f43e9f02a3714a2df66bcb350869a67b81",
+          "git_blob_sha1": "8df1a52af1f5f36adc03bffaae4e1d8f5b64ebd4",
+          "bytes": 1940,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "models/diffusion.py": {
+          "sha256": "8866d6163be7fb57c04621e3cc06cd91b4accf6ca28e12aa9d711eee39c23366",
+          "git_blob_sha1": "da2d6ecc28d1cffda33cbd9c0025326b2f0d48a3",
+          "bytes": 9092,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "models/condition_embedding.py": {
+          "sha256": "fd6a695bf26ac1fb48526fd61430c035c4295928c4b875762e87c6600db79ec2",
+          "git_blob_sha1": "742781f04649ddb898e69ec6c44d2eb7bd124859",
+          "bytes": 5557,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "models/common.py": {
+          "sha256": "f41c5a97a01e0f3cce850b6b9f862fbf4f996c2e9c60fcf4836436ffacbccbd9",
+          "git_blob_sha1": "9c40e4127a39d9c50aa7ee1abbd39655cfaf45a4",
+          "bytes": 2671,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "tracker/DiffMOTtracker.py": {
+          "sha256": "1de9fff49514634147190a98b348d7dfb8c0f15f0b59af315b7cace080a5f764",
+          "git_blob_sha1": "7bc6618c9065dca490c2da688af8affc3e4ff0af",
+          "bytes": 17033,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "tracker/embedding.py": {
+          "sha256": "7ea227da5bb547bd353cd5befcc5c598e628e04c8a6f16d25236ea82726f4f04",
+          "git_blob_sha1": "ac459b5634c214473912df9b5c92800d8cc5133c",
+          "bytes": 7999,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "tracker/matching.py": {
+          "sha256": "cb9fbc512a48d7d165cc92aa498052d4e0f6cd03af0ba0e04831a5440b1fa491",
+          "git_blob_sha1": "0ac410186094fd14b0385bd82bb8dfe7b5e2c488",
+          "bytes": 7627,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "tracker/basetrack.py": {
+          "sha256": "e83b0676c5e46757c0ab1e253f392c6c234690d4dadfcfccc986b07d7bc21aae",
+          "git_blob_sha1": "a7130b5cc08ac55705c155594d0f2a1d09f96774",
+          "bytes": 950,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "tracking_utils/timer.py": {
+          "sha256": "2006ab8131dc67e70c90b6958af1efdf7c33c1441a4a2d5b5e91685bff51f0ef",
+          "git_blob_sha1": "e79f1a310b223fbdddd47f9df8a6f8ea64db7dbd",
+          "bytes": 1209,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "external/adaptors/fastreid_adaptor.py": {
+          "sha256": "e31e11a2da3b987b3623da5a63363292b27de1912cd5496be2bdf5c1072fd131",
+          "git_blob_sha1": "ab54d0ae459ee0e3e69bacb0d0603c16b74e262f",
+          "bytes": 1040,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "external/fast_reid/LICENSE": {
+          "sha256": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df",
+          "git_blob_sha1": "f632668fe3fa3d7727567d0324975f3e5c501413",
+          "bytes": 11347,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "external/deep-person-reid/LICENSE": {
+          "sha256": "3ac8ce2a83d170cb1c7c84152e0c1faca1f187794303514383960d2441716247",
+          "git_blob_sha1": "d2bcb88271ffbb1b7255fe202c562d590e91b533",
+          "bytes": 1069,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        },
+        "external/YOLOX/LICENSE": {
+          "sha256": "0ec3668d3274bcf29e8a29e9576d5a2cd96fc78d3c5bec4387355a796e5d9088",
+          "git_blob_sha1": "1d4dc763d3d33d3722c6d86054c01b8a459bb2ea",
+          "bytes": 11371,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "eada72e74e54c153b30674d277b97882edc568b8",
+          "inspection_scope": "Manual targeted source reading of actual history-conditioned diffusion model/loss/sampler, learned propagation, association/lifecycle and cached evaluation entry. Architecture shapes and active one-step stochastic route were traced, with declared licenses/weight sources and static compatibility limits. No foreign reference execution, model import, CUDA build, checkpoint or data download; paper headline performance is not reproduced."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/diffmot_semantic_source_proof_v1.json"
     },
     "HybridSORT": {
       "name": "HybridSORT",

@@ -42,3 +42,7 @@ MOTIP exactffc0e905 uses five same-frame candidate self-attention layers and six
 ## Additional eight source audit constraints
 
 SAM2 current predictor permits newly prompted objects during tracking but assigns caller-supplied IDs independently; its past-pointer-only option does not forbid future spatial conditioning memory. SAMURAI bundled legacy predictor rejects newly prompted objects after propagation and stores shared SOT motion state. Detector-derived prompts, per-track state, explicit conditioning-frame guards, lifecycle adaptation and measured full-set identity competition are needed before either becomes a MOT control. TFMFT released geometry tracker contains duplicate unmatched births; missing detector/query core is a source-coverage exclusion.
+
+## Additional three source audit constraints
+
+MeMOTR exacteb7a177 has cross-track memory attention and score-gated detached feature EMA, plus native persistent detection/track queries. It is a prior joint-memory mechanism, not a full N+1 IDclassifier. TCEI exact145d1b8 reuses MOTIP joint IDdecoder and updates entropy-ranked current/cross-video caches before row calibration. Per-video reset, video/row order, self-inclusion and fixed native detector/lifecycle require controlled adaptations. TCEI project license/train entry absent at pin; no source/weight transplant or executed official result claimed.
