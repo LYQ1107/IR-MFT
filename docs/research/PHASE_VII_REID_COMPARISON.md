@@ -125,3 +125,7 @@ Source-level TransReID/CLIP-ReID controls now audited at exact commits. The orig
 ## Completed fish-specific source controls
 
 FishMAE and Fish_Re_Identification exact Git trees contain no project LICENSE/COPYING; source execution/transplant and official weights remain excluded pending terms. FishMAE local pretrain loop accepts four arguments (correcting the earlier root-engine comparison), but the sampler does not enforce P×K, ReID omits patch positions, and raw versus nested checkpoint coverage needs verification. The AutoFish metric-learning source uses RGB still-fish retrieval, masked-background GT training crops versus full-rectangle zero-shot crops, variable pretrained versions and normalized-versus-unnormalized embeddings. Both require independently cleared same-input adaptations and causal physical(video,fish) evaluation; neither establishes positive native MOT gain.
+
+## Additional eight source audit constraints
+
+DINOv3 S16 exposes384-D current-crop features and spatial RoPE/Gram training mechanisms under a custom source/weight license; its patch projection drops nonmultiple remainders. No pretrained payload or fish retrieval was acquired. DINO-Tracker optimizes on the entire target video and selects anchors over future frames, so its published per-video method is excluded from strict-online identity comparisons. TFMFT declared transformer/128-D ReID dimensions are not verified implementation because its core modules are absent.

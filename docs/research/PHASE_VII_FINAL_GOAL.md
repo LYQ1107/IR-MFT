@@ -22,9 +22,9 @@ Current continuation: six-video47,751crop visual foundation, paired crop diagnos
 
 First-fold global/local backbone fitting now completes seeds0/1/2, with no retained outer gain. Epoch2fresh-process restart reproduces continuous model/optimizer/AMP/allRNG and metrics exactly. This closes that narrow engineering verification, not the full research goal.
 
-## Source audit continuation: sixteen completed field audits
+## Source audit continuation: twenty-four completed field audits
 
-Sixteen of30 references now have all11 source-level semantic fields and exact commit/blob/SHA reading proofs: ByteTrack, BoT-SORT, HybridSORT, DINOv2, I-JEPA, V-JEPA2/2.1, GOT-JEPA, CoTracker3, TransReID, CLIP-ReID, SU-T, TIDE, MOTIP, FDTA, Fish_Re_Identification and FishMAE.326listed source/config/license paths have exact provenance and targeted reading records; this is not an exhaustive every-line reading claim or official pretrained reproduction. Weight delivery, unverified derivative/data terms and execution exclusions remain explicit in REPOSITORY_REGISTRY.
+Twenty-four of30 references now have all11 available source-level semantic fields and exact commit/blob/SHA reading proofs. The completed set additionally includes M4FT, TFMFT, PFTrack, DM3T, DINOv3, DINO-Tracker, SAM2 and SAMURAI;470listed source/config/license paths have exact provenance and targeted reading records. TFMFT missing model/criterion/sampler modules remain explicit coverage exclusions, rather than verified architecture or training; this is not an exhaustive every-line reading claim or official pretrained reproduction. Weight delivery, unverified derivative/data terms and execution exclusions remain explicit in REPOSITORY_REGISTRY.
 
 GOT-JEPA's registered head5f382645 also contains newerGOT-Edit; the README's paper release84e9324317 was independently materialized from existing local Git objects into a new isolated snapshot. Both actor versions define the same callable twice and the active last body ends with an unassigned tuple expression instead of the earlier loss/statistics return. Target/context feature-extractor parameters are shared; noEMA teacher update is implemented. Its latent target is a256-dimensional tracking filter, not Kfish identity tokens. Static AST and canonical source proofs are external/hash-linked; no foreign code was executed.
 
