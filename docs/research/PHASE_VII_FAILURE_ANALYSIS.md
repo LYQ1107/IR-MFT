@@ -1,0 +1,13 @@
+# Phase VII failure analysis
+
+Status: IN_PROGRESS. Negative findings register discriminating follow-ups; there is no fixed failure count.
+
+The six-video actual-state rank decomposition reconstructs native GRU/geometry/confidence row costs within1.2e-7. Pure retrieval and actual association scores differ. On SN-015 native original row Rank@1 is62.2969%, near geometry-only62.3249%, despite pure GRU35.8450% versus FIFO62.3623%. This explains the fixed-row contrast, without proving unchanged Hungarian decisions or endogenous trajectories. SN-015 all-verified-correct histories still have FIFO99.5950% versus GRU52.6510% (2,716queries): contamination alone is insufficient. Appearance-region pool restriction raises GRU to84.5078% versus FIFO94.1110% (7,081different queries); denominator/pool changes are disclosed and are not a deployed improvement.
+
+Original temporal-training producer diagnosis used the exact lifecycle-fixed query manifest referenced by the frozen checkpoint. The initial similarly named pre-fix directory failed the expected manifest hash guard; it was preserved and not accepted. The corrected query source has sha256352d290b0c4a2e228cce46322ff803aa44928c5978db539d5c744e714f27b84a.
+
+On the original PF-001 pool, pure GRU ranks46.0896% on ordinary actual history versus96.8361% on AnchorRecent; clean FIFO93.2634% versus GRU60.3093%. On SN-015 the same comparisons are45.1092% versus28.3419%, and clean FIFO92.8724% versus GRU71.0101%. Fit/calibration exposure and original cutoff/pool differences preclude a causal producer claim. The ordinary GRU objective learned a scene/history-dependent correction, not uniformly better identity retrieval. Targeted next controls preserve raw/global/local identity evidence, test the same history/pool across representation changes, and evaluate joint competition independently of forecasting loss.
+
+The first full-frame warm-source extraction reached a zero-old-track snapshot and the inherited GRU rejected empty packed tensors. The incomplete v1 output and error log are preserved. v2 explicitly uses a0×512 prototype when N=0, preserving that frame instead of discarding it. The new decoder independently tests N=0, M=0, all-masked edges and one-to-one NULL decisions.
+
+Source acquisition TLS failures, bounded selected-source gaps, missing licensing and externally unverified pretrained access remain separate from algorithm failures. Every source registry entry stays semantically incomplete until its required fields are verified. FishMAE's sampler, positional embedding and training-entry defects are source evidence, not a trained baseline failure.

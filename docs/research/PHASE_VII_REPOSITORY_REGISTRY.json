@@ -53,9 +53,129 @@
         "training_entry": "train_mae.py calls train_one_epoch with4 args, while imported engine requires epoch and loss_scaler too and dereferences args.accum_iter",
         "checkpoint": "Pretrain saves raw state_dict exports and wrapped resume model_state_dict separately; ReID strict=False loader must not receive wrapped resume dictionary unchecked",
         "license": "No LICENSE/COPYING path in exact Git tree; direct source transplantation not approved",
-        "paper_identity": "README lacks a verified paper citation; paper year/title and dataset sampling/validation still unverified",
+        "paper_identity": "Publisher confirms FishMAE: A Masked Autoencoder based framework for long-term fish re-identification, Aquacultural Engineering114(2026)102746, DOI10.1016/j.aquaeng.2026.102746, and links this exact repository; full dataset protocol/weights/access still pending.",
         "reproduction_status": "SOURCE_ADAPTATION_REQUIRED_NO_EXTERNAL_EXECUTION"
-      }
+      },
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FishMAE",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "README.md": {
+          "git_blob_sha": "8c1e9dfeaed92ae03fedab4ab071dadca3ab06cf",
+          "sha256": "e3cb083752a7442a994ef55591b28549f0a3fe7c25f2205a158020b68810f34c",
+          "bytes": 1576,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/train_mae.py": {
+          "git_blob_sha": "8d5af934809c91e1372702a17964321dbf03a1cb",
+          "sha256": "138aa16da0effa9241aee83a47691ed14e3e02b3ddf11fc4a40ad156fa49018c",
+          "bytes": 3923,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/fish_reid_mae/loss.py": {
+          "git_blob_sha": "6d5aabaf38f0baa35f8a4a0b14753e230454f80d",
+          "sha256": "ee057b570fae36c3b3e94fefc03277e6dac43aa495eea965c6abc554b448778d",
+          "bytes": 1152,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/fish_reid_mae/model.py": {
+          "git_blob_sha": "d7eaddf421acf9226ffadd46c35d3318ea538507",
+          "sha256": "b7d80bc2ea3b22156c6314bb7d54aa7ba3466663f989889ffab8c80c3413f049",
+          "bytes": 1617,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/fish_reid_mae/sampler.py": {
+          "git_blob_sha": "aaeb570e2709eb37637ac7a1e64ae59d4811bd56",
+          "sha256": "c91cd055e0b16ffb2024f1df5ae9a2e162c5a0e2bfd725cad3e1e67b864cb705",
+          "bytes": 1294,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/fish_reid_mae/train.py": {
+          "git_blob_sha": "04c4c0f5600641f68c41952d6786b9824a8565de",
+          "sha256": "3284dfa117e91ecdf81144501d04b0a4ab1510ddfb204091a539a851bfb5d297",
+          "bytes": 5551,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "engine_pretrain.py": {
+          "git_blob_sha": "b4ce2eb6df0521a61f0e4ba66d5f77f82ccd6d66",
+          "sha256": "eca12065776e1139c13cceea9369dfe0f2dbc9eaae0c7c535ed2c9bcc0551ef9",
+          "bytes": 2562,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "models_mae.py": {
+          "git_blob_sha": "8f552feb8ba9bc55a6b7d6edbfc685afa0c19d72",
+          "sha256": "2756e3ae279088b782dd9683a2a22db65d490f716de3a5880301bb989a90c272",
+          "bytes": 9963,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/dataset.py": {
+          "git_blob_sha": "63b622a299c4aa3dd84e44266a9ae1b33c727eab",
+          "sha256": "c0e4d74b7ed4c80538eb7102a145871375d77d1262ce0cf6377893fdd38202f4",
+          "bytes": 639,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/utils.py": {
+          "git_blob_sha": "7f060ce463232f63e92b2b70a554b3cef912d75e",
+          "sha256": "75aa23af99de77e8a974caed037f2f56c6529f5c54f05d20aefe44d26800612a",
+          "bytes": 194,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/crop.py": {
+          "git_blob_sha": "2c4c6b99024c067f0313c65cf62651b559dc7646",
+          "sha256": "b58cc30b7d2ce4467ae89f508bdc808172cf759aee4044251d36e15c39e6e00f",
+          "bytes": 885,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/lars.py": {
+          "git_blob_sha": "6b7e4a907062061c69a30cac6b24b030fbe9f185",
+          "sha256": "64d2aad1abeed961dc3462a9f0ab53af2079d5695049a6aedc00b6a6fa0fd957",
+          "bytes": 1443,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/lr_decay.py": {
+          "git_blob_sha": "77db5acb90f868df3fa4fa4bf5728552c99cfa5c",
+          "sha256": "0c6e04038dab09394511cc831857a5413ffad0dc936361b2df4ac496fb04060d",
+          "bytes": 2017,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/lr_sched.py": {
+          "git_blob_sha": "e4ab743ddc905c86889cd0fa686ba2205ebe354f",
+          "sha256": "ef0b89200268d08a30ccf03a1307ed6e2661770bb3ce0fd9e8f8943fa0bf880d",
+          "bytes": 604,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/misc.py": {
+          "git_blob_sha": "cf2ba0c0808c88b0fb13ad25dac92d28f1e30ae7",
+          "sha256": "aa75a9bb6e14a49761eb58308cbc08c184e1526825fd36d8c92e818c2b41ebd7",
+          "bytes": 11001,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "util/pos_embed.py": {
+          "git_blob_sha": "75ae2e3fe02d3e0617782dd14ec75871e7ae5608",
+          "sha256": "a7ec0aa1572cec962f2302c4a4d4a85f04cf0c632df2c3dc2b561cbe202d10fc",
+          "bytes": 3138,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "mae-fish/fish_reid_mae/config.py": {
+          "git_blob_sha": "b5ebdf7779bc6778bf153dc0595534224fe81c69",
+          "sha256": "b4ec09ecdf3a304f1e6d12e3421ccaf647b1cc171d4d9ddb0e4c49c278db3e8e",
+          "bytes": 335,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "requirements.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "main_pretrain.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "mae-fish/config.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "mae-fish/engine_pretrain.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "mae-fish/visualize_mae.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "util/datasets.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "mae-fish/fish_reid_mae/data_split.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      },
+      "paper_primary_url": "https://www.sciencedirect.com/science/article/abs/pii/S0144860926000622"
     },
     "Fish_Re_Identification": {
       "name": "Fish_Re_Identification",
@@ -80,7 +200,121 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/Fish_Re_Identification",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "README.md": {
+          "git_blob_sha": "610834b197fa131b8524e7ad54a7cc665d0aa800",
+          "sha256": "13374bd1390279ea0de7ef75851512887508c837b6f896c92612c71d28eea343",
+          "bytes": 3082,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. Autofish_data_exploration/Readme.md": {
+          "git_blob_sha": "3f7d3c4699333985ac81553d074ce31cc342e382",
+          "sha256": "e87dbee55c7805ded01ba0c769e844e56dbc26387ed1b42b522e829814d7cee1",
+          "bytes": 18454,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. Object_detection_tests/Readme.md": {
+          "git_blob_sha": "b6f52cbf90f35ccd2488444f891b7a4882163a40",
+          "sha256": "03d03b7a980dd65e02c21b438016472490af93ab344bfef2f0d1645ae85dc760",
+          "bytes": 15011,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/Readme.md": {
+          "git_blob_sha": "e04334eee8134dcb9c56d9823b82bb9ed9f2b9cc",
+          "sha256": "00496c5422fefc0eb7e84e1048e3bcbf1e3444545b66952a36c8c494138c0560",
+          "bytes": 7554,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. Autofish_data_exploration/images/img.txt": {
+          "git_blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. Object_detection_tests/images/img.txt": {
+          "git_blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "3. Instance_segmentation_tests/images/img.txt": {
+          "git_blob_sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "bytes": 1,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/0_Prepare_gt_crops/Readme.md": {
+          "git_blob_sha": "24a11a475e05bcf4a751d5e773e2c9a910d880a5",
+          "sha256": "27adf4dc18e1e6a8130f5a887c95dab5b5fc8df5761dd92a193ce22eb5430ba5",
+          "bytes": 225,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/0_Prepare_gt_crops/prepare_gt_crops.py": {
+          "git_blob_sha": "18bc9126da330e48820c667a9a46ea7602a32a02",
+          "sha256": "9193ea6c7bd00ddefc9fb1f3aa854d70c31aff45d613035640e866eab7d6dd2e",
+          "bytes": 14282,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/Readme.md": {
+          "git_blob_sha": "e12cc1c8462c5ca8a061973bd8526cd44b2ca50a",
+          "sha256": "171f9554711f163a12c8524e532184b089f5c6fabf4d3485fb40f3e3491fe578",
+          "bytes": 253,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/swin_zero_shot.py": {
+          "git_blob_sha": "5794b38f7ed646afb6e0f69c40e4cbe59e3cb1a5",
+          "sha256": "98902bd2631e96126b37da8da582418c5c538e60e19ddd87578a859bbbb21bec",
+          "bytes": 10546,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/zero_shot_resnet.py": {
+          "git_blob_sha": "a15d273ac32bff086cb598088f070d8527df2fa7",
+          "sha256": "51a88e20602fb0cc708326da1bdb433b8525aa6cd3331522ffe188b4bdf78a84",
+          "bytes": 10512,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/calculating_custom_mean_std.py": {
+          "git_blob_sha": "44eccb8b057b41d802b88f4f95ce77e8f554e50b",
+          "sha256": "756bd5980ba0eac0f7c351b1926a6cfae4df3971c3f8b353e9e2812fae223986",
+          "bytes": 6666,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/dataset_rearrangement_for_mean_std_calc.py": {
+          "git_blob_sha": "cb5b9bb2f0aff67b043742e9ddeee14385fb43f9",
+          "sha256": "c3774164d3268509db73d471bd40d279b88ef67f43a5e26cf0b14164f8b85f49",
+          "bytes": 5010,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/3_Evaluating_on_test_data/Eval_test_data.py": {
+          "git_blob_sha": "92e9483f2f900d9228a14fd1667ddd9bb2f93562",
+          "sha256": "da968b57f4e2ace3bbe6db5170c856fba7c1d8f8580f84f7d1f355120ecd7202",
+          "bytes": 13940,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "4. Re_Identification/3_Evaluating_on_test_data/KDE_plot_combination.py": {
+          "git_blob_sha": "ba8a97820dc5cc1a4d1e3cbfa3049bfdb09429e0",
+          "sha256": "2574cd3c065687ac39b8917f2d3b5e5f86a39b6618b1bb4444670dc0e8722dfe",
+          "bytes": 13999,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "Ultralytics_README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "3. Instance_segmentation_tests/1_YOLO_segmentation_training.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "3. Instance_segmentation_tests/2_Evaluation_on_test_subsets.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "3. Instance_segmentation_tests/3_Visualizing_test_images_after_segmentation.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "3. Instance_segmentation_tests/Readme.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "4. Re_Identification/Related_Work_Concise.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "images/placeholder.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "4. Re_Identification/4_Subcategory_level_analysis/Subcategory_script_identical_scenario.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "SU-T": {
       "name": "SU-T",
@@ -123,7 +357,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/SU-T",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "TIDE": {
       "name": "TIDE",
@@ -158,7 +400,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TIDE",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "M4FT": {
       "name": "M4FT",
@@ -197,7 +447,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "b120e568c07145891e043675892890ed9fe9279d",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/M4FT",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "DM3T": {
       "name": "DM3T",
@@ -236,7 +494,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "662790ba213b4460f19a1bdbefb9714416eb2b5c",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/DM3T",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "TFMFT": {
       "name": "TFMFT",
@@ -271,7 +537,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "d4fbcc0d4df685cc01f5f5d7c9510601a1c9e5b2",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TFMFT",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "PFTrack": {
       "name": "PFTrack",
@@ -310,13 +584,21 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "73d4dc4c5e69e530f7a77d974bff7d2040720728",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/PFTrack",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "FDTA": {
       "name": "FDTA",
       "github": "https://github.com/Spongebobbbbbbbb/FDTA",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FDTA",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
       "origin": "https://github.com/Spongebobbbbbbbb/FDTA",
@@ -335,7 +617,188 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FDTA",
+        "status": "SELECTED_SOURCE_COMPLETE"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "4d100d791c01c18f01284a2801029ef6428be607",
+          "sha256": "c7c92e8a08363662699383204de31b0bd167c300a3c853c1254a45c18a97885d",
+          "bytes": 1067,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "README.md": {
+          "git_blob_sha": "7ae60c79382ece27b2e4dd818275e963ab8d8639",
+          "sha256": "3305792c4f596405da12a9681370052e141f76f54109d7711a3319de84b621a5",
+          "bytes": 6548,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "acface7f71950fde4e89c535040e948e8c7d42ef",
+          "sha256": "de1f4525e832d18c397163d482d02dfe1fcac800498132f629d93803da87ece4",
+          "bytes": 137,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "train.py": {
+          "git_blob_sha": "6e7d05e1cb2224a190a7f9d054b43e932bf3e262",
+          "sha256": "c18d2ee52b5ceb982eef552312c71795de9cb1c608b6a5edd5e9ac38139aa991",
+          "bytes": 37356,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/fdta/id_criterion.py": {
+          "git_blob_sha": "fde911c95c7d6bfaed68059ed82d2ff020871520",
+          "sha256": "7e10c12fac33b97bc52f9bff99f0a45c1b51573b2f409dc1cf96f7506e3d531d",
+          "bytes": 3309,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/fdta/id_decoder.py": {
+          "git_blob_sha": "f5e514bc044ee0a59a38af95897a4edb6825dfe8",
+          "sha256": "40548b80ea79cc17d22e3b45150f611ee1089b47bf2413ea62354c39d7b207f2",
+          "bytes": 12656,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "runtime_option.py": {
+          "git_blob_sha": "0c26f22cbf79ea91c23489e3c7813ac598af0bed",
+          "sha256": "1eddd465cebdf2646b23ec9c173da812b1122e50a8726d1dcde74f533ba5d3ad",
+          "bytes": 4877,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "submit_and_evaluate.py": {
+          "git_blob_sha": "310e1312e7206a7c56cb84ae5dabcc4c7759d5ac",
+          "sha256": "8d7568593f9d218a83a3967cf36e29e5a6c26b3cfd49c010e2e7d094283333e0",
+          "bytes": 16168,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/__init__.py": {
+          "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/bft.yaml": {
+          "git_blob_sha": "aa38a247af541b054ab5b4e82f23c4d0dadf519f",
+          "sha256": "0fd68bb47b354731f4c9f4bb766a0b1390f5a8b2a09cae4bb0aa902515545cec",
+          "bytes": 476,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/dancetrack.yaml": {
+          "git_blob_sha": "6768fb079891cf61418bf223cc7dc7cf96a9202c",
+          "sha256": "6031d96e5917961b66edcf6a83620eae45368d449b6a6f060e884620ae7d41aa",
+          "bytes": 3524,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/sportsmot.yaml": {
+          "git_blob_sha": "541ebacbc3d9fab45e6137945682fcd3366a3238",
+          "sha256": "bdc06f995eb6e872ee249d44ec68e28a40bd6df6faf49ee745f5c6bbaa7e5420",
+          "bytes": 403,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/util.py": {
+          "git_blob_sha": "e0f16e5ae2eb6ae44468aadd2ededdee6bd4e3af",
+          "sha256": "640640e40391efa4535ea537c6d0248ed381926b8504746681504c6cedb7b22b",
+          "bytes": 3075,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/__init__.py": {
+          "git_blob_sha": "e174c58dc331adacaffc16be6e6db68404e0d34c",
+          "sha256": "7f03eff57105f5d57e5b3a1d432031d165d1269bddcb1c6c075e1d80ae205bb5",
+          "bytes": 698,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/bft.py": {
+          "git_blob_sha": "797c96d6167be73841a3dde89b97d39c8c512d1a",
+          "sha256": "2650379a2fbd55eac5fdf891b68e5182e594f0aac40205f7682c1ebc3d3ea5d4",
+          "bytes": 1495,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/crowdhuman.py": {
+          "git_blob_sha": "5a2e7321b19b8e096a1ea9cfa647857e90712458",
+          "sha256": "4dd4bbd0f16f5f5fb46dabb1dc6197178160eb70dc05d740c3454462cbbb9596",
+          "bytes": 3559,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/dancetrack.py": {
+          "git_blob_sha": "a5ccf4d4d7867be7f8e3ff2fee51c138299ea6af",
+          "sha256": "fbde7498a00dc0a8d7e153055f7b9e0959da8de617a8255665c8ee0c52b9752b",
+          "bytes": 4609,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/joint_dataset.py": {
+          "git_blob_sha": "0d618c97e88d947b44f6e4c8fa7fe28324b2f22d",
+          "sha256": "ad97730f23412123465067bb44733f31ca545a9238d67b426b3559dd8e2d3659",
+          "bytes": 8938,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/naive_sampler.py": {
+          "git_blob_sha": "c415642e14deae80705045cc261c9e0b76561e76",
+          "sha256": "1feb108846c50abfee2bcd804385e0069c3cdad458cad5a52a647ad672d86fc9",
+          "bytes": 6822,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/one_dataset.py": {
+          "git_blob_sha": "124c7dd8aaa1cca4bbf15ac887b609bec94fa768",
+          "sha256": "5dbe660cd0cb81f4664c7a5d23699318b51ff9708361b9be4948290d2243bce7",
+          "bytes": 794,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/seq_dataset.py": {
+          "git_blob_sha": "ca48a14baa303125e59ce0308404133f2a69ac52",
+          "sha256": "ff5c37bf0d7fb2c4bd605d50ef53babc1777bfd69b2f4a86f200c30fc6501429",
+          "bytes": 1600,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/sportsmot.py": {
+          "git_blob_sha": "44f7cdc15e01eb2a32a6e510a30e20de5fb6bb82",
+          "sha256": "9442d21206780eab91b95be04b8e8fa2f06bbcd445a7dd4836e1a1b9389e88f6",
+          "bytes": 654,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/transforms.py": {
+          "git_blob_sha": "4834adaecb5fd61ec8598f836f8b84e1d89d97f0",
+          "sha256": "88fc6a6eb2610f5f096308121133085d5b1162d612234dcf4f3eb85649ca1508",
+          "bytes": 31081,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/util.py": {
+          "git_blob_sha": "1d66ab044006290f4444a5d4f89720e71f2552e4",
+          "sha256": "84605f04ae8f0dbe9cc5183962be807db0bc5f28e874ac28baba87fdeb93ab44",
+          "bytes": 5386,
+          "acquisition": "VERIFIED_EXISTING"
+        }
+      },
+      "source_http_missing_files": {},
+      "paper_primary_url": "https://arxiv.org/abs/2512.02392",
+      "inspected_findings": {
+        "source_files": [
+          "train.py",
+          "submit_and_evaluate.py",
+          "models/fdta/fdta.py",
+          "models/fdta/Temporal_Adapter.py",
+          "models/fdta/trajectory_modeling.py",
+          "models/fdta/id_decoder.py",
+          "models/fdta/id_criterion.py",
+          "models/Spatial_Adapter/depth_predictor.py",
+          "configs/dancetrack.yaml",
+          "configs/bft.yaml",
+          "models/runtime_tracker.py",
+          "requirements.txt",
+          "LICENSE"
+        ],
+        "entry": "train_engine/train_one_epoch/prepare_for_fdta; submit_and_evaluate and RuntimeTracker.update",
+        "shapes": "B=1 default; trajectories[B,G,T,N,256], ID256 concatenated ->512; vocabulary50+unmatched; TA6layers8heads; DanceTrackT30/interval4, BFTT20. Temporal_Adapter squeezes batch0 and assumes B1.",
+        "temporal": "TAcausal lower triangular plus missing-frame mask; IDdecoder rejects memorytime>=querytime. Current runtime embeds detections before history update.",
+        "loss": "Detector CE/bbox/GIoU/depth/contrastive plus masked ID CE or focal; contrastive quality weighting source trace pending.",
+        "license": "Top-level MIT copyright2025YuqingShao; inherited MOTIP/DeformableDETR/TrackEval notices and depth/weight licenses still separate.",
+        "pretrained": "COCO DeformableDETR/MOTIP release paths, dataset-specific adapted weights; depthmaps generated externally by VideoDepthAnything. No new pretrained downloads.",
+        "dependency": "README Python3.12; torch2.4.0/torchvision0.19.0; compiled models/ops multi-scale deformable attention and accelerate. Existing torch2.0 environment is not declared fully compatible.",
+        "compatibility": "Full detector/depth/trajectory system differs from fixedV3 RGB512 proposal encoder; independently adapt temporal/identity refinement only after matched controls. Depth is not an IR substitute or free online precomputed input.",
+        "novelty_overlap": "Explicit spatial/temporal/identity refinement and instance contrastive objectives overlap broad evidence-learning claim. Mere adapter naming is not novel.",
+        "status": "UNEXECUTED_PARTIAL_AUDIT"
+      }
     },
     "TransReID": {
       "name": "TransReID",
@@ -360,7 +823,96 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "dec55046fcdfadee14e2c28e2df89305d8f7557a",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TransReID",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "README.md": {
+          "git_blob_sha": "de0abb48c3875a9ad47c0ec2a5aaf479f55f5483",
+          "sha256": "591a7f094eb4dd685eccc80d4722b7d1cec7ff8855371e7264be751bc6aa27c7",
+          "bytes": 14079,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "576940f1227655f4e72913ff2b023562580bb0b6",
+          "sha256": "c2d94b5c4a29e0dae66697c91a03edffc09a2e1d8cfac9d5babcf440b835e5dd",
+          "bytes": 41,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/sampler.py": {
+          "git_blob_sha": "7584cf11286e44bc0ef152f519026554b4a1c131",
+          "sha256": "9616ea253ce9e3c691c1abc198921e33733a0d59c0a34eee97e2e7e7d433e6bb",
+          "bytes": 2433,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "test.py": {
+          "git_blob_sha": "ab9051523a8fa2edaad0d95f20ad0fc9b8750868",
+          "sha256": "d6e75caa83f74fa6fe24dd7221ff4a6268bdefa1d0d3bd8d4b8c5ae9a2256f53",
+          "bytes": 2389,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "config/__init__.py": {
+          "git_blob_sha": "beb7171f6895d7d8bed5dea8766cdfdbda0f14d3",
+          "sha256": "9114eb48d58a5005687c212d10473a8402f277e7b2d1cbcdde553a0a0aa6bfde",
+          "bytes": 150,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "config/defaults.py": {
+          "git_blob_sha": "6d20acac597eeb453f57d3045e6c49d05389e7ce",
+          "sha256": "0aed2d175d83ff287070b4ca6dba6fb52f651adc787740ee7ce041858d53f2b0",
+          "bytes": 6411,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/transformer_base.yml": {
+          "git_blob_sha": "ea2662d2a238d9f90f47137e0d1477d5e6be9b8e",
+          "sha256": "f9ad40f69bbb5f5b9600b64e386c8fc11345304f5f70e80f9234765b8c8e6f96",
+          "bytes": 1084,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/make_dataloader.py": {
+          "git_blob_sha": "c1f2c17432b43723273432f277152bda06d759a5",
+          "sha256": "5c7fbfa5bde9fcf7e6386dd7ebf2497fdbc37ed843b5152b43f6eadaf48742c6",
+          "bytes": 4419,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/veri.py": {
+          "git_blob_sha": "3568cbda6935eb7f6c73be6b269fc641aba63b16",
+          "sha256": "b4d6a460da8294d91cf1ade31e1fe5118ba3543db7a55be66bf5b9ebed813013",
+          "bytes": 4725,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "loss/__init__.py": {
+          "git_blob_sha": "fe858c53af4fa64946f885bf049d90d8676cd58e",
+          "sha256": "03b27435083e2e46aa89ab601bd8ef2274211516fc8b9996449aec6d28f4f4df",
+          "bytes": 61,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "loss/arcface.py": {
+          "git_blob_sha": "2d5005a77c13089f12d320e50c7cfa0b76249fe3",
+          "sha256": "3803794a420e4c5d565e6d06415a816889df0ec10b687f8837cc61c6f6cbf46a",
+          "bytes": 2975,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "LICENSE": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "train.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/bases.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/dukemtmcreid.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/keypoint_test.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/keypoint_train.txt": "RuntimeError(\"ValueError('Public text blob exceeds acquisition budget'); ValueError('Public text blob exceeds acquisition budget'); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/market1501.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/msmt17.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/occ_duke.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/preprocessing.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/sampler_ddp.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/vehicleid.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "CLIP-ReID": {
       "name": "CLIP-ReID",
@@ -385,7 +937,116 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "eb1898b72c882875f478bebfc6d41644eece0a5d",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CLIP-ReID",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "685c6de995874ffffbbfa548e2d4927b2ae73a29",
+          "sha256": "418d11035badfb4f4c15f8936dcaf1eb2256339b4f32011555acded8e3f34cf7",
+          "bytes": 1065,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "train.py": {
+          "git_blob_sha": "098adc2c6b717daa4eff065f4905882fff3e8088",
+          "sha256": "0cf1335cdc95bf35beaee6fbe6a1cbcd3c0da79755e709695f600b8df80e309a",
+          "bytes": 2928,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/sampler.py": {
+          "git_blob_sha": "7584cf11286e44bc0ef152f519026554b4a1c131",
+          "sha256": "9616ea253ce9e3c691c1abc198921e33733a0d59c0a34eee97e2e7e7d433e6bb",
+          "bytes": 2433,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "test.py": {
+          "git_blob_sha": "8c18cd2abcd6c4b6e6b9a6e90124df23c4778e9c",
+          "sha256": "ef05ad08ab73252dcd702ee49f611bd16552ee482920b19f95146aa15bfa69a0",
+          "bytes": 2580,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "test_clipreid.py": {
+          "git_blob_sha": "f26e1a9d8b140b596902d54f320363b62715e4ac",
+          "sha256": "ac3e3f13a81aef0ed19497032f398ba2419960cf6b08a0c651c54495b836c182",
+          "bytes": 2606,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "train_clipreid.py": {
+          "git_blob_sha": "f06009e885ff3756be8fcb20dd6572c7ab61bcf5",
+          "sha256": "27e8d136995a0bf71c42232351ad2c7ad17cf2b288f3d16c29bc538cdde37d9d",
+          "bytes": 3661,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "config/defaults.py": {
+          "git_blob_sha": "3510be74904cc2f2a312207ad5d9c945b4e8a491",
+          "sha256": "642c0cb456f53975c5f91854eb2ca86ee72a65e7e23903358ad43f85ff8ce7c2",
+          "bytes": 7907,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/bases.py": {
+          "git_blob_sha": "aa309980753920743cec5200007b5a3631f18e84",
+          "sha256": "5c26cac5e1e93d675eb60e938e978cf304a150c615853fbe628270d774602fdb",
+          "bytes": 2858,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/dukemtmcreid.py": {
+          "git_blob_sha": "aef625f3d98394c9dfab309b07af70a0f8ef649e",
+          "sha256": "83d3aebcc4e176525a405737ceeda4c32c823600ad7f5edd0344a2309d465593",
+          "bytes": 4269,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/make_dataloader.py": {
+          "git_blob_sha": "65838291c0f2ab116afa916999208720ff4839b8",
+          "sha256": "a0ddf68c78a7e90fa0f6018e93588fe900caa099e57479c8cdbad7bd5e7821bc",
+          "bytes": 4423,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/make_dataloader_clipreid.py": {
+          "git_blob_sha": "af5a7811115e708d54846c11427b44c7629fd643",
+          "sha256": "1d8a5be7713f64db55f6f495ea8d7644f8445d141fe7447c91e0b100ca83d389",
+          "bytes": 4496,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/market1501.py": {
+          "git_blob_sha": "37665f6c70def18c6fb8af4f4c122ef31fbc9340",
+          "sha256": "e9859bf35cb0b706d391adc0b35999a8968a70c30d5ad57220eef8d8c0ee423b",
+          "bytes": 3428,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/msmt17.py": {
+          "git_blob_sha": "ce6221aa871ae9dc302744399b479ec84ac71170",
+          "sha256": "20f3fcf82fb24ef6ace2753827a6709f4c8d8fe41fa4a3e203f08db417a9310c",
+          "bytes": 3437,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/sampler_ddp.py": {
+          "git_blob_sha": "d3376b4ce17116122203c1887aacaea6c8b2df44",
+          "sha256": "6df5e437293465a6b8068e5324889d229576d90fda1a9e13d6546c0d1c3e1e1e",
+          "bytes": 7050,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "datasets/vehicleid.py": {
+          "git_blob_sha": "5818917a437dbc8b6c359e5bfdc0b659ccd0084c",
+          "sha256": "22515d6b7f6dc11abbee6b174c92d6d544303f364fc7f95d38b340dedc22f07a",
+          "bytes": 6445,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "model/clip/model.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "config/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "config/defaults_base.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/keypoint_test.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/keypoint_train.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); ValueError('Public text blob exceeds acquisition budget'); ValueError('Public text blob exceeds acquisition budget')\")",
+        "datasets/occ_duke.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "datasets/preprocessing.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "DINOv3": {
       "name": "DINOv3",
@@ -420,7 +1081,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "6876159a11b4df116f30f667f8c9888617df0751",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/DINOv3",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "DINOv2": {
       "name": "DINOv2",
@@ -471,7 +1140,160 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+        "status": "SELECTED_SOURCE_COMPLETE"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "5471dc10377b76db85a2feca7a99a7eef4980ba8",
+          "sha256": "600cc67cc4cb2f5ea317dcfc687ad1c74dc4bec8782bbe9db0afd83513b935b7",
+          "bytes": 11359,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "LICENSE_CELL_DINO_CODE": {
+          "git_blob_sha": "102013379aa9a5215236b66d418771a239e57470",
+          "sha256": "fe7b4ce83b8381cc5b216bbb4af73c570688d1b819c73bbaed8ca401f4677cd6",
+          "bytes": 18655,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "LICENSE_CELL_DINO_MODELS": {
+          "git_blob_sha": "284ebaf6583e817b65a47e824bb15ef5ff7070aa",
+          "sha256": "d779b47a4ef8bbfc6c90d14768fe6a0a2c1c08bbc3712084496058bfd83cef4f",
+          "bytes": 11487,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "LICENSE_XRAY_DINO_MODEL": {
+          "git_blob_sha": "0561abf417f16f579987c7d4a0340005b2fee0fe",
+          "sha256": "ce9efad90c86b5697e1783e56e3c936f6bd23c568c1166ecf07805b65d0891ad",
+          "bytes": 9878,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "README.md": {
+          "git_blob_sha": "906cd08c55b33306da438df3da837c0f9bf94ff0",
+          "sha256": "d1bc2e9686522bbd66ed6123dc81eb36b3a98e8ea9a2ca97778f54a1c641c9e1",
+          "bytes": 32799,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "hubconf.py": {
+          "git_blob_sha": "da2acfebb30032977903944fbb3fbdfcaad36d5c",
+          "sha256": "c1f5090e78ff940b72c076d2bf9c0310d1707c946b3d10e2d6f2b0bdf56a6f64",
+          "bytes": 1126,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "04c159c443b89330ff3c84257c41b011f9791257",
+          "sha256": "553faa42e1ad3975631e46df26bcfd76ec3add6beacb9ede3f8ef22393f5eefc",
+          "bytes": 213,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/train/train.py": {
+          "git_blob_sha": "4e86b8daaff01e32acd1f30edcfd65aed03df4db",
+          "sha256": "04c4829d6cb428df546536cba4b2a313fae38bac084abf82758bf69483b03e89",
+          "bytes": 11075,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/run/train/train.py": {
+          "git_blob_sha": "c2366e9bf79765e6abcd70dda6b43f31cb7093eb",
+          "sha256": "b469e29aaa460e509d52f19c787aad50963265d242200cad5f9ee3ce85938ba5",
+          "bytes": 1665,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "CODE_OF_CONDUCT.md": {
+          "git_blob_sha": "3232ed665566ec047ce55a929db1581dbda266a1",
+          "sha256": "b161b3e2ec4712ebf69efc38ef796d2c701a323aac51cf11759d38e9c56c39bd",
+          "bytes": 3537,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "CONTRIBUTING.md": {
+          "git_blob_sha": "afc89823fc90b920f0758f50e4d808df6a884a34",
+          "sha256": "4732808845ea471137308b5fbaa7e35c1f3c96113f2fbdf8a0ec6b00d91559b6",
+          "bytes": 1239,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "MODEL_CARD.md": {
+          "git_blob_sha": "21b9bf295c8cab14e782e1a7a1d051be9e501088",
+          "sha256": "70ca59606bee0a5fbb1baec80e7e29a93cd7cfbe26ca1910c52a852c4aab09d0",
+          "bytes": 9152,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "conda-extras.yaml": {
+          "git_blob_sha": "71574c4d32e31c1e134ffb2102daa86a14867bb8",
+          "sha256": "14b710eedcad4c36d480cf8852bf8862d77aed8038de21dec538704953205394",
+          "bytes": 495,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "conda.yaml": {
+          "git_blob_sha": "35dfc30adc275da51b58ff2340dd1d53d2cb9250",
+          "sha256": "4806691bed328df4460ba60b4f2be549529a414bd9137867a7c1cc600b218f21",
+          "bytes": 436,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirements-dev.txt": {
+          "git_blob_sha": "5cad34c34cde3a182b616d68b168588827eb9b7c",
+          "sha256": "fe970368414b041da0776bacee267fd633a30b23d82052f9071c29cf936a041d",
+          "bytes": 43,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirements-extras.txt": {
+          "git_blob_sha": "ac75fb3eace10f58fa6b5bc373f24358394141e5",
+          "sha256": "1b3750ae8652a54863a2d6d7d0c708f6b7ced787f57c951aa11f1a9444feaacd",
+          "bytes": 40,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "setup.py": {
+          "git_blob_sha": "daa9d6322fc3a451d2a07038ffdb9eea709e96bf",
+          "sha256": "8ec72d3be027aee099a7b7b1c36c874be6d7ade4dd9eb69baff3975b586820ae",
+          "bytes": 2751,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/__init__.py": {
+          "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+          "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe",
+          "bytes": 218,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "docs/README_CELL_DINO.md": {
+          "git_blob_sha": "f9620e57f00c94f6bcd36d4e490215932e49774c",
+          "sha256": "b9ec5771aaa41d571f5c2b54300a7f8bf7ab5d75f7679d2a80f260247a71d42f",
+          "bytes": 6745,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "docs/README_CHANNEL_ADAPTIVE_DINO.md": {
+          "git_blob_sha": "4978a0ca1e9ea23f0787c34b511eaa26b511df6c",
+          "sha256": "d15b88dbf5be7c1e4ec0a5062e33e4ad9c654f7256ec3fb02246a077d74b32ee",
+          "bytes": 6648,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        ".github/workflows/lint.yaml": {
+          "git_blob_sha": "61904e6688e586972a53b4082338b677ff4ebe43",
+          "sha256": "843ad6a49b4b9d5c852ac97c2261038424bc14dc3ccee1f5cdbdc4f79a4fbbaf",
+          "bytes": 796,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/configs/__init__.py": {
+          "git_blob_sha": "68e0830c62ea19649b6cd2361995f6df309d7640",
+          "sha256": "be6503fea5e43bf81c504247a35f731f12541e567b18607152eff102137f8dc0",
+          "bytes": 681,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/configs/ssl_default_config.yaml": {
+          "git_blob_sha": "cdbea43d8e497baec8ab5172b1f83d037f29a4d9",
+          "sha256": "96c66043a1113bee3de8e59fa4bde6a7bd4c117c740056c65c6d29a4c709c30f",
+          "bytes": 2757,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dinov2/data/__init__.py": {
+          "git_blob_sha": "ac440218caed7e1d398ae518361246090b91614b",
+          "sha256": "a3d422bc188029270a69b231306eed8482093c0317b0ba406867a115f2e67f01",
+          "bytes": 561,
+          "acquisition": "VERIFIED_EXISTING"
+        }
+      },
+      "source_http_missing_files": {}
     },
     "I-JEPA": {
       "name": "I-JEPA",
@@ -508,7 +1330,115 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "52c1ae95d05f743e000e8f10a1f3a79b10cff048",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/I-JEPA",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "README.md": {
+          "git_blob_sha": "17a6c81991683d7c9d5ed45ed46eba8cbd94c42a",
+          "sha256": "c33e2cd78dc1d1429a947339157b1009334bc4b8d57bbc8e92f5018fa2ca8293",
+          "bytes": 8500,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "main.py": {
+          "git_blob_sha": "6149439262e58158ca04d1f937649553fcb5ed3e",
+          "sha256": "854fe0b12ec8d4986fcf279a89774310b5e1699678e75e07ff0b0e96b1d266a3",
+          "bytes": 1725,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/train.py": {
+          "git_blob_sha": "0f387d6b293a7708037235f2bc34a8cb12953dc4",
+          "sha256": "6b5467b6663ace871ede718168b152d6759a2ec26b94bb688ae6e46c80e835aa",
+          "bytes": 13680,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "CONTRIBUTING.md": {
+          "git_blob_sha": "3f9989e0f9d42742d60eb75bf467f752674607e5",
+          "sha256": "623759b0e9d71547bd8dda509cd6cb51bef73b0ce447a760c4ecb699de274fd0",
+          "bytes": 1355,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "main_distributed.py": {
+          "git_blob_sha": "7cb38466667eb18d7dc9e292438e7aae506daec5",
+          "sha256": "8d9b9e4f16df8153d377f7d2c55b0b1d7bf308b96c3503791d5b7cee1ba3fe46",
+          "bytes": 2867,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/in1k_vith14_ep300.yaml": {
+          "git_blob_sha": "4c9992e39fa5da1d62bd425ccc05c5c0c0b34e15",
+          "sha256": "e6acaafdca403624a430e6cb9a15641d92636ed6d71863dfc275d65162e66d84",
+          "bytes": 984,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "configs/in22k_vitg16_ep44.yaml": {
+          "git_blob_sha": "21802b2a081d94e6bb7de9e33acf27704e6f82b4",
+          "sha256": "13d058dac2ac33a33afde6cc8732cc87ff7718e3fbf96d44680c2008c2ef2152",
+          "bytes": 1191,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/helper.py": {
+          "git_blob_sha": "5af8cd33c64e7ddbf6bac9f15ff56c8facfc2744",
+          "sha256": "bd9854f2d4143ce82160b36af5ebd4d9f5462087c2afc7722168ccf20c4c9f06",
+          "bytes": 4618,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/transforms.py": {
+          "git_blob_sha": "c03376c9bab36b97fb7d6897aacebfb56e7a24fc",
+          "sha256": "441acaef22ca3bd121f98f95bfcad2b271ecacef0ab4ba72d4f3dc28c57fd44c",
+          "bytes": 2087,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/datasets/imagenet1k.py": {
+          "git_blob_sha": "0c6c318ef3ca1c0910960de3bc5ad76a5f1062f1",
+          "sha256": "41509bf7d154f10f6c233714b8a9e86a430333eca931f797119e08844f767f87",
+          "bytes": 6993,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/masks/default.py": {
+          "git_blob_sha": "80b0d39777155d11881471e6a36095e3016c46d4",
+          "sha256": "1d38246d4bc3a4a359dded532bdb71f3a29b112dec888ba4bc9944deb506a3a2",
+          "bytes": 457,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/masks/multiblock.py": {
+          "git_blob_sha": "c82bf0f68cf612ec19dda95b6fa28c8c56553917",
+          "sha256": "a06c593636f81e760bd26b615b2a7a976790dcc027d4b9244f3e8e7a2e5a8804",
+          "bytes": 6329,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/masks/random.py": {
+          "git_blob_sha": "004105650294cf0496140f36c498e9abdc232c49",
+          "sha256": "9b5f2e538b208b396e1811acddde352b76123d2b7f982277c9bc226d83333925",
+          "bytes": 2287,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/utils/distributed.py": {
+          "git_blob_sha": "2adab7090831a5845f75560582a21ba5a5dd290d",
+          "sha256": "292eeb63ff515eec39603ff7170dedbfe87dab0eb204c3ad32fc767031da5210",
+          "bytes": 3014,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "src/utils/tensors.py": {
+          "git_blob_sha": "901190e753049fc6297d4a1ffbaa5867ac8ea4e0",
+          "sha256": "66cac858005d01e93ad6f481f384a9d75cb1fb8ad2bff0fd7e9a127f384429c0",
+          "bytes": 2221,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "LICENSE": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "CODE_OF_CONDUCT.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "configs/in1k_vith16-448_ep300.yaml": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "configs/in22k_vith14_ep66.yaml": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "src/masks/utils.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "src/models/vision_transformer.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "src/utils/logging.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "src/utils/schedulers.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "V-JEPA2": {
       "name": "V-JEPA2",
@@ -543,12 +1473,20 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "204698b45b3712590f06245fbfba32d3be539812",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/V-JEPA2",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "DINO-Tracker": {
       "name": "DINO-Tracker",
       "github": "https://github.com/AssafSinger94/dino-tracker",
-      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINO-Tracker",
+      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_DINO-Tracker",
       "audit_status": "NOT_AUDITED",
       "status": "ACQUISITION_FAILED",
       "error": "RuntimeError('Three source acquisition attempts failed; see preserved log')",
@@ -565,7 +1503,107 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "5b0f2b0f85101ad3497ac053d724404dacfe6c1c",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_DINO-Tracker",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "92cf8d6a4fc131427c5a2fe4bba6d1e367404688",
+          "sha256": "1eabd51f6e6483c811ca0100fa2300a5f2e48e84167439148bb93cd2290684a9",
+          "bytes": 1069,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "2fd47b900cf2973d10e3e9e83b5d51cee9e97ba3",
+          "sha256": "23cfee3c5470e8882588d6ac003d6a34a6c4b95231015db0b3ec4ab7c4b5cdc1",
+          "bytes": 177,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "train.py": {
+          "git_blob_sha": "459fc2fc8b5fde16d635321065b58e6b47a9708e",
+          "sha256": "5e406fab8e2629e6aaa8dfea5d26708be15d115389f62fb232f89b6fe6a8c18c",
+          "bytes": 498,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "config/preprocessing.yaml": {
+          "git_blob_sha": "87337a583669162c65212762421a71f0ae88b1a9",
+          "sha256": "5e0df343b4ba54f5a815a88b030664099dbcddb99695d51e1d552a7e7e9613cf",
+          "bytes": 572,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "config/train.yaml": {
+          "git_blob_sha": "14c207dbc6f0245d80861d906cdb1739ce5100b3",
+          "sha256": "62cafc5e78dc4dd0c46ba489e740ecd700186ce0a1ffde84c7f8fb443a93ebae",
+          "bytes": 1350,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "data/tapvid.py": {
+          "git_blob_sha": "8802144d493c076f4621a272f990a33b34af8e58",
+          "sha256": "a0645bda9e94f944c4489fde39bd5ae929a9159be3d3737c803a0bb7dd6a3ae5",
+          "bytes": 1838,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "eval/metrics.py": {
+          "git_blob_sha": "003c61a8505cb2e7ca8c0df7ce5499cdc1c9a1fe",
+          "sha256": "69b106180d86e357beb741ca0205dc12ddf2c305a062f92cd5b8fd3984fc2534",
+          "bytes": 12699,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "models/extractor.py": {
+          "git_blob_sha": "d03da5f2facbcbe49fe9106e9505d1e9d513059c",
+          "sha256": "dab6bddb6653cbbd90066e1e756bb78ead92cbabdc035346ae78ac83b8f696fc",
+          "bytes": 10929,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "models/model_inference.py": {
+          "git_blob_sha": "eb62e86e2750f229cfdc27cfadfd94b37af3b3fa",
+          "sha256": "c8b9a57badd1b36148667bd440662d1de3decf173da8e2521477a58020b4aa43",
+          "bytes": 12332,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "models/tracker.py": {
+          "git_blob_sha": "9961ba1bac15ab16981d10acd81a34f777700f19",
+          "sha256": "8f4238ee3999b7ac7654410904021d1b2487dc50f363c8f4305355f5fc8bbc08",
+          "bytes": 16844,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "models/utils.py": {
+          "git_blob_sha": "dfe14bf5160e0c6c1059ea3541d5f3a163bddf06",
+          "sha256": "240d164d8ede49d1d2f95da67f4d78e1743e36ff9f551fe584ff6ad97e74a9d7",
+          "bytes": 4265,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "preprocessing/create_fg_mask.py": {
+          "git_blob_sha": "fecba3f07d4d2b67cd5fda9ffb628c0cc6540132",
+          "sha256": "7bc47879ade223dc0767702424a4e6c5b9066e55069ece5ce71649116d186ac0",
+          "bytes": 2411,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "preprocessing/extract_trajectories.py": {
+          "git_blob_sha": "c650830e1e153d93877329bdbf99953458f680b7",
+          "sha256": "88e58505e718f284b4da80d3e123f5ef27082b7c9530754961964dffbb3bb956",
+          "bytes": 13998,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "dino_tracker.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "inference_benchmark.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "inference_grid.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "utils.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "data/data_utils.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "data/dataset.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "eval/eval_benchmark.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "optimization/schedulers.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "preprocessing/main_preprocessing.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "preprocessing/mp4_to_frames.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      },
+      "commit": "5b0f2b0f85101ad3497ac053d724404dacfe6c1c"
     },
     "GOT-JEPA": {
       "name": "GOT-JEPA",
@@ -628,7 +1666,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "5f382645ccb7331280a7bf07f3c5709d1072caf7",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/GOT-JEPA",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "CoTracker3": {
       "name": "CoTracker3",
@@ -653,7 +1699,91 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/CoTracker3",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE.md": {
+          "git_blob_sha": "e395ca3e2cdebf48a6375a3c1022d10caabba7db",
+          "sha256": "1d8ca66080a2701508a70be4ddad4be28c509bcc3397a682fb8edf767fdd7a00",
+          "bytes": 19332,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "cotracker/predictor.py": {
+          "git_blob_sha": "da7e7aba1c4ad988a111c2c81bb492de966a375e",
+          "sha256": "783536d6c77790fa6c8e005f2df1d6bd4f0d8955c2c67d464bfb4e64d366375f",
+          "bytes": 11500,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "online_demo.py": {
+          "git_blob_sha": "5514f86f1b578d32833d0f955b93ee6558dfc779",
+          "sha256": "003576e27e2f496e255c86e6df59b19ff2a18c3ee56e4d1dd3f408918340840f",
+          "bytes": 3261,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "train_on_real_data.py": {
+          "git_blob_sha": "72fc56519f5a92fb73d883bc4b5a435ee38385e1",
+          "sha256": "55a3a89ddb3fff612f0e442669167b548fb2c6890164ba8953721b1f39de683f",
+          "bytes": 29722,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "cotracker/version.py": {
+          "git_blob_sha": "e550747c2a6dd5d6bb2ec61889417359e8125945",
+          "sha256": "a8b2612b07c2cbeb2d32c99711fb1c2829571938776fb8188812c66c9b129949",
+          "bytes": 221,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "gradio_demo/app.py": {
+          "git_blob_sha": "5c6779cc1afcfcc7b9c09d4bddf64985625e975e",
+          "sha256": "a01fd5243eddbbce0555aa7c55b47489498a928eea2a952b2ffd63dc95891055",
+          "bytes": 21376,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "tests/test_bilinear_sample.py": {
+          "git_blob_sha": "29e5322a0f007a5c4f23f38e509092b8f00e9714",
+          "sha256": "bf102af8d93095e19b4a7fc41b203397343a326de00b9de8ebb19986393efacd",
+          "bytes": 1775,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "cotracker/datasets/kubric_movif_dataset.py": {
+          "git_blob_sha": "208196f2ddf71434c11d471745ed19e01af5c7f5",
+          "sha256": "c8cb9537c44cfbff1c13b2251a5947126f0baa65fe7ced48edf2218493c6c663",
+          "bytes": 20085,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "cotracker/datasets/tap_vid_datasets.py": {
+          "git_blob_sha": "1178741f2512a446458745d1753b4b93cb0e9ec0",
+          "sha256": "2806cc6c1d5df1703c942feb05154a7b78ffa8ac4cb2fb032876ce3cf335699b",
+          "bytes": 9580,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "cotracker/datasets/utils.py": {
+          "git_blob_sha": "eda3ade205f1eba6e9a801d548b53565ff84adff",
+          "sha256": "05c40c9dbc51f588cd5d889b3abd9795eb55a0a720d60519fedde54baeaac3c6",
+          "bytes": 3531,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "hubconf.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "gradio_demo/requirements.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "CODE_OF_CONDUCT.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "CONTRIBUTING.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "demo.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "setup.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "train_on_kubric.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/datasets/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/datasets/dataclass_utils.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/datasets/dr_dataset.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/datasets/real_dataset.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "cotracker/evaluation/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "SAM2": {
       "name": "SAM2",
@@ -690,7 +1820,111 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/SAM2",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "LICENSE_cctorch": {
+          "git_blob_sha": "23da14a65aad4c5bac18061b80ae6040bb7d2c8c",
+          "sha256": "687d4f65ffe399358b170e22572564a16689e496f85a79dc5385fccf6bbc9558",
+          "bytes": 1566,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "README.md": {
+          "git_blob_sha": "85a7eb958bced5495ff990c2bcbe7d99662c660f",
+          "sha256": "eea69ee1042fb30933c5ca5019fbf0f6f9366cec5e792109281b5023a4f1589c",
+          "bytes": 16249,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sav_dataset/requirements.txt": {
+          "git_blob_sha": "cc3d841332a83c02e468a834843732c380c53ecb",
+          "sha256": "6891d04a88919724af4acba3e3276108044f23ea16d1c6f2a9e5dd4a0405396d",
+          "bytes": 69,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "training/train.py": {
+          "git_blob_sha": "db06123fcb1b2ba8ff5f462dbb7411d42a57c9a0",
+          "sha256": "257d10561e3e4e13904fb04859d1fe0aa0335a653670a8571cdcb576bf8f44c8",
+          "bytes": 10187,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "demo/backend/server/inference/predictor.py": {
+          "git_blob_sha": "ff0dab233e500c0e8051e7f069c46f3006bee350",
+          "sha256": "5a084d3182d3ce7407ebd2e523cc43fbbf598c35738f02c897c6e06d8a8c8fbb",
+          "bytes": 17062,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "INSTALL.md": {
+          "git_blob_sha": "9480ba1bb52c171cfccc6a078c68abdb49125daa",
+          "sha256": "3295dc994038232f8e90b3123996d4bb087570ce7c10eb5da91a37cccada48aa",
+          "bytes": 10583,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "docker-compose.yaml": {
+          "git_blob_sha": "7a5395a585daa7d5a6e0e97d3a30b48f225fb2cf",
+          "sha256": "c8950a81787d716741a1ad18a1953404b781b893488c7575ae758b1037dbae1c",
+          "bytes": 1095,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/automatic_mask_generator.py": {
+          "git_blob_sha": "065e469e27c2d3af40d51d072031e828692c799b",
+          "sha256": "66df266dbe14412305ae3398f0ec1bb21b303a93216b102d767e6c4ee5d4c3d7",
+          "bytes": 18461,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/benchmark.py": {
+          "git_blob_sha": "6519534c8619e04b9a632859a5128ad2cee34c13",
+          "sha256": "9b7a3506b88842ec09031fb7cd0fc1d3fed82e137ce06dbca10495e6c180dda9",
+          "bytes": 2811,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/sam2_image_predictor.py": {
+          "git_blob_sha": "41ce53af5924504c07216df52b2d2eefaeec7ae9",
+          "sha256": "f13e5f9d94e5c8d9d2c3622dab20c8f334c089ef2ee5ea8e199da7d332b029ba",
+          "bytes": 19937,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/sam2_video_predictor_legacy.py": {
+          "git_blob_sha": "c7e01ccf972491904b013526333826b337354db1",
+          "sha256": "e0c054112f21bfa63620f2026c8bb2e0f4e284b138d09426a08d39f2e882c3f2",
+          "bytes": 58777,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sav_dataset/LICENSE_DAVIS": {
+          "git_blob_sha": "eb93e8470eda23bee9e1ee4a63fd703e5da8e421",
+          "sha256": "a727bc2b6f26a1f1c76d0511502da6ba208212708c04a65230159331906354f1",
+          "bytes": 1550,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sav_dataset/LICENSE_VOS_BENCHMARK": {
+          "git_blob_sha": "dcda3cbb2f5a77e72143f88df9026f7d0e6601c4",
+          "sha256": "104f011f1cd91268d54a9fab1ff769ef01081410cd622e0f723c03d146d02482",
+          "bytes": 1048,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "CODE_OF_CONDUCT.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "CONTRIBUTING.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "RELEASE_NOTES.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "setup.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "demo/README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sam2/__init__.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sam2/build_sam.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sam2/sam2_video_predictor.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sav_dataset/LICENSE": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sav_dataset/README.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "SAMURAI": {
       "name": "SAMURAI",
@@ -715,12 +1949,146 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "76ba195984892b0d1e3db5d9c9f90bb62175680a",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/SAMURAI",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "README.md": {
+          "git_blob_sha": "f58231c71ba3ee23abc2a2249aa1798df4baa8a6",
+          "sha256": "52425b4a2574955dd68844b3c61a4e0acdb8e6add0e92a0a67412b0de926cce8",
+          "bytes": 8376,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/sav_dataset/requirements.txt": {
+          "git_blob_sha": "cc3d841332a83c02e468a834843732c380c53ecb",
+          "sha256": "6891d04a88919724af4acba3e3276108044f23ea16d1c6f2a9e5dd4a0405396d",
+          "bytes": 69,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/training/train.py": {
+          "git_blob_sha": "db06123fcb1b2ba8ff5f462dbb7411d42a57c9a0",
+          "sha256": "257d10561e3e4e13904fb04859d1fe0aa0335a653670a8571cdcb576bf8f44c8",
+          "bytes": 10187,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/demo/backend/server/inference/predictor.py": {
+          "git_blob_sha": "ff0dab233e500c0e8051e7f069c46f3006bee350",
+          "sha256": "5a084d3182d3ce7407ebd2e523cc43fbbf598c35738f02c897c6e06d8a8c8fbb",
+          "bytes": 17062,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/CODE_OF_CONDUCT.md": {
+          "git_blob_sha": "08b500a221857ec3f451338e80b4a9ab1173a1af",
+          "sha256": "d4d00a8ac00c1735cd2f3fb50ca67c83960ef9123fc5656f2e69056c905ed244",
+          "bytes": 3541,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/CONTRIBUTING.md": {
+          "git_blob_sha": "ad15049f583e1bc9a418686493405875b98c7f0f",
+          "sha256": "23598bb7ac5d26d066b5b059abb6258fdd03f852a47ac46ee33afe287d2e9af1",
+          "bytes": 1425,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/INSTALL.md": {
+          "git_blob_sha": "7f32564f7e83c149da8c5fd62d2060491e6f7bda",
+          "sha256": "88ff87ca552fa62b013fbdd892d66ebda99b0e35902c3aae00446230d29e3e55",
+          "bytes": 10583,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/LICENSE": {
+          "git_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/LICENSE_cctorch": {
+          "git_blob_sha": "23da14a65aad4c5bac18061b80ae6040bb7d2c8c",
+          "sha256": "687d4f65ffe399358b170e22572564a16689e496f85a79dc5385fccf6bbc9558",
+          "bytes": 1566,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/README.md": {
+          "git_blob_sha": "65654f5a00b7505493b6254b155c8a8e69145d34",
+          "sha256": "a7b70dc25dbb6dda48e56cf88f7893c179fd0885fb87579318b589ced9a741fb",
+          "bytes": 15445,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "sam2/setup.py": {
+          "git_blob_sha": "c67a949fce439db30f8c4fd2eef9a997fcc8b9da",
+          "sha256": "e9100671a550a36c1a0ae6996793675d320b96d76b26d2903ada0124cc64e355",
+          "bytes": 5051,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "scripts/main_inference.py": {
+          "git_blob_sha": "542b5da667180ed705104b423cbf17fe553d8161",
+          "sha256": "ade2117bcfb0cf64965271d37cf9f0765ffd23bb74cadb5afaa21c78f3734ddd",
+          "bytes": 4666,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/test/__init__.py": {
+          "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/__init__.py": {
+          "git_blob_sha": "bef8ff08210ea3d456d57a82f9a8cf312e8a1399",
+          "sha256": "c03599fae7c73b1f55dbf36dd7c441923a2784938bd42b8182eefd7f78cdddb4",
+          "bytes": 37,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/_init_paths.py": {
+          "git_blob_sha": "3c61361b5858e6229b64811ecbe2f8f544e0cfd6",
+          "sha256": "271f9581156d3a0508b0d477fb39b8d259addfc9f305fe11eefaa3df6165d6dd",
+          "bytes": 321,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/base_functions.py": {
+          "git_blob_sha": "4a7cff93e7cd2ed7c9067d0c55b960145a4e0d49",
+          "sha256": "ed91e562d8206b7972adfbec6245a36fad131047cbc9e1edb267aa4069a7d7d7",
+          "bytes": 10880,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/run_training.py": {
+          "git_blob_sha": "fb73e157eee8a66f649065bf3056b279b16c1763",
+          "sha256": "e637803f81ee231ef16dc3b977277275bbb0fbf956b06d673bbfab6cd77891f2",
+          "bytes": 5214,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/train_script.py": {
+          "git_blob_sha": "48c7b157de356401e2c0a81fa5cd8eb03569cdc4",
+          "sha256": "bba0547482548268c04464bc2979732333058c9ac1711586cc83f6af836d5e69",
+          "bytes": 9790,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "lib/train/train_script_distill.py": {
+          "git_blob_sha": "133cddf2d084cab599c01fbeb15ac82880705bb4",
+          "sha256": "a74d5a6c9ecc49b70605aa86ce2459d7b13d63000c08dbbfa56ddc3524bb2eb6",
+          "bytes": 4675,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "lib/train/data/sampler.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "sam2/docker-compose.yaml": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "scripts/demo.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "scripts/main_inference_chunk.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "MOTIP": {
       "name": "MOTIP",
       "github": "https://github.com/MCG-NJU/MOTIP",
-      "local_path": "/data3/liuyeqiang/research_references/N72R20/MOTIP",
+      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/MOTIP",
       "audit_status": "PARTIAL_SOURCE_READ",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
@@ -754,7 +2122,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/MOTIP",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "COVTrack": {
       "name": "COVTrack",
@@ -776,7 +2152,14 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "status": "ACQUISITION_FAILED",
+        "error": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "TrackTrack": {
       "name": "TrackTrack",
@@ -801,7 +2184,126 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TrackTrack",
+        "status": "SELECTED_SOURCE_PARTIAL"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "a33e7d0f3c369ab3def0c379975bb1897b70c4a1",
+          "sha256": "f45308e8b2709a77ef9391f5ddff5a0cc5b5dc871e0a7ddb68011ff333566350",
+          "bytes": 1068,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "README.md": {
+          "git_blob_sha": "4ef7da33bf3f032572a9c21a885919b0f596ff02",
+          "sha256": "10d6556d9e83fbc9af1f64d0587009e7609d00109c5c8dddf9d7f91dd76d0bbe",
+          "bytes": 1920,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "3. Tracker/AFLink/model.py": {
+          "git_blob_sha": "ebc373d22ade3bdade3fedc0617f3df66f00688b",
+          "sha256": "b5b188776a79de19c8f72e80d15393615bdc70262ddb5389fa791e1968fe796a",
+          "bytes": 2685,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/README.md": {
+          "git_blob_sha": "d630d2acc8f66da5ba4105bb8537b0153b3366be",
+          "sha256": "36e28762088c583f5f9cac045f90cf77a4023d2431c287e16b6a1d973a8184b7",
+          "bytes": 3710,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/detect.py": {
+          "git_blob_sha": "8c9523d15eb313cf7c67676b92777ce18bd04b92",
+          "sha256": "f91863228c322afc93b61a96f6d160706adb5c77468d5b003aab2fb19d621054",
+          "bytes": 4737,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. FastReID/README.md": {
+          "git_blob_sha": "a68a30d3779ea00cb2fa191791cbc876a8c5a3cb",
+          "sha256": "5fc8cc8830bd6fd869601910696254394999cb3e12e9729f45de392b2e00fd28",
+          "bytes": 4675,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "3. Tracker/README.md": {
+          "git_blob_sha": "ab95eb90c2c130d9e46841c37d0d07afa0360e91",
+          "sha256": "144abbac93e93517facde5794ff4023aabfd8fba5e3492c9f5a780d1df938d3f",
+          "bytes": 544,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "3. Tracker/run.py": {
+          "git_blob_sha": "09ce058ee4b1e0e6c68ddf03fa525990696b1b89",
+          "sha256": "caa5a36cf986b20537e93944dba17dfe733615449e45346a6c5bc7295852da1b",
+          "bytes": 5303,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/exps/yolox_x_dance_test.py": {
+          "git_blob_sha": "c05d34cc094ff15419c82b4ccee539e3d0ce753a",
+          "sha256": "0cfc021092b076d3ec60ac86f091b521d8980bd652c7425409db1c8cca59528e",
+          "bytes": 4198,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/exps/yolox_x_dance_val.py": {
+          "git_blob_sha": "65dad7f54e46931906e8446dbf2dee254ea57232",
+          "sha256": "f02c46aa1e3c672db4ca0d6bd7fb739058a55e61f2b0d19f0a062815064953ce",
+          "bytes": 4197,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/exps/yolox_x_mot20_test.py": {
+          "git_blob_sha": "3db0fb460935ef080d13012192c7514cc5bf8ccd",
+          "sha256": "f1a93286fdadfdf6bc11260480df7f9fb205ff519ddc4125c4e4b6190fc70ddc",
+          "bytes": 4245,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/exps/yolox_x_mot20_val.py": {
+          "git_blob_sha": "aae2e57bbff5f40ec81e91eecdd6b6f17e5d9c42",
+          "sha256": "41bd01244c62dde09eecb027bf7359ead1900e2534b382738496d6e98242b052",
+          "bytes": 4244,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "1. YOLOX/yolox/__init__.py": {
+          "git_blob_sha": "1cbc411d419c55098e7d4e24ff0f21caaaf10a1f",
+          "sha256": "360710ec55f3ab0ae052d8072e2daf42df93b20ee1b7a6eb0e466165053b6d20",
+          "bytes": 126,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. FastReID/configs/Base-SBS.yml": {
+          "git_blob_sha": "98d7e53b16dce2f65ae25204fe50a4c973bdcde6",
+          "sha256": "cb7d6c6fa5da494b79507d8aadd65f46b96a65530d68ab8336e0548662dbe2cd",
+          "bytes": 921,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. FastReID/configs/Base-bagtricks.yml": {
+          "git_blob_sha": "65ae22612dd0aa7dbef8b7393dd363b39d1d72f6",
+          "sha256": "12776db6fc0a4704eeb79869e93d8b1b65bf56e74d2aa0b1f823abfa64904a3d",
+          "bytes": 1111,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. FastReID/fastreid/__init__.py": {
+          "git_blob_sha": "fc526f7ec3189e7a5fb331c454c4f1707ac74b09",
+          "sha256": "a70da9f38298a9614790e5b6514b8f5b37b18053316cfa3b9023d513fe9665bc",
+          "bytes": 104,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        },
+        "2. FastReID/fastreid/fastreid_adaptor.py": {
+          "git_blob_sha": "48375f8e90b838094944eb197e7a6b5bbb052a48",
+          "sha256": "1418dd9f8cb4fd6f378e357d8a6a1d649f3e0e03254d2032d49d7c9e465bfe34",
+          "bytes": 957,
+          "acquisition": "PUBLIC_PINNED_RAW_BLOB"
+        }
+      },
+      "source_http_missing_files": {
+        "3. Tracker/AFLink/train.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "2. FastReID/ext_feats.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "2. FastReID/train_net.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "3. Tracker/gen_test_file.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "1. YOLOX/exps/yolox_x_mot17_test.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "1. YOLOX/exps/yolox_x_mot17_val.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
+        "2. FastReID/fastreid/emb_computer.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
+      }
     },
     "TCEI": {
       "name": "TCEI",
@@ -831,7 +2333,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "145d1b8431398156f8d9f854430e306fdee39eaa",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TCEI",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "MeMOTR": {
       "name": "MeMOTR",
@@ -870,7 +2380,160 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "eb7a177b9cbcb89742ec69b2545ab3af2ea31a80",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MeMOTR",
+        "status": "SELECTED_SOURCE_COMPLETE"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "8dab812e71086316b759d749f2aa0e42b9d162dc",
+          "sha256": "74ea0a2469c5ffd7395eb39868b1e8c01edb8c9c5f4a488879b1e51807eec584",
+          "bytes": 1103,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "README.md": {
+          "git_blob_sha": "a63e2e86b4760ef9891fbcadaacaf187144aa625",
+          "sha256": "537dc31bc26e86453b9d3e52def2533298e9befa8e7187ed5359a60a7583211e",
+          "bytes": 10458,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "main.py": {
+          "git_blob_sha": "26e510207f4259952942f9f6b03d26312ea97539",
+          "sha256": "6660e779dbd7ce51a5d86765d5832448e46bca98037649840c797bbe88ef3717",
+          "bytes": 4761,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "eval_engine.py": {
+          "git_blob_sha": "9aa9680c2d9069067e33681a8e2ee5623b0140cb",
+          "sha256": "d222210543bafdf1a5d0e70e1cb39ce3bb07b77f9beab11dac2f2de57cb38ae6",
+          "bytes": 6314,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "submit_engine.py": {
+          "git_blob_sha": "c2563d385bcce063b0c6db348d9eaa96c7246f87",
+          "sha256": "67d72cb34750bd853e2f77ce9b6977d6bce0f2a22a8cf34cb56097541f84ad9b",
+          "bytes": 12018,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "train_engine.py": {
+          "git_blob_sha": "1f94d9f3e98dad9ef8a62ecc98753576efb49fd0",
+          "sha256": "7ecb0d5bb2fe7980eecc08cb9c6a108a465681d2c7aa44294e4aba3e73fb7197",
+          "bytes": 13957,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/__init__.py": {
+          "git_blob_sha": "5c93b3dbe8da69ae097ecae441500db6910a996b",
+          "sha256": "d791dc9d61022b33727a15f765d106f3c9c90ff1f976f58fedeefb2fd22996fe",
+          "bytes": 123,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_bdd100k.yaml": {
+          "git_blob_sha": "4778bf1fe9cbbd548200d6663d647cc5e0d25356",
+          "sha256": "9efc4381601e7d159e5400542896440865e6cd9381ecb20d37bb124c7eb8bd82",
+          "bytes": 1722,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_dancetrack.yaml": {
+          "git_blob_sha": "eaf0e9436e7442b2ea19dbb6bf2065c52ae1a8a7",
+          "sha256": "8cb007a36e89637c240962f70a055ace81539bac1cf20d2fead5115acfea3f0b",
+          "bytes": 2451,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_dancetrack_deformable_detr.yaml": {
+          "git_blob_sha": "8675b4dda681da10f31520f8a7f2d68d42d8dafd",
+          "sha256": "1140c7168d82878c7add7c71d7ff97be37714708ef81d743bfada33e0a0c1f1f",
+          "bytes": 2329,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_mot17.yaml": {
+          "git_blob_sha": "c3516301cbd4588ee2e8215f33d35a9a8db39d51",
+          "sha256": "ac5897d7d7117b08805d41d65a44d2f7f9ca3ce73500278c4db9581455a4cfb9",
+          "bytes": 2349,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_sportsmot.yaml": {
+          "git_blob_sha": "748298663bef243378eabb440f479819cc56e9e2",
+          "sha256": "d29bb3ca155f014e784918a978b4a2032f765c61d40c0645a8a07919ab4ac9d3",
+          "bytes": 2332,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/train_sportsmot_deformable_detr.yaml": {
+          "git_blob_sha": "70602bfcc9c5318622fd9e45a9765c03fb7355f9",
+          "sha256": "600dae34073e78ff2a333f313b466462f5a3bf9d9ed061c96c6b5606e0c581d8",
+          "bytes": 2329,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/utils.py": {
+          "git_blob_sha": "f1437e803357769eaf3447f2ef026f2ecac7c847",
+          "sha256": "1d458748a90b02e6ff3a5dd34135e9eec6d8195c35153fc7ef41025a0ee5f485",
+          "bytes": 2308,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/__init__.py": {
+          "git_blob_sha": "94fa3b1604bb06741696a69931392b6dd6d71c29",
+          "sha256": "451d04680a95accd6531e4ad596103f346c7bc0d9e71d9b7140760b95bf3ae2e",
+          "bytes": 2236,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/bdd100k.py": {
+          "git_blob_sha": "828e60c2eadfa4a001bdbbb7c6c1e2a7c12b9ef1",
+          "sha256": "7357e4a69c15a5d11002ab3e69068a208c2818d3dc5a4b72aa90e4012b7c3da0",
+          "bytes": 8933,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/dancetrack.py": {
+          "git_blob_sha": "1e32b0097ef52440f16f316596cc1f39655f3eeb",
+          "sha256": "e08b4a1a7bd189f123a3d93130a5ae8df603ca91c8d0b79c3bbc8823dc404901",
+          "bytes": 7902,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/gen_bdd100k_gts.py": {
+          "git_blob_sha": "e8647e8b653b60e76ede93a486a31f7add7f1a74",
+          "sha256": "b8a8047a9c64d77ae1d27dea4ee308adae4ff6cf1a97a2b388e3e3ccbc794cf8",
+          "bytes": 6125,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/gen_crowdhuman_gts.py": {
+          "git_blob_sha": "e7cc9208ba3dd060ca8c69132b3262e443d67f81",
+          "sha256": "7780acf53d662a04734a1f4389722961ad511a719e40995c1af0762459e30c2a",
+          "bytes": 2205,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/gen_mot17_gts.py": {
+          "git_blob_sha": "8ae9ad2cad0efbed595e7dff04c3960003d48ada",
+          "sha256": "be8b1a7cabb66f4e696d504312bbd6687018de1a6f83a2d72ffc52d439065e1d",
+          "bytes": 1580,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/mot.py": {
+          "git_blob_sha": "0c8a920a31b328d5da92f4a5bcb1478c1c502599",
+          "sha256": "73ca164fe5c595b22c6e156e91ffb7548e9c600c68955836b651bc1b7bbad9ca",
+          "bytes": 302,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/mot17.py": {
+          "git_blob_sha": "35776ec1f501a67f8dfcb1faa506051aa7ef8cdd",
+          "sha256": "1e9ec2345229e89343f5263e8d33cb8d7c5acc81e926f01a3b7271c0cde379c9",
+          "bytes": 12876,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/seq_dataset.py": {
+          "git_blob_sha": "502c50b7fb9ccfec4e492781f980cc1a86e953fb",
+          "sha256": "2411743e654fe7b90bec234821b39b14b673d2fea1be48fc60c49ad93229eef1",
+          "bytes": 1778,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "data/transforms.py": {
+          "git_blob_sha": "49781b7fb6b7e7f94ff1155221785834b74b6325",
+          "sha256": "026d22b2cf363e1beec1ed22a753740f89ccc2664369b894dba49deda74a3bd5",
+          "bytes": 10834,
+          "acquisition": "VERIFIED_EXISTING"
+        }
+      },
+      "source_http_missing_files": {}
     },
     "MOTRv2": {
       "name": "MOTRv2",
@@ -909,7 +2572,160 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MOTRv2",
+        "status": "SELECTED_SOURCE_COMPLETE"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "fdaf436e9548250539b3ccabdf204dbd10eadba6",
+          "sha256": "95df48c518bcbffb3f61114c9ed0d847e6e12c58e6fdc5096acb6a83c67b8b74",
+          "bytes": 14131,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "README.md": {
+          "git_blob_sha": "67211c3e702737abd9ba92282e360d816ed341a6",
+          "sha256": "5a8eb930ba169a7f290c8e538e0a669faa18c080f91359b41a50923c3af0366e",
+          "bytes": 5876,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "main.py": {
+          "git_blob_sha": "13859a86d005ab05b58b95abd6fd03473d7b7588",
+          "sha256": "80c5ca1bb30627fe484f568956d588889cdffe73d87b2c3f171a02b0acb2ccef",
+          "bytes": 16546,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "c85f109e578081abf481bb073b7fede61a5941f0",
+          "sha256": "0f6108ea7c7c364219435d14afd9825d326ac66abc00b3910e8ab9ec3dcee80a",
+          "bytes": 25,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "engine.py": {
+          "git_blob_sha": "988cbd41a9f6cafbab54a819424f795a91069029",
+          "sha256": "b0e197939ab229403be21a5d89028e548474a8fd8fcd0e70dab06ae4d0c26cb5",
+          "bytes": 3620,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "submit_dance.py": {
+          "git_blob_sha": "5949e0f48dccb0dafddd04441bf7b7f7b6fa0092",
+          "sha256": "9f3360d06f6d2b575d7f8f07ec2e5b4554d1751fe0e77cf34a63f652ad83f2de",
+          "bytes": 8430,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/__init__.py": {
+          "git_blob_sha": "759fcc1ffc37c65e80f86ca924b571af2da9b5ed",
+          "sha256": "c127172a7363c602e43001cbc4283a419ca555f5b1b506d5085844fd96041465",
+          "bytes": 1006,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/dance.py": {
+          "git_blob_sha": "ba3f0ddb8acc09975315dd44aae88ceb7e888e36",
+          "sha256": "37fee9dfb8598606dba82e806f396fbad4a94bef55dd18082cb4f4262b33db32",
+          "bytes": 12182,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/data_prefetcher.py": {
+          "git_blob_sha": "07ea9cd12ebff04dccb0ee03ac51d29e2ef397d5",
+          "sha256": "518eadb6207314fb8d258e3b5a3f93ceef83110532d10f69e7a8667e1848f31f",
+          "bytes": 4709,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/joint.py": {
+          "git_blob_sha": "70c71336d112c78a2a73a741caa0cf42dc59ce17",
+          "sha256": "fcd4a8915ccd3f257977598816eb575e8e5edd747fe23ec1429f0f3b85022372",
+          "bytes": 11759,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/panoptic_eval.py": {
+          "git_blob_sha": "a870e4fa5f307fab63c99bd0e744c57a6e141483",
+          "sha256": "1579b9e0f87e76706176381f0cde6f3c9395e6404f8d7ac810f11d589c1beb6b",
+          "bytes": 2058,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/samplers.py": {
+          "git_blob_sha": "7a4ede1e4ccbf050539eb475c7cfbb268f624b2e",
+          "sha256": "4b699d9f1798dc1729d43034c50357e1c984be7622e9959c19123d6069b92f12",
+          "bytes": 5818,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "datasets/transforms.py": {
+          "git_blob_sha": "a0b902dc6656ef654b9c1f4d83c5fe4f20dce377",
+          "sha256": "019aeb5153ce0ac669e88a7ee835da65ffa269c04304616501ff08cc1fdf5c29",
+          "bytes": 21103,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/__init__.py": {
+          "git_blob_sha": "c621adca73917d93b8197f59890f688b234ce789",
+          "sha256": "35b76652679da8d62e30214c32441170b72aa1232a08950722f22b0f4c94efe5",
+          "bytes": 785,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/backbone.py": {
+          "git_blob_sha": "f31c92b323c2983fd60ffb0eb28123aca64305f9",
+          "sha256": "41030afe41bf9b23c2a1de9c51864f6bff6d9ebc395213927f9f76986a086946",
+          "bytes": 5321,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/deformable_detr.py": {
+          "git_blob_sha": "2a2c90d73509622c5c4088d2a7d65e1836078dd8",
+          "sha256": "e43789f79c9b778654e4225fca0ed0aeb83ee221920c7d69f9cba3c667fa5bed",
+          "bytes": 11186,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/deformable_transformer_plus.py": {
+          "git_blob_sha": "9e48f3d863422b960765834665743d6e871d31b9",
+          "sha256": "7a9d70a8b887d9f88e1a538e8804a29298c4e65496edff994c2b66720fdebec3",
+          "bytes": 22370,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/matcher.py": {
+          "git_blob_sha": "38a2418986b2a0ea43b070ca45b50250db65dc8e",
+          "sha256": "3d91871b38160c533955082c2cc60fbe57e5fa17beb10975cbf9c393ff2e28ae",
+          "bytes": 6072,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/motr.py": {
+          "git_blob_sha": "f1b661115af3d724e1107a56931b813f158ec183",
+          "sha256": "078425f4eb2a124404c8c7285282b5fb3f0051e789a91b2234334d64af2183af",
+          "bytes": 38009,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/position_encoding.py": {
+          "git_blob_sha": "27acc10780ae3bf53d24b0d6ddd45b454b3647c3",
+          "sha256": "ac9776d427edd58b54d9eed0e816c530368233015ca3f1f4abecd9fc3d8d92e6",
+          "bytes": 3917,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "models/qim.py": {
+          "git_blob_sha": "f13f96fa30e6d67dc73869e77a0e5ccf0e0e1415",
+          "sha256": "d3bf46ea0100ec66d4a890a7cde3169dd1f220a27e2b8921f54110cb32ae034c",
+          "bytes": 8273,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "tools/batch_diff.py": {
+          "git_blob_sha": "18a46236f019c4cff5f825060a8a8454ae3c1238",
+          "sha256": "c67fcf88e0bc4fd96c0faf239f4a79d5dd13e8ca55ad303f84fe1c3a4aedd8a9",
+          "bytes": 587,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "tools/launch.py": {
+          "git_blob_sha": "c8004393005e2c0c679cf1007c756562e5bb2885",
+          "sha256": "5eb5ceeeb184576e3e593d34a28e678a2fabbd9ae3aa304122aa7900361174d1",
+          "bytes": 9295,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "tools/make_detdb.py": {
+          "git_blob_sha": "9037dd811f8f1287d6aac837067aa493683008a5",
+          "sha256": "67fa74fa6a331a51475ace45ecbba4d8d725972f0aa1a00b2f83e0f0ee2da92e",
+          "bytes": 1223,
+          "acquisition": "VERIFIED_EXISTING"
+        }
+      },
+      "source_http_missing_files": {}
     },
     "DiffMOT": {
       "name": "DiffMOT",
@@ -964,7 +2780,160 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "eada72e74e54c153b30674d277b97882edc568b8",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DiffMOT",
+        "status": "SELECTED_SOURCE_COMPLETE"
+      },
+      "source_http_verified_files": {
+        "LICENSE": {
+          "git_blob_sha": "c9c1c7355b9a5ee917d208b16d76b6bc9495608a",
+          "sha256": "7b6e8bf666ca922ab03280d0e68223c638fc1193f80aad091990786e78b385ec",
+          "bytes": 1064,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "README.md": {
+          "git_blob_sha": "238a4f1e23b407f88130c2ce8572e33250d0835a",
+          "sha256": "c6aac7c1360698477f9f3413bbfac61704ca11982faffcf67656478670d65e32",
+          "bytes": 8788,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "main.py": {
+          "git_blob_sha": "618b33af6929b072fe78da0458a4269265647728",
+          "sha256": "afc99ed01bf96a202edc6a8191349bb5f6c51fbddfe2519dc6a89db5ab4a6250",
+          "bytes": 770,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/YOLOX/hubconf.py": {
+          "git_blob_sha": "4d8acae314d6bf05b804443f8e3bb0245c86b1e0",
+          "sha256": "f93847f539c110a14dcc3a34035578d7a64f89f4263dc787fe5fd7d9b06c799f",
+          "bytes": 499,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/YOLOX/requirements.txt": {
+          "git_blob_sha": "7227f09b4d6b0a69aa1a3a746ecc4a84e3136563",
+          "sha256": "270a786639ea5b8e74769a8cd6e5fce73a2d160242604098197d52f03b7f321c",
+          "bytes": 275,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/requirements.txt": {
+          "git_blob_sha": "71da6fe6b31b41d0de58954bc84f3ad735acc79f",
+          "sha256": "3fe594b6c766465142cab1327723d5987a85ac7df40369f7bac6492e3bad9706",
+          "bytes": 269,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/YOLOX/tools/train.py": {
+          "git_blob_sha": "b0a314646bbf4dbe52a436c963f7768135425077",
+          "sha256": "98979b84edd862366d7c83c1959f6239783982b53808ef97a8bb05e699d7e671",
+          "bytes": 4029,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/docs/requirements.txt": {
+          "git_blob_sha": "b6f5d7db27b223bfed9bb617fe9fb6364f28fb40",
+          "sha256": "adccc65582bf0370768046f06b6b0705069617a7dbda8db900a044b72ea3ccd1",
+          "bytes": 114,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/scripts/main.py": {
+          "git_blob_sha": "c820c160c30d7fda061781fbc48338c949b054be",
+          "sha256": "f25be7351627cd2fee3f67590bfe9b7942dcce2bf5e71ef431144f5a77c05384",
+          "bytes": 5885,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/fast_reid/demo/predictor.py": {
+          "git_blob_sha": "be17f94ca2c64161075efd05f4be0148b89aa42d",
+          "sha256": "102e3a1f6324e5b8a155c642fb98563c5019d522c0fc39003a0a8d70632d90cc",
+          "bytes": 5413,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/fast_reid/docs/requirements.txt": {
+          "git_blob_sha": "0b89d341455b1848c88b9654ea9018fdcecc7175",
+          "sha256": "c8dccb3f038d42099d49b806eed980983e5f195b9f55222401bb9752e98fa777",
+          "bytes": 189,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/projects/DML/main.py": {
+          "git_blob_sha": "a5d53c537995eff6498626de790536dfa25dddc1",
+          "sha256": "a6c3ed9de6d1ba1cd437fc01c40c619dbf62f50f4c8a737646f6a2bcfdf9e728",
+          "bytes": 4700,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/projects/OSNet_AIN/main.py": {
+          "git_blob_sha": "185120faba4f3be6e1617236deed7f605ebd6e12",
+          "sha256": "30931ce8335dff652a3f5f2ba191832d2440c06d344142e0c7a7db1656a6393c",
+          "bytes": 4199,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/projects/attribute_recognition/main.py": {
+          "git_blob_sha": "6bdc732515d1d7d15c7142c66e4bf2ceed3ec6c2",
+          "sha256": "6f4e6d06501722f63a83aa348a1fdf4b7642bbc0f3923f2f0e0e1296c6ebcb62",
+          "bytes": 12203,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/torchreid/data/sampler.py": {
+          "git_blob_sha": "896ea7cc25df65bf0692f1ec92893b4695316d43",
+          "sha256": "c88b742d2a0ff2dd6cff181743c89f02f7287dba8f61beb488634091be2f4d07",
+          "bytes": 8412,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "external/deep-person-reid/torchreid/utils/GPU-Re-Ranking/main.py": {
+          "git_blob_sha": "48b96a6f5e3240a0747ae891958c10432190e9c1",
+          "sha256": "a0bfce7e32fa31bb90941b7370b5b929697b51cd8424f5a1df0e1676cd5d8a78",
+          "bytes": 1989,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "dancetrack_data_process.py": {
+          "git_blob_sha": "5f0c672b8d1c48c0d5c06d2bea915787ff629b62",
+          "sha256": "576e7dfea13542e2084fdc398217ae5c4f4ce4c96a729bfdbf6ce102cb247990",
+          "bytes": 1559,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "diffmot.py": {
+          "git_blob_sha": "a6f5920af64c88c518742fcca92c4f4e5d372fb5",
+          "sha256": "2937af6b1240fc397013849800a04acd7c3c85d4731670f5d9bdbe49867faaea",
+          "bytes": 7579,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "mot_data_process.py": {
+          "git_blob_sha": "98d53bb22d0a79553c7eeaeae8bbccc13b4242af",
+          "sha256": "d0d93d3a481e2ee2633cac4b188318174ef71e65f22a6f90b4ea1ada12682c45",
+          "bytes": 1344,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "requirement.txt": {
+          "git_blob_sha": "c28143e05f99f7b7cd8b342a8a790aa4d16f344a",
+          "sha256": "de1b1c33e1fa05565fb601444567c3338a6fa2fd17b144008be2ece713c12ff7",
+          "bytes": 106,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "sports_data_process.py": {
+          "git_blob_sha": "62a1fa531ff172784d832d5f9809f99257018ed3",
+          "sha256": "ed76adb660f00aded2a75744e7bb426c23eb3cf7594bde0acd1f58548d206ed4",
+          "bytes": 1410,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/dancetrack.yaml": {
+          "git_blob_sha": "fb58fd7a249838450559935ac94fc88bdfd19460",
+          "sha256": "ce3e71559cc1c3a86062596bc919a8d081d4ec08ee16ffa8b92b6278e188e691",
+          "bytes": 734,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/dancetrack_test.yaml": {
+          "git_blob_sha": "2ccb334700cbe6b4e3b12b0430c57bc37d7b28d0",
+          "sha256": "765321f43b74b0240430fb982df0180199f4c85212a6c2c81f4d48b9aff5aaeb",
+          "bytes": 734,
+          "acquisition": "VERIFIED_EXISTING"
+        },
+        "configs/mot.yaml": {
+          "git_blob_sha": "a7a78f8df1a4846a6eeb08b6eb9a201797ac5c46",
+          "sha256": "16c90462a67ac7be1b2411f2b6a91e6a62748d3b5c59569aca43d75cba766b27",
+          "bytes": 739,
+          "acquisition": "VERIFIED_EXISTING"
+        }
+      },
+      "source_http_missing_files": {}
     },
     "HybridSORT": {
       "name": "HybridSORT",
@@ -1011,12 +2980,20 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "BoT-SORT": {
       "name": "BoT-SORT",
       "github": "https://github.com/NirAharon/BoT-SORT",
-      "local_path": "/data3/liuyeqiang/research_references/N72R20/BoT-SORT",
+      "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT",
       "audit_status": "NOT_AUDITED",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
@@ -1058,7 +3035,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     },
     "ByteTrack": {
       "name": "ByteTrack",
@@ -1093,7 +3078,15 @@
         "IR_MFT_compatibility",
         "mechanisms_to_port_and_exclude",
         "novelty_overlap"
-      ]
+      ],
+      "source_http_followup": {
+        "semantic_audit": "NOT_COMPLETE",
+        "commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+        "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/ByteTrack",
+        "status": "REUSE_HISTORICAL_NO_MUTATION"
+      },
+      "source_http_verified_files": {},
+      "source_http_missing_files": {}
     }
   }
 }

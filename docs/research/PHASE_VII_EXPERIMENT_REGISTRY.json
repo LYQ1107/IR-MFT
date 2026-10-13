@@ -108,14 +108,74 @@
       "source_commit_at_stage_collection": "307855102aa0441a86cf0310bde37a99486fa8bd",
       "inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
       "source_ready": 16
+    },
+    {
+      "experiment_id": "VII_A0_ORIGINAL_TEMPORAL_PRODUCER_V2",
+      "status": "COMPLETE",
+      "hypothesis": "Determine original producer/history/pool dependence of the frozen ordinary GRU",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/original_temporal_producer_diagnosis_v2.json",
+      "output_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
+      "scope": "Original training/calibration query pools, not causal matched producer comparison",
+      "failure_notes": [
+        "v1 input name mismatched expected checkpoint query manifest; guard correctly rejected it"
+      ]
+    },
+    {
+      "experiment_id": "VII_C_FULLSET_PROBE_JOINT_S0_V1",
+      "status": "REGISTERED",
+      "hypothesis": "Full-set competition versus same-input independent pair ID scoring with supervised no-old-match and bounded residual",
+      "seed": 0,
+      "fit_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001"
+      ],
+      "calibration_videos": [
+        "SN-001"
+      ],
+      "outer_videos": [
+        "SN-015"
+      ],
+      "config_sha256": "380b1a4af0a3cc0485300dc3f712979bdcf3dbd8a50ee2638286e1d571c44fde",
+      "input_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_joint_s0_v1",
+      "command": "CUDA_VISIBLE_DEVICES=0 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_joint_identity.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_actual_queries_s0_v2 --config configs/cfp/phase_vii_joint_probe_v1.json --architecture joint --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_joint_s0_v1",
+      "checkpoint_selection": "Fixed final epoch8, no calibration threshold selection",
+      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT."
+    },
+    {
+      "experiment_id": "VII_C_FULLSET_PROBE_PAIR_S0_V1",
+      "status": "REGISTERED",
+      "hypothesis": "Full-set competition versus same-input independent pair ID scoring with supervised no-old-match and bounded residual",
+      "seed": 0,
+      "fit_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001"
+      ],
+      "calibration_videos": [
+        "SN-001"
+      ],
+      "outer_videos": [
+        "SN-015"
+      ],
+      "config_sha256": "380b1a4af0a3cc0485300dc3f712979bdcf3dbd8a50ee2638286e1d571c44fde",
+      "input_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_pair_s0_v1",
+      "command": "CUDA_VISIBLE_DEVICES=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_joint_identity.py --queries /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_actual_queries_s0_v2 --config configs/cfp/phase_vii_joint_probe_v1.json --architecture pair --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/joint_probe_pair_s0_v1",
+      "checkpoint_selection": "Fixed final epoch8, no calibration threshold selection",
+      "scope": "Conditional heldout new association head only. Inherited RGB all6 exposed, GRU fit5/calSN015; fixed actual teacher states, not encoder OOF or full online MOT."
     }
   ],
   "source_http_followup": {
     "experiment_id": "VII_SOURCE_PINNED_RAW_BLOB_ACQUISITION_V1",
-    "status": "REGISTERED",
+    "status": "ACQUISITION_COMPLETE_WITH_EXPLICIT_GAPS",
     "reason": "Git transport materialized16 of30 projects; fetch only bounded public audit entry files at exact tree hashes through independent HTTP endpoint, preserving historical checkouts and modified files",
     "command": "PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_fetch_reference_audit_sources.py --plan configs/cfp/phase_vii_reference_inventory_v1.json --maximum-files 24 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/reference_audit_http_v1.json",
-    "scope": "No weights/data/archive or external code execution. Selected-file acquisition is not30 complete semantic audits; every absent file and failure stays explicit."
+    "scope": "No weights/data/archive or external code execution. Selected-file acquisition is not30 complete semantic audits; every absent file and failure stays explicit.",
+    "summary_sha256": "4278c0e4c0f8488ce4fc91612547e23f4a71f86324164a001db898d986e1738c"
   },
   "pending": [
     "30 semantic source audits",
@@ -130,10 +190,10 @@
     "final20-question scientific audit"
   ],
   "validation": {
-    "project_tests": 191,
+    "project_tests": 200,
     "warnings": 18,
-    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_startup_v1.log",
-    "log_sha256": "15582e5fbbd44c097a0dbe8f28da8d61c894c3f02656c47188f51da0bbc9eacd"
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_joint_v2.log",
+    "log_sha256": "594ece489286a97ebca2705863ae7c5cd868adddcea3144e240d39b39230c458"
   },
   "execution_failures": [
     {
@@ -141,6 +201,8 @@
       "error": "Exact floating-point percent comparison differed at roundoff despite equal query counts; fixed tolerance1e-10 with explicit denominator check.",
       "repaired": true,
       "scientific_metric_vectors_changed": false
-    }
+    },
+    "Original temporal producer v1 guard rejected pre-lifecycle query directory; corrected exact checkpoint-matched lifecycle query used in complete v2.",
+    "Full-set dataset v1 inherited GRU cannot pack zero-track rows; complete v2 retains these snapshots using explicit empty prototype."
   ]
 }
