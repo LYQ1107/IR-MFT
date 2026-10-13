@@ -1,0 +1,11 @@
+{
+  "state": "FROZEN",
+  "maximum_queries_per_physical_identity_per_view": 64,
+  "minimum_past_gaps": [1, 25, 100],
+  "query_sampling": "Uniform order statistics over valid known physical fish observations; same query positions for every feature on each view",
+  "gallery": "Every earlier same-video/same-view pilot observation, including unknown detector identities and unavailable features. No GT-favored proposal filtering.",
+  "pair_metrics": "Current known query versus nearest earlier same-known-fish positive, and same-frame different-known-fish negatives; unknowns excluded from negative labels, retained in retrieval galleries.",
+  "batch_size": 64,
+  "features": ["fish_raw", "fish_pre", "fish_post", "fish_local4_mean", "fish_local8_mean", "fish_local4_concat", "fish_local8_concat", "fish_local8_visibility_mean", "imagenet_global"],
+  "scope": "Sparse two-crop identity diagnostic, not accepted-history/GRU or full-online MOT. Backbone exposure and source numeric drift explicit; all features use identical per-view queries and temporal gallery masks."
+}

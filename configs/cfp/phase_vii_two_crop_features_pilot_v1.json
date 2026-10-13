@@ -1,0 +1,17 @@
+{
+  "state": "FROZEN",
+  "frame_period": 20,
+  "frame_residues": [1, 2],
+  "frame_selection": "All six training videos: every20frame pair1/2, retaining same-frame crowded sets, adjacent pairs, medium/long past gaps. This is a preregistered sparse crop identity pilot, not full detector-feature or online throughput measurement.",
+  "batch_size": 128,
+  "workers": 2,
+  "precision": "AMP matches inherited detector feature producer; normalized features stored float32, local/rawImageNet tokens float16",
+  "crop_hw": [128, 256],
+  "crop_margin": 0.05,
+  "encoders": ["Inherited exposed fish ResNet50/projection/BN", "Frozen ImageNet ResNet50, no fish fitting"],
+  "outputs": ["Fish raw2048/pre-neck512/post-neck512", "Fish untrained local4/8 projectedBN512", "ImageNet rawglobal2048/local4/8raw2048", "Observable letterbox strip visibility"],
+  "training_scope": "Features are current GT/detector crops for offline training/diagnosis only. New adapters must exclude distinct outer and inner calibration videos; old fish encoder exposure remains explicit.",
+  "max_feature_bytes": 8589934592,
+  "reserve_gib": 40,
+  "inherited_numeric_parity": "Selected same detector boxes/features compare max component error and cosine error with exact old bank; AMP batch composition differences reported, never asserted byte equality."
+}

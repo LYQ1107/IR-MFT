@@ -244,7 +244,8 @@
       "parameters_allocated": 150533,
       "optimizer_gradient_participating_parameters": 142084,
       "training_seconds": 137.80464146299528,
-      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement."
+      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement.",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
     },
     {
       "experiment_id": "VII_C_FULLSET_PROBE_PAIR_S0_V1",
@@ -370,7 +371,8 @@
       "parameters_allocated": 150533,
       "optimizer_gradient_participating_parameters": 83845,
       "training_seconds": 92.25418412199906,
-      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement."
+      "conclusion": "NULL versus existing-ID tradeoff; bounded residual has no fixed-state accuracy benefit. No MOT superiority claim; proceed to matched full-video endogenous measurement.",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
     },
     {
       "experiment_id": "VII_C_FULLVIDEO_JOINT_PAIR_CAMPAIGN_S0_V1",
@@ -2422,6 +2424,167 @@
       "status": "ACQUISITION_FAILED",
       "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1",
       "scope": "One official Apache2-model licensed URL,100MBcap, no giant/otherweights/data; TLS failed, no acquired backbone or executed externalcode claimed."
+    },
+    {
+      "experiment_id": "VII_A0_TWO_CROP_STAGE_LOCAL_FEATURES_PILOT_V1",
+      "status": "COMPLETE_SPARSE_TWO_CROP_FEATURES",
+      "config": "configs/cfp/phase_vii_two_crop_features_pilot_v1.json",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1",
+      "manifest_sha256": "c0f1c834234a1ebc399d327d9374b9969eb8bdccf85f4d12dabb3904469285b7",
+      "scope": "Registered frame pairs across6videos; frozen exposedFish raw/pre/BN/local4/8 and unfittedImageNet global/local features. Not allframe bank or full online cost."
+    },
+    {
+      "experiment_id": "VII_A0_CROP_RETRIEVAL_PILOT_V1",
+      "status": "COMPLETE_SPARSE_RETRIEVAL_DIAGNOSTIC",
+      "config": "configs/cfp/phase_vii_crop_retrieval_pilot_v1.json",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_crop_retrieval_pilot_s0_v1.json",
+      "scope": "Same queries/masks for representations within eachGT/det view; view pools differ, so common-physical-key pairedcrop control required.",
+      "output_sha256": "dc6929f3d6675c4ef199214125988b905c5e8fe19e265a20f13df7c01938fded"
+    },
+    {
+      "experiment_id": "VII_A2_LOCAL_ADAPTER_PILOT_FIRST_FOLD_V1",
+      "status": "COMPLETE",
+      "config": "configs/cfp/phase_vii_local_adapter_pilot_v1.json",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "seed": 0,
+      "mode": "global",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_adapter_global_SN-015_s0_v1",
+      "scope": "OnlyImageNet raw features; new256head excludesouter+innerfishexposure. Fixedepoch8, nofishtrainedcolumns. Further registered6fold/3seed/capacity/simple/learned controls pending.",
+      "manifest_sha256": "9c715fea934e455f3f322ac7f950219e833f1ba64e7f2544b784f8c6c292c3d0",
+      "checkpoint_sha256": "215c5505c2715a7b5681f75e412143698363f8bec814b9fffc0b568a2d40fc44",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A2_LOCAL_ADAPTER_FIRST_FOLD_DUAL_GLOBAL_S0_V1",
+      "status": "COMPLETE",
+      "config": "configs/cfp/phase_vii_local_adapter_pilot_v1.json",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "seed": 0,
+      "mode": "dual_global",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_adapter_dual_global_SN-015_s0_v1",
+      "scope": "Same registered firstfold/budget/features/queries. FrozenImageNet only; capacity/simple/learned controls chosen in original config before firstouter results. No outerparameter tuning.",
+      "manifest_sha256": "0616e724e443b9b49ab159820161dae5fccf326afcfdeda740707268175b9ca9",
+      "checkpoint_sha256": "b845ddc3785ac9bac091f6314bfbac55adc945d6b9224ca4d266a1568bb58902",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A2_LOCAL_ADAPTER_FIRST_FOLD_SIMPLE_S0_V1",
+      "status": "COMPLETE",
+      "config": "configs/cfp/phase_vii_local_adapter_pilot_v1.json",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "seed": 0,
+      "mode": "simple",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_adapter_simple_SN-015_s0_v1",
+      "scope": "Same registered firstfold/budget/features/queries. FrozenImageNet only; capacity/simple/learned controls chosen in original config before firstouter results. No outerparameter tuning.",
+      "manifest_sha256": "25d1821482dde2c14cabc21b11d8e04d89c2efc6d3a89b187986cd793b27e841",
+      "checkpoint_sha256": "111bc19a77f87afd5adaa3d45bc7be7e26226b9e58651b4f06a8dabdee8da8c4",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A2_LOCAL_ADAPTER_FIRST_FOLD_LEARNED_S0_V1",
+      "status": "COMPLETE",
+      "config": "configs/cfp/phase_vii_local_adapter_pilot_v1.json",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "seed": 0,
+      "mode": "learned",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_adapter_learned_SN-015_s0_v1",
+      "scope": "Same registered firstfold/budget/features/queries. FrozenImageNet only; capacity/simple/learned controls chosen in original config before firstouter results. No outerparameter tuning.",
+      "manifest_sha256": "50b708c13a5f9eb5ce7dd43dd0b4494b6c9cc4bc87c7973be851827d802848dc",
+      "checkpoint_sha256": "6fd10c53703ceb0e4c325ef5b83d0882b12b3bd078baccbb4f7f0751c8c02649",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_BACKBONE_FIRST_FOLD_GLOBAL_S0_V1",
+      "status": "COMPLETE",
+      "config_sha256": "f8404ed2d7a5384cc66c0e86627be2a5098b5db9cc990a84759b8487fcb0fb04",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "mode": "global",
+      "seed": 0,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s0_v1",
+      "command": "CUDA_VISIBLE_DEVICES=2 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode global --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_global_SN-015_s0_v1",
+      "reason": "FrozenImageNet heads fail to improve retrieval despite fittingIDloss falling; test actual visual domain fitting. Architecture/matchedloss choices fixed; no outer parameter/checkpoint selection.",
+      "scope": "Full actual ImageNet-initialized backbone/head/BNupdates restricted to4fitvideos; sparsecrop pilot, no newMOTclaim; allfold/3seed confirmation remains.",
+      "manifest_sha256": "6c37338a4e22a93fe236e904857f5a3ceb54c1ee97bb5016087c3dc06244a514",
+      "checkpoint_sha256": "5379fb4ab50f2db18e256b513611016c468ef89b4eb986ededc643ec32691e30",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A1_A2_VISUAL_BACKBONE_FIRST_FOLD_LEARNED_S0_V1",
+      "status": "COMPLETE",
+      "config_sha256": "f8404ed2d7a5384cc66c0e86627be2a5098b5db9cc990a84759b8487fcb0fb04",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "mode": "learned",
+      "seed": 0,
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s0_v1",
+      "command": "CUDA_VISIBLE_DEVICES=3 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_train_visual_identity.py --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_features_pilot_s0_v1 --crops /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_pilot_crop_cache_v1 --config configs/cfp/phase_vii_visual_finetune_pilot_v1.json --mode learned --seed 0 --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visual_identity_learned_SN-015_s0_v1",
+      "reason": "FrozenImageNet heads fail to improve retrieval despite fittingIDloss falling; test actual visual domain fitting. Architecture/matchedloss choices fixed; no outer parameter/checkpoint selection.",
+      "scope": "Full actual ImageNet-initialized backbone/head/BNupdates restricted to4fitvideos; sparsecrop pilot, no newMOTclaim; allfold/3seed confirmation remains.",
+      "manifest_sha256": "aad526428cb883f3f1345dfff41fc76daa99ba6c2428b0533c29bfbb28697506",
+      "checkpoint_sha256": "08c7fe886b357de1fe6030b0936066e67604a59ede5b37b4fc09bc877574c271",
+      "measured_summary": "docs/research/PHASE_VII_VISUAL_PILOT_MEASURED.json"
+    },
+    {
+      "experiment_id": "VII_A0_PAIRED_CROP_RETRIEVAL_PILOT_V1",
+      "status": "COMPLETE_PAIRED_CROP_DIAGNOSTIC",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_paired_crop_retrieval_pilot_s0_v1.json",
+      "output_sha256": "fb6fadda2332a4a7f78f51a029e259821dd54532caa5a3bc46d6f5aaf97960cd",
+      "scope": "Identical known physical keys/query/gallery/time masks; GT/detector crop pixel diagnostic; all-six train scenes."
+    },
+    {
+      "experiment_id": "VII_A1_DINOV2_SOURCE_ARCHITECTURE_SMOKE_V1",
+      "status": "SOURCE_INFERENCE_SMOKE_COMPLETE_RANDOM_INITIALIZATION_ONLY",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+      "output_sha256": "220b1cfebd9f1e71b6e2f180a28d60f649d8df155075d5c598fd9585045edc95",
+      "scope": "Licensed exact-commit random CPU source smoke only; pretrained retrieval absent."
+    },
+    {
+      "experiment_id": "VII_A1_DINOV2_HF_FILE_PROVENANCE_V1",
+      "status": "PUBLIC_LICENSE_AND_FILE_PROVENANCE_VERIFIED_ACCESS_PENDING",
+      "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_hf_pinned_provenance_v1.json",
+      "output_sha256": "88e1060d725ba2a9d9fb694a19399a2a2c0a5dfdfbefb1c23df98b4f7dec6f96",
+      "scope": "Publisher exact commit/file SHA/bytes verified; all TLS delivery attempts failed; no weights acquired."
     }
   ],
   "source_http_followup": {
@@ -2462,5 +2625,6 @@
     "Original temporal producer v1 guard rejected pre-lifecycle query directory; corrected exact checkpoint-matched lifecycle query used in complete v2.",
     "Full-set dataset v1 inherited GRU cannot pack zero-track rows; complete v2 retains these snapshots using explicit empty prototype.",
     "Constant-control test v1 mistakenly attached the old low-stage counter assertion to the new two-call test; fixed test placement, retained failed log, full v2 has203passed18warnings."
-  ]
+  ],
+  "current_visual_summary_sha256": "6856e50d3dbd3460782b85e76f2a698ab998ac9e11baaa46cecb4de14b3b3806"
 }

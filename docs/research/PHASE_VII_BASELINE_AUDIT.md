@@ -9,3 +9,7 @@ Inherited Phase VI exact replay, official evaluation and 88-asset hash evidence 
 Registered first diagnostic reproduces both old six-video pure-rank and same-supported-subset retained-cue results. The extension measures normalization, bounded FIFO/EMA/last/GRU, saved prototype equality, geometry eligibility, confidence-fused geometry and bounded appearance blending on identical actual states. Row reranking is not full one-to-one Hungarian or endogenous MOT.
 
 No new-method training or blind-scene performance is claimed at startup.
+
+## New visual reference scope
+
+Frozen original ImageNet ResNet50 raw2048 is the unexposed-to-fish-fit visual control, with explicit external-pretrain overlap uncertainty. Inherited FishReID remains six-video-exposed. Four new adapters and two actual backbone fits use the identical ImageNet initialization and exclude outerSN015 plus innerBT001 from gradients/classifier/BN fitting. The gap25 first-fold results are summarized in REID_COMPARISON; no new model beats the outer frozen ImageNet detector R1=53.6508%. No new visual online score is claimed. Official DINOv2 small source is Apache2 and its random CPU architecture forward succeeds, but all bounded pretrained weight transports failed TLS; random initialization is not a pretrained baseline.

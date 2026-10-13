@@ -1095,7 +1095,7 @@
       "name": "DINOv2",
       "github": "https://github.com/facebookresearch/dinov2",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REPAIRED_OWN_PARTIAL_SOURCE_CLONE",
       "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
       "origin": "https://github.com/facebookresearch/dinov2",
@@ -1128,19 +1128,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
@@ -1346,6 +1334,54 @@
         "requirements.txt": {
           "git_blob_sha": "04c159c443b89330ff3c84257c41b011f9791257",
           "sha256": "553faa42e1ad3975631e46df26bcfd76ec3add6beacb9ede3f8ef22393f5eefc"
+        },
+        "dinov2/__init__.py": {
+          "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+          "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+        },
+        "dinov2/hub/__init__.py": {
+          "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+          "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+        },
+        "dinov2/hub/utils.py": {
+          "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+          "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+        },
+        "dinov2/layers/dino_head.py": {
+          "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+          "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+        },
+        "dinov2/layers/layer_scale.py": {
+          "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+          "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+        },
+        "dinov2/layers/mlp.py": {
+          "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+          "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+        },
+        "dinov2/layers/swiglu_ffn.py": {
+          "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+          "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+        },
+        "dinov2/layers/attention.py": {
+          "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+          "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+        },
+        "dinov2/layers/drop_path.py": {
+          "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+          "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+        },
+        "dinov2/layers/block.py": {
+          "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+          "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+        },
+        "dinov2/layers/__init__.py": {
+          "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+          "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+        },
+        "dinov2/models/__init__.py": {
+          "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+          "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
         }
       },
       "inspected_findings": {
@@ -1360,7 +1396,21 @@
         "compatibility": "Current-only RGB backbone fits frozen-global/local crop controls, new384dimension coordinate must create matched producer and exclude outer/inner videos for learned fish adapters. Old512GRU cannot be reused across latent spaces.",
         "port": "Use frozenCLS/patchTokens as A1/A2 controls, then independent supervised fish adapters/local pooling. Do not repeat142M-pretraining or download giant/register/depthheads unnecessarily.",
         "novelty_overlap": "Teacher EMA, patchdistillation and localtoken features are prior mechanisms; merely adoptingDINOpatches or EMAis not new identity prediction.",
-        "remaining": "Verify actual lawful small-weight delivery and executable inference/preprocessing route; task-level full semantic audit not yet marked complete."
+        "remaining": "Source-level fields completed with explicit pretrainedtransport limitation. RandomCPUforward is architecture/runtime proof only; real pretrainedretrieval, weightconversionparity andGPU/fullonlineperformance remainpending."
+      },
+      "inference_source_smoke_sha256": "220b1cfebd9f1e71b6e2f180a28d60f649d8df155075d5c598fd9585045edc95",
+      "semantic_audit": {
+        "paper_year_scene_contribution": "DINOv2: Learning Robust Visual Features without Supervision; primary arXiv2304.07193, submitted2023/revised2024. General image/pixel features, not individual fish labels.",
+        "license_and_weight_access": "Apache2 code/license and modelcard. OfficialDINOsmall URL repeatedlyfailsTLS. HFMeta namespace convertedSmall Apache2file atrevision150c8e7bb7cef2d30ec31b13a517af14840ee3f7 haspublisherSHA256ae1e99fcefd534ed978cdeb8326f08030c96e28b7a81ffcbc98a857c84d14be1 andsize88249960. OfficialHFAPIandpublicmirror requestsfail; no weights acquired. Pretrainedexperiment access pending, not an audited pretrained result.",
+        "training_entry_and_sampler": "dinov2/train/train.py main; SSLMetaArch.forward_backward student global2/local8 views, teacher no-grad and EMA; defaultsharded-infinite sampler, no fishID PK/hard-frame sampling.",
+        "inference_entry_and_temporal_scope": "dinov2/hub/backbones.py dinov2_vits14 ->models/vision_transformer.py forward_features; currentimage, no futureorphysicallabels. Apache-licensed actualCPUforward on currentTorch2.0 succeedswithoutxformers using singleTensor fallback, butrandominitializationonly.",
+        "core_model_files_and_shapes": "Small14 dim384/depth12/heads6, CLS+patch tokens; actual22056576parameters.128x256failsassertion, mean-normalizedpaddingto140x266 yields190spatialtokens+CLS verified. Registersareseparatevariant excludedfromSmall14pilot.",
+        "loss_and_positive_negative_construction": "DINO teacher-distribution CE for other global/current local views; iBOT teacher-stopped masked patch CE with inverse mask-count weighting; KoLeo normalized batch nearest-neighbor negative-log distance excludes self and same-image otherglobal view by cropchunk. No physical-ID positives/negatives or cross-frame association loss.",
+        "pretrained_sources": "ViTS14 distilled from pretrainedViTg; LVD142M curated142Mimages. Exact fishdataset overlap cannot be verified from private corpus; do not claim zero external overlap.",
+        "GPU_CUDA_dependencies": "SSLMetaArchrequiresxformers/FSDP/CUDA/AMP forofficialtrain; dense singleTensor inference actuallysucceeds onTorch2.0CPU withXFORMERS_DISABLED=1. No package installation ormodelweightdownload. GPUforward/pretrainedquality yetunmeasured.",
+        "IR_MFT_compatibility": "Current-only RGB backbone fits frozen-global/local crop controls, new384dimension coordinate must create matched producer and exclude outer/inner videos for learned fish adapters. Old512GRU cannot be reused across latent spaces.",
+        "mechanisms_to_port_and_exclude": "Use frozenCLS/patchTokens as A1/A2 controls, then independent supervised fish adapters/local pooling. Do not repeat142M-pretraining or download giant/register/depthheads unnecessarily.",
+        "novelty_overlap": "Teacher EMA, patchdistillation and localtoken features are prior mechanisms; merely adoptingDINOpatches or EMAis not new identity prediction."
       }
     },
     "I-JEPA": {
@@ -3062,7 +3112,7 @@
       "name": "BoT-SORT",
       "github": "https://github.com/NirAharon/BoT-SORT",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
       "origin": "https://github.com/NirAharon/BoT-SORT",
@@ -3091,19 +3141,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
@@ -3111,13 +3149,117 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "source_read_proofs": {
+        "LICENSE": {
+          "git_blob_sha": "f50528b7c82896a2884c21179ddc9c7cd1f45efa",
+          "sha256": "12a15474ca15cec568da311e6cd89e593e3cd2bb5b790e75b90e1608306a3a5f"
+        },
+        "README.md": {
+          "git_blob_sha": "eaf3ec594af1ab62ba8ae15657543975ef55493e",
+          "sha256": "b742de781491ad017d606fb2b46d2b1d5eea9f4be1817106321d96547d8d1465"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "4c35b5be84578fd56b92392ca60e9cff46592d53",
+          "sha256": "b34ab5cebcc548a471dd70a83d8a28a47a40dcb58548ae4fc2ba57f3daaf3a7f"
+        },
+        "tracker/bot_sort.py": {
+          "git_blob_sha": "6b1bb482e393b450fb051a0f83cc7a5f42c855c5",
+          "sha256": "ba6dd32ad4b96ee49d6f70654159269bd45ce15fd0fe5007f3a1b81bc257edf0"
+        },
+        "tracker/kalman_filter.py": {
+          "git_blob_sha": "02a6eb4f718b15fac945ce4c36cbfce193f3d22f",
+          "sha256": "c1a4c0acc71b9a91c0cdbe7b689f88712d68e7e8be4d7e54fb437f33fdbc9e5a"
+        },
+        "tracker/matching.py": {
+          "git_blob_sha": "3ea8ce4271776bcd04f9d1fdf374151a738ec04a",
+          "sha256": "020b2215c20467b31f7d8a977a2f557b8d1838f8baa5a5be54c0b8d14bbee4e1"
+        },
+        "tracker/gmc.py": {
+          "git_blob_sha": "e7ec207002509f556763dc44fd2bf8672806f7d2",
+          "sha256": "508c3a4ea0e9a72478ce2d1d29aa1eb8892b3804c76b524a16a34dca23dba9ba"
+        },
+        "tools/track.py": {
+          "git_blob_sha": "d677a1361868028f3988d6d3b33551a0780519c0",
+          "sha256": "f3b58034d4933d75ff067f0d7b14a1b8f0335cf269241a3411b3a49ffb096202"
+        },
+        "tools/demo.py": {
+          "git_blob_sha": "b2c0bd2e857d068c29c80aea4246b50035ea29b5",
+          "sha256": "770b6133fd1e8c8bb374c2702dcc089eead596d1817a17dba3ec4d4fa5aff11c"
+        },
+        "fast_reid/LICENSE": {
+          "git_blob_sha": "f632668fe3fa3d7727567d0324975f3e5c501413",
+          "sha256": "14a8a9a670fa989f040bc7a5d964fa7a478ffd7cb44407a9061303240d9e21df"
+        },
+        "fast_reid/fast_reid_interfece.py": {
+          "git_blob_sha": "6c91ff054b08a284095d06a6ed58caf100884050",
+          "sha256": "99a2780d4cf9b1122f6ff3a0ecb57bff91330d66fc829e71e6c9860c1ca25d94"
+        },
+        "fast_reid/tools/train_net.py": {
+          "git_blob_sha": "2a47c6eb0ce6a7c612afd4ebe8c275a2e36285f7",
+          "sha256": "4f35f9e07c1444ed8681e4bb7f0c6a5ba224319af136f447d08d9e8dd9a6e5d0"
+        },
+        "fast_reid/configs/MOT17/sbs_S50.yml": {
+          "git_blob_sha": "32b714ed00c1f1e89d45fc1753448ee892c91782",
+          "sha256": "5410bfe270162e062ca2e6d14c73a8bcb9f9bb8fb3eabb8650329c2afac4168d"
+        },
+        "fast_reid/configs/Base-SBS.yml": {
+          "git_blob_sha": "cc5d6e5a8f35d4ff761a4274b7299ac2ba728ed0",
+          "sha256": "18e18a2f798161d7ecf713d6302bb74719d5cde85433b2541b3bcede6a8c179c"
+        },
+        "fast_reid/configs/Base-bagtricks.yml": {
+          "git_blob_sha": "9bfb11fd986e911e6ad937acb66d2b1b582cc757",
+          "sha256": "2054e2d0e3be7fe7daf6a5814a5ffaf98279c05cf59e805fe81d6c43179327e3"
+        },
+        "fast_reid/fastreid/config/defaults.py": {
+          "git_blob_sha": "2eefca22d3b94cd3b1e22e7df6c4c47d0c77ee65",
+          "sha256": "e7b10097643fdeb662a97a036b3cb63214846be46b038cde06563da68f72146c"
+        },
+        "fast_reid/fastreid/data/build.py": {
+          "git_blob_sha": "2c29d25d7065af4e8c96c2a69e03b1c4d8c04567",
+          "sha256": "1d2511e5dddf6eb36e7c042e4d3772dd2ae86b2c425c4f1270a6d2a66a8ff42a"
+        },
+        "fast_reid/fastreid/modeling/meta_arch/baseline.py": {
+          "git_blob_sha": "3a06193e671a87fd214949c9e11472c3568a2cd8",
+          "sha256": "17cb0622293d801e6fe2e9f97dacce96528a117d8cb78a6a2c301a34dda912d5"
+        },
+        "fast_reid/fastreid/modeling/heads/embedding_head.py": {
+          "git_blob_sha": "3934fdf826bddcfaeb8452fd589121fad473787b",
+          "sha256": "c46c019747bb8f38a1b24779b2b5e0e0f977d91c00e4c8018397d70d5b1b86dd"
+        },
+        "fast_reid/fastreid/modeling/losses/triplet_loss.py": {
+          "git_blob_sha": "527500833473b2416cda9b67342f7cf3e1d1044d",
+          "sha256": "aa6dca160a8a51ed5b0d34a1ca83a0fb0bc421ee82bbb4126c965d8738ce5823"
+        }
+      },
+      "semantic_audit": {
+        "paper_year_scene_contribution": {
+          "primary": "https://arxiv.org/abs/2206.14651",
+          "title": "BoT-SORT: Robust Associations Multi-Pedestrian Tracking",
+          "year": "2022primarypreprint",
+          "scene": "MOT17/MOT20pedestrians, camera motion/appearance/motion fusion; not fishReID",
+          "contribution": "XYWHKalmanstate, cameramotion compensation, gatedappearance and IoU fusion plus ByteTrack-style lowconfidence recovery"
+        },
+        "license_and_weight_access": {
+          "code": "TopMIT2022NirAharon; nestedfast_reid/LICENSEApache2. Inherited ByteTrack/YOLOX and imported dependencies need preserved notices. No externalsource copiedinthisaudit.",
+          "weights": "PublicMOT17/MOT20SBS-S50GoogleDrive links andByteTrack/YOLOXdetectors inREADME; no verified independent weightlicense/access proof. Fullweightreproduction excludeduntilresolved; existingfixedV3/fish-coordinate geometry/lifecycle control doesnotneednewofficialweights."
+        },
+        "training_entry_and_sampler": "Officialdetectortraining refersByteTrack/YOLOX; FastReID fast_reid/tools/train_net.py with MOT17/sbs_S50.yml ->Base-SBS ->Base-bagtricks. DefaultNaiveIdentitySampler, B64/K16 identitygroupedcroppatches, not samephysicalfish/sameframe constrained sampling. SBS60epochs, Adam3.5e-4, AMP, initialbackboneFREEZE_ITERS1000; no learnableassociationhead.",
+        "inference_entry_and_temporal_scope": "tools/track.py or tools/demo.py ->BoTSORT.update ->predict ->GMC ->high association ->low/unconfirmed/birth/write. OnlycurrentRGBand earliertrack states/EMA required forliveGMC. tools/track.py default cmc=file and perMOTsequence thresholdoverrides are officialbenchmark choices; fileGMC reads unvalidated offline rows and no generationcausalityproofisprovided, sofilemode excludedfrom strictonlineclaim. sparseOptFlow reads previous/current and updatesprev aftermotionestimate.",
+        "core_model_files_and_shapes": "tracker/bot_sort.py STrack: mean8/cov8x8 XYWH+4velocities, measurement4; lost width/heightvelocities zeroed. GMC2x3 affine liftedto8x8 withtranslatedcenters. PaircostNtracks xMdetections. SBS-S50 build_resnest_backbone defaultdepth50x, feature2048, GeM andBNneck, evalafter-neck normalizedbyFastReIDInterface; input384x128 stretchRGBcrops, currentfeatures+normalizedEMA0.9.",
+        "loss_and_positive_negative_construction": "Association is untrainedLAPJV. SBS: CircleSoftmax classifier(scale64/margin.35) + CElabel_smoothing.1 + batchhardTriplet(margin0 softform, nonnormalizedfeatures). Positives samepersonIDwithK16samples; negatives otherpersonIDs, notvideo/sameframe hardfish construction. Trackscorecost min(fusedIoU, cosinedistance/2) withrawIoUproximitymask andappearance cutoff; confidence fusion disabledforMOT20.",
+        "pretrained_sources": "ImageNet/ResNeStFastReID backbone initialization and separateMOT17/MOT20 personpatchIDmodels, ByteTrackYOLOX COCO/pedestrian detectorweights. RGBsinglemodality; learned fish/IR signal unavailablebydefault. OfficialfullsystemandfixedV3/head/fish-coordinate adaptation aredifferentprotocols.",
+        "GPU_CUDA_dependencies": "CPUtrackers requireNumPy/SciPy/lap/Cythonbbox/OpenCV; np.float/np.float_ compatibility onmodernNumPy mustbeisolated. FastReID torch/torchvisionCUDAhalf batch8 orCPUfloat; yacs/pyyaml/h5py/etc, detectorCUDA/AMP. LiveGMC addscurrentRGB opticalflow/featureextraction cost; precomputedfiles notfreeend-to-endonlinecost.",
+        "IR_MFT_compatibility": "SamefrozenV3proposals andfish featurecoordinate cancompare nativecost/lifecycle separately. XYWHstate cannotbeinstalled asXYAHfilterwithoutSTrack conversion changes; existingPhaseV CFPlifecycle source alreadydefines matchedcoordinate/native controls. S50personweights/stretch384x128 notequivalenttofish letterbox128x256.",
+        "mechanisms_to_port_and_exclude": "PortisolatedXYWHmotion, gatedappearance/IoUmin and causalGMC ablations withfixedfeatures/writes/output. Do notrecopywholetracker orclaimGMCfilecausality; keepdata-specificthresholdoverrideandnativebirth/duplicate rules explicit. Nativehigh .6/low .1/new .7, rawIoUdistanceproximity .5, appearance distance/2 cutoff .25 aredefaults, notour .58/.97 policy.",
+        "novelty_overlap": "Confidence/geometryappearancefusion, normalizedEMA, motion-statechange andcamera compensation areestablishedpriors. Anygainfromlifecyclethresholds/GMC cannotbeclaimed asnewfine-grainedidentitylearning."
+      }
     },
     "ByteTrack": {
       "name": "ByteTrack",
       "github": "https://github.com/FoundationVision/ByteTrack",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/ByteTrack",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
       "origin": "https://github.com/FoundationVision/ByteTrack",
@@ -3134,19 +3276,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/ByteTrack",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
@@ -3154,7 +3284,87 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "source_read_proofs": {
+        "LICENSE": {
+          "git_blob_sha": "dfba850f8da707522d7b1d71636ba3ed6c7d0a28",
+          "sha256": "e9d83751678cbaba6dfba902ea39215c423d93425e58f8450d6001f7261696f9"
+        },
+        "README.md": {
+          "git_blob_sha": "3820e17bc4e3fa71452ea0db12795c0d7522f3f7",
+          "sha256": "126d307a421e4421aa9d3917e7849d1cf63c95f7b36864e1ca92a9d1a451c247"
+        },
+        "requirements.txt": {
+          "git_blob_sha": "aae4668269938e3e6999494ada961e2837d04ba3",
+          "sha256": "a8a918225d5385b9db03f7dd030dc37cf8f4f80655d655b3dee4a2bcfae7709e"
+        },
+        "setup.py": {
+          "git_blob_sha": "ab3aca97b5fed932e7a40e21f6633f9f6cb84879",
+          "sha256": "b96b3e6ae1f427b80c2a6984f0218d441f7bd5dd10b2c9b21475e4ab81e4304f"
+        },
+        "tools/train.py": {
+          "git_blob_sha": "d05360911952b3f5a8e4c0e8dbd51dfff34f8ea8",
+          "sha256": "ed97d7ba58307505d5db247c10dd82c29f8d22ceee0eed95e2004e451b9c82dc"
+        },
+        "tools/track.py": {
+          "git_blob_sha": "ee7769a543b417f84968301153e8d6d0d2d659a0",
+          "sha256": "1bb2aee28b0b0ea7bb83953e7e5338a03b7edf241af14a865ecf678d3da7ee0e"
+        },
+        "yolox/tracker/byte_tracker.py": {
+          "git_blob_sha": "2d004599bba96ff4ba5fc1e9ad943e64361067e3",
+          "sha256": "7cecdcdd7998103969a4ba1772f4c9fb5560fd5eef05ca03e0d2df28346ca50b"
+        },
+        "yolox/tracker/kalman_filter.py": {
+          "git_blob_sha": "deda8a26292b81bc6512a8f6145afabde6c16d7a",
+          "sha256": "9842d0dd9957c97e312d42e5789441add55082066d87cc051ac768143a46eb39"
+        },
+        "yolox/tracker/matching.py": {
+          "git_blob_sha": "d36a6cf5bf758a49bd414f63f402fef3fdd2e18c",
+          "sha256": "2f54bf0c183f577087391901562ae2bcd3c01633a3e077bd5d4168fafbd899a6"
+        },
+        "yolox/models/yolo_head.py": {
+          "git_blob_sha": "ba8238f17d317eeb4f6c4dc7470f3a6db3ce3ece",
+          "sha256": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8"
+        },
+        "yolox/data/datasets/mot.py": {
+          "git_blob_sha": "d52febcbbe816bdd3d1e07f2d042e115ae330442",
+          "sha256": "de59489a4b984e989e427ca843a0db8a6d981d3e04bf447d6ca08016d5cf025f"
+        },
+        "yolox/data/samplers.py": {
+          "git_blob_sha": "064b13376b3c813ad6f9e5745496dd5027b65f0f",
+          "sha256": "6656fcd79636579063ff0b0f16183bf44b83402984e70ed4baacf757083e092e"
+        },
+        "exps/example/mot/yolox_x_ablation.py": {
+          "git_blob_sha": "6afb771555419b1166adfdce8489303ae912c9fc",
+          "sha256": "85c5907fc9aa331418787e1db9db92bbdc8097bae94292406812b502bc3fac89"
+        },
+        "yolox/evaluators/mot_evaluator.py": {
+          "git_blob_sha": "f8c2d83b30e70220af2aefe5d4e0ddb109bb15c4",
+          "sha256": "701900284d4c4abf5d3684cf733a374bd0519cbcb3b9abf12c1f2cb2082191ae"
+        }
+      },
+      "semantic_audit": {
+        "paper_year_scene_contribution": {
+          "primary": "https://arxiv.org/abs/2110.06864",
+          "title": "ByteTrack: Multi-Object Tracking by Associating Every Detection Box",
+          "year": "Preprint2021/revised2022; ECCV2022 per official repository",
+          "scene": "PedestrianMOT17/MOT20, HiEve and BDD100K demonstrations; not a fish identity encoder",
+          "contribution": "Associate high-confidence detections, then retain low-confidence detections for recovery rather than dropping them."
+        },
+        "license_and_weight_access": {
+          "code": "MIT copyright2021YifuZhang; imported/framework/inherited notices remain separately applicable. No external code copied by this new audit.",
+          "weights": "README public GoogleDrive/Baidu model links; no separate verified weight license/access artifact. Full official detector weight reproduction excluded until lawful provenance verified; frozenV3 tracking-only control needs no new ByteTrack weights."
+        },
+        "training_entry_and_sampler": "tools/train.py main ->get_exp ->Trainer.train; exps/example/mot/yolox_x_ablation.py get_data_loader: MOTDataset/MosaicDetection/InfiniteSampler/YoloBatchSampler, image-level shuffled infinite sampling. No association-head or physicalID PKtraining. MOTDataset carries track_id but detector losses read class and box columns only.",
+        "inference_entry_and_temporal_scope": "tools/track.py ->MOTEvaluator.evaluate ->BYTETracker.update current detector boxes. Predict8stateKalman first, high stage confirmed+lost, low stage remaining active only, unconfirmed/birth/removal afterward. No future frames or GT in tracker inputs. Scalar confidence exactly equal to track_thresh excluded from both high/low due strict comparisons; preserve faithful boundary semantics.",
+        "core_model_files_and_shapes": "byte_tracker.py/matching.py/kalman_filter.py: boxes[N,5] or tensor boxes/objectscore/classscore; XYAH+4velocities mean8/cov8x8, measurement4; cost[Ntracks,Ndets], outputconfirmedSTrack list. YOLOXhead emits multiscale strides8/16/32, perlocation4box+objectness+class channels; num_classes1 in MOT exp, targetsclass/xywh plusignoredtrackingID, image800x1440 nominal dynamicresize.",
+        "loss_and_positive_negative_construction": "Tracking association is untrained IoU/LAPJV, no ReID or IDclassification loss. YOLOX detection uses5*IoU+BCEobjectness+BCEclass+optionalL1, SimOTA dynamicK from top10IoU sum/clamp>=1, conflicts resolved by lowestcost peranchor. Positives are detector-location/GT matches, not samephysicalfish identity pairs; background objectness negatives and IoUweighted class targets.",
+        "pretrained_sources": "COCO YOLOX initialization; ablationCrowdHuman+MOT17halftrain, fullMOT17 addsCityperson/ETHZ, MOT20 usesCrowdHuman+MOT20. Dataset/model licenses independent. No new data/weights downloaded. Official full-detector comparisons differ from fixedV3 candidate-only adaptation.",
+        "GPU_CUDA_dependencies": "Tracking aloneCPU: NumPy/SciPy/lap/Cythonbbox/OpenCV; np.float aliases need isolated compatibility on NumPy>=1.24. Detector torch>=1.7/torchvision>=0.10, trainingNCCL/AMP, optionalYOLOX C++extension in setup.py; CUDAneededforofficialdetector training/inference, notIoU matching.",
+        "IR_MFT_compatibility": "Useful frozenV3 geometry/lowconfidence baseline; no crop identity embeddings or local tokens. Native8stateXYAH differsfromotherUKF/BoTstate; wholetracker swaps change lifecycle/output/birth and must remain separate from metric/filter ablations.",
+        "mechanisms_to_port_and_exclude": "Retain known lowconfidence recovery/observed-current/past lifecycle controls. ExistingIR-MFT fork alreadyinherits ByteTrack; do not recopy entiretracker or trainnewdetector for first fixedV3 control. Defaulttrack threshold0.6/tools, birthtrack_thresh+0.1, lowIoUcostthreshold0.5, unconfirmed0.7; currentproject0.58/0.97 are explicitly different configurations.",
+        "novelty_overlap": "Low-score recovery, Kalman/IoU assignment, lost-track reactivation and confidence fusion are established. They cannot be credited as novel EvidenceFishMOT identity learning."
+      }
     }
   }
 }
