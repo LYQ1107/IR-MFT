@@ -1,0 +1,50 @@
+{
+  "status": "EXACT_STATE_EQUAL",
+  "reference": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ema_residual_utility_holdout_BT-001_s0_v1",
+  "config_sha256": "a50ed137dcc88bc9dedff675fa30bcbb1d5188d438f41ce64929da16c81963de",
+  "checks": {
+    "model": true,
+    "teacher": true,
+    "ema_updates": true,
+    "optimizer": true,
+    "epoch": true,
+    "query_rng": true,
+    "perturb_rng": true,
+    "torch_rng": true,
+    "cuda_rng": true,
+    "python_rng": true,
+    "drop_rng": true,
+    "missing_augmented": true,
+    "guard": true,
+    "report_except_git_commit": true
+  },
+  "commands": [
+    [
+      "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+      "tools/cfp_train_residual_relation.py",
+      "--config",
+      "configs/cfp/phase_vi_ema_residual_utility_holdout_BT-001_s0_v1.json",
+      "--output",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/residual_actual_resume_v1",
+      "--stop-after-epoch",
+      "3"
+    ],
+    [
+      "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+      "tools/cfp_train_residual_relation.py",
+      "--config",
+      "configs/cfp/phase_vi_ema_residual_utility_holdout_BT-001_s0_v1.json",
+      "--output",
+      "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/residual_actual_resume_v1",
+      "--resume"
+    ]
+  ],
+  "interrupted_checkpoint_sha256": "870510aafcce258e5534b32c0442117f25f01d71c6be4c0fe292bca5e86445ad",
+  "git_provenance": [
+    "15cf0582c00e2de3e4fd8d78a6643f5f78eeca75",
+    "75d4aaeac040b3f36772f2b96bf5266c805b8a59"
+  ],
+  "scope": "Real epoch3 stop/resume on physical GPU0 to fixed epoch8; model, EMA teacher, optimizer, all RNG/sample orders/losses and exact guard. Only report Git provenance excluded. No arbitrary minibatch-crash claim.",
+  "reference_manifest_sha256": "fc4bea2b1b69ff408c7187f369076c2de5c49276d1954b14043ae2b2d301ecb1",
+  "resumed_manifest_sha256": "e3465d321db1b91086e20d975bb7f0705a0cabaffba6fa589ed9e438dcd4cc09"
+}

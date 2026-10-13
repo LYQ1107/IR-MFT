@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_H3_H4_interaction",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "candidate_prediction": false,
+  "risk_write_quota": false,
+  "reject_fraction": 0.1,
+  "ambiguity_delta": 0.05,
+  "discount": 0.9,
+  "switch_margin": 0.02,
+  "confirmation": 1,
+  "sequences": [
+    "BT-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_BT-001_s0_v1/inference.pt",
+  "student_models": {
+    "BT-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ema_residual_utility_holdout_BT-001_s0_v1"
+  },
+  "risk_models": {
+    "BT-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_mlp_holdout_BT-001_s0_v1"
+  },
+  "selection": "Registered2026-10-13 before combination runs. Same frozen global parameters/folds; no heldout-dependent choice.",
+  "scope": "B=bounded residual EMA representative, not demonstrated EMA-specific mechanism. A=10% MLP matched write quota. C=isolatedK2 with hysteresis0.02. In A+B risk current costs include bounded B corrections, an explicit interaction not independent risk recalibration. No GT/future/teacher online. Backbone seed0 exposure remains. Full all-disabled parity required."
+}

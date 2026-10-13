@@ -16231,7 +16231,7 @@
     },
     {
       "experiment_id": "residual_discriminating54",
-      "status": "REGISTERED",
+      "status": "TRAINING_COMPLETE_REPLAY_RUNNING",
       "train_config": "configs/cfp/phase_vi_residual_discriminating_training_v1.json",
       "replay_config": "configs/cfp/phase_vi_residual_discriminating_replays_v1.json",
       "seed": [
@@ -16240,7 +16240,74 @@
         2
       ],
       "encoder_and_producer_seed": 0,
-      "reason": "After EMA33.681668 and noEMA33.681693 nearly tie, repeat ordinary/noEMA/EMA with init/query seeds1/2 and remove utility for all3 at init0. Fixed epochs8, scale0.05, no tuning/outer-video selection; full video replay. Separate initialization seeds from pipeline seeds."
+      "reason": "After EMA33.681668 and noEMA33.681693 nearly tie, repeat ordinary/noEMA/EMA with init/query seeds1/2 and remove utility for all3 at init0. Fixed epochs8, scale0.05, no tuning/outer-video selection; full video replay. Separate initialization seeds from pipeline seeds.",
+      "training_summary_sha256": "7b96819c12cd9b5e2b661cc96e422f45df18bb7f39485763eb1412ca458402b0"
+    },
+    {
+      "experiment_id": "same_fold_ABC_matrix48",
+      "status": "RUNNING",
+      "hypothesis_id": "H2_H3_H4_interaction",
+      "train_config": null,
+      "replay_config": "configs/cfp/phase_vi_oof_combination_matrix_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_combinations.py",
+        "tools/cfp_run_oof_combination_campaign.py",
+        "tools/cfp_evaluate_completed_campaign.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Task-book ABC interaction audit; independent modest signals do not prove complementary behavior. All8 combinations share frozen excluded-video ordinary producers; reuse12 verified A/B controls and run36 new full replays. Frozen10%/0.05/hysteresis0.02. Birth/branch traces contain observations only; physical labels used solely after replay."
+    },
+    {
+      "experiment_id": "deployment_risk_online_and_cache_parity",
+      "status": "COMPLETE",
+      "hypothesis_id": "H2_deployment_transfer",
+      "train_config": "configs/cfp/phase_vi_deployment_mlp_risk_init0_v1.json",
+      "replay_config": "configs/cfp/phase_vi_risk_quota_online_init0_v1.json",
+      "code": [
+        "tools/cfp_run_risk_quota_online.py",
+        "tools/cfp_replay_deployment_risk_quota.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Frozen representative full4834-frame risk deployment run complete; official metrics and cached-output numerical parity audit. No dev-driven architecture tuning.",
+      "registration_timing": "Online run inherited; cache parity audit recorded immediately after initial invocation as engineering verification, not a newly selected scientific configuration.",
+      "measured_artifact": "docs/research/PHASE_VI_RISK_ONLINE_EVIDENCE.json"
+    },
+    {
+      "experiment_id": "residual_actual_epoch3_resume",
+      "status": "EXACT_STATE_EQUAL",
+      "hypothesis_id": "H0_reproducibility",
+      "train_config": "configs/cfp/phase_vi_ema_residual_utility_holdout_BT-001_s0_v1.json",
+      "code": [
+        "tools/cfp_verify_residual_resume.py",
+        "tools/cfp_train_residual_relation.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Verify new bounded-residual trainer itself, not infer its reproducibility from the earlier relation trainer. Wait for ownGPU0 campaign to finish, stop at epoch3 then resume to8; compare exact tensors, EMA/optimizer and all RNG/order/loss states against preserved continuous run.",
+      "proof_artifact": "docs/research/PHASE_VI_RESIDUAL_RESUME_PROOF.json"
+    },
+    {
+      "experiment_id": "combined_hypothesis_retrospective_labels",
+      "status": "BT001_COMPLETE_OTHER_VIDEOS_PENDING",
+      "hypothesis_id": "H4_explanation_selection",
+      "code": [
+        "tools/cfp_diagnose_hypothesis_explanations.py",
+        "cfp/explanation_diagnosis.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "After complete causal replay, label observed birth/current proposals using frozen physical bank, count unknown separately, and measure whether a known-correct retained challenger exists when winning explanation is known-wrong. Internal decision/episode counts are not official IDSW or guaranteed recoveries."
     }
-  ]
+  ],
+  "validation": {
+    "project_tests": 186,
+    "command": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
+    "log_sha256": "53115488d49b98466b855b880a939c15b330aeecc4c6de307d708b277b3c0494"
+  }
 }
