@@ -6,7 +6,7 @@
       "name": "FishMAE",
       "github": "https://github.com/Wynne-cc/FishMAE",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FishMAE",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition_command": [
         "git",
         "-c",
@@ -25,19 +25,7 @@
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/FishMAE', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FishMAE",
       "commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "inspected_findings": {
         "source_files": [
           "mae-fish/train_mae.py",
@@ -50,11 +38,12 @@
         ],
         "sampler": "p is stored but unused in iteration; final global index shuffle does not enforce P distinct identities x K observations per batch",
         "position_embedding": "MAE pretrain adds patch positional embedding; ReID manual backbone forward omits patch positional embedding",
-        "training_entry": "train_mae.py calls train_one_epoch with4 args, while imported engine requires epoch and loss_scaler too and dereferences args.accum_iter",
+        "training_entry": "mae-fish/train_mae.py uses the script-local4-argument engine. Root main_pretrain.py separately uses full epoch/scaler/args engine and asserts timm0.3.2, incompatible with requirements1.0.26. Both README paths need explicit blank config and checkpoint coverage adaptation.",
         "checkpoint": "Pretrain saves raw state_dict exports and wrapped resume model_state_dict separately; ReID strict=False loader must not receive wrapped resume dictionary unchecked",
         "license": "No LICENSE/COPYING path in exact Git tree; direct source transplantation not approved",
         "paper_identity": "Publisher confirms FishMAE: A Masked Autoencoder based framework for long-term fish re-identification, Aquacultural Engineering114(2026)102746, DOI10.1016/j.aquaeng.2026.102746, and links this exact repository; full dataset protocol/weights/access still pending.",
-        "reproduction_status": "SOURCE_ADAPTATION_REQUIRED_NO_EXTERNAL_EXECUTION"
+        "reproduction_status": "SOURCE_ADAPTATION_REQUIRED_NO_EXTERNAL_EXECUTION",
+        "training_entry_initial_observation_superseded": "Initial partial snapshot only had root engine, leading to an incorrect import/signature assumption. Newly exact acquired mae-fish/engine_pretrain.py defines the4-argument simple loop actually selected by script-local import."
       },
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
@@ -175,32 +164,204 @@
         "util/datasets.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "mae-fish/fish_reid_mae/data_split.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
       },
-      "paper_primary_url": "https://www.sciencedirect.com/science/article/abs/pii/S0144860926000622"
+      "paper_primary_url": "https://www.sciencedirect.com/science/article/abs/pii/S0144860926000622",
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[FishMAE: A Masked Autoencoder based framework for long-term fish re-identification](https://www.sciencedirect.com/science/article/pii/S0144860926000622), Aquacultural Engineering114(2026)102746, DOI10.1016/j.aquaeng.2026.102746, is verified by the publisher, which links this exact repository. It studies MAE pretraining plus CE/triplet long-term individual retrieval on a laboratory fish dataset across nine sessions over five months. README lacks a paper citation, but external primary evidence resolves publication identity. Published retrieval results are not our native MFT26 MOT measurements.",
+        "code_and_pretrained_license": "Exact complete Git path inventory contains no LICENSE/COPYING and README gives no project source/data/weight grant. MAE-style/timm/PyTorch dependencies have separate upstream rights, but those do not establish FishMAE derivative file or unknown fish dataset/checkpoint permissions. This audit is read-only with explicit source-execution/reuse exclusion until rights are verified; no code was copied, run or imported, and no weights/data were downloaded. Absence of terms is recorded rather than assumed permissive.",
+        "entrypoints_and_training_inference": "README commands point to mae-fish/train_mae.py and fish_reid_mae/train.py, yet both actually use imported Python configs with blank-space paths, not argparse flags --config/--pretrained/--data_path. train_mae imports a local simple engine distinct from root engine_pretrain; root main_pretrain.py is the original CLI and asserts timm0.3.2. ReID train creates MAEReID, fits CE/triplet, evaluates every5epochs and saves model-only files. evaluate/feature_extractor/matcher provide offline image embedding/retrieval, not a current/past native tracker.",
+        "core_model_files_and_shapes": "mae_vit_base_patch16 is ViTBase768/12blocks/12heads with224x224 input,14x14=196patches; decoder512/8blocks/16heads predicts16x16x3=768pixels per patch. Pretrain adds fixed sin-cos patch positions before75% masking. MAEReID manually embeds all patches, adds only CLS position, runs encoder blocks/LN and extracts CLS768 through BN/classifier. It omits patch positional addition in both dummy and actual ReID forward, unlike pretrained encoder. Global CLS-only output is not K4/K8 fish-local identity evidence; rectangular128x256 is unsupported by square patchify/position assumptions without disclosed adaptation.",
+        "loss_and_positive_negative_construction": "MAE minimizes normalized per-patch RGB reconstruction MSE over masked tokens, not a stopped EMA latent JEPA loss. ReID trains CE plus batch-hard triplet margin1 on L2-normalized BN features. Positive mask equals class and excludes all zero distances (including identical duplicate positive views), negatives differ. Config P8,K4/B32 is not enforced: RandomIdentitySampler never uses p to form batches, concatenates views then globally shuffles all indices; len uses ceil chunks while final partial chunks are not padded, so length/batch composition can differ. No explicit same-frame hard negatives, anatomy, visibility labels or dense latent targets.",
+        "pretrained_sources": "train_mae asserts a blank PRETRAIN_PATH exists then reads official MAE checkpoint[model]; no hash/terms/url/physical fish training exposure is established. It writes both nested model_state_dict checkpoints and raw state_dict files. MAEReID directly load_state_dict(ckpt,strict=False) expects raw model tensor mapping, so supplying root main_pretrain nested model checkpoint or nested resume dict can silently miss all encoder tensors unless coverage is checked. Model.eval() during construction does not freeze parameters; ReID train.model.train and optimizer(model.parameters) train backbone/BN. Fish dataset identities/splits, official payload and MFT26 overlap are not verified.",
+        "future_information_and_online_path": "Backbone embeds a single crop, with no temporal/future image input. Offline eval query uses session2 and gallery other sessions, filters same-ID/same-camera positives, and has no past-time guard. data_split.py oppositely calls session2 gallery/others query, so helper directory names and eval logic differ. Generic recursive MAE image loading has no fold exclusion unless caller supplies a fit-only root. Strict online adaptation must use current observed crops, past predicted memory and observable masks; session/camera/GTID fields stay supervision/measurement, not inputs.",
+        "GPU_CUDA_dependencies": "README/requirements request torch2.0.1+cu118/torchvision0.15.2,timm1.0.26,NumPy1.24.4,Matplotlib3.7.5,Pillow12.2.0 and CUDA11.8/Python>=3.8. Root main_pretrain statically asserts timm0.3.2, incompatible with that declared modern requirement. Local simple pretrain loop uses regular backward without AMP; root loop has CUDA autocast/synchronize and scalable distributed tools. No custom CUDA operator is declared for the ViT itself. Actual package resolution/import compatibility is not claimed, no installation or reference execution occurred.",
+        "IR_MFT_compatibility": "Single-image MAE/CLS can inform an independently licensed fish/self-supervised backbone baseline, but unlicensed source cannot be directly executed/copied. Square RGB224 stretch and global CLS training differ from our aspect-preserving IR detector crops and local anatomy-free tokens; current backbone cannot be labelled DINO/FishDenseJEPA merely by renamed features. Identity folders/filename numeric PID do not ensure physical(video,fish) labels; Market-style same-camera exclusion would discard valid within-video positives. Cold/frozen versus trainable encoder and BN exposure must be separately guarded in all inner/outer folds.",
+        "mechanisms_to_port_and_exclude": "Use independently cleared MAE architecture/weights with explicit payload license and tensor coverage, fit-only fish image reconstruction and matched CE/truePK-triplet global baseline. Distinguish source-faithful missing patch positions from a disclosed position repair, and correct sampler batches in a separately named implementation; do not call repaired weights/sampler a faithful official reproduction. Require complete model/optimizer/RNG resume for our training rather than model-only best.pth. Exclude unknown source/data/checkpoint rights, blank config CLI assumptions, cross-camera offline protocol and MAE pixel decoder being presented as JEPA latent prediction.",
+        "novelty_overlap": "Masked pixel reconstruction and fish global CLS CE/triplet fine-tuning are established MAE/ReID mechanisms. This code has no target EMA, object-centric local latent teacher, temporal candidate relation or full-set association competition, so it neither implements our intended ModuleB nor licenses a novelty claim for generic fishMAE adaptation. A contribution needs same-input frozen/trained MAE versus DINO/CNN/global/local controls, truthful crop/identity causality and full folds/seeds/video metrics, with negative comparisons retained."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "e3cb083752a7442a994ef55591b28549f0a3fe7c25f2205a158020b68810f34c",
+          "git_blob_sha1": "8c1e9dfeaed92ae03fedab4ab071dadca3ab06cf",
+          "bytes": 1576,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "requirements.txt": {
+          "sha256": "97b66728e5720a0b88e735abc533854bace20c5ac87df30331824cf717c5dff0",
+          "git_blob_sha1": "e79dbea6250e110effefb192c9c5baf435a68b22",
+          "bytes": 118,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "models_mae.py": {
+          "sha256": "2756e3ae279088b782dd9683a2a22db65d490f716de3a5880301bb989a90c272",
+          "git_blob_sha1": "8f552feb8ba9bc55a6b7d6edbfc685afa0c19d72",
+          "bytes": 9963,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "main_pretrain.py": {
+          "sha256": "bd11be2d2a09c0ca1093f76d825cf3516e76b38f36e1138c0f6f65b31acb9ffa",
+          "git_blob_sha1": "2e238043d2ca759f0ff606a39ad4544aab54d32f",
+          "bytes": 8422,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "engine_pretrain.py": {
+          "sha256": "eca12065776e1139c13cceea9369dfe0f2dbc9eaae0c7c535ed2c9bcc0551ef9",
+          "git_blob_sha1": "b4ce2eb6df0521a61f0e4ba66d5f77f82ccd6d66",
+          "bytes": 2562,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "util/misc.py": {
+          "sha256": "aa75a9bb6e14a49761eb58308cbc08c184e1526825fd36d8c92e818c2b41ebd7",
+          "git_blob_sha1": "cf2ba0c0808c88b0fb13ad25dac92d28f1e30ae7",
+          "bytes": 11001,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/config.py": {
+          "sha256": "792171769d0bab1dd287c0a22fd8c5f0a4633ceafb9f161bbfbd7a612c30c521",
+          "git_blob_sha1": "d69a0dfa69c4bbdbc6695f35a3afd963cba6aae2",
+          "bytes": 359,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/dataset.py": {
+          "sha256": "c0e4d74b7ed4c80538eb7102a145871375d77d1262ce0cf6377893fdd38202f4",
+          "git_blob_sha1": "63b622a299c4aa3dd84e44266a9ae1b33c727eab",
+          "bytes": 639,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/train_mae.py": {
+          "sha256": "138aa16da0effa9241aee83a47691ed14e3e02b3ddf11fc4a40ad156fa49018c",
+          "git_blob_sha1": "8d5af934809c91e1372702a17964321dbf03a1cb",
+          "bytes": 3923,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/engine_pretrain.py": {
+          "sha256": "46ccf0c4dd65a4dccd3e48db255088e83f63f3fad807a63c779d938fd18cd3a3",
+          "git_blob_sha1": "13f04c9dcb778d9deba26fe26df222a941d6c43a",
+          "bytes": 375,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/config.py": {
+          "sha256": "b4ec09ecdf3a304f1e6d12e3421ccaf647b1cc171d4d9ddb0e4c49c278db3e8e",
+          "git_blob_sha1": "b5ebdf7779bc6778bf153dc0595534224fe81c69",
+          "bytes": 335,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/model.py": {
+          "sha256": "b7d80bc2ea3b22156c6314bb7d54aa7ba3466663f989889ffab8c80c3413f049",
+          "git_blob_sha1": "d7eaddf421acf9226ffadd46c35d3318ea538507",
+          "bytes": 1617,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/dataset.py": {
+          "sha256": "036e2e05a6167dbd69d015970002b296eea9dfb0c0cbcfe448dd66e24e2bf4cd",
+          "git_blob_sha1": "862922a5b68bfa206ac1b4bf96e0b178e0d8f1dc",
+          "bytes": 1826,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/sampler.py": {
+          "sha256": "c91cd055e0b16ffb2024f1df5ae9a2e162c5a0e2bfd725cad3e1e67b864cb705",
+          "git_blob_sha1": "aaeb570e2709eb37637ac7a1e64ae59d4811bd56",
+          "bytes": 1294,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/loss.py": {
+          "sha256": "ee057b570fae36c3b3e94fefc03277e6dac43aa495eea965c6abc554b448778d",
+          "git_blob_sha1": "6d5aabaf38f0baa35f8a4a0b14753e230454f80d",
+          "bytes": 1152,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/train.py": {
+          "sha256": "3284dfa117e91ecdf81144501d04b0a4ab1510ddfb204091a539a851bfb5d297",
+          "git_blob_sha1": "04c4c0f5600641f68c41952d6786b9824a8565de",
+          "bytes": 5551,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/data_split.py": {
+          "sha256": "7a19feb2a0f1653b873bba4eb2ef66cfd2489b811b1d9e4047b8f5f187afb782",
+          "git_blob_sha1": "bef2c580329fb8193d9742c602d807b6626ab4c0",
+          "bytes": 3536,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/eval_reid.py": {
+          "sha256": "2edfa1c3c0a6da9aacdef2869441f132d5cf9fe56628cc3295758dfe2c96c192",
+          "git_blob_sha1": "e7f2386858a0ab6a20549c5d7d4fedcfa004cd84",
+          "bytes": 3000,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/feature_extractor.py": {
+          "sha256": "e5d048c4426fdec8913dde5f729ff42b73dc760dd8e757e8ab91b496b7c23188",
+          "git_blob_sha1": "06a8827449ca8afd31addbc60f5e9e3a2121aa5d",
+          "bytes": 490,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/matcher.py": {
+          "sha256": "18ce28ffa5201bc584c502de978ed170f9f442f0757a1c51fb71fa72e4c922d2",
+          "git_blob_sha1": "34d94be65ca5e938a80a9f2ba3a91b2da81404b2",
+          "bytes": 219,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "mae-fish/fish_reid_mae/utils.py": {
+          "sha256": "d9f782d58251aae20d06ef604e4d7176719d0433a30ac0cd24f5f7984007ac90",
+          "git_blob_sha1": "457078f733da761d1a44fbc4e3691f421000a05f",
+          "bytes": 369,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/fishmae_semantic_source_proof_v2.json"
     },
     "Fish_Re_Identification": {
       "name": "Fish_Re_Identification",
       "github": "https://github.com/msamdk/Fish_Re_Identification",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/Fish_Re_Identification",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
       "origin": "https://github.com/msamdk/Fish_Re_Identification",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/Fish_Re_Identification', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/Fish_Re_Identification",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
@@ -314,13 +475,133 @@
         "4. Re_Identification/Related_Work_Concise.md": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "images/placeholder.txt": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "4. Re_Identification/4_Subcategory_level_analysis/Subcategory_script_identical_scenario.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[Towards Visual Re-Identification of Fish using Fine-Grained Classification for Electronic Monitoring in Fisheries](https://arxiv.org/abs/2512.08400),Dec2025 preprint/accepted NLDL2026, evaluates AutoFish conveyor/catch fish identities with Swin-T/ResNet50, triplet mining and crop normalization. This differs from free-swimming IR video MOT; published retrieval/cluster/occlusion findings are not measured native tracking evidence or our inferred causal anatomy labels.",
+        "code_and_pretrained_license": "Complete exact-commit Git path inventory contains no LICENSE/COPYING file or accompanying fish checkpoint terms. Public source can be inspected but does not confer a verified permission to execute/copy/adapt these project files. Torchvision/timm/DINO backbone source and weight rights require independent upstream verification, and AutoFish data/published checkpoints are separately unverified. Thus this field is resolved as an explicit reuse/execution exclusion, not a permissive-license assumption; no foreign implementation was run or copied into IR-MFT.",
+        "entrypoints_and_training_inference": "GT crop preparation is0_Prepare_gt_crops/prepare_gt_crops.py; zero-shot ResNet/Swin scripts are1_zero_shot_instance_retrieval; training variants reside in2_Fine_tuning_feature_extractors_with_triplet_loss (PyTorch-transform Swin and custom-transform Swin/ResNet).3_Evaluating_on_test_data/Eval_test_data.py loads a configured local state_dict and performs retrieval/plots. These are notebook-export standalone scripts with hardcoded /work3 paths and import-time setup, not a ready online tracker or unified CLI. Correct variant/checkpoint/normalization must be declared.",
+        "core_model_files_and_shapes": "Training custom Swin uses torchvision swin_t/ImageNetV1, replaces classification head and adds Linear768->512 then L2 normalization; custom ResNet50/ImageNetV2 replaces fc and adds Linear2048->512 with unnormalized forward. Evaluation recreates these architectures with weights=None and outputs unnormalized512-D embeddings. Zero-shot raw variants expose2048 ResNet/768 Swin/optional384 DINOv2. Images are RGB224-square letterboxed or variant-specific augmented crops; there are no fish local part tokens, temporal state, JEPA teacher or joint detection decoder in this ReID source.",
+        "loss_and_positive_negative_construction": "Custom variants use P32,K8 B256,margin0.5 triplet with LpDistance(p2),AvgNonZeroReducer and hard TripletMarginMiner; PyTorch-transform Swin instead declares P4,K4 B16. PKsampler emits complete batch index lists from identities having>=K views and drops low-view identities, with reduced P if needed. Positives are equal fish_id strings and negatives different IDs; no explicit same-frame fish-negative constraint or motion supervision. Model optimizers fit all parameters from ImageNet initialization, LR1e-5/AdamW/300epochs with val-loss plateau scheduler. Library-level normalization defaults are not pinned, so raw-vs-normalized distance must be audited in any independent reproduction.",
+        "pretrained_sources": "Swin training uses torchvision ImageNet1K_V1, ResNet ImageNet1K_V2; zero-shot Swin uses timm pretrained and optional DINOv2 uses torch.hub trust_repo=True without upstream exact pin. Actual trained weights are hardcoded filesystem paths, not an acquired verified public payload. AutoFish data link is vapaau/autofish, with fixed group splits train15/val5/test5 in crop script; README exploration says24folders while preparation includes group25, so actual asset enumeration/physical-ID disjointness needs independent data verification. No data/weights downloaded and no MFT26 overlap claim.",
+        "future_information_and_online_path": "Crop retrieval uses independent still images and randomly chooses one query per identity from the complete test group pool, with all remaining views as gallery. Test eval recreates label maps from test metadata for measurement, not network inputs; this is offline retrieval and may include views later than the query, so it is not causal online tracking. Deployment may use only image features from current crops and past predicted memory; GT masks/identity/random whole-pool galleries are prohibited online. No native timestamp/absence/unknown handling is implemented.",
+        "GPU_CUDA_dependencies": "Scripts import PyTorch/torchvision, PIL/OpenCV, NumPy,timm,faiss,pytorch_metric_learning and plotting/sklearn tools; training chooses CUDA if available but does not use a project custom CUDA extension. No exact requirements lock or complete environment pin appears in the Git inventory. PyTorch metric-learning default mining/distance/AccuracyCalculator self-match semantics depend on installed version; source call alone is insufficient verification. No install, torch.hub load or foreign script execution was performed; unknown license remains a reuse/execution exclusion.",
+        "IR_MFT_compatibility": "GT preparation blacks out background using GT segmentation then crops a tight padded rectangle, whereas zero-shot helper merely uses the GT mask extent to crop the original image. This foreground distinction and custom mean/std (0.0495,0.0503,0.0535)/(0.1370,0.1363,0.1412) can confound pipeline comparisons. These still-fish RGB/domain statistics are not transferable calibration for horizontal IR detector crops. Physical(video,fish) mapping, equal crop keys/past-only galleries and unknown preservation are required in our independent controls; named fine-grained classification does not imply supervised fish anatomy.",
+        "mechanisms_to_port_and_exclude": "Independently implement verified-license ImageNet CNN/Swin triplet baselines, genuine PK batch composition, aspect-preserving resize and fit-only normalization/crop stability controls rather than transplanting unlicensed scripts. Exclude GT segmentation from online inputs and distinguish GT-mask foreground versus full detector-rectangle crops. Test eval unnormalized embeddings while custom Swin train normalizes; include explicit norm/distance controls. Offline mAP@R is different from all-gallery mAP. Validation AccuracyCalculator passes the same embedding tensor as query/reference without explicit self-match flag; independently ensure self/duplicate/future exclusion and do not infer causal performance from those scores.",
+        "novelty_overlap": "Fish metric learning, ImageNet ResNet/Swin, PK sampling, hard triplet and padding/normalization are existing ReID controls, not EvidenceFishMOT novelty. This work motivates within-species identity/viewpoint diagnosis; source contains no dense latent stopped-EMA target prediction or competing temporal ID decoding. New local cues must improve same-input raw/global/simple part and fish-triplet controls under fold exclusion and native online tests; claimed AutoFish retrieval numbers or clustering visualizations cannot establish that."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "13374bd1390279ea0de7ef75851512887508c837b6f896c92612c71d28eea343",
+          "git_blob_sha1": "610834b197fa131b8524e7ad54a7cc665d0aa800",
+          "bytes": 3082,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "1. Autofish_data_exploration/Readme.md": {
+          "sha256": "e87dbee55c7805ded01ba0c769e844e56dbc26387ed1b42b522e829814d7cee1",
+          "git_blob_sha1": "3f7d3c4699333985ac81553d074ce31cc342e382",
+          "bytes": 18454,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/Readme.md": {
+          "sha256": "00496c5422fefc0eb7e84e1048e3bcbf1e3444545b66952a36c8c494138c0560",
+          "git_blob_sha1": "e04334eee8134dcb9c56d9823b82bb9ed9f2b9cc",
+          "bytes": 7554,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/0_Prepare_gt_crops/Readme.md": {
+          "sha256": "27adf4dc18e1e6a8130f5a887c95dab5b5fc8df5761dd92a193ce22eb5430ba5",
+          "git_blob_sha1": "24a11a475e05bcf4a751d5e773e2c9a910d880a5",
+          "bytes": 225,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/0_Prepare_gt_crops/prepare_gt_crops.py": {
+          "sha256": "9193ea6c7bd00ddefc9fb1f3aa854d70c31aff45d613035640e866eab7d6dd2e",
+          "git_blob_sha1": "18bc9126da330e48820c667a9a46ea7602a32a02",
+          "bytes": 14282,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/Readme.md": {
+          "sha256": "171f9554711f163a12c8524e532184b089f5c6fabf4d3485fb40f3e3491fe578",
+          "git_blob_sha1": "e12cc1c8462c5ca8a061973bd8526cd44b2ca50a",
+          "bytes": 253,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/zero_shot_resnet.py": {
+          "sha256": "51a88e20602fb0cc708326da1bdb433b8525aa6cd3331522ffe188b4bdf78a84",
+          "git_blob_sha1": "a15d273ac32bff086cb598088f070d8527df2fa7",
+          "bytes": 10512,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/1_zero_shot_instance_retrieval/swin_zero_shot.py": {
+          "sha256": "98902bd2631e96126b37da8da582418c5c538e60e19ddd87578a859bbbb21bec",
+          "git_blob_sha1": "5794b38f7ed646afb6e0f69c40e4cbe59e3cb1a5",
+          "bytes": 10546,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/1_Trainings_with_PyTorch_transformation/Training_with_pytorch_transformation.py": {
+          "sha256": "c51fe459afaabe17852a3ed2df968a3c189e0e59cbbc3ec89898421c162c4486",
+          "git_blob_sha1": "4d46ec6025f0181b5a742ef70d449d8a92338bb2",
+          "bytes": 33424,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/2_Experiments_with_custom_transformation/Core_swin_script.py": {
+          "sha256": "9f3ab75e42cecd4d337d725d29b2dff1cba763ce35a7f71e717a3809cf889924",
+          "git_blob_sha1": "b574f3f21e0a6504ce7b972719d85d6385dc49d2",
+          "bytes": 32592,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/2_Experiments_with_custom_transformation/core_resnet_script.py": {
+          "sha256": "82b48b8dc3fb4b30f077c3d70da32706dcb573fc5aa1c138d5773bdf8269c156",
+          "git_blob_sha1": "6fa2f649dc89072c40adb2eadc83bd02c80a9c28",
+          "bytes": 39123,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/2_Fine_tuning_feature_extractors_with_triplet_loss/calculating_custom_mean_std.py": {
+          "sha256": "756bd5980ba0eac0f7c351b1926a6cfae4df3971c3f8b353e9e2812fae223986",
+          "git_blob_sha1": "44eccb8b057b41d802b88f4f95ce77e8f554e50b",
+          "bytes": 6666,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        },
+        "4. Re_Identification/3_Evaluating_on_test_data/Eval_test_data.py": {
+          "sha256": "da968b57f4e2ace3bbe6db5170c856fba7c1d8f8580f84f7d1f355120ecd7202",
+          "git_blob_sha1": "92e9483f2f900d9228a14fd1667ddd9bb2f93562",
+          "bytes": 13940,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1976bb16ef7af49412b5fd690b4cbb526a91a762",
+          "inspection_scope": "Manual targeted source reading of published entrypoints, backbone/token forward paths, positive-negative mining/sampling, crop/identity/split/evaluation protocols and declared dependencies. Complete pinned Git path inventory inspected for license/checkpoint availability. No source reuse, reference execution or weights/data download; absent license/formal-paper terms are explicitly excluded."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/fish_re_identification_semantic_source_proof_v1.json"
     },
     "SU-T": {
       "name": "SU-T",
       "github": "https://github.com/vranlee/SU-T",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/SU-T",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "479be89a27129f6879c62710a83abac6a8b261ee",
       "origin": "https://github.com/vranlee/SU-T",
@@ -345,19 +626,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/SU-T",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "479be89a27129f6879c62710a83abac6a8b261ee",
@@ -365,13 +634,237 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "Primary paper [When Trackers Date Fish: A Benchmark and Framework for Underwater Multiple Fish Tracking](https://arxiv.org/abs/2507.06400), submitted2025 and accepted AAAI2026 Oral, introduces MFT25 and Scale-aware and Unscented Tracker with UKF/FishIoU for fish MOT. Paper nonlinearity claims are distinguished from the exact default implementation below. Publisher tracking scores are not reproduced here.",
+        "code_and_pretrained_license": "Top LICENSE is MIT, copyright2025 LI Weiran; vendored fast_reid/LICENSE is Apache2.0 and trackers/UKF.py retains FilterPy MIT attribution. These source terms do not independently license the Baidu detector/ReID payloads or MFT25/HuggingFace data. Payload terms, training identities and overlap remain unverified; no downloaded official weights/data or unreviewed vendor reuse is authorized by this source audit.",
+        "entrypoints_and_training_inference": "tools/train.py invokes YOLOX training; exps/SU-T.py and optional SU-T-ReID.py configure inference via tools/su_tracker.py. Exact source has two static entry defects: tools imports MOTEvaluatorDance from yolox.evaluators, whose __init__ exports only COCOEvaluator and MOTEvaluator; evaluate_su_t constructs lowercase su_t, although SU_T is imported. Optional evaluate_su_t_reid constructs SU_T_ReID. FastReID training entry is fast_reid/tools/train_net.py. Unchanged official inference is not claimed runnable.",
+        "core_model_files_and_shapes": "Default KalmanBoxTracker orig=False constructs custom UKF(dim_x=9,dim_z=5) without fx/hx: state cx,cy,area,confidence,aspect,vx,vy,varea,vconfidence; F is9x9 constant velocity and H5x9 selects observed components. UKF generates19 sigma points and applies F/H when callbacks are absent. The named tracker fx is also linear; orig=True uses7/4 FilterPy dimensions but subsequent matrices are9/5, so that branch is excluded. YOLOX-x config has depth1.33/width1.25,800x1440,one class; optional ResNeSt101/GeM/BN yields2048-D RGB crop embeddings.",
+        "loss_and_positive_negative_construction": "Base tracker has no learned identity loss. YOLOX detection uses5xIoU loss plus BCE objectness/class and optional L1 with SimOTA dynamicK selection, not fish ID labels. Optional SBS_S101 inherits B64,K16 NaiveIdentitySampler (P4), CE smoothing0.1 with CircleSoftmax64/margin0.35 plus hardest unnormalized Euclidean triplet and soft-margin at margin0. Labels in mft25.py prefix only numeric pid with MFT25, while video is camera; video-local pid reuse would collide unless input IDs are pre-offset. It does not explicitly construct same-frame fish negatives.",
+        "pretrained_sources": "README detector Checkpoint.pth and ReID-Checkpoint.pth are Baidu distributions, not acquired or hash/license/identity-exposure verified. FastReID config enables pretrained ResNeSt backbone during training; inference disables backbone pretrain and loads supplied ReID weights. MFT25 train/test detector annotations and MFT25-ReID BMP filename labels are configured sources, not independently audited split/overlap evidence. Cannot substitute these payloads for fold-excluded ImageNet fits or call them an unbiased MFT26 baseline.",
+        "future_information_and_online_path": "Tracker update consumes current detections and prior observations; UKF freeze/unfreeze interpolates internal historical missing states when current reappearance arrives. This is causal for current output if prior exported frames are never rewritten, not a future-free estimate of earlier missing frames. None detections return before frame_count/aging, unlike a correctly shaped empty array. No future images or GT should enter deployment; both missing-frame representation and lifecycle must be standardized for an IR-MFT port.",
+        "GPU_CUDA_dependencies": "conda_env.yaml is a full machine export with Python3.10, torch2.6.0+cu118/torchvision0.21, NumPy1.23.4,SciPy1.13.1,FilterPy1.4.5,lap0.5.12,cython-bbox,faiss-gpu and CUDA11.8 packages; no requirements.txt exists at this pin. UKF/association are NumPy/SciPy CPU code; detector/optional FastReID use CUDA. The environment export is not evidence all versions compose or imports run. Reference code was not imported, installed or executed, and no GPU was allocated for this audit.",
+        "IR_MFT_compatibility": "Compatible mechanisms are current/past boxes, covariance, confidence and fixed geometric shape/area cues. Default UKF is not an implemented nonlinear learned transition. FishIoU central-region coordinates are overwritten by intersection before central_area1, producing a different normalization from standard central IoU; its area/1000 scale also depends on image resolution. Fixed left15%/right25% and vertical30% insets are geometric regions, not annotated fish anatomy. Full tracker swap also changes association stages, aging, birth/output and optional RGB ReID, so cannot isolate motion gains.",
+        "mechanisms_to_port_and_exclude": "Evaluate KF versus true stated UKF with identical state/noise/lifecycle, and source-faithful FishIoU versus explicitly corrected central normalization plus IoU/DIoU, scale and symmetry controls. Keep geometry-only and learned ID evidence separate. Exclude broken entry aliases and dimension branch, unknown checkpoint exposure and unlabelled anatomy claims. FishIoU source score clips IoU+0.3central+0.1aspect+0.2area-0.4(1-exp(-minarea/1000))*normalized_center_dist to[0,1]; changing the overwritten-area behavior must be documented as a repair, not faithful original reproduction.",
+        "novelty_overlap": "UKF/sigma-point filtering, observation-centric recovery, four-corner direction/TCM matching and hand-crafted shape IoU overlap existing tracking literature and HybridSORT/FilterPy source; using them is a baseline or adaptation, not EvidenceFishMOT novelty. A fish-specific learned nonlinear transition or observable occlusion gate would need independent supervision, same-input controls and full-video evidence. This audit establishes code provenance and implementation discrepancies, not a scientifically validated gain."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "a1a601eb7ff32deb3f0652a57edbe324b410217848ff62a687a4d51950b53123",
+          "git_blob_sha1": "deebedbc9a68504651ba9abcc061b7367f137b43",
+          "bytes": 10033,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "LICENSE": {
+          "sha256": "d42d68140fec9ebb12c36b1d45acebd178c448e60c87c0e59f397524c4554f7f",
+          "git_blob_sha1": "e354f60d025dc4dfc49f2724adb5e98a2908f9df",
+          "bytes": 1087,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "conda_env.yaml": {
+          "sha256": "74c2288e09c3807798b2775dd520b233ef44cd62f629d01e564d820b877f6b52",
+          "git_blob_sha1": "772cbfb3b85df638123e9fc269483afefeb7b3ca",
+          "bytes": 3085,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "tools/train.py": {
+          "sha256": "634eb5fa3dce449e89f1bacc88e5b60a506d5ef22753a99896831fe257cca73c",
+          "git_blob_sha1": "9ffe3d490679447be2a64dc8394dc7e9a6b9f6b8",
+          "bytes": 3559,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "tools/su_tracker.py": {
+          "sha256": "31273a5abfde36a20d2bdd79e4638c4a7a609c3691b35a49ab21e3ccb49ae232",
+          "git_blob_sha1": "f9a71ee886154ccacd9179a8b6c942b59eff5d5f",
+          "bytes": 6236,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "utils/args.py": {
+          "sha256": "bf2ca355bf6d98d1344e610003ca981efb0733b20d76bcf0ec72cb01bdcd37ee",
+          "git_blob_sha1": "c59211fc7fbb15dc19648b1c337d7ffc05d84ee3",
+          "bytes": 8909,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "exps/SU-T.py": {
+          "sha256": "19ffc1bbcec837d0e0b722514b1706e81a235da59f19254b107e854efd434cb2",
+          "git_blob_sha1": "3c29cc8a5b861cc2ade1e471a016f4a9989c2445",
+          "bytes": 5047,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "exps/SU-T-ReID.py": {
+          "sha256": "f61e62b7c967adcce5dfa2df023269fed529c6c22e3291fc571fa75a1e158cc3",
+          "git_blob_sha1": "e36d9072f65f93f53c9856c23252a21053174f68",
+          "bytes": 5444,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "yolox/evaluators/__init__.py": {
+          "sha256": "338e7ae9961f9febaac66baddabe273a450741890b844709df13080d21bd06e8",
+          "git_blob_sha1": "78d066d80fb5cd3125201c541bd6467ee31ab8c9",
+          "bytes": 184,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "yolox/evaluators/mot_evaluator.py": {
+          "sha256": "df1c6b1a537b8f02c1890022c1540d2920bcc5195c74af6adb6e91d44be8fbab",
+          "git_blob_sha1": "365a51ba32667cde6a5777f7ae8eced951169feb",
+          "bytes": 71451,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "yolox/models/yolo_head.py": {
+          "sha256": "e3273ba243b19c4d468887310fd022db8587905e6a23dd721e567f9b976723b5",
+          "git_blob_sha1": "5505458561c77120d731e560e9d6bfd2374427f7",
+          "bytes": 24739,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "trackers/SUT_UKF.py": {
+          "sha256": "b310975cc695d290e6315c1bdf8d990047aafec888e3a6150eb7d6f6228d266e",
+          "git_blob_sha1": "0e141e81b4d18bd09b12bf2ba3ec7e8626ebe472",
+          "bytes": 25479,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "trackers/SUT_reid_UKF.py": {
+          "sha256": "163a68e3e4516f7376a8b571f072ad43ad05b5901da21f247337fbaa6ea6b7cd",
+          "git_blob_sha1": "003870e3a28a859b989708dea623a2db8d2cc819",
+          "bytes": 29872,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "trackers/UKF.py": {
+          "sha256": "45d0ad3915869607edad7efb4c7c9da7fab955e00371850101fbbe67c0be1e58",
+          "git_blob_sha1": "47843ed2d6e0f639112102c4aea776c11343071e",
+          "bytes": 65242,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "trackers/association.py": {
+          "sha256": "9c519419b5900d7670998a72509c03b4aa836c686e5c830076683ec31af01d5f",
+          "git_blob_sha1": "ab175e282d47e6537f9c6444569c785c79103021",
+          "bytes": 36708,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/LICENSE": {
+          "sha256": "1d0721271005bd3d9397109c40534b283ad5b749300ca6fea2f13f483690b639",
+          "git_blob_sha1": "f40b404ccd54b9df3aa87cf5c6243ddc74a7dd47",
+          "bytes": 11548,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/configs/SBS_S101.yml": {
+          "sha256": "e3b22fca719d2d0ea288fa125c60d449ee7e05344e6ab2608e67db2c08e52764",
+          "git_blob_sha1": "28d47d3b36f2d57b5f4e20a520b7a1a058ff8877",
+          "bytes": 205,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/configs/Base-SBS.yml": {
+          "sha256": "d24e57cfd810050958a323c8018be1032b140a2fe058b436c8869d5ec187c144",
+          "git_blob_sha1": "27da33e67e6d463a3c57acc62f0d814afc0d753b",
+          "bytes": 1007,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/configs/Base-bagtricks.yml": {
+          "sha256": "e0e5e85c368307ed643c070750052f87cc34763a2058951c967c21f50151b23a",
+          "git_blob_sha1": "0b14b8c2e8c6b0a5f3f87fd9705f78ddc847388e",
+          "bytes": 1188,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/tools/train_net.py": {
+          "sha256": "264adc04c848e183794671c1d3e12d8ef00798f97e071874a2b885099bfc7363",
+          "git_blob_sha1": "6e0156f3c0aec3d320a39030630cd5afe1a50fa5",
+          "bytes": 2608,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fast_reid_interfece.py": {
+          "sha256": "0eee682911e5640333a6d6c677a52444156bd8ac7942b3e9015a8190cce76f1b",
+          "git_blob_sha1": "5d8101b934f67555361054bd4fa5a1d04d819c13",
+          "bytes": 5409,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fastreid/data/build.py": {
+          "sha256": "9c6779ff7e3640164b3b40f7cf4ffb4389ab922b484bd3cddb69f8224ad21328",
+          "git_blob_sha1": "ed53c3f0a4d040568b8dd63a15b5733bded68531",
+          "bytes": 6423,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fastreid/data/datasets/mft25.py": {
+          "sha256": "e5840bbe07890a8b8672953e79a6778b8d52988e18fdcd19821375940fc6d9f7",
+          "git_blob_sha1": "1b760f3686430c69c74bec964688952fd5179ac3",
+          "bytes": 3522,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fastreid/data/samplers/triplet_sampler.py": {
+          "sha256": "f850dc866f0e1933a2c05e2031f292b82c469e794bfbaca65a0d3f90046f7f52",
+          "git_blob_sha1": "93fb7d70a0f7625ac0a6e27f2df06b9200339bba",
+          "bytes": 10368,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fastreid/modeling/meta_arch/baseline.py": {
+          "sha256": "4951c729c672d68d024d3b7680b6e98c6ab50c57989981a74f77f9c125ebf6a5",
+          "git_blob_sha1": "513da04ef4c08653ab75594afbc74f2a7bcedb07",
+          "bytes": 6569,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "fast_reid/fastreid/modeling/losses/triplet_loss.py": {
+          "sha256": "71dc493db46fff16905a8f60c06f65b72243d558c5a367ae7d4c8a7d05d2ae37",
+          "git_blob_sha1": "e451c5f73fd1a751b297b88545ee6d9d713fe576",
+          "bytes": 4070,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "479be89a27129f6879c62710a83abac6a8b261ee",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/su_t_semantic_source_proof_v2.json"
     },
     "TIDE": {
       "name": "TIDE",
       "github": "https://github.com/vranlee/TIDE",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TIDE",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
       "origin": "https://github.com/vranlee/TIDE",
@@ -388,19 +881,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/TIDE",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
@@ -408,7 +889,191 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[When Fish Look Alike: Tracking Identities with Dual-branch Elasticity](https://arxiv.org/abs/2607.26412),2026 preprint, targets dense homogeneous fish and MFT-Edge, presenting elastic small/large branches and minimalist AGCIoU geometry. README efficiency/accuracy numbers are publisher reports, not our measurements. At this exact source pin, advertised geometric association and the default inference path differ, as traced below.",
+        "code_and_pretrained_license": "Top LICENSE declares MIT2026 Vran Lee. FastViT source retains Apple2023 header referring to an accompanying LICENSE; only top LICENSE was found in this tree. YOLOv5-derived modules and deformable-convolution vendors require independent upstream provenance/terms review and cannot all be certified MIT from the top file. Baidu weights and MFT-Edge data terms are not independently verified. No foreign code, weight payload or data was executed/copied into IR-MFT.",
+        "entrypoints_and_training_inference": "src/train.py task cmot resolves through train_factory to CMotTrainer in lib/trains/mot.py. src/track.py instantiates JDETracker from multitracker.py, not mc_bot_sort. README literal --arch tides/tidel is not a registered factory key; choose tides or tidel explicitly. STrack.__init__ calls update_features before creating its own features deque, but BaseTrack provides inherited class-level features=[], so this is not a missing-attribute crash. Initial feature appends to a shared class list before instance deque replacement; the new queue loses that first history entry. This source behavior needs isolation, not a false entry-failure claim.",
+        "core_model_files_and_shapes": "tidel wrapper calls yolo.PoseL using tidel.yaml, whose upsampling backbone returns64-channel features to Conv64 heads; it returns a one-element list of head dictionaries, not the unused raw anchor Detect output. tides wrapper calls FastViT-MA36 builder with stage depths[6,6,18,6],widths[64,128,256,512],three RepMixer stages and final attention. cmot heads are hm1,wh2(or ltrb4),id reid_dim(default128/README64),cnt1,reg2 at stride4 of input1088x608. JDE normalizes/gathers IDs at decoded detection centers; its active KF uses8-D XYAH constant velocity.",
+        "loss_and_positive_negative_construction": "CMotLoss combines focal/MSE center heatmap, masked size/offset regression, normalized center-ID features scaled sqrt(2)*log(nID-1) through train-ID CE(ignore -1), ReLU density MSE plus SSIM and density/detection consistency/count terms with detach. Learned uncertainty s_det=-1.85,s_id=s_cnt=-1.05 weights branches. Imported TripletLoss is not the active CMotLoss identity objective. JointDataset offsets IDs per named dataset-list key, not per video; fish IDs must be globally offset or keyed by(video,fish). Shuffled individual frames/drop_last are not PK sampling or explicit same-frame contrastive pairs.",
+        "pretrained_sources": "PoseL builder calls initialize_weights with default pretrained empty: standard module initialization plus heatmap bias-2.19/nonheat head normal0.001, not a verified ImageNet transfer. FastViT get_pose_net passes no pretrained payload. Optional load_model reads supplied checkpoint, skips mismatched shapes, drops unknown keys and fills missing parameters from initialization with strict=False; successful loading alone cannot prove full checkpoint coverage. README Baidu weights and external MFT25/MFT-Edge training/test assets were not acquired, hash/terms/split/identity exposure not verified.",
+        "future_information_and_online_path": "JDETracker consumes one current image tensor and prior track states, current-image center heads and normalized appearance features. GT centers, train IDs and density targets belong to offline JointDataset/loss, not inference. Active association uses appearance+motion gating then ordinary IoU high/low/unconfirmed stages; standalone AGCv1/AGCv2 are not called by matching.ious or iou_distance on this path. AGCv2 has no return; AGCv1 inverse center distance is unguarded at coincident centers. Do not call those definitions a deployed AGCIoU implementation.",
+        "GPU_CUDA_dependencies": "README asks CUDA>=11/Python>=3.8/PyTorch>=1.7, but requirements.txt is a conda-style machine export listing Python3.10.4,torch1.12.1+CUDA11.3,NumPy1.23.1 and compiled extensions, while install command names requirements.yaml. model.py eagerly imports pose_dla_dcn, which imports dcn_v2 DCN even when choosing tides/tidel, so architecture selection alone does not avoid that dependency. CPU tracker needs SciPy,lap,cython_bbox and numba. No environment installation, compiler execution or model timing was performed.",
+        "IR_MFT_compatibility": "Current-image joint detection/ID/density is conceptually compatible with causal operation, but replaces detector/backbone/crops and lifecycle, violating same-input association isolation unless adapted explicitly. Actual JDE path uses heavy appearance costs and ordinary IoU rather than the README minimalist AGCIoU route. Geometry and lightweight-vs-large efficiency need separate fixed-detection controls. Original ID dataset encoding, aspect/stride, current-image density supervision and unverified vendor licenses prevent treating this repo as a plug-in unbiased fish ReID baseline.",
+        "mechanisms_to_port_and_exclude": "Port only independently implemented/cleared geometric or density ideas with explicit observed-input definitions, fixed native tracker and controlled current detections. If implementing paper AGCIoU, obtain its primary mathematical formula and label numerical repairs independently from a source-faithful control; do not transplant unused/incomplete AGCv2 or singular AGCv1 and call it reproduction. Repairing shared first-feature history storage or optional imports creates a modified baseline requiring disclosure. Test branch capacity/latency under the same raw all-frame pipeline before interpreting elastic branch efficiency.",
+        "novelty_overlap": "Joint center detection/identity, density consistency and uncertainty-weighted multitask objectives overlap FairMOT/CMFT-style systems; FastViT and YOLO components are established architectures. Geometric association is a baseline family, not EvidenceFishMOT fine-grained ID or JEPA novelty. Any new local identity/density/occlusion mechanism must show gain beyond equal-capacity/simple pooling and same-detection geometry controls; publisher edge metrics and unused source functions do not establish such a contribution."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "cd6838c01eeec4d0b4b3cdf7c9ad3465fb3a5ff2f3c808c922637d639119662c",
+          "git_blob_sha1": "56c1aadc0258693e77e2356ce006d546fd9d3b35",
+          "bytes": 7315,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "LICENSE": {
+          "sha256": "cee73ea000a4bf9b6831e0779e0ac6c5769447d2e2056570ca6a01ca4a924395",
+          "git_blob_sha1": "d49b78bd1c4c9cd48d81ee372e2413ad3b55dad9",
+          "bytes": 1065,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "requirements.txt": {
+          "sha256": "03250b92d9cd745ee30d8475b2caa1f3dca80a4730ed6070c904efe851c1ff80",
+          "git_blob_sha1": "41e1de8ec3fd94ed6b751365d35bfd02d5780507",
+          "bytes": 3426,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/train.py": {
+          "sha256": "59ebcaf3b46db9408785724ad05505a085c5e06f771622b9a83fc55ceb51664e",
+          "git_blob_sha1": "ccc5efb66560b7ca6f6a9945690db39248ee7ddf",
+          "bytes": 3595,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/track.py": {
+          "sha256": "f21f486d83eb29bf810bcfeb8a83e19e581b9bdb17c4df80dd0391aba7e0d5fc",
+          "git_blob_sha1": "bf74771758fb8b347fea25a9c71cf617ac227335",
+          "bytes": 8459,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/opts.py": {
+          "sha256": "01435e625635d384135d29d3c065da26dc485d7920a4bacc6cd083ef2f3edaa6",
+          "git_blob_sha1": "6edda7e1e5b2c68d4cf27cd7bbd23f91fdd98edf",
+          "bytes": 15761,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/model.py": {
+          "sha256": "f345baf7d19b049b876ba33343f161f7aab55684d9de53210fb2028e2d7f4798",
+          "git_blob_sha1": "f22bd20741d4f48e563041b8337ff2c88edf6401",
+          "bytes": 4042,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/tides.py": {
+          "sha256": "5ef32690827018727fbf273fb2876ff24ffaf135e68bdde245f5a0e8debd034f",
+          "git_blob_sha1": "b4a85e53ad39f0de5d9d686d6fd5af77d241ad8c",
+          "bytes": 258,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/tidel.py": {
+          "sha256": "1bed5578eb0d14746d9e22f25ffc61acac81a347ac6d6e972893a62d7f2c0ccf",
+          "git_blob_sha1": "9da78074daf881cc1bff3c8b4b16034f63a70091",
+          "bytes": 246,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/yolo.py": {
+          "sha256": "d140d7714299e16a4cd461e7950bc8e3a78644617d137c05ecae2fa7e5a318c4",
+          "git_blob_sha1": "a6ccbaca36f5fa339cc6de91b3461b7a6d97abdc",
+          "bytes": 8896,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/networks/config/tidel.yaml": {
+          "sha256": "ede6073b5918c3a188932b98d3fd5879aedbb4adde4cb3fe6100c990fa9a1a47",
+          "git_blob_sha1": "e26b173819f4fb3b0f3cef0d41c33d4575a96523",
+          "bytes": 1156,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/networks/fastvit.py": {
+          "sha256": "af5abac769ed86a292e94f50a27c0c65e5e63cb2fd162a69eff448a92805e187",
+          "git_blob_sha1": "5f961a5c9d4354e3b01f348d38657e7b2826945a",
+          "bytes": 58049,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/models/networks/pose_dla_dcn.py": {
+          "sha256": "654ce0dd4852960528ff5e0a6b253316ed489b4657276fc5f98c23d41f3e4a4e",
+          "git_blob_sha1": "431305c4e2d5a01c4ea8cd96cb66ae13f0df88c4",
+          "bytes": 17770,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/trains/train_factory.py": {
+          "sha256": "6675106f5f9da584ad6f555fb6ef0c1fa39eb6e2f9e08cc14269c87204a1a8e8",
+          "git_blob_sha1": "980263210ed1512d51c9482dc60446e774103da8",
+          "bytes": 216,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/trains/mot.py": {
+          "sha256": "e165f20568c70caf17e36f6a4096a06010ede6c3c8cb782988af064f34938427",
+          "git_blob_sha1": "b77fdd7dba4310afc0f6e78014955be0e6e80ba6",
+          "bytes": 11779,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/datasets/dataset/jde.py": {
+          "sha256": "f26f0602211a434b5baa6dd48de254bf3fabd8f1357bb2e33ea2361630f64de3",
+          "git_blob_sha1": "96e3ba5aa1c4af01f80c7d13f650f7e349573058",
+          "bytes": 22271,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/tracker/multitracker.py": {
+          "sha256": "293e0e0434f694706372bdb704ce05ed296b5e7ddd1f71a6ae3eaf5eea182675",
+          "git_blob_sha1": "13f88c29bd0b879d56f109a1de738032b51407e2",
+          "bytes": 19209,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/tracker/matching.py": {
+          "sha256": "918db4c392c897a275977995116e25a1169ff2f3c5d6691239fa8edd72c37da0",
+          "git_blob_sha1": "a17d18bfe64d8dabdc663eedf9dadaf197101159",
+          "bytes": 5907,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/tracker/mc_bot_sort.py": {
+          "sha256": "9ace9f1fff12b027c9903d30447ef1a1f252dfa04d5bfdf75ea7d077388ddaaa",
+          "git_blob_sha1": "404cfcb88d4d82455d56440e5126cc67a2a61f4a",
+          "bytes": 17072,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/tracking_utils/kalman_filter.py": {
+          "sha256": "41c0c033a20a7656ec602be83fd13d1a36b10de8bb13e9730697c54a67a4f4ce",
+          "git_blob_sha1": "ab7b31e25cd9b0c46a02b06f27262ede0cb566c0",
+          "bytes": 9816,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Manual targeted reading of actual entrypoints, active tracker/model branches, losses, sampling, configurations and licenses. Source-only inspection; reference code and pretrained payloads were not executed. Static discrepancies are exclusions from unchanged official reproduction, not measured runtime failures."
+        },
+        "src/lib/tracker/basetrack.py": {
+          "sha256": "10bae5b29747f199c92dcc061a522a46ae4228b2e336d2a649ed3f96a2f5a0e1",
+          "git_blob_sha1": "1c13e031bef852d0d7a40000376c4a6cedd984d7",
+          "bytes": 1020,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+          "inspection_scope": "Read BaseTrack class attributes and inherited storage before assessing STrack initialization order."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/tide_semantic_source_proof_v2.json"
     },
     "M4FT": {
       "name": "M4FT",
@@ -598,26 +1263,14 @@
       "name": "FDTA",
       "github": "https://github.com/Spongebobbbbbbbb/FDTA",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FDTA",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
       "origin": "https://github.com/Spongebobbbbbbbb/FDTA",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/FDTA', 'status', '--porcelain'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/FDTA",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
@@ -798,7 +1451,247 @@
         "compatibility": "Full detector/depth/trajectory system differs from fixedV3 RGB512 proposal encoder; independently adapt temporal/identity refinement only after matched controls. Depth is not an IR substitute or free online precomputed input.",
         "novelty_overlap": "Explicit spatial/temporal/identity refinement and instance contrastive objectives overlap broad evidence-learning claim. Mere adapter naming is not novel.",
         "status": "UNEXECUTED_PARTIAL_AUDIT"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[From Detection to Association: Learning Discriminative Object Embeddings for Multi-Object Tracking](https://arxiv.org/abs/2512.02392), submitted Dec2025 and repository labels CVPR2026, analyzes similar DETR object embeddings and adds spatial depth, historical temporal and quality-aware identity adapters on MOTIP-style association. Benchmarks are DanceTrack/SportsMOT/BFT, not independently measured MFT26 IR fish results. Its adapters motivate controls, not an established improvement in our pipeline.",
+        "code_and_pretrained_license": "Top LICENSE is MIT2025 Yuqing Shao, while embedded Deformable DETR model/operator headers retain Apache2.0 and TrackEval/LICENSE MIT. DDNLoss balancer notes a CaDDN upstream origin, needing separate provenance/license verification before code reuse; external Video-Depth-Anything teacher terms are not established by this MIT file. MOTIP-sourced detector checkpoints and FDTA HuggingFace payloads are not independently downloaded/license/hash verified. No foreign code execution or transplant occurred.",
+        "entrypoints_and_training_inference": "train.py builds FDTA via models/fdta/__init__.py and forwards sampled images with depthmaps into detector, followed by trajectory_embedding, trajectory_modeling and IDDecoder. submit_and_evaluate.py builds the same system and RuntimeTracker consumes current image only; seq_dataset.py does not read external depthmaps. tools/gen_depthmaps.py requires a sibling Video_depth_anything checkout/checkpoint and emits offline teacher PNGs. README uses Accelerate launch and explicitly compiles models/ops; no unchanged official system run is claimed.",
+        "core_model_files_and_shapes": "Deformable DETR config retains ResNet50/FrozenBN,300 queries,256 width,4 scales,6 encoder/decoder layers. Spatial DepthPredictor averages projected/resized first3 scales, predicts151 depth bins (150 LID bins plus overflow), forms expected depth and256-D encoded depth tokens; each detector decoder adds depth cross-attention. History_motion_embedding runs6 causal8-head256-D Transformer layers per object, reshaping[B,G,T,N,D] via squeeze(0) and thus assumes B1. Residual FFNs and MOTIP-style512-D/16-head6-layer decoder produce51 local ID/newborn scores with same-frame candidate interactions.",
+        "loss_and_positive_negative_construction": "Detection focal/L1/GIoU accompanies foreground-weighted depth-bin focal supervision (fg6), ID CE and instance contrastive loss. Contrastive skips epoch0, keeps matched quality>=0.5, projects track embeddings, normalizes and uses temperature0.1, same-instance off-diagonal positives, different-instance negatives and harmonic pair quality weight; other same-ID positives are excluded from each positive denominator. Crucial source discrepancy: matcher returns generalized_box_iou values under matched_ious, so both cutoff and weighting use GIoU, not ordinary IoU. Criterion default batches10 frames, so cross-frame positives may exist; no positive pairs yields zero loss. Clip/random-word/history-mask augmentation follows MOTIP, not PK horizontal fish crops.",
+        "pretrained_sources": "Backbone selects ImageNet1K_V2 (different from audited MOTIP V1), and README detector pretrains come from MOTIP COCO/target-specific DanceTrack,SportsMOT,BFT releases. FDTA weights are published on HuggingFace, but exact payload hashes/license/exposure remain unverified here. Training depth maps use external Video-Depth-Anything vits/vitl teacher, ingest entire RGB sequences and scale every depth by sequence-wide maximum to8-bit PNG (optional color map), not calibrated metric depth. Teacher versions/data and cross-fold overlap must be audited independently before use.",
+        "future_information_and_online_path": "The temporal adapter applies triangular causal plus missing-history masks; IDDecoder cross mask excludes time>=current and self-attention is same-frame. Detector computes depth from current-image features; passed external depthmaps are retained only for supervised loss, not read by forward prediction. Offline teacher generation sees the whole sequence and global depth maximum, so those maps must remain training targets; supplying them as online observed inputs would violate strict causality. Runtime SeqDataset and tracker default path take image/past predicted memory only. Current-image inferred depth is not GT occlusion or physical3-D truth.",
+        "GPU_CUDA_dependencies": "README/requirements select Python3.12,torch2.4.0,torchvision0.19 and Accelerate/einops; custom MultiScaleDeformableAttention setup requires CUDA_HOME+CUDA and refuses CPU-only build. DDNLoss constructor calls torch.cuda.current_device, depth loss hardcodes cuda box scaling, and Temporal_Adapter defaults256 width/B1, so arbitrary CPU/batch/device adaptation is not automatic. The depth predictor docstring mentions EasyDict but no actual EasyDict import was found; it accepts the project Args attributes. No environment/compiler/teacher/training execution or GPU timing was performed during this audit.",
+        "IR_MFT_compatibility": "Temporal history and quality-aware ID supervision are suitable controlled alternatives, but this source changes detector/query features and depth branch rather than offering a frozen crop ReID plug-in. Monocular RGB sequence-normalized teacher depth is unverified on IR fish/water and cannot be treated as observed depth or anatomy/occlusion annotations. Existing512-D FishGRU is not compatible with fresh256-D coordinates. Fixed50-word memory/newborn semantics differ from dynamic fullset N+1 absent/unknown labels. Native detections/features/lifecycle and train/inner/outer identity exclusion must be fixed for meaningful fish-adapter comparison.",
+        "mechanisms_to_port_and_exclude": "Use independent cleared implementations of residual appearance projection, causal per-object history Transformer and quality-weighted contrastive objective as same-input/capacity controls, explicitly reporting GIoU-source versus corrected-IoU variant if changed. Compare temporal adapter versus global GRU/local Transformer and supervised contrastive versus stopped EMA prediction; the source has no JEPA target/predictor. Exclude unverified pretrained exposure/teacher licenses, whole-sequence depth as online evidence, B1-specific assumptions and claims of metric depth or GT occlusion. Separate detector/spatial-depth retraining from association-only ablations.",
+        "novelty_overlap": "FDTA already contributes spatial/temporal/identity adapter refinement for discriminative MOT embeddings, sharing ID decoder and random-word machinery with MOTIP. Adding an MLP, history Transformer, contrastive loss or inferred depth alone is adaptation, not new fish identity evidence or dense JEPA novelty. EvidenceFishMOT must demonstrate observable local identity support and candidate relations beyond matched FDTA-style controls with equal training inputs/capacity, no future inputs and complete multi-seed native video results; the audit does not prove such gains."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "3305792c4f596405da12a9681370052e141f76f54109d7711a3319de84b621a5",
+          "git_blob_sha1": "7ae60c79382ece27b2e4dd818275e963ab8d8639",
+          "bytes": 6548,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "LICENSE": {
+          "sha256": "c7c92e8a08363662699383204de31b0bd167c300a3c853c1254a45c18a97885d",
+          "git_blob_sha1": "4d100d791c01c18f01284a2801029ef6428be607",
+          "bytes": 1067,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "TrackEval/LICENSE": {
+          "sha256": "f7e548c5729e464d878dd4abf691e323bbea028a756d08395d88b83e43dd2d86",
+          "git_blob_sha1": "70cbbf9ec0874865fcf827702be7f850251d4314",
+          "bytes": 1072,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "requirements.txt": {
+          "sha256": "de1f4525e832d18c397163d482d02dfe1fcac800498132f629d93803da87ece4",
+          "git_blob_sha1": "acface7f71950fde4e89c535040e948e8c7d42ef",
+          "bytes": 137,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "configs/dancetrack.yaml": {
+          "sha256": "6031d96e5917961b66edcf6a83620eae45368d449b6a6f060e884620ae7d41aa",
+          "git_blob_sha1": "6768fb079891cf61418bf223cc7dc7cf96a9202c",
+          "bytes": 3524,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "train.py": {
+          "sha256": "c18d2ee52b5ceb982eef552312c71795de9cb1c608b6a5edd5e9ac38139aa991",
+          "git_blob_sha1": "6e7d05e1cb2224a190a7f9d054b43e932bf3e262",
+          "bytes": 37356,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "submit_and_evaluate.py": {
+          "sha256": "8d7568593f9d218a83a3967cf36e29e5a6c26b3cfd49c010e2e7d094283333e0",
+          "git_blob_sha1": "310e1312e7206a7c56cb84ae5dabcc4c7759d5ac",
+          "bytes": 16168,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/__init__.py": {
+          "sha256": "7d6afcff0deb3965cc2a70f52110d983165e0cff3042692c493fab8efaa69ad6",
+          "git_blob_sha1": "24fa06499fdd547bf64ee9cde2d0bcce9a0a780a",
+          "bytes": 3884,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/fdta.py": {
+          "sha256": "192f147b249409b57b31893402642c5d0d44b55e91531b51b927c884c2762058",
+          "git_blob_sha1": "f0c4239345d4a082a5f7cb5f3005893839168a25",
+          "bytes": 2210,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/id_decoder.py": {
+          "sha256": "40548b80ea79cc17d22e3b45150f611ee1089b47bf2413ea62354c39d7b207f2",
+          "git_blob_sha1": "f5e514bc044ee0a59a38af95897a4edb6825dfe8",
+          "bytes": 12656,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/id_criterion.py": {
+          "sha256": "7e10c12fac33b97bc52f9bff99f0a45c1b51573b2f409dc1cf96f7506e3d531d",
+          "git_blob_sha1": "fde911c95c7d6bfaed68059ed82d2ff020871520",
+          "bytes": 3309,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/trajectory_modeling.py": {
+          "sha256": "500dbf31ba7ab5d33dea15c5d3200e510edae0d687a12baf3e17ed49e75e8e94",
+          "git_blob_sha1": "5b70f31a209b717aff917a68ac2d10f36bdca193",
+          "bytes": 1352,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/fdta/Temporal_Adapter.py": {
+          "sha256": "0686bdc8e9306a6e4ccce230e3eda261fa751a8cf1967eff056904356cb749b0",
+          "git_blob_sha1": "8977a620176386c9350c7fb589891258fdf4cd57",
+          "bytes": 6866,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/Spatial_Adapter/depth_predictor.py": {
+          "sha256": "e9183c5d4ead344b8dc5b022dd3199fb8087190110f8ed409178ecc5759f9bb1",
+          "git_blob_sha1": "755ca03c64869af3a46e7d5e1311ea5e8d54eba0",
+          "bytes": 4148,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/Spatial_Adapter/depth_encoder.py": {
+          "sha256": "aabc24ea548abefc9929566540141c1dd492a42a56c35d822c2db06b544d8241",
+          "git_blob_sha1": "520dafce22e95fd22c12e9ce3d7a109954a1a238",
+          "bytes": 2423,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/Spatial_Adapter/ddn_loss/ddn_loss.py": {
+          "sha256": "cb414e54a26d742981a44eeb7e4c6d37241e17346b545fe2160f141604bc0c75",
+          "git_blob_sha1": "8adf88af687450cc0c4e2d9b39e0e89023f6e313",
+          "bytes": 5125,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/Spatial_Adapter/ddn_loss/balancer.py": {
+          "sha256": "2fbf1f20a3ef70956d75c934ab177fdc9c1688a9de2294ee69422d541097c3b7",
+          "git_blob_sha1": "a5d4a354f4710d49ecd93c2b8902ec05b9039d45",
+          "bytes": 2978,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/deformable_detr/deformable_detr.py": {
+          "sha256": "b45f4143f808d5efca7c6e4badb4e502add5906c68f3a8affdfbb3f53b802c00",
+          "git_blob_sha1": "1c260c2c9a43583d1de193c7a66528e595c10ea7",
+          "bytes": 36964,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/deformable_detr/deformable_transformer.py": {
+          "sha256": "5587d82cc93c1edf6e0f30cfc3ebd587dd63cbe3cd72547854dbf08385db1818",
+          "git_blob_sha1": "714229689130c60ae17f323c0ae81b17a95fa6c5",
+          "bytes": 19781,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/deformable_detr/matcher.py": {
+          "sha256": "0ea17be6e3d43e63273a52109dec5a2f5dccf5b7cb1f31d68c485fc05fe0026d",
+          "git_blob_sha1": "63a81c16add7b6416dca48d6dfbafe61a0874cfc",
+          "bytes": 5422,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/deformable_detr/backbone.py": {
+          "sha256": "b0ab5c509dfbcaa4e75dd4cb7fbf3c79d8bbc7dbaa946f8c83a94bfb4f1a0c2a",
+          "git_blob_sha1": "2953621bb187162dc61a6a868b8f892fa66f31c3",
+          "bytes": 5540,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/runtime_tracker.py": {
+          "sha256": "aa84d789dd4183b279d832a679c48c03e908f2965a7374623028822fff61d528",
+          "git_blob_sha1": "8cc9ffdb0986402a8c67cc988c685b656d71ad3c",
+          "bytes": 20231,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/ops/setup.py": {
+          "sha256": "9675fc02e522204d6f3af59dca6dcad00b59a8b2b192e30e54f3e04279e279f2",
+          "git_blob_sha1": "c76d823200c0a3bbad37444958e8af8889fe653e",
+          "bytes": 2561,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "tools/gen_depthmaps.py": {
+          "sha256": "6d9945b810992fc99334fe5192b6ee00088e81aa5f7fceaa979d4c9f10d06ad7",
+          "git_blob_sha1": "547fef98b9db6e51478e4cb963682f7277a8fa08",
+          "bytes": 3153,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/joint_dataset.py": {
+          "sha256": "ad97730f23412123465067bb44733f31ca545a9238d67b426b3559dd8e2d3659",
+          "git_blob_sha1": "0d618c97e88d947b44f6e4c8fa7fe28324b2f22d",
+          "bytes": 8938,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/seq_dataset.py": {
+          "sha256": "ff5c37bf0d7fb2c4bd605d50ef53babc1777bfd69b2f4a86f200c30fc6501429",
+          "git_blob_sha1": "ca48a14baa303125e59ce0308404133f2a69ac52",
+          "bytes": 1600,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/naive_sampler.py": {
+          "sha256": "1feb108846c50abfee2bcd804385e0069c3cdad458cad5a52a647ad672d86fc9",
+          "git_blob_sha1": "c415642e14deae80705045cc261c9e0b76561e76",
+          "bytes": 6822,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/transforms.py": {
+          "sha256": "88fc6a6eb2610f5f096308121133085d5b1162d612234dcf4f3eb85649ca1508",
+          "git_blob_sha1": "4834adaecb5fd61ec8598f836f8b84e1d89d97f0",
+          "bytes": 31081,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "b3b3b778acf93fa4269663b5ea1fd1d5ff8c6730",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/fdta_semantic_source_proof_v2.json"
     },
     "TransReID": {
       "name": "TransReID",
@@ -1163,7 +2056,7 @@
         "code_and_pretrained_license": "TopLICENSE MIT2023Syliz517; embeddedmodifiedOpenAI CLIP requirespreservingupstreamattribution, upstreamMIT2021OpenAI primary https://github.com/openai/CLIP/blob/main/LICENSE verified. BenchmarkCLIPReIDGDriveweights anddatasets separateterms/payloadhash unverified, excludedofficialreproduction. BaseCLIPpublicmodelsource/URLs/SHA are known butnoactualweightacquired/executed. No externalcodecopiedorforeigninstallcommandsrun; thisisa source-fieldauditnotweight-licensecertificationforallderivatives.",
         "entrypoints_and_training_inference": "train_clipreid.py ->datasets.make_dataloader_clipreid ->model.make_model_clipreid ->processor_clipreid_stage1.do_train_stage1 ->stage2.do_train_stage2. train.py isbaselinefine-tune, nottwostageCLIPReID. test_clipreid.py usesimageembedding-onlyinference. solver/make_optimizer_prompt.py stage1updatesprompt_learneronly,stage2freezestext_encoder/promptparameters andfitsimage/BN/classifier. Stage1cachealltrainingimagefeatures underno_grad once. Actualsourceiters=num_image//batch,range(iters+1) includesemptylastbatchifexactlydivisible; adaptationrequiresguardratherthanassumingREADMEcommandsalwaysrun.",
         "core_model_files_and_shapes": "model/make_model_clipreid.py andmodel/clip/model.py. ViTB16imageRGBcrop patch16/stride16 at256x128=>128patches+CLS, width768/12blocks, outputlast-layer768andCLIPprojected512; inferenceconcat768+512=1280 before/afterBN. RN50 branch2048+projected1024=>3072. Imagevisualforwardreturnsblock11/block12/projectedalltokens; usedCLS. Text77tokencontext/width512, pretrainedtextattentioncausalwithintext(EOTargmaxselector), perclass4learned512tokens plus fixedperson/vehicleprefix. No newfishparts learned fromtext. OptionalSIE camera/viewcurrentmetadata.",
-        "loss_and_positive_negative_construction": "Stage1loss/supcontrast.py actualtemperature1.0, unnormalizedtext/imageprojection dotlogits, maxsubtractstability, positivesall equalIDcrossmodalpairs withinbatch/averagedpositivecounts; bidirectionalimage\u2192text+text\u2192image objectives, notassumeddiagonalCLIPtemp.07. Stage2loss/make_loss.py sumsCEover2imageheads andtriplets over3featurestages, thenimage\u2192allfit-IDtextCE; suppliedViTconfigweights.25CE/1triplet/1i2t,smoothingon,NO_MARGIN sourcecontrols. Stage1randomorderallcachedknowntrainingimages; stage2RandomIdentitySampler B64/K4=>P16 withshortIDreplacement. No frame/gap/sameframecrossfish hardnegative construction inoriginalsampler; physical(video,fish) andunknown-labelguardsrequiredforMFT.",
+        "loss_and_positive_negative_construction": "Stage1loss/supcontrast.py actualtemperature1.0, unnormalizedtext/imageprojection dotlogits, maxsubtractstability, positivesall equalIDcrossmodalpairs withinbatch/averagedpositivecounts; bidirectionalimage→text+text→image objectives, notassumeddiagonalCLIPtemp.07. Stage2loss/make_loss.py sumsCEover2imageheads andtriplets over3featurestages, thenimage→allfit-IDtextCE; suppliedViTconfigweights.25CE/1triplet/1i2t,smoothingon,NO_MARGIN sourcecontrols. Stage1randomorderallcachedknowntrainingimages; stage2RandomIdentitySampler B64/K4=>P16 withshortIDreplacement. No frame/gap/sameframecrossfish hardnegative construction inoriginalsampler; physical(video,fish) andunknown-labelguardsrequiredforMFT.",
         "pretrained_sources": "ModifiedOpenAI CLIP ViTB16/RN50 originalcontrastiveimage-captionwebpretrain, sourceexactpublicAzureEdgeURLs andSHA256downloadcheck (ViTB16expected5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f). build_model unwrapsJIT/state, resizesrectangular2Dposgrid andstrictload_state_dict. Officialperson/vehiclebenchmarkfitMarket/MSMT/Duke/OccludedDuke/VeRi/VehicleID. Upstreammodelcard https://github.com/openai/CLIP/blob/main/model-card.md notescuratedwebcaptiondata/unreleasedcorpus; nozerofishoverlapcertification. No datasets/modelweightsdownloaded; all sourcesstayoutsideGit.",
         "future_information_and_online_path": "Imageinference onlycurrentcrop/observableoptionalcamera/view, returns1280/3072descriptorwithoutGTphysicalIDortextpromptlookup. ID-specificpromptsandall-fit-IDtextcacheareoffline trainingtargets; do notmislabelthem asnecessaryGTonline inputs. Fulltrainimagecache legalonlyfromfitvideos; bothouter/inner mustbeexcluded frompromptdictionary/imagefitting. Textcausalmask doesnotexpressvideocausality. Originalutils/metrics.py excludes SAMEpid+camera positives andoptionallygalleryre-ranks; replacewithsamevideo/past-onlyunknownpreservingfishprotocol. NoofficialMOTlifecycles/assignment route.",
         "GPU_CUDA_dependencies": "READMEtorch1.8/vision.9/CUDA10.2, yacs/timm/scikitimage/tqdm/ftfy/regex; coreTorchvisionTransformer andtokenizer package. PromptLearnerconstructs tokenizedprompts.cuda unconditionally, originaltrainingCUDAAMP/DataParallel/NCCL andunusedcentercriterion allocations, soCPUfullconstructorisnotvalidated. Stage1storesallcachedimagefeatures onGPU, memoryscaleswithtrainingobservations; notfreeonlinecachecost. Newfishprotocolmustboundcaches/checkpointmodel/optimizer/scaler/RNG andneverrunoriginalscriptwithallvisibleuserGPUs.",
@@ -1795,13 +2688,13 @@
         "paper_year_scenario_contribution": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture; primary https://arxiv.org/abs/2301.08243 submitted2023-01-19/revised2023-04-13, officialrepoCVPR2023. Static-image semantic feature learning via context-to-masked-region latent prediction, not object-track/fish-identity temporal association.",
         "code_and_pretrained_license": "Exact LICENSEblob108b5f002fc31efe11d881de2cd05329ebe8cc37 SHA336255dc30193e8e15d689d9481bb05673d89055718f3a96923a7ffb99adbbaf is CCAttribution-NonCommercial4.0. Verified primary https://github.com/facebookresearch/ijepa/blob/52c1ae95d05f743e000e8f10a1f3a79b10cff048/LICENSE and subsequently exact APIblob. Do not call Apache/MIT orcopy intoMITproject silently. Source-only audit; no codecopied/executed. Officiallargefullcheckpoint separate weightterms/provenance not independently certified, soexclude completedofficialweightreproduction. Independentlyimplemented EMA/latentprediction algorithms canbefairmechanismcontrols withappropriatecitation.",
         "entrypoints_and_training_inference": "main.py --fname --devices launches localmultiprocessing ->src.train.main; main_distributed.py usesSubmitit/SLURM. src.helper.init_model builds contextencoder/predictor and train deepcopycreates EMAteacher. No standalonefishReID/MOTinferenceentry inselectedofficialsystem; src.models.vision_transformer.VisionTransformer.forward is currentimagefeature route. Checkpointkeys encoder/predictor/target_encoder/opt/scaler; checkpointhelper catchesexceptions andsets epoch0 afterpossiblypartialload, unsafe toassumeexactresume. Officialsave lacksallRNGstates/atomicwrites; ourprotocolrequiresstrongerfullstate.",
-        "core_model_files_and_shapes": "src/models/vision_transformer.py andsrc/masks/utils.py. ViTH14 config224square =>256patch tokens1280dims,32blocks16heads; noCLS token inforward. Predictor maps1280\u2192384,12blocks16heads, appends masktokens+2Dposition andprojects384\u21921280targets. apply_masks gathers[B,N,D]usingperbatchtokenindices andconcatenatesmaskviewsbatchwise. Config giant16dim1408depth40heads16. interpolate_pos_encoding erroneouslytreatsfirstpatchasCLS andreshapesNpatches-1assquare onsizechange; nativeequalgridbypassesit, rectangularfishinputnotvalidblindport. Newcorrectrectangularpositions/visiblemaskneeded.",
-        "loss_and_positive_negative_construction": "Trainforward_target no_gradfullcurrentimage EMAencoder, F.layer_normlastfeaturedim thenonlypredictedregions. Contextencoder receivesmaskselectedtokens beforetransformer; predictor seescontext+targetpositions/masktokens, notactualtargetfeatures. SmoothL1 latentprediction +distributedAllReduce; noCE/ID/contrastivepairs/explicitnegatives orfishPKsampler. ImageFolderDistributedSampler shuffled perepoch; sameimagecontext-target supervision. Multiblock config1context4targets, contextarea.85\u20131,target.15\u2013.2,min_keep10, allow_overlapFalse. Contextdisjointnessconstraints relax after20failedtries bydroppingacceptable-regions, soflagaloneisnotastrictnonoverlapguarantee. Anewsmallfishmasker mustverifyactualtargetexclusion.",
+        "core_model_files_and_shapes": "src/models/vision_transformer.py andsrc/masks/utils.py. ViTH14 config224square =>256patch tokens1280dims,32blocks16heads; noCLS token inforward. Predictor maps1280→384,12blocks16heads, appends masktokens+2Dposition andprojects384→1280targets. apply_masks gathers[B,N,D]usingperbatchtokenindices andconcatenatesmaskviewsbatchwise. Config giant16dim1408depth40heads16. interpolate_pos_encoding erroneouslytreatsfirstpatchasCLS andreshapesNpatches-1assquare onsizechange; nativeequalgridbypassesit, rectangularfishinputnotvalidblindport. Newcorrectrectangularpositions/visiblemaskneeded.",
+        "loss_and_positive_negative_construction": "Trainforward_target no_gradfullcurrentimage EMAencoder, F.layer_normlastfeaturedim thenonlypredictedregions. Contextencoder receivesmaskselectedtokens beforetransformer; predictor seescontext+targetpositions/masktokens, notactualtargetfeatures. SmoothL1 latentprediction +distributedAllReduce; noCE/ID/contrastivepairs/explicitnegatives orfishPKsampler. ImageFolderDistributedSampler shuffled perepoch; sameimagecontext-target supervision. Multiblock config1context4targets, contextarea.85–1,target.15–.2,min_keep10, allow_overlapFalse. Contextdisjointnessconstraints relax after20failedtries bydroppingacceptable-regions, soflagaloneisnotastrictnonoverlapguarantee. Anewsmallfishmasker mustverifyactualtargetexclusion.",
         "pretrained_sources": "Officialpretrainingfromscratch onImageNet1k orImageNet22k; init_modeltruncatednormal notexternalfoundationload. README supplieslargeViTH/Gfullcheckpointsdl.fbaipublicfiles forIN1K/IN22Kplusconfigs/logs. Noofficialcheckpointsdownloaded andnoassertionofzero fish-dataoverlap. FrozenImageNet/realfinetunedfishlocaltokens forindependentDenseJEPA aredifferentproducers andmustbepairedwithmatchedTemporal/contrastivecontrols, notdeclaredofficialIJepa reproduction.",
-        "future_information_and_online_path": "Staticimagepartial-observationtask hasnofuturevideo input. Fullsameimagefeaturesappearonlystoppedteachertrain target; contextreceiveskeptregions andtargetpositions. EMAteacherupdateafteroptimizer0.996\u21921inViTH1kconfig; teacherdisabledgrad. Itsmechanismscanextendtosamefishfuturetargets onlyduringtraining; strictonlineheadmustconsumehistory/currentobservationsonlyandneverGT/futureteacherfeatures. Officialmaskrelaxationactualtargetoverlapmustnotbehidden.",
+        "future_information_and_online_path": "Staticimagepartial-observationtask hasnofuturevideo input. Fullsameimagefeaturesappearonlystoppedteachertrain target; contextreceiveskeptregions andtargetpositions. EMAteacherupdateafteroptimizer0.996→1inViTH1kconfig; teacherdisabledgrad. Itsmechanismscanextendtosamefishfuturetargets onlyduringtraining; strictonlineheadmustconsumehistory/currentobservationsonlyandneverGT/futureteacherfeatures. Officialmaskrelaxationactualtargetoverlapmustnotbehidden.",
         "GPU_CUDA_dependencies": "READMEPython>=3.8,pytorch,torchvision,pyyaml,numpy,opencv,submitit. TrainingusesCUDA BF16/GradScaler optional, DistributedDataParallel andNCCL init; largeconfigbatch128perGPU,distributedworld; submititSLURMnotrequiredforlocalentry. ModelTensorattentionusesordinaryTorch(qkv/matmul),noexternalflash/xformersrequirementseen. Currenttorch2architecture/trainnotexecuted; noenvironmentinstallation. CPUcurrentcropinferencecouldbeindependentlyadapted,butnotclaimedvalidated.",
         "IR_MFT_compatibility": "Transferlatentprediction/EMA/regionmasking principles, notblindViTH/Gfulltraining forMFTsmallcrop. Native224square/image-onlyfeatureproducerhasnophysicalIDs/candidatecompetition ortrackmemory. Current128x256fishcrop requiresrealrectangularlocalpositions andvisible-imageextent;1280teachercoordinatecannotreuse512GRU. Cleanknownphysicaltracktraining andunknown/corruptiontestseparate; pervideoouterANDinnerexcludedfromidentity/temporaladapterfitting.",
-        "mechanisms_to_port_and_exclude": "Independentlyimplement localobject-centriccontext/predictor/stoppedEMA withactual8strip orspatialtokens, current/futuretrainingtargets physicallyaligned, verifiedmasked/futuretargetnotincontext. MatchedlocalTemporalTransformer/contrastive/noEMA/noPrediction/noIDandrawglobal/localretrievalneeded. Exclude copyingCCBYNCcodeintoMITtree, downloadinghugefulltrainingmodels,brittlecheckpointcatch-and-restart,brokenrectangleposinterpolation andunverifiednonoverlapmaskflag. NoRGB\u2192GTonlinefilter orfutureteacherinference.",
+        "mechanisms_to_port_and_exclude": "Independentlyimplement localobject-centriccontext/predictor/stoppedEMA withactual8strip orspatialtokens, current/futuretrainingtargets physicallyaligned, verifiedmasked/futuretargetnotincontext. MatchedlocalTemporalTransformer/contrastive/noEMA/noPrediction/noIDandrawglobal/localretrievalneeded. Exclude copyingCCBYNCcodeintoMITtree, downloadinghugefulltrainingmodels,brittlecheckpointcatch-and-restart,brokenrectangleposinterpolation andunverifiednonoverlapmaskflag. NoRGB→GTonlinefilter orfutureteacherinference.",
         "novelty_overlap": "EMAteacher,stoppedlatenttargets,regioncontextmasking,predictorandno-pixelreconstruction establishedIJepa mechanisms. RenamingexistingglobalPLIMoraddingJEPAregressiondoesnotestablishnewfinegrainedidentityevidence. Contributionrequiresobjectphysicalidentity,localpersistentdiscrimination andstrictcausalsetassociation improvements overmatchedordinarytemporal/contrastive/noEMAcontrols."
       },
       "source_read_proofs": {
@@ -1959,7 +2852,7 @@
         "loss_and_positive_negative_construction": "app/vjepa/train.py: stoppedfullclipteacher thenlayernorm, selectedmaskedtargetregions; predictor sees keptcontext+maskpositiontokens only. Meanabs(z-h)**loss_exp/loss_exp, exp1 inconfigs, no IDCE/physicalfishpositive-negative construction. EMAafteroptimizer.2.1train: separate maskedprediction loss plus visiblecontext loss weightedlambda/imgvideo=.5 inVitBconfig withdistanceweighting/progressive schedule, targetmulti-layer chunksnormalized independently; no claim thatonlymaskedlossproducesdensefeatures. Data uses weightedDistributedWeightedSampler acrossK710/SSv2/HowTo (declaredweights.335/.100/.565), Decordrandomclips/fps4;2.1addsImageNetdata.3Dmaskgenerator derivesdisjointcontext/targetfromactualcomplementthenbatchtruncates, additionalfull_complement modes explicit. Temporalspan masks neednotpast-only.",
         "pretrained_sources": "PrimaryV2paper describesover1millionhour internetvideo/imagepretraining and<62hoursDroidposttraining. Publictrainingconfig lists K710/SSv2/HowTo; it doesnotprove completeprivatecuratedpretrainingmembership orzerofishoverlap.2.1config addsImageNet anddeepdense/distillation variants. src/hub/backbones.py dl.fbaipublicfiles/vjepa2 filenames; V2loadkeys target_encoder bydefault, AC encoder/predictor,2.1Base/Largeema_encoder+teacher1664distillationcoords; strictness differsbysize/codepath. No giant checkpointacquisition, fullpretrainingreproduction orfishclassificationaccuracyclaimed.",
         "future_information_and_online_path": "OrdinaryV2/2.1encoder andmaskedpredictor use bidirectionalclipattention withattn_maskNone/is_causalFalse; sourcevideo loader sampleswholeclips andofficialrecognitionprobes usemulti-segment/multi-viewclips. Thus earlierframe embeddingsmaydependonlaterframeswithinclip. A strictonline fish adaptation can onlyencodeanexplicitpast-through-currentwindow andaccountrecomputation/tubeletendpadding; cannotcreditcachedfullvideoembeddingascausal. ACpredictor hasframecausalblockmask butthatdoesnotmake itsvideoencodercausal. EMAfullcurrent/futureteacher permittedonlyoffline trainingtargets; no teacher/futureframe onlineinputs.",
-        "GPU_CUDA_dependencies": "requirements torch>=2,torchvision,timm,einops,decord,iopath,submitit,webdataset,transformers etc; app usesNCCL/DDP,BF16AMP,CUDA SDPA optionalactivationcheckpointing. Pretrainconfig16nodes\u00d78GPU is not our4GPU smallMFTbudget. Ordinaryattention hasTorchmatmulfallback; massiveV2.1Gvariants mayusexformersnamedarchitecture butruntimecompatibility notexecuted. Hubdependencies torch/timm/einops; currentenvironment installation unchanged. Head/cache timings cannotincludeencoderclipcomputationforfree.",
+        "GPU_CUDA_dependencies": "requirements torch>=2,torchvision,timm,einops,decord,iopath,submitit,webdataset,transformers etc; app usesNCCL/DDP,BF16AMP,CUDA SDPA optionalactivationcheckpointing. Pretrainconfig16nodes×8GPU is not our4GPU smallMFTbudget. Ordinaryattention hasTorchmatmulfallback; massiveV2.1Gvariants mayusexformersnamedarchitecture butruntimecompatibility notexecuted. Hubdependencies torch/timm/einops; currentenvironment installation unchanged. Head/cache timings cannotincludeencoderclipcomputationforfree.",
         "IR_MFT_compatibility": "UsefulpriorforEMA/stoppedlocalprediction/deepdense supervision and image/video tokenization. Nativevideoclip/globalactiontasks do not providefishphysicalIDs/candidatecompetition; directclipfeaturefittingwithouter/innerexposureinvalid. Object-centriclocalgeometry/currentcandidate relation needsindependentfishsupervisionandnewcoordinateproducer. Largefullclipbackbone maydominate rawruntime. AdaptmatchedlocalTemporal/contrastive/noEMA/noPrediction/noID ratherthan claimofficialfullworldmodelreproduction.",
         "mechanisms_to_port_and_exclude": "Retain actualmaskcomplements, stoppedEMA,localtargetprediction, visible-vs-masked/deep-losscontrols withdeclaredinputprovenance. Exclude unrestrictedfuturecontext/fullvideo caches/robotactions asfishsensors, giantpretraining, blindper-frameassignmentofbidirectionalclipembeddings andsilentteacher/studentcoordinate mismatch.3Dspatiallocaltokens aregeometricnotannotatedanatomy orocclusion. Configchecks/hashguards neededbecause checkpointhelper/hubstrictness differ; never assume strict=False validweightload.",
         "novelty_overlap": "Dense visible+maskedprediction anddeepintermediatelayers alreadyexplicitV-JEPA2.1mechanisms; EMA,masktokens,latentvideo prediction andactionconditioning establishedV2. GenericpatchTransformerpluslatentloss is not novelty. EvidenceFishMOTmustprovephysicalidentityinformation/onlineassociationincrement overmatchedlocaltemporal/contrastive/deepdensecontrols, beyond loweringpredictionloss."
@@ -2359,8 +3252,8 @@
         "paper_year_scenario_contribution": "GOT-JEPA: Generic Object Tracking with Model Adaptation and Occlusion Handling using Joint-Embedding Predictive Architecture, primary https://arxiv.org/abs/2602.14771 submitted2026-02-16/revised06-16, TCSVT2026. Single-target tracking-model/filter prediction under corrupted current observations plus object-conditioned point visibility(OccuSolver), not multi-object physical-ID assignment. Registeredrepohead5f382645ccb7331280a7bf07f3c5709d1072caf7 primarilyGOT-Edit/ICLR2026; READMEpoints canonicalGOT-JEPA release84e9324317e4afe62c06b2c51a97563f79730a2e. Both actualsourceversions inspected andrelease31textblobs materialized from existingGitobjects without alteringhistoricalcheckout.",
         "code_and_pretrained_license": "TopLICENSE AGPLv3, nestedpytracking/LICENSE GPLv3; embeddedCoTracker2/co_tracker/LICENSE.md CCAttribution-NonCommercial4.0. These are not unrestrictedMIT-compatible source copying. Keep reference-only; no codeexecuted/copiedintoIR-MFT. DINOv2 externalApache2 source/weightterms separate; fullToMP/GOTJEPA/CoTrackercheckpointsGoogleDrive/localtar lack independentlyverified exactweightlicenses/access/hashes, excludedfromofficialsystemreproduction. No newweights downloaded.",
         "entrypoints_and_training_inference": "Published84e releaseREADME uses pytracking/ltr/run_training_dsA.py tomp GOT_JEPA_378_pretrain, thenfinetune andPT. Pretrain->tompnet_JEPA/ToMPActor_JEPAs1_vicregExpwovc400x_norm2_cexp; finetune->tompnet_JEPAp/ToMPActor; PT->tompnet_PT/ToMPActor_PTcur. Evaluation run_experiment.py myexperiments_gotjepa GOT_JEPA ->trackerlist(tomp,got_jepa_378)->tracker/tomp/__init__.py imports.tomp.ToMP; checkpointwrapper loadsGOT_JEPA_378.tarconstructor. Currentheaddefaultentry isGOT-Edit andseparate tomp_gotejepa.py exists; cannot assumeREADMEheadline/defaultentry sameJEPApaperbaseline.",
-        "core_model_files_and_shapes": "Bothsourceversions pytracking/ltr/models/tracking/{tompnet_JEPA,tompnet_JEPAp,tompnet_PT}.py, transformer/{heads,filter_predictor_JEPA_context,transformer_JEPA_context}.py. Inputpasttrainframes2,currenttest1 as[T,B,3,H,W], boxes[T,B,4]; searchcrop432 thenresizes378=27*14, DINOv2ViTL intermediate1024features4layers averaged andbkMlp1024map. Head256/6encoder6decoderlayers/nhead8; cls/regtrackingfilters[B,256,1,1], predictors256\u2192256, covarianceexpansion256\u21921024\u21921024. Pretrainreturn8filtertensors, finetunescoremaps+bbox offsets; PToutputsperpointpositions[B,T,P,2]/visibility[B,T,P] plustrackingmaps. This predictsfilterlatentparameters, not Klocalfishidentitytokens.",
-        "loss_and_positive_negative_construction": "PretrainSmoothL1(predictedcls/regfilters,clean stoppedtargetfilters), invariancescale10000 andoffdiagonalexpandedfeature covariance; actualfinaloverride scale800, not400classname. Criticalsource limitation in BOTHregisteredhead andpaperrelease: actorclassdefines__call__twice, lastbodyends bare(loss_breg_filter,inv)expression withunassignednames/no lossstatsreturn. AST confirms2definitions; originalentrynotrunnableascompleteactor. Finetune GIoU+LBHinge(MSEpositiveheatmap/negativeReLUpred)weights1/100; PTaddsbox/classsupervision. DiMPSampler equalLaSOT/GOT10k/TrackingNet/COCO datasets, visible sameobjectpast/currentframes(maxgap200); no physical-IDCE/PK orsameframecrossfishhardnegatives. Relocation swaps0\u201330%spatialvectors, leavingmanycleanvectors; it is corruption, not stricthidden-targettokenexclusion.",
+        "core_model_files_and_shapes": "Bothsourceversions pytracking/ltr/models/tracking/{tompnet_JEPA,tompnet_JEPAp,tompnet_PT}.py, transformer/{heads,filter_predictor_JEPA_context,transformer_JEPA_context}.py. Inputpasttrainframes2,currenttest1 as[T,B,3,H,W], boxes[T,B,4]; searchcrop432 thenresizes378=27*14, DINOv2ViTL intermediate1024features4layers averaged andbkMlp1024map. Head256/6encoder6decoderlayers/nhead8; cls/regtrackingfilters[B,256,1,1], predictors256→256, covarianceexpansion256→1024→1024. Pretrainreturn8filtertensors, finetunescoremaps+bbox offsets; PToutputsperpointpositions[B,T,P,2]/visibility[B,T,P] plustrackingmaps. This predictsfilterlatentparameters, not Klocalfishidentitytokens.",
+        "loss_and_positive_negative_construction": "PretrainSmoothL1(predictedcls/regfilters,clean stoppedtargetfilters), invariancescale10000 andoffdiagonalexpandedfeature covariance; actualfinaloverride scale800, not400classname. Criticalsource limitation in BOTHregisteredhead andpaperrelease: actorclassdefines__call__twice, lastbodyends bare(loss_breg_filter,inv)expression withunassignednames/no lossstatsreturn. AST confirms2definitions; originalentrynotrunnableascompleteactor. Finetune GIoU+LBHinge(MSEpositiveheatmap/negativeReLUpred)weights1/100; PTaddsbox/classsupervision. DiMPSampler equalLaSOT/GOT10k/TrackingNet/COCO datasets, visible sameobjectpast/currentframes(maxgap200); no physical-IDCE/PK orsameframecrossfishhardnegatives. Relocation swaps0–30%spatialvectors, leavingmanycleanvectors; it is corruption, not stricthidden-targettokenexclusion.",
         "pretrained_sources": "PretrainloadsToMPL.tar; frozenDINOv2ViTL andbkMlp+Headtarget initializedfromtrainedToMP. FinetuneloadsGOTJEPApretrain, PTloadsfinetune andCoTracker2localcheckpoint. DINO backbone helper unpinnedtorch.hubfacebookresearch/dinov2; futurecanonicalMFTadaptermustpinexecutedsource/weights independently. TrainingLaSOT/GOT10k/TrackingNet/COCO, nofishidentityand noverifiedzerooverlap. Officialmodel/data terms unverified: sourceaudit only, nofaithfulfullweightaccuracyclaimed.",
         "future_information_and_online_path": "Trainingclean currentframe supplies stoppedtracking-filtertargets; contextsamepastpluscorruptedcurrentfeaturemap, notfutureforecast orEMA targetupdate. Pretrainfreezes targetparameters thenreenablescontext; context/targetsharethe SAMEfeature_extractor module andcanreenablesharedparameters; headBNbuffersnotexplicitteacher.eval. CannotcallentireteacherimmutableEMA. PublishedtrackerSOTinitializedwith suppliedfirstframebbox; laterusescurrentsearchcrop/pastmemory. OccuSolver re-encodesboundedstoredpast-through-currentpatchwindow usingCoTracker2 bidirectionalwithinwindow, backward_trackingFalse; currentoutputsneednoexternalfutureframe. ItdoesnotautomaticallymakeallpointembeddingsframecausalorprovideMOTIDs. Sourceparamsuse_gt_box/plot_iouflagsaloneareNOTproofonlineperframeGTuse; evaluatedinitialbbox protocolstillincompatiblewith detector-onlyblindMOT. Future/GT inputclaimsneedactualcalltrace, notnames.",
         "GPU_CUDA_dependencies": "OfficialREADME CUDA11.7/PyTorch2.0; install_gojepa.sh createsownPython3.9environment thenmanyforce-reinstall/pipsteps, deepspeed/accelerate/transformers/peft andCoTrackerinstallation. Do notruninstallscript insharedworkspace. Trainingtorchrun/deepspeed shim, MultiGPU, BF16/AMP;DINOv2hugebackbone/pointnetwork costs substantial. Currentsourcepretrainentry hasactiveactorstub beforeanyfaithfulexperiment. No external runtime validated, no GPU allocated for referencecode.",
@@ -3023,7 +3916,7 @@
       "name": "MOTIP",
       "github": "https://github.com/MCG-NJU/MOTIP",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/MOTIP",
-      "audit_status": "PARTIAL_SOURCE_READ",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
       "origin": "https://github.com/MCG-NJU/MOTIP",
@@ -3044,19 +3937,7 @@
       "status": "SOURCE_READY",
       "license_status": "REQUIRES_READING",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/MOTIP",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
@@ -3064,7 +3945,175 @@
         "status": "REUSE_HISTORICAL_NO_MUTATION"
       },
       "source_http_verified_files": {},
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[Multiple Object Tracking as ID Prediction](https://arxiv.org/abs/2403.16848), first submitted2024 and revised/accepted CVPR2025, models association as in-context ID decoding from trajectory features and local ID words. Official benchmarks include DanceTrack/SportsMOT/BFT. This audit uses the pinned newer source engine, not the original prev-engine branch, and does not reproduce publisher performance.",
+        "code_and_pretrained_license": "Top LICENSE is Apache2.0; Deformable DETR source headers also specify Apache2.0 and TrackEval/LICENSE is MIT2020 Jonathon Luiten. Attribution and upstream notices must survive any cleared reuse. Release model downloads are described by MODEL_ZOO, but exact payload license/hash and dataset training identity/overlap are not independently verified here; code license alone does not certify all checkpoint/data rights. No reference implementation was copied or executed.",
+        "entrypoints_and_training_inference": "train.py train_engine/train_one_epoch uses Accelerate, samples clips, forwards DETR, builds GT-matched seq_info then trajectory_modeling and id_decoder with detection+ID losses. submit_and_evaluate.py builds model, loads checkpoint and feeds SeqDataset frames to RuntimeTracker. models/motip/motip.py dispatches part=detr/trajectory_modeling/id_decoder. DanceTrack YAML selects default object-max assignment; Hungarian is an alternative, not the configured default. Older-engine checkpoints need explicit compatibility settings, not silent substitution.",
+        "core_model_files_and_shapes": "Configured ResNet50 Deformable DETR has300 queries,4 feature scales,256 hidden width,6 encoder/decoder layers and8 heads. IDDecoder input history/current shapes[B,G,T,N,256] concatenate256-D ID embeddings into512-D attention,16 heads (head_dim32),6 cross layers and5 same-frame candidate self layers; logits[B,G,T,N,51] for50 local ID words+newborn. TrajectoryModeling is two residual FFNs/LNs, not a temporal Transformer. Decoder uses temporal relative biases; stored boxes are not directly consumed by its attention equations at this pin.",
+        "loss_and_positive_negative_construction": "NaiveSampler chooses30-frame within-sequence clips with random interval1..4, epoch-local deterministic seed and annotation-legal filtering, not PK crop batches. GenerateIDLabels assigns six independent random permutations of the50-word dictionary per clip, truncating excess train identities; trajectory occlusion/switch augmentation modifies history/masks. Newborn target derives strictly from previously visible history. Train GT Hungarian matches choose DETR outputs for ID supervision, with masked CE over t>=1 (default no focal), scaled weight1 plus detector focal/L1/GIoU losses. No physical-ID labels are passed into online inference.",
+        "pretrained_sources": "Backbone.py uses ResNet50 ImageNet1K_V1 on the main process with FrozenBatchNorm; configured DETR initialization is COCO then target-specific detector pretrain. MODEL_ZOO lists distinct DanceTrack/SportsMOT/BFT pretrain and full MOTIP release payloads and with/without-trajectory-augmentation checkpoints. Weights were not downloaded, tensor-coverage/hash/license/overlap unverified; publisher extra-data statements are not independent MFT26 exposure audits. An IR adaptation must initialize and fit only allowed fold data.",
+        "future_information_and_online_path": "Cross-attention masks trajectory_time>=unknown_time, admitting strictly past trajectory tokens; candidate self-attention operates only within the same current frame. RuntimeTracker.update consumes current detector outputs and past predicted-ID memory, initializes all IDs as newborn with empty history and updates memory after assignment. Synthetic offline history occlusion and GT matching are training constructs. Decoder is causal under this current/past protocol; unrelated backbone pretraining or GT train supervision is not runtime future evidence. Relative-time index range and memory window must remain compatible.",
+        "GPU_CUDA_dependencies": "INSTALL recommends Python3.12,torch2.4/torchvision0.19/CUDA12.1, requires Python>=3.10 and torch>=2.0 attention-mask behavior; uses Accelerate,einops,SciPy and optional wandb. models/ops/setup.py requires CUDA available and CUDA_HOME to compile MultiScaleDeformableAttention, with no declared CPU build fallback. ID heads themselves are standard PyTorch attention, so same-input adaptation can avoid the detector operator if independently implemented. No dependencies were installed and no source model was executed/timed here.",
+        "IR_MFT_compatibility": "In-context local random IDs and setwise candidate competition are directly relevant to ModuleC, but50-word fixed vocabulary/newborn differs from dynamic N+1 track logits with explicit absent/unknown supervision. Full source also replaces detector/query features, thresholds and lifecycle, so its published system is not a same-detection association baseline. Default miss_tolerance30 truncates observed history and IDs are recycled to new physical output IDs; returning lost tracks competes only while supported in memory. Full candidate sets and no-history/empty frames must be adapted without cap-induced cherry-picking.",
+        "mechanisms_to_port_and_exclude": "Implement a disclosed MOTIP-style baseline on the exact native N-track/M-detection features, random local IDs, candidate self-attention, strict past cross-attention, masks and local relative time, with comparable parameters/train schedule. Keep default object-max and separately learned/Hungarian variants explicit. Source Hungarian repeats newborn columns to permit multiple births; object-max retains one confident candidate per supported ID and assigns others newborn. Preserve native lifecycle for association ablations and distinguish newborn, true absence and unknown/unlabelled candidates. Exclude old-engine checkpoint mixing, unverified identity exposure and GT online IDs.",
+        "novelty_overlap": "Random local ID words, in-context decoding, candidate self-attention and learned association are prior MOTIP contributions, not new EvidenceFishMOT claims. Fish adaptation needs evidence that local identity tokens and stopped-target prediction add information over the same-input MOTIP and ordinary Transformer/pair heads, with capacity controls. A rowwise MLP softmax that omits candidate interactions is not a faithful MOTIP-style joint decoder; scientific novelty requires controlled full-video experiments rather than naming the head differently."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "3b13e67d63f17f12fa4a6227a120585040ee288d69cc7b8e957520d816450347",
+          "git_blob_sha1": "9f24a4685ecedb23145ec884327d31df8e834b37",
+          "bytes": 4728,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "LICENSE": {
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "git_blob_sha1": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+          "bytes": 11357,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "TrackEval/LICENSE": {
+          "sha256": "f7e548c5729e464d878dd4abf691e323bbea028a756d08395d88b83e43dd2d86",
+          "git_blob_sha1": "70cbbf9ec0874865fcf827702be7f850251d4314",
+          "bytes": 1072,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "docs/INSTALL.md": {
+          "sha256": "476f8b3cb399e08fec2aa6a13ec6a2d01c8065d251efd69ed75a93c742a7fa0b",
+          "git_blob_sha1": "a6a52e836b334dc536828c9a37014582a97efca5",
+          "bytes": 1050,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "docs/MODEL_ZOO.md": {
+          "sha256": "c17ecc33acf982f21b30b40637262b6f7df4c3ec331a591700b087fd1d81d12b",
+          "git_blob_sha1": "5dc256a45eb312eaeaf55d2cf5a43839f53c6212",
+          "bytes": 5100,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "configs/r50_deformable_detr_motip_dancetrack.yaml": {
+          "sha256": "b01272b169342f074e8dd7bef6068ea8512c826f946f7e7542e0895e18ca871e",
+          "git_blob_sha1": "2ee5f4532f044c93fea27faca507711bcbcf0597",
+          "bytes": 3457,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "train.py": {
+          "sha256": "1a5f21957d591c23f665ee794b4e6d846a1112a5123c111eeb5208315745e2bd",
+          "git_blob_sha1": "55a4d66bea856baf788ed83617457db743985f9e",
+          "bytes": 33997,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "submit_and_evaluate.py": {
+          "sha256": "33fbbecf88308c36f3331574382540186cf7e07cf8fcc00f184838b2c86a8d66",
+          "git_blob_sha1": "ccda92c3e9f97608ba77e962bc05553d8b5e0d86",
+          "bytes": 16366,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/motip/motip.py": {
+          "sha256": "4b8555b8b17f59736f9da36c8536f548418e850a80416bc979d1e5d4c2d83bcb",
+          "git_blob_sha1": "f20c2155ad6d8b2a93d2f6cca764f97fa9de576f",
+          "bytes": 1845,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/motip/id_decoder.py": {
+          "sha256": "a16cf34bb16fa14a17d715231af1439cb3f1c1fa15d18341e2a84c61cdf59d81",
+          "git_blob_sha1": "e79b207470901657531cc7f800daf2173c5f784f",
+          "bytes": 11908,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/motip/id_criterion.py": {
+          "sha256": "420d775f11605ae611aa16a70080d175df63ae7d34586514d8c49a905b281145",
+          "git_blob_sha1": "a34c8069a1caf2b6a36bd01699ee18891389ba6c",
+          "bytes": 3360,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/motip/trajectory_modeling.py": {
+          "sha256": "0bdf92640347ec2b719ac56082aec307eeb6c3fd39c1cc87ea26e197eca58166",
+          "git_blob_sha1": "a664ae8893c4036cb96b3149da6a7d3c50efb62f",
+          "bytes": 1403,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/runtime_tracker.py": {
+          "sha256": "f0ac5da7c7331f8d11336924ad2c1996a15bf69fd99fe1b6de8bc573c96e8497",
+          "git_blob_sha1": "b19986ee61c5368d9fe253b750017254451fc808",
+          "bytes": 20200,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/deformable_detr/backbone.py": {
+          "sha256": "dd9a8461862a0246234270c385323ee799745f2cb08989beec7ba646ceddde10",
+          "git_blob_sha1": "ad90395229646c16b41cbe7fbf70f60643913f58",
+          "bytes": 5540,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "models/ops/setup.py": {
+          "sha256": "e310b517711e41183f198b04a8f7d0f0fd95c2331741e4ef7f65685087545fb0",
+          "git_blob_sha1": "5f756a51c51d8a959b0df5753f0a8859e015a146",
+          "bytes": 2561,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/naive_sampler.py": {
+          "sha256": "9a50886253f4bcf794eb5a66a2be65a42f87d39fc29e4ecc8724aaaad0a3624d",
+          "git_blob_sha1": "9c54a2089dee34d8f8fe26a1bca938a20f25e0a1",
+          "bytes": 6873,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/transforms.py": {
+          "sha256": "b5de6f4e1e06556473505c3ee32ccb099e063879df4b988d6cb5059763f6dbc4",
+          "git_blob_sha1": "651706edcb4911df1cf3701ce19f6c0b6dbf2e8e",
+          "bytes": 28590,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/joint_dataset.py": {
+          "sha256": "5a18f8a0939db480453fc7ff37a85b2e27bd9d4f177f79ebc1543afbed6ba38f",
+          "git_blob_sha1": "28afbe6b656fcaff9cff2ae2f2f2716faaa2646f",
+          "bytes": 8724,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        },
+        "data/one_dataset.py": {
+          "sha256": "6553147374b0017046beb0882bc022fab2e4b03db034d1c84aefef128ac1cf16",
+          "git_blob_sha1": "d997cb99db6b26d59f2c13eba0fba545180afeae",
+          "bytes": 845,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ffc0e905ac196a603027eca8d18fb0dff48c8bcc",
+          "inspection_scope": "Manual targeted reading of concrete model construction/forward paths, attention masks, train-ID binding/augmentation, losses, sampler and online memory/assignment. Official checkpoints, external data and CUDA operators were not downloaded or executed. File hashes prove exact source provenance, not semantic review or model reproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/motip_semantic_source_proof_v1.json"
     },
     "COVTrack": {
       "name": "COVTrack",
