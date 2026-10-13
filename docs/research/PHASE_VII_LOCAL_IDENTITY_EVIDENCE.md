@@ -8,7 +8,7 @@ Local token provenance is being audited before training. DINOv3 Small uses patch
 
 The next controlled encoder experiments compare global CLS/pooled features, spatial token mean, simple K=4/8aggregation and learned local identity features on identical GT/detector pairs and temporal candidate pools. Known same-video/same-frame different-fish negatives are required. New fish encoder/adapter fitting excludes both distinct outer and inner calibration videos. Existing FishReID/backbone/GRU results remain exposed references. Any new coordinate requires a matched ordinary producer; the old512GRU is not a valid384-dimensional baseline. Actual occlusion/turning labels are absent, so gap/box overlap/shape-change analysis must retain explicit proxy names.
 
-One licensed official DINOv2-S backbone acquisition has been attempted with a100MBcap. TLS failed; no DINOv2 pretrained crop result, FishMAE reproduction or pretrained transformer local result is reported; independent ImageNet strip learning has now run. Selected weights, executable forward parity and all30semantic source audits remain pending alongside this foundation work.
+The licensed official DINOv2-S checkpoint has now been acquired within the100MBcap and strict-loaded into exact audited Apache source. Current-crop CLS384/162patches and K4/K8geometric evidence extraction completed on47,751observations; pretrained retrieval diagnostic is recorded below when complete. FishMAE official reproduction and new local supervised/JEPA/native MOT work remain pending. All30available-source audits completed with explicit exclusions.
 
 ## Executed local controls
 
@@ -40,3 +40,18 @@ Frozen ImageNet detector R1 is14.744% oninnerBT001 and53.651% onouterSN015. All 
 A real globalseed1epoch2early exit and new-process resume onphysicalGPU0 reproduces continuous8epochtraining exactly:818tensor leaves,1NumPyarray and996scalar leaves across model/optimizer/scheduler/AMP/allRNG; training losses/update counts and retrieval are equal. The verification excludes walltime and serialized container bytes and does not certify crosshardware determinism. Stop/resume logs and both complete manifests are hash-linked in PHASE_VII_VISUAL_RESTART_MEASURED.json. Historical seed0source snapshots are preserved; the early-stop CLI added for seed1/2 does not pretend source equality to the previous run.
 
 The local evidence design now has source-level counterexamples to audit: TransReID JPM parts share globally mixed early-attention/CLS context, CoTracker3 visibility multiplies visibleprobability by confidence, and GOTJEPA spatial relocation leaves many current feature vectors untouched. These are geometric/context/model-confidence mechanisms, not annotatedfishparts or strict masked-token exclusion. DenseJEPA current-target corruption requires actual target masking before leakage-producing aggregation, or past-only context with all current/future target content reserved for training.
+
+## Official frozen DINOv2 same-crop evidence
+
+Licensed official S14 weight strict175tensor-loaded into the exact audited source; frozen extraction uses the same47,751registered current crops,126x252FP32/162patches, observed padding fractions and unchanged physical pools. Dense/local tokens are real spatial observations; content masks do not remove padding influence from backbone attention or create anatomical/occlusion GT. Fullsource audits30/30complete; no private-pretrain zero-overlap claim. All inherited Fishpost/ImageNet query counts, R1/R5/mAP/AUC/EER reproduce exactly under the new evaluator. The table reports paired known keys with minimum25frame past gap; actual unknown-containing pools and fullgap metrics are in PHASE_VII_DINOV2_FROZEN_MEASURED.json.
+
+| Video | Paired keys | Fishpost detR1 | ImageNet detR1 | DINO CLS GT→detR1 | DINO patchmean detR1 | DINO K4/K8concat detR1 |
+|---|---:|---:|---:|---:|---:|---:|
+| BT-001 | 2229 | 26.442 | 20.032 | 27.083→25.160 | 23.718 | 25.321/21.635 |
+| BT-003 | 200 | 53.672 | 23.729 | 20.339→22.599 | 23.164 | 26.554/25.424 |
+| MSK-002 | 5683 | 8.201 | 5.985 | 9.854→5.820 | 6.250 | 6.250/5.721 |
+| PF-001 | 2872 | 81.746 | 73.016 | 72.222→76.984 | 78.571 | 66.667/62.698 |
+| SN-001 | 561 | 50.000 | 36.923 | 36.154→34.615 | 33.462 | 31.154/28.462 |
+| SN-015 | 5860 | 71.587 | 57.143 | 61.746→60.317 | 57.302 | 51.429/50.794 |
+
+DINO CLS improves over pairedImageNet onBT001/PF001/SN015 and falls below it onBT003/MSK002/SN001. Fixed K4/K8concatenation is not consistently better than CLS; PF001/SN015 show substantial degradation. These current-crop measurements support testing identity supervision/domain adaptation and local correspondence with matchedcapacity controls; they do not demonstrate new local learning, stoppedJEPA or full nativeMOT benefit. Frozen descriptors/configs were fixed before this evaluation; do not select recipes on outerSN015. Actual nearest-past positive/current-frame hardnegative and crop stability metrics remain separately available.

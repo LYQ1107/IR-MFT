@@ -46,3 +46,7 @@ SAM2 current predictor permits newly prompted objects during tracking but assign
 ## Additional three source audit constraints
 
 MeMOTR exacteb7a177 has cross-track memory attention and score-gated detached feature EMA, plus native persistent detection/track queries. It is a prior joint-memory mechanism, not a full N+1 IDclassifier. TCEI exact145d1b8 reuses MOTIP joint IDdecoder and updates entropy-ranked current/cross-video caches before row calibration. Per-video reset, video/row order, self-inclusion and fixed native detector/lifecycle require controlled adaptations. TCEI project license/train entry absent at pin; no source/weight transplant or executed official result claimed.
+
+## Final three source audit constraints
+
+MOTRv2 exact1aac7c3 actual config10learned256queries plus current proposal anchors/history queries differs from parser300; GT denoising stays training-only, and default QIMv2 does not invoke declared drop/FP methods. TrackTrack exactee7f1c5 uses nonlearned mutual-argmin competition/TAI and two-NMS inventories, with offline _post linking/smoothing excluded. COVTrack exact9b0ced5 supplies learned confidence-conditioned cue fusion plus input-row greedy memo assignment, not N+1fishIDwords. All three require same inputs/lifecycle controls; source completion is not trained migration.

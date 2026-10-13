@@ -3254,6 +3254,14 @@
         "IR_MFT_compatibility": "Current-only RGB backbone fits frozen-global/local crop controls, new384dimension coordinate must create matched producer and exclude outer/inner videos for learned fish adapters. Old512GRU cannot be reused across latent spaces.",
         "mechanisms_to_port_and_exclude": "Use frozenCLS/patchTokens as A1/A2 controls, then independent supervised fish adapters/local pooling. Do not repeat142M-pretraining or download giant/register/depthheads unnecessarily.",
         "novelty_overlap": "Teacher EMA, patchdistillation and localtoken features are prior mechanisms; merely adoptingDINOpatches or EMAis not new identity prediction."
+      },
+      "later_pretrained_acquisition": {
+        "status": "COMPLETE_STRICT_LOAD_AND_FROZEN_CROP_DIAGNOSTIC",
+        "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/manifest.json",
+        "manifest_sha256": "c5665b0f5346140e33618275bbca15a8825705f3d7ac3eda5d593a984e44c357",
+        "file_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+        "bytes": 88283115,
+        "scope": "Supersedes historical TLS-access failure; pretrained frozen current-crop execution only, not original pretraining or zero external overlap."
       }
     },
     "I-JEPA": {
@@ -5307,23 +5315,11 @@
       "name": "COVTrack",
       "github": "https://github.com/zekunqian/COVTrack",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_COVTrack",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "status": "PINNED_SOURCE_SNAPSHOT_READY",
       "error": "RuntimeError('Three source acquisition attempts failed; see preserved log')",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/COVTrack",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
         "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/http_COVTrack",
@@ -5528,32 +5524,220 @@
       "commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
       "previous_inventory_status": "ACQUISITION_FAILED",
       "source_acquisition_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/covtrack_pinned_source_followup_v2.json",
-      "source_acquisition_manifest_sha256": "98d3cb5210b392718ea258a3b31cbbaaf28df0a34cb9a84fbcf5ca593f9480bf"
+      "source_acquisition_manifest_sha256": "98d3cb5210b392718ea258a3b31cbbaaf28df0a34cb9a84fbcf5ca593f9480bf",
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[COVTrack: Continuous Open-Vocabulary Tracking via Adaptive Multi-Cue Fusion](https://openaccess.thecvf.com/content/ICCV2025/html/Qian_COVTrack_Continuous_Open-Vocabulary_Tracking_via_Adaptive_Multi-Cue_Fusion_ICCV_2025_paper.html),ICCV2025pp10054-10063, combines continuous C-TAO training annotations with confidence-adaptive appearance/location/semantic cues for open-vocabulary MOT. Primary proceedings support identity and contribution; source is exact9b0ced5, not COVTrack++2026paper/implementation. Diverse TAO/LVIS categories and class-generalization differ from physically distinct fish identity within one class. No published TAO/TETA score is reproduced here.",
+        "code_and_pretrained_license": "Read top LICENSE is Apache2.0; acknowledged OVTrack/MMDetection/CLIP/DetPro/TAO/TETA and individual modules/data retain separate source/asset rights. HF clarkqian/COVTrack saved_models includes C-TAO annotations, DetPro prompt and OVTrack/final checkpoints, but payload hashes/licenses and underlying video provenance/identity overlap are unverified. No asset acquired or foreign source copied/executed. Source availability does not certify external fish data permissions or a pretrained tracker performance; cleared independent fusion controls can use current observed boxes/features with attribution.",
+        "entrypoints_and_training_inference": "run_later.py is README authoritative wrapper: fourGPU tools/dist_train.sh->tools/train.py/MMCV config/ovtrack.apis.train_model, overrides total_epochs20 versus config10, fusionmax2,extra_sample8,reference scope30,warmup1000,use_cyc_lossFalse. Wrapper tests every epoch through two parallel distributed scripts on same fourGPU list, needing resource isolation before running. tools/test.py and custom inference.py build/load complete model; OVTrack.simple_test current frame resets tracker at frame_id0. Actual default is OVTrackRoIHeadUncertainty and OVTrackerUncertainty, not base OVTracker/unused Kalman/SLAck alternatives. No wrapper/training/test executed.",
+        "core_model_files_and_shapes": "Frozen detector flags cover ResNet50caffe+FPN256/RPN/4conv1FC1024bbox head, RoIAlign7x7; QuasiDenseEmbedHead has4convs/1FC1024 and256association output. Bbox/image semantic heads project to512CLIP features, ensemble normalized text/image semantics. FeatureFusionModule maps raw bbox4->256 and semantic512->256, gates [assoc256,box256,semantic256] with768->256->2sigmoid, scales auxiliary gates by confidence*.5, residual768->256->256 multiplied by2*(1-assoc_conf)^2 and added to appearance. Association feature detached inside gate/residual by default, while additive appearance still gradients. No anatomical localparts, learned nonlinear box predictor or N+1IDword decoder.",
+        "loss_and_positive_negative_construction": "Training current/ref images get GT-matched RoIs with IoU-assignment and GT added proposals; key positives match reference instance GT through gt_match_indices, other reference positives/background are negatives. Unbiased MultiPosCrossEntropy(.25) discards no-positive rows, averages positive logprob and normalizes their positive exponential mass; auxiliary cosine L2loss1 has negative margin.1,hardnegative ratio3,clamps scores. After1000iterations, losses include original and fused association, with detached round-trip consistency confidence; warmup sets assocconf1/auxconf0 so residual ratio0. use_cyc_lossFalse disables auxiliary cycle training loss, not the consistency helper. Helper normalizes each cue, uses bidirectional softmax scales log(candidate_count)/.1 and diagonal roundtrip probabilities. No stopped-network JEPA/fish-ID temporal target loss.",
+        "pretrained_sources": "Config loads saved_models/pretrained_models/ovtrack_pair.pth from diffusion-generated image-pair OVTrack, DetPro512prompts1203LVISclasses, backbone open-mmlab://detectron2/resnet50_caffe. ROI can load CLIPViT-B/32 if prompts/custom classes require it, with background/validation category selection from static dictionaries. Official HF C-TAO final weights/data are not downloaded/hash-verified; exact pretraining corpus/fish IR overlap cannot be certified. Frozen constructor eval/requires_grad flags alone do not prove BNstats remain fixed through runner train modes; our adapted fold-excluded controls must validate parameters and stats explicitly.",
+        "future_information_and_online_path": "Training uniform reference sampler uses +/-30frame scope and excludes current except static cases; later reference frames are offline supervision, not inference input. Runtime uses current proposed RoIs and stored past memo to recompute pairwise consistency/fuse current features, then dot-product row/column softmax+cosine and input-row greedy unique assignment, updating memo afterward. No future frame/GT determines inspected match scores. Optional visTrue loads author-local GT annotation only if file exists; GT matching indices collect logs/gate diagnostics, not feature selection/prediction. Disable this branch in strict-online adaptation. TAO tcc evaluation can majority-vote categories across whole tracks and must be reported as offline postprocessing or disabled.",
+        "GPU_CUDA_dependencies": "Install declares torch>=1.10,mmcv1.4.4,mmdetection2.23,CLIP/diffusers/TAO/TETA plus numpy/lvis/h5py/opencv/scipy; compiled MMCV CUDA RoIAlign/NMS and SyncBN require compatible isolated environment. FourGPU training is policy-compatible only after verifying all idle; wrapper parallel evaluations can contend on same devices, so not run unchanged. CycleLoss training uses bare .cuda(), inference no raw timing produced. Must count RPN/ROI semantic embeddings/consistency/fusion/memo assignment and raw detector cost, not cached feature replay; no official inferenceFPS/system reproduction claimed.",
+        "IR_MFT_compatibility": "Default full detector/open-vocabulary semantic predictions and selected validation categories aren't identical to frozen V3/single-fish physical-ID cues. Fixed-input port should preserve proposal/encoder exposure/lifecycle/output while comparing appearance-only, position-only, scalar reliability and independent learned fusion. 'Motion' active input is raw xyxy position4, not velocity/dynamics; bbox confidence comes current/past set roundtrip similarity. Runtime memo EMA uses current weight.4 and50frames in wrapper versus .8/10config. Exp(dot) lacks max subtraction, assignment is greedy(row-order-dependent), lifecycle memo aging is tied to nonempty match calls. Hardcoded filename.index('val')/author visualization paths require disclosed raw custom-video repairs, not claimed measured failures.",
+        "mechanisms_to_port_and_exclude": "Port cleared cue confidence/roundtrip consistency and gated residual fusion as an explicit established prior control. Static-ratio flags True with numeric0 still enable learned fusion; zero static values do not disable main module. Test local visibility reliability independently, with coordinate/precision/row-permutation/gap/empty-set controls and constant lifecycle. Exclude GT visualization/wholetrack tcc voting, unverified pretrained/data assets, alternative Kalman/SLAck code as default, full detector/classification benefit as pure fish-ID gain and cached FPS as allframe performance. Present native fullsystem versus fixed-crop adaptation separately; physical(video,fish) positives and unknowns remain our own supervised guards.",
+        "novelty_overlap": "Confidence from intra/current and inter/past context, appearance/geometry/semantic residual fusion, dense identity pairing and memory competition already exist in COVTrack. Reliable evidence fusion alone cannot be a new contribution. Source also shows current/past full-set roundtrip confidence without learned N+1words, requiring strong matched C controls before claiming joint fish IDinnovation. EvidenceFishMOT must establish actual observed local spatial identity tokens/stopped target prediction and learned candidate competition benefits beyond these mechanisms. Audit completes available-source fields/limits, not a successful trained port or positive native fish result."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "f816db21e12f2bc770d9c912a82e631d2b3e6a4b7c27b1d2a1daffe928410d89",
+          "git_blob_sha1": "da56c01ac4ad82bf3d1a343434e870e0683af68b",
+          "bytes": 9973,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "LICENSE": {
+          "sha256": "4a074aa893b2efa7030b38ef9b01669ed5a0ab6a8c4274a3232d4693d9d7571d",
+          "git_blob_sha1": "6c1b021ac2fc5e08b05c28f67d17efa1cce02cb0",
+          "bytes": 11343,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "requirements.txt": {
+          "sha256": "0f1d72c2360176798521b5eec202d06275d782686ade9b3c8203869128f18ddf",
+          "git_blob_sha1": "7d7f92a84025ef20efe836fc9d8bc6eab41cee09",
+          "bytes": 93,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "docs/INSTALL.md": {
+          "sha256": "00c2f451af369c106a70a863c482e933e644fcc8d48153e02541d6731eccbc13",
+          "git_blob_sha1": "2566357869dc49fd3601639bda8124163d87d26e",
+          "bytes": 531,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "setup.py": {
+          "sha256": "a2364ec042dd8dfe3374f2b9dfe12790efbc9599eece839315faaeae8f570de7",
+          "git_blob_sha1": "54da445c35e6dc96589f23271d3b1474ed39bd96",
+          "bytes": 3345,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "run_later.py": {
+          "sha256": "7eb37762cce0dd4b7b4b2c71c381663217739c4594ca8e822d96d09cb4f0286b",
+          "git_blob_sha1": "1c527e354b017564ffa3a60d5b4a6d577c2c36a8",
+          "bytes": 6906,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "tools/train.py": {
+          "sha256": "ae1f27bef43dbeebb1d41f1f48843e6c68cab79b4f2666c4130e7b4ccb8097aa",
+          "git_blob_sha1": "71f08331c646f0a042ae5eb850e604c4ce4f41eb",
+          "bytes": 6629,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "tools/test.py": {
+          "sha256": "c85055c3cec701ceaad70f151d324054173eccaeac0808e3d2ed2188e52f55fb",
+          "git_blob_sha1": "43b82428eaedd17950742fd0f5214405e0306c48",
+          "bytes": 27033,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "tools/inference.py": {
+          "sha256": "df3066f75825a5bd0a293538f8561b121ade3ac2c5c1d72d57398facef8634b5",
+          "git_blob_sha1": "90ac79ff0b163070e56047d90928b00cad63297b",
+          "bytes": 6354,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/apis/train.py": {
+          "sha256": "e02640df360efdd0402de303ffec1f320b487e044cd83ff1da031a902dbcb469",
+          "git_blob_sha1": "969a26c1151f308913817d34dbd2a984360acff9",
+          "bytes": 4836,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "configs/uncertainty-ovtrack-teta/ovtrack_r50_ctao_train.py": {
+          "sha256": "282468d93c21b153b755047398b2fe8e95a8d67c003175309e337f9ed5bb600a",
+          "git_blob_sha1": "1099e6caaca06620c0638e178204bd534b556f18",
+          "bytes": 13410,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/mot/ovtrack.py": {
+          "sha256": "0182ac56bd2f49391db9b5c26ad7da367f4e6b12d847775427146f0ee14dcaa5",
+          "git_blob_sha1": "ff34fdf858593e4faca2ca123b963ce5d75b0255",
+          "bytes": 25228,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/roi_heads/ovtrack_roi_head.py": {
+          "sha256": "a35cf3ff2a5470955eb2638d3b80891dc44f8e26aff98938a74544ded2b32708",
+          "git_blob_sha1": "b077efbf1337e7a2741f5ea43bbd0f926dcafc01",
+          "bytes": 274525,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/roi_heads/bbox_heads/convfc_bbox_head.py": {
+          "sha256": "b970888266213a43ebd9a482466e1f9727847541fbe2078a023166a5b670edb6",
+          "git_blob_sha1": "326a3e1dc348b9c060824636a5ed2c4d5b299083",
+          "bytes": 16442,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/roi_heads/track_heads/quasi_dense_embed_head.py": {
+          "sha256": "ff8c6ffd98506f9cbc0d524b5b5aa32e2406541beb6b081cd27c5ca9998cc4fe",
+          "git_blob_sha1": "ab7c03cda5c6b01a121421b19f9b90613cc73867",
+          "bytes": 17918,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/trackers/ovtracker.py": {
+          "sha256": "4f58f82cb7906b3e28c61b3ea9fe1ff217146d4eae5872a2507ec6e4d579e113",
+          "git_blob_sha1": "dca0977af80761dd1710d8e1eda4bb431bb21e8b",
+          "bytes": 68817,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/losses/multipos_cross_entropy_loss.py": {
+          "sha256": "8cb0e6e8b2252486f3f1e635f617cb22a57b0b3c8c2030274a1cd637f5ae5f36",
+          "git_blob_sha1": "dafa4e165144018f591841d13bb4fc843289b494",
+          "bytes": 6348,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/losses/l2_loss.py": {
+          "sha256": "b0f12e19edb5bde94a588d56ff2ed4d708ba9a9b6dcc9836646f3fc126ca5c1b",
+          "git_blob_sha1": "e2306663b143c8ee8a9258f38fbe60704c3ca259",
+          "bytes": 4366,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/models/losses/cyc_loss.py": {
+          "sha256": "0074cfee8db66dddb45fe59f80cb7e0e6ee22f5bf51f70e38eb052c9a8aeee8e",
+          "git_blob_sha1": "f5696c3c22de5fd6c9c21f9afeff80da88c8ff15",
+          "bytes": 13749,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/core/track/similarity.py": {
+          "sha256": "c22848edcc2511f3b608ff8888f776e5d3bd2aef7d6ee6571c8739d7136a00a7",
+          "git_blob_sha1": "84806e63a5aa9601ba6d6af30f4cb29c2f7a4c37",
+          "bytes": 899,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/datasets/coco_video_dataset.py": {
+          "sha256": "58cbabf6741580aeccc9de54f75c8be50b324d0aabd311c8e9791889b82d5679",
+          "git_blob_sha1": "6183d33f447b11d49cc327fc98cf658659e0a91a",
+          "bytes": 12977,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/datasets/tao_dataset.py": {
+          "sha256": "2b02dba325182ea011792ea1b71bf0ad7e9af93332fe0edbb9589f99be849576",
+          "git_blob_sha1": "b6c7d26a80263bb05085236c898b8a4b8069fe60",
+          "bytes": 17337,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        },
+        "ovtrack/datasets/samplers/distributed_video_sampler.py": {
+          "sha256": "293290557e0108c8fd8900b45bc9f8e12d53e6bcec2773d44e5cfe44a7a4ba8d",
+          "git_blob_sha1": "c5fb3dee43afdac59ca0385a2ff224c040271feb",
+          "bytes": 3045,
+          "provenance": "PINNED_PUBLIC_GIT_TREE_ACQUISITION_MANIFEST",
+          "verified_against_commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+          "inspection_scope": "Manual targeted reading of the configured OVTrackRoIHeadUncertainty/OVTrackerUncertainty path, genuine confidence fusion, supervised dense pair loss and actual sequential memo inference, config overrides and optional GT visualization/evaluation branches.23exact public tree/config/model/license files checked, not exhaustive reading of all alternatives in5700lineROI file or official pretrained reproduction. No foreign model/script execution or pretrained/data download."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/covtrack_semantic_source_proof_v2.json"
     },
     "TrackTrack": {
       "name": "TrackTrack",
       "github": "https://github.com/kamkyu94/TrackTrack",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TrackTrack",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition": "REUSE_EXISTING_NO_PULL",
       "commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
       "origin": "https://github.com/kamkyu94/TrackTrack",
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/TrackTrack', 'checkout', 'HEAD'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/TrackTrack",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
@@ -5672,7 +5856,247 @@
         "1. YOLOX/exps/yolox_x_mot17_test.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "1. YOLOX/exps/yolox_x_mot17_val.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")",
         "2. FastReID/fastreid/emb_computer.py": "RuntimeError(\"URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)')); URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))\")"
-      }
+      },
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[Focusing on Tracks for Online Multi-Object Tracking](https://openaccess.thecvf.com/content/CVPR2025/papers/Shim_Focusing_on_Tracks_for_Online_Multi-Object_Tracking_CVPR_2025_paper.pdf),CVPR2025, introduces Track-Perspective-Based Association(TPA) and Track-Aware Initialization(TAI), using useful suppressed detections and birth suppression in human MOT17/MOT20/DanceTrack. Primary proceedings/supplement support identity and broad mechanism, with exact implementation traced independently. No published metric/headline gain is reproduced; paper online strategy and repository default offline postprocessing are distinguished.",
+        "code_and_pretrained_license": "Top LICENSE is MIT2024KyujinShim. Exact tree carries only that project license; copied YOLOX/FastReID/TrackEval/AFLink source origins and upstream notices remain separately applicable rather than overwritten. Vendor source/weight rights cannot be inferred solely from top MIT; GoogleDrive detector/ReID checkpoint and included AFLink_epoch20.pth terms/exposure/hashes were not acquired or loaded. No foreign execution/source transplant occurs in this audit. Cleared independent TPA/TAI geometric controls can be adapted with attribution and unchanged native inputs.",
+        "entrypoints_and_training_inference": "Pipeline runs1.YOLOX/detect.py to detector pickle,2.FastReID/ext_feats.py to per-frame detector+feature pickle,3.Tracker/run.py to tracking. Detector path loads YOLOX checkpoint/model and predicts .80/.95NMS sets separately. ReID train_net->DefaultTrainer with SBS configs; tracker association itself is rule-based, with no joint-ID optimizer. run.py reads both pickle inputs and cached CMC, fresh Tracker/counter per video, writes raw then postprocessed outputs; val evaluates _post. It also unconditionally loads AFLink weights even when later MOT interpolation branch does not use link model. Source only, no pickle/weight execution.",
+        "core_model_files_and_shapes": "Track input [xyxy4,score,class,feature2048], FastReID DanceTrack ResNeSt50 nonlocal/SBS,GeM+BNneck; embedding_dim default0 retains2048,384x128RGBcrops L2normalized after eval. Track keeps score-conditioned EMAfeature beta=1-.05score and8Dcxcywh+velocity linearKF with4observations, confidence-scaled measurement covariance. TPA builds N-byM costs, combines HMIoU/cosine/score/corner-angle and penalties then iterates mutual argmins. TAI suppresses high residual births overlapping existing tracked/new tracks or stronger detections. No Transformer fullset learner, EMAteacher predictor or fish anatomical parts.",
+        "loss_and_positive_negative_construction": "Association/lifecycle are deterministic rules, not a learned joint assignment loss. Inspected FastReID config uses CE with label smoothing.1 and batch-hard triplet with margin0/soft-margin, NORM_FEATFalse/Euclidean distance; NaiveIdentitySampler selects4IDsx16instances per64image batch, resampling underfilled IDs. Its positive masks are equal identity labels, negatives different labels, not fish physical(video,ID) guards. Classifier is CircleSoftmax(scale64,margin.35), distinct from optional separate pairwiseCircleLoss. AFLink post-link is separately pretrained/offline and its training producer is not claimed reproduced; fish identity exposure/labels remain unverified.",
+        "pretrained_sources": "Separate YOLOX pedestrian/dancer weights and GoogleDrive FastReID MOT17half/full,MOT20half/full,DanceTrack SBS are named in READMEs; backbone PRETRAINTrue config/empty path and upstream factory imply ImageNet acquisition whose exact payload is unverified. Included AFLink checkpoint is not loaded/executed, its original training membership/terms unknown. Existing feature pickles/CMC files have no same-V3/proposal hash provenance. Official full-system reproduction and independent outer-fold fish exposure cannot be established from file names alone; newly controlled source adaptations must preserve that distinction.",
+        "future_information_and_online_path": "Tracker.update uses only current two proposal/feature sets and preceding track history for current assignment, then updates histories; no GT in that core. CMC streams cached per-frame affine rows, but producer temporal scope is unverified and a strict-online adaptation must compute current/past-only warps. Default run later links entire tracklets with AFLink for DanceTrack or interpolates using left/right endpoints and fits GradientBoostingRegressor to whole tracks for MOT. Those outputs use future trajectories; val _post results cannot be strict-online evidence. Despite printed/commented 'Gaussian' label, actual gbi.py uses gradient boosting, not Gaussian-process smoothing.",
+        "GPU_CUDA_dependencies": "README Python3.8/PyTorch1.13; YOLOX/FastReID require CUDA/vendor dependencies, adaptor is FP16 and extraction batch1024. Rule tracker uses numpy/scipy.linalg/lap and cachedCMC; np.float_ is NumPy2 compatibility risk. gbi.py imports sklearn GradientBoostingRegressor and AFLink uses CUDA torch, separate offline costs. Printed total_count/total_time measures cached Tracker.update only, excludes detector/encoder/raw decode/filter/writes/postprocess. No GPU run/compile or complete onlineFPS measured; ProtocolC must include identical raw input pipeline.",
+        "IR_MFT_compatibility": "TPA actual cost=.5HMIoU+.5cos+.1projected-score-gap+.05confidence-weightedcorner-angle, low/deleted penalties.2/.4, hardIoU>.1, mutual argmin threshold decreases.05 each successful round. This cannot be relabelled as learned joint association. TwoNMS inventories change detection coverage versus one frozen V3 pool; an identical-pool adaptation needs a clearly disclosed no-extra-detection control. Driver sets lost tolerance2*videoFPS, confirmation3observations, aspect/area output filters and video-specific thresholds, all lifecycle/output confounds. MFT video-name CMC files aren't supplied; empty-detection max-reduction in find_deleted_detections needs guards before fullset adaptation.",
+        "mechanisms_to_port_and_exclude": "Port cleared TPA mutual-competition costs and TAI birth-overlap suppression as independent same-input C/D controls; separate learned identity evidence, geometry, threshold penalties and lifecycle effects. Disable AFLink/fulltrack interpolation/smoothing and per-outer-video tuned parameters for strict-online reported scores. Use native frozen proposals/features or explicitly report two-NMS detector change; verify causal CMC or no-CMC. Preserve absence/unknown/zero-track conditions and seed/cadence/fullraw accounting. Existing cached official FPS/results and offline _post are excluded from online benefit claims, without asserting that the online core itself consumes future frames.",
+        "novelty_overlap": "Track-focused competition, recovery of suppressed detections, reliable feature EMA, geometry/confidence cues and track-aware newborn suppression are already established by TrackTrack. EvidenceFishMOT's improved birth competition or evidence pooling cannot stand alone as novelty. It must show actual learned local spatial evidence/stopped temporal targets and fullset IDdecoder contributions beyond this rule-based mutual competition on identical proposal coverage/lifecycle. Source-field completion supplies a strong control and precise online exclusions, not a trained official migration or positive fish MOT gain."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "10d6556d9e83fbc9af1f64d0587009e7609d00109c5c8dddf9d7f91dd76d0bbe",
+          "git_blob_sha1": "4ef7da33bf3f032572a9c21a885919b0f596ff02",
+          "bytes": 1920,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "LICENSE": {
+          "sha256": "f45308e8b2709a77ef9391f5ddff5a0cc5b5dc871e0a7ddb68011ff333566350",
+          "git_blob_sha1": "a33e7d0f3c369ab3def0c379975bb1897b70c4a1",
+          "bytes": 1068,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "1. YOLOX/detect.py": {
+          "sha256": "f91863228c322afc93b61a96f6d160706adb5c77468d5b003aab2fb19d621054",
+          "git_blob_sha1": "8c9523d15eb313cf7c67676b92777ce18bd04b92",
+          "bytes": 4737,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/README.md": {
+          "sha256": "5fc8cc8830bd6fd869601910696254394999cb3e12e9729f45de392b2e00fd28",
+          "git_blob_sha1": "a68a30d3779ea00cb2fa191791cbc876a8c5a3cb",
+          "bytes": 4675,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/train_net.py": {
+          "sha256": "4be491a727c211452c94b7810ca8a79670ef21443179740d80eb3dea507a6cd1",
+          "git_blob_sha1": "2a80d4b650fff5897ed9d68080b7cb14e23f3bb6",
+          "bytes": 1289,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/ext_feats.py": {
+          "sha256": "2913b7e0d818bb85b1015fd6f9242ca0da98b00a7d6277e8fede601c84316f45",
+          "git_blob_sha1": "8d31ff42126ea488996becf3660047c6f5041ac4",
+          "bytes": 2353,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/fastreid_adaptor.py": {
+          "sha256": "1418dd9f8cb4fd6f378e357d8a6a1d649f3e0e03254d2032d49d7c9e465bfe34",
+          "git_blob_sha1": "48375f8e90b838094944eb197e7a6b5bbb052a48",
+          "bytes": 957,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/emb_computer.py": {
+          "sha256": "dbf3a439521cd4dc3abaa83edfbadfbc334111a17efa0d428f98b36f19361575",
+          "git_blob_sha1": "dee2a90c5f2a39c074248b895b0dba838e291e84",
+          "bytes": 2173,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/config/defaults.py": {
+          "sha256": "db626f07c3c3b0e98fbdaf51a5a78874a6fac13e037d55549aa5041cd6f3e2c2",
+          "git_blob_sha1": "d06b45f6ac87959359bdd9660716014a1f514c59",
+          "bytes": 10670,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/data/samplers/triplet_sampler.py": {
+          "sha256": "035eff5d65d86b734fabc736b6404419daf4bee3934a9dd0994916a8d207d75d",
+          "git_blob_sha1": "72b17d05b45b3e978bbd6fc6ee1f792f86e6ddf2",
+          "bytes": 10098,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/modeling/meta_arch/baseline.py": {
+          "sha256": "924e7d83f1937337eebb3689c9d5cb49b31be20e1dcb9f61704a4ef9ece8110f",
+          "git_blob_sha1": "2d9f7b336276dff894a01881057bcf78dd7c9b55",
+          "bytes": 6341,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/modeling/heads/embedding_head.py": {
+          "sha256": "7fac3db497afa050585c7dad1ddf5929f3a8fac9fd17fa48f41b533f99592e86",
+          "git_blob_sha1": "ef0d75e4cb3f1f3e267d4ff065c3b59d98c6b310",
+          "bytes": 4732,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/fastreid/modeling/losses/triplet_loss.py": {
+          "sha256": "aa6dca160a8a51ed5b0d34a1ca83a0fb0bc421ee82bbb4126c965d8738ce5823",
+          "git_blob_sha1": "527500833473b2416cda9b67342f7cf3e1d1044d",
+          "bytes": 3957,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/configs/DanceTrack/sbs_S50.yml": {
+          "sha256": "b6054e0c27539c8d94e3091860cc199d15d8fa2ae721dbaa21d2dea60d225cfb",
+          "git_blob_sha1": "ccf9a9073f178134f2ec4e621d3584b2c81ebde5",
+          "bytes": 174,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/configs/Base-SBS.yml": {
+          "sha256": "cb7d6c6fa5da494b79507d8aadd65f46b96a65530d68ab8336e0548662dbe2cd",
+          "git_blob_sha1": "98d7e53b16dce2f65ae25204fe50a4c973bdcde6",
+          "bytes": 921,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "2. FastReID/configs/Base-bagtricks.yml": {
+          "sha256": "12776db6fc0a4704eeb79869e93d8b1b65bf56e74d2aa0b1f823abfa64904a3d",
+          "git_blob_sha1": "65ae22612dd0aa7dbef8b7393dd363b39d1d72f6",
+          "bytes": 1111,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/README.md": {
+          "sha256": "144abbac93e93517facde5794ff4023aabfd8fba5e3492c9f5a780d1df938d3f",
+          "git_blob_sha1": "ab95eb90c2c130d9e46841c37d0d07afa0360e91",
+          "bytes": 544,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/run.py": {
+          "sha256": "caa5a36cf986b20537e93944dba17dfe733615449e45346a6c5bc7295852da1b",
+          "git_blob_sha1": "09ce058ee4b1e0e6c68ddf03fa525990696b1b89",
+          "bytes": 5303,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/trackers/tracker.py": {
+          "sha256": "b3289f19060502d31dccebf88a2c98986afb61e1be8c3f13258726c34a725f62",
+          "git_blob_sha1": "e79024459c3456e01baf6d838fb5cf861cc6afdd",
+          "bytes": 5594,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/trackers/track.py": {
+          "sha256": "d7eb28b65b47f3a438de5c337997e2fb75b535e5e34603a7afbab11f99fc956b",
+          "git_blob_sha1": "b4897e0c0036e6551e80cf4382d3c5ebd04c7236",
+          "bytes": 5756,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/trackers/kalman_filter.py": {
+          "sha256": "f1c85e3672ab65ec685782c5e1d2b164c2c67ab175e2b2627c80289400d78886",
+          "git_blob_sha1": "8ab67801f251e6abb6550b8e56ad9cc6374ff04e",
+          "bytes": 3387,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/trackers/cmc.py": {
+          "sha256": "a992caf6323b8f3fa66d7b7363a92e8608b129a660a19dc8dbbd9eb6e0d369e2",
+          "git_blob_sha1": "30496c04e8294d1441c62ecdeeab91436095975d",
+          "bytes": 1532,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/trackers/utils.py": {
+          "sha256": "84d5daa45b4f0fb82bec3e89b8935bffc7f93f28b621270cccc9721163f87c79",
+          "git_blob_sha1": "5d8f850c95dea0eeb8db0c164eb64dcb7c7d1ecb",
+          "bytes": 8985,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/utils/etc.py": {
+          "sha256": "1053ffc3534040a9e00328ddb3ed65acb664164e160d3fbb1d9c85aedb6047d2",
+          "git_blob_sha1": "b00a2505d5659092637a24ccb0547c8490ceeed0",
+          "bytes": 6095,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/utils/gbi.py": {
+          "sha256": "2713dd8bc6d6c59828b6bfe16e9fc1ab2509d657a353d3cdd6a4ae4c956e81b0",
+          "git_blob_sha1": "9aeaad31d583971074f704f2ec49039577b5ce0a",
+          "bytes": 2050,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/AFLink/AppFreeLink.py": {
+          "sha256": "f4f869b9c728216f92581ee5f4869e1bf44247be62a62c2023360435bd19c9c4",
+          "git_blob_sha1": "845b669ccf693fe84ce592c77d6fa6a7f43b930f",
+          "bytes": 3401,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/AFLink/model.py": {
+          "sha256": "b5b188776a79de19c8f72e80d15393615bdc70262ddb5389fa791e1968fe796a",
+          "git_blob_sha1": "ebc373d22ade3bdade3fedc0617f3df66f00688b",
+          "bytes": 2685,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        },
+        "3. Tracker/AFLink/dataset.py": {
+          "sha256": "9d42e86d80f482ac1af936c24b9b487835e9b077399a9807d62363982a465411",
+          "git_blob_sha1": "bc9f37d49721d6264c2c6d0463e180f6e9fc1aaf",
+          "bytes": 4032,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+          "inspection_scope": "Manual targeted reading of actual tracking assignment/birth/feature/filter paths, separate detector/ReID extraction/training sources and default offline postprocessing.28tracked text paths verified, with source acquisition rate failures retained and exact-pinned raw recovery separately recorded. No foreign model/script execution, checkpoint/cache/data loading or published performance reproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/tracktrack_semantic_source_proof_v1.json"
     },
     "TCEI": {
       "name": "TCEI",
@@ -6232,7 +6656,7 @@
       "name": "MOTRv2",
       "github": "https://github.com/megvii-research/MOTRv2",
       "local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MOTRv2",
-      "audit_status": "NOT_AUDITED",
+      "audit_status": "SOURCE_AUDIT_COMPLETE",
       "acquisition_command": [
         "git",
         "-c",
@@ -6253,19 +6677,7 @@
       "status": "ACQUISITION_FAILED",
       "error": "CalledProcessError(128, ['git', '-C', '/data3/liuyeqiang/CFP-FishMOT_references/phase7/MOTRv2', 'status', '--porcelain'])",
       "requested_local_path": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/MOTRv2",
-      "required_unverified_fields": [
-        "paper_year_scene_contribution",
-        "license_and_weight_access",
-        "training_entry_and_sampler",
-        "inference_entry_and_temporal_scope",
-        "core_model_files_and_shapes",
-        "loss_and_positive_negative_construction",
-        "pretrained_sources",
-        "GPU_CUDA_dependencies",
-        "IR_MFT_compatibility",
-        "mechanisms_to_port_and_exclude",
-        "novelty_overlap"
-      ],
+      "required_unverified_fields": [],
       "source_http_followup": {
         "semantic_audit": "NOT_COMPLETE",
         "commit": "1aac7c3beb093d4b523419a197e9531597e01798",
@@ -6418,7 +6830,159 @@
           "acquisition": "VERIFIED_EXISTING"
         }
       },
-      "source_http_missing_files": {}
+      "source_http_missing_files": {},
+      "semantic_audit": {
+        "paper_year_scenario_contribution": "[MOTRv2: Bootstrapping End-to-End Multi-Object Tracking by Pretrained Object Detectors](https://arxiv.org/abs/2211.09791),preprint2022/CVPR2023, bootstraps query-propagating end-to-end MOTR with YOLOX proposal anchors. Primary paper distinguishes challenge73.4HOTA from repository available69.9DanceTrack model; neither is reproduced. Scene is human DanceTrack/BDD100K, not fish IR. Detection-prior-assisted association is existing prior work, relevant to replacing detector-native query inputs with fixed V3 proposals.",
+        "code_and_pretrained_license": "Top LICENSE contains MIT2022Megvii-research and an inherited MOTR MIT notice; read Deformable-DETR op setup retains Apache2.0/SenseTime and upstream convolution provenance. Torchvision/ImageNet, COCO detector pretrain, YOLOX detection JSON and GoogleDrive final tracker weights have separate asset/data terms/exposure. No external weights acquired or code executed/transplanted; top MIT source permission does not certify an unverified checkpoint/dataset or all vendor notices.",
+        "entrypoints_and_training_inference": "tools/train.sh reads configs/motrv2.args, copies a training snapshot then launches8distributed GPUs main.py->engine.train_one_epoch_mot; the script also cleans pyc with shell rm and was only read, not run. Actual args request MOTR/DanceTrack,5epochs,LRdrop4,batch1,checkpointing,query_denoise.05 and10queries. tools/simple_inference.sh->submit_dance.py reads same args plus checkpoint, sorted frame images/current det_db, calls inference_single_image then writes results. Our tracked missing .args was recovered from exact pinned public raw text with blob proof; no unchanged8GPU run occurred.",
+        "core_model_files_and_shapes": "Actual config10learned query256/anchor4 slots, plus Mcurrent YOLOX proposals and Npast track slots; parser300queries default is overridden. _generate_empty_tracks concatenates normalized cxcywh anchors and score sine/cos embedding+yolox_embed256; it does not consume external ReID crop descriptors. ResNet50/FrozenBN512/1024/2048 multiscale features project256 over4levels; default six8-head encoder/decoder layers. QIMv2 performs8-head self-attention across active256-D queries and residual FFNs, updates highscore anchors from detached boxes; persistent query state carries identity rather than N+1word softmax. Default memory_bank_typeNone yields zero-length bank.",
+        "loss_and_positive_negative_construction": "ClipMatcher inherits previous GT object IDs, marks their current missing matches-1, then Hungarian matches unmatched slots to remaining current GT. Focal class(alpha.25,gamma2), L1/GIoU and decoder auxiliary losses use2/5/2weights and clip sample normalization; missing slots have background class and no box regression. Training noisy GT boxes form extra refinement queries with real->GT-query attention masked. Dataset packs GT separately from observed detector proposals after shared transforms. Actual Python randint(1,sample_interval+1) with10 permits1..11stride and clamps at video tail, producing repeated last frames. No identity contrastive/local JEPA loss.",
+        "pretrained_sources": "Backbone uses torchvision pretrained=True on main process, historically ImageNet ResNet50; actual args point to a local COCO Deformable-DETR iterative-refinement checkpoint, with README GoogleDrive YOLOX detection JSON and final DanceTrack tracker. load_model reads checkpoint['model'], replaces shape mismatches/missing params with initialization and strictFalse, slices class heads; complete tensor coverage is not proven by a named path. Checkpoint payloads/training memberships and fish/IR overlap are unverified. New256query coordinates cannot reuse inherited512GRU as a valid matched producer.",
+        "future_information_and_online_path": "inference_single_image accepts current image, current proposals and previous Instances only, calls image model without gtboxes then updates current identities/queries for next frame. Training forward alone constructs GT noisy boxes; inference doesn't pass them. Frame dataset sorted sequence loader and observed detector JSON are causal if each detection is produced from current frames, whose own detector provenance must be audited separately. Model reused across videos with track_instances=None resets track slots but submit does not explicitly clear track_base.max_obj_id, so IDs may continue numerically across files without demonstrating feature-memory leakage.",
+        "GPU_CUDA_dependencies": "README Python3.7,torch1.8.1/vision.9.1,cuda10.2 and compiled MultiScaleDeformableAttention,requirements tqdm/scipy/opencv; op setup requires CUDA/CUDA_HOME. Actual train shell hardcodes8GPUs, outside current at-most4idle policy and was not executed. Submit uses bare .cuda() and full-image800/1536 preprocessing. Raw profiling must count fixed detector, full-image query model and writes; cached det_db replay omits detector cost. Main checkpoint/resume stores optimizer/scheduler/epoch but not explicit all RNG/worker/augmentation states and overrides LRdrop, so exact resume is not established.",
+        "IR_MFT_compatibility": "Current-proposal anchors fit observed V3 proposals conceptually, but native learned detector/query re-prediction, extra10learned births, confidence threshold.5,20missing tolerance and area>100 change outputs/lifecycle. Separate full native MOTRv2 from a fixed-input/query-head adaptation with identical crop coordinates/history/proposals and no image/GT advantages. Declared random_drop.1/fp_ratio.3 methods exist but active QIMv2 forward only selects and updates tracks, not invoking those methods; don't claim those augmentations executed. Optional nonempty memory-bank builder is not default and is not established from this snapshot.",
+        "mechanisms_to_port_and_exclude": "Use cleared proposal-anchor/persistent-query interaction as a strong same-input C control, state/pruning/birth/output fixed where measuring association. Compare detector-score embedding/current appearance evidence separately; preserve physically keyed IDs and current-only proposals. Exclude8GPU/defaultshell execution, future detector/GT targets in online inputs, checkpoint name as full load proof and native detector improvements as IDhead gain. GT denoising is labelled training-only. Missing/absence versus unknown detections still require independent guards and dynamic-vocabulary evaluation, since this source has query identities rather than explicit N+1fishID competition.",
+        "novelty_overlap": "Existing pretrained-detector anchors, persistent query propagation, current full-set query self-attention and joint detection/association training overlap broad EvidenceFishMOT C claims. A fixed-V3 adaptation is a disclosed baseline, not a new contribution merely because proposals are fish. New claims need evidence that actual local identity tokens/stopped temporal prediction and competitive IDdecoding improve same-input native fish tracking over both query-native and MOTIP-style controls, with matched exposure/lifecycle and fullfold/seed/runtime checks. This source completion is not a successful trained port or positive MOT result."
+      },
+      "source_read_proofs": {
+        "README.md": {
+          "sha256": "5a8eb930ba169a7f290c8e538e0a669faa18c080f91359b41a50923c3af0366e",
+          "git_blob_sha1": "67211c3e702737abd9ba92282e360d816ed341a6",
+          "bytes": 5876,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "LICENSE": {
+          "sha256": "95df48c518bcbffb3f61114c9ed0d847e6e12c58e6fdc5096acb6a83c67b8b74",
+          "git_blob_sha1": "fdaf436e9548250539b3ccabdf204dbd10eadba6",
+          "bytes": 14131,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "requirements.txt": {
+          "sha256": "0f6108ea7c7c364219435d14afd9825d326ac66abc00b3910e8ab9ec3dcee80a",
+          "git_blob_sha1": "c85f109e578081abf481bb073b7fede61a5941f0",
+          "bytes": 25,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "configs/motrv2.args": {
+          "sha256": "d54309ecdf61bea0dfea454e19183dc5e604ac3c28104055d00e85859d3201e4",
+          "git_blob_sha1": "50521d4b08ea9d0258a91c8b10cc84e93e511c69",
+          "bytes": 494,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "tools/train.sh": {
+          "sha256": "295c1daa5304c4bcfbb8a03fe28e0a15b5c977092be314288455627618c3c818",
+          "git_blob_sha1": "642da0e764d36f045122f2521ecc358ea3be35a9",
+          "bytes": 1280,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "tools/simple_inference.sh": {
+          "sha256": "603805a9e24769be3e9637f58315372f2d65654064a244bff9bda7be3b2ddb9c",
+          "git_blob_sha1": "4dead75868e48b90633a9a7f10ab39f7e16ded81",
+          "bytes": 350,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "main.py": {
+          "sha256": "80c5ca1bb30627fe484f568956d588889cdffe73d87b2c3f171a02b0acb2ccef",
+          "git_blob_sha1": "13859a86d005ab05b58b95abd6fd03473d7b7588",
+          "bytes": 16546,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "engine.py": {
+          "sha256": "b0e197939ab229403be21a5d89028e548474a8fd8fcd0e70dab06ae4d0c26cb5",
+          "git_blob_sha1": "988cbd41a9f6cafbab54a819424f795a91069029",
+          "bytes": 3620,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "submit_dance.py": {
+          "sha256": "9f3360d06f6d2b575d7f8f07ec2e5b4554d1751fe0e77cf34a63f652ad83f2de",
+          "git_blob_sha1": "5949e0f48dccb0dafddd04441bf7b7f7b6fa0092",
+          "bytes": 8430,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "datasets/dance.py": {
+          "sha256": "37fee9dfb8598606dba82e806f396fbad4a94bef55dd18082cb4f4262b33db32",
+          "git_blob_sha1": "ba3f0ddb8acc09975315dd44aae88ceb7e888e36",
+          "bytes": 12182,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "datasets/samplers.py": {
+          "sha256": "4b699d9f1798dc1729d43034c50357e1c984be7622e9959c19123d6069b92f12",
+          "git_blob_sha1": "7a4ede1e4ccbf050539eb475c7cfbb268f624b2e",
+          "bytes": 5818,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "models/motr.py": {
+          "sha256": "078425f4eb2a124404c8c7285282b5fb3f0051e789a91b2234334d64af2183af",
+          "git_blob_sha1": "f1b661115af3d724e1107a56931b813f158ec183",
+          "bytes": 38009,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "models/qim.py": {
+          "sha256": "d3bf46ea0100ec66d4a890a7cde3169dd1f220a27e2b8921f54110cb32ae034c",
+          "git_blob_sha1": "f13f96fa30e6d67dc73869e77a0e5ccf0e0e1415",
+          "bytes": 8273,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "models/backbone.py": {
+          "sha256": "41030afe41bf9b23c2a1de9c51864f6bff6d9ebc395213927f9f76986a086946",
+          "git_blob_sha1": "f31c92b323c2983fd60ffb0eb28123aca64305f9",
+          "bytes": 5321,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "models/deformable_transformer_plus.py": {
+          "sha256": "7a9d70a8b887d9f88e1a538e8804a29298c4e65496edff994c2b66720fdebec3",
+          "git_blob_sha1": "9e48f3d863422b960765834665743d6e871d31b9",
+          "bytes": 22370,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "models/ops/setup.py": {
+          "sha256": "167e8f8ffa224514c1f195b5091b5ed6f7cfcabfe8b967719ddede3c402a103f",
+          "git_blob_sha1": "a0131bc21cf1b45b90fcf174e2c53e4c08e9c641",
+          "bytes": 2559,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        },
+        "util/tool.py": {
+          "sha256": "5345a1848f207341b49ca83abdf2e395ced2cba5f0358baaaef6b918eca6acbe",
+          "git_blob_sha1": "2bfc81e654cdd5b19dd72446f696f8921eef7bcf",
+          "bytes": 3248,
+          "provenance": "EXACT_LOCAL_GIT_TREE",
+          "verified_against_commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+          "inspection_scope": "Manual targeted reading of actual published args/entries, current-frame proposal-anchor construction, persistent query/lifecycle and query-interaction paths, GT denoising masks, clip identity/box loss and sampling/pretraining/CUDA requirements. Exact tracked17text paths verified; no foreign shell/model execution or weight/data acquisition, no official benchmark reproduction."
+        }
+      },
+      "semantic_audit_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/motrv2_semantic_source_proof_v1.json"
     },
     "DiffMOT": {
       "name": "DiffMOT",

@@ -19,7 +19,7 @@ PF-001 pure GRU96.534309% versus mean60.519% contradicts a blanket claim that th
 
 Training source tools/cfp_build_prediction_queries.py uses an earlier ordinary RGB-tracker producer, known unique current identities, positive-present filtering, sampled past cutoff gaps1/5/15/30 and at least two same-frame IDs. The current diagnostic uses historical GRU-produced actual state graphs, retains unknown candidates and evaluates naturally missing histories/candidates separately. SN-015 was calibration for the temporal model and seen by the frozen visual encoder. Candidate label support, generating tracker, requested temporal cutoff and scene exposure differ; their individual contributions remain to be discriminated.
 
-Correct/mixed/unknown retained histories and common native appearance-region support have now been measured. The complete two-crop metadata index is available; the sparse paired-crop visual pilot is completed below; full-frame/new-encoder MOT and all-fold confirmation remain pending. Complete30semantic audits before final method/novelty selection. The independently implemented first joint/pair probes are explicit task-book controls, with their cost/threshold confound recorded separately. Do not begin large JEPA training from the pure-rank discrepancy alone. PairAUC/EER/mAP/R1/R5 and gap/density/overlap-proxy breakdowns are stored in PHASE_VII_A0_STARTUP_MEASURED.json. Overlap/gap are proxies, not ground-truth occlusion or turning labels.
+Correct/mixed/unknown retained histories and common native appearance-region support have now been measured. The complete two-crop metadata index is available; the sparse paired-crop visual pilot is completed below; full-frame/new-encoder MOT and all-fold confirmation remain pending. All30available-source audits now completed with explicit exclusions; final method/novelty selection still requires matched trained evidence. The independently implemented first joint/pair probes are explicit task-book controls, with their cost/threshold confound recorded separately. Do not begin large JEPA training from the pure-rank discrepancy alone. PairAUC/EER/mAP/R1/R5 and gap/density/overlap-proxy breakdowns are stored in PHASE_VII_A0_STARTUP_MEASURED.json. Overlap/gap are proxies, not ground-truth occlusion or turning labels.
 
 Original checkpoint-matched temporal training query re-evaluation is complete on all6videos in PHASE_VII_A0_ORIGINAL_PRODUCER_MEASURED.json. On PF-001, GRU46.0896%on ordinary actual histories versus96.8361%on AnchorRecent; on SN-01545.1092%versus28.3419%. Clean FIFO/GRUare93.2634/60.3093%on PF-001and92.8724/71.0101%on SN-015. These original producer/pool/cutoff denominators differ from warm GRU-produced queries, so the change is evidence of scene/history dependence, not a paired causal producer effect or new visual encoder gain.
 
@@ -120,7 +120,7 @@ Frozen ImageNet detector R1 is14.744% oninnerBT001 and53.651% onouterSN015. All 
 
 A real globalseed1epoch2early exit and new-process resume onphysicalGPU0 reproduces continuous8epochtraining exactly:818tensor leaves,1NumPyarray and996scalar leaves across model/optimizer/scheduler/AMP/allRNG; training losses/update counts and retrieval are equal. The verification excludes walltime and serialized container bytes and does not certify crosshardware determinism. Stop/resume logs and both complete manifests are hash-linked in PHASE_VII_VISUAL_RESTART_MEASURED.json. Historical seed0source snapshots are preserved; the early-stop CLI added for seed1/2 does not pretend source equality to the previous run.
 
-Source-level TransReID/CLIP-ReID controls now audited at exact commits. The original crosscamera positive exclusion cannot be reused for same-video fish; JPM four-head scaling/CLS mixing and fit-only prompt dictionaries must remain explicit. Strong pretrained payload acquisition, genuine fish adapters and allfold confirmation remain pending; source completion is not a trained new-ReID result.
+Source-level TransReID/CLIP-ReID controls now audited at exact commits. The original crosscamera positive exclusion cannot be reused for same-video fish; JPM four-head scaling/CLS mixing and fit-only prompt dictionaries must remain explicit. One licensed DINOv2S official payload is now acquired/strict-loaded; genuine fish adapters and allfold confirmation remain pending; source completion is not a trained new-ReID result.
 
 ## Completed fish-specific source controls
 
@@ -129,3 +129,18 @@ FishMAE and Fish_Re_Identification exact Git trees contain no project LICENSE/CO
 ## Additional eight source audit constraints
 
 DINOv3 S16 exposes384-D current-crop features and spatial RoPE/Gram training mechanisms under a custom source/weight license; its patch projection drops nonmultiple remainders. No pretrained payload or fish retrieval was acquired. DINO-Tracker optimizes on the entire target video and selects anchors over future frames, so its published per-video method is excluded from strict-online identity comparisons. TFMFT declared transformer/128-D ReID dimensions are not verified implementation because its core modules are absent.
+
+## Official frozen DINOv2 same-crop evidence
+
+Licensed official S14 weight strict175tensor-loaded into the exact audited source; frozen extraction uses the same47,751registered current crops,126x252FP32/162patches, observed padding fractions and unchanged physical pools. Dense/local tokens are real spatial observations; content masks do not remove padding influence from backbone attention or create anatomical/occlusion GT. Fullsource audits30/30complete; no private-pretrain zero-overlap claim. All inherited Fishpost/ImageNet query counts, R1/R5/mAP/AUC/EER reproduce exactly under the new evaluator. The table reports paired known keys with minimum25frame past gap; actual unknown-containing pools and fullgap metrics are in PHASE_VII_DINOV2_FROZEN_MEASURED.json.
+
+| Video | Paired keys | Fishpost detR1 | ImageNet detR1 | DINO CLS GT→detR1 | DINO patchmean detR1 | DINO K4/K8concat detR1 |
+|---|---:|---:|---:|---:|---:|---:|
+| BT-001 | 2229 | 26.442 | 20.032 | 27.083→25.160 | 23.718 | 25.321/21.635 |
+| BT-003 | 200 | 53.672 | 23.729 | 20.339→22.599 | 23.164 | 26.554/25.424 |
+| MSK-002 | 5683 | 8.201 | 5.985 | 9.854→5.820 | 6.250 | 6.250/5.721 |
+| PF-001 | 2872 | 81.746 | 73.016 | 72.222→76.984 | 78.571 | 66.667/62.698 |
+| SN-001 | 561 | 50.000 | 36.923 | 36.154→34.615 | 33.462 | 31.154/28.462 |
+| SN-015 | 5860 | 71.587 | 57.143 | 61.746→60.317 | 57.302 | 51.429/50.794 |
+
+DINO CLS improves over pairedImageNet onBT001/PF001/SN015 and falls below it onBT003/MSK002/SN001. Fixed K4/K8concatenation is not consistently better than CLS; PF001/SN015 show substantial degradation. These current-crop measurements support testing identity supervision/domain adaptation and local correspondence with matchedcapacity controls; they do not demonstrate new local learning, stoppedJEPA or full nativeMOT benefit. Frozen descriptors/configs were fixed before this evaluation; do not select recipes on outerSN015. Actual nearest-past positive/current-frame hardnegative and crop stability metrics remain separately available.

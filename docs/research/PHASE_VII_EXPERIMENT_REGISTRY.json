@@ -2952,6 +2952,57 @@
       "proof_sha256": "96b9b720e4f7609c42714c86dfae37ca246df2f1085d2fafd6e014b40f340762",
       "source_coverage_exclusions": [],
       "scope": "Manual available-source fields and exact provenance with explicit license/weight/data/execution exclusions; no model training or positive native tracking gain."
+    },
+    {
+      "experiment_id": "VII_SOURCE_SEMANTIC_MOTRV2_V1",
+      "status": "SOURCE_AUDIT_COMPLETE",
+      "commit": "1aac7c3beb093d4b523419a197e9531597e01798",
+      "source_reading_files": 17,
+      "semantic_fields": 11,
+      "proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/motrv2_semantic_source_proof_v1.json",
+      "proof_sha256": "a48aebf567248b54b85d6e64c4c9c9b16e1f0955611a566738299a4a29fc0ec7",
+      "scope": "Available-source fields with explicit code/weight/data/train-release/execution exclusions; not trained official tracker reproduction."
+    },
+    {
+      "experiment_id": "VII_SOURCE_SEMANTIC_TRACKTRACK_V1",
+      "status": "SOURCE_AUDIT_COMPLETE",
+      "commit": "ee7f1c5fcbdcac48ed8bfab38d52c0006bf304da",
+      "source_reading_files": 28,
+      "semantic_fields": 11,
+      "proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/tracktrack_semantic_source_proof_v1.json",
+      "proof_sha256": "a4caf6f71fcded1f9eff9bfa6856595ffa89b307aa4d72ef52d17092ec99db6e",
+      "scope": "Available-source fields with explicit code/weight/data/train-release/execution exclusions; not trained official tracker reproduction."
+    },
+    {
+      "experiment_id": "VII_SOURCE_SEMANTIC_COVTRACK_V1",
+      "status": "SOURCE_AUDIT_COMPLETE",
+      "commit": "9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b",
+      "source_reading_files": 23,
+      "semantic_fields": 11,
+      "proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/covtrack_semantic_source_proof_v2.json",
+      "proof_sha256": "162b8c960cc5abe460b754e0cbf44d86c5a6b4a26135eb0caa361ef49a038674",
+      "scope": "Available-source fields with explicit code/weight/data/train-release/execution exclusions; not trained official tracker reproduction."
+    },
+    {
+      "experiment_id": "VII_DINOV2_OFFICIAL_WEIGHT_AND_STRICT_FORWARD_V1",
+      "status": "COMPLETE",
+      "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_pretrained_smoke_v1.json",
+      "sha256": "929ed2de0c2d1899e72d046af7a12e65f5fbd915d48c3fd1ae307824eb2e3911",
+      "scope": "Official licensed small pretrained weight and exact source actually strict-loaded/current-crop CPU repeated forward; no scientific tracking score."
+    },
+    {
+      "experiment_id": "VII_DINOV2_FROZEN_TWO_CROP_FEATURES_V1",
+      "status": "COMPLETE",
+      "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_two_crop_evidence_v1/manifest.json",
+      "sha256": "6a81ba1b295505abdc29aaa0a1f25693c5caa1d4b171e934fe229ddd26cb7532",
+      "scope": "Exact sparse47,751current-crop CLS/dense/local evidence with masks; cached encoding latency not ProtocolC."
+    },
+    {
+      "experiment_id": "VII_DINOV2_MATCHED_ACTUAL_PAIRED_RETRIEVAL_V1",
+      "status": "COMPLETE",
+      "artifact": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_two_crop_retrieval_v1.json",
+      "sha256": "790212aa220e49c40cbd2f85c90ab3f899ab69bfb13d564df384d608807da4d2",
+      "scope": "Seven frozen controls on identical actual/paired pools, physical identities/unknowns/query/gap masks; no new-head training or native-MOT gain."
     }
   ],
   "source_http_followup": {
@@ -2965,9 +3016,9 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "3 remaining semantic source audits: COVTrack, TrackTrack, MOTRv2",
-    "Stronger pretrained fish/transformer visual controls and raw/projection/crop-stability diagnosis",
-    "Remaining visual/local folds and seeds plus new-coordinate native tracker",
+    "Supervised/domain/self-supervised local fish identity adapters and matched strong pretrained controls; all30source-field audit prerequisite completed",
+    "All visual/local folds and seeds plus new-coordinate native tracker",
+    "FishMAE-style legally independent masked fish-crop self-supervision and TransReID-/FDTA-style same-input identity controls",
     "Actual local DenseJEPA and matched temporal/contrastive/noEMA/noPrediction/noID",
     "Repair C loss/NULL common-cost saturation; ordinaryTransformer/MOTIP/same-input/on-policy controls",
     "Independent filter/geometry/occlusion/motion experiments",
@@ -2975,11 +3026,11 @@
     "External fish-data license/identity/overlap audit and final20scientific answers"
   ],
   "validation": {
-    "project_tests": 216,
+    "project_tests": 219,
     "warnings": 18,
-    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_visual_three_seed_v1.log",
-    "log_sha256": "2f53ff2f1259a8939923aeb38f5b32001a69a52262941831d6f36a6ed80453af",
-    "scope": "Last executed full model-code suite; this continuation changes source-audit docs/metadata only and rechecks actual source hashes/AST. No repeated model-training/test-run claim."
+    "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
+    "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
+    "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity."
   },
   "execution_failures": [
     {
@@ -2993,10 +3044,15 @@
     "Constant-control test v1 mistakenly attached the old low-stage counter assertion to the new two-call test; fixed test placement, retained failed log, full v2 has203passed18warnings."
   ],
   "current_visual_summary_sha256": "6856e50d3dbd3460782b85e76f2a698ab998ac9e11baaa46cecb4de14b3b3806",
-  "source_audit_measured_sha256": "a0d8c596f438c0af53fa19dcddca399d6e30caabda5d714a2388401cee5d7226",
+  "source_audit_measured_sha256": "eea5f30be82f81e148dbbb44eff0e28f80e48dad81e07783e5c40de1828da0e7",
   "source_audit_validation": {
-    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/three_source_audits_validation_v1.json",
-    "sha256": "a742699760c00ad3d6ee180f9987eea7cc3ffad91cf77bcaab91e74fdd3b6287",
-    "scope": "Actual source/document/AST verification only; no new model-training/test-run claim."
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/final_source_audits_validation_v2.json",
+    "sha256": "b280be7e91cddbf0fc5c72ff7d76591a45113884c6289bad16e2b81fff5d8731",
+    "scope": "Available-source/provenance verification only, with explicit missing-source/model/weight/license exclusions; no blanket fullsystem reproduction."
+  },
+  "dinov2_frozen_measured_sha256": "7d52a23ca9e8c7497601e1f854d955662a4f1d0fefd65689d3532736c635c0bd",
+  "dinov2_diagnostic_validation": {
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_frozen_diagnostic_validation_v1.json",
+    "sha256": "db482597550da2d28bfec439e6b9ddaa6360b84f6f8fd8fb0da9f6ac5c01925b"
   }
 }

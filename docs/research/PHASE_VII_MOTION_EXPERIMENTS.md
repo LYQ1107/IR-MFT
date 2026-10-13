@@ -17,3 +17,7 @@ M4FT spatial eight-direction selective scan is current-image detector processing
 ## Additional three source audit constraints
 
 DiffMOT exacteada72e supplies a genuine five-record8-D history-conditioned nonlinear4-D next-box-delta predictor: six-layer history Transformer and one-step decoupled diffusion with weighted drift/noise SmoothL1. Training records need actual frame-spacing checks; default inference samples random initial noise. The public evaluation reads cached detections/ReID, has an uncached ReID-name mismatch and does not include full raw encoding. A motion-only port must preserve native inputs/lifecycle and compare matched deterministic regression/KF/UKF before combinations; no training/gain claimed from this audit.
+
+## Final three source audit constraints
+
+TrackTrack uses linear8DcxcywhKF with detector-score-scaled measurement covariance and corner-angle/confidence terms; default offline AFLink/gradientboosting interpolation is excluded. COVTrack motion cue in the active fusion is raw4Dbox position, not nonlinear dynamics. Source-name/paper language alone does not establish learned swimming/occlusion; motion must be isolated against same-input KF/UKF/geometry/lifecycle controls.

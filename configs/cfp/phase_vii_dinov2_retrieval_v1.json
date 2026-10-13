@@ -1,0 +1,10 @@
+{
+  "state": "FROZEN",
+  "maximum_queries_per_physical_identity_per_view": 64,
+  "minimum_past_gaps": [1, 25, 100],
+  "batch_size": 64,
+  "features": ["fish_post", "imagenet_global", "dino_cls", "dino_patch_mean", "dino_local4_concat", "dino_local8_concat", "dino_local8_visibility_mean"],
+  "query_sampling": "Same deterministic valid known-identity order statistics as original two-crop diagnostic. Actual unknown-gallery pool and independently identical unique paired keys are reported separately.",
+  "pair_metrics": "Nearest strictly earlier same-known-fish positive and current-frame different-known-fish negatives; unknowns remain in actual gallery but are never negative labels.",
+  "scope": "Frozen current-crop evidence only, with actual and unique paired GT/detector pools, R1/R5/mAP/AUC/EER and past gaps1/25/100. Fishpost is an exposed inherited reference; pretrained DINOv2/ImageNet have no fish fitting here, unverified external-corpus overlap. No outer-tuned representation, new-head training, old512GRU in384coordinates or native full-MOT gain/runtime claim."
+}
