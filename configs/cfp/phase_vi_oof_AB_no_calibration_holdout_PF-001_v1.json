@@ -1,0 +1,28 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_calibration_invariance",
+  "partition": "train",
+  "seed": 0,
+  "K": 1,
+  "candidate_prediction": true,
+  "risk_write_quota": true,
+  "reject_fraction": 0.1,
+  "ambiguity_delta": 0.05,
+  "discount": 0.9,
+  "switch_margin": 0.02,
+  "confirmation": 1,
+  "sequences": [
+    "PF-001"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_bootstrap_holdout_PF-001_s0_v1/inference.pt",
+  "student_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/ema_residual_utility_holdout_PF-001_s0_v1"
+  },
+  "risk_models": {
+    "PF-001": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_mlp_holdout_PF-001_s0_v1"
+  },
+  "selection": "Registered full-trajectory no-calibration quota control2026-10-13; retain frozen models/fraction/geometry. No outer/dev selection.",
+  "scope": "B=bounded residual EMA representative, not demonstrated EMA-specific mechanism. A=10% MLP matched write quota. C=isolatedK2 with hysteresis0.02. In A+B risk current costs include bounded B corrections, an explicit interaction not independent risk recalibration. No GT/future/teacher online. Backbone seed0 exposure remains. Full all-disabled parity required. Risk temperature/bias replaced by1/0; calibrated versus raw-sigmoid ranking checked on entire endogenous trajectories, including finite-precision effects. Not an absolute-risk gate calibration claim.",
+  "no_calibration": true,
+  "risk_kind": "learned"
+}

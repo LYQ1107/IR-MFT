@@ -1,0 +1,27 @@
+{
+  "state": "FROZEN",
+  "hypothesis_id": "H2_H3_complementarity",
+  "partition": "train",
+  "seed": 1,
+  "K": 1,
+  "candidate_prediction": true,
+  "risk_write_quota": false,
+  "reject_fraction": 0.1,
+  "ambiguity_delta": 0.05,
+  "discount": 0.9,
+  "switch_margin": 0.02,
+  "confirmation": 1,
+  "sequences": [
+    "MSK-002"
+  ],
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_gru_identity_holdout_MSK-002_s1_v1/inference.pt",
+  "student_models": {
+    "MSK-002": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/noema_identity_residual_holdout_MSK-002_s1_v1"
+  },
+  "risk_models": {
+    "MSK-002": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_risk_mlp_holdout_MSK-002_s0_v1"
+  },
+  "selection": "Fixed epoch8,scale0.05,utility0.2,matched same-seed ordinary/noEMA budgets. Frozen independently trained RGB and excluded-video ordinary producer seed1/2; no outer/dev choice.",
+  "scope": "Same frozen detector with identity encoder/ordinary producer/new-module seed changed together. Predictive branch is noEMA; ordinary CE and margin-only controls share folds. Global margin budget0.1 and Bscale0.05. No heldout-specific tuning or teacher/GT/future inference.",
+  "risk_kind": "margin"
+}

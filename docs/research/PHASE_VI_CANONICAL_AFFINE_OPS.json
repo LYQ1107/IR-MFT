@@ -1,0 +1,33 @@
+{
+  "status": "COMPLETE",
+  "detector_one_item": {
+    "conv_macs": 699908400000,
+    "linear_macs": 0,
+    "bias_adds": 141750,
+    "affine_flops_without_bias": 1399816800000,
+    "parameters": 186199381
+  },
+  "rgb_one_crop": {
+    "conv_macs": 2669150208,
+    "linear_macs": 1098752,
+    "bias_adds": 0,
+    "affine_flops_without_bias": 5340497920,
+    "parameters": 24607808
+  },
+  "current_padding": {
+    "detector_items_per_frame": 8,
+    "rgb_items_per_encoding_chunk": 128,
+    "detector_affine_flops_per_frame": 11198534400000,
+    "rgb_affine_flops_per_padded_chunk": 683583733760
+  },
+  "scope": "Exact dense Conv2d/Linear multiply-add shape accounting, two FLOPs/MAC. Architecture instantiated without checkpoint or image access; meta tensor execution uses no GPU. Includes RGB classification affine computation performed by current encoder forward. Excludes BN, activation, pooling, fusion elementwise operations, detector decoding/NMS, IR/codec/resize/crop/transfer, ordinary GRU/risk feature extraction and lifecycle/Hungarian. Not a complete pipeline FLOPs value or latency measurement. RGB chunk count varies with proposals.",
+  "source_hashes": {
+    "/data3/liuyeqiang/IR-MFT/tools/cfp_count_canonical_affine_ops.py": "c6e87e92d79528e53c4664238d95bd9ef5ee094e4c0e6c5bcb9698dfa5254946",
+    "cfp/reid.py": "b00c8c3a6ba9935c0d186ab4eeee7f6dda3563bb6e8fa8fc915f68ee2e4499a8",
+    "cfp/online.py": "c8e356cb1587fb97b731a73ceeb0a41da49582bdab1f38951302a3bee49be915",
+    "exps/yolox_mft26ir_rgbt_v3.py": "212a8396c207b07244cb28d7e3a5fbd961979ad24409e58ace68fcf9328efe60",
+    "exps/yolox_mft26ir_rgbt_v2.py": "10cd4446635a64c08d3e70f9b1ae5cb6e9bf95592d54409f6a63d88e003a3fc7",
+    "yolox/models/yolo_pafpn_rgbt.py": "bacab1fdf5966e6147cd7b81f08a09dd786089bfe8f5d4ae2b05dd2b56800cd2",
+    "yolox/models/yolo_head.py": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8"
+  }
+}

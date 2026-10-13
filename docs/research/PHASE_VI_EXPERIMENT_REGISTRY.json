@@ -16231,7 +16231,7 @@
     },
     {
       "experiment_id": "residual_discriminating54",
-      "status": "TRAINING_COMPLETE_REPLAY_RUNNING",
+      "status": "COMPLETE",
       "train_config": "configs/cfp/phase_vi_residual_discriminating_training_v1.json",
       "replay_config": "configs/cfp/phase_vi_residual_discriminating_replays_v1.json",
       "seed": [
@@ -16245,7 +16245,7 @@
     },
     {
       "experiment_id": "same_fold_ABC_matrix48",
-      "status": "RUNNING",
+      "status": "COMPLETE",
       "hypothesis_id": "H2_H3_H4_interaction",
       "train_config": null,
       "replay_config": "configs/cfp/phase_vi_oof_combination_matrix_v1.json",
@@ -16293,7 +16293,7 @@
     },
     {
       "experiment_id": "combined_hypothesis_retrospective_labels",
-      "status": "BT001_COMPLETE_OTHER_VIDEOS_PENDING",
+      "status": "COMPLETE",
       "hypothesis_id": "H4_explanation_selection",
       "code": [
         "tools/cfp_diagnose_hypothesis_explanations.py",
@@ -16303,11 +16303,101 @@
         0
       ],
       "reason": "After complete causal replay, label observed birth/current proposals using frozen physical bank, count unknown separately, and measure whether a known-correct retained challenger exists when winning explanation is known-wrong. Internal decision/episode counts are not official IDSW or guaranteed recoveries."
+    },
+    {
+      "experiment_id": "paired_birth_and_official_clear_events",
+      "status": "COMPLETE",
+      "hypothesis_id": "H4_real_correction",
+      "code": [
+        "cfp/paired_explanation_diagnosis.py",
+        "tools/cfp_run_combination_evidence.py",
+        "tools/cfp_trace_clear_events.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Complete causal explanations paired to same observed-birth reference. Known-only N01/N10 and consecutive episode counts; missing/newborn support reported separately. Exact upstream CLEAR switch events forB0/C/BC/ABC must equal official IDSW. Compare removed/new switches, not assert all removed events are physical recoveries. GT only loaded after causal predictions finish."
+    },
+    {
+      "experiment_id": "AB_complementarity24",
+      "status": "COMPLETE",
+      "hypothesis_id": "H2_H3_complementarity",
+      "replay_config": "configs/cfp/phase_vi_oof_AB_discriminating_extension_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_combination_extension.py",
+        "tools/cfp_run_oof_combination_extension.py"
+      ],
+      "seed": [
+        0,
+        1,
+        2
+      ],
+      "reason": "Same-fold AB HOTA34.3611 vs corresponding GRU33.4884 and A33.9488, but ABC33.9299 and common-birth N01/N10 net-18. Test coupled A/B init1/2 plus noEMA and ordinary-margin+sameB controls before whole-pipeline expansion or novelty claims. All parameters remain frozen."
+    },
+    {
+      "experiment_id": "canonical_affine_operation_accounting",
+      "status": "COMPLETE_V2_CANONICAL_PADDING",
+      "hypothesis_id": "H0_online_cost",
+      "code": [
+        "tools/cfp_count_canonical_affine_ops.py"
+      ],
+      "reason": "Exact Conv2d/Linear meta-tensor MACs, actual detector8 padding and signature-derived encoder batch128. No GPU, data, training or timing claim. Initialv1 assumed64, is not canonical padding evidence; preserve it and use correctedv2."
+    },
+    {
+      "experiment_id": "AB_no_calibration6",
+      "status": "COMPLETE",
+      "hypothesis_id": "H2_calibration_invariance",
+      "replay_config": "configs/cfp/phase_vi_oof_AB_no_calibration_v1.json",
+      "code": [
+        "tools/cfp_replay_oof_AB_no_calibration.py",
+        "tools/cfp_run_oof_AB_no_calibration.py"
+      ],
+      "seed": [
+        0
+      ],
+      "reason": "Required no-calibration control: test complete endogenous AB trajectories against calibrated quota, rather than infer whole-video invariance from the earlier stride5 fixed-state order audit. Frozen checkpoint exports, riskfraction0.1 and Bscale0.05; no training/search."
+    },
+    {
+      "experiment_id": "identity_pipeline_seed_expansion",
+      "status": "BOOTSTRAP_COMPLETE",
+      "hypothesis_id": "H3_simple_predictive_budget_transfer",
+      "train_config": "configs/cfp/phase_vi_identity_seed_bootstrap_training_v1.json",
+      "code": [
+        "tools/cfp_reuse_bootstrap_identity_seed.py",
+        "tools/cfp_train_oof_gru_identity_seed.py"
+      ],
+      "seed": [
+        1,
+        2
+      ],
+      "reason": "Predictive residual has repeated small gains; margin+B equals/exceeds learned risk+B, and EMA has no independent advantage. Extend simpler noEMA predictive+fixed-margin budget using independently frozen RGB1/2 coordinates and new excluded-video ordinary producers/modules. Reuse physical bootstrap indices byte-exactly, then generate actual accepted histories. Fixed detector/protocol and8GiB stage planning, reserve40GiB. No claim that detector or scene exposure becomes independent."
+    },
+    {
+      "experiment_id": "identity_pipeline_actual_states_and_comparisons",
+      "status": "ACTUAL_STATES_RUNNING",
+      "hypothesis_id": "H3_simple_predictive_budget_transfer",
+      "code": [
+        "tools/cfp_run_identity_state_campaign.py",
+        "tools/cfp_replay_oof_gru.py",
+        "tools/cfp_build_oof_query_campaign.py",
+        "tools/cfp_train_residual_relation.py",
+        "tools/cfp_replay_oof_combination_extension.py"
+      ],
+      "state_plan": "configs/cfp/phase_vi_identity_states_v1.json",
+      "query_plan": "configs/cfp/phase_vi_identity_early_queries_v1.json",
+      "training_plan": "configs/cfp/phase_vi_identity_residual_training_v1.json",
+      "replay_plan": "configs/cfp/phase_vi_identity_replays_v1.json",
+      "seed": [
+        0,
+        1,
+        2
+      ],
+      "reason": "12 new producers generate genuine six-video accepted histories in RGB1/2 coordinates.24 matched ordinaryCE/noEMA residual fits then48 whole-video ordinary/predictive/margin/combined replays; seed0 noEMA+margin anchor separately frozen. Detector/backbone exposure still disclosed; no independent scene claim. Open outcome, not final retention decision."
     }
   ],
   "validation": {
-    "project_tests": 186,
+    "project_tests": 187,
     "command": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
-    "log_sha256": "53115488d49b98466b855b880a939c15b330aeecc4c6de307d708b277b3c0494"
+    "log_sha256": "782c71055dcc90222a1a348183871c026f91dc80c579dd84e8ad102c5b114c43"
   }
 }

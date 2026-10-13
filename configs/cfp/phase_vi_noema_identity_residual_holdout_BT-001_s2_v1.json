@@ -1,0 +1,33 @@
+{
+  "state": "FROZEN",
+  "queries": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/oof_identity_early_queries_holdout_BT-001_s2_v1",
+  "seed": 2,
+  "encoder_seed": 2,
+  "device": "cuda",
+  "latent": 16,
+  "ema": false,
+  "ema_decay": 0.99,
+  "prediction_weight": 1.0,
+  "masking": true,
+  "corruption": false,
+  "target_time": "current",
+  "fit_videos": [
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "calibration_video": "BT-003",
+  "validation_video": "BT-001",
+  "epochs": 8,
+  "steps_per_epoch": 64,
+  "batch_size": 64,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "known_negative_missing_probability": 0.0,
+  "selection": "Fixed epoch8,scale0.05,utility0.2,matched same-seed ordinary/noEMA budgets. Frozen independently trained RGB and excluded-video ordinary producer seed1/2; no outer/dev choice.",
+  "scope": "Preserve causal unmasked ordinary prior; masking only supplementary residual branch. Bounded0.05 corrections inside original native appearance region. Association loss only where range permits a correction; full-video evaluation includes all cases. Candidate-centered teacher latent prediction; no future fallback/GT student input. Same4389-parameter four-family budgets fixed globally.",
+  "utility_weight": 0.2,
+  "residual_scale": 0.05,
+  "centered_prediction": true
+}
