@@ -74,3 +74,7 @@ VII-H5: 42association-only currentoverlapproxy controls complete; macroHOTA+.029
 
 
 Actual GPU checks confirm both visible-token modes can train with deterministic FP16 and matched active capacity; masked first-step AMP backoff is recorded. First original-DINO frozen identity probe and real restart are complete. Stage-two CE/Triplet probes are separated from unsupervised pixel reconstruction and scheduled after real pretraining; no identity improvement is credited to a reconstruction loss. Source-JPM native three-seed FIFO results improve HOTA slightly on SN015 while reducing IDF1, and remain below frozen on BT001. Complete CLS-capacity comparisons and all-fold/native/novelty evidence remain required.
+
+## Visible-token RGB pretraining follow-up (2026-10-14)
+
+The first storage-safe `masked_visible_tokens` seed completed eight pretraining epochs and one frozen CE+Triplet identity probe. SN-015 detector gap25 Rank-1 fell from frozen CLS 57.937% to 57.143% (same 630/644 support), while unknown-selected counts changed 42→50. Therefore the single probe supplies no stable identity evidence and no native-MOT/JEPA novelty credit. The exact six-pretrain queue remains halted by storage reserve/forecast; preserve the completed seed and continue only with storage-safe combinations and final audits.

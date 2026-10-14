@@ -1,0 +1,224 @@
+{
+  "status": "COMPLETE_SINGLE_SEED_VISIBLE_TOKEN_MAE_IDENTITY_PROBE",
+  "as_of": "2026-10-14",
+  "scope": "One legal first-fold fit-only visible-token RGB pretrain followed by one frozen-encoder identity CE+Triplet probe; identity retrieval only, no native MOT replay.",
+  "pretraining": {
+    "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+    "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_fish_pretrain_masked_visible_tokens_s0_v1/manifest.json",
+    "manifest_sha256": "a703f1ba5254ce847642de8e2e95367ef8a1579b8126c6410b8637495dfe9290",
+    "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_fish_pretrain_masked_visible_tokens_s0_v1/encoder_final.pt",
+    "encoder_checkpoint_sha256": "1f92036632a31fa44d2d6e583558476b8b94879f38936ca4c26c87524009583d",
+    "mode": "masked_visible_tokens",
+    "seed": 0,
+    "fit_videos": [
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "excluded_outer": "SN-015",
+    "excluded_inner": "BT-001",
+    "epochs": 8,
+    "steps_per_epoch": 150,
+    "attempted_steps": 1200,
+    "successful_updates": 1198,
+    "amp_overflow_skips": 2,
+    "physical_gpu": "1",
+    "frozen_position_and_unused_token_unchanged": true,
+    "source_commit": "e2ff323175dc655176de89933de3c54c7407e4f9"
+  },
+  "identity_probe": {
+    "status": "COMPLETE",
+    "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s0_v1/manifest.json",
+    "manifest_sha256": "b4a939ecb608d62039e9c01b46b01be5562ad83e124aac9c139c2963c980edd6",
+    "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s0_v1/final.pt",
+    "checkpoint_sha256": "514179dffe562ff958581b7d7f7bbb0f4ac44c0df99b6f9742a75a044c9f4a87",
+    "mode": "masked_visible_tokens",
+    "loss_mode": "ce_triplet",
+    "seed": 0,
+    "outer": "SN-015",
+    "inner": "BT-001",
+    "fit_videos": [
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001"
+    ],
+    "local_count": 4,
+    "parameters": 22232448,
+    "trainable_parameters": 175872,
+    "trainable_backbone_parameters": 0,
+    "trainable_head_parameters": 175872,
+    "epochs": 8,
+    "attempted_steps": 1200,
+    "successful_updates": 1196,
+    "amp_overflow_skips": 4,
+    "frozen_prefix_unchanged": true,
+    "trained_backbone_l2_change": 0.0,
+    "physical_gpu": "1",
+    "source_commit": "daf4892b299b1e43c275ba299cc79a593cbf8f5d"
+  },
+  "retrieval": {
+    "BT-001": {
+      "gt": {
+        "1": {
+          "queries": 640,
+          "supported_queries": 630,
+          "missing_target": 10,
+          "rank1_percent": 75.23809523809524,
+          "rank5_percent": 86.82539682539682,
+          "mAP_percent": 18.58332836921574,
+          "unknown_selected": 0
+        },
+        "25": {
+          "queries": 640,
+          "supported_queries": 630,
+          "missing_target": 10,
+          "rank1_percent": 30.476190476190478,
+          "rank5_percent": 54.6031746031746,
+          "mAP_percent": 16.365612363816577,
+          "unknown_selected": 0
+        },
+        "100": {
+          "queries": 640,
+          "supported_queries": 610,
+          "missing_target": 30,
+          "rank1_percent": 17.04918032786885,
+          "rank5_percent": 42.295081967213115,
+          "mAP_percent": 14.006062822983436,
+          "unknown_selected": 0
+        }
+      },
+      "detector": {
+        "1": {
+          "queries": 640,
+          "supported_queries": 630,
+          "missing_target": 10,
+          "rank1_percent": 67.93650793650794,
+          "rank5_percent": 81.42857142857143,
+          "mAP_percent": 14.506831899329441,
+          "unknown_selected": 100
+        },
+        "25": {
+          "queries": 640,
+          "supported_queries": 624,
+          "missing_target": 16,
+          "rank1_percent": 22.916666666666664,
+          "rank5_percent": 45.3525641025641,
+          "mAP_percent": 11.723149993438508,
+          "unknown_selected": 164
+        },
+        "100": {
+          "queries": 640,
+          "supported_queries": 613,
+          "missing_target": 27,
+          "rank1_percent": 13.539967373572596,
+          "rank5_percent": 32.46329526916802,
+          "mAP_percent": 9.867868772051605,
+          "unknown_selected": 158
+        }
+      }
+    },
+    "SN-015": {
+      "gt": {
+        "1": {
+          "queries": 654,
+          "supported_queries": 641,
+          "missing_target": 13,
+          "rank1_percent": 88.14352574102963,
+          "rank5_percent": 92.66770670826833,
+          "mAP_percent": 29.630483428834093,
+          "unknown_selected": 0
+        },
+        "25": {
+          "queries": 654,
+          "supported_queries": 634,
+          "missing_target": 20,
+          "rank1_percent": 54.889589905362776,
+          "rank5_percent": 72.87066246056783,
+          "mAP_percent": 27.619644720688964,
+          "unknown_selected": 0
+        },
+        "100": {
+          "queries": 654,
+          "supported_queries": 625,
+          "missing_target": 29,
+          "rank1_percent": 42.4,
+          "rank5_percent": 61.760000000000005,
+          "mAP_percent": 25.883533311850794,
+          "unknown_selected": 0
+        }
+      },
+      "detector": {
+        "1": {
+          "queries": 644,
+          "supported_queries": 633,
+          "missing_target": 11,
+          "rank1_percent": 86.09794628751975,
+          "rank5_percent": 92.89099526066352,
+          "mAP_percent": 28.114032352694462,
+          "unknown_selected": 28
+        },
+        "25": {
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.14285714285714,
+          "rank5_percent": 77.3015873015873,
+          "mAP_percent": 26.51266670842852,
+          "unknown_selected": 50
+        },
+        "100": {
+          "queries": 644,
+          "supported_queries": 625,
+          "missing_target": 19,
+          "rank1_percent": 46.239999999999995,
+          "rank5_percent": 64.32,
+          "mAP_percent": 24.918131818972597,
+          "unknown_selected": 48
+        }
+      }
+    }
+  },
+  "same_protocol_reference": {
+    "source_report": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+    "outer": "SN-015",
+    "view": "detector",
+    "gap": "25",
+    "frozen_cls": {
+      "queries": 644,
+      "supported_queries": 630,
+      "missing_target": 14,
+      "rank1_percent": 57.936507936507944,
+      "rank5_percent": 77.3015873015873,
+      "mAP_percent": 23.857170619990818,
+      "unknown_selected": 42
+    },
+    "probe": {
+      "queries": 644,
+      "supported_queries": 630,
+      "missing_target": 14,
+      "rank1_percent": 57.14285714285714,
+      "rank5_percent": 77.3015873015873,
+      "mAP_percent": 26.51266670842852,
+      "unknown_selected": 50
+    },
+    "rank1_delta_percentage_points": -0.793650793650805,
+    "mAP_delta_percentage_points": 2.655496088437701,
+    "support_equal": true,
+    "unknown_selected_equal": false
+  },
+  "interpretation": {
+    "result": "The single visible-token-pretrained frozen-head probe does not improve the matched SN-015 detector gap25 Rank-1 reference.",
+    "identity_claim": "No stable identity gain: this is one seed, one outer fold, one loss mode, and the probe changes unknown-selected counts relative to frozen CLS.",
+    "native_mot_claim": "None; no native replay was run because this crop-gallery probe is not a native-coordinate producer.",
+    "dense_jepa_claim": "None; the pretraining is an owned visible-token RGB reconstruction control and is not an official FishMAE or Dense-JEPA reproduction.",
+    "storage": "The registered six-pretrain queue remains halted by the exact storage reserve/forecast guard; this completed seed is retained as a small legal probe and does not justify restarting the queue."
+  },
+  "limitations": [
+    "Single seed and single outer fold; no three-seed or all-fold identity conclusion.",
+    "The four fit videos are unlabeled visible-token pretraining data; inherited detector/foundation exposure remains a limitation.",
+    "MOT, full raw pipeline timing and external generalization were not evaluated by this probe.",
+    "Large tensors and model weights remain outside Git; hashes and compact scalar metrics are retained here."
+  ]
+}

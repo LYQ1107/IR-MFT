@@ -235,3 +235,17 @@ Six fixed eight-epoch pretrains (150 steps per epoch, two modes, three seeds) an
 This is an independently implemented DINO initialization for visible-token RGB reconstruction. Identity CE/Triplet supervision, the ordinary supervised encoder control, all folds, native MOT evaluation, and novelty verification remain required. It establishes neither completed pretraining nor identity gains, and does not reproduce the complete FishMAE method. Evidence: PHASE_VII_VISIBLE_TOKEN_FISH_MAE_CPU_MEASURED.json.
 
 RGB reconstruction is a control for the latent prediction experiments. Object-centric JEPA still needs its own identity evidence, matched temporal controls, and native tracking validation.
+
+## Single completed visible-token masked-pretrain identity probe (2026-10-14)
+
+One storage-safe visible-token RGB reconstruction pretrain (seed0, `masked_visible_tokens`) completed its registered eight epochs on the four fit videos BT-003/MSK-002/PF-001/SN-001, with outer SN-015 and inner BT-001 excluded. A separate frozen-encoder CE+Triplet identity head then completed the legal first-fold probe on the same split. The encoder prefix stayed byte-guarded (`trained_backbone_l2_change=0` for the identity stage); 1198/1200 pretraining updates and 1198/1200 identity-head updates were finite/accepted after two pretraining AMP skips. The compact scalar evidence and every external manifest/checkpoint hash are in `PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json`.
+
+| Outer SN-015, detector history | Frozen CLS reference | Visible-token-pretrained probe |
+|---|---:|---:|
+| gap25 supported queries / total | 630 / 644 | 630 / 644 |
+| Rank-1 (%) | 57.937 | 57.143 |
+| Rank-5 (%) | 77.302 | 77.302 |
+| mAP (%) | 23.857 | 26.513 |
+| unknown selected | 42 | 50 |
+
+The probe Rank-1 is 0.794 percentage points below the frozen reference, and the changed unknown-selected count prevents treating the mAP increase as a clean matched benefit. This is one seed, one outer fold, and one loss mode; it provides no stable identity gain, native MOT result, whole-pipeline runtime result, Dense JEPA novelty claim, or official FishMAE reproduction. The six-pretrain queue remains halted by its exact storage-reserve/forecast guard; restarting it is not justified by this negative single-seed probe. The completed seed is retained as an auditable control, while pixel-masked final combinations, raw full-pipeline profiling, external generalization, and final novelty review remain open.
