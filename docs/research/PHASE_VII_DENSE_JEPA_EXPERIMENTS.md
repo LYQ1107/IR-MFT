@@ -207,6 +207,19 @@ OuterSN015 currentdetector wholevideo past-only gallery gap25 (630supported/644q
 
 Masked andvisiblelatent target modes haveidenticalmeanR1; pixelRGBreconstruction raisesR1slightly versusvisibleRGB butmAPis lower. No robust masking-specific identitybenefit, nativeMOT gain orJEPA novelty is established. Wholepast-gallery results cannot be compared directly with Bsingle-current-scene candidate retrieval. Source-matched strongerlocal identity heads, actualnative adaptedcoordinates/allfold/newmethod remain required.
 
+## Authoritative outer-fold native context-V2 completion (2026-10-14)
+
+The registered context-V2 models now have a complete same-input native replay for all six videos, three seeds, and three modes: `global` capacity control, ordinary `local_temporal`, and `full` with the masked-prediction branch kept training-only. Each model excludes its evaluated outer video and its declared inner video from fitting; replay uses the frozen DINO current proposal bank, accepted strictly-past native histories, the unchanged lifecycle and the official evaluator. There are 54 complete rows with prediction, replay-manifest, checkpoint and official-metric hashes in `PHASE_VII_CONTEXT_IDENTITY_NATIVE_ALLFOLDS_MEASURED.json`; the raw driver state and full metric vectors remain outside Git.
+
+| Mode | HOTA mean | AssA mean | IDF1 mean | MOTA mean | IDSW mean |
+|---|---:|---:|---:|---:|---:|
+| Same-input frozen FIFO | 38.784 | 26.686 | 47.426 | 73.459 | 114.5 |
+| Context-V2 full | 38.495 | 26.341 | 46.138 | 73.459 | 113.7 |
+| Context-V2 local temporal | 38.557 | 26.402 | 46.183 | 73.459 | 113.6 |
+| Context-V2 global capacity | 38.374 | 26.195 | 46.226 | 73.449 | 115.3 |
+
+The outer-fold native aggregate loses HOTA, AssA and IDF1 for all three learned modes relative to the same-input frozen FIFO reference; MOTA is effectively unchanged and IDSW does not improve consistently. Video effects are heterogeneous: BT-003 and MSK-002 move slightly upward, while BT-001 and SN-015 decline and PF-001 is byte-equivalent. This is complete negative causal evidence for the registered context-V2 route, not a Dense-JEPA contribution or a whole-raw FPS claim. It closes the all-fold native validation for these controls while leaving pixel-masked final combinations, raw full-pipeline profiling, external generalization and final novelty review open.
+
 
 ### Visible-token reconstruction comparison
 

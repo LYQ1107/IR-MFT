@@ -26,6 +26,8 @@ The six-video raw v3 controls are now terminal for both frozen DINO/FIFO and leg
 
 The overall goal remains `IN_PROGRESS`; this ledger deliberately records a negative result rather than converting it into a project-wide NO_GO.
 
+The six-video outer-fold context-V2 native campaign is now complete for `full`, ordinary `local_temporal`, and `global` controls (54 rows, three seeds). Macro HOTA is 38.495/38.557/38.374 versus frozen FIFO 38.784; macro IDF1 is 46.138/46.183/46.226 versus 47.426. This updates VII-H3/VII-H6 with complete causal evidence that the registered Dense-JEPA adapter does not improve same-input online tracking. Pixel-mask final combinations, raw full-pipeline cost, external generalization and final novelty review remain open.
+
 Startup: 10 A100-SXM4-40GB devices idle; no compute processes listed; 162.883GiB free. Initial work is CPU/source acquisition and offline diagnostics. Preserve old assets and reference commits; no large JEPA training before explaining VII-H1.
 
 ## VII-H1 first measured result

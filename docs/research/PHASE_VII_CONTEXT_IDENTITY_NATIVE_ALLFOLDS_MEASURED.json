@@ -1,0 +1,2767 @@
+{
+  "as_of": "2026-10-14",
+  "baseline_frozen_fifo_same_input": {
+    "BT-001": {
+      "metrics": {
+        "AssA": 22.8263996693714,
+        "DetA": 56.332165388453916,
+        "HOTA": 35.812139449917964,
+        "IDF1": 45.66482714661925,
+        "IDSW": 99,
+        "MOTA": 64.58
+      },
+      "official_metrics_sha256": "46e0013792c655fa64a902b73e2d2a81790e42c4c182b1df29058541c34510d5",
+      "prediction_sha256": "7d4c22bfb91892fa2028274befc7346d9c3c4e1dc0eec84a8a9f760a3c0d5ded",
+      "replay_manifest_sha256": "a3e0815474fe389b51878a8d0b630dcef07ae0c21fb0a4c4d965b92017d29e62"
+    },
+    "BT-003": {
+      "metrics": {
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "HOTA": 55.30530219492446,
+        "IDF1": 78.95392278953923,
+        "IDSW": 9,
+        "MOTA": 62.674897119341566
+      },
+      "official_metrics_sha256": "5862e4a3bd10d2c35f5f6393469c65cda76f91c96597b2d8ce8fba6a81fa5328",
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "replay_manifest_sha256": "e83c924cbf11b6b599d94ce4832ebfb758cccbdce5552fe23f3cd87730fdd84d"
+    },
+    "MSK-002": {
+      "metrics": {
+        "AssA": 13.317746485009014,
+        "DetA": 43.540617586267,
+        "HOTA": 23.982046875386047,
+        "IDF1": 29.200290563296573,
+        "IDSW": 384,
+        "MOTA": 45.196463078995144
+      },
+      "official_metrics_sha256": "190cf7b8ebe9a44373f179365fb40e2f814aa4daa240b73f531b4b90f61e7aed",
+      "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "replay_manifest_sha256": "cf13b21221cf7ae03c9b8a9d6c337cd8ffab0c05fa9d64a759734c3b1c02621c"
+    },
+    "PF-001": {
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "official_metrics_sha256": "2b4c420d2678797d3eb3e90427801c2712f2a331248366402b30b3224dad7e4d",
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "d0102f72fabc3cf146e9c7f77598a509227bfa7eaaa849d3a323cb96437fa940"
+    },
+    "SN-001": {
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "official_metrics_sha256": "7c26b682d1a3f6cb8c6157500dc9c6e4b081d42ab730874f09d88c17062d4b99",
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "058e8fc5a5926346e09260d5057e9b4394e3b3bfdd3718dea2271ba588361a17"
+    },
+    "SN-015": {
+      "metrics": {
+        "AssA": 14.785889647020573,
+        "DetA": 70.77344978513939,
+        "HOTA": 32.22498292191964,
+        "IDF1": 30.44482587144484,
+        "IDSW": 152,
+        "MOTA": 91.0188991936769
+      },
+      "official_metrics_sha256": "dcdac0bbbff5b62810a419f76253e9caf0c8b951f79b73d4ba4ae722246fbb23",
+      "prediction_sha256": "73e5912e10b53e120c31d9865d0796593590646741b2ee08ed4944b2e17c8bcb",
+      "replay_manifest_sha256": "81e6c93b53ef0d61b22e8492852caadeae2bd038fc30f0ad525f5aeb99eaedfa"
+    }
+  },
+  "config_sha256": "60eefe68b066b87e29437b41ac0c4d165b44a78c074ecabdcb7dff1774c48dbf",
+  "driver_report_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_context_allfolds_v1_report.json",
+  "driver_report_sha256": "88a8a118f2ad0fa075c506dada636a224dd6a9eac269490c021954bf46607465",
+  "driver_state_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_context_allfolds_v1.json",
+  "driver_state_sha256": "5ac25a49bd80ad4bde621763d624132118aad256ac9125392c6c19363a4962f6",
+  "interpretation": "The all-video outer-fold native evidence is descriptive and complete for the three registered modes. Interpret against the same-input frozen FIFO baseline and report all metric vectors; do not select a seed or claim whole-raw FPS. Full/context and ordinary local-temporal remain baseline-specific controls, not a positive Dense-JEPA novelty claim.",
+  "limitations": [
+    "Replay excludes raw detector/IR/encoder startup and is not a whole-raw FPS measurement.",
+    "The model is the registered context-V2 adapter; no official MOTIP or external-scene reproduction is claimed.",
+    "Frozen FIFO comparison shares current proposals and lifecycle but is not a raw detector comparison."
+  ],
+  "macro_by_mode": {
+    "full": {
+      "AssA": {
+        "mean": 26.340940264401084,
+        "sample_sd": 14.93429147852116,
+        "values": [
+          22.527090798781053,
+          21.460656788026817,
+          21.460656788026817,
+          55.893066869560094,
+          55.89208234043135,
+          55.89208234043135,
+          13.296941766918302,
+          13.532160273697766,
+          13.508829454238382,
+          22.647579361120833,
+          22.647579361120833,
+          22.647579361120833,
+          30.90659701856059,
+          30.902338168578048,
+          30.90659701856059,
+          13.405160427895597,
+          13.385434154787394,
+          13.224492467362769
+        ]
+      },
+      "DetA": {
+        "mean": 61.02261285073155,
+        "sample_sd": 11.785029394601095,
+        "values": [
+          56.417264870544805,
+          56.4351984915771,
+          56.4351984915771,
+          55.777457694619635,
+          55.7721498916985,
+          55.7721498916985,
+          43.55299708974395,
+          43.530737636369935,
+          43.54740797344825,
+          79.26732598766647,
+          79.26732598766647,
+          79.26732598766647,
+          60.147527781469144,
+          60.12003899795778,
+          60.147527781469144,
+          70.9188954804127,
+          71.00095724429693,
+          71.02954403328488
+        ]
+      },
+      "HOTA": {
+        "mean": 38.49522231744553,
+        "sample_sd": 10.430426985912916,
+        "values": [
+          35.61546102851992,
+          34.767809677916865,
+          34.767809677916865,
+          55.8190285749728,
+          55.8159110027215,
+          55.8159110027215,
+          23.96588378722388,
+          24.176773832538476,
+          24.15970892758225,
+          42.35458355695784,
+          42.35458355695784,
+          42.35458355695784,
+          43.023059329301624,
+          43.00924890700396,
+          43.023059329301624,
+          30.694054164628408,
+          30.687693913948657,
+          30.50883788684774
+        ]
+      },
+      "IDF1": {
+        "mean": 46.13840515580122,
+        "sample_sd": 19.196080803905073,
+        "values": [
+          42.142029520914846,
+          41.40538360721847,
+          41.40538360721847,
+          79.6761469794478,
+          79.734219269103,
+          79.734219269103,
+          29.197783984733526,
+          29.637702698239703,
+          29.634766527970413,
+          39.847499289333314,
+          39.847499289333314,
+          39.847499289333314,
+          60.443462479286666,
+          60.45777426992897,
+          60.443462479286666,
+          25.29838295687885,
+          26.477806830395096,
+          25.26027045669645
+        ]
+      },
+      "IDSW": {
+        "mean": 113.66666666666667,
+        "sample_sd": 136.38613005209965,
+        "values": [
+          101,
+          90,
+          90,
+          9,
+          9,
+          9,
+          390,
+          388,
+          390,
+          19,
+          19,
+          19,
+          24,
+          25,
+          24,
+          146,
+          147,
+          147
+        ]
+      },
+      "MOTA": {
+        "mean": 73.45868894331181,
+        "sample_sd": 18.543275760242555,
+        "values": [
+          64.44666666666666,
+          64.58,
+          64.58,
+          62.63374485596708,
+          62.757201646090536,
+          62.757201646090536,
+          45.19997657668209,
+          45.20700357205598,
+          45.21754406511682,
+          98.28666666666666,
+          98.28666666666666,
+          98.28666666666666,
+          78.99577804583836,
+          78.96562123039807,
+          78.99577804583836,
+          91.03164738502724,
+          91.02049271759569,
+          91.00774452624533
+        ]
+      }
+    },
+    "global": {
+      "AssA": {
+        "mean": 26.195333560098454,
+        "sample_sd": 14.9473761156512,
+        "values": [
+          20.52796443666891,
+          20.526907013976384,
+          20.52812427874686,
+          55.893066869560094,
+          55.89208234043135,
+          55.89208234043135,
+          13.540873654209243,
+          13.51771089951901,
+          13.51771089951901,
+          22.647579361120833,
+          22.647579361120833,
+          22.647579361120833,
+          30.90659701856059,
+          30.89749750303084,
+          30.90659701856059,
+          13.663651046193456,
+          13.663651046193456,
+          13.698749632808491
+        ]
+      },
+      "DetA": {
+        "mean": 60.95624470420247,
+        "sample_sd": 11.821807861033808,
+        "values": [
+          55.972448307473464,
+          55.96875903153503,
+          55.97276464233067,
+          55.777457694619635,
+          55.7721498916985,
+          55.7721498916985,
+          43.54163407483597,
+          43.55731843938814,
+          43.55731843938814,
+          79.26732598766647,
+          79.26732598766647,
+          79.26732598766647,
+          60.147527781469144,
+          60.147527781469144,
+          60.147527781469144,
+          71.02575506428053,
+          71.02575506428053,
+          71.02433282670835
+        ]
+      },
+      "HOTA": {
+        "mean": 38.37429544400869,
+        "sample_sd": 10.440507353516567,
+        "values": [
+          33.846922385587554,
+          33.84489085573145,
+          33.84715107715163,
+          55.8190285749728,
+          55.8159110027215,
+          55.8159110027215,
+          24.18784415250258,
+          24.17064971793016,
+          24.17064971793016,
+          42.35458355695784,
+          42.35458355695784,
+          42.35458355695784,
+          43.023059329301624,
+          43.016270398520035,
+          43.023059329301624,
+          31.01735517322521,
+          31.01735517322521,
+          31.05750943046
+        ]
+      },
+      "IDF1": {
+        "mean": 46.22558286378622,
+        "sample_sd": 19.052175993374295,
+        "values": [
+          41.30752312677333,
+          41.30752312677333,
+          41.30752312677333,
+          79.6761469794478,
+          79.734219269103,
+          79.734219269103,
+          29.678595249258727,
+          29.675655687911046,
+          29.675655687911046,
+          39.847499289333314,
+          39.847499289333314,
+          39.847499289333314,
+          60.443462479286666,
+          60.443462479286666,
+          60.443462479286666,
+          26.362345921583408,
+          26.362345921583408,
+          26.365852876070704
+        ]
+      },
+      "IDSW": {
+        "mean": 115.27777777777777,
+        "sample_sd": 134.77598213137654,
+        "values": [
+          109,
+          109,
+          109,
+          9,
+          9,
+          9,
+          383,
+          387,
+          387,
+          19,
+          19,
+          19,
+          24,
+          24,
+          24,
+          145,
+          145,
+          145
+        ]
+      },
+      "MOTA": {
+        "mean": 73.44917524020124,
+        "sample_sd": 18.546598483976613,
+        "values": [
+          64.48666666666666,
+          64.48666666666666,
+          64.48666666666666,
+          62.63374485596708,
+          62.757201646090536,
+          62.757201646090536,
+          45.198805410786434,
+          45.20700357205598,
+          45.20700357205598,
+          98.28666666666666,
+          98.28666666666666,
+          98.28666666666666,
+          78.99577804583836,
+          78.99577804583836,
+          78.99577804583836,
+          91.00296395448896,
+          91.00296395448896,
+          91.01093157408293
+        ]
+      }
+    },
+    "local_temporal": {
+      "AssA": {
+        "mean": 26.40173232142217,
+        "sample_sd": 14.887678768401617,
+        "values": [
+          22.527090798781053,
+          21.74732669795537,
+          21.460656788026817,
+          55.893066869560094,
+          55.89208234043135,
+          55.89208234043135,
+          13.5200902292823,
+          13.532160273697766,
+          13.508829454238382,
+          22.647579361120833,
+          22.647579361120833,
+          22.647579361120833,
+          30.90659701856059,
+          30.902338168578048,
+          30.90659701856059,
+          13.405240716835575,
+          13.562854579363382,
+          13.6314304079338
+        ]
+      },
+      "DetA": {
+        "mean": 61.02258683773256,
+        "sample_sd": 11.787221277828113,
+        "values": [
+          56.417264870544805,
+          56.40291256666837,
+          56.4351984915771,
+          55.777457694619635,
+          55.7721498916985,
+          55.7721498916985,
+          43.55401418408847,
+          43.530737636369935,
+          43.54740797344825,
+          79.26732598766647,
+          79.26732598766647,
+          79.26732598766647,
+          60.147527781469144,
+          60.12003899795778,
+          60.147527781469144,
+          70.91919920547085,
+          71.0073861337179,
+          71.05361201538824
+        ]
+      },
+      "HOTA": {
+        "mean": 38.5567705878139,
+        "sample_sd": 10.379110879359093,
+        "values": [
+          35.61546102851992,
+          34.98771786458322,
+          34.767809677916865,
+          55.8190285749728,
+          55.8159110027215,
+          55.8159110027215,
+          24.171918423374848,
+          24.176773832538476,
+          24.15970892758225,
+          42.35458355695784,
+          42.35458355695784,
+          42.35458355695784,
+          43.023059329301624,
+          43.00924890700396,
+          43.023059329301624,
+          30.69421728123407,
+          30.89444642609509,
+          30.983848301908907
+        ]
+      },
+      "IDF1": {
+        "mean": 46.183003653511214,
+        "sample_sd": 19.166954635333987,
+        "values": [
+          42.142029520914846,
+          41.72939911278398,
+          41.40538360721847,
+          79.6761469794478,
+          79.734219269103,
+          79.734219269103,
+          29.67604759577924,
+          29.637702698239703,
+          29.634766527970413,
+          39.847499289333314,
+          39.847499289333314,
+          39.847499289333314,
+          60.443462479286666,
+          60.45777426992897,
+          60.443462479286666,
+          25.298585878030977,
+          26.47728730912357,
+          25.26108089898455
+        ]
+      },
+      "IDSW": {
+        "mean": 113.61111111111111,
+        "sample_sd": 136.17425639442706,
+        "values": [
+          101,
+          94,
+          90,
+          9,
+          9,
+          9,
+          389,
+          388,
+          390,
+          19,
+          19,
+          19,
+          24,
+          25,
+          24,
+          146,
+          146,
+          144
+        ]
+      },
+      "MOTA": {
+        "mean": 73.45887509407443,
+        "sample_sd": 18.544240376169814,
+        "values": [
+          64.44666666666666,
+          64.56666666666668,
+          64.58,
+          62.63374485596708,
+          62.757201646090536,
+          62.757201646090536,
+          45.20231890847339,
+          45.20700357205598,
+          45.21754406511682,
+          98.28666666666666,
+          98.28666666666666,
+          98.28666666666666,
+          78.99577804583836,
+          78.96562123039807,
+          78.99577804583836,
+          91.03324090894604,
+          91.0188991936769,
+          91.02208624151449
+        ]
+      }
+    }
+  },
+  "modes": [
+    "full",
+    "global",
+    "local_temporal"
+  ],
+  "protocol": "Outer-fold context-V2 models replayed on the same frozen-DINO current proposal bank and native lifecycle; strict past accepted histories; no GT, teacher, future or raw detector/IR startup in replay.",
+  "runs": [
+    {
+      "association_seconds": 96.11332139077422,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 22.527090798781053,
+        "DetA": 56.417264870544805,
+        "HOTA": 35.61546102851992,
+        "IDF1": 42.142029520914846,
+        "IDSW": 101,
+        "MOTA": 64.44666666666666
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-001_k4_s0_v2",
+      "model_checkpoint_sha256": "112e15382636e33dede6daccca0357fafdb24575b1d6f3224e005ad971437e8e",
+      "model_manifest_sha256": "4d4a8ca0f8568018f0c61ae36e83da6cecb448954f50d8dfb797a0b78876f3a8",
+      "official_metrics_sha256": "743ef4c8fc75cae171262773a53e9fd3ab10f5e11afd8df9e175ffff2e0eed98",
+      "output_rows": 29551,
+      "prediction_sha256": "5c658bfe3a5a4bd57b5cb783906d4b1183be9722671ea4e8842ad43b2a58f931",
+      "replay_manifest_sha256": "4f7de21afdfd872e2b92af411c1a2fc41b508c23ef92ded25b57087ec308c510",
+      "seed": 0,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 99.82971441876725,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 21.460656788026817,
+        "DetA": 56.4351984915771,
+        "HOTA": 34.767809677916865,
+        "IDF1": 41.40538360721847,
+        "IDSW": 90,
+        "MOTA": 64.58
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-001_k4_s1_v2",
+      "model_checkpoint_sha256": "d176d767df878f27e18c1b9e71a56ab6e41167d70f01f6fc25ba079b0022e8e9",
+      "model_manifest_sha256": "a93703023f3e657408e238e2763665de8aec7774738f30c91a97a138739bc6b0",
+      "official_metrics_sha256": "0cd3bf0dc867990b9d5f53ad9e79b6746401179359477f888fd46d5f37ab06ee",
+      "output_rows": 29514,
+      "prediction_sha256": "58ceb432b6816c6e3766675e0584b8846e0d5fd170f5cdc6706d4b9cd0cf7914",
+      "replay_manifest_sha256": "f43814586fd2868ec1e1aa44d99dc3fd563efdce0061064d5d47aa3e1c60977d",
+      "seed": 1,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 99.0672471345606,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 21.460656788026817,
+        "DetA": 56.4351984915771,
+        "HOTA": 34.767809677916865,
+        "IDF1": 41.40538360721847,
+        "IDSW": 90,
+        "MOTA": 64.58
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-001_k4_s2_v2",
+      "model_checkpoint_sha256": "3243d75bdf7d3075b2c6c89091946dfeb6a632bc5936ce8be10399fa3cf0ef3e",
+      "model_manifest_sha256": "f35fcb7bdc586741ae0909c11ad80492f61a6d8e54537a612dd1e7d8c1de9e71",
+      "official_metrics_sha256": "162902384f403fe3e398d507fd54e21aced696ab5143627567f1d2c8240fc542",
+      "output_rows": 29514,
+      "prediction_sha256": "58ceb432b6816c6e3766675e0584b8846e0d5fd170f5cdc6706d4b9cd0cf7914",
+      "replay_manifest_sha256": "6fa5dfbf6cf78915624abbd62980419d4144fcbcdd2d69cbd1cc6cce106f2ab5",
+      "seed": 2,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 92.0446819778881,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 22.527090798781053,
+        "DetA": 56.417264870544805,
+        "HOTA": 35.61546102851992,
+        "IDF1": 42.142029520914846,
+        "IDSW": 101,
+        "MOTA": 64.44666666666666
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-001_k4_s0_v2",
+      "model_checkpoint_sha256": "931c088eb5aa67e4f8ab8508f8f4f1e80dc93d3e195632506dd0e3ac66cb04d7",
+      "model_manifest_sha256": "32ebb735ca4c26a70d06cbe58b8142db108d09d2b70700932a5c469feccb6f69",
+      "official_metrics_sha256": "4fc31b7a29c50343b67406941c297808183fdca800f46921e35d0ed8400466f5",
+      "output_rows": 29551,
+      "prediction_sha256": "5c658bfe3a5a4bd57b5cb783906d4b1183be9722671ea4e8842ad43b2a58f931",
+      "replay_manifest_sha256": "3918a0627ce56175784b8af6372a3faee80a1b6d643d5673aeb7275fd9206c9e",
+      "seed": 0,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 97.888750469152,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 21.74732669795537,
+        "DetA": 56.40291256666837,
+        "HOTA": 34.98771786458322,
+        "IDF1": 41.72939911278398,
+        "IDSW": 94,
+        "MOTA": 64.56666666666668
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-001_k4_s1_v2",
+      "model_checkpoint_sha256": "7ecf216a4f883db7af5a29359cc39623335a215b073bb7b22ba36e3be3efa163",
+      "model_manifest_sha256": "93608a3ad0c036afc28266724410618fc8f2eeba02c85ff87517f20faee04690",
+      "official_metrics_sha256": "3bd8ae776e2d42400e91eea11bd7cf21eaef21bd89f6d590c73f5996b61516d3",
+      "output_rows": 29512,
+      "prediction_sha256": "f20513a871da385d3367fb54104f96880156d04826ad2b3b18d448855f8fd3bb",
+      "replay_manifest_sha256": "db0caae847c4ac4e1e56b127a3f767c1ee5f2bd8334f7286f24091cba0e86fc2",
+      "seed": 1,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 96.7795853127027,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 21.460656788026817,
+        "DetA": 56.4351984915771,
+        "HOTA": 34.767809677916865,
+        "IDF1": 41.40538360721847,
+        "IDSW": 90,
+        "MOTA": 64.58
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-001_k4_s2_v2",
+      "model_checkpoint_sha256": "a5f2d0ce31f534c75aa02a5c41391389e0f883705c44d448bd3d655a60c86fb7",
+      "model_manifest_sha256": "1b8741eb91414a90deab23209c04030291c9cc78bffd3345362ebaf119e69b12",
+      "official_metrics_sha256": "4511d3bec5ca4d9400628150329b535a9acacae834b7cf8159f3e8dc404b3193",
+      "output_rows": 29514,
+      "prediction_sha256": "58ceb432b6816c6e3766675e0584b8846e0d5fd170f5cdc6706d4b9cd0cf7914",
+      "replay_manifest_sha256": "b7d95d53259a162f1e4a4f0f8aebeeadbeffca4734209f7534cb8f7f83d3ed82",
+      "seed": 2,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 78.90695173792483,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 20.52796443666891,
+        "DetA": 55.972448307473464,
+        "HOTA": 33.846922385587554,
+        "IDF1": 41.30752312677333,
+        "IDSW": 109,
+        "MOTA": 64.48666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-001_k4_s0_v2",
+      "model_checkpoint_sha256": "bc500f23d62684fbe34c6bdcc61bcaa50bc87f050dab9a89c6a44500400a1877",
+      "model_manifest_sha256": "0cd5802babdb152247ae75d75abe2bc8b706341dd64e2935f3baa6dddc4f98a1",
+      "official_metrics_sha256": "944fecbb236d128acb0eeef5d5b4183692e2dbd01a5ddaa137ccbfff78d2a827",
+      "output_rows": 29563,
+      "prediction_sha256": "16ca24bc880ea3576dfb0ba9cab3b6994825dabcabd9edb4d17ec3d8b84ed625",
+      "replay_manifest_sha256": "aa07c5c9071e904ce820e91ab1f28098a04db1ab1f847d2c73cfadf9470f0596",
+      "seed": 0,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 76.48052333458327,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 20.526907013976384,
+        "DetA": 55.96875903153503,
+        "HOTA": 33.84489085573145,
+        "IDF1": 41.30752312677333,
+        "IDSW": 109,
+        "MOTA": 64.48666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-001_k4_s1_v2",
+      "model_checkpoint_sha256": "a088fee0ad5d5d1e3c9c8d5b22ccc185077ac647a28e64818b3d0feb5606949c",
+      "model_manifest_sha256": "c912676ac58f2aabe5736a14c1ba5627576705d375a69832ec219858127e1283",
+      "official_metrics_sha256": "0615ce8622fb547495a60e06df7331581d1953c39678309894f3acac23fbe390",
+      "output_rows": 29563,
+      "prediction_sha256": "733ec7041bebb67f35da39eafd0e6b49ddc07dd14aaa9967f4ae8c598ef1e172",
+      "replay_manifest_sha256": "7a592e05685b2724da5fa63ba305749c4eafed52cff2198bddf12d678b6dc84f",
+      "seed": 1,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 78.55881822435185,
+      "feature_manifest_sha256": "70f056fff54b3ba35b8d736af8dee300ad25bcf9aa5ba8967c91aea00adb3714",
+      "metrics": {
+        "AssA": 20.52812427874686,
+        "DetA": 55.97276464233067,
+        "HOTA": 33.84715107715163,
+        "IDF1": 41.30752312677333,
+        "IDSW": 109,
+        "MOTA": 64.48666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-001_k4_s2_v2",
+      "model_checkpoint_sha256": "569d6e0f8b4b802717b6c774884c9de2b495bd20cce4d64eaa693a666777954d",
+      "model_manifest_sha256": "16cfa33759196d47683b750edbc50f14abbe22ea979332c2bfcfaa2e9510c366",
+      "official_metrics_sha256": "fc7c2f77aad725cc939cc27b9f4ec48719f0ad9f4e27d2e349006348b310e642",
+      "output_rows": 29563,
+      "prediction_sha256": "64f45d3433f0353d13d109df19fb2b7d188df97e174ceb71d6fb7c1ddef4a56c",
+      "replay_manifest_sha256": "da0de1aaab8631feddb62fd1eb3559cbb60bb0e876341876cb81d2d31831bd3c",
+      "seed": 2,
+      "video": "BT-001"
+    },
+    {
+      "association_seconds": 7.655326664811582,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.893066869560094,
+        "DetA": 55.777457694619635,
+        "HOTA": 55.8190285749728,
+        "IDF1": 79.6761469794478,
+        "IDSW": 9,
+        "MOTA": 62.63374485596708
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-003_k4_s0_v2",
+      "model_checkpoint_sha256": "feca1d1821d5a722166a473086c079947ccc033827666d022d7070c10434a88c",
+      "model_manifest_sha256": "0c55c5a33bbe8f15e71da7f17de3908d8e9e0d3c6dd63386e46829af0a281956",
+      "official_metrics_sha256": "eaecf9d9403226c544aa7656f503b310aa9fe216c0b95a071f94f83b8fdf63e5",
+      "output_rows": 2387,
+      "prediction_sha256": "113c4d0a5346737c57008ef21a1ebefd1fb97bd2aea76cc7d8f24ca80c3a38bd",
+      "replay_manifest_sha256": "14516614871e76fe81522fb91fd349ac410ecccb9d03129e779b35a4df3a470b",
+      "seed": 0,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 7.370607690958423,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-003_k4_s1_v2",
+      "model_checkpoint_sha256": "b6f87f17235751de679ddb6ec6d9cdee39d165d7103b5c31631e7a9155fe0484",
+      "model_manifest_sha256": "5f957f8604b4b5841df4c2af7fde1237bc2ebebe84b51666b1e32cc24ccb3b2d",
+      "official_metrics_sha256": "488d07cd52dd4a3ed3b7eff913937595f97d9b1b0be55954a20638a03e56a7f5",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "e387c5401137f911504b1b0cd97ec9a9f0b952815f5886366bb2295e874d2ef3",
+      "seed": 1,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 8.084984482004074,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_BT-003_k4_s2_v2",
+      "model_checkpoint_sha256": "7dca200380d2549f197873aeae3ad5d1bbcbded4d6292a839abac0cf931e1a88",
+      "model_manifest_sha256": "d4e0ce28cc1fd8c265fe56a3309c791254f5dea456c108fe3d78b3425052de1b",
+      "official_metrics_sha256": "9b4d16998763aec4d78076d56ece11eeb774770a67d7a8fcd96cd68447da9e7e",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "835344f40e5e1a65c198c6ef59aae656b3803d0b5bcfe1642d1c5e7fd8d051fc",
+      "seed": 2,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 7.681583294150187,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.893066869560094,
+        "DetA": 55.777457694619635,
+        "HOTA": 55.8190285749728,
+        "IDF1": 79.6761469794478,
+        "IDSW": 9,
+        "MOTA": 62.63374485596708
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-003_k4_s0_v2",
+      "model_checkpoint_sha256": "0be2a3618686e655157d827c7002ddbad6008a9fd2e8ededeb936179689f0f70",
+      "model_manifest_sha256": "7e27e52f90a24c19e6647516e0762f49a8b4612e3309d1ec0a8dd48b40ee820c",
+      "official_metrics_sha256": "013b0486719a2cefe22fc5a1c376e10dbc8431b69566cd62de0754e58f801a73",
+      "output_rows": 2387,
+      "prediction_sha256": "113c4d0a5346737c57008ef21a1ebefd1fb97bd2aea76cc7d8f24ca80c3a38bd",
+      "replay_manifest_sha256": "621768e0655eb47b6d80aeb6ffee146824f9d80cc093910c5a98b90e9685e5ee",
+      "seed": 0,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 7.547780845983652,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-003_k4_s1_v2",
+      "model_checkpoint_sha256": "b37471ef5444685c4079ada01a3313b1c35605bb8c7591b3f21a74728309a427",
+      "model_manifest_sha256": "a121167d04ee31c7026f596352cdb266effbac1bc1e7a4abb93d994f9ad7d670",
+      "official_metrics_sha256": "353b1fa82a0f4be77ffd949a14bc951648aa1419eeb0e642621cda76bd49c6b3",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "7bc52f94c21322529f5ea1a61c2fa08a1c848410fa1309d335ce6697e7236c04",
+      "seed": 1,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 8.053255972903571,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-003_k4_s2_v2",
+      "model_checkpoint_sha256": "3f263b82b03ed0cae8a5ef594fe45d0a3df1b1e680afbc54671844eb8d1eab73",
+      "model_manifest_sha256": "0d6aff42cce12df8040e5db76d5ea83f71c5132237463760f37413a3de1b419e",
+      "official_metrics_sha256": "ac9a94efd01d178745a1fddcaccdf8896a7ef33455419c39efcc2cf27ff1fb11",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "60404cf372fa7449cb9371f2bf2fae18bd3d35f540cc50b1669471a76e57c56d",
+      "seed": 2,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 6.116061550943414,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.893066869560094,
+        "DetA": 55.777457694619635,
+        "HOTA": 55.8190285749728,
+        "IDF1": 79.6761469794478,
+        "IDSW": 9,
+        "MOTA": 62.63374485596708
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-003_k4_s0_v2",
+      "model_checkpoint_sha256": "5066dc3c95e691b8c9d3f79ab734f2598435dbcdacc291338c5c53c635b526a5",
+      "model_manifest_sha256": "a112ec2c31415df29ca46861d3082c11fbf32074dc588bcf39992198d1fdba42",
+      "official_metrics_sha256": "e22ddbba129f4412fbbcf3b1342d64ae4732c6b7db7e7567eee9407c260af01b",
+      "output_rows": 2387,
+      "prediction_sha256": "113c4d0a5346737c57008ef21a1ebefd1fb97bd2aea76cc7d8f24ca80c3a38bd",
+      "replay_manifest_sha256": "ce71e31d53cf6cfae5b863af72df895ae102183b00d11efef4f4a99a21fdc187",
+      "seed": 0,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 6.0863791210140334,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-003_k4_s1_v2",
+      "model_checkpoint_sha256": "ed8f1a2a95b28f1f66781f4cc94960d981102cc61a7dc2323216fc9a81d9a739",
+      "model_manifest_sha256": "5478615c852d6b711f68ff9d8d89d60a82ee6ad245b3ed412c0a49285593e515",
+      "official_metrics_sha256": "874308f364bb0fd3c3774f3d8bce41eef5c9965565c59d5967e6e8d68289c2ad",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "8ce3cbbf333e39eb25aafb343d86b5532a26b6269750f886919e7d5b60480f21",
+      "seed": 1,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 6.001583747944096,
+      "feature_manifest_sha256": "fffe5458f9f93588d1a9085854cf6a5ac65dca71ace6bd034a2394426ee0ba53",
+      "metrics": {
+        "AssA": 55.89208234043135,
+        "DetA": 55.7721498916985,
+        "HOTA": 55.8159110027215,
+        "IDF1": 79.734219269103,
+        "IDSW": 9,
+        "MOTA": 62.757201646090536
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_BT-003_k4_s2_v2",
+      "model_checkpoint_sha256": "c58c011b458f1721e1fe5c1fe54d0de873abf639a388489812d0083036c9688a",
+      "model_manifest_sha256": "52b1ff6096c1c4c5929fb0de04992d2ccea1f1c4bd54103a10fbc3104ba02ffa",
+      "official_metrics_sha256": "eb016c1b22c6ddc630f643faa370064d515cc3158a507a82f465761afc51a516",
+      "output_rows": 2386,
+      "prediction_sha256": "db1c1443d90b0b7dd1736590a4f69ba04fec4b0386a5097552f0269b77420762",
+      "replay_manifest_sha256": "9cdc30cedf3894406b36e2ba67dfeef237dd7365d4f2e1e8e475948ae7d97376",
+      "seed": 2,
+      "video": "BT-003"
+    },
+    {
+      "association_seconds": 198.18874520176905,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.296941766918302,
+        "DetA": 43.55299708974395,
+        "HOTA": 23.96588378722388,
+        "IDF1": 29.197783984733526,
+        "IDSW": 390,
+        "MOTA": 45.19997657668209
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_MSK-002_k4_s0_v2",
+      "model_checkpoint_sha256": "5ee115d52bec8cf1699048a1eec7b58208e8a6aefeb04030a45d49b6aab2b810",
+      "model_manifest_sha256": "58e010df55e465224ec290809a58868106f69208f496312b3f7005c007ff13ce",
+      "official_metrics_sha256": "3ec39d5f0d6870bbb92513bc73cb39fa16bf4d502f009ec8acbc36870bccd7e3",
+      "output_rows": 66058,
+      "prediction_sha256": "d14562e0a028d7f651086934b2e0739184a89afb64f27528ddb690716c2b042d",
+      "replay_manifest_sha256": "c497cbcb7f92a0bebb03fba3f828625325bb5d1e896796e9c5ae761ad7167672",
+      "seed": 0,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 193.5225556808873,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.532160273697766,
+        "DetA": 43.530737636369935,
+        "HOTA": 24.176773832538476,
+        "IDF1": 29.637702698239703,
+        "IDSW": 388,
+        "MOTA": 45.20700357205598
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_MSK-002_k4_s1_v2",
+      "model_checkpoint_sha256": "6bccb0737e89d9e8cf65b9732f5dec5090f2ff7632a07d25105146b944f8b930",
+      "model_manifest_sha256": "5b28c71fa95fb577851a3f60e786378a5b16b76279645321b8a3b26b389e7eaf",
+      "official_metrics_sha256": "a6c2c6cf0417b258de39a96fd185e3cf95a1e87ab3584b81c4dd511cba6d1093",
+      "output_rows": 66010,
+      "prediction_sha256": "cdde59e7266a3986f39e4b5df6d9c3adca10eb2077e0fd271743035430c04d2b",
+      "replay_manifest_sha256": "06ea96b4c0798ec425e9ebf6739cdc338d5470f380674f4cf71bdcf0acebfb24",
+      "seed": 1,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 213.29204186088464,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.508829454238382,
+        "DetA": 43.54740797344825,
+        "HOTA": 24.15970892758225,
+        "IDF1": 29.634766527970413,
+        "IDSW": 390,
+        "MOTA": 45.21754406511682
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_MSK-002_k4_s2_v2",
+      "model_checkpoint_sha256": "49fff5b78db7e2a1209d2ea3a7b213f1877bcbc1d8dc0439968a0471e3ffee42",
+      "model_manifest_sha256": "85766c45e472fe2dbd596db73acd1d8e84d1cec871f00c7a4d8992601d87225c",
+      "official_metrics_sha256": "447ad1072c40bfe1e52b660fd2ca0db81a6ce1cf4258525802019290f45ed6ed",
+      "output_rows": 66025,
+      "prediction_sha256": "92ea07d13dfa348046ef14f8d4359173b3e5bd0e58d115809ef73bc4d2c87ba4",
+      "replay_manifest_sha256": "9449700c25e5cf3943a2c8597f3c05bc71880ce6ee14edd62cbb5a2058abab83",
+      "seed": 2,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 197.91259252470627,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.5200902292823,
+        "DetA": 43.55401418408847,
+        "HOTA": 24.171918423374848,
+        "IDF1": 29.67604759577924,
+        "IDSW": 389,
+        "MOTA": 45.20231890847339
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_MSK-002_k4_s0_v2",
+      "model_checkpoint_sha256": "3c327c86687a652a88b8f9faff95c0aad50de0066b9976b81dc2bce86bddc69c",
+      "model_manifest_sha256": "8c9961943ce324943418d39477f5deb59f83e442e25c5327b04ec239c3204fd1",
+      "official_metrics_sha256": "15d8c7af2205bb340f6bb175a5720a061ccc16c196f0a4cd9bd929d10ed4a1dd",
+      "output_rows": 66057,
+      "prediction_sha256": "05a0aaaec33e58769afc7182f4e5f3af5f091b307d5dffdc15b3948e12777257",
+      "replay_manifest_sha256": "b17401b604db6b983f0cec523a5e1037d1cb736fc98775f4d70cb3f6e4cce8ca",
+      "seed": 0,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 220.3121859184903,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.532160273697766,
+        "DetA": 43.530737636369935,
+        "HOTA": 24.176773832538476,
+        "IDF1": 29.637702698239703,
+        "IDSW": 388,
+        "MOTA": 45.20700357205598
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_MSK-002_k4_s1_v2",
+      "model_checkpoint_sha256": "c0216407da86bf9c8ff1490144cb54da0f4d16bcce2553e2a362fd7ee4220e47",
+      "model_manifest_sha256": "d335208868b6ee586210f231c7b45d92f7241781125c74b6954c2b38bcbd8958",
+      "official_metrics_sha256": "b24f33e3de1d5148aef1c91fad1295dfdb23bffc84d3d974c6de3d65cf359b14",
+      "output_rows": 66010,
+      "prediction_sha256": "cdde59e7266a3986f39e4b5df6d9c3adca10eb2077e0fd271743035430c04d2b",
+      "replay_manifest_sha256": "f56fcaca48f34fd5267c2f156c2359b8dbcc1cf09454a8e78151fcbda655bcc0",
+      "seed": 1,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 196.05772850893845,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.508829454238382,
+        "DetA": 43.54740797344825,
+        "HOTA": 24.15970892758225,
+        "IDF1": 29.634766527970413,
+        "IDSW": 390,
+        "MOTA": 45.21754406511682
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_MSK-002_k4_s2_v2",
+      "model_checkpoint_sha256": "e51d6726cf9b33ea0f974a0ad7449de27e2b57e728d19c5628f5f114bb8c7f38",
+      "model_manifest_sha256": "22ea4802e5c4a8abfe3af1959558a8b02f7ddbe0939a260a82ccf1e48166a63c",
+      "official_metrics_sha256": "4e5a0f8c8442b7058b14465c6db562fdac00b1ff13895ec5cceca939ee1b0776",
+      "output_rows": 66025,
+      "prediction_sha256": "92ea07d13dfa348046ef14f8d4359173b3e5bd0e58d115809ef73bc4d2c87ba4",
+      "replay_manifest_sha256": "15d90d4f5fdff6f11090c634e04b9b91a1c938d24094c8195a4f6508ae5ac261",
+      "seed": 2,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 162.55157606833382,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.540873654209243,
+        "DetA": 43.54163407483597,
+        "HOTA": 24.18784415250258,
+        "IDF1": 29.678595249258727,
+        "IDSW": 383,
+        "MOTA": 45.198805410786434
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_MSK-002_k4_s0_v2",
+      "model_checkpoint_sha256": "e37bf701242b5f0b85a5e0a26fb4de4871b528c2e69e57a29861f0a36a645f4f",
+      "model_manifest_sha256": "01cc201095640917ea0ca73e544f333f125e659c823db244117c735e63be62f9",
+      "official_metrics_sha256": "2613f4fdd90d2df5da555e39c933dd22c96f7b07392b6fa7c456657e69749aaf",
+      "output_rows": 66044,
+      "prediction_sha256": "5feb385d63ff55e9db5d3aaf6e7c55df601fe6075a1794db109079272f34590e",
+      "replay_manifest_sha256": "7e62b3cbe7bc545e6d51d9a4268fa2760e6b5a982aa5c83e45375eb6b1f84d46",
+      "seed": 0,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 173.40040492299886,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.51771089951901,
+        "DetA": 43.55731843938814,
+        "HOTA": 24.17064971793016,
+        "IDF1": 29.675655687911046,
+        "IDSW": 387,
+        "MOTA": 45.20700357205598
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_MSK-002_k4_s1_v2",
+      "model_checkpoint_sha256": "337209bd14c558aceca5d082f36421ed0230741db7afea830ef8b7e87cd1c768",
+      "model_manifest_sha256": "1f14fffe358aa258605370fe187be8228a41525c90a91fa4aacd5ebc421dc2fe",
+      "official_metrics_sha256": "6997308fd5753f11fab40cf020ee18ebf1d224203507350030a84f79a3aa0aec",
+      "output_rows": 66059,
+      "prediction_sha256": "dc6ea1ccc77b6931f150af6642acef612bb23f64604f5447a409b513ea82e8a4",
+      "replay_manifest_sha256": "f44bad3c352da1839928aa53313a4104c815e4a9d6ebfdcbda45f9f1db19ea45",
+      "seed": 1,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 173.63459384680027,
+      "feature_manifest_sha256": "522239e63c125df2aa344b1b8e670944554bcceb5cc49d513d56e73f484079dc",
+      "metrics": {
+        "AssA": 13.51771089951901,
+        "DetA": 43.55731843938814,
+        "HOTA": 24.17064971793016,
+        "IDF1": 29.675655687911046,
+        "IDSW": 387,
+        "MOTA": 45.20700357205598
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_MSK-002_k4_s2_v2",
+      "model_checkpoint_sha256": "329912d29d3da094919973ae065ae1c7b98a05dfd00dc3b022bba2a7f66669cb",
+      "model_manifest_sha256": "adeae1beace8a2f43a7b20a9e4b624bd2d96b68476bebed0a8a6cfdbf86a07a0",
+      "official_metrics_sha256": "39ca0d63fa9d70ebaae97fb30a3748804412446dcfdbb1fce3d429f96b7f5db7",
+      "output_rows": 66059,
+      "prediction_sha256": "dc6ea1ccc77b6931f150af6642acef612bb23f64604f5447a409b513ea82e8a4",
+      "replay_manifest_sha256": "3e87e031f24ba315c562892a11d2c23683cc173fc62ddfb3b2a97c76db944c63",
+      "seed": 2,
+      "video": "MSK-002"
+    },
+    {
+      "association_seconds": 200.92026814856217,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_PF-001_k4_s0_v2",
+      "model_checkpoint_sha256": "37e5e62c28ea930a5d426b688ea2afe91cee477d3e029c387a70a938a6e6993c",
+      "model_manifest_sha256": "a17e17b20b834f69d5b5b1f6096be729ff3b45ea010a811ad98d1c2e993d0fbd",
+      "official_metrics_sha256": "5287b386cbdc37267d17bd0e492de1a978281ddb8639fa56dd816fc7671f021a",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "8498c132a50c7a0deb8519209cb69f3797e905cab6a610c1834cd6c6a98965d6",
+      "seed": 0,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 189.25331393712258,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_PF-001_k4_s1_v2",
+      "model_checkpoint_sha256": "b7bb1da07b763874c295d0dff5c2c381f39f0a2490f8784f6126efd8b3bf0aec",
+      "model_manifest_sha256": "90ab3b1ea4b12600e3a80307d367b1b3d423e838e51ab2c53b027d9c5147fde6",
+      "official_metrics_sha256": "80590782eb7987ca990f2cc2718906d8ea9a96070b3d7787724ccbf1b8ebde5d",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "124f7b69fa3a4aeced8dcefac8606cd938b4414a2d01711ba211951d08b770ee",
+      "seed": 1,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 188.7188668995368,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_PF-001_k4_s2_v2",
+      "model_checkpoint_sha256": "ea6172b07c6cd52df6cdd76351e952fb01907e6a63c590e08c88eb8d66c0568a",
+      "model_manifest_sha256": "d442f48077422671c3dc8bf0ba1f383a49e7b8041c12f252179af19804bb0908",
+      "official_metrics_sha256": "c9f4116bdd26b56afb4aa330d86697fc9de34e18513cfa65dc5f915c4686548d",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "b6c75ef7fba6531911913bf4b58c9f9b1666b92f2f8f0bb58e7db63cf293207d",
+      "seed": 2,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 202.29132031033805,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_PF-001_k4_s0_v2",
+      "model_checkpoint_sha256": "0e99e30393d812e70439a245e6cffbb959cdefd47529783cfe67ae747765c101",
+      "model_manifest_sha256": "6c8c7f84a7a2b987cfb2b0e9015ba168d52df14b1b025ef48268547170806606",
+      "official_metrics_sha256": "10ca0c978240be362f3360a3293ee4e9325a3c870b9936ffa8abfec8bf1df578",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "15aa0010058768dc64ec4f31e0b7f7a63b284a0306489af7212d4d8693867e1c",
+      "seed": 0,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 215.02223892680195,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_PF-001_k4_s1_v2",
+      "model_checkpoint_sha256": "9085274404ad4bbbc853d214e9fff73dfad3406da38db0d0641f397f48b1438d",
+      "model_manifest_sha256": "d5c3b4d980769ddd8b5310ca12a86f25c5448246ca959611b44591322893c53c",
+      "official_metrics_sha256": "46d9a0029604d5a88098504fc45d05e9d64404d6a771af6f78d79033f3f124da",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "2ea38b0af7e815bd594d9f3132d494d7475812c46c8e29f3fa3e70b827560859",
+      "seed": 1,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 215.72826705186162,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_PF-001_k4_s2_v2",
+      "model_checkpoint_sha256": "ee9baaef27e93b1b746e9c40197cb5c64c6bebc861d08f30a82e6d4d531df161",
+      "model_manifest_sha256": "8a0414cdf6938fc0e8bd98b03a72e2c4a743fc81ec5bd4d868d213d1a67eb99a",
+      "official_metrics_sha256": "7a94edd2feff5506ff40d9ade3bd0739070e6e2ed639b6766466dd6dcf28ed69",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "2a45fc3485bc87cfb4078ae6456c230289daebaa5b227e53e3da2bb3b7a31bb7",
+      "seed": 2,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 168.15282207472774,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_PF-001_k4_s0_v2",
+      "model_checkpoint_sha256": "033d79495f65d7697238b7e6c5a08f256d22a3c3c5c98f2e81ebd5cdeeeaf4dc",
+      "model_manifest_sha256": "b9b0a9cf3528c7c6a6e9a57c2154bc47faca092593ea2d82896b744309f6e47e",
+      "official_metrics_sha256": "430966662445947e97cdf92c98c4e52969d9959936e3a1eea036d5384a794bb1",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "e39703f7897caf5139e147a83e594670d17242bf97076a332f0e1206c58ea4cd",
+      "seed": 0,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 161.9180025257083,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_PF-001_k4_s1_v2",
+      "model_checkpoint_sha256": "fee6d03d8cb9f8c07d398028df21d294e491747bb897e7cb08f757c780773b5e",
+      "model_manifest_sha256": "dcc8b7a1f9686fa10753d55fd1161349fd12198927cba90d43d4dfe6a5b4f476",
+      "official_metrics_sha256": "9003e370bcc6fdedec6e9b3d7bac6b9836381a9c17f0af92341d9fd2197eff99",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "4e2ff4d4beb862ce9a25382c59b48a6d5fa9af5e5e300887851d7ea316a77042",
+      "seed": 1,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 163.58223129353428,
+      "feature_manifest_sha256": "5aca3b2d495b3c69d43cb0de37adb0d208f43d5ed1192dfff0ada1f4d879eac4",
+      "metrics": {
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "HOTA": 42.35458355695784,
+        "IDF1": 39.847499289333314,
+        "IDSW": 19,
+        "MOTA": 98.28666666666666
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_PF-001_k4_s2_v2",
+      "model_checkpoint_sha256": "e4e452246160b5e11f0d6b292ec9747dfeaca09e01ca2e2a4880d873e058eefb",
+      "model_manifest_sha256": "09d7e44e148c39ef8d7cf0ea8e8c9da09389cea837ff7976a2d1977b0cc34d4a",
+      "official_metrics_sha256": "98d351f6602c609cb13a83c8444e7c9ece0dc2909056902e5bdae5ac8b06acca",
+      "output_rows": 29803,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "replay_manifest_sha256": "215ca51cbb1ecf6d4652d84f7adb9e1409e08d3cd8fe9fe8fbe54b84009f4b27",
+      "seed": 2,
+      "video": "PF-001"
+    },
+    {
+      "association_seconds": 19.88076318507956,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-001_k4_s0_v2",
+      "model_checkpoint_sha256": "bab1f8e33d69535b12c24a2af291bd48e34074226685f0d800331aa446d5cfba",
+      "model_manifest_sha256": "937294aa417059a06c03cc7633d65caa3cb6c6d8dec720f70a8eb0f400b7733b",
+      "official_metrics_sha256": "cf0d8fa64c7625cd38b0bc66d118666efc33e68020eb931ef8966c1e179fe970",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "6d25d90f517dd359807973197749df132f15bf562390c65c6aab9d39e199e6d7",
+      "seed": 0,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 20.13081452100596,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.902338168578048,
+        "DetA": 60.12003899795778,
+        "HOTA": 43.00924890700396,
+        "IDF1": 60.45777426992897,
+        "IDSW": 25,
+        "MOTA": 78.96562123039807
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-001_k4_s1_v2",
+      "model_checkpoint_sha256": "a0ef875bf9b24d07f22f0b03c13656c449526567a591f9a9711d88fff4260333",
+      "model_manifest_sha256": "d98d571188ffc60e67ae5975be9535efad1e82d26f88e6f271447fc7717f96d3",
+      "official_metrics_sha256": "bb19ecd0f342fd87921382f3cf22179d3b258ad49486a5bc48dfefd2851842e9",
+      "output_rows": 6038,
+      "prediction_sha256": "1cae6d8317d8f961f23753202dcf93df51d546d9e7f2ef4af273635743e24365",
+      "replay_manifest_sha256": "958437ccc7ffc4d7deb47e917806a3bc06c2fb2645212351f2693cd63a0cb9b4",
+      "seed": 1,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 20.39381139303441,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-001_k4_s2_v2",
+      "model_checkpoint_sha256": "df3c04bea08c58d7131252f38aea8af2c76cabd713f1cbe1139aff55198c8d47",
+      "model_manifest_sha256": "8b1088aee2c0b7485c2fe9e6b0cc6512fbdc3314a6628c18a68c8cb9814038f9",
+      "official_metrics_sha256": "ec0555dbf6a9dbd64885ac4ec29a152076dcda5fb5b39704d4e962125c034494",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "25981815b715406136e12e7ef9c9ef0721668b5ca60183a5416f137bd5c3e201",
+      "seed": 2,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 20.469054371875245,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-001_k4_s0_v2",
+      "model_checkpoint_sha256": "6316639e2c925ecc7caebf950f688b701b8bde8f872a6802e413280e1106f9dd",
+      "model_manifest_sha256": "3f22b817ca6b4c70a2c261ed53104e6670eeb5a41a77328d1cbdbe9693bf22b7",
+      "official_metrics_sha256": "61bcdcaf97e8aa221d005822bd31a02ef4de57813b2db32a08e18366b5ca3e32",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "4eef8be715b8df905817e34c24b04512b5b414db069d4888578b6d452f93964d",
+      "seed": 0,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 20.376587147125974,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.902338168578048,
+        "DetA": 60.12003899795778,
+        "HOTA": 43.00924890700396,
+        "IDF1": 60.45777426992897,
+        "IDSW": 25,
+        "MOTA": 78.96562123039807
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-001_k4_s1_v2",
+      "model_checkpoint_sha256": "83b6c69a42d0fbd5b7938bdb7a6f4a042c8cacab9a22dacc8a5875602b429c9d",
+      "model_manifest_sha256": "d41dd623e2df99138742a1f4a18acb5387871221efb864fe3f396ff6411c8707",
+      "official_metrics_sha256": "ab940302edbe7afe1ac50785ed62411480ed1a4a4b5e3444fbc91765417ccdf9",
+      "output_rows": 6038,
+      "prediction_sha256": "1cae6d8317d8f961f23753202dcf93df51d546d9e7f2ef4af273635743e24365",
+      "replay_manifest_sha256": "0f80e877afaf638947b34572807507636bb3cb04a0b3ade638a2567e8baf9203",
+      "seed": 1,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 20.154980554929352,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-001_k4_s2_v2",
+      "model_checkpoint_sha256": "ab274040bfcb4bbedf995bbc30f772213f4ba1819b6fb45d4dccfaf18549e0d7",
+      "model_manifest_sha256": "b132a2419b7b115d770791d8b5c20bee6918aa83d67c7178fc451bc911432d96",
+      "official_metrics_sha256": "3d9637df0e61976f434cef9484738ac753fbd0bfb7605d9de1a24437c847711c",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "730ac7863fc6dc911b247c24c751cba51a3cced102229d4c5a0fea3ce9f02086",
+      "seed": 2,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 15.762668430033955,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-001_k4_s0_v2",
+      "model_checkpoint_sha256": "badb3044f1d8c918019ae5cb6bc83ac978f910ad4a3dbfd327e2eed166796619",
+      "model_manifest_sha256": "e0f79ddb1929fa53c1f98b35eb02da406a403a9d890931396235e235675a8309",
+      "official_metrics_sha256": "88048ca0e1523ce27db80dd2cfc98516d84ccc46e2c310d3b482654f8ab989d4",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "1e04843e2be4eaf63820761dd9d93cffd69322a1d17f9623c8071486aeccf5a4",
+      "seed": 0,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 15.928268628806109,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.016270398520035,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-001_k4_s1_v2",
+      "model_checkpoint_sha256": "78f62f082309f57a096c3989b0a683f160c584e27674ffaf2c4730f18b201fef",
+      "model_manifest_sha256": "5788e504a1989db9ceb9427f75f7dd629560de3920f674d3e3d9849ea6b3374f",
+      "official_metrics_sha256": "200fe57eba31c8697967422fa90f4ed9d37446fc8ee8490366047d30c39268d1",
+      "output_rows": 6041,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "replay_manifest_sha256": "d86ab4d2d135dbf2c75689a531426a9723bc655637525f742cf3efc35786913b",
+      "seed": 1,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 16.075427681935253,
+      "feature_manifest_sha256": "91cee3339dc7321e47e2b8ff072fe4a12c4f317b6fd2b96cd2cd40746cff0471",
+      "metrics": {
+        "AssA": 30.90659701856059,
+        "DetA": 60.147527781469144,
+        "HOTA": 43.023059329301624,
+        "IDF1": 60.443462479286666,
+        "IDSW": 24,
+        "MOTA": 78.99577804583836
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-001_k4_s2_v2",
+      "model_checkpoint_sha256": "7e9ae980e04efdd810dbc0b9c12003d0e3e14249851b20649a8cb0c54751c89a",
+      "model_manifest_sha256": "0eab4275f4c28956743adcc5738fb9bc5d3f1519d208bf13cfafb3022fa19c5c",
+      "official_metrics_sha256": "d358322b65df7ec6937f42fa849f4bc14b697646efd73b4b9c73093f1cb2affb",
+      "output_rows": 6041,
+      "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+      "replay_manifest_sha256": "890c872125502c9ba5e3689c14c20eec5bb4bf0dd2ecfc68b80001e5670b3620",
+      "seed": 2,
+      "video": "SN-001"
+    },
+    {
+      "association_seconds": 195.3390152107022,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.405160427895597,
+        "DetA": 70.9188954804127,
+        "HOTA": 30.694054164628408,
+        "IDF1": 25.29838295687885,
+        "IDSW": 146,
+        "MOTA": 91.03164738502724
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-015_k4_s0_v2",
+      "model_checkpoint_sha256": "83df30b8f17c5f34ebf7629e7b6cac5a336e654b0c09ebfaf9abbc76144eeeb3",
+      "model_manifest_sha256": "88f9ed6c86db267c9da109f9f51d4129a09b550608e353dfd690bbe843c958ec",
+      "official_metrics_sha256": "0da9831077c0a5daefac527ae9bb7318a0ba0719a730e780bce4b3d486ff5ea4",
+      "output_rows": 61918,
+      "prediction_sha256": "d7d6923d7612bd3df89ccf31ab1265fe06521745da5beed496b9eb03bfa3e7a0",
+      "replay_manifest_sha256": "924c4dfe5256142b8d1fef28b1ed8dedac285eae7879c026453961ea1b02541f",
+      "seed": 0,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 200.49671329653938,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.385434154787394,
+        "DetA": 71.00095724429693,
+        "HOTA": 30.687693913948657,
+        "IDF1": 26.477806830395096,
+        "IDSW": 147,
+        "MOTA": 91.02049271759569
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-015_k4_s1_v2",
+      "model_checkpoint_sha256": "a34296680db0b4db57609f74f1b7042e20e08e1909edf714c030e5e3cb29b894",
+      "model_manifest_sha256": "59eb039772e42819bb83051451ae90eefa457ccdef6d4a987ae9c4147978aeaa",
+      "official_metrics_sha256": "999b66ad0bac20319419a73a5af77a7f95bef24379bc3cb6a53ace1c5179d78d",
+      "output_rows": 61924,
+      "prediction_sha256": "380a65cbaee7f77489056241d00b712e8ae9ec084328157182bf00f99bbbce16",
+      "replay_manifest_sha256": "07d52908f3cdeea0a56e507f553a4e53cf6ec2c921b9eb7bfa18cb6955a75242",
+      "seed": 1,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 213.9901582542807,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.224492467362769,
+        "DetA": 71.02954403328488,
+        "HOTA": 30.50883788684774,
+        "IDF1": 25.26027045669645,
+        "IDSW": 147,
+        "MOTA": 91.00774452624533
+      },
+      "mode": "full",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-015_k4_s2_v2",
+      "model_checkpoint_sha256": "f9e3cc2093147a6fa3d8dd9571981e86b74cce7104962910c7ff93ee279a4e06",
+      "model_manifest_sha256": "3e1cf5dd29f703a007b2e52b72a1676eb7e04a6a41915449093365e9bd80d553",
+      "official_metrics_sha256": "da332d089d8ee9e58d9e1cdd1bf4149ac9796bff0fa9895f22a622a6dfd05592",
+      "output_rows": 61924,
+      "prediction_sha256": "bae635d2a202a099570e96eec10888569f987e468785a4488a34e01ce54fb8de",
+      "replay_manifest_sha256": "37dc2656bf797c0ffe044f9134192324244aadb16194f3e00de20fffcdb12055",
+      "seed": 2,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 208.18296947845374,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.405240716835575,
+        "DetA": 70.91919920547085,
+        "HOTA": 30.69421728123407,
+        "IDF1": 25.298585878030977,
+        "IDSW": 146,
+        "MOTA": 91.03324090894604
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-015_k4_s0_v2",
+      "model_checkpoint_sha256": "bd60c9078341ea9469de486892393224d6317b95887de40c1b42ba5f33f59d62",
+      "model_manifest_sha256": "e899bacb3e0d7f010b0169003afd3884dba747259a4f149ea892fa5efa67e983",
+      "official_metrics_sha256": "fad4d4ac9fc327f7e23c0beb58c2d63d1e86c002af433fdc1eb9e0d1cf0f585a",
+      "output_rows": 61917,
+      "prediction_sha256": "88d65c25ab2e6275a849ea47938eb0d23a7dd930daf5c83c38c1ecd114b72535",
+      "replay_manifest_sha256": "f7c4f2ee47a346ac7773e25adb006d4ac7345c205ade88f4a34666feefe983f2",
+      "seed": 0,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 218.50036192662083,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.562854579363382,
+        "DetA": 71.0073861337179,
+        "HOTA": 30.89444642609509,
+        "IDF1": 26.47728730912357,
+        "IDSW": 146,
+        "MOTA": 91.0188991936769
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-015_k4_s1_v2",
+      "model_checkpoint_sha256": "bdaba250e05d838a6750c0d09bb4035e3b3b26dc354d888f46b2f3443cc1125e",
+      "model_manifest_sha256": "676326f759a0445ed185c296d0aa8ccaa89ef46b6780864f52809230fcac27a1",
+      "official_metrics_sha256": "979bbe0d5b296933b10bfbe8e15be45d310b5bbeaeede7b7bb1859ef6cef436c",
+      "output_rows": 61934,
+      "prediction_sha256": "f5ba84e0f60c76374a2a0a23691f4c426dc13df3d23cc4bb7583efaa8455ea4e",
+      "replay_manifest_sha256": "316c959723446d3d2b33eb98f3cd30e39ac849f51f67ba21c1cd015c37c4f4ae",
+      "seed": 1,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 219.68532738990325,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.6314304079338,
+        "DetA": 71.05361201538824,
+        "HOTA": 30.983848301908907,
+        "IDF1": 25.26108089898455,
+        "IDSW": 144,
+        "MOTA": 91.02208624151449
+      },
+      "mode": "local_temporal",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_SN-015_k4_s2_v2",
+      "model_checkpoint_sha256": "26a6c9263a869fdfde88cd7168a65c0a928aad5ab31f3e3dbcac4e5a6a8a0e93",
+      "model_manifest_sha256": "f7f6fb799fdebf96edcefec37f862be5ba9ffbc7264f73f2876bb3fb34ac1a12",
+      "official_metrics_sha256": "3cd7872b6a0c4aaa5441c7f45b79e3be9bfdf05c620bf6841c0de3488b0501d7",
+      "output_rows": 61920,
+      "prediction_sha256": "07c00fd00e4984c3266077310071ff1fd8ad5905f26670a147f308fa6bf438dd",
+      "replay_manifest_sha256": "14560e351acba26ddf9876df745af974a19dcedc808d6038c9cc28c2eaef8ec0",
+      "seed": 2,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 174.10974751459435,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.663651046193456,
+        "DetA": 71.02575506428053,
+        "HOTA": 31.01735517322521,
+        "IDF1": 26.362345921583408,
+        "IDSW": 145,
+        "MOTA": 91.00296395448896
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-015_k4_s0_v2",
+      "model_checkpoint_sha256": "54b9df176b0b01ab69d56a6614619cfe5dd1cbc5c3dc36f5acde0e456bbeb884",
+      "model_manifest_sha256": "86edd77f7f38f1e04749caee13fcbdcc4c394ab44549f2581353467665cd6afe",
+      "official_metrics_sha256": "ec74b161fdaa0428c260ffdfd1b52cdeb14661cfd2e16b52fde08e788b51278c",
+      "output_rows": 61939,
+      "prediction_sha256": "8678363c11a602a56308592bc6082efe0c35fd86d7289bc2d9eebf6db747a5e7",
+      "replay_manifest_sha256": "e485736ce0d27049a97b153f3de614a53376797bbf91a430f2a8702917ab7630",
+      "seed": 0,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 156.84916163250455,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.663651046193456,
+        "DetA": 71.02575506428053,
+        "HOTA": 31.01735517322521,
+        "IDF1": 26.362345921583408,
+        "IDSW": 145,
+        "MOTA": 91.00296395448896
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-015_k4_s1_v2",
+      "model_checkpoint_sha256": "c09fa4349ca496d763a4df2a25750c115a9408d5612cc1f84537a17fb2e3f70a",
+      "model_manifest_sha256": "ddb0b2f38094a1391a17de1ba874cc2ef58db217706df5764f00416b417a0316",
+      "official_metrics_sha256": "3284143d8cef027776ab2227a95c009f078bc0d667072dc3a2cabafa541e4693",
+      "output_rows": 61939,
+      "prediction_sha256": "8678363c11a602a56308592bc6082efe0c35fd86d7289bc2d9eebf6db747a5e7",
+      "replay_manifest_sha256": "2a08b67c86f2b8251cdebbc6469b73b322ebdbe0f9dfd3568cc54b169f87b5c3",
+      "seed": 1,
+      "video": "SN-015"
+    },
+    {
+      "association_seconds": 155.04161136649782,
+      "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+      "metrics": {
+        "AssA": 13.698749632808491,
+        "DetA": 71.02433282670835,
+        "HOTA": 31.05750943046,
+        "IDF1": 26.365852876070704,
+        "IDSW": 145,
+        "MOTA": 91.01093157408293
+      },
+      "mode": "global",
+      "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_global_SN-015_k4_s2_v2",
+      "model_checkpoint_sha256": "e7f9b83a0d216256f81912114901cc4af2c28e5cf604ff2ceafca5f872f1b902",
+      "model_manifest_sha256": "23b8af9e0a4c05889ea5f464ee3c95fc33306c136bbc016ca6b0b2ce20fa3543",
+      "official_metrics_sha256": "789973bf386a8c99085e2d06b65599917bdfb5c8228515f2e7d9d1dc60ba748b",
+      "output_rows": 61930,
+      "prediction_sha256": "0d8ee070c8b6a6425c1cab581efdf76bb9dfcfbf7e81151899daa109f7a9dd46",
+      "replay_manifest_sha256": "a3c78d95730b6409f91278eecb0e3a25900c734e4af3d2936d9cb43a8e50c5bf",
+      "seed": 2,
+      "video": "SN-015"
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "source_driver": "tools/cfp_run_native_context_allfolds.py",
+  "status": "COMPLETE_CONTEXT_IDENTITY_NATIVE_ALLFOLDS",
+  "summary_by_video_mode": {
+    "BT-001": {
+      "full": {
+        "AssA": {
+          "mean": 21.816134791611564,
+          "sample_sd": 0.6157059631819304,
+          "values": [
+            22.527090798781053,
+            21.460656788026817,
+            21.460656788026817
+          ]
+        },
+        "DetA": {
+          "mean": 56.42922061789967,
+          "sample_sd": 0.010353980930538272,
+          "values": [
+            56.417264870544805,
+            56.4351984915771,
+            56.4351984915771
+          ]
+        },
+        "HOTA": {
+          "mean": 35.05036012811788,
+          "sample_sd": 0.4893917354496216,
+          "values": [
+            35.61546102851992,
+            34.767809677916865,
+            34.767809677916865
+          ]
+        },
+        "IDF1": {
+          "mean": 41.65093224511726,
+          "sample_sd": 0.42530271657004187,
+          "values": [
+            42.142029520914846,
+            41.40538360721847,
+            41.40538360721847
+          ]
+        },
+        "IDSW": {
+          "mean": 93.66666666666667,
+          "sample_sd": 6.3508529610858835,
+          "values": [
+            101,
+            90,
+            90
+          ]
+        },
+        "MOTA": {
+          "mean": 64.53555555555555,
+          "sample_sd": 0.07698003589195393,
+          "values": [
+            64.44666666666666,
+            64.58,
+            64.58
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 20.527665243130716,
+          "sample_sd": 0.0006614914665599212,
+          "values": [
+            20.52796443666891,
+            20.526907013976384,
+            20.52812427874686
+          ]
+        },
+        "DetA": {
+          "mean": 55.97132399377972,
+          "sample_sd": 0.002226946434691823,
+          "values": [
+            55.972448307473464,
+            55.96875903153503,
+            55.97276464233067
+          ]
+        },
+        "HOTA": {
+          "mean": 33.84632143949022,
+          "sample_sd": 0.0012441874360375356,
+          "values": [
+            33.846922385587554,
+            33.84489085573145,
+            33.84715107715163
+          ]
+        },
+        "IDF1": {
+          "mean": 41.30752312677333,
+          "sample_sd": 0.0,
+          "values": [
+            41.30752312677333,
+            41.30752312677333,
+            41.30752312677333
+          ]
+        },
+        "IDSW": {
+          "mean": 109.0,
+          "sample_sd": 0.0,
+          "values": [
+            109,
+            109,
+            109
+          ]
+        },
+        "MOTA": {
+          "mean": 64.48666666666666,
+          "sample_sd": 0.0,
+          "values": [
+            64.48666666666666,
+            64.48666666666666,
+            64.48666666666666
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 21.911691428254414,
+          "sample_sd": 0.551889661298388,
+          "values": [
+            22.527090798781053,
+            21.74732669795537,
+            21.460656788026817
+          ]
+        },
+        "DetA": {
+          "mean": 56.41845864293009,
+          "sample_sd": 0.016176033388439096,
+          "values": [
+            56.417264870544805,
+            56.40291256666837,
+            56.4351984915771
+          ]
+        },
+        "HOTA": {
+          "mean": 35.12366285700667,
+          "sample_sd": 0.4398738271010825,
+          "values": [
+            35.61546102851992,
+            34.98771786458322,
+            34.767809677916865
+          ]
+        },
+        "IDF1": {
+          "mean": 41.758937413639096,
+          "sample_sd": 0.36921021648167945,
+          "values": [
+            42.142029520914846,
+            41.72939911278398,
+            41.40538360721847
+          ]
+        },
+        "IDSW": {
+          "mean": 95.0,
+          "sample_sd": 5.5677643628300215,
+          "values": [
+            101,
+            94,
+            90
+          ]
+        },
+        "MOTA": {
+          "mean": 64.5311111111111,
+          "sample_sd": 0.07343427396382143,
+          "values": [
+            64.44666666666666,
+            64.56666666666668,
+            64.58
+          ]
+        }
+      }
+    },
+    "BT-003": {
+      "full": {
+        "AssA": {
+          "mean": 55.892410516807594,
+          "sample_sd": 0.0005684181575050072,
+          "values": [
+            55.893066869560094,
+            55.89208234043135,
+            55.89208234043135
+          ]
+        },
+        "DetA": {
+          "mean": 55.773919159338874,
+          "sample_sd": 0.0030644614453243617,
+          "values": [
+            55.777457694619635,
+            55.7721498916985,
+            55.7721498916985
+          ]
+        },
+        "HOTA": {
+          "mean": 55.81695019347193,
+          "sample_sd": 0.0017999311785052295,
+          "values": [
+            55.8190285749728,
+            55.8159110027215,
+            55.8159110027215
+          ]
+        },
+        "IDF1": {
+          "mean": 79.71486183921793,
+          "sample_sd": 0.03352805206488787,
+          "values": [
+            79.6761469794478,
+            79.734219269103,
+            79.734219269103
+          ]
+        },
+        "IDSW": {
+          "mean": 9.0,
+          "sample_sd": 0.0,
+          "values": [
+            9,
+            9,
+            9
+          ]
+        },
+        "MOTA": {
+          "mean": 62.71604938271605,
+          "sample_sd": 0.0712778110110642,
+          "values": [
+            62.63374485596708,
+            62.757201646090536,
+            62.757201646090536
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 55.892410516807594,
+          "sample_sd": 0.0005684181575050072,
+          "values": [
+            55.893066869560094,
+            55.89208234043135,
+            55.89208234043135
+          ]
+        },
+        "DetA": {
+          "mean": 55.773919159338874,
+          "sample_sd": 0.0030644614453243617,
+          "values": [
+            55.777457694619635,
+            55.7721498916985,
+            55.7721498916985
+          ]
+        },
+        "HOTA": {
+          "mean": 55.81695019347193,
+          "sample_sd": 0.0017999311785052295,
+          "values": [
+            55.8190285749728,
+            55.8159110027215,
+            55.8159110027215
+          ]
+        },
+        "IDF1": {
+          "mean": 79.71486183921793,
+          "sample_sd": 0.03352805206488787,
+          "values": [
+            79.6761469794478,
+            79.734219269103,
+            79.734219269103
+          ]
+        },
+        "IDSW": {
+          "mean": 9.0,
+          "sample_sd": 0.0,
+          "values": [
+            9,
+            9,
+            9
+          ]
+        },
+        "MOTA": {
+          "mean": 62.71604938271605,
+          "sample_sd": 0.0712778110110642,
+          "values": [
+            62.63374485596708,
+            62.757201646090536,
+            62.757201646090536
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 55.892410516807594,
+          "sample_sd": 0.0005684181575050072,
+          "values": [
+            55.893066869560094,
+            55.89208234043135,
+            55.89208234043135
+          ]
+        },
+        "DetA": {
+          "mean": 55.773919159338874,
+          "sample_sd": 0.0030644614453243617,
+          "values": [
+            55.777457694619635,
+            55.7721498916985,
+            55.7721498916985
+          ]
+        },
+        "HOTA": {
+          "mean": 55.81695019347193,
+          "sample_sd": 0.0017999311785052295,
+          "values": [
+            55.8190285749728,
+            55.8159110027215,
+            55.8159110027215
+          ]
+        },
+        "IDF1": {
+          "mean": 79.71486183921793,
+          "sample_sd": 0.03352805206488787,
+          "values": [
+            79.6761469794478,
+            79.734219269103,
+            79.734219269103
+          ]
+        },
+        "IDSW": {
+          "mean": 9.0,
+          "sample_sd": 0.0,
+          "values": [
+            9,
+            9,
+            9
+          ]
+        },
+        "MOTA": {
+          "mean": 62.71604938271605,
+          "sample_sd": 0.0712778110110642,
+          "values": [
+            62.63374485596708,
+            62.757201646090536,
+            62.757201646090536
+          ]
+        }
+      }
+    },
+    "MSK-002": {
+      "full": {
+        "AssA": {
+          "mean": 13.445977164951485,
+          "sample_sd": 0.12959453763312428,
+          "values": [
+            13.296941766918302,
+            13.532160273697766,
+            13.508829454238382
+          ]
+        },
+        "DetA": {
+          "mean": 43.54371423318738,
+          "sample_sd": 0.011580311047789484,
+          "values": [
+            43.55299708974395,
+            43.530737636369935,
+            43.54740797344825
+          ]
+        },
+        "HOTA": {
+          "mean": 24.100788849114867,
+          "sample_sd": 0.11714236867226938,
+          "values": [
+            23.96588378722388,
+            24.176773832538476,
+            24.15970892758225
+          ]
+        },
+        "IDF1": {
+          "mean": 29.49008440364788,
+          "sample_sd": 0.2531438453668053,
+          "values": [
+            29.197783984733526,
+            29.637702698239703,
+            29.634766527970413
+          ]
+        },
+        "IDSW": {
+          "mean": 389.3333333333333,
+          "sample_sd": 1.1547005383792515,
+          "values": [
+            390,
+            388,
+            390
+          ]
+        },
+        "MOTA": {
+          "mean": 45.20817473795163,
+          "sample_sd": 0.008842108608382396,
+          "values": [
+            45.19997657668209,
+            45.20700357205598,
+            45.21754406511682
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 13.525431817749087,
+          "sample_sd": 0.013373022655579348,
+          "values": [
+            13.540873654209243,
+            13.51771089951901,
+            13.51771089951901
+          ]
+        },
+        "DetA": {
+          "mean": 43.55209031787075,
+          "sample_sd": 0.00905537209626462,
+          "values": [
+            43.54163407483597,
+            43.55731843938814,
+            43.55731843938814
+          ]
+        },
+        "HOTA": {
+          "mean": 24.176381196120968,
+          "sample_sd": 0.009927211428950469,
+          "values": [
+            24.18784415250258,
+            24.17064971793016,
+            24.17064971793016
+          ]
+        },
+        "IDF1": {
+          "mean": 29.67663554169361,
+          "sample_sd": 0.0016971565353829335,
+          "values": [
+            29.678595249258727,
+            29.675655687911046,
+            29.675655687911046
+          ]
+        },
+        "IDSW": {
+          "mean": 385.6666666666667,
+          "sample_sd": 2.309401076758503,
+          "values": [
+            383,
+            387,
+            387
+          ]
+        },
+        "MOTA": {
+          "mean": 45.2042708516328,
+          "sample_sd": 0.00473321061583304,
+          "values": [
+            45.198805410786434,
+            45.20700357205598,
+            45.20700357205598
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 13.520359985739482,
+          "sample_sd": 0.01166774873620577,
+          "values": [
+            13.5200902292823,
+            13.532160273697766,
+            13.508829454238382
+          ]
+        },
+        "DetA": {
+          "mean": 43.54405326463555,
+          "sample_sd": 0.011995414617129475,
+          "values": [
+            43.55401418408847,
+            43.530737636369935,
+            43.54740797344825
+          ]
+        },
+        "HOTA": {
+          "mean": 24.169467061165193,
+          "sample_sd": 0.008792589368521992,
+          "values": [
+            24.171918423374848,
+            24.176773832538476,
+            24.15970892758225
+          ]
+        },
+        "IDF1": {
+          "mean": 29.649505607329786,
+          "sample_sd": 0.023032870795904704,
+          "values": [
+            29.67604759577924,
+            29.637702698239703,
+            29.634766527970413
+          ]
+        },
+        "IDSW": {
+          "mean": 389.0,
+          "sample_sd": 1.0,
+          "values": [
+            389,
+            388,
+            390
+          ]
+        },
+        "MOTA": {
+          "mean": 45.20895551521539,
+          "sample_sd": 0.007798006814401075,
+          "values": [
+            45.20231890847339,
+            45.20700357205598,
+            45.21754406511682
+          ]
+        }
+      }
+    },
+    "PF-001": {
+      "full": {
+        "AssA": {
+          "mean": 22.647579361120833,
+          "sample_sd": 0.0,
+          "values": [
+            22.647579361120833,
+            22.647579361120833,
+            22.647579361120833
+          ]
+        },
+        "DetA": {
+          "mean": 79.26732598766647,
+          "sample_sd": 0.0,
+          "values": [
+            79.26732598766647,
+            79.26732598766647,
+            79.26732598766647
+          ]
+        },
+        "HOTA": {
+          "mean": 42.35458355695784,
+          "sample_sd": 0.0,
+          "values": [
+            42.35458355695784,
+            42.35458355695784,
+            42.35458355695784
+          ]
+        },
+        "IDF1": {
+          "mean": 39.847499289333314,
+          "sample_sd": 0.0,
+          "values": [
+            39.847499289333314,
+            39.847499289333314,
+            39.847499289333314
+          ]
+        },
+        "IDSW": {
+          "mean": 19.0,
+          "sample_sd": 0.0,
+          "values": [
+            19,
+            19,
+            19
+          ]
+        },
+        "MOTA": {
+          "mean": 98.28666666666668,
+          "sample_sd": 0.0,
+          "values": [
+            98.28666666666666,
+            98.28666666666666,
+            98.28666666666666
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 22.647579361120833,
+          "sample_sd": 0.0,
+          "values": [
+            22.647579361120833,
+            22.647579361120833,
+            22.647579361120833
+          ]
+        },
+        "DetA": {
+          "mean": 79.26732598766647,
+          "sample_sd": 0.0,
+          "values": [
+            79.26732598766647,
+            79.26732598766647,
+            79.26732598766647
+          ]
+        },
+        "HOTA": {
+          "mean": 42.35458355695784,
+          "sample_sd": 0.0,
+          "values": [
+            42.35458355695784,
+            42.35458355695784,
+            42.35458355695784
+          ]
+        },
+        "IDF1": {
+          "mean": 39.847499289333314,
+          "sample_sd": 0.0,
+          "values": [
+            39.847499289333314,
+            39.847499289333314,
+            39.847499289333314
+          ]
+        },
+        "IDSW": {
+          "mean": 19.0,
+          "sample_sd": 0.0,
+          "values": [
+            19,
+            19,
+            19
+          ]
+        },
+        "MOTA": {
+          "mean": 98.28666666666668,
+          "sample_sd": 0.0,
+          "values": [
+            98.28666666666666,
+            98.28666666666666,
+            98.28666666666666
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 22.647579361120833,
+          "sample_sd": 0.0,
+          "values": [
+            22.647579361120833,
+            22.647579361120833,
+            22.647579361120833
+          ]
+        },
+        "DetA": {
+          "mean": 79.26732598766647,
+          "sample_sd": 0.0,
+          "values": [
+            79.26732598766647,
+            79.26732598766647,
+            79.26732598766647
+          ]
+        },
+        "HOTA": {
+          "mean": 42.35458355695784,
+          "sample_sd": 0.0,
+          "values": [
+            42.35458355695784,
+            42.35458355695784,
+            42.35458355695784
+          ]
+        },
+        "IDF1": {
+          "mean": 39.847499289333314,
+          "sample_sd": 0.0,
+          "values": [
+            39.847499289333314,
+            39.847499289333314,
+            39.847499289333314
+          ]
+        },
+        "IDSW": {
+          "mean": 19.0,
+          "sample_sd": 0.0,
+          "values": [
+            19,
+            19,
+            19
+          ]
+        },
+        "MOTA": {
+          "mean": 98.28666666666668,
+          "sample_sd": 0.0,
+          "values": [
+            98.28666666666666,
+            98.28666666666666,
+            98.28666666666666
+          ]
+        }
+      }
+    },
+    "SN-001": {
+      "full": {
+        "AssA": {
+          "mean": 30.90517740189974,
+          "sample_sd": 0.0024588481838584727,
+          "values": [
+            30.90659701856059,
+            30.902338168578048,
+            30.90659701856059
+          ]
+        },
+        "DetA": {
+          "mean": 60.13836485363202,
+          "sample_sd": 0.015870656559982488,
+          "values": [
+            60.147527781469144,
+            60.12003899795778,
+            60.147527781469144
+          ]
+        },
+        "HOTA": {
+          "mean": 43.018455855202404,
+          "sample_sd": 0.007973451031180159,
+          "values": [
+            43.023059329301624,
+            43.00924890700396,
+            43.023059329301624
+          ]
+        },
+        "IDF1": {
+          "mean": 60.44823307616743,
+          "sample_sd": 0.00826291617991916,
+          "values": [
+            60.443462479286666,
+            60.45777426992897,
+            60.443462479286666
+          ]
+        },
+        "IDSW": {
+          "mean": 24.333333333333332,
+          "sample_sd": 0.5773502691896257,
+          "values": [
+            24,
+            25,
+            24
+          ]
+        },
+        "MOTA": {
+          "mean": 78.98572577402493,
+          "sample_sd": 0.017411045512354978,
+          "values": [
+            78.99577804583836,
+            78.96562123039807,
+            78.99577804583836
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 30.903563846717343,
+          "sample_sd": 0.005253607740595042,
+          "values": [
+            30.90659701856059,
+            30.89749750303084,
+            30.90659701856059
+          ]
+        },
+        "DetA": {
+          "mean": 60.147527781469144,
+          "sample_sd": 0.0,
+          "values": [
+            60.147527781469144,
+            60.147527781469144,
+            60.147527781469144
+          ]
+        },
+        "HOTA": {
+          "mean": 43.020796352374425,
+          "sample_sd": 0.003919591014260106,
+          "values": [
+            43.023059329301624,
+            43.016270398520035,
+            43.023059329301624
+          ]
+        },
+        "IDF1": {
+          "mean": 60.443462479286666,
+          "sample_sd": 0.0,
+          "values": [
+            60.443462479286666,
+            60.443462479286666,
+            60.443462479286666
+          ]
+        },
+        "IDSW": {
+          "mean": 24.0,
+          "sample_sd": 0.0,
+          "values": [
+            24,
+            24,
+            24
+          ]
+        },
+        "MOTA": {
+          "mean": 78.99577804583836,
+          "sample_sd": 0.0,
+          "values": [
+            78.99577804583836,
+            78.99577804583836,
+            78.99577804583836
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 30.90517740189974,
+          "sample_sd": 0.0024588481838584727,
+          "values": [
+            30.90659701856059,
+            30.902338168578048,
+            30.90659701856059
+          ]
+        },
+        "DetA": {
+          "mean": 60.13836485363202,
+          "sample_sd": 0.015870656559982488,
+          "values": [
+            60.147527781469144,
+            60.12003899795778,
+            60.147527781469144
+          ]
+        },
+        "HOTA": {
+          "mean": 43.018455855202404,
+          "sample_sd": 0.007973451031180159,
+          "values": [
+            43.023059329301624,
+            43.00924890700396,
+            43.023059329301624
+          ]
+        },
+        "IDF1": {
+          "mean": 60.44823307616743,
+          "sample_sd": 0.00826291617991916,
+          "values": [
+            60.443462479286666,
+            60.45777426992897,
+            60.443462479286666
+          ]
+        },
+        "IDSW": {
+          "mean": 24.333333333333332,
+          "sample_sd": 0.5773502691896257,
+          "values": [
+            24,
+            25,
+            24
+          ]
+        },
+        "MOTA": {
+          "mean": 78.98572577402493,
+          "sample_sd": 0.017411045512354978,
+          "values": [
+            78.99577804583836,
+            78.96562123039807,
+            78.99577804583836
+          ]
+        }
+      }
+    },
+    "SN-015": {
+      "full": {
+        "AssA": {
+          "mean": 13.338362350015254,
+          "sample_sd": 0.09910622631375272,
+          "values": [
+            13.405160427895597,
+            13.385434154787394,
+            13.224492467362769
+          ]
+        },
+        "DetA": {
+          "mean": 70.98313225266484,
+          "sample_sd": 0.05743756008214382,
+          "values": [
+            70.9188954804127,
+            71.00095724429693,
+            71.02954403328488
+          ]
+        },
+        "HOTA": {
+          "mean": 30.63019532180827,
+          "sample_sd": 0.10514672349781742,
+          "values": [
+            30.694054164628408,
+            30.687693913948657,
+            30.50883788684774
+          ]
+        },
+        "IDF1": {
+          "mean": 25.678820081323465,
+          "sample_sd": 0.6922051788029169,
+          "values": [
+            25.29838295687885,
+            26.477806830395096,
+            25.26027045669645
+          ]
+        },
+        "IDSW": {
+          "mean": 146.66666666666666,
+          "sample_sd": 0.5773502691896257,
+          "values": [
+            146,
+            147,
+            147
+          ]
+        },
+        "MOTA": {
+          "mean": 91.01996154295608,
+          "sample_sd": 0.01196027902518538,
+          "values": [
+            91.03164738502724,
+            91.02049271759569,
+            91.00774452624533
+          ]
+        }
+      },
+      "global": {
+        "AssA": {
+          "mean": 13.675350575065133,
+          "sample_sd": 0.020264178430366018,
+          "values": [
+            13.663651046193456,
+            13.663651046193456,
+            13.698749632808491
+          ]
+        },
+        "DetA": {
+          "mean": 71.02528098508981,
+          "sample_sd": 0.0008211292451530346,
+          "values": [
+            71.02575506428053,
+            71.02575506428053,
+            71.02433282670835
+          ]
+        },
+        "HOTA": {
+          "mean": 31.030739925636805,
+          "sample_sd": 0.023183071223617114,
+          "values": [
+            31.01735517322521,
+            31.01735517322521,
+            31.05750943046
+          ]
+        },
+        "IDF1": {
+          "mean": 26.363514906412508,
+          "sample_sd": 0.002024741117276169,
+          "values": [
+            26.362345921583408,
+            26.362345921583408,
+            26.365852876070704
+          ]
+        },
+        "IDSW": {
+          "mean": 145.0,
+          "sample_sd": 0.0,
+          "values": [
+            145,
+            145,
+            145
+          ]
+        },
+        "MOTA": {
+          "mean": 91.00561982768694,
+          "sample_sd": 0.004600107317378969,
+          "values": [
+            91.00296395448896,
+            91.00296395448896,
+            91.01093157408293
+          ]
+        }
+      },
+      "local_temporal": {
+        "AssA": {
+          "mean": 13.533175234710919,
+          "sample_sd": 0.11597884166531162,
+          "values": [
+            13.405240716835575,
+            13.562854579363382,
+            13.6314304079338
+          ]
+        },
+        "DetA": {
+          "mean": 70.99339911819233,
+          "sample_sd": 0.06828929872210393,
+          "values": [
+            70.91919920547085,
+            71.0073861337179,
+            71.05361201538824
+          ]
+        },
+        "HOTA": {
+          "mean": 30.857504003079356,
+          "sample_sd": 0.1483074138335367,
+          "values": [
+            30.69421728123407,
+            30.89444642609509,
+            30.983848301908907
+          ]
+        },
+        "IDF1": {
+          "mean": 25.678984695379697,
+          "sample_sd": 0.6916046220175529,
+          "values": [
+            25.298585878030977,
+            26.47728730912357,
+            25.26108089898455
+          ]
+        },
+        "IDSW": {
+          "mean": 145.33333333333334,
+          "sample_sd": 1.1547005383792515,
+          "values": [
+            146,
+            146,
+            144
+          ]
+        },
+        "MOTA": {
+          "mean": 91.02474211471248,
+          "sample_sd": 0.007530700236241029,
+          "values": [
+            91.03324090894604,
+            91.0188991936769,
+            91.02208624151449
+          ]
+        }
+      }
+    }
+  },
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ]
+}
