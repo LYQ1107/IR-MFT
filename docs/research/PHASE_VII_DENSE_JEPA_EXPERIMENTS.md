@@ -238,7 +238,7 @@ RGB reconstruction is a control for the latent prediction experiments. Object-ce
 
 ## Single completed visible-token masked-pretrain identity probe (2026-10-14)
 
-One storage-safe visible-token RGB reconstruction pretrain (seed0, `masked_visible_tokens`) completed its registered eight epochs on the four fit videos BT-003/MSK-002/PF-001/SN-001, with outer SN-015 and inner BT-001 excluded. A separate frozen-encoder CE+Triplet identity head then completed the legal first-fold probe on the same split. The encoder prefix stayed byte-guarded (`trained_backbone_l2_change=0` for the identity stage); 1198/1200 pretraining updates and 1198/1200 identity-head updates were finite/accepted after two pretraining AMP skips. The compact scalar evidence and every external manifest/checkpoint hash are in `PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json`.
+One storage-safe visible-token RGB reconstruction pretrain (seed0, `masked_visible_tokens`) completed its registered eight epochs on the four fit videos BT-003/MSK-002/PF-001/SN-001, with outer SN-015 and inner BT-001 excluded. A separate frozen-encoder CE+Triplet identity head then completed the legal first-fold probe on the same split. The encoder prefix stayed byte-guarded (`trained_backbone_l2_change=0` for the identity stage); 1198/1200 pretraining updates and 1196/1200 identity-head updates were finite/accepted after two pretraining and four identity-head AMP skips. The compact scalar evidence and every external manifest/checkpoint hash are in `PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json`.
 
 | Outer SN-015, detector history | Frozen CLS reference | Visible-token-pretrained probe |
 |---|---:|---:|
