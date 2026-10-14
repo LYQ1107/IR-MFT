@@ -32,7 +32,21 @@ def main():
     native_state=a.root/'centered_joint_native_driver_v2.json';n=json.loads(native_state.read_text());complete=[]
     for row in n['completed']:
         p=Path(row['official_metrics']);assert sha256(p)==row['metrics_sha256'];complete.append(row)
-    write_json(a.output,dict(status='IN_PROGRESS',completed_stage='COMPLETE_CENTERED_JOINT_NINE_FITS_AND_UNIFORM_PARITY_REAL_RESTART',config=c,config_sha256=sha256(config),models=models,summary=summary,completed_fits=9,successful_optimizer_updates=28800,all_matched_inputs_and_no_null_ranking_loss=True,uniform_native=dict(manifest_sha256=sha256(uniform),evidence=u),actual_restart=dict(sha256=sha256(restart),evidence=rr),native_completed_at_snapshot=complete,native_driver=str(native_state),native_total=18,inner_native_graph=dict(sha256=sha256(a.root/'centered_joint_inner_native_graph_v2.json'),evidence=json.loads((a.root/'centered_joint_inner_native_graph_v2.json').read_text())),sources=snapshot_sources(a.output.with_suffix('.sources'),[__file__,config]),scope='Original512conditional warmsets only; inheritedencoder/GRU exposure. All9sameinput fits complete; native onlycompleted rowscount. CrossTransformer replaces self-attention by exactlyparameter-matched activeFFNs; independentpair has loweractivecapacity. No new384/allfoldC/nativepositive/rawFPS/novelty/finalgoal claim. Originalv1failures retained.'))
+    native_summary={}
+    if len(complete)==18:
+        for mode in c['architectures']:
+            native_summary[mode]={}
+            for route in ['bounded','full']:
+                matches=[row for row in complete if Path(row['output']).name.startswith('centered_joint_native_'+mode+'_'+route+'_s')]
+                if len(matches)!=3:raise ValueError('Exactallthree seeds pernativecontrol required')
+                native_summary[mode][route]={}
+                for video in ['SN-001','SN-015']:
+                    native_summary[mode][route][video]={}
+                    for key in ['HOTA','AssA','IDF1','MOTA','IDSW','FP','FN','Frag','IDs','Dets']:
+                        if key not in matches[0]['metrics'][video]:continue
+                        values=[row['metrics'][video][key] for row in matches]
+                        native_summary[mode][route][video][key]=dict(values=values,mean=float(np.mean(values)),sample_sd=float(np.std(values,ddof=1)))
+    write_json(a.output,dict(status='IN_PROGRESS',completed_stage='COMPLETE_CENTERED_JOINT_NINE_FITS_AND_UNIFORM_PARITY_REAL_RESTART',config=c,config_sha256=sha256(config),models=models,summary=summary,completed_fits=9,successful_optimizer_updates=28800,all_matched_inputs_and_no_null_ranking_loss=True,uniform_native=dict(manifest_sha256=sha256(uniform),evidence=u),actual_restart=dict(sha256=sha256(restart),evidence=rr),native_completed_at_snapshot=complete,native_driver=str(native_state),native_total=18,native_summary=native_summary,inner_native_graph=dict(sha256=sha256(a.root/'centered_joint_inner_native_graph_v2.json'),evidence=json.loads((a.root/'centered_joint_inner_native_graph_v2.json').read_text())),sources=snapshot_sources(a.output.with_suffix('.sources'),[__file__,config]),scope='Original512conditional warmsets only; inheritedencoder/GRU exposure. All9sameinput fits complete; native onlycompleted rowscount. CrossTransformer replaces self-attention by exactlyparameter-matched activeFFNs; independentpair has loweractivecapacity. No new384/allfoldC/nativepositive/rawFPS/novelty/finalgoal claim. Originalv1failures retained.'))
     print(json.dumps(dict(completed_fits=9,native_completed=len(complete),native_total=18)))
 
 if __name__=='__main__':main()

@@ -68,3 +68,18 @@ The actual jointseed1 epoch2exit/freshresume equals uninterrupted8epochtraining 
 First jointseed0 actualnative bounded HOTA46.219/31.538 onSN001/SN015 versus original46.238/31.983; fullroute28.120/13.225, withSN015IDSW2206. The threshold confound is removed without establishing a positive learned contribution; balancing NULL still costs existing-ID continuity. All18sameinput model/route replays (36fullvideos) continue and onlycompletedofficial rowscount as evidence. No outerthreshold/recipe search.
 
 Inner-only graph audit records2of801selectedexisting edges outside the original .97feasiblecost graph, and451of695knownphysicalexisting targets outside that graph. This separates candidate-feasibility/support limits from model identity/NULL errors. The latter targets are not relabelledNULL; forcing them toNULL would fabricate labels. The2edge observation alone doesnot explain native degradation or justify a broadgraphfix. On-policy history/labelcoverage, rawcue preservation, dictionary sensitivity, currentset competition and matched expanded-graph controls remain meaningful next diagnoses. Outer graph diagnosis is rejected before model/query loading.
+
+## All centered C controls, three seeds and both native routes complete
+
+All18model/route runs covering both684SN001and6570SN015frames complete:36fullvideos. Everyconfiguration hasseeds0/1/2 andpinnedofficial HOTA/AssA/IDF1/MOTA/IDSW/FP/FN/fragmentation/counts. Conditionaloriginal512encoder/GRU exposure remains explicit; this isnot newencoder-independent OOF.
+
+| Model / route | SN001 HOTA ±SD | SN015 HOTA ±SD | SN015 IDF1 ±SD | SN015 SW ±SD |
+|---|---:|---:|---:|---:|
+| pair / bounded | 46.224 ±0.009 | 31.497 ±0.182 | 28.580 ±0.639 | 147.667 ±2.309 |
+| pair / full | 23.025 ±1.459 | 12.420 ±1.549 | 7.588 ±1.316 | 2037.333 ±216.197 |
+| cross_transformer / bounded | 46.224 ±0.005 | 31.805 ±0.696 | 29.093 ±1.515 | 147.333 ±1.528 |
+| cross_transformer / full | 25.225 ±4.352 | 11.339 ±3.637 | 6.777 ±2.188 | 3032.333 ±1952.952 |
+| joint / bounded | 46.223 ±0.006 | 31.433 ±0.168 | 28.402 ±0.709 | 148.333 ±2.082 |
+| joint / full | 24.147 ±3.661 | 11.405 ±3.310 | 7.334 ±2.267 | 3086.667 ±1461.742 |
+
+Sameinputs originalSN015baseline isHOTA31.983/IDF129.636/SW151. Centeredjoint bounded31.433±0.168% andfull11.405±3.310% do not establisha learnedbenefit; ordinaryparameter-matchedcrossTransformer also fails. Fullroutes yieldlargefragmentation/switch counts acrossallseeds, not a luckysingle-seed failure. Commonoffset removal and balancedNULLalone do not resolve actualnative identitycompetition. Preserve these results and diagnoseonpolicy history/targetcoverage/retainedrawcues/localdictionary/candidateconditions/calibration withfitting/inner controls; no mechanicalNO_GO or finalgoaltermination. Fullnumeric evidence is PHASE_VII_CENTERED_JOINT_COMPLETE_NATIVE_MEASURED.json.

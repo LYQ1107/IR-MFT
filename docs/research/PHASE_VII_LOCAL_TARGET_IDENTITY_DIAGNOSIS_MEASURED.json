@@ -1,0 +1,1336 @@
+{
+  "status": "IN_PROGRESS",
+  "completed_stage": "COMPLETE_INNER_ONLY_TEACHER_AND_TARGET_DIFFICULTY_DIAGNOSIS",
+  "manifest_sha256": "6f33f7279163727d63cf5b1e25e23345cbab3e4cb872e18d542c97c617baa811",
+  "evidence": {
+    "status": "COMPLETE_INNER_ONLY_TEACHER_IDENTITY_AND_TARGET_DIFFICULTY_DIAGNOSIS",
+    "video": "BT-001",
+    "outer": "SN-015",
+    "outer_rejected_before_load": true,
+    "training_manifest_sha256": "88f9ed6c86db267c9da109f9f51d4129a09b550608e353dfd690bbe843c958ec",
+    "checkpoint_sha256": "83df30b8f17c5f34ebf7629e7b6cac5a336e654b0c09ebfaf9abbc76144eeeb3",
+    "fit_observations": {
+      "BT-003": 260,
+      "MSK-002": 8565,
+      "PF-001": 3000,
+      "SN-001": 680
+    },
+    "fit_target_mean_sha256": "745ef31c5bd7378ee93c071c17527ff8ad912f50495cec58980865418837816e",
+    "teacher_updates": 1200,
+    "teacher_stopped": true,
+    "identity": {
+      "teacher_local_fifo": {
+        "query_frames": 64,
+        "protocol": {
+          "gt": {
+            "gt": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 0,
+                  "supported_history_and_target": 640,
+                  "rank1_percent": 77.03125,
+                  "rank5_percent": 96.40625,
+                  "mAP_percent": 85.48462301587301,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 77.03125,
+                  "hard_known_negative_margin_mean": 0.12715755617246033
+                },
+                "discrimination": {
+                  "positive_edges": 640,
+                  "negative_edges": 5760,
+                  "auc": 0.9287288411458332,
+                  "eer": 0.15156250000000004,
+                  "positive_score_mean": 0.597372064832598,
+                  "negative_score_mean": 0.2189513469014653,
+                  "positive_quantiles": [
+                    0.35529092252254485,
+                    0.6274608969688416,
+                    0.7874955296516418
+                  ],
+                  "negative_quantiles": [
+                    -0.023082786984741692,
+                    0.2200341820716858,
+                    0.4599956989288331
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.1144539800370694,
+                "frame_model_p50_p95_ms": [
+                  16.65843649971066,
+                  21.594641704359674
+                ],
+                "predicted_feature_variance": 0.000964523758739233,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_gt_gap1.json",
+                  "sha256": "390c15529f25b47999b0a17a3b22a5feca56e61de69a68c68c6e562374437e0f",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 10,
+                  "supported_history_and_target": 630,
+                  "rank1_percent": 45.3968253968254,
+                  "rank5_percent": 85.87301587301587,
+                  "mAP_percent": 61.986835474930714,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 44.84375,
+                  "hard_known_negative_margin_mean": -0.039100012281865236
+                },
+                "discrimination": {
+                  "positive_edges": 630,
+                  "negative_edges": 5670,
+                  "auc": 0.7911942554799698,
+                  "eer": 0.2850088183421517,
+                  "positive_score_mean": 0.41430894630362414,
+                  "negative_score_mean": 0.20917325228714667,
+                  "positive_quantiles": [
+                    0.17738435864448548,
+                    0.4285743236541748,
+                    0.6297913551330566
+                  ],
+                  "negative_quantiles": [
+                    -0.026859848760068417,
+                    0.21041013300418854,
+                    0.44602594673633583
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.0918919439645833,
+                "frame_model_p50_p95_ms": [
+                  16.5013240002736,
+                  21.119961804288323
+                ],
+                "predicted_feature_variance": 0.00097188277868554,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_gt_gap25.json",
+                  "sha256": "cea45ab7856d74980b834c1d49ee7066ed66dce7fb656c98593730007e7d9259",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 20,
+                  "supported_history_and_target": 620,
+                  "rank1_percent": 23.548387096774192,
+                  "rank5_percent": 71.45161290322581,
+                  "mAP_percent": 44.32430875576037,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 23.125,
+                  "hard_known_negative_margin_mean": -0.1429752573566211
+                },
+                "discrimination": {
+                  "positive_edges": 620,
+                  "negative_edges": 5580,
+                  "auc": 0.6563351254480287,
+                  "eer": 0.39032258064516134,
+                  "positive_score_mean": 0.3187182274601993,
+                  "negative_score_mean": 0.21269145445498858,
+                  "positive_quantiles": [
+                    0.08123919963836672,
+                    0.3183228373527527,
+                    0.5658487796783448
+                  ],
+                  "negative_quantiles": [
+                    -0.028468245640397072,
+                    0.21184588223695755,
+                    0.4572740942239762
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.0869709769976907,
+                "frame_model_p50_p95_ms": [
+                  16.53263150365092,
+                  20.287262497004118
+                ],
+                "predicted_feature_variance": 0.0009637169423513114,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_gt_gap100.json",
+                  "sha256": "07035120c934a0947c5851914b158a2f8b5e8c7447ce913d0a82dd978e28d2cd",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            },
+            "detector": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 0,
+                  "supported_history_and_target": 456,
+                  "rank1_percent": 66.00877192982456,
+                  "rank5_percent": 94.2982456140351,
+                  "mAP_percent": 78.09784878863826,
+                  "unknown_selected": 62,
+                  "rank1_including_nohistory_percent": 66.00877192982456,
+                  "hard_known_negative_margin_mean": 0.10826778631420447
+                },
+                "discrimination": {
+                  "positive_edges": 456,
+                  "negative_edges": 4104,
+                  "auc": 0.9141899430594029,
+                  "eer": 0.1600877192982456,
+                  "positive_score_mean": 0.5611308371125344,
+                  "negative_score_mean": 0.22046544692514475,
+                  "positive_quantiles": [
+                    0.32382500171661377,
+                    0.5740486085414886,
+                    0.7539450526237488
+                  ],
+                  "negative_quantiles": [
+                    -0.027137474529445166,
+                    0.22136227786540985,
+                    0.46261518597602846
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.0862047560149222,
+                "frame_model_p50_p95_ms": [
+                  16.683982001268305,
+                  19.623937401775038
+                ],
+                "predicted_feature_variance": 0.000964523758739233,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_detector_gap1.json",
+                  "sha256": "cf8e1390bc001c4153750031700e43c59e3d72aa63c16a7924fb9a18d24e005b",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 10,
+                  "supported_history_and_target": 447,
+                  "rank1_percent": 39.14988814317674,
+                  "rank5_percent": 76.51006711409396,
+                  "mAP_percent": 56.48363412625157,
+                  "unknown_selected": 99,
+                  "rank1_including_nohistory_percent": 38.59649122807017,
+                  "hard_known_negative_margin_mean": -0.02156005186597573
+                },
+                "discrimination": {
+                  "positive_edges": 447,
+                  "negative_edges": 4023,
+                  "auc": 0.7872167920363947,
+                  "eer": 0.2930648769574944,
+                  "positive_score_mean": 0.4131731457770771,
+                  "negative_score_mean": 0.21010329182877957,
+                  "positive_quantiles": [
+                    0.17877436876296998,
+                    0.4224376082420349,
+                    0.6240603685379028
+                  ],
+                  "negative_quantiles": [
+                    -0.03272977769374847,
+                    0.20966748893260956,
+                    0.44870245456695557
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.1052524670158164,
+                "frame_model_p50_p95_ms": [
+                  16.968658001133008,
+                  19.170934900466815
+                ],
+                "predicted_feature_variance": 0.00097188277868554,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_detector_gap25.json",
+                  "sha256": "88dfb20fab24f628ce8ebafa787f89b114d71ef0fc99c26297cc050a4cdc21c9",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 20,
+                  "supported_history_and_target": 439,
+                  "rank1_percent": 20.72892938496583,
+                  "rank5_percent": 65.14806378132118,
+                  "mAP_percent": 40.74849893656003,
+                  "unknown_selected": 135,
+                  "rank1_including_nohistory_percent": 20.394736842105264,
+                  "hard_known_negative_margin_mean": -0.10747858708945011
+                },
+                "discrimination": {
+                  "positive_edges": 439,
+                  "negative_edges": 3951,
+                  "auc": 0.6648995756098771,
+                  "eer": 0.3826879271070615,
+                  "positive_score_mean": 0.32335140583145694,
+                  "negative_score_mean": 0.21141595483350176,
+                  "positive_quantiles": [
+                    0.0897544100880623,
+                    0.32476407289505005,
+                    0.560252046585083
+                  ],
+                  "negative_quantiles": [
+                    -0.033306725323200226,
+                    0.20846664905548096,
+                    0.4604797661304474
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.1547958040173398,
+                "frame_model_p50_p95_ms": [
+                  17.68849899599445,
+                  20.85442634743231
+                ],
+                "predicted_feature_variance": 0.0009637169423513114,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_gt_detector_gap100.json",
+                  "sha256": "01cb87e66f90ca3e1dbd5dc9c2f36b82d89c79b28f7e54ca19b90293ebe748fc",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            }
+          },
+          "detector": {
+            "gt": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 0,
+                  "supported_history_and_target": 640,
+                  "rank1_percent": 64.6875,
+                  "rank5_percent": 92.96875,
+                  "mAP_percent": 76.4688740079365,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 64.6875,
+                  "hard_known_negative_margin_mean": 0.05080647474824218
+                },
+                "discrimination": {
+                  "positive_edges": 640,
+                  "negative_edges": 5760,
+                  "auc": 0.874689670138889,
+                  "eer": 0.2048611111111111,
+                  "positive_score_mean": 0.5159381680583465,
+                  "negative_score_mean": 0.21658789299967288,
+                  "positive_quantiles": [
+                    0.26685652434825896,
+                    0.5465028882026672,
+                    0.7290319621562958
+                  ],
+                  "negative_quantiles": [
+                    -0.02029231265187264,
+                    0.21590931713581085,
+                    0.45471120774745943
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.1495336640509777,
+                "frame_model_p50_p95_ms": [
+                  17.802842001401586,
+                  19.80007504716923
+                ],
+                "predicted_feature_variance": 0.0010147542925551534,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_gt_gap1.json",
+                  "sha256": "86b122340f229c6489cc5e91f9daf1cd0b7723af75d80bdd45de55a229d968b9",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 10,
+                  "supported_history_and_target": 630,
+                  "rank1_percent": 38.88888888888889,
+                  "rank5_percent": 81.9047619047619,
+                  "mAP_percent": 57.31620055429579,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 38.4375,
+                  "hard_known_negative_margin_mean": -0.06128834552308988
+                },
+                "discrimination": {
+                  "positive_edges": 630,
+                  "negative_edges": 5670,
+                  "auc": 0.7614061756389798,
+                  "eer": 0.30793650793650795,
+                  "positive_score_mean": 0.3951259445332523,
+                  "negative_score_mean": 0.212853236519362,
+                  "positive_quantiles": [
+                    0.1532471239566803,
+                    0.4149976074695587,
+                    0.6208371698856354
+                  ],
+                  "negative_quantiles": [
+                    -0.026249543577432644,
+                    0.21354641765356064,
+                    0.4507359713315964
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.1510179760007304,
+                "frame_model_p50_p95_ms": [
+                  17.69294499536045,
+                  20.61977335033589
+                ],
+                "predicted_feature_variance": 0.001006343518383801,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_gt_gap25.json",
+                  "sha256": "c2af0573cdd46d04ef5d334e280eb7392ed9785fa3872ca941c9f0ce6f17f782",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 20,
+                  "supported_history_and_target": 620,
+                  "rank1_percent": 22.096774193548388,
+                  "rank5_percent": 68.2258064516129,
+                  "mAP_percent": 42.490527393753204,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 21.71875,
+                  "hard_known_negative_margin_mean": -0.14991999550106666
+                },
+                "discrimination": {
+                  "positive_edges": 620,
+                  "negative_edges": 5580,
+                  "auc": 0.6411300439357152,
+                  "eer": 0.39677419354838706,
+                  "positive_score_mean": 0.30521528259024866,
+                  "negative_score_mean": 0.21089816791243585,
+                  "positive_quantiles": [
+                    0.06614594087004662,
+                    0.3071010410785675,
+                    0.5431788742542267
+                  ],
+                  "negative_quantiles": [
+                    -0.026135572791099553,
+                    0.21349070966243744,
+                    0.4527230739593507
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.1591601950131007,
+                "frame_model_p50_p95_ms": [
+                  17.83341199552524,
+                  20.326006147297445
+                ],
+                "predicted_feature_variance": 0.001012600609101355,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_gt_gap100.json",
+                  "sha256": "a6c6fa842b67ed2bcd41ad271b55e376728c78d81d0791669ff89222674a70bb",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            },
+            "detector": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 0,
+                  "supported_history_and_target": 456,
+                  "rank1_percent": 69.07894736842105,
+                  "rank5_percent": 90.35087719298247,
+                  "mAP_percent": 78.58138002778095,
+                  "unknown_selected": 51,
+                  "rank1_including_nohistory_percent": 69.07894736842105,
+                  "hard_known_negative_margin_mean": 0.11870690905734112
+                },
+                "discrimination": {
+                  "positive_edges": 456,
+                  "negative_edges": 4104,
+                  "auc": 0.9007862461954105,
+                  "eer": 0.17105263157894735,
+                  "positive_score_mean": 0.5767029410211795,
+                  "negative_score_mean": 0.2242767111739583,
+                  "positive_quantiles": [
+                    0.28895488381385803,
+                    0.6143660247325897,
+                    0.7885391712188721
+                  ],
+                  "negative_quantiles": [
+                    -0.01780516654253006,
+                    0.2213560938835144,
+                    0.4654781460762024
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.2305040769424522,
+                "frame_model_p50_p95_ms": [
+                  19.300173004012322,
+                  21.98025764955673
+                ],
+                "predicted_feature_variance": 0.0010147542925551534,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_detector_gap1.json",
+                  "sha256": "10cf80f8982caf07cb0fa41e193f558dd0b35b25c106cd2c7131bb2fcb6f5f9d",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 10,
+                  "supported_history_and_target": 447,
+                  "rank1_percent": 39.14988814317674,
+                  "rank5_percent": 73.15436241610739,
+                  "mAP_percent": 55.694394560857255,
+                  "unknown_selected": 100,
+                  "rank1_including_nohistory_percent": 38.59649122807017,
+                  "hard_known_negative_margin_mean": -0.02717068748052755
+                },
+                "discrimination": {
+                  "positive_edges": 447,
+                  "negative_edges": 4023,
+                  "auc": 0.7667166588536497,
+                  "eer": 0.30698483718617947,
+                  "positive_score_mean": 0.41298246880372363,
+                  "negative_score_mean": 0.2181661267138197,
+                  "positive_quantiles": [
+                    0.1403993308544159,
+                    0.42894554138183594,
+                    0.6458431482315063
+                  ],
+                  "negative_quantiles": [
+                    -0.029111769795417783,
+                    0.21786797046661377,
+                    0.4609349250793458
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.1999049399819341,
+                "frame_model_p50_p95_ms": [
+                  18.596519497805275,
+                  22.034783001799948
+                ],
+                "predicted_feature_variance": 0.001006343518383801,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_detector_gap25.json",
+                  "sha256": "ec427dc9d61b6568568f00515653aca350b96eb8a590eeffa5c9fb2faee0ee2e",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 20,
+                  "supported_history_and_target": 439,
+                  "rank1_percent": 20.956719817767656,
+                  "rank5_percent": 64.69248291571755,
+                  "mAP_percent": 40.837701276197855,
+                  "unknown_selected": 117,
+                  "rank1_including_nohistory_percent": 20.614035087719298,
+                  "hard_known_negative_margin_mean": -0.11104693116115275
+                },
+                "discrimination": {
+                  "positive_edges": 439,
+                  "negative_edges": 3951,
+                  "auc": 0.6587265759540706,
+                  "eer": 0.3849658314350797,
+                  "positive_score_mean": 0.3220360248703891,
+                  "negative_score_mean": 0.21622527553042847,
+                  "positive_quantiles": [
+                    0.09559702575206758,
+                    0.32670390605926514,
+                    0.5540468215942382
+                  ],
+                  "negative_quantiles": [
+                    -0.027910813689231873,
+                    0.21482105553150177,
+                    0.46123993396759033
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.179430461008451,
+                "frame_model_p50_p95_ms": [
+                  18.240073997731088,
+                  20.04277515479771
+                ],
+                "predicted_feature_variance": 0.001012600609101355,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/teacher_local_fifo/query_support/BT-001_detector_detector_gap100.json",
+                  "sha256": "d20ee6d28f7e3d1ecf8fad66b3d605194bc3f9b8920a531795130b69457e4989",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            }
+          }
+        },
+        "sampled_frames": 300,
+        "empty_both_sampled_frames": 0,
+        "scope": "Clean physical offline inventory includes currently absent previously seen fish. Past-only GT and verified-detector histories are separate, not actual native association memories. Full current proposal rows retained; unknowns not labeled negatives. No GT/teacher/IDs enter student."
+      },
+      "fit_mean_prediction": {
+        "query_frames": 64,
+        "protocol": {
+          "gt": {
+            "gt": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 0,
+                  "supported_history_and_target": 640,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682538,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7140439664479346
+                },
+                "discrimination": {
+                  "positive_edges": 640,
+                  "negative_edges": 5760,
+                  "auc": 0.5,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6042837958433666,
+                  "negative_score_mean": -0.6042837958433666,
+                  "positive_quantiles": [
+                    -1.99663405418396,
+                    -0.7074393332004547,
+                    0.9669813454151154
+                  ],
+                  "negative_quantiles": [
+                    -1.9966340541839602,
+                    -0.7074393332004547,
+                    0.9669813454151156
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.792528095007583,
+                "frame_model_p50_p95_ms": [
+                  27.783958496002015,
+                  31.687884052007572
+                ],
+                "predicted_feature_variance": 3.368568038441058e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_gt_gap1.json",
+                  "sha256": "390c15529f25b47999b0a17a3b22a5feca56e61de69a68c68c6e562374437e0f",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 10,
+                  "supported_history_and_target": 630,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682545,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7100805806262152
+                },
+                "discrimination": {
+                  "positive_edges": 630,
+                  "negative_edges": 5670,
+                  "auc": 0.5,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6079705352584521,
+                  "negative_score_mean": -0.6079705352584521,
+                  "positive_quantiles": [
+                    -2.008487010002136,
+                    -0.7108047306537628,
+                    0.9654072105884552
+                  ],
+                  "negative_quantiles": [
+                    -2.008487010002136,
+                    -0.7108047306537628,
+                    0.9654072105884555
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.6942733449977823,
+                "frame_model_p50_p95_ms": [
+                  26.347390998125775,
+                  30.185190050542587
+                ],
+                "predicted_feature_variance": 3.271731504965979e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_gt_gap25.json",
+                  "sha256": "cea45ab7856d74980b834c1d49ee7066ed66dce7fb656c98593730007e7d9259",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 20,
+                  "supported_history_and_target": 620,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682545,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7049304548771151
+                },
+                "discrimination": {
+                  "positive_edges": 620,
+                  "negative_edges": 5580,
+                  "auc": 0.5,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6099108599847363,
+                  "negative_score_mean": -0.6099108599847363,
+                  "positive_quantiles": [
+                    -2.0097412109375,
+                    -0.7083936333656311,
+                    0.9574301421642305
+                  ],
+                  "negative_quantiles": [
+                    -2.0097412109375,
+                    -0.7083936333656311,
+                    0.9574301421642327
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.7088404320093105,
+                "frame_model_p50_p95_ms": [
+                  26.31858750100946,
+                  30.09426154894754
+                ],
+                "predicted_feature_variance": 3.1811159202687136e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_gt_gap100.json",
+                  "sha256": "07035120c934a0947c5851914b158a2f8b5e8c7447ce913d0a82dd978e28d2cd",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            },
+            "detector": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 0,
+                  "supported_history_and_target": 456,
+                  "rank1_percent": 8.991228070175438,
+                  "rank5_percent": 43.640350877192986,
+                  "mAP_percent": 26.286703040410064,
+                  "unknown_selected": 141,
+                  "rank1_including_nohistory_percent": 8.991228070175438,
+                  "hard_known_negative_margin_mean": -1.5928042835654004
+                },
+                "discrimination": {
+                  "positive_edges": 456,
+                  "negative_edges": 4104,
+                  "auc": 0.5,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.5942785659265754,
+                  "negative_score_mean": -0.5942785659265754,
+                  "positive_quantiles": [
+                    -2.094906806945801,
+                    -0.6942726671695709,
+                    0.9898778796195984
+                  ],
+                  "negative_quantiles": [
+                    -2.0977368354797363,
+                    -0.6942726671695709,
+                    0.9910690188407898
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.7323501650462276,
+                "frame_model_p50_p95_ms": [
+                  26.547830002527917,
+                  30.697219649300674
+                ],
+                "predicted_feature_variance": 3.368568038441058e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_detector_gap1.json",
+                  "sha256": "cf8e1390bc001c4153750031700e43c59e3d72aa63c16a7924fb9a18d24e005b",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 10,
+                  "supported_history_and_target": 447,
+                  "rank1_percent": 8.94854586129754,
+                  "rank5_percent": 43.40044742729307,
+                  "mAP_percent": 26.204215224775414,
+                  "unknown_selected": 141,
+                  "rank1_including_nohistory_percent": 8.991228070175438,
+                  "hard_known_negative_margin_mean": -1.590005942397403
+                },
+                "discrimination": {
+                  "positive_edges": 447,
+                  "negative_edges": 4023,
+                  "auc": 0.5000005560866183,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6029351431151364,
+                  "negative_score_mean": -0.6029351431744003,
+                  "positive_quantiles": [
+                    -2.1028371810913087,
+                    -0.7011116743087769,
+                    0.9824888467788697
+                  ],
+                  "negative_quantiles": [
+                    -2.103666305541992,
+                    -0.7011116743087769,
+                    0.9841523170471191
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.7800059689907357,
+                "frame_model_p50_p95_ms": [
+                  27.772773002652684,
+                  31.478366249575632
+                ],
+                "predicted_feature_variance": 3.271731504965979e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_detector_gap25.json",
+                  "sha256": "88dfb20fab24f628ce8ebafa787f89b114d71ef0fc99c26297cc050a4cdc21c9",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 20,
+                  "supported_history_and_target": 439,
+                  "rank1_percent": 9.111617312072893,
+                  "rank5_percent": 43.735763097949885,
+                  "mAP_percent": 26.406869492724628,
+                  "unknown_selected": 133,
+                  "rank1_including_nohistory_percent": 9.210526315789473,
+                  "hard_known_negative_margin_mean": -1.589426147206294
+                },
+                "discrimination": {
+                  "positive_edges": 439,
+                  "negative_edges": 3951,
+                  "auc": 0.5000005765386809,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6019497949095414,
+                  "negative_score_mean": -0.6019497949698852,
+                  "positive_quantiles": [
+                    -2.103804588317871,
+                    -0.7026917338371277,
+                    0.9826821446418762
+                  ],
+                  "negative_quantiles": [
+                    -2.1049699783325195,
+                    -0.7026917338371277,
+                    0.9849184155464172
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.874115452017577,
+                "frame_model_p50_p95_ms": [
+                  28.85154849718674,
+                  32.390917347947834
+                ],
+                "predicted_feature_variance": 3.1811159202687136e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_gt_detector_gap100.json",
+                  "sha256": "01cb87e66f90ca3e1dbd5dc9c2f36b82d89c79b28f7e54ca19b90293ebe748fc",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            }
+          },
+          "detector": {
+            "gt": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 0,
+                  "supported_history_and_target": 640,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682538,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7138370261411182
+                },
+                "discrimination": {
+                  "positive_edges": 640,
+                  "negative_edges": 5760,
+                  "auc": 0.5000054253472223,
+                  "eer": 0.4995659722222222,
+                  "positive_score_mean": -0.6051667552674189,
+                  "negative_score_mean": -0.6051712930073134,
+                  "positive_quantiles": [
+                    -1.9999515175819396,
+                    -0.7074393332004547,
+                    0.9669813454151154
+                  ],
+                  "negative_quantiles": [
+                    -2.001341438293457,
+                    -0.7076252698898315,
+                    0.9669702410697939
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.7905788899952313,
+                "frame_model_p50_p95_ms": [
+                  27.393519998440752,
+                  31.945193299907256
+                ],
+                "predicted_feature_variance": 3.368568038441058e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_gt_gap1.json",
+                  "sha256": "86b122340f229c6489cc5e91f9daf1cd0b7723af75d80bdd45de55a229d968b9",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 10,
+                  "supported_history_and_target": 630,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682545,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7100250737534628
+                },
+                "discrimination": {
+                  "positive_edges": 630,
+                  "negative_edges": 5670,
+                  "auc": 0.5000209960527422,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6081578121890151,
+                  "negative_score_mean": -0.6081608930868762,
+                  "positive_quantiles": [
+                    -2.0089893341064453,
+                    -0.7117345035076141,
+                    0.9654072105884552
+                  ],
+                  "negative_quantiles": [
+                    -2.0089893341064453,
+                    -0.7108047306537628,
+                    0.9654072105884555
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.7870297669796855,
+                "frame_model_p50_p95_ms": [
+                  28.034983999532415,
+                  30.2399385964236
+                ],
+                "predicted_feature_variance": 3.271731504965979e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_gt_gap25.json",
+                  "sha256": "c2af0573cdd46d04ef5d334e280eb7392ed9785fa3872ca941c9f0ce6f17f782",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 640,
+                  "target_absent": 0,
+                  "history_absent": 20,
+                  "supported_history_and_target": 620,
+                  "rank1_percent": 10.0,
+                  "rank5_percent": 50.0,
+                  "mAP_percent": 29.289682539682545,
+                  "unknown_selected": 0,
+                  "rank1_including_nohistory_percent": 10.0,
+                  "hard_known_negative_margin_mean": -1.7049018142324301
+                },
+                "discrimination": {
+                  "positive_edges": 620,
+                  "negative_edges": 5580,
+                  "auc": 0.5000023124060584,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.6100164769037116,
+                  "negative_score_mean": -0.610015496552845,
+                  "positive_quantiles": [
+                    -2.0097412109375,
+                    -0.7083936333656311,
+                    0.9573915719985964
+                  ],
+                  "negative_quantiles": [
+                    -2.0104394435882567,
+                    -0.708657443523407,
+                    0.9573571562767049
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 640,
+                "observable_candidate_observations": 640,
+                "unknown_candidate_observations": 0,
+                "frame_model_seconds": 1.803395159979118,
+                "frame_model_p50_p95_ms": [
+                  28.171049500087975,
+                  30.835980599658797
+                ],
+                "predicted_feature_variance": 3.1811159202687136e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_gt_gap100.json",
+                  "sha256": "a6c6fa842b67ed2bcd41ad271b55e376728c78d81d0791669ff89222674a70bb",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            },
+            "detector": {
+              "1": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 0,
+                  "supported_history_and_target": 456,
+                  "rank1_percent": 8.991228070175438,
+                  "rank5_percent": 43.640350877192986,
+                  "mAP_percent": 26.286703040410064,
+                  "unknown_selected": 141,
+                  "rank1_including_nohistory_percent": 8.991228070175438,
+                  "hard_known_negative_margin_mean": -1.5927184024711318
+                },
+                "discrimination": {
+                  "positive_edges": 456,
+                  "negative_edges": 4104,
+                  "auc": 0.5002482067131767,
+                  "eer": 0.5,
+                  "positive_score_mean": -0.5946163994488878,
+                  "negative_score_mean": -0.5951200227042548,
+                  "positive_quantiles": [
+                    -2.094906806945801,
+                    -0.6942726671695709,
+                    0.9898778796195984
+                  ],
+                  "negative_quantiles": [
+                    -2.0977368354797363,
+                    -0.6948952674865723,
+                    0.9910690188407898
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.846556887983752,
+                "frame_model_p50_p95_ms": [
+                  28.407870002411073,
+                  32.65033639727335
+                ],
+                "predicted_feature_variance": 3.368568038441058e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_detector_gap1.json",
+                  "sha256": "10cf80f8982caf07cb0fa41e193f558dd0b35b25c106cd2c7131bb2fcb6f5f9d",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "25": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 10,
+                  "supported_history_and_target": 447,
+                  "rank1_percent": 8.94854586129754,
+                  "rank5_percent": 43.40044742729307,
+                  "mAP_percent": 26.204215224775414,
+                  "unknown_selected": 141,
+                  "rank1_including_nohistory_percent": 8.991228070175438,
+                  "hard_known_negative_margin_mean": -1.589958271049213
+                },
+                "discrimination": {
+                  "positive_edges": 447,
+                  "negative_edges": 4023,
+                  "auc": 0.5000316969372417,
+                  "eer": 0.49993420186866694,
+                  "positive_score_mean": -0.6031030121799017,
+                  "negative_score_mean": -0.6031243596989926,
+                  "positive_quantiles": [
+                    -2.103236675262451,
+                    -0.7011116743087769,
+                    0.9819827914237977
+                  ],
+                  "negative_quantiles": [
+                    -2.103666305541992,
+                    -0.7011116743087769,
+                    0.9840978384017944
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.8624563430057606,
+                "frame_model_p50_p95_ms": [
+                  28.97854299953906,
+                  32.13952529767994
+                ],
+                "predicted_feature_variance": 3.271731504965979e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_detector_gap25.json",
+                  "sha256": "ec427dc9d61b6568568f00515653aca350b96eb8a590eeffa5c9fb2faee0ee2e",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              },
+              "100": {
+                "retrieval": {
+                  "queries": 640,
+                  "target_present": 456,
+                  "target_absent": 184,
+                  "history_absent": 20,
+                  "supported_history_and_target": 439,
+                  "rank1_percent": 9.111617312072893,
+                  "rank5_percent": 43.735763097949885,
+                  "mAP_percent": 26.406869492724628,
+                  "unknown_selected": 133,
+                  "rank1_including_nohistory_percent": 9.210526315789473,
+                  "hard_known_negative_margin_mean": -1.5893991495438073
+                },
+                "discrimination": {
+                  "positive_edges": 439,
+                  "negative_edges": 3951,
+                  "auc": 0.5000005765386808,
+                  "eer": 0.49993300281388175,
+                  "positive_score_mean": -0.6020538180319758,
+                  "negative_score_mean": -0.6020578436272502,
+                  "positive_quantiles": [
+                    -2.103804588317871,
+                    -0.7026917338371277,
+                    0.9826023936271667
+                  ],
+                  "negative_quantiles": [
+                    -2.1049699783325195,
+                    -0.7026917338371277,
+                    0.9838410019874573
+                  ],
+                  "scope": "Pooled known-positive/known-negative edges; repeated fish/frames are not independent samples. Diagnostic EER, no deployed threshold."
+                },
+                "input_candidate_observations": 840,
+                "observable_candidate_observations": 840,
+                "unknown_candidate_observations": 384,
+                "frame_model_seconds": 1.8567545079931733,
+                "frame_model_p50_p95_ms": [
+                  28.928225499839755,
+                  32.5626485482644
+                ],
+                "predicted_feature_variance": 3.1811159202687136e-14,
+                "query_support": {
+                  "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_identity_inner_diagnosis_v1/fit_mean_prediction/query_support/BT-001_detector_detector_gap100.json",
+                  "sha256": "d20ee6d28f7e3d1ecf8fad66b3d605194bc3f9b8920a531795130b69457e4989",
+                  "rows": 640
+                },
+                "score_units": "Unthresholded identity pair logits; EER diagnostic only. Repeated fish/frames are dependent samples. CPU cached-feature evaluation, not raw online FPS."
+              }
+            }
+          }
+        },
+        "sampled_frames": 300,
+        "empty_both_sampled_frames": 0,
+        "scope": "Clean physical offline inventory includes currently absent previously seen fish. Past-only GT and verified-detector histories are separate, not actual native association memories. Full current proposal rows retained; unknowns not labeled negatives. No GT/teacher/IDs enter student."
+      }
+    },
+    "prediction_difficulty": {
+      "1": {
+        "counts": {
+          "query_rows": 640,
+          "known_current_GT_targets": 640,
+          "missing_current_GT": 0,
+          "unavailable_history": 0,
+          "observed_target_tokens": 1769
+        },
+        "losses": {
+          "regional_predictor": {
+            "tokens": 1769,
+            "mean": 0.5219378208898433
+          },
+          "context_identity": {
+            "tokens": 1769,
+            "mean": 0.4420911723641503
+          },
+          "fit_mean": {
+            "tokens": 1769,
+            "mean": 0.9912549507287749
+          },
+          "teacher_past_fifo": {
+            "tokens": 1769,
+            "mean": 0.37929048573249746
+          }
+        },
+        "mask_semantics": "Allobserved currentGTlocal targets heldoutfrompredictioninputs; masks onlyselect lossqueries andcannotvaryvisiblecontext inthisforecast implementation"
+      },
+      "25": {
+        "counts": {
+          "query_rows": 640,
+          "known_current_GT_targets": 640,
+          "missing_current_GT": 0,
+          "unavailable_history": 10,
+          "observed_target_tokens": 1741
+        },
+        "losses": {
+          "regional_predictor": {
+            "tokens": 1741,
+            "mean": 0.6269792839414015
+          },
+          "context_identity": {
+            "tokens": 1741,
+            "mean": 0.6472493462833709
+          },
+          "fit_mean": {
+            "tokens": 1741,
+            "mean": 0.9912587186853342
+          },
+          "teacher_past_fifo": {
+            "tokens": 1741,
+            "mean": 0.5914920684525776
+          }
+        },
+        "mask_semantics": "Allobserved currentGTlocal targets heldoutfrompredictioninputs; masks onlyselect lossqueries andcannotvaryvisiblecontext inthisforecast implementation"
+      },
+      "100": {
+        "counts": {
+          "query_rows": 640,
+          "known_current_GT_targets": 640,
+          "missing_current_GT": 0,
+          "unavailable_history": 20,
+          "observed_target_tokens": 1713
+        },
+        "losses": {
+          "regional_predictor": {
+            "tokens": 1713,
+            "mean": 0.6935327657467429
+          },
+          "context_identity": {
+            "tokens": 1713,
+            "mean": 0.7476172592649666
+          },
+          "fit_mean": {
+            "tokens": 1713,
+            "mean": 0.9916942603603415
+          },
+          "teacher_past_fifo": {
+            "tokens": 1713,
+            "mean": 0.7021462004990586
+          }
+        },
+        "mask_semantics": "Allobserved currentGTlocal targets heldoutfrompredictioninputs; masks onlyselect lossqueries andcannotvaryvisiblecontext inthisforecast implementation"
+      }
+    },
+    "sources": {
+      "tools/cfp_diagnose_local_target_identity.py": "0dc5244c087b36a92eff63f866e9f9562b2d1bbde2ba8c81750daad92ff24b00",
+      "cfp/local_target_diagnosis.py": "2453a5f0e4747a9614c8f9b15c1b14a918c13c82b8a06e58e845cae1db7777c4"
+    },
+    "scope": "ReadonlyinnerBT001 diagnostics ofsame completedcontextV2 model. Teacherforward diagnosticofflineonly, neverdeployed. Constanttargetmean builtsolelyfromfourfitGTcrop observations, noinner/outermean fitting. Currenttargetfully excludedfrompredictor; querymask selects loss-only, not visiblecontext. Supports/unknowns separate, not nativeMOT/newloss/novelty."
+  },
+  "outer_guard": {
+    "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_target_outer_guard_v1.json",
+    "sha256": "881feef6264715741d6dc4e0a58661235e7b6498361027630317e713e69e444b"
+  },
+  "scope": "ReadonlyinnerBT001 diagnostics ofsame completedcontextV2 model. Teacherforward diagnosticofflineonly, neverdeployed. Constanttargetmean builtsolelyfromfourfitGTcrop observations, noinner/outermean fitting. Currenttargetfully excludedfrompredictor; querymask selects loss-only, not visiblecontext. Supports/unknowns separate, not nativeMOT/newloss/novelty."
+}

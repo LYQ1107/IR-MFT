@@ -38,3 +38,22 @@ All27251frames across6videos complete. Fresh KF andUKF predictions are exactbyte
 | MSK-002 | 1754 | 89.41 | 109.38 | Yes |
 
 UKF alone with the same linear motion/observation model provides no nativeMOT improvement here. This isolates filtering from changes in state, nonlinear dynamics, appearance or lifecycle. It doesnot exclude a genuinely different nonlinear fish-motion model after error-source evidence. FishIoU/AGCIoU/source-faithful versus repaired definitions, observable overlap/density/conflict states and learned nonlinearity remain required. Neither this cacheassociationtime nor official metric evaluation is complete rawFPS. Full proof and parameter/runtime/source/input/outputSHA references are in PHASE_VII_LINEAR_UNSCENTED_MOTION_MEASURED.json.
+
+## Completed isolated geometry controls: 96 complete videos
+
+All16configurations×6videos (436016nativeframes) complete, original V3/512RGB/GRUseed0/nativeKF/proposal rows and scores/thresholds/lowstage/duplicates/lifecycle/measurementoutput fixed. Geometry-only weight0 and originalGRUweight0.3 are separate. Identitycost and its original inclusiveIoU eligibility remain fixed; only high/unconfirmed association geometrychanges. These deterministic source0controls are not threeindependent newencoderseeds.
+
+Native IoU includes+1pixel; source FishIoU/AGCv1 usecontinuous coordinates. ContinuousIoU and ordinaryDIoU therefore distinguish convention/center-distance changes from sourceheuristics. OriginalFishcentral-area defect is preserved in fish_source; centralrepair alone isdisclosed and still retains the resolution-dependent area/1000factor. Fixed1.3IoU+.3 andIoU+.05controls isolate scorecompression/offset effects. AGCv1 is inactive/singular inTIDE source; our finiteclippedlimit is explicit and is not paperAGCIoU/fulltracker reproduction. MIT notices for both source projects are retained. Actual2000pair purefunction parity errors are0(Fish) and6.94e-18(finiteclippedAGC); zerocenter sourceexception isverified.
+
+| GRU geometry | SN001 HOTA / IDF1 / SW | SN015 HOTA / IDF1 / SW | MSK002 HOTA / IDF1 / SW | PF001 HOTA / IDF1 / SW |
+|---|---:|---:|---:|---:|
+| native | 46.238 / 65.251 / 26 | 31.983 / 29.636 / 151 | 24.393 / 29.359 / 389 | 45.385 / 45.292 / 18 |
+| diou | 42.571 / 60.151 / 24 | 32.505 / 29.569 / 156 | 24.232 / 28.654 / 388 | 45.888 / 45.294 / 18 |
+| fish_central_repaired | 40.198 / 53.924 / 32 | 29.357 / 26.015 / 184 | 18.382 / 22.286 / 667 | 33.513 / 27.748 / 28 |
+| fish_affine_control | 41.204 / 57.024 / 36 | 27.999 / 26.122 / 216 | 11.304 / 11.684 / 6152 | 34.210 / 31.796 / 46 |
+| continuous_iou | 46.238 / 65.251 / 26 | 31.539 / 28.406 / 154 | 24.346 / 29.360 / 385 | 45.385 / 45.292 / 18 |
+| fish_source | 40.198 / 53.928 / 32 | 29.627 / 25.982 / 179 | 18.175 / 22.364 / 662 | 33.376 / 26.753 / 35 |
+| agc_clipped | 46.238 / 65.251 / 26 | 31.539 / 28.406 / 154 | 24.178 / 28.867 / 387 | 45.385 / 45.292 / 18 |
+| iou_offset005 | 41.325 / 57.226 / 43 | 28.646 / 29.898 / 158 | 11.214 / 12.432 / 5895 | 45.385 / 45.292 / 18 |
+
+Source/repairedFishIoU does not establish a stable benefit: large score offsets and sourcecentraldefect can change many nativefeasible edges and worsen continuity. DIoU hasheterogeneous effects, e.gPF001HOTA45.385→45.888 butSN00146.238→42.571, withnoIDF1improvement onPF. ClippedAGC doesnot consistently beat the continuousIoU control. OriginalIoU convention alone changesSN015GRUHOTA31.983→31.539; do not attribute that to a new fish method. All6/geometry-only/fullmetrics, native-threshold crossing counts, exactinputs/output/source/protocol/officialSHA evidence are in PHASE_VII_FISH_GEOMETRY_MEASURED.json. No per-video threshold selection, sourcefulltracker/paperAGCIoU/learnednonlinearity/trueocclusion/novelty/rawFPS claim. Paper-faithful AGCIoU and observableocclusion/nonlinearerror diagnosis remain required.

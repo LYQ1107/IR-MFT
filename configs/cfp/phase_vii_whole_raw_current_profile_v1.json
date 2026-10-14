@@ -1,0 +1,31 @@
+{
+  "state": "FROZEN",
+  "videos": [
+    "SN-001",
+    "SN-015",
+    "BT-003",
+    "BT-001",
+    "MSK-002",
+    "PF-001"
+  ],
+  "kinds": [
+    "legacy_gru",
+    "dino_frozen_fifo",
+    "dino_global_fifo"
+  ],
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "detections": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections",
+  "detector_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python",
+  "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+  "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+  "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+  "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_association_anchor_seed0/epoch8.pt",
+  "legacy_features": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+  "legacy_prediction_reference": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/cross_train_gru_cfp_s0_c1_v1",
+  "dino_reference": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+  "dino_weights": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/dinov2_vits14_pretrain.pth",
+  "dino_source_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+  "legacy_feature_tolerance": 3e-05,
+  "dino_feature_tolerance": 3e-06,
+  "scope": "Whole native trainingvideos fromrawcurrentRGBonly, causalRGB-derivedEMAresponse/JPEG95, originalcu117V3FP16batch8 repeatscurrentimage(no futurebatch), originalRGBAMP orDINOFP32currentframepad128, nativecausaltracker/memory/assignment/output. No GT/teacher/cachedIR/proposals/features inferenceinputs. Referencecurrentpixels/proposals/features checkedafter measuredinference/output, notfedforward. Historicaldetector/privatepretrain/legacyenc exposures remainexplicit; syntheticresponse notindependentrealIRsensor. Single sharedmachine run; finalall3seeds/allmethod/repeatableruntime/strongsource/pixelmask/novelty stillrequired."
+}

@@ -1,0 +1,29 @@
+{
+  "state": "FROZEN",
+  "sequences": [
+    "SN-001",
+    "SN-015",
+    "PF-001",
+    "BT-001",
+    "BT-003",
+    "MSK-002"
+  ],
+  "motion_filter": "kalman",
+  "appearance_weights": [
+    0.0,
+    0.3
+  ],
+  "geometry_kinds": [
+    "native",
+    "continuous_iou",
+    "diou",
+    "fish_source",
+    "fish_central_repaired",
+    "agc_clipped",
+    "fish_affine_control",
+    "iou_offset005"
+  ],
+  "comparisons": "NativeinclusiveIoU, continuousIoUconvention, ordinaryDIoU, sourceFishcentraldefect, centralrepaironlypreservingarea/1000factor, sourceAGCv1finiteclippedlimit, fixedsourceweightaffineIoU, fixed+.05IoU control",
+  "fixed": "SameV3currentproposals/512RGB/GRU/history/appearanceIoUeligibility/nativeKF/thresholds/lowstage/duplicate/lifecycle/measurementoutput; only associationgeometry changes. No future/GT/teacher online.",
+  "scope": "Independentgeometrycontrols, allsixtrainnativeframes, originalenc/GRUexposure explicit. No sourcewholetracker/paperfaithfulness/biologicalhead/occlusion/nonlinearity/novelty/rawFPS claim; thresholdcrossings/costscale controls measured, noouterthreshold sweep."
+}
