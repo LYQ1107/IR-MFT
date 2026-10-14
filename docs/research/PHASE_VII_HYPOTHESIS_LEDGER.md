@@ -19,7 +19,7 @@ The six-video raw v3 controls are now terminal for both frozen DINO/FIFO and leg
 | ID | Updated evidence | Decision | Remaining discriminating work |
 |---|---|---|---|
 | VII-H2 | Six-fold supervised DINO/local controls and 54 native source-JPM controls are complete; no stable local/JPM native gain | Do not select local/JPM as a contribution | Complete only evidence-backed final combinations |
-| VII-H3 | Local Dense JEPA/context controls and pixel-mask diagnostics show no stable identity/native benefit; MAE full pretraining is storage-blocked | Retain negative result and avoid claiming JEPA novelty | Verify any lawful full training only after an exact storage-safe plan |
+| VII-H3 | Local Dense JEPA/context controls and pixel-mask diagnostics show no stable identity/native benefit; the first-fold visible-token three-seed pretrains/probes are complete and all-fold/native integration remains open | Retain negative result and avoid claiming JEPA novelty | Verify any lawful full training only after an exact storage-safe plan |
 | VII-H4 | Centered/dictionary joint routes plus FDTA-style causal baseline do not beat ordinary FIFO/Hungarian under same input | No learned set decoder is promoted | Preserve NULL/competition failure analysis and test only a smaller targeted control |
 | VII-H5 | UKF, geometry and observable occlusion controls have no stable independent gain | Keep motion as diagnosis, not contribution | Do not launch expensive learned motion without a measured nonlinear-error signal |
 | VII-H6 | Six-video raw DINO and legacy profiles expose complete-system costs; FDTA native replay excludes detector/IR startup by design | Runtime claims remain baseline-specific | Isolate any final-method overhead on the same full raw protocol |
@@ -77,7 +77,7 @@ Actual GPU checks confirm both visible-token modes can train with deterministic 
 
 ## Visible-token RGB pretraining follow-up (2026-10-14)
 
-The first storage-safe `masked_visible_tokens` seed completed eight pretraining epochs and one frozen CE+Triplet identity probe. SN-015 detector gap25 Rank-1 fell from frozen CLS 57.937% to 57.143% (same 630/644 support), while unknown-selected counts changed 42→50. Therefore the single probe supplies no stable identity evidence and no native-MOT/JEPA novelty credit. The exact six-pretrain queue remains halted by storage reserve/forecast; preserve the completed seed and continue only with storage-safe combinations and final audits.
+The storage-safe visible-token continuation completed all six planned eight-epoch pretrains (masked_visible_tokens and matched visible_target control × seeds0/1/2) and six frozen CE+Triplet first-fold probes. SN-015 detector gap25 Rank-1 is masked 57.143/57.937/56.825% and visible-target 53.016/49.683/51.746%, against frozen CLS 57.937% with 630/644 support. Masked seed1 matches the Rank-1 reference but changes unknown-selected counts (47 versus42); seeds0/2 are lower and visible-target is lower for every seed. This is negative/limited offline evidence, with no native-MOT, Dense-JEPA novelty or final-method credit. Full metric and hash record: `PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json`.
 
 The D-direction paper-faithful AGCIoU route is explicitly source-excluded after the primary TIDE formula/source audit: average scale and epsilon are unresolved, AGCv1/AGCv2 are not the active paper metric, and arbitrary repairs would be a new proxy. Existing geometry/UKF/observable-overlap controls remain negative or heterogeneous. See `PHASE_VII_AGCIOU_SCOPE_EXCLUSION_MEASURED.json`; no paper reproduction or motion contribution is claimed.
 
@@ -90,3 +90,8 @@ Current test validation is 293 passing Phase VII repository tests with 24 warnin
 Authoritative remaining work is now limited to the requirement-by-requirement task-book command/artifact audit and a storage-safe final combination only if independent component evidence makes it informative. No current error signal justifies learned nonlinear motion training, and no positive final method should be invented.
 
 The task-book requirement/artifact/command audit is complete in `PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json`. It confirms coverage while preserving the two unresolved scientific states: no independently justified positive final combination and no stable independent contribution. Remote delivery is independently verified at `afe59d3` with `git ls-remote`; the branch and local HEAD are aligned.
+
+
+## Visible-token three-seed interpretation (2026-10-15)
+
+VII-H2/VII-H3 update: the controlled first-fold campaign now has three seeds for both a genuine visible-token deletion objective and a matched visible-target control. The masked family mean Rank-1 is 57.302%±0.572 sample SD and the visible-target family mean is 51.481%±1.682, versus the fixed frozen CLS 57.937% reference. Because support is equal but unknown-selected counts differ, the mAP increase in masked runs is not treated as a clean identity gain. The evidence supports a negative reconstruction-to-identity conclusion and rules out selecting a lucky seed; it does not close the remaining native/all-fold/final-goal work.

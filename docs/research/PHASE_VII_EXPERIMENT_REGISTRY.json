@@ -4,9 +4,9 @@
   "branch": "research/evidence-fishmot-v1",
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
-    "as_of": "2026-10-14",
-    "local_commit": "afe59d36956b547cd3cb83e9740782be988d478e",
-    "remote_commit": "afe59d36956b547cd3cb83e9740782be988d478e",
+    "as_of": "2026-10-15",
+    "local_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+    "remote_commit": "acf5e35fe203e980c02f2ded638732929f6cf4ee",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -41,8 +41,8 @@
       }
     },
     "visible_token_probe": {
-      "status": "COMPLETE_SINGLE_SEED_VISIBLE_TOKEN_MAE_IDENTITY_PROBE",
-      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json",
+      "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
       "pretrain_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_fish_pretrain_masked_visible_tokens_s0_v1/manifest.json",
       "pretrain_manifest_sha256": "a703f1ba5254ce847642de8e2e95367ef8a1579b8126c6410b8637495dfe9290",
       "probe_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s0_v1/manifest.json",
@@ -52,7 +52,187 @@
       "seed": 0,
       "sn015_detector_gap25_rank1": 57.14285714285714,
       "frozen_cls_gap25_rank1": 57.936507936507944,
-      "interpretation": "Single-seed negative identity probe; no native MOT or Dense-JEPA novelty claim; remaining all-six pretraining queue storage-halted."
+      "interpretation": "This strengthens the negative/limited identity evidence while leaving the full EvidenceFishMOT goal IN_PROGRESS_UNACHIEVED. Remaining full-goal requirements are not silently discharged by this first-fold offline campaign.",
+      "legacy_single_seed_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json",
+      "pretraining_modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "first_fold_outer": "SN-015",
+      "first_fold_inner": "BT-001",
+      "pretraining_fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "sn015_detector_gap25_summary": [
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.14285714285714,
+          "rank5_percent": 77.3015873015873,
+          "mAP_percent": 26.51266670842852,
+          "unknown_selected": 50,
+          "rank1_delta_percentage_points": -0.793650793650805,
+          "mAP_delta_percentage_points": 2.655496088437701,
+          "unknown_selected_delta": 8,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.936507936507944,
+          "rank5_percent": 77.14285714285715,
+          "mAP_percent": 26.99216168338287,
+          "unknown_selected": 47,
+          "rank1_delta_percentage_points": 0.0,
+          "mAP_delta_percentage_points": 3.1349910633920537,
+          "unknown_selected_delta": 5,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 56.82539682539682,
+          "rank5_percent": 78.25396825396825,
+          "mAP_percent": 26.78186797143788,
+          "unknown_selected": 59,
+          "rank1_delta_percentage_points": -1.1111111111111214,
+          "mAP_delta_percentage_points": 2.9246973514470618,
+          "unknown_selected_delta": 17,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 53.01587301587302,
+          "rank5_percent": 71.26984126984127,
+          "mAP_percent": 23.14341581990543,
+          "unknown_selected": 49,
+          "rank1_delta_percentage_points": -4.9206349206349245,
+          "mAP_delta_percentage_points": -0.7137548000853862,
+          "unknown_selected_delta": 7,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 49.682539682539684,
+          "rank5_percent": 70.7936507936508,
+          "mAP_percent": 22.143643055011857,
+          "unknown_selected": 52,
+          "rank1_delta_percentage_points": -8.25396825396826,
+          "mAP_delta_percentage_points": -1.7135275649789605,
+          "unknown_selected_delta": 10,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 51.746031746031754,
+          "rank5_percent": 72.38095238095238,
+          "mAP_percent": 22.862458581546317,
+          "unknown_selected": 43,
+          "rank1_delta_percentage_points": -6.19047619047619,
+          "mAP_delta_percentage_points": -0.9947120384445007,
+          "unknown_selected_delta": 1,
+          "support_equal": true
+        }
+      ],
+      "three_seed_aggregate": {
+        "masked_visible_tokens": {
+          "rank1_percent": {
+            "mean": 57.301587301587304,
+            "sample_sd": 0.5723097262641311
+          },
+          "rank5_percent": {
+            "mean": 77.56613756613757,
+            "sample_sd": 0.6009426820952624
+          },
+          "mAP_percent": {
+            "mean": 26.76223212108309,
+            "sample_sd": 0.24034981322228147
+          },
+          "unknown_selected": {
+            "mean": 52,
+            "sample_sd": 6.244997998398398
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -0.6349206349206421,
+            "sample_sd": 0.5723097262641311
+          },
+          "mAP_delta_percentage_points": {
+            "mean": 2.905061501092272,
+            "sample_sd": 0.24034981322228147
+          }
+        },
+        "visible_target": {
+          "rank1_percent": {
+            "mean": 51.48148148148149,
+            "sample_sd": 1.682340010114779
+          },
+          "rank5_percent": {
+            "mean": 71.48148148148148,
+            "sample_sd": 0.814539911023313
+          },
+          "mAP_percent": {
+            "mean": 22.7165058188212,
+            "sample_sd": 0.5156190959090401
+          },
+          "unknown_selected": {
+            "mean": 48,
+            "sample_sd": 4.58257569495584
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -6.455026455026458,
+            "sample_sd": 1.682340010114779
+          },
+          "mAP_delta_percentage_points": {
+            "mean": -1.1406648011696159,
+            "sample_sd": 0.5156190959090401
+          }
+        }
+      },
+      "frozen_cls_reference": {
+        "source_report": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+        "source_report_sha256": "245517cde226b8f463ea24e9b1ec86a19cabf113906d827d5613cb09c93fe6da",
+        "outer": "SN-015",
+        "inner": "BT-001",
+        "view": "detector",
+        "gap": "25",
+        "queries": 644,
+        "supported_queries": 630,
+        "missing_target": 14,
+        "rank1_percent": 57.936507936507944,
+        "rank5_percent": 77.3015873015873,
+        "mAP_percent": 23.857170619990818,
+        "unknown_selected": 42
+      },
+      "storage_after_copy_gib": 40.15009689331055
     },
     "d_agciou_scope": {
       "status": "EXPLICIT_SOURCE_COVERAGE_EXCLUSION_PAPER_AGCIOU",
@@ -83,9 +263,10 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
-      "storage-safe final combination only if independent component evidence makes it informative; current evidence does not justify mechanical stacking",
-      "optional learned nonlinear motion only if a new measured error signal appears",
-      "preserve external payload/novelty scope exclusion and no positive final-method claim"
+      "Do not select a lucky seed; retain the three-seed masked/visible-target report and exact support/unknown counts",
+      "Only evaluate a native/all-fold adapter for these encoders if it is lawful and semantics-preserving under the storage guard",
+      "Evaluate a final combination only when independent component evidence makes it scientifically informative; otherwise preserve frozen FIFO as the reference",
+      "Preserve external payload/novelty scope exclusions and no positive final-method claim"
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -94,9 +275,9 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     },
     "remote_delivery_verification": {
-      "status": "VERIFIED_GIT_LS_REMOTE",
+      "status": "LAST_VERIFIED_BEFORE_CURRENT_CAMPAIGN_PUSH",
       "branch": "research/evidence-fishmot-v1",
-      "commit": "afe59d36956b547cd3cb83e9740782be988d478e"
+      "commit": "acf5e35fe203e980c02f2ded638732929f6cf4ee"
     }
   },
   "experiments": [
@@ -3354,6 +3535,399 @@
       "measured": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
       "scope": "17 requirement rows; 13 required documents; 16 suggested-module exact/equivalent mappings; 9 test/command crosswalk rows; 12 immediate-step states. Missing exact suggested filenames are mapped to measured equivalents where present and are not counted as additional contributions.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_H2_VISIBLE_TOKEN_PRETRAIN_THREE_SEED_PROBES_V4",
+      "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
+      "hypothesis": "Genuine visible-token deletion or a matched visible-target reconstruction control may improve fish identity representation after frozen-backbone CE+Triplet fitting.",
+      "seed_plan": [
+        0,
+        1,
+        2
+      ],
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "config_sha256": "fe136924ffd40717a383f3a901ded61714a3b893e3bf2ef770be0238c04baeb0",
+      "pool_manifest_sha256": "55fbbb550ebdac1b8beb907765e968c0a44d86e3cc0dd3e19b33e5a8f827e9b0",
+      "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+      "physical_gpu": "1",
+      "output_storage": "/tmp/IR-MFT_phase7_visible_token_v4",
+      "stable_final_storage": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1",
+      "runs": [
+        {
+          "stage": "pretraining",
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_fish_pretrain_masked_visible_tokens_s0_v1/manifest.json",
+          "manifest_sha256": "a703f1ba5254ce847642de8e2e95367ef8a1579b8126c6410b8637495dfe9290",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_fish_pretrain_masked_visible_tokens_s0_v1/encoder_final.pt",
+          "encoder_checkpoint_sha256": "1f92036632a31fa44d2d6e583558476b8b94879f38936ca4c26c87524009583d",
+          "source_commit": "e2ff323175dc655176de89933de3c54c7407e4f9",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1198,
+          "final_loss": 0.420521457195282
+        },
+        {
+          "stage": "pretraining",
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/masked_visible_tokens_s1/manifest.json",
+          "manifest_sha256": "c6bdf19f679f0367fea7504becc7de0f07451b4104e35ff4e1fa7d7e79d20e93",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/masked_visible_tokens_s1/encoder_final.pt",
+          "encoder_checkpoint_sha256": "58f80b63244945fb25c089dbeaee66afffaa4d6ff970e42e81992a8f0c24fe3d",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1198,
+          "final_loss": 0.4108139934142431
+        },
+        {
+          "stage": "pretraining",
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/masked_visible_tokens_s2/manifest.json",
+          "manifest_sha256": "5a2b53db795403b5754f5b9754c679cbf39bb73cc3405108f8520c8e00456806",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/masked_visible_tokens_s2/encoder_final.pt",
+          "encoder_checkpoint_sha256": "327f93f746f86f75848cff1331b86125bb4b67c06f103dffd2fe602bc5feca20",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1199,
+          "final_loss": 0.411532569428285
+        },
+        {
+          "stage": "pretraining",
+          "mode": "visible_target",
+          "seed": 0,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s0/manifest.json",
+          "manifest_sha256": "710cb24f655c68676f57c70bcf1e6caa03fc5924e7535be30184f684772577e3",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s0/encoder_final.pt",
+          "encoder_checkpoint_sha256": "28ff03cde33e2fb6cb8a8388af71746f433bd9d2ab312ffffc0f477af9e8971f",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1198,
+          "final_loss": 0.1892760405441125
+        },
+        {
+          "stage": "pretraining",
+          "mode": "visible_target",
+          "seed": 1,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s1/manifest.json",
+          "manifest_sha256": "1c2f3907c152f8dad5f605bdc56238c581a2ad7e701967a116b714ca400465a1",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s1/encoder_final.pt",
+          "encoder_checkpoint_sha256": "8fdbdf152083b8374ec80dbc074810a99e0ace8cda8a2fa64761380ca5c24ab8",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1199,
+          "final_loss": 0.16098103639980157
+        },
+        {
+          "stage": "pretraining",
+          "mode": "visible_target",
+          "seed": 2,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s2/manifest.json",
+          "manifest_sha256": "fce110e26aae505a58552ee417454a972ab141cff4fc091b1910d5fd37d01bb5",
+          "encoder_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/visible_target_s2/encoder_final.pt",
+          "encoder_checkpoint_sha256": "95b67006d95dec7541fc52ecdb75c51fc59cfdc169e60d025d5ba3481807ad35",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE_UNLABELED_VISIBLE_TOKEN_PRETRAINING",
+          "successful_updates": 1198,
+          "final_loss": 0.18567125516633193
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s0_v1/manifest.json",
+          "manifest_sha256": "b4a939ecb608d62039e9c01b46b01be5562ad83e124aac9c139c2963c980edd6",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s0_v1/final.pt",
+          "checkpoint_sha256": "514179dffe562ff958581b7d7f7bbb0f4ac44c0df99b6f9742a75a044c9f4a87",
+          "source_commit": "daf4892b299b1e43c275ba299cc79a593cbf8f5d",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 57.14285714285714,
+            "rank5_percent": 77.3015873015873,
+            "mAP_percent": 26.51266670842852,
+            "unknown_selected": 50
+          }
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s1_v2/manifest.json",
+          "manifest_sha256": "4e61900348945ce6595bf9f9606295a7d2b10a15cad6626a8fbbbd3ee8272bbb",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s1_v2/final.pt",
+          "checkpoint_sha256": "d4de13ecb914d669ea7f7276a1330886a3b8f1b7770370e05f816a6f68474615",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 57.936507936507944,
+            "rank5_percent": 77.14285714285715,
+            "mAP_percent": 26.99216168338287,
+            "unknown_selected": 47
+          }
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s2_v2/manifest.json",
+          "manifest_sha256": "c0ef2813c4b892294c8d8691095d59bb14f7910726d017ad62b25a01d4e168dc",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_masked_visible_tokens_ce_triplet_SN-015_s2_v2/final.pt",
+          "checkpoint_sha256": "d4153cc9534fb87286ac68cd250c3a2363f08a4f09268d9039434119cdf3dddc",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 56.82539682539682,
+            "rank5_percent": 78.25396825396825,
+            "mAP_percent": 26.78186797143788,
+            "unknown_selected": 59
+          }
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "visible_target",
+          "seed": 0,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s0_v2/manifest.json",
+          "manifest_sha256": "e542d97a78a4655ef7c96e09ff99a9c32276c3893bbcb595e6a995433a397f52",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s0_v2/final.pt",
+          "checkpoint_sha256": "3addbdc60bf62a78ca4fe2c7ba81e818567ce40d9a03daf0026559cfa30c2479",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 53.01587301587302,
+            "rank5_percent": 71.26984126984127,
+            "mAP_percent": 23.14341581990543,
+            "unknown_selected": 49
+          }
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "visible_target",
+          "seed": 1,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s1_v2/manifest.json",
+          "manifest_sha256": "dbabb49557e4864e37a53fa4ced1c44cff6fcdc98d33d984c1583c85a578590d",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s1_v2/final.pt",
+          "checkpoint_sha256": "361c2158abd42282e466a12cf36864902894baf08a2307d51253e3faafbde9e7",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 49.682539682539684,
+            "rank5_percent": 70.7936507936508,
+            "mAP_percent": 22.143643055011857,
+            "unknown_selected": 52
+          }
+        },
+        {
+          "stage": "identity_probe",
+          "mode": "visible_target",
+          "seed": 2,
+          "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s2_v2/manifest.json",
+          "manifest_sha256": "d982556f1f380e72ceeff02e5e9869ea022d056fcea59ea2a078ae2b3b1c5269",
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_three_seed_campaign_v1/mae_identity_probe_visible_target_ce_triplet_SN-015_s2_v2/final.pt",
+          "checkpoint_sha256": "48d43303a88e08b6774fd4b283e746a9277c44219644c2bb6dc0093b175d2c82",
+          "source_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+          "status": "COMPLETE",
+          "sn015_detector_gap25": {
+            "queries": 644,
+            "supported_queries": 630,
+            "missing_target": 14,
+            "rank1_percent": 51.746031746031754,
+            "rank5_percent": 72.38095238095238,
+            "mAP_percent": 22.862458581546317,
+            "unknown_selected": 43
+          }
+        }
+      ],
+      "same_protocol_reference": {
+        "source_report": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+        "source_report_sha256": "245517cde226b8f463ea24e9b1ec86a19cabf113906d827d5613cb09c93fe6da",
+        "outer": "SN-015",
+        "inner": "BT-001",
+        "view": "detector",
+        "gap": "25",
+        "queries": 644,
+        "supported_queries": 630,
+        "missing_target": 14,
+        "rank1_percent": 57.936507936507944,
+        "rank5_percent": 77.3015873015873,
+        "mAP_percent": 23.857170619990818,
+        "unknown_selected": 42
+      },
+      "summary": [
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.14285714285714,
+          "rank5_percent": 77.3015873015873,
+          "mAP_percent": 26.51266670842852,
+          "unknown_selected": 50,
+          "rank1_delta_percentage_points": -0.793650793650805,
+          "mAP_delta_percentage_points": 2.655496088437701,
+          "unknown_selected_delta": 8,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.936507936507944,
+          "rank5_percent": 77.14285714285715,
+          "mAP_percent": 26.99216168338287,
+          "unknown_selected": 47,
+          "rank1_delta_percentage_points": 0.0,
+          "mAP_delta_percentage_points": 3.1349910633920537,
+          "unknown_selected_delta": 5,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 56.82539682539682,
+          "rank5_percent": 78.25396825396825,
+          "mAP_percent": 26.78186797143788,
+          "unknown_selected": 59,
+          "rank1_delta_percentage_points": -1.1111111111111214,
+          "mAP_delta_percentage_points": 2.9246973514470618,
+          "unknown_selected_delta": 17,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 53.01587301587302,
+          "rank5_percent": 71.26984126984127,
+          "mAP_percent": 23.14341581990543,
+          "unknown_selected": 49,
+          "rank1_delta_percentage_points": -4.9206349206349245,
+          "mAP_delta_percentage_points": -0.7137548000853862,
+          "unknown_selected_delta": 7,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 49.682539682539684,
+          "rank5_percent": 70.7936507936508,
+          "mAP_percent": 22.143643055011857,
+          "unknown_selected": 52,
+          "rank1_delta_percentage_points": -8.25396825396826,
+          "mAP_delta_percentage_points": -1.7135275649789605,
+          "unknown_selected_delta": 10,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 51.746031746031754,
+          "rank5_percent": 72.38095238095238,
+          "mAP_percent": 22.862458581546317,
+          "unknown_selected": 43,
+          "rank1_delta_percentage_points": -6.19047619047619,
+          "mAP_delta_percentage_points": -0.9947120384445007,
+          "unknown_selected_delta": 1,
+          "support_equal": true
+        }
+      ],
+      "aggregate": {
+        "masked_visible_tokens": {
+          "rank1_percent": {
+            "mean": 57.301587301587304,
+            "sample_sd": 0.5723097262641311
+          },
+          "rank5_percent": {
+            "mean": 77.56613756613757,
+            "sample_sd": 0.6009426820952624
+          },
+          "mAP_percent": {
+            "mean": 26.76223212108309,
+            "sample_sd": 0.24034981322228147
+          },
+          "unknown_selected": {
+            "mean": 52,
+            "sample_sd": 6.244997998398398
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -0.6349206349206421,
+            "sample_sd": 0.5723097262641311
+          },
+          "mAP_delta_percentage_points": {
+            "mean": 2.905061501092272,
+            "sample_sd": 0.24034981322228147
+          }
+        },
+        "visible_target": {
+          "rank1_percent": {
+            "mean": 51.48148148148149,
+            "sample_sd": 1.682340010114779
+          },
+          "rank5_percent": {
+            "mean": 71.48148148148148,
+            "sample_sd": 0.814539911023313
+          },
+          "mAP_percent": {
+            "mean": 22.7165058188212,
+            "sample_sd": 0.5156190959090401
+          },
+          "unknown_selected": {
+            "mean": 48,
+            "sample_sd": 4.58257569495584
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -6.455026455026458,
+            "sample_sd": 1.682340010114779
+          },
+          "mAP_delta_percentage_points": {
+            "mean": -1.1406648011696159,
+            "sample_sd": 0.5156190959090401
+          }
+        }
+      },
+      "scope": "Two owned visible-token RGB reconstruction objectives (masked_visible_tokens and visible_target), three seeds each, eight-epoch four-fit-video pretraining, followed by frozen-backbone CE+Triplet identity probes on the first legal outer fold. This is an offline crop-gallery diagnostic only; no native MOT, all-fold encoder replay, Dense-JEPA novelty or final-method claim.",
+      "conclusion": "Negative/limited first-fold offline evidence. Masked seed1 matches frozen CLS but seeds0/2 are below it; visible_target is below in all three seeds. Unknown-selected counts differ. No native MOT, Dense-JEPA novelty, official FishMAE or final-method credit.",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
+      "report_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed"
     }
   ],
   "source_http_followup": {
@@ -3367,14 +3941,10 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Supervised/domain/self-supervised local fish identity adapters and matched strong pretrained controls; all30source-field audit prerequisite completed",
-    "All visual/local folds and seeds plus new-coordinate native tracker",
-    "FishMAE-style legally independent masked fish-crop self-supervision and TransReID-/FDTA-style same-input identity controls",
-    "Actual local DenseJEPA and matched temporal/contrastive/noEMA/noPrediction/noID",
-    "Repair C loss/NULL common-cost saturation; ordinaryTransformer/MOTIP/same-input/on-policy controls",
-    "Independent filter/geometry/occlusion/motion experiments",
-    "Selective combinations, all-video full native MOT and complete raw online profiling",
-    "External fish-data license/identity/overlap audit and final20scientific answers"
+    "New visible-token campaign is complete for 2 objectives x 3 seeds on the first legal fold; optional native/all-fold integration remains unproved and must preserve proposal/history/evaluator semantics",
+    "Selective combinations only when an independently measured component supplies complementary same-input benefit; current evidence does not justify mechanical stacking",
+    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal",
+    "Complete final raw online/profiling and external permission/lineage boundaries without uploading data, weights, features or caches"
   ],
   "validation": {
     "project_tests": 219,
@@ -3417,5 +3987,6 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ]
-  }
+  },
+  "goal_status": "IN_PROGRESS_UNACHIEVED"
 }

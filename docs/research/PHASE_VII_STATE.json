@@ -1,17 +1,18 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_ALL_SIX_GEOMETRY_CONTROLS_TARGET_DIAGNOSIS_AND_FIRST_WHOLE_RAW_PROFILES",
+  "stage": "COMPLETE_THREE_SEED_VISIBLE_TOKEN_MAE_PROBES_WITH_NEGATIVE_IDENTITY_RESULT",
   "current_authoritative_snapshot": {
-    "as_of": "2026-10-14",
+    "as_of": "2026-10-15",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "afe59d36956b547cd3cb83e9740782be988d478e",
-    "remote_commit": "afe59d36956b547cd3cb83e9740782be988d478e",
+    "local_commit": "b66c66dff681783a0da1ccbab820387764cedd1b",
+    "remote_commit": "acf5e35fe203e980c02f2ded638732929f6cf4ee",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_SOURCE_JPM_NATIVE_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_FDTA_STYLE_ADAPTER_MEASURED.json",
-      "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json"
+      "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
+      "PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -20,13 +21,102 @@
       "driver_state_sha256": "5ac25a49bd80ad4bde621763d624132118aad256ac9125392c6c19363a4962f6"
     },
     "visible_token_probe": {
-      "status": "COMPLETE_SINGLE_SEED_VISIBLE_TOKEN_MAE_IDENTITY_PROBE",
-      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json",
-      "pretrain_manifest_sha256": "a703f1ba5254ce847642de8e2e95367ef8a1579b8126c6410b8637495dfe9290",
-      "probe_manifest_sha256": "b4a939ecb608d62039e9c01b46b01be5562ad83e124aac9c139c2963c980edd6",
-      "sn015_detector_gap25_rank1": 57.14285714285714,
-      "frozen_cls_gap25_rank1": 57.936507936507944,
-      "claim": "Negative single-seed identity probe; no native MOT or novelty claim."
+      "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
+      "report": "PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
+      "legacy_single_seed_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json",
+      "three_seed_summary": [
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.14285714285714,
+          "rank5_percent": 77.3015873015873,
+          "mAP_percent": 26.51266670842852,
+          "unknown_selected": 50,
+          "rank1_delta_percentage_points": -0.793650793650805,
+          "mAP_delta_percentage_points": 2.655496088437701,
+          "unknown_selected_delta": 8,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.936507936507944,
+          "rank5_percent": 77.14285714285715,
+          "mAP_percent": 26.99216168338287,
+          "unknown_selected": 47,
+          "rank1_delta_percentage_points": 0.0,
+          "mAP_delta_percentage_points": 3.1349910633920537,
+          "unknown_selected_delta": 5,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 56.82539682539682,
+          "rank5_percent": 78.25396825396825,
+          "mAP_percent": 26.78186797143788,
+          "unknown_selected": 59,
+          "rank1_delta_percentage_points": -1.1111111111111214,
+          "mAP_delta_percentage_points": 2.9246973514470618,
+          "unknown_selected_delta": 17,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 53.01587301587302,
+          "rank5_percent": 71.26984126984127,
+          "mAP_percent": 23.14341581990543,
+          "unknown_selected": 49,
+          "rank1_delta_percentage_points": -4.9206349206349245,
+          "mAP_delta_percentage_points": -0.7137548000853862,
+          "unknown_selected_delta": 7,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 49.682539682539684,
+          "rank5_percent": 70.7936507936508,
+          "mAP_percent": 22.143643055011857,
+          "unknown_selected": 52,
+          "rank1_delta_percentage_points": -8.25396825396826,
+          "mAP_delta_percentage_points": -1.7135275649789605,
+          "unknown_selected_delta": 10,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 51.746031746031754,
+          "rank5_percent": 72.38095238095238,
+          "mAP_percent": 22.862458581546317,
+          "unknown_selected": 43,
+          "rank1_delta_percentage_points": -6.19047619047619,
+          "mAP_delta_percentage_points": -0.9947120384445007,
+          "unknown_selected_delta": 1,
+          "support_equal": true
+        }
+      ],
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     },
     "d_agciou_scope": {
       "status": "EXPLICIT_SOURCE_COVERAGE_EXCLUSION_PAPER_AGCIOU",
@@ -56,12 +146,13 @@
       ]
     },
     "remaining_authoritative": [
-      "Evaluate a storage-safe final combination only when an independent component justifies it; current evidence does not justify mechanical stacking",
-      "No learned nonlinear motion training without a new measured error signal",
-      "Preserve explicit external-payload/novelty boundary and do not claim a positive final method"
+      "Retain the negative three-seed visible-token/visible-target evidence and do not select a lucky seed",
+      "Evaluate native/all-fold integration only if a semantics-preserving adapter and storage-safe plan are available",
+      "Do not mechanically stack components; require independent same-input complementarity for any final combination",
+      "Keep external payload, novelty and final-method boundaries explicit"
     ],
     "active_processes_at_snapshot": [],
-    "free_space_gib_at_snapshot": 41.0,
+    "free_space_gib_at_snapshot": 40.15009689331055,
     "gpu_policy": "GPU0-3 only when actually idle; GPU4-9 belong to other users",
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -70,9 +161,9 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     },
     "remote_delivery_verification": {
-      "status": "VERIFIED_GIT_LS_REMOTE",
+      "status": "LAST_VERIFIED_BEFORE_CURRENT_CAMPAIGN_PUSH",
       "branch": "research/evidence-fishmot-v1",
-      "commit": "afe59d36956b547cd3cb83e9740782be988d478e"
+      "commit": "acf5e35fe203e980c02f2ded638732929f6cf4ee"
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -170,19 +261,17 @@
     "Complete684frame rawcurrentRGB->causalresponse/JPEG->cu117V3repeatcurrentbatch8->crop128->nativeassociation/memory/output forlegacyGRU andfrozenDINO; allinput/proposal andfinalpredictionbytes referenceequal",
     "Legacyraw1.2447FPS vsfrozenDINO1.1083FPS onSN001(single sharedmachine runs); wallwithvalidation1.1710/1.0449FPS separately, original1.2FPSreproduced; causalIR/detectordominant",
     "Legacyv1actualframe681validationfailurepreserved; oldcachefinalbatch38 current-onlyzero-fillexactreconstruction, onlinepad128unchanged, numericaltailcoserror<=1.49e-6; ownedv2validationcompletes",
-    "275projecttests24warnings passed16.43s, compiledownednewcontrol/profile/diagnosis tools"
+    "275projecttests24warnings passed16.43s, compiledownednewcontrol/profile/diagnosis tools",
+    "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited."
   ],
   "pending": [
-    "Finishall6K4contextV2eightdistinctcontrols/3seeds and42nativeencoders/126ordinarymemory/30localmodelreplays; countonlycompleteofficialmetrics, aliasnoPrediction notdoublecounted",
-    "Completegenuine controlledpre-attentionmaskedfishidentity/DenseJEPAtraining (currentprimitiveoneupdateonly), targetdiscrimination/localidentity/candidateconditioning andstrongsameinputTransReID/FDTA-stylebaselines; K8/resourcebudget audit stillneeded",
-    "C actualonpolicy mixedhistory/physicaltargetcoverage/retainedrawcues/localdictionary/NULLconfidence/candidatecompetition diagnosis andnewencoderexcludedallfold/3seedMOTIP/Hungarian controls; centeredoffsetandbalancedNULL alone fail",
-    "D paperfaithfulAGCIoU or explicitsourcecoverageexclusion, observedoverlap/density/conflict/localvisibility proxies andnonlinearerror evidencebeforelearnedmotion;16sourcegeometrycontrols andlinearUKF complete",
-    "Finishallsixwhole rawlegacy/frozenRGB-CIR-V3-crop-memory-assignment-output profile; addfinalmethod/same-input/3seedisolatedrepeatabletimings; firstSN001complete only",
-    "ExternalMFT25/MFTEdge/FishMAE/Brackishactualpermission/physicalIDs/session/splits/cadence/overlap/IR audit; all20questions andcredibleindependentnovelty/finalconclusion"
+    "Optional native/all-fold integration of the new encoders only after a lawful semantics-preserving adapter is specified",
+    "Selective final combination only if a component has independently measured same-input benefit",
+    "Preserve negative C/D, external payload, novelty and full-raw profiling boundaries"
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
-  "storage_free_gib": 57.74101638793945,
+  "storage_free_gib": 40.15009689331055,
   "source_audit_complete": 30,
   "active_jobs": [
     {
@@ -306,12 +395,10 @@
   ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Monitor actualactivePIDs/sourceguards; do not modify sharedB/native/geometry/rawprofile sources whileproducersactive, no observationtimeoutrestart",
-    "Collect onlycompletedallfold/native/rawscores andallseedstatistics; extendinner/fittingdiagnoses ratherthan chooseouterluckyrecipe",
-    "Build genuine maskedfishtraining fromverifiedpre-attention primitive with matchedsupervised/noMask/MAE-style controls, exactprefix/delta checkpoint/EMA/RNG/storage guards; no cachedgloballymixedtargettokenmaskleak",
-    "C onpolicymixed-cue/targetcoverage andrawcue/dictionary/calibratedNULL comparisons; D observedocclusion/nonlinearerror diagnosis andpaperAGCIoU primarysource check",
-    "Use completeactualrawprofiling toidentifyIRgeneration/detector costs; preserveimage/proposal/feature/outputparity beforeperformance changes, no cacheFPSsubstitution",
-    "PreserveoldPhaseVIassets/negative/failureevidence,20questionleftcolumn,>=40GiBreserve,fullgoalactive/exactsourceblob/remote delivery; no data/weights/queryGTinGit"
+    "Refresh the final task-book audit and all changed-document hashes after this campaign is committed",
+    "Verify the content push independently with git ls-remote and GitHub file reads before reporting delivery",
+    "Do not launch a new expensive native or nonlinear-motion run without a clear measurement target and the >=40GiB guard",
+    "Preserve old Phase I-VI assets and all transient/full-state provenance; no data/weights/features/caches in Git"
   ],
   "validation": {
     "project_tests": 275,
@@ -372,5 +459,6 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ]
-  }
+  },
+  "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed"
 }
