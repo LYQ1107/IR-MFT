@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-15",
-    "local_commit": "c739d0e4b1e0bef93993892bf1b5c9bd5ec0d5ca",
-    "remote_commit": "c739d0e4b1e0bef93993892bf1b5c9bd5ec0d5ca",
+    "local_commit": "509acede7508a90ed2f4e2961246a360930c0599",
+    "remote_commit": "509acede7508a90ed2f4e2961246a360930c0599",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -16,6 +16,38 @@
       "legacy_gru_fifo": {
         "status": "COMPLETE_WHOLE_RAW_SIX_VIDEO_PROFILE",
         "report": "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json"
+      },
+      "visible_token_strict_raw_sn015": {
+        "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
+        "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
+        "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+        "scope": "SN-015 one outer fold, two objectives x seeds0/1/2, whole current-only Protocol C; all-fold raw open.",
+        "aggregate": {
+          "masked_visible_tokens": {
+            "whole_raw_FPS_mean": 1.219578202728116,
+            "whole_raw_FPS_sample_std": 0.01460873281876029,
+            "latency_p50_ms_mean": 804.9013751685076,
+            "latency_p95_ms_mean": 998.3944477154482,
+            "HOTA_mean": 32.667989076000424,
+            "AssA_mean": 15.195280566192432,
+            "DetA_mean": 70.75738769258214,
+            "IDF1_mean": 30.802790937334574,
+            "MOTA_mean": 90.99180928705741,
+            "IDSW_mean": 158.33333333333334
+          },
+          "visible_target": {
+            "whole_raw_FPS_mean": 1.2115072902470223,
+            "whole_raw_FPS_sample_std": 0.02435491776010078,
+            "latency_p50_ms_mean": 812.3547156671217,
+            "latency_p95_ms_mean": 999.5727129641938,
+            "HOTA_mean": 31.28521408898989,
+            "AssA_mean": 13.961556008570897,
+            "DetA_mean": 70.69638063594287,
+            "IDF1_mean": 28.713967179454276,
+            "MOTA_mean": 90.98862223921981,
+            "IDSW_mean": 165.0
+          }
+        }
       }
     },
     "native_source_jpm": {
@@ -4084,6 +4116,68 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED",
       "feature_banks_outside_git": true,
       "source_commit": "6d626017dba382f2f800e11496f1e23002dab15e"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_V1",
+      "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
+      "hypothesis": "A lawful current-only visible-token encoder can be measured through the full raw Protocol C path without GT, future or cached inference inputs; compare masked_visible_tokens with the matched visible_target control.",
+      "seed_plan": [
+        0,
+        1,
+        2
+      ],
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
+      "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+      "scope": "One lawful outer fold SN-015, fit BT-003/MSK-002/PF-001/SN-001, inner BT-001, two fit-only visible-token objectives x seeds 0/1/2. Whole current-only Protocol C is measured as RGB decode -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector -> current proposal crops -> visible-token checkpoint -> FIFO lifecycle -> output. No GT, future, teacher or cached inference input; all-fold and final-method claims remain open.",
+      "aggregate": {
+        "masked_visible_tokens": {
+          "whole_raw_FPS_mean": 1.219578202728116,
+          "whole_raw_FPS_sample_std": 0.01460873281876029,
+          "latency_p50_ms_mean": 804.9013751685076,
+          "latency_p95_ms_mean": 998.3944477154482,
+          "HOTA_mean": 32.667989076000424,
+          "AssA_mean": 15.195280566192432,
+          "DetA_mean": 70.75738769258214,
+          "IDF1_mean": 30.802790937334574,
+          "MOTA_mean": 90.99180928705741,
+          "IDSW_mean": 158.33333333333334
+        },
+        "visible_target": {
+          "whole_raw_FPS_mean": 1.2115072902470223,
+          "whole_raw_FPS_sample_std": 0.02435491776010078,
+          "latency_p50_ms_mean": 812.3547156671217,
+          "latency_p95_ms_mean": 999.5727129641938,
+          "HOTA_mean": 31.28521408898989,
+          "AssA_mean": 13.961556008570897,
+          "DetA_mean": 70.69638063594287,
+          "IDF1_mean": 28.713967179454276,
+          "MOTA_mean": 90.98862223921981,
+          "IDSW_mean": 165.0
+        }
+      },
+      "online_guard_summary": {
+        "all_loaded_GT_annotation_labels_false": true,
+        "all_precomputed_IR_used_for_inference_false": true,
+        "all_cached_detection_or_feature_used_for_inference_false": true,
+        "all_no_future_or_teacher_online_true": true,
+        "all_current_rgb_only_encoder_input_true": true
+      },
+      "decision": "Strict raw evidence is complete for SN-015 only; mixed/negative relative to frozen FIFO, no stable component or stacking claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "raw_outputs_outside_git": true,
+      "source_commit": "509acede7508a90ed2f4e2961246a360930c0599"
     }
   ],
   "source_http_followup": {
@@ -4097,10 +4191,10 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Native visible-token integration now covers one lawful SN-015 outer fold across seeds0/1/2 for both objectives; all-fold native/whole-raw replay remains open",
+    "SN-015 strict raw three-seed visible-token evidence is complete; all-fold native/whole-raw replay remains open",
     "Selective combinations only when an independently measured complementary same-input benefit exists; current evidence does not justify mechanical stacking",
     "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal",
-    "Complete final raw online/profiling and external permission/lineage boundaries without uploading data, weights, features or caches"
+    "Extend strict raw only to remaining lawful outer folds/videos with a declared target and >=40 GiB reserve"
   ],
   "validation": {
     "project_tests": 219,

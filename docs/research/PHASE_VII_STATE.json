@@ -1,11 +1,11 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+  "stage": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-15",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "c739d0e4b1e0bef93993892bf1b5c9bd5ec0d5ca",
-    "remote_commit": "c739d0e4b1e0bef93993892bf1b5c9bd5ec0d5ca",
+    "local_commit": "509acede7508a90ed2f4e2961246a360930c0599",
+    "remote_commit": "509acede7508a90ed2f4e2961246a360930c0599",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -15,7 +15,8 @@
       "PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
       "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
       "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
-      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json"
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -194,7 +195,46 @@
       "finding": "Masked FIFO/last small mean identity gains are coupled to extra IDSW; EMA is unstable; visible_target is consistently lower with extra IDSW; no stable component benefit."
     },
     "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub file reads at c739d0e.",
-    "worktree_at_audit": "Native visible-token adapter, matched SN-015 report and tests are present locally and remotely at c739d0e."
+    "worktree_at_audit": "Native visible-token adapter, matched SN-015 report and tests are present locally and remotely at c739d0e.",
+    "visible_token_strict_raw_sn015": {
+      "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
+      "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+      "scope": "SN-015 one outer fold; both objectives x seeds0/1/2; all 6,570 raw frames; exact CPU replay and official TrackEval; all-fold raw open.",
+      "aggregate": {
+        "masked_visible_tokens": {
+          "whole_raw_FPS_mean": 1.219578202728116,
+          "whole_raw_FPS_sample_std": 0.01460873281876029,
+          "latency_p50_ms_mean": 804.9013751685076,
+          "latency_p95_ms_mean": 998.3944477154482,
+          "HOTA_mean": 32.667989076000424,
+          "AssA_mean": 15.195280566192432,
+          "DetA_mean": 70.75738769258214,
+          "IDF1_mean": 30.802790937334574,
+          "MOTA_mean": 90.99180928705741,
+          "IDSW_mean": 158.33333333333334
+        },
+        "visible_target": {
+          "whole_raw_FPS_mean": 1.2115072902470223,
+          "whole_raw_FPS_sample_std": 0.02435491776010078,
+          "latency_p50_ms_mean": 812.3547156671217,
+          "latency_p95_ms_mean": 999.5727129641938,
+          "HOTA_mean": 31.28521408898989,
+          "AssA_mean": 13.961556008570897,
+          "DetA_mean": 70.69638063594287,
+          "IDF1_mean": 28.713967179454276,
+          "MOTA_mean": 90.98862223921981,
+          "IDSW_mean": 165.0
+        }
+      },
+      "online_guard_summary": {
+        "all_loaded_GT_annotation_labels_false": true,
+        "all_precomputed_IR_used_for_inference_false": true,
+        "all_cached_detection_or_feature_used_for_inference_false": true,
+        "all_no_future_or_teacher_online_true": true,
+        "all_current_rgb_only_encoder_input_true": true
+      }
+    }
   },
   "branch": "research/evidence-fishmot-v1",
   "baseline_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
@@ -254,13 +294,13 @@
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
     "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
     "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
-    "Firstfold global actualdetR1 improves57.9365->63.3862±0.7158 across3seeds; patchattention62.8571±0.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
     "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
     "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
     "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
     "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim",
-    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds×3seeds×4controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
-    "Globalactualdetcrop macroR136.1976±0.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800±0.3094notstableincremental gain",
+    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds\u00d73seeds\u00d74controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
+    "Globalactualdetcrop macroR136.1976\u00b10.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800\u00b10.3094notstableincremental gain",
     "Genuine learned local/temporal/regionalmaskedprediction/currentrelation model with independentstoppedEMAencoder implemented, noold512PLIMalias",
     "Nine firstseed actuallocalJEPA/controlCPUfits1200updates complete; allsameinputmaskdigests/currentquerysupports and unknownnotnegatives verified; three-seedcampaign continues",
     "Strongmatchedglobal72.695/ordinarylocalTemporal64.716/frozenFIFO64.894 beatfullJEPA44.504 onfirstoutercleanGT-history/currentdet scene; noJEPAidentity/native/noveltygain claimed",
@@ -275,7 +315,7 @@
     "V2fullseed0 complete6570frame endogenous nativehistory replay; HOTA30.694/IDF125.298 versus frozenFIFO32.225/30.445, no onlineJEPAgain",
     "254projecttests23warnings passed in18.85seconds; all new CLI modules compile",
     "Actual V2contextfullseed1 epoch2exit/newprocessresume vscontinuous exactlymatches student/independentEMAteacher/1200updates/opt/RNG/losses/metrics/support;250tensor/1array/1626scalar leaves",
-    "All27contextV2 firstfold CPUfits complete; fullR163.652±1.064 vsordinaryTemporal63.948±0.800/global72.813±0.369, no extraJEPAidentitygain",
+    "All27contextV2 firstfold CPUfits complete; fullR163.652\u00b11.064 vsordinaryTemporal63.948\u00b10.800/global72.813\u00b10.369, no extraJEPAidentitygain",
     "Scientificthree-seed V1/V2identity plot generated PNG/SVG/PDF and visuallyinspected; exactcontrolaliases explicit",
     "Nine centeredjoint/pair/activeparameter-matchedCrossTransformer three-seed CPUfits complete,28800actualupdates; matchedframe/code digests and zeroNULLranking supervision verified",
     "Untraineduniformcentered highstagecontrol giveszeroedits and exact baselinebytes onall684SN001/6570SN015frames",
@@ -293,10 +333,11 @@
     "Legacyv1actualframe681validationfailurepreserved; oldcachefinalbatch38 current-onlyzero-fillexactreconstruction, onlinepad128unchanged, numericaltailcoserror<=1.49e-6; ownedv2validationcompletes",
     "275projecttests24warnings passed16.43s, compiledownednewcontrol/profile/diagnosis tools",
     "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited.",
-    "Three-seed SN-015 native visible-token continuation completed: masked/visible-target x seeds0/1/2 with FIFO/last/EMA official TrackEval; masked gains remain mixed with extra IDSW and visible-target is lower"
+    "Three-seed SN-015 native visible-token continuation completed: masked/visible-target x seeds0/1/2 with FIFO/last/EMA official TrackEval; masked gains remain mixed with extra IDSW and visible-target is lower",
+    "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only whole-raw Protocol C completed with exact CPU trace replays and official TrackEval"
   ],
   "pending": [
-    "Native visible-token integration now covers one lawful SN-015 outer fold across seeds0/1/2 for both objectives; all-fold native/whole-raw replay remains open",
+    "SN-015 strict raw three-seed visible-token evidence is complete; all-fold native/whole-raw replay remains open",
     "Selective combinations only if an independently measured complementary same-input signal appears",
     "Preserve negative C/D, external payload and final raw profiling boundaries"
   ],
@@ -426,9 +467,9 @@
   ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Commit the three-seed SN-015 native visible-token report and synchronized evidence audits",
-    "Verify local/remote HEAD independently; keep native feature banks and weights outside Git",
-    "Do not expand to all folds/whole-raw without a declared measurement target and storage >=40GiB guard",
+    "Commit the strict raw SN-015 three-seed report and synchronized evidence audits",
+    "Verify local/remote HEAD independently; keep raw traces, native feature banks and weights outside Git",
+    "Extend to all-fold raw only with a declared target and >=40 GiB reserve",
     "Keep final combination gate NOT_JUSTIFIED and goal IN_PROGRESS_UNACHIEVED"
   ],
   "validation": {
@@ -494,5 +535,48 @@
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
-  "goal_status": "IN_PROGRESS_UNACHIEVED"
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "visible_token_strict_raw_measured_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+  "visible_token_strict_raw_validation": {
+    "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
+    "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
+    "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+    "scope": "SN-015 one outer fold; both objectives x seeds0/1/2; all 6,570 raw frames; exact CPU replay and official TrackEval; all-fold raw open.",
+    "aggregate": {
+      "masked_visible_tokens": {
+        "whole_raw_FPS_mean": 1.219578202728116,
+        "whole_raw_FPS_sample_std": 0.01460873281876029,
+        "latency_p50_ms_mean": 804.9013751685076,
+        "latency_p95_ms_mean": 998.3944477154482,
+        "HOTA_mean": 32.667989076000424,
+        "AssA_mean": 15.195280566192432,
+        "DetA_mean": 70.75738769258214,
+        "IDF1_mean": 30.802790937334574,
+        "MOTA_mean": 90.99180928705741,
+        "IDSW_mean": 158.33333333333334
+      },
+      "visible_target": {
+        "whole_raw_FPS_mean": 1.2115072902470223,
+        "whole_raw_FPS_sample_std": 0.02435491776010078,
+        "latency_p50_ms_mean": 812.3547156671217,
+        "latency_p95_ms_mean": 999.5727129641938,
+        "HOTA_mean": 31.28521408898989,
+        "AssA_mean": 13.961556008570897,
+        "DetA_mean": 70.69638063594287,
+        "IDF1_mean": 28.713967179454276,
+        "MOTA_mean": 90.98862223921981,
+        "IDSW_mean": 165.0
+      }
+    },
+    "online_guard_summary": {
+      "all_loaded_GT_annotation_labels_false": true,
+      "all_precomputed_IR_used_for_inference_false": true,
+      "all_cached_detection_or_feature_used_for_inference_false": true,
+      "all_no_future_or_teacher_online_true": true,
+      "all_current_rgb_only_encoder_input_true": true
+    }
+  },
+  "remaining_authoritative": [],
+  "active_processes_at_snapshot": [],
+  "free_space_gib_at_snapshot": 40.11628341674805
 }

@@ -1,7 +1,7 @@
 {
   "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
   "as_of": "2026-10-15",
-  "source_commit": "8a7dbfb",
+  "source_commit": "509acede7508a90ed2f4e2961246a360930c0599",
   "purpose": "Evidence-backed decision on whether to run a final stacked EvidenceFishMOT combination. This is a measured gate, not a new model and not a project-wide NO_GO.",
   "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
   "decision_rule": {
@@ -325,7 +325,11 @@
         "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
         "native_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
         "native_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
-        "native_status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED"
+        "native_status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+        "strict_raw_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
+        "strict_raw_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
+        "strict_raw_status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
+        "strict_raw_scope": "SN-015 one outer fold, masked_visible_tokens/visible_target x seeds0/1/2, whole current-only Protocol C, exact CPU trace replay and official TrackEval; all-fold raw open."
       },
       "sn015_summary": [
         {
@@ -584,6 +588,32 @@
           }
         },
         "finding": "Masked FIFO/last have small mean identity gains but add 6.33/8.00 IDSW; EMA is unstable; visible_target is consistently lower and adds 13 IDSW. No stable complementarity or stacking credit."
+      },
+      "strict_raw_summary": {
+        "masked_visible_tokens": {
+          "whole_raw_FPS_mean": 1.219578202728116,
+          "whole_raw_FPS_sample_std": 0.01460873281876029,
+          "latency_p50_ms_mean": 804.9013751685076,
+          "latency_p95_ms_mean": 998.3944477154482,
+          "HOTA_mean": 32.667989076000424,
+          "AssA_mean": 15.195280566192432,
+          "DetA_mean": 70.75738769258214,
+          "IDF1_mean": 30.802790937334574,
+          "MOTA_mean": 90.99180928705741,
+          "IDSW_mean": 158.33333333333334
+        },
+        "visible_target": {
+          "whole_raw_FPS_mean": 1.2115072902470223,
+          "whole_raw_FPS_sample_std": 0.02435491776010078,
+          "latency_p50_ms_mean": 812.3547156671217,
+          "latency_p95_ms_mean": 999.5727129641938,
+          "HOTA_mean": 31.28521408898989,
+          "AssA_mean": 13.961556008570897,
+          "DetA_mean": 70.69638063594287,
+          "IDF1_mean": 28.713967179454276,
+          "MOTA_mean": 90.98862223921981,
+          "IDSW_mean": 165.0
+        }
       }
     },
     "pixel_identity_and_supervised_controls": {
@@ -601,12 +631,12 @@
     "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
   ],
-  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Frozen DINO/FIFO stays the strong reference; future work may reopen the gate only after an independently measured complementary signal.",
+  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Strict raw visible-token runtime is complete for SN-015 seeds0/1/2, but all-fold raw coverage, independent complementarity and final novelty remain open.",
   "resource_scope": {
-    "protected_asset_free_gib_snapshot": 40.146671,
+    "protected_asset_free_gib_snapshot": 40.11628341674805,
     "reserve_gib": 40.0,
     "gpu_policy": "GPU0-3 only when idle; GPU4-9 excluded",
     "new_compute_started": true,
-    "new_compute_scope": "SN-015 masked_visible_tokens/visible_target seeds0/1/2 current-only feature banks and three ordinary memories each; raw banks remain outside Git."
+    "new_compute_scope": "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only raw Protocol C; raw outputs outside Git."
   }
 }
