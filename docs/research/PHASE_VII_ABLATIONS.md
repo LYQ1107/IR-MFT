@@ -116,3 +116,26 @@ Joint full averages252.667±66.010 falseNULL decisions on knownexisting targets,
 The same offline labeling on the preserved baseline trace reveals an important reference confound: baseline frozen-EarlyReference history mismatch is23,925/42,357=56.484% of repeated known history observations, versus lower mismatch in fragmented learned trajectories, despite the baseline's stronger official IDF1/HOTA. Warm inner data has876/1,175supervisedknownexisting-or-no-old-match queries, while joint endogenous support is substantially smaller and more nonunique. EarlyReference is a noisy initial-history convention; short fragment references can look cleaner without maintaining physical identity continuity. These counts cannot certify better tracking or isolate pollution as a cause. Fit-video warm data contains substantial mismatch too (all four fit videos audited without outer data).
 
 The evidence motivates independently supervised, source-matched current/raw/local cues, unknown-preserving supervision of actual difficult sets, and separation of arbitrary ID binding from visual association. A blind hard geometry gate, zero-dictionary inference patch, stricter memory write rule or improved latentloss is not yet supported as a fullmethod fix. Genuine newproducer/on-policy C training and matched MOTIP/Hungarian controls remain required. The scientific PNG/SVG/PDF plot is exported outsideGit from allnine records, with source/value/hash provenance.
+
+## Complete all-six K4 context-identity confirmation
+
+All144unique fits are complete: six outer/next-inner/fourfit-video folds ×eight distinct controls ×three seeds,172,800successful optimizer updates. Exact checkpoint/source hashes, heldout classifier exclusion, eight epoch sampling digests across every matched mode, no teacher gradient/decoder online/CUDA allocation, and all12 known/unknown/target/candidate/query support protocols are verified. Four frozen controls are now measured on allsix videos; firsttwo identical helper/data measurements reused with provenance, remainingfour executed. The first allsix collector preparation failure is retained separately, with no successful measurements attributed to it. See PHASE_VII_CONTEXT_IDENTITY_ALLFOLDS_MEASURED.json.
+
+Macrovideo GT-history/currentdetector gap25R1, eachseed averaged acrosssix outer videos then mean ± sampleSD overthree seeds:
+
+| Mode | R1 (%) |
+|---|---:|
+| frozen_cls_last | 42.326 |
+| frozen_cls_fifo | 40.111 |
+| frozen_local_corresponding | 42.193 |
+| frozen_local_flexible | 41.754 |
+| global | 43.618 ± 0.258 |
+| global_gru | 32.127 ± 0.511 |
+| local_attention | 45.281 ± 0.366 |
+| local_temporal | 45.322 ± 0.433 |
+| local_contrastive | 45.774 ± 0.591 |
+| no_ema | 45.446 ± 0.432 |
+| no_id | 40.924 ± 0.415 |
+| full | 45.288 ± 0.427 |
+
+Full minus ordinarylocalTemporal paired-seed macroR1 difference is -0.0338 ± 0.0221percentage points. The regionalprediction auxiliary does not establish additionalidentity information; localAttention/contrastive improvements overfrozen are established mechanisms, notJEPA novelty. NoPrediction is an exactlocalTemporal alias and contributes zero additionalindependent fits. All inner/outer protocols/R1/R5/mAP/AUC/EER/supports are retained. These are cleanphysical histories; firstfoldnativeBfull remains worse thanfrozenFIFO. K8/context, onpolicyactualhistories, truepixelmask/RGBreconstruction/strongsource, nativeall-six and finalvalidatednovelty remain required.

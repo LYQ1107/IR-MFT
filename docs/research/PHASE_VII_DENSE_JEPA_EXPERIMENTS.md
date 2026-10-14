@@ -160,3 +160,32 @@ An owned masked pixel autoencoding control now predicts588values (14×14×3RGB) 
 Actual licensed DINO/current BT003fit-crop CPU evidence verifies144masked observedpatches,36finitegradient fields, oneoptimizer update, frozenprefix equality, targetpixel perturbation cannot affect maskedpredictions, and all202model-state keys restore exactly from57delta keys plus145immutableofficialbase keys. Modelcheckpoint23,488,085bytes; source/input/checkpoint/gradient/protocol proof in PHASE_VII_PIXEL_RECONSTRUCTION_SMOKE_MEASURED.json. The old first smoke's accidental EMA wording is corrected in the separately re-executed v2 proof; neither smoke establishes8epoch/MOT benefit.
 
 A durable GPU3queue registers sixmode/seed fits plus an actualseed0masked epoch2exit/freshprocessresume duplicate. It waits for the owned nativeproducer to complete, process teardown and actual<=64MiB/zeroGPUutilization, with42GiBreserve/5GiBother-job margin and250MiBperfit. The GPU1EMA-latent-mask queue remains separate and guarded. New fits are pending; all-six/newproducer/native/strongsource comparisons and reliablecontribution remain required.
+
+## Complete all-six K4 context-identity confirmation
+
+All144unique fits are complete: six outer/next-inner/fourfit-video folds ×eight distinct controls ×three seeds,172,800successful optimizer updates. Exact checkpoint/source hashes, heldout classifier exclusion, eight epoch sampling digests across every matched mode, no teacher gradient/decoder online/CUDA allocation, and all12 known/unknown/target/candidate/query support protocols are verified. Four frozen controls are now measured on allsix videos; firsttwo identical helper/data measurements reused with provenance, remainingfour executed. The first allsix collector preparation failure is retained separately, with no successful measurements attributed to it. See PHASE_VII_CONTEXT_IDENTITY_ALLFOLDS_MEASURED.json.
+
+Macrovideo GT-history/currentdetector gap25R1, eachseed averaged acrosssix outer videos then mean ± sampleSD overthree seeds:
+
+| Mode | R1 (%) |
+|---|---:|
+| frozen_cls_last | 42.326 |
+| frozen_cls_fifo | 40.111 |
+| frozen_local_corresponding | 42.193 |
+| frozen_local_flexible | 41.754 |
+| global | 43.618 ± 0.258 |
+| global_gru | 32.127 ± 0.511 |
+| local_attention | 45.281 ± 0.366 |
+| local_temporal | 45.322 ± 0.433 |
+| local_contrastive | 45.774 ± 0.591 |
+| no_ema | 45.446 ± 0.432 |
+| no_id | 40.924 ± 0.415 |
+| full | 45.288 ± 0.427 |
+
+Full minus ordinarylocalTemporal paired-seed macroR1 difference is -0.0338 ± 0.0221percentage points. The regionalprediction auxiliary does not establish additionalidentity information; localAttention/contrastive improvements overfrozen are established mechanisms, notJEPA novelty. NoPrediction is an exactlocalTemporal alias and contributes zero additionalindependent fits. All inner/outer protocols/R1/R5/mAP/AUC/EER/supports are retained. These are cleanphysical histories; firstfoldnativeBfull remains worse thanfrozenFIFO. K8/context, onpolicyactualhistories, truepixelmask/RGBreconstruction/strongsource, nativeall-six and finalvalidatednovelty remain required.
+
+## First full pixel-masked fit and actual CUDA restart
+
+The genuine pre-attention pixel-masked seed0firstfold now completes8epochs/1200attempts,1197successful optimizer/EMAupdates (three AMPoverflow skips),153.507training seconds, unchanged immutable prefix and student-only heldout retrieval. Its separately executed epoch2exit/fresh-process resume reaches the identical final result:197tensor/1array/1269scalar leaves across losslessmodeldelta/teacher tail/optimizer/scheduler/scaler/allRNG, everyepoch loss/update/coverage and heldoutretrieval/feature hashes match exactly. The two runs share strict deterministic algorithms and declared cuBLAS workspace on physicalGPU1. PHASE_VII_PIXEL_MASKED_RESTART_MEASURED.json preserves the exact proof and three real process-launch/log records.
+
+This verifies actual fulltraining/restart correctness, not identity or nativeMOT improvement. Other mode/seed controls are running; nine unique supervised/visible-target/truepixel-mask fits must be compared on identical source/pools/support before attributing any gain to masking. Do not compare this whole-video cropgallery evaluation with B's single-current-scene candidate support or claim a luckyseed0 improvement. The separate teacher-free RGBreconstruction queue waits on GPU3. All-six masked/reconstruction folds and newproducer/endogenous/native/fullraw/strongsource/novelty work remain incomplete.
