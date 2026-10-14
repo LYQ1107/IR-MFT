@@ -1,0 +1,22 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "outer": "SN-015",
+  "inner": "BT-001",
+  "fit_videos": ["BT-003", "MSK-002", "PF-001", "SN-001"],
+  "modes": ["mlp", "temporal", "quality"],
+  "seed_plan": [0, 1, 2],
+  "dimension": 384,
+  "hidden": 128,
+  "history_length": 4,
+  "minimum_past_gap": 25,
+  "identities_per_frame": 8,
+  "observations_per_identity": 4,
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "triplet_weight": 1.0,
+  "same_frame_weight": 0.2,
+  "scope": "Independent same-input FDTA-style identity adapter baseline on frozen licensed DINOv2 current crop features. Four fit videos only; BT-001 inner and SN-015 outer never update parameters. Strictly earlier same-physical-ID rows are used only to form an offline diagnostic temporal context, never claimed as online input. Not official FDTA, not a full detector/tracker reproduction, and no native MOT gain claim."
+}

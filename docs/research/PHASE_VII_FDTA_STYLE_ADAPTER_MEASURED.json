@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETE_FDTA_STYLE_ADAPTER_9_FITS",
+  "driver_state_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/fdta_campaign_v3_driver.json",
+  "driver_state_sha256": "50cad1987c56416941810933b44efbc9d08be9a29f68150317b9b845434755ff",
+  "native_campaign_report": "PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
+  "native_campaign_state_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/fdta_native_campaign_v2.json",
+  "native_campaign_state_sha256": "d6478929c4800ab16897025ea58df0c08060a6c7d1740390c33eba6d5716fa64",
+  "protocol": "Frozen licensed DINOv2-S CLS384 current crops, four fit videos BT-003/MSK-002/PF-001/SN-001, held-out inner BT-001 and outer SN-015, fixed 8 epochs × 150 steps, seeds 0/1/2. MLP, temporal-context and visibility-quality-gated adapters use identical sampler and supervised CE/temporal/same-frame objective. Strictly earlier same-physical-ID rows form an offline diagnostic context; this is not online memory or a native claim.",
+  "modes": {
+    "mlp": {"outer_detector_gap25_R1_mean": 55.18518518518518, "outer_detector_gap25_R1_sd": 0.9025778893773532, "outer_detector_gap25_mAP_mean": 22.98431464700232, "outer_detector_gap25_mAP_sd": 0.26438227223382677, "inner_detector_gap25_R1_mean": 17.30769230769231, "inner_detector_gap25_R1_sd": 1.2099093646267225, "inner_detector_gap25_mAP_mean": 9.667332476713828, "inner_detector_gap25_mAP_sd": 0.04190527531471252},
+    "temporal": {"outer_detector_gap25_R1_mean": 63.492063492063494, "outer_detector_gap25_R1_sd": 3.015873015873014, "outer_detector_gap25_mAP_mean": 28.75404506677685, "outer_detector_gap25_mAP_sd": 0.5829515130630177, "inner_detector_gap25_R1_mean": 29.86111111111111, "inner_detector_gap25_R1_sd": 0.667200640854531, "inner_detector_gap25_mAP_mean": 13.763906132641859, "inner_detector_gap25_mAP_sd": 0.32061722634426315},
+    "quality": {"outer_detector_gap25_R1_mean": 63.17460317460317, "outer_detector_gap25_R1_sd": 2.443619733069946, "outer_detector_gap25_mAP_mean": 28.640542805737663, "outer_detector_gap25_mAP_sd": 0.6202473678090428, "inner_detector_gap25_R1_mean": 29.273504273504273, "inner_detector_gap25_R1_sd": 0.8826234851420045, "inner_detector_gap25_mAP_mean": 13.725494035240622, "inner_detector_gap25_mAP_sd": 0.33632026672054904}
+  },
+  "fit_manifest_sha256": {
+    "mlp_s0": "f105000e14de743164d314d361bb3582806be627a657d6820949dbd4e970a1fd",
+    "mlp_s1": "743c6b5b20cb3ceda1eb211ad06b4e8b7fc419fd0292e4bb13d755ead17e086b",
+    "mlp_s2": "58fabdf59bd78196b83b217fbb472a2649d03fac485f9d19493cf316d73dca01",
+    "temporal_s0": "a4e9bdaaaf4e1c1673120e8b2f80eb8b71c49e6d5f58ec8866d5fb1143cf83b3",
+    "temporal_s1": "9e5fff0d9fce44acf340dd1571a6bdda25783272d7e32c8bdc8f0faa53379aab",
+    "temporal_s2": "6703e5e0c91ce936fbe2af6e2b0cc6098ac0a715d5dfa774ef8efefec996ff4a",
+    "quality_s0": "fb430b80a44e7823c81843bed7f073f7d78096e8a2a0062e77ee372d66db418f",
+    "quality_s1": "0dc61232c6e7d8a7aba17d9609fa721ce2ae72c6d144edae238e352b3ed5c15d",
+    "quality_s2": "ee7ef3a9c3cce503026d53cc7b67469f08e6205cd8dcf6faea85348b8cc9ec29"
+  },
+  "interpretation": "The temporal and quality adapters improve the offline past-gallery ranking over the frozen DINO detector reference (57.937% R1 on SN-015), while the current-only MLP does not. The temporal gain has seed variation and uses physical-ID history construction for this diagnostic; its causal native FIFO result is required before any online identity conclusion. This is an independently implemented FDTA-style baseline, not official FDTA or a novelty claim."
+}

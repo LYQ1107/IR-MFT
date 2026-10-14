@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETE_WHOLE_RAW_SIX_VIDEO_PROFILE",
+  "driver_state_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_whole_dino_frozen_fifo_driver_v3.json",
+  "driver_state_sha256": "99e812356e89f24136314a6ab69217bacfa2f41c3f5196f5cb84e35a3b751ac4",
+  "protocol": "Current RGB -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 FP16 detector repeat-current-image batch8 -> current crop/pad128 frozen DINOv2-S CLS384 -> native FIFO tracker. No GT, teacher, future frame, cached proposal or feature input online.",
+  "videos": {
+    "SN-001": {"output": "raw_current_dino_frozen_fifo_SN-001_v1", "frames": 684, "whole_raw_fps": 1.1083058688886496, "observed_with_validation_fps": 1.0449121048131202, "HOTA": 43.023059329301624, "IDF1": 60.443462479286666, "IDSW": 24, "independent_trace": "not_available_reused_prior_v1_asset"},
+    "SN-015": {"output": "raw_current_dino_frozen_fifo_SN-015_v3", "frames": 6570, "whole_raw_fps": 1.3085840840237801, "observed_with_validation_fps": 1.2327236144824816, "HOTA": 32.22502269407117, "IDF1": 30.44482587144484, "IDSW": 152, "independent_trace": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED"},
+    "BT-003": {"output": "raw_current_dino_frozen_fifo_BT-003_v3", "frames": 243, "whole_raw_fps": 1.2962330297633207, "observed_with_validation_fps": 1.2220290718658868, "HOTA": 55.30530219492446, "IDF1": 78.95392278953923, "IDSW": 9, "independent_trace": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED"},
+    "BT-001": {"output": "raw_current_dino_frozen_fifo_BT-001_v3", "frames": 3000, "whole_raw_fps": 1.3279247195452362, "observed_with_validation_fps": 1.2507537197999155, "HOTA": 35.812139449917964, "IDF1": 45.66482714661925, "IDSW": 99, "independent_trace": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED"},
+    "MSK-002": {"output": "raw_current_dino_frozen_fifo_MSK-002_v3", "frames": 1754, "whole_raw_fps": 1.117492138466489, "observed_with_validation_fps": 1.0562989864650199, "HOTA": 23.982046875386047, "IDF1": 29.200290563296573, "IDSW": 384, "independent_trace": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED"},
+    "PF-001": {"output": "raw_current_dino_frozen_fifo_PF-001_v3", "frames": 15000, "whole_raw_fps": 1.3163670192968082, "observed_with_validation_fps": 1.2394905852828024, "HOTA": 42.35458355695784, "IDF1": 39.847499289333314, "IDSW": 19, "independent_trace": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED"}
+  },
+  "mean_whole_raw_fps_unweighted": 1.2458178099973807,
+  "interpretation": "Complete six-video strict raw DINO/FIFO profile and official scoring. It is one shared-machine run, not three-seed runtime repeatability or final-method speed. SN-001 reuses the earlier completed v1 output and therefore has no new actual-output trace proof; its cache/reference parity remains the recorded evidence. The pseudo-IR response is RGB-derived, not an independent thermal sensor."
+}
