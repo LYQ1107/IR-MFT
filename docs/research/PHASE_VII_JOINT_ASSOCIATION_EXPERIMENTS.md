@@ -101,3 +101,26 @@ Joint full averages252.667±66.010 falseNULL decisions on knownexisting targets,
 The same offline labeling on the preserved baseline trace reveals an important reference confound: baseline frozen-EarlyReference history mismatch is23,925/42,357=56.484% of repeated known history observations, versus lower mismatch in fragmented learned trajectories, despite the baseline's stronger official IDF1/HOTA. Warm inner data has876/1,175supervisedknownexisting-or-no-old-match queries, while joint endogenous support is substantially smaller and more nonunique. EarlyReference is a noisy initial-history convention; short fragment references can look cleaner without maintaining physical identity continuity. These counts cannot certify better tracking or isolate pollution as a cause. Fit-video warm data contains substantial mismatch too (all four fit videos audited without outer data).
 
 The evidence motivates independently supervised, source-matched current/raw/local cues, unknown-preserving supervision of actual difficult sets, and separation of arbitrary ID binding from visual association. A blind hard geometry gate, zero-dictionary inference patch, stricter memory write rule or improved latentloss is not yet supported as a fullmethod fix. Genuine newproducer/on-policy C training and matched MOTIP/Hungarian controls remain required. The scientific PNG/SVG/PDF plot is exported outsideGit from allnine records, with source/value/hash provenance.
+
+## Same-coordinate recent-history and dictionary-separated full-set controls
+
+A new owned Ccontrol uses the exactsame ApacheDINO384frozen coordinates onfourfitvideos, innerBT001 andouterSN015, withoutold512GRU ormixingfittedencoders. Fourfitteacher videos (17,681frames) reproduce existingfrozenFIFO predictionbytes before ANY physicalannotation labels are loaded. All sampled actualhigh-stage sets/unknowns are retained; traininglabels require>=3whollyknown same-ID recent observations withinlast4/maxage1500, notfrozenEarlyReference. These verified observationlabels are notunconditional whole-track/biologicalidentity truth. Multipleoldslots withsamephysicalID formpositive sets; duplicatecurrent IDs ignored; unknowns neverhardnegatives orfabricatedNULL.
+
+Natural verifiedno-supplied-match coverage is onlyone query. A separatelyregistered25%requested trainingaugmentation retains a closedknown oldsubset and withholdsoneknowncurrentfish's matchingoldgroup plusallunverified oldslots, keeping>=oneverifieddifferentoldidentity. NULL is logicallynomatchtosuppliedsubset, notbirth/naturalocclusion. Otherdraws retainactualfull unknowninclusive sets. GT-derivedsubset selection istraining-only, neverinference; itsclosed-set distributionlimit isexplicit.
+
+Fourmodes pair/crossTransformer/jointcontent/jointcodes ×threeseeds complete12fixed8epoch/1200step fits (14,400updates) and24wholeexcludednative videos. Everyepochactual model-input/sampling/subset/codes digestmatches acrossmodes perseed. JointcodeEmbedding512×64 andcontentFFN64->256->64 bothhave32,768conditioning parameters andexactequalactivecapacity/standardizedconditioning scale. Maincontent association logits arebitexact invariant toarbitrarycode changes; codes mapcolumns only. CrossTransformer selfattention isreplaced byexactparameter/gradientactiveTokenFFNs. Pairactivecapacity isreported separately, notdeclared equaltofullsets. No officialMOTIP reproduction ornovelty claim.
+
+| Video / model | HOTA | IDF1 | IDSW |
+|---|---:|---:|---:|
+| BT-001 / frozenFIFO | 35.812 | 45.665 | 99.000 |
+| BT-001 / pair | 32.308 ± 1.772 | 35.114 ± 2.272 | 102.333 ± 2.887 |
+| BT-001 / cross_transformer | 24.509 ± 1.452 | 26.797 ± 1.818 | 207.000 ± 42.568 |
+| BT-001 / joint | 26.859 ± 1.798 | 30.146 ± 1.979 | 169.667 ± 5.508 |
+| BT-001 / coded_joint | 26.942 ± 0.858 | 34.570 ± 1.157 | 305.667 ± 27.025 |
+| SN-015 / frozenFIFO | 32.225 | 30.445 | 152.000 |
+| SN-015 / pair | 30.443 ± 1.282 | 26.435 ± 1.165 | 162.333 ± 11.590 |
+| SN-015 / cross_transformer | 28.413 ± 1.463 | 27.471 ± 1.734 | 207.000 ± 52.115 |
+| SN-015 / joint | 28.050 ± 0.715 | 25.983 ± 0.882 | 176.000 ± 4.359 |
+| SN-015 / coded_joint | 30.850 ± 1.532 | 32.244 ± 3.375 | 294.667 ± 45.654 |
+
+Contentinvariance andcorrectset supervision do notimproveMOT: allnewC HOTAmeans arebelowordinaryFIFO onbothvideos. CodedjointSN015 higherIDF1 accompanies muchmore switches/lowerHOTA. Unknown-inclusive learned-policy histories, NULL/calibration/rawgallery preservation andstrongsource adaptations stillneed controlleddiagnosis; no zerocode/threshold/seed recipe isselected fromouter values. Fullsource/physical-target/support/capacity/officialmetric proof is PHASE_VII_DICTIONARY_JOINT_THREE_SEED_MEASURED.json. Actualjointseed1epoch2exit/freshresume matches continuous8epochs across189tensor/1array/815scalar leaves, alldigests/augmentation/losses/RNG/optimizer; PHASE_VII_DICTIONARY_JOINT_RESTART_MEASURED.json.

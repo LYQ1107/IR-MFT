@@ -228,3 +228,38 @@ An owned masked pixel autoencoding control now predicts588values (14×14×3RGB) 
 Actual licensed DINO/current BT003fit-crop CPU evidence verifies144masked observedpatches,36finitegradient fields, oneoptimizer update, frozenprefix equality, targetpixel perturbation cannot affect maskedpredictions, and all202model-state keys restore exactly from57delta keys plus145immutableofficialbase keys. Modelcheckpoint23,488,085bytes; source/input/checkpoint/gradient/protocol proof in PHASE_VII_PIXEL_RECONSTRUCTION_SMOKE_MEASURED.json. The old first smoke's accidental EMA wording is corrected in the separately re-executed v2 proof; neither smoke establishes8epoch/MOT benefit.
 
 A durable GPU3queue registers sixmode/seed fits plus an actualseed0masked epoch2exit/freshprocessresume duplicate. It waits for the owned nativeproducer to complete, process teardown and actual<=64MiB/zeroGPUutilization, with42GiBreserve/5GiBother-job margin and250MiBperfit. The GPU1EMA-latent-mask queue remains separate and guarded. New fits are pending; all-six/newproducer/native/strongsource comparisons and reliablecontribution remain required.
+
+## Completed genuine pixel-target three-seed controls
+
+All15unique firstfoldfits (nine supervised/visiblelatent/pixelmaskedlatent andsixvisibleRGB/maskedRGB), plus two actualrestart duplicates, are complete. Both restart proofs are exact. Separate sampler/augmentation/mask final RNG states, immutable inputs/record/query/gallery support, fixed8epochs/1200attempts, pretrained/source/checkpoint/prefix guards andbackbone changes verified. AMPsuccessful update counts are reported explicitly, not assumed equal. All GT/detector views/gaps1/25/100/R1/R5/mAP/unknown selections retained in PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json.
+
+OuterSN015 currentdetector wholevideo past-only gallery gap25 (630supported/644queries), mean ±sampleSD:
+
+| Mode | R1 (%) | mAP (%) |
+|---|---:|---:|
+| frozenCLS | 57.937 | 23.857 |
+| supervised_only | 63.016 ± 1.514 | 29.775 ± 0.416 |
+| visible_target | 63.386 ± 1.283 | 29.780 ± 0.428 |
+| pixel_masked | 63.386 ± 1.191 | 29.803 ± 0.401 |
+| pixel_masked_reconstruction | 63.810 ± 1.041 | 29.785 ± 0.367 |
+| pixel_visible_target | 63.016 ± 0.884 | 29.897 ± 0.408 |
+
+Masked andvisiblelatent target modes haveidenticalmeanR1; pixelRGBreconstruction raisesR1slightly versusvisibleRGB butmAPis lower. No robust masking-specific identitybenefit, nativeMOT gain orJEPA novelty is established. Wholepast-gallery results cannot be compared directly with Bsingle-current-scene candidate retrieval. Source-matched strongerlocal identity heads, actualnative adaptedcoordinates/allfold/newmethod remain required.
+
+## Completed all126ordinary native controls
+
+Allsix videos, frozenlast/FIFO/EMA andtwoencoder modes ×three seeds ×three memories complete. Actualencoder-feature-source/checkpoint/outer-inner exclusions andofficialprediction/GT hashes verified. All pervideo/allofficialmetrics/seeds remain in PHASE_VII_NATIVE_IDENTITY_ALL126_MEASURED.json. Macrovideo mean ±seed sampleSD; no memoryrule orseed selected fromouter values:
+
+| Memory / encoder | HOTA | IDF1 | IDSW |
+|---|---:|---:|---:|
+| last / frozen | 37.940 | 45.459 | 113.667 |
+| last / global | 38.115 ± 0.100 | 45.632 ± 0.196 | 116.889 ± 0.255 |
+| last / patch_attention | 38.088 ± 0.101 | 45.605 ± 0.196 | 117.444 ± 0.096 |
+| fifo / frozen | 38.784 | 47.426 | 114.500 |
+| fifo / global | 38.362 ± 0.004 | 46.343 ± 0.015 | 116.778 ± 0.192 |
+| fifo / patch_attention | 38.515 ± 0.001 | 46.661 ± 0.000 | 117.278 ± 0.096 |
+| ema / frozen | 38.395 | 46.372 | 115.333 |
+| ema / global | 38.220 ± 0.044 | 45.888 ± 0.115 | 117.444 ± 0.509 |
+| ema / patch_attention | 38.222 ± 0.019 | 45.853 ± 0.177 | 117.778 ± 0.096 |
+
+FIFO adaptedencoders do notsurpassfrozenFIFO: HOTA38.362global/38.515patch versus38.784frozen, IDF146.343/46.661 versus47.426. Smalllast-memory gains coexist with more switches; no stableencoder/local contributionclaim. These are CacheProtocolA results: originalglobal detectorcache hasunpadfinal3frames. Currentrawalways-pad8 protocol is separatelymeasured andmustnotforceoldcachetail parity.

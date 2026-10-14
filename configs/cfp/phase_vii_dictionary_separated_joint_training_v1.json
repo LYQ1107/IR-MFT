@@ -1,0 +1,85 @@
+{
+  "state": "FROZEN",
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "first_video": "SN-015",
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "output": "Confirmednative tracks filtered bynativeKFbox area100; coordinates are actual current matched proposal measurements, matching frozen PhaseVII output protocol.",
+  "ordinary_controls": [
+    "last",
+    "fifo",
+    "ema"
+  ],
+  "model_cost": "Known prototype pairlogits divided by the exact fitted common logit_scale, clampcosine[-1,1], appearance=(1-cosine)/2. No outer-selected threshold/calibration or changed geometry/lifecycle/proposal graph. Modelchanges only confirmedhigh-stage cues; unconfirmed/low/writes remain matchingordinaryFIFO.",
+  "scope": "Source-matched conditionalnewC on strictcausal actual frozenDINO/FIFOteacher histories, before truepixel/finetunedencoder/MOTIPofficial/finalcombinedmethod. Only4fitvideos trainhead; frozenbackbonehasnofishfit, historicalV3/privatefoundation overlapexplicit. All6/three-seed/newproducer/native/fullraw/independentnovelty remain required.",
+  "first_outer": "SN-015",
+  "first_inner": "BT-001",
+  "fit_videos": [
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "outer_videos": [
+    "SN-015"
+  ],
+  "inner_videos": [
+    "BT-001"
+  ],
+  "dimension": 384,
+  "hidden": 64,
+  "heads": 4,
+  "capacity": 512,
+  "query_stride": 5,
+  "minimum_known_past": 3,
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "consistency_weight": 0.1,
+  "model_specs": {
+    "pair": {
+      "architecture": "pair",
+      "binding_mode": "content"
+    },
+    "cross_transformer": {
+      "architecture": "cross_transformer",
+      "binding_mode": "content"
+    },
+    "joint": {
+      "architecture": "joint",
+      "binding_mode": "content"
+    },
+    "coded_joint": {
+      "architecture": "joint",
+      "binding_mode": "codes"
+    }
+  },
+  "representation": "One identical pretrainedApacheDINO-S384 frozen coordinate source for allfit/inner/outer videos; no old512GRU, supervisedA or mixed encoders. Latest4native accepted proposals, maxage1500, no initialanchor.",
+  "supervision": "Only wholly known same-ID recent histories with>=3observations obtain a training label. All unknown/mixed/short histories remain supplied/scored but excluded from labeled negatives. Duplicate oldslots matching samephysical fish form a positive set. Duplicate currentphysical proposals ignored. NULLonlyif allsuppliedoldidentities known and none matches; notverifiedbirth. GTlabels loaded only after allteacherfullvideo outputs/byteparities.",
+  "comparison": "Four architectures/binding controls, same observedsets/sampling/1200steps/8epochs/seeds. Jointcontent vsjointcodes identicalparametercount: codeEmbedding(capacity,hidden) versusbiasfree hidden->capacity/2->hiddenFFN, bothstandardizedconditioning scale. CrossTransformer exactselfattentionparameter FFNs. Pairallocated/activeparametercounts explicitlyreported. EstablishedMOTIP-style setassignment adaptation, not officialMOTIP/fullnovelmethod reproduction.",
+  "checkpoint_selection": "Fixedfinalepoch8; same sampler/code/subset RNG acrossallmodes; no heldout recipe selection.",
+  "sampling": "Uniformfourfitvideo then uniform fixedstride5 actual high-stage frame with at leastonesupervisable known target. Allunknown rows/slots remain in model input. Sampler and distinctcodes use separate checkpointed RNG.",
+  "query_config_sha256": "ea32c33d3d45877c94e64c398140f48cd78c7b07474868a0f0cdadbf0ab9d85b",
+  "verified_subset_probability": 0.25,
+  "verified_subset_semantics": "Actualteacher corpus has only1natural verified-no-old-match query. On25%requested trainingdraws with>=2knownoldphysical groups anduniqueknowncurrentpositive, removeallunverifiedoldslots plus allslotsmatching onechosenknowncurrentfish; retain>=1verifieddifferentoldidentity. RecomputedNULL is logically no match to supplied knownsubset, notbirth/naturalocclusion label. Other75%draws retainfullactualunknown-inclusive sets. This is explicitGT-derived trainingaugmentation, never appliedinference; distribution limitation reported. No fabricated NULLfromunknown coverage."
+}

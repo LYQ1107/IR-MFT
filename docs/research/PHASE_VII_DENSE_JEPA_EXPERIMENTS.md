@@ -189,3 +189,20 @@ Full minus ordinarylocalTemporal paired-seed macroR1 difference is -0.0338 ± 0.
 The genuine pre-attention pixel-masked seed0firstfold now completes8epochs/1200attempts,1197successful optimizer/EMAupdates (three AMPoverflow skips),153.507training seconds, unchanged immutable prefix and student-only heldout retrieval. Its separately executed epoch2exit/fresh-process resume reaches the identical final result:197tensor/1array/1269scalar leaves across losslessmodeldelta/teacher tail/optimizer/scheduler/scaler/allRNG, everyepoch loss/update/coverage and heldoutretrieval/feature hashes match exactly. The two runs share strict deterministic algorithms and declared cuBLAS workspace on physicalGPU1. PHASE_VII_PIXEL_MASKED_RESTART_MEASURED.json preserves the exact proof and three real process-launch/log records.
 
 This verifies actual fulltraining/restart correctness, not identity or nativeMOT improvement. Other mode/seed controls are running; nine unique supervised/visible-target/truepixel-mask fits must be compared on identical source/pools/support before attributing any gain to masking. Do not compare this whole-video cropgallery evaluation with B's single-current-scene candidate support or claim a luckyseed0 improvement. The separate teacher-free RGBreconstruction queue waits on GPU3. All-six masked/reconstruction folds and newproducer/endogenous/native/fullraw/strongsource/novelty work remain incomplete.
+
+## Completed genuine pixel-target three-seed controls
+
+All15unique firstfoldfits (nine supervised/visiblelatent/pixelmaskedlatent andsixvisibleRGB/maskedRGB), plus two actualrestart duplicates, are complete. Both restart proofs are exact. Separate sampler/augmentation/mask final RNG states, immutable inputs/record/query/gallery support, fixed8epochs/1200attempts, pretrained/source/checkpoint/prefix guards andbackbone changes verified. AMPsuccessful update counts are reported explicitly, not assumed equal. All GT/detector views/gaps1/25/100/R1/R5/mAP/unknown selections retained in PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json.
+
+OuterSN015 currentdetector wholevideo past-only gallery gap25 (630supported/644queries), mean ±sampleSD:
+
+| Mode | R1 (%) | mAP (%) |
+|---|---:|---:|
+| frozenCLS | 57.937 | 23.857 |
+| supervised_only | 63.016 ± 1.514 | 29.775 ± 0.416 |
+| visible_target | 63.386 ± 1.283 | 29.780 ± 0.428 |
+| pixel_masked | 63.386 ± 1.191 | 29.803 ± 0.401 |
+| pixel_masked_reconstruction | 63.810 ± 1.041 | 29.785 ± 0.367 |
+| pixel_visible_target | 63.016 ± 0.884 | 29.897 ± 0.408 |
+
+Masked andvisiblelatent target modes haveidenticalmeanR1; pixelRGBreconstruction raisesR1slightly versusvisibleRGB butmAPis lower. No robust masking-specific identitybenefit, nativeMOT gain orJEPA novelty is established. Wholepast-gallery results cannot be compared directly with Bsingle-current-scene candidate retrieval. Source-matched strongerlocal identity heads, actualnative adaptedcoordinates/allfold/newmethod remain required.

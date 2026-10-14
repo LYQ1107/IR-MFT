@@ -1,0 +1,44 @@
+{
+  "status": "VERIFIED_ACTUAL_TAIL_IPC_AND_UNCHANGED_NORMAL_PAD8",
+  "results": [
+    {
+      "frame": 6568,
+      "normal_pad8_before_after_byte_equal": true,
+      "current_only_tail3_reconstructs_oldcache": true,
+      "normal_boxes_sha256": "8c224f4ed5dcbf0ecf99e76e314b048992e00e3f56ee722e53dc11302fad922d",
+      "normal_scores_sha256": "feb1ae90feb4d9b45344d269ff907c51ae30fa702b3b71061ba9d4cd6d2170b0"
+    },
+    {
+      "frame": 6569,
+      "normal_pad8_before_after_byte_equal": true,
+      "current_only_tail3_reconstructs_oldcache": true,
+      "normal_boxes_sha256": "a00d13047e5926b75a1bc15fdf1af4e43311e7e0c9f8bdd142dc67e05b94c261",
+      "normal_scores_sha256": "628733de496ab591d2668fc48dbd0a4b2fcdee41c87c84a8734850bbdc3be8de"
+    },
+    {
+      "frame": 6570,
+      "normal_pad8_before_after_byte_equal": true,
+      "current_only_tail3_reconstructs_oldcache": true,
+      "normal_boxes_sha256": "6073db8dc8000108f4b19dd8698270fae96db3fd4eb99e1cd24d7bbe3388a11c",
+      "normal_scores_sha256": "f40d2e4903637189c9c2f3583f27611f92f9844ec97346a7a7bc541a2ca59698"
+    }
+  ],
+  "runtime": {
+    "torch": "2.0.0+cu117",
+    "cuda": "11.7",
+    "cudnn": 8500,
+    "parameters": 186199381,
+    "device": "NVIDIA A100-SXM4-40GB",
+    "current_frame_repeat": 8,
+    "owned_memory_fraction": 0.6,
+    "frames_processed": 6,
+    "peak_gpu_memory_bytes": 2002886144,
+    "shutdown_returncode": 0
+  },
+  "sources": {
+    "tools/cfp_verify_detector_tail_runtime.py": "474f3da7458832e0efe7b9d911becc4fe30cfda83f0df25ded140dce59859dfd",
+    "cfp/raw_profile_tail_runtime.py": "78701ba0181ab4a34724e16e4cd07f58e7b87ab2d3ae66508ea1b064b2be42d8",
+    "tools/cfp_detector_worker_raw_profile_v2.py": "542bcddf39b216e6830e3dbcca3a4ef6e57f668829ac38d31c639aff77f0f7db"
+  },
+  "scope": "Isolated currentRGB/currentcachedIR numerical IPC proof only, no rawFPS/GT/tracker/no-cache inference claim. Actualwhole raw v3 stillgeneratesIR beforecurrent normalpad8 andcalls exacttail3 validation afteroutput. Validation never changes normalpad8 output or supplies online proposals."
+}

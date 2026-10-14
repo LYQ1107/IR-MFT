@@ -139,3 +139,44 @@ Macrovideo GT-history/currentdetector gap25R1, eachseed averaged acrosssix outer
 | full | 45.288 ± 0.427 |
 
 Full minus ordinarylocalTemporal paired-seed macroR1 difference is -0.0338 ± 0.0221percentage points. The regionalprediction auxiliary does not establish additionalidentity information; localAttention/contrastive improvements overfrozen are established mechanisms, notJEPA novelty. NoPrediction is an exactlocalTemporal alias and contributes zero additionalindependent fits. All inner/outer protocols/R1/R5/mAP/AUC/EER/supports are retained. These are cleanphysical histories; firstfoldnativeBfull remains worse thanfrozenFIFO. K8/context, onpolicyactualhistories, truepixelmask/RGBreconstruction/strongsource, nativeall-six and finalvalidatednovelty remain required.
+
+## Completed all126ordinary native controls
+
+Allsix videos, frozenlast/FIFO/EMA andtwoencoder modes ×three seeds ×three memories complete. Actualencoder-feature-source/checkpoint/outer-inner exclusions andofficialprediction/GT hashes verified. All pervideo/allofficialmetrics/seeds remain in PHASE_VII_NATIVE_IDENTITY_ALL126_MEASURED.json. Macrovideo mean ±seed sampleSD; no memoryrule orseed selected fromouter values:
+
+| Memory / encoder | HOTA | IDF1 | IDSW |
+|---|---:|---:|---:|
+| last / frozen | 37.940 | 45.459 | 113.667 |
+| last / global | 38.115 ± 0.100 | 45.632 ± 0.196 | 116.889 ± 0.255 |
+| last / patch_attention | 38.088 ± 0.101 | 45.605 ± 0.196 | 117.444 ± 0.096 |
+| fifo / frozen | 38.784 | 47.426 | 114.500 |
+| fifo / global | 38.362 ± 0.004 | 46.343 ± 0.015 | 116.778 ± 0.192 |
+| fifo / patch_attention | 38.515 ± 0.001 | 46.661 ± 0.000 | 117.278 ± 0.096 |
+| ema / frozen | 38.395 | 46.372 | 115.333 |
+| ema / global | 38.220 ± 0.044 | 45.888 ± 0.115 | 117.444 ± 0.509 |
+| ema / patch_attention | 38.222 ± 0.019 | 45.853 ± 0.177 | 117.778 ± 0.096 |
+
+FIFO adaptedencoders do notsurpassfrozenFIFO: HOTA38.362global/38.515patch versus38.784frozen, IDF146.343/46.661 versus47.426. Smalllast-memory gains coexist with more switches; no stableencoder/local contributionclaim. These are CacheProtocolA results: originalglobal detectorcache hasunpadfinal3frames. Currentrawalways-pad8 protocol is separatelymeasured andmustnotforceoldcachetail parity.
+
+## Same-coordinate recent-history and dictionary-separated full-set controls
+
+A new owned Ccontrol uses the exactsame ApacheDINO384frozen coordinates onfourfitvideos, innerBT001 andouterSN015, withoutold512GRU ormixingfittedencoders. Fourfitteacher videos (17,681frames) reproduce existingfrozenFIFO predictionbytes before ANY physicalannotation labels are loaded. All sampled actualhigh-stage sets/unknowns are retained; traininglabels require>=3whollyknown same-ID recent observations withinlast4/maxage1500, notfrozenEarlyReference. These verified observationlabels are notunconditional whole-track/biologicalidentity truth. Multipleoldslots withsamephysicalID formpositive sets; duplicatecurrent IDs ignored; unknowns neverhardnegatives orfabricatedNULL.
+
+Natural verifiedno-supplied-match coverage is onlyone query. A separatelyregistered25%requested trainingaugmentation retains a closedknown oldsubset and withholdsoneknowncurrentfish's matchingoldgroup plusallunverified oldslots, keeping>=oneverifieddifferentoldidentity. NULL is logicallynomatchtosuppliedsubset, notbirth/naturalocclusion. Otherdraws retainactualfull unknowninclusive sets. GT-derivedsubset selection istraining-only, neverinference; itsclosed-set distributionlimit isexplicit.
+
+Fourmodes pair/crossTransformer/jointcontent/jointcodes ×threeseeds complete12fixed8epoch/1200step fits (14,400updates) and24wholeexcludednative videos. Everyepochactual model-input/sampling/subset/codes digestmatches acrossmodes perseed. JointcodeEmbedding512×64 andcontentFFN64->256->64 bothhave32,768conditioning parameters andexactequalactivecapacity/standardizedconditioning scale. Maincontent association logits arebitexact invariant toarbitrarycode changes; codes mapcolumns only. CrossTransformer selfattention isreplaced byexactparameter/gradientactiveTokenFFNs. Pairactivecapacity isreported separately, notdeclared equaltofullsets. No officialMOTIP reproduction ornovelty claim.
+
+| Video / model | HOTA | IDF1 | IDSW |
+|---|---:|---:|---:|
+| BT-001 / frozenFIFO | 35.812 | 45.665 | 99.000 |
+| BT-001 / pair | 32.308 ± 1.772 | 35.114 ± 2.272 | 102.333 ± 2.887 |
+| BT-001 / cross_transformer | 24.509 ± 1.452 | 26.797 ± 1.818 | 207.000 ± 42.568 |
+| BT-001 / joint | 26.859 ± 1.798 | 30.146 ± 1.979 | 169.667 ± 5.508 |
+| BT-001 / coded_joint | 26.942 ± 0.858 | 34.570 ± 1.157 | 305.667 ± 27.025 |
+| SN-015 / frozenFIFO | 32.225 | 30.445 | 152.000 |
+| SN-015 / pair | 30.443 ± 1.282 | 26.435 ± 1.165 | 162.333 ± 11.590 |
+| SN-015 / cross_transformer | 28.413 ± 1.463 | 27.471 ± 1.734 | 207.000 ± 52.115 |
+| SN-015 / joint | 28.050 ± 0.715 | 25.983 ± 0.882 | 176.000 ± 4.359 |
+| SN-015 / coded_joint | 30.850 ± 1.532 | 32.244 ± 3.375 | 294.667 ± 45.654 |
+
+Contentinvariance andcorrectset supervision do notimproveMOT: allnewC HOTAmeans arebelowordinaryFIFO onbothvideos. CodedjointSN015 higherIDF1 accompanies muchmore switches/lowerHOTA. Unknown-inclusive learned-policy histories, NULL/calibration/rawgallery preservation andstrongsource adaptations stillneed controlleddiagnosis; no zerocode/threshold/seed recipe isselected fromouter values. Fullsource/physical-target/support/capacity/officialmetric proof is PHASE_VII_DICTIONARY_JOINT_THREE_SEED_MEASURED.json. Actualjointseed1epoch2exit/freshresume matches continuous8epochs across189tensor/1array/815scalar leaves, alldigests/augmentation/losses/RNG/optimizer; PHASE_VII_DICTIONARY_JOINT_RESTART_MEASURED.json.
