@@ -1,11 +1,11 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_THREE_SEED_VISIBLE_TOKEN_MAE_PROBES_WITH_NEGATIVE_IDENTITY_RESULT",
+  "stage": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_WITH_MATCHED_VISIBLE_TARGET_LIMITED_MIXED",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-15",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "200addd6f706c275066f9fe51a52b04274d6a5a8",
-    "remote_commit": "200addd6f706c275066f9fe51a52b04274d6a5a8",
+    "local_commit": "WORKTREE_PENDING_COMMIT",
+    "remote_commit": "PENDING_PUSH",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -13,7 +13,8 @@
       "docs/research/PHASE_VII_FDTA_STYLE_ADAPTER_MEASURED.json",
       "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
       "PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
-      "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json"
+      "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -138,21 +139,23 @@
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 293,
+      "phase_vii_passed": 295,
       "phase_vii_failed": 0,
       "warnings": 24,
       "limits": [
         "test_rgbt_pairing requires missing external PFTrack annotations",
         "full repo tutorial collection requires missing skimage"
-      ]
+      ],
+      "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "Final combination gate is measured NOT_JUSTIFIED; do not mechanically stack current components",
-      "Reopen only after independent same-input complementarity appears, with the storage guard",
-      "Keep external payload, novelty and final-method boundaries explicit"
+      "New visible-token native integration is real but limited to SN-015 seed1; all-fold/three-seed native replay remains open",
+      "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method",
+      "No external payload/zero-overlap validation, independent novelty contribution or complete final raw profiling claim",
+      "Large scientific assets remain outside Git"
     ],
     "active_processes_at_snapshot": [],
-    "free_space_gib_at_snapshot": 40.15009689331055,
+    "free_space_gib_at_snapshot": 40.13754653930664,
     "gpu_policy": "GPU0-3 only when actually idle; GPU4-9 belong to other users",
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -169,6 +172,18 @@
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
       "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
+    },
+    "visible_token_native_sn015": {
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+      "report_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "mode": "masked_visible_tokens",
+      "seed": 1,
+      "matched_control": "visible_target",
+      "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold/one seed only.",
+      "finding": "Masked FIFO/last small HOTA-AssA-IDF1 increase but more IDSW; visible_target lower on identity metrics and also more IDSW; no stable component benefit."
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -229,13 +244,13 @@
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
     "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
     "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
-    "Firstfold global actualdetR1 improves57.9365->63.3862±0.7158 across3seeds; patchattention62.8571±0.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
     "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
     "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
     "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
     "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim",
-    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds×3seeds×4controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
-    "Globalactualdetcrop macroR136.1976±0.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800±0.3094notstableincremental gain",
+    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds\u00d73seeds\u00d74controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
+    "Globalactualdetcrop macroR136.1976\u00b10.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800\u00b10.3094notstableincremental gain",
     "Genuine learned local/temporal/regionalmaskedprediction/currentrelation model with independentstoppedEMAencoder implemented, noold512PLIMalias",
     "Nine firstseed actuallocalJEPA/controlCPUfits1200updates complete; allsameinputmaskdigests/currentquerysupports and unknownnotnegatives verified; three-seedcampaign continues",
     "Strongmatchedglobal72.695/ordinarylocalTemporal64.716/frozenFIFO64.894 beatfullJEPA44.504 onfirstoutercleanGT-history/currentdet scene; noJEPAidentity/native/noveltygain claimed",
@@ -250,7 +265,7 @@
     "V2fullseed0 complete6570frame endogenous nativehistory replay; HOTA30.694/IDF125.298 versus frozenFIFO32.225/30.445, no onlineJEPAgain",
     "254projecttests23warnings passed in18.85seconds; all new CLI modules compile",
     "Actual V2contextfullseed1 epoch2exit/newprocessresume vscontinuous exactlymatches student/independentEMAteacher/1200updates/opt/RNG/losses/metrics/support;250tensor/1array/1626scalar leaves",
-    "All27contextV2 firstfold CPUfits complete; fullR163.652±1.064 vsordinaryTemporal63.948±0.800/global72.813±0.369, no extraJEPAidentitygain",
+    "All27contextV2 firstfold CPUfits complete; fullR163.652\u00b11.064 vsordinaryTemporal63.948\u00b10.800/global72.813\u00b10.369, no extraJEPAidentitygain",
     "Scientificthree-seed V1/V2identity plot generated PNG/SVG/PDF and visuallyinspected; exactcontrolaliases explicit",
     "Nine centeredjoint/pair/activeparameter-matchedCrossTransformer three-seed CPUfits complete,28800actualupdates; matchedframe/code digests and zeroNULLranking supervision verified",
     "Untraineduniformcentered highstagecontrol giveszeroedits and exact baselinebytes onall684SN001/6570SN015frames",
@@ -270,13 +285,13 @@
     "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited."
   ],
   "pending": [
-    "Optional native/all-fold integration of the new encoders only after a lawful semantics-preserving adapter is specified",
-    "Selective final combination only if a component has independently measured same-input benefit",
-    "Preserve negative C/D, external payload, novelty and full-raw profiling boundaries"
+    "Native visible-token integration is complete for one lawful outer fold and one seed with matched visible-target control; all-fold/three-seed native replay remains open",
+    "Selective combinations only if an independently measured complementary same-input signal appears",
+    "Preserve negative C/D, external payload and final raw profiling boundaries"
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
-  "storage_free_gib": 40.15009689331055,
+  "storage_free_gib": 40.13754653930664,
   "source_audit_complete": 30,
   "active_jobs": [
     {
@@ -400,10 +415,10 @@
   ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Refresh the final task-book audit and all changed-document hashes after this campaign is committed",
-    "Verify the content push independently with git ls-remote and GitHub file reads before reporting delivery",
-    "Do not launch a new expensive native or nonlinear-motion run without a clear measurement target and the >=40GiB guard",
-    "Preserve old Phase I-VI assets and all transient/full-state provenance; no data/weights/features/caches in Git"
+    "Commit the current-only visible-token native adapter, SN-015 seed1 masked/visible-target report and tests",
+    "Verify local/remote HEAD independently; keep native feature banks and weights outside Git",
+    "Do not expand to all folds/three seeds without a declared measurement target and storage >=40GiB guard",
+    "Keep final combination gate NOT_JUSTIFIED and goal IN_PROGRESS_UNACHIEVED"
   ],
   "validation": {
     "project_tests": 275,
@@ -456,15 +471,16 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 293,
+    "phase_vii_passed": 295,
     "phase_vii_failed": 0,
     "warnings": 24,
-    "tests_scope": "pytest -q tests --ignore=tests/test_rgbt_pairing.py",
+    "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
     "limits": [
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ]
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
-  "final_combination_gate_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb"
+  "final_combination_gate_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+  "goal_status": "IN_PROGRESS_UNACHIEVED"
 }

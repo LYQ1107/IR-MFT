@@ -4,10 +4,10 @@
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "task_book_sha256": "04532c5b22c03aed30d6f6ed6d2e1ce9e492d2f63f971a63ef44360a7fafdda7",
-  "local_head_at_audit": "200addd6f706c275066f9fe51a52b04274d6a5a8",
-  "remote_branch_last_verified": "200addd6f706c275066f9fe51a52b04274d6a5a8",
-  "remote_verification_scope": "The three-seed campaign content commit 200addd was independently verified with git ls-remote and GitHub file reads. This metadata refresh records that delivered content and keeps the full goal IN_PROGRESS_UNACHIEVED.",
-  "worktree_at_audit": "content commit 200addd and its visible-token three-seed report are present; remote content commit independently verified; this metadata refresh preserves the goal IN_PROGRESS_UNACHIEVED.",
+  "local_head_at_audit": "WORKTREE_PENDING_COMMIT",
+  "remote_branch_last_verified": "PENDING_PUSH",
+  "remote_verification_scope": "Prior content commit was independently verified; this audit refresh records the new current-only visible-token native integration as pending local delivery until commit/push verification.",
+  "worktree_at_audit": "Current-only visible-token adapter, matched native SN-015 report and tests are present in the worktree; remote delivery remains pending.",
   "resource_guards": {
     "free_space_gib_min_required": 40,
     "free_space_gib_at_last_snapshot": 40.15009689331055,
@@ -207,7 +207,7 @@
     },
     {
       "id": "P9_protocol_B_native_mot",
-      "status": "COMPLETE_FOR_REGISTERED_NATIVE_CONTROLS",
+      "status": "COMPLETE_FOR_REGISTERED_NATIVE_CONTROLS_WITH_VISIBLE_TOKEN_SINGLE_FOLD_LIMIT",
       "requirement": "Use fixed proposals/lifecycle/TrackEval and report HOTA/AssA/DetA/IDF1/MOTA/IDSW per video/seed.",
       "evidence": [
         {
@@ -224,6 +224,12 @@
           "path": "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
           "exists": true,
           "sha256": "aa53066716f01e47b42717d48fbd5daef6dc2f4cb21a7deca2dbc82f93ee2705"
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+          "exists": true,
+          "sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+          "scope": "Current-only visible-token native feature/replay and matched visible-target control on SN-015 outer fold seed1; official metrics for FIFO/last/EMA; all-fold/three-seed visible-token native evidence remains open."
         }
       ]
     },
@@ -257,12 +263,12 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "2fc6750843450bda01cf3c7cc0c9dacff3dae02078e3dab48b4e868f69fe8468"
+          "sha256": "fae1c83db4717482e26903a3c195025578ead394e186cba430a49ae49f43af64"
         },
         {
           "path": "docs/research/PHASE_VII_EXPERIMENT_REGISTRY.json",
           "exists": true,
-          "sha256": "764d2a32168abead01a54f017737bfc891baac5c2bbfd434846bcfdbca1e62cc"
+          "sha256": "1efa9711b07cfdba7629c058f4fa03bc163826e5fc471072f6c5dc05a8bfd082"
         }
       ]
     },
@@ -363,7 +369,7 @@
         {
           "path": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
           "exists": true,
-          "sha256": "e9842c9ced979bf6f797e99a36c16e8e829d7bf1989f534a80cbcb6e27ed3fe0"
+          "sha256": "af3bbeac4d443fef38f4e6f52bb30e7f42044fbe8a0634fb086f21726ec61d1d"
         }
       ]
     },
@@ -404,7 +410,7 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "2fc6750843450bda01cf3c7cc0c9dacff3dae02078e3dab48b4e868f69fe8468"
+          "sha256": "fae1c83db4717482e26903a3c195025578ead394e186cba430a49ae49f43af64"
         },
         {
           "path": "docs/research/PHASE_VII_HYPOTHESIS_LEDGER.md",
@@ -418,7 +424,7 @@
     {
       "path": "PHASE_VII_FINAL_GOAL.md",
       "exists": true,
-      "sha256": "a14f7b3db49ce625d2cb8dc62d92da9afbce19c313dd4ce00d7a8634ffbc23aa",
+      "sha256": "3ab791e8b8c317c9a9419a6b10d4aa8d1a59986e5476831be4c5451488b2ee35",
       "status": "PRESENT"
     },
     {
@@ -478,7 +484,7 @@
     {
       "path": "PHASE_VII_FAILURE_ANALYSIS.md",
       "exists": true,
-      "sha256": "5fd91a9e33743387f826fc6c14fcfd9ea9d10f3969f337362c8d1ba772e8f0c2",
+      "sha256": "416e92d4ca6cbc0c0f24bb6a04bd76c7cffeb2d41eea768fef66e82a7d3a0087",
       "status": "PRESENT"
     },
     {
@@ -490,7 +496,7 @@
     {
       "path": "PHASE_VII_FINAL_RESEARCH_REPORT.md",
       "exists": true,
-      "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c",
+      "sha256": "fae1c83db4717482e26903a3c195025578ead394e186cba430a49ae49f43af64",
       "status": "PRESENT"
     }
   ],
@@ -946,7 +952,7 @@
       "status": "REMOTE_VERIFIED_CONTENT_COMMIT_200ADDD"
     }
   ],
-  "interpretation": "This matrix audits evidence coverage and explicit task-book artifacts/commands while preserving two unresolved scientific states: no justified positive final combination and no stable independent method contribution. The visible-token three-seed campaign and the measured final-combination gate are hash-linked as negative/limited evidence; neither discharges native/all-fold/novelty requirements. Absent exact suggested filenames are not silently counted as evidence, and the audit does not redefine either unresolved state as completion or a mechanical NO_GO.",
+  "interpretation": "Coverage/claim audit of the user task book. The new native visible-token recheck closes one integration boundary but does not create a stable component benefit, positive final method, external generalization claim or project-wide completion. All-fold/three-seed visible-token native replay and whole-raw runtime remain explicit open boundaries.",
   "user_task_book_attachment": "/data3/liuyeqiang/.codex/attachments/181bfd56-cc1c-46e7-9427-7a3a170c7db3/Pasted text.txt",
   "user_task_book_attachment_sha256": "7a11049f9e3c12ad20aefb5a11865cfbc729a0d281d6530b5095a9ff09213882",
   "user_task_book_attachment_line_endings": "CRLF",
@@ -958,11 +964,17 @@
     "report_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
     "scope": "2 visible-token objectives x 3 seeds, fit BT-003/MSK-002/PF-001/SN-001, inner BT-001 and outer SN-015 excluded, frozen CE+Triplet probes only; no native MOT/all-fold/new-method credit.",
     "summary": "Masked detector-gap25 Rank-1 57.143/57.937/56.825%; visible-target 53.016/49.683/51.746%; frozen CLS 57.937%; support 630/644; unknown-selected counts differ.",
-    "storage_free_gib_after_copy": 40.15009689331055
+    "storage_free_gib_after_copy": 40.15009689331055,
+    "native_followup": {
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+      "sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "status": "COMPLETE_ONE_OUTER_FOLD_ONE_SEED_WITH_MATCHED_CONTROL",
+      "finding": "Masked seed1 is mixed with extra IDSW; visible-target is lower; no stable native gain."
+    }
   },
   "final_combination_gate": {
     "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-    "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+    "sha256": "141830414467cc839c1ee0038a64472f2eabae725cb2cbf964305ed9cea64126",
     "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
   }
 }

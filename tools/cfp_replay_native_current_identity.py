@@ -38,7 +38,9 @@ def main():
     fm = json.loads((args.features/'manifest.json').read_text())
     dm = json.loads((args.detections/'manifest.json').read_text())
     dp = args.detections/(args.video+'.npz')
-    if (fm['status']!='COMPLETE_NATIVE_CURRENT_DINO_FEATURES' or fm['video']!=args.video
+    if (fm['status'] not in ('COMPLETE_NATIVE_CURRENT_DINO_FEATURES',
+                             'COMPLETE_NATIVE_CURRENT_VISIBLE_TOKEN_FEATURES')
+            or fm['video']!=args.video
             or sha256(dp)!=fm['detection_sha256'] or sha256(dp)!=dm['caches'][args.video]['sha256']
             or fm['detection_manifest_sha256']!=sha256(args.detections/'manifest.json')):
         raise ValueError('Complete native current-only features and unchanged proposals required')

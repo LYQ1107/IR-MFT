@@ -1,7 +1,7 @@
 {
   "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
   "as_of": "2026-10-15",
-  "source_commit": "3f3c8deaed02a53e3aebc828bdc1d021f4c0da5a",
+  "source_commit": "WORKTREE_PENDING_COMMIT",
   "purpose": "Evidence-backed decision on whether to run a final stacked EvidenceFishMOT combination. This is a measured gate, not a new model and not a project-wide NO_GO.",
   "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
   "decision_rule": {
@@ -322,7 +322,10 @@
       "evidence": {
         "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
         "sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
-        "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE"
+        "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
+        "native_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+        "native_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+        "native_status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED"
       },
       "sn015_summary": [
         {
@@ -470,7 +473,55 @@
           }
         }
       },
-      "finding": "Masked mean Rank-1 57.302%±0.572 and visible-target 51.481%±1.682 versus frozen CLS57.937% on equal support; one masked seed matches Rank-1 but unknown counts differ. Offline first-fold only, no native complementarity."
+      "finding": "The native adapter is current-only and protocol-valid, but single-fold/seed evidence is mixed: masked FIFO/last slightly increase identity metrics while adding switches; EMA loses IDF1; matched visible_target is lower and also adds switches. No independent reproducible complementarity is established.",
+      "native_sn015_seed1": {
+        "masked_visible_tokens": {
+          "fifo": {
+            "HOTA": 32.57056910721817,
+            "AssA": 15.096505947500688,
+            "IDF1": 30.801802813286926,
+            "MOTA": 90.99180928705741,
+            "IDSW": 159
+          },
+          "last": {
+            "HOTA": 32.59599748290977,
+            "AssA": 15.113720570269704,
+            "IDF1": 30.806869500348927,
+            "MOTA": 91.02686681327087,
+            "IDSW": 160
+          },
+          "ema": {
+            "HOTA": 30.97410633875979,
+            "AssA": 13.664096228509845,
+            "IDF1": 28.713038038640136,
+            "MOTA": 90.99977690665136,
+            "IDSW": 161
+          }
+        },
+        "visible_target": {
+          "fifo": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165
+          },
+          "last": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165
+          },
+          "ema": {
+            "HOTA": 31.28532172786721,
+            "AssA": 13.961538499103327,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.99180928705741,
+            "IDSW": 165
+          }
+        }
+      }
     },
     "pixel_identity_and_supervised_controls": {
       "evidence": {
@@ -484,7 +535,7 @@
   "why_no_new_run": [
     "The only positive-looking rows are either offline identity diagnostics, capacity controls, or isolated video fluctuations; they do not satisfy the independent same-input held-out criterion together.",
     "The native negative rows cover all six videos/three seeds for context and source-JPM/FDTA scopes and 42 occlusion controls; stacking would add parameters while hiding the causal negative evidence.",
-    "The visible-token campaign is first-fold and offline, so routing its encoder into native MOT would change the producer and confound the combination gate rather than test complementarity.",
+    "A native visible-token recheck now exists for one lawful SN-015 outer fold/seed and its matched visible-target control; it remains mixed and cannot justify all-fold/three-seed stacking or a final method.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
   ],
   "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Frozen DINO/FIFO stays the strong reference; future work may reopen the gate only after an independently measured complementary signal.",
@@ -492,6 +543,7 @@
     "protected_asset_free_gib_snapshot": 40.146671,
     "reserve_gib": 40.0,
     "gpu_policy": "GPU0-3 only when idle; GPU4-9 excluded",
-    "new_compute_started": false
+    "new_compute_started": true,
+    "new_compute_scope": "SN-015 masked_visible_tokens/visible_target seed1 current-only feature banks and three ordinary memories each; raw banks remain outside Git."
   }
 }

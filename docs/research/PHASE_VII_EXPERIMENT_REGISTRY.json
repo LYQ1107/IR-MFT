@@ -282,6 +282,31 @@
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
       "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
+    },
+    "visible_token_native_sn015": {
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+      "report_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "mode": "masked_visible_tokens",
+      "seed": 1,
+      "scope": "Current-only native feature producer plus FIFO/last/EMA replay; matched visible_target control completed on same fold/seed; not all-fold/three-seed.",
+      "masked_fifo": {
+        "HOTA": 32.57056910721817,
+        "AssA": 15.096505947500688,
+        "IDF1": 30.801802813286926,
+        "MOTA": 90.99180928705741,
+        "IDSW": 159
+      },
+      "visible_target_fifo": {
+        "HOTA": 31.285174011242727,
+        "AssA": 13.961547769770362,
+        "IDF1": 28.713967179454276,
+        "MOTA": 90.98862223921981,
+        "IDSW": 165
+      },
+      "finding": "Native integration is valid but mixed: masked FIFO/last small HOTA/AssA/IDF1 increases with more IDSW; visible_target is lower on all identity metrics and also adds IDSW. No stable component benefit."
     }
   },
   "experiments": [
@@ -3941,6 +3966,15 @@
       "scope": "Measured gate over the completed context/FDTA/JPM/joint/motion/occlusion/pixel and visible-token controls; no new model or compute run.",
       "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_NATIVE_SN015_S1_V1",
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+      "report_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "scope": "One outer SN-015/inner BT-001 fold, masked_visible_tokens and matched visible_target controls at seed1, all three ordinary memories, exact current RGB/frozen V3 proposals/native lifecycle/official TrackEval; no allfold/three-seed claim.",
+      "decision": "Do not select or stack from this single-fold mixed result.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -3954,8 +3988,8 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "New visible-token campaign is complete for 2 objectives x 3 seeds on the first legal fold; optional native/all-fold integration remains unproved and must preserve proposal/history/evaluator semantics",
-    "Selective combinations only when an independently measured component supplies complementary same-input benefit; current evidence does not justify mechanical stacking",
+    "Native visible-token integration is complete for one lawful outer fold and one seed with a matched visible-target control; all-fold/three-seed native replay remains open",
+    "Selective combinations only when an independently measured complementary same-input benefit exists; current evidence does not justify mechanical stacking",
     "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal",
     "Complete final raw online/profiling and external permission/lineage boundaries without uploading data, weights, features or caches"
   ],
@@ -3964,7 +3998,9 @@
     "warnings": 18,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
     "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
-    "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity."
+    "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
+    "phase_vii_passed": 295,
+    "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
   },
   "execution_failures": [
     {
