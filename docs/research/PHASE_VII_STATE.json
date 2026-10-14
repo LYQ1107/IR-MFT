@@ -1,6 +1,6 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_WITH_MATCHED_VISIBLE_TARGET_LIMITED_MIXED",
+  "stage": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-15",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
@@ -14,7 +14,8 @@
       "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
       "PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
       "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json"
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -149,7 +150,7 @@
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "New visible-token native integration is real but limited to SN-015 seed1; all-fold/three-seed native replay remains open",
+      "Three-seed native visible-token evidence is complete for one lawful SN-015 outer fold; all-fold native replay and whole-raw runtime remain open",
       "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method",
       "No external payload/zero-overlap validation, independent novelty contribution or complete final raw profiling claim",
       "Large scientific assets remain outside Git"
@@ -170,20 +171,27 @@
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+      "sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
     },
     "visible_token_native_sn015": {
-      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED",
-      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
-      "report_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+      "report_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
       "outer": "SN-015",
       "inner": "BT-001",
-      "mode": "masked_visible_tokens",
-      "seed": 1,
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
       "matched_control": "visible_target",
-      "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold/one seed only.",
-      "finding": "Masked FIFO/last small HOTA-AssA-IDF1 increase but more IDSW; visible_target lower on identity metrics and also more IDSW; no stable component benefit."
+      "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold across three seeds and both objectives; all-fold/whole-raw remain open.",
+      "finding": "Masked FIFO/last small mean identity gains are coupled to extra IDSW; EMA is unstable; visible_target is consistently lower with extra IDSW; no stable component benefit."
     },
     "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub file reads at c739d0e.",
     "worktree_at_audit": "Native visible-token adapter, matched SN-015 report and tests are present locally and remotely at c739d0e."
@@ -284,10 +292,11 @@
     "Legacyraw1.2447FPS vsfrozenDINO1.1083FPS onSN001(single sharedmachine runs); wallwithvalidation1.1710/1.0449FPS separately, original1.2FPSreproduced; causalIR/detectordominant",
     "Legacyv1actualframe681validationfailurepreserved; oldcachefinalbatch38 current-onlyzero-fillexactreconstruction, onlinepad128unchanged, numericaltailcoserror<=1.49e-6; ownedv2validationcompletes",
     "275projecttests24warnings passed16.43s, compiledownednewcontrol/profile/diagnosis tools",
-    "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited."
+    "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited.",
+    "Three-seed SN-015 native visible-token continuation completed: masked/visible-target x seeds0/1/2 with FIFO/last/EMA official TrackEval; masked gains remain mixed with extra IDSW and visible-target is lower"
   ],
   "pending": [
-    "Native visible-token integration is complete for one lawful outer fold and one seed with matched visible-target control; all-fold/three-seed native replay remains open",
+    "Native visible-token integration now covers one lawful SN-015 outer fold across seeds0/1/2 for both objectives; all-fold native/whole-raw replay remains open",
     "Selective combinations only if an independently measured complementary same-input signal appears",
     "Preserve negative C/D, external payload and final raw profiling boundaries"
   ],
@@ -417,9 +426,9 @@
   ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Commit the current-only visible-token native adapter, SN-015 seed1 masked/visible-target report and tests",
+    "Commit the three-seed SN-015 native visible-token report and synchronized evidence audits",
     "Verify local/remote HEAD independently; keep native feature banks and weights outside Git",
-    "Do not expand to all folds/three seeds without a declared measurement target and storage >=40GiB guard",
+    "Do not expand to all folds/whole-raw without a declared measurement target and storage >=40GiB guard",
     "Keep final combination gate NOT_JUSTIFIED and goal IN_PROGRESS_UNACHIEVED"
   ],
   "validation": {
@@ -484,6 +493,6 @@
     "source_commit": "8a7dbfb"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
-  "final_combination_gate_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+  "final_combination_gate_sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
   "goal_status": "IN_PROGRESS_UNACHIEVED"
 }

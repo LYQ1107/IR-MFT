@@ -281,33 +281,51 @@
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+      "sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
     },
     "visible_token_native_sn015": {
-      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED",
-      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
-      "report_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+      "report_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
       "outer": "SN-015",
       "inner": "BT-001",
-      "mode": "masked_visible_tokens",
-      "seed": 1,
-      "scope": "Current-only native feature producer plus FIFO/last/EMA replay; matched visible_target control completed on same fold/seed; not all-fold/three-seed.",
-      "masked_fifo": {
-        "HOTA": 32.57056910721817,
-        "AssA": 15.096505947500688,
-        "IDF1": 30.801802813286926,
-        "MOTA": 90.99180928705741,
-        "IDSW": 159
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "matched_control": "visible_target",
+      "scope": "Current-only native feature producer plus FIFO/last/EMA replay; one lawful SN-015 outer fold across seeds 0/1/2 for both objectives; not all-fold/whole-raw.",
+      "masked_fifo_mean": {
+        "HOTA": 32.66794864380291,
+        "AssA": 15.195272964832737,
+        "DetA": 70.75724921027768,
+        "IDF1": 30.802790937334578,
+        "MOTA": 90.9918092870574,
+        "IDSW": 158.33333333333334
       },
-      "visible_target_fifo": {
+      "masked_last_mean": {
+        "HOTA": 32.68184621665386,
+        "AssA": 15.20328624326018,
+        "DetA": 70.77897495746166,
+        "IDF1": 30.806704807064552,
+        "MOTA": 91.01943036831649,
+        "IDSW": 160.0
+      },
+      "visible_target_fifo_mean": {
         "HOTA": 31.285174011242727,
         "AssA": 13.961547769770362,
+        "DetA": 70.69624236925728,
         "IDF1": 28.713967179454276,
         "MOTA": 90.98862223921981,
-        "IDSW": 165
+        "IDSW": 165.0
       },
-      "finding": "Native integration is valid but mixed: masked FIFO/last small HOTA/AssA/IDF1 increases with more IDSW; visible_target is lower on all identity metrics and also adds IDSW. No stable component benefit."
+      "finding": "Three-seed single-fold evidence is mixed: masked FIFO/last show small identity gains with extra IDSW, EMA is unstable, and visible_target is consistently lower with extra IDSW. No stable component benefit."
     }
   },
   "experiments": [
@@ -3963,7 +3981,7 @@
       "experiment_id": "VII_FINAL_COMBINATION_GATE_V1",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "report_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+      "report_sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
       "scope": "Measured gate over the completed context/FDTA/JPM/joint/motion/occlusion/pixel and visible-token controls; no new model or compute run.",
       "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
@@ -3976,6 +3994,96 @@
       "scope": "One outer SN-015/inner BT-001 fold, masked_visible_tokens and matched visible_target controls at seed1, all three ordinary memories, exact current RGB/frozen V3 proposals/native lifecycle/official TrackEval; no allfold/three-seed claim.",
       "decision": "Do not select or stack from this single-fold mixed result.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_V1",
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+      "hypothesis": "Across registered seeds, a lawful current-only visible-token encoder may provide stable identity and native MOT complementarity over frozen DINO/FIFO.",
+      "seed_plan": [
+        0,
+        1,
+        2
+      ],
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+      "report_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
+      "scope": "One lawful outer fold SN-015; two fit-only visible-token objectives x seeds0/1/2; exact current RGB/frozen causal V3 proposals; FIFO/last/EMA native replay and official TrackEval. Not all-fold, whole-raw, or final method.",
+      "aggregate": {
+        "frozen_fifo": {
+          "HOTA": 32.22498292191964,
+          "AssA": 14.785889647020573,
+          "IDF1": 30.44482587144484,
+          "MOTA": 91.0188991936769,
+          "IDSW": 152
+        },
+        "masked_visible_tokens": {
+          "fifo": {
+            "HOTA": 32.66794864380291,
+            "AssA": 15.195272964832737,
+            "DetA": 70.75724921027768,
+            "IDF1": 30.802790937334578,
+            "MOTA": 90.9918092870574,
+            "IDSW": 158.33333333333334
+          },
+          "last": {
+            "HOTA": 32.68184621665386,
+            "AssA": 15.20328624326018,
+            "DetA": 70.77897495746166,
+            "IDF1": 30.806704807064552,
+            "MOTA": 91.01943036831649,
+            "IDSW": 160.0
+          },
+          "ema": {
+            "HOTA": 32.13579383689304,
+            "AssA": 14.717781659776955,
+            "DetA": 70.76519031375354,
+            "IDF1": 30.10661836074577,
+            "MOTA": 90.99499633489499,
+            "IDSW": 159.0
+          }
+        },
+        "visible_target": {
+          "fifo": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "DetA": 70.69624236925728,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165.0
+          },
+          "last": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "DetA": 70.69624236925728,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165.0
+          },
+          "ema": {
+            "HOTA": 31.28527248899238,
+            "AssA": 13.961541589325671,
+            "DetA": 70.69672166013446,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.99074693777821,
+            "IDSW": 165.0
+          }
+        }
+      },
+      "decision": "No stable component benefit; do not stack or claim novelty.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "feature_banks_outside_git": true,
+      "source_commit": "6d626017dba382f2f800e11496f1e23002dab15e"
     }
   ],
   "source_http_followup": {
@@ -3989,7 +4097,7 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Native visible-token integration is complete for one lawful outer fold and one seed with a matched visible-target control; all-fold/three-seed native replay remains open",
+    "Native visible-token integration now covers one lawful SN-015 outer fold across seeds0/1/2 for both objectives; all-fold native/whole-raw replay remains open",
     "Selective combinations only when an independently measured complementary same-input benefit exists; current evidence does not justify mechanical stacking",
     "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal",
     "Complete final raw online/profiling and external permission/lineage boundaries without uploading data, weights, features or caches"
@@ -4029,14 +4137,15 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 293,
+    "phase_vii_passed": 295,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "pytest -q tests --ignore=tests/test_rgbt_pairing.py",
     "limits": [
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
-    ]
+    ],
+    "report_sha256": "b3e7a4a2d3dbb24d46121caa5270fbbadc490a769b622b4a453bd7147c0f6451"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED"
 }

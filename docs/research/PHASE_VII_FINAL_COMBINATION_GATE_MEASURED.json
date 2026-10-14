@@ -323,9 +323,9 @@
         "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
         "sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
         "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE",
-        "native_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
-        "native_sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
-        "native_status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_SEED1_LIMITED_MIXED"
+        "native_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+        "native_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
+        "native_status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED"
       },
       "sn015_summary": [
         {
@@ -473,7 +473,7 @@
           }
         }
       },
-      "finding": "The native adapter is current-only and protocol-valid, but single-fold/seed evidence is mixed: masked FIFO/last slightly increase identity metrics while adding switches; EMA loses IDF1; matched visible_target is lower and also adds switches. No independent reproducible complementarity is established.",
+      "finding": "Three-seed single-fold native evidence remains mixed: masked FIFO/last have small mean identity gains coupled to extra IDSW, EMA is unstable, and matched visible_target is consistently lower with extra IDSW. No independent online complementarity is established.",
       "native_sn015_seed1": {
         "masked_visible_tokens": {
           "fifo": {
@@ -521,6 +521,69 @@
             "IDSW": 165
           }
         }
+      },
+      "native_three_seed_summary": {
+        "scope": "SN-015 one outer fold, seeds 0/1/2, masked_visible_tokens and visible_target, FIFO/last/EMA",
+        "frozen_fifo": {
+          "HOTA": 32.22498292191964,
+          "AssA": 14.785889647020573,
+          "IDF1": 30.44482587144484,
+          "MOTA": 91.0188991936769,
+          "IDSW": 152
+        },
+        "masked_visible_tokens": {
+          "fifo": {
+            "HOTA": 32.66794864380291,
+            "AssA": 15.195272964832737,
+            "DetA": 70.75724921027768,
+            "IDF1": 30.802790937334578,
+            "MOTA": 90.9918092870574,
+            "IDSW": 158.33333333333334
+          },
+          "last": {
+            "HOTA": 32.68184621665386,
+            "AssA": 15.20328624326018,
+            "DetA": 70.77897495746166,
+            "IDF1": 30.806704807064552,
+            "MOTA": 91.01943036831649,
+            "IDSW": 160.0
+          },
+          "ema": {
+            "HOTA": 32.13579383689304,
+            "AssA": 14.717781659776955,
+            "DetA": 70.76519031375354,
+            "IDF1": 30.10661836074577,
+            "MOTA": 90.99499633489499,
+            "IDSW": 159.0
+          }
+        },
+        "visible_target": {
+          "fifo": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "DetA": 70.69624236925728,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165.0
+          },
+          "last": {
+            "HOTA": 31.285174011242727,
+            "AssA": 13.961547769770362,
+            "DetA": 70.69624236925728,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.98862223921981,
+            "IDSW": 165.0
+          },
+          "ema": {
+            "HOTA": 31.28527248899238,
+            "AssA": 13.961541589325671,
+            "DetA": 70.69672166013446,
+            "IDF1": 28.713967179454276,
+            "MOTA": 90.99074693777821,
+            "IDSW": 165.0
+          }
+        },
+        "finding": "Masked FIFO/last have small mean identity gains but add 6.33/8.00 IDSW; EMA is unstable; visible_target is consistently lower and adds 13 IDSW. No stable complementarity or stacking credit."
       }
     },
     "pixel_identity_and_supervised_controls": {
@@ -535,7 +598,7 @@
   "why_no_new_run": [
     "The only positive-looking rows are either offline identity diagnostics, capacity controls, or isolated video fluctuations; they do not satisfy the independent same-input held-out criterion together.",
     "The native negative rows cover all six videos/three seeds for context and source-JPM/FDTA scopes and 42 occlusion controls; stacking would add parameters while hiding the causal negative evidence.",
-    "A native visible-token recheck now exists for one lawful SN-015 outer fold/seed and its matched visible-target control; it remains mixed and cannot justify all-fold/three-seed stacking or a final method.",
+    "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
   ],
   "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Frozen DINO/FIFO stays the strong reference; future work may reopen the gate only after an independently measured complementary signal.",
@@ -544,6 +607,6 @@
     "reserve_gib": 40.0,
     "gpu_policy": "GPU0-3 only when idle; GPU4-9 excluded",
     "new_compute_started": true,
-    "new_compute_scope": "SN-015 masked_visible_tokens/visible_target seed1 current-only feature banks and three ordinary memories each; raw banks remain outside Git."
+    "new_compute_scope": "SN-015 masked_visible_tokens/visible_target seeds0/1/2 current-only feature banks and three ordinary memories each; raw banks remain outside Git."
   }
 }

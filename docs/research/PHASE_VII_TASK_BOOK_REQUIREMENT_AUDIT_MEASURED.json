@@ -207,7 +207,7 @@
     },
     {
       "id": "P9_protocol_B_native_mot",
-      "status": "COMPLETE_FOR_REGISTERED_NATIVE_CONTROLS_WITH_VISIBLE_TOKEN_SINGLE_FOLD_LIMIT",
+      "status": "COMPLETE_FOR_REGISTERED_NATIVE_CONTROLS_WITH_VISIBLE_TOKEN_THREE_SEED_SINGLE_FOLD_LIMIT",
       "requirement": "Use fixed proposals/lifecycle/TrackEval and report HOTA/AssA/DetA/IDF1/MOTA/IDSW per video/seed.",
       "evidence": [
         {
@@ -226,10 +226,10 @@
           "sha256": "aa53066716f01e47b42717d48fbd5daef6dc2f4cb21a7deca2dbc82f93ee2705"
         },
         {
-          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
           "exists": true,
-          "sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
-          "scope": "Current-only visible-token native feature/replay and matched visible-target control on SN-015 outer fold seed1; official metrics for FIFO/last/EMA; all-fold/three-seed visible-token native evidence remains open."
+          "sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
+          "scope": "Current-only visible-token native feature/replay and matched visible-target control on SN-015 outer fold seeds0/1/2; official HOTA/AssA/DetA/IDF1/MOTA/IDSW for FIFO/last/EMA; all-fold/whole-raw visible-token native evidence remains open."
         }
       ]
     },
@@ -941,7 +941,7 @@
     },
     {
       "id": "step10_three-seed/full-metric/raw",
-      "status": "COMPLETE_FOR_REGISTERED_REFERENCES_ONLY"
+      "status": "COMPLETE_FOR_REGISTERED_REFERENCES_AND_VISIBLE_TOKEN_SINGLE_FOLD_THREE_SEED_NATIVE_METRICS"
     },
     {
       "id": "step11_adaptive-next-hypothesis",
@@ -952,7 +952,7 @@
       "status": "REMOTE_VERIFIED_CONTENT_COMMIT_200ADDD"
     }
   ],
-  "interpretation": "Coverage/claim audit of the user task book. The new native visible-token recheck closes one integration boundary but does not create a stable component benefit, positive final method, external generalization claim or project-wide completion. All-fold/three-seed visible-token native replay and whole-raw runtime remain explicit open boundaries.",
+  "interpretation": "Coverage/claim audit of the user task book. The visible-token native continuation now closes the registered SN-015 one-outer-fold three-seed boundary with a matched control, but does not create a stable component benefit, positive final method, external generalization claim or project-wide completion. All-fold visible-token native replay and whole-raw runtime remain explicit open boundaries.",
   "user_task_book_attachment": "/data3/liuyeqiang/.codex/attachments/181bfd56-cc1c-46e7-9427-7a3a170c7db3/Pasted text.txt",
   "user_task_book_attachment_sha256": "7a11049f9e3c12ad20aefb5a11865cfbc729a0d281d6530b5095a9ff09213882",
   "user_task_book_attachment_line_endings": "CRLF",
@@ -966,15 +966,16 @@
     "summary": "Masked detector-gap25 Rank-1 57.143/57.937/56.825%; visible-target 53.016/49.683/51.746%; frozen CLS 57.937%; support 630/644; unknown-selected counts differ.",
     "storage_free_gib_after_copy": 40.15009689331055,
     "native_followup": {
-      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
-      "sha256": "6bf061801150607fabdf94f5074eaba6844a80c7531d0fc104bec028a082fa57",
-      "status": "COMPLETE_ONE_OUTER_FOLD_ONE_SEED_WITH_MATCHED_CONTROL",
-      "finding": "Masked seed1 is mixed with extra IDSW; visible-target is lower; no stable native gain."
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+      "sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
+      "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
+      "finding": "Masked FIFO/last show small mean identity gains but extra IDSW; EMA is unstable; visible-target is consistently lower with extra IDSW; no stable native gain.",
+      "scope": "SN-015 one lawful outer fold; masked_visible_tokens and visible_target x seeds0/1/2; FIFO/last/EMA official TrackEval; all-fold/whole-raw remain open."
     }
   },
   "final_combination_gate": {
     "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-    "sha256": "7cdd0fb2006a444c6c8bf69a49a0cae671b4dad708783b83e10ccbdfe1fd490f",
+    "sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
     "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
   }
 }
