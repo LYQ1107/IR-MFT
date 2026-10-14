@@ -2,6 +2,10 @@
 
 Status: IN_PROGRESS. Negative findings register discriminating follow-ups; there is no fixed failure count.
 
+## Authoritative current-state update (2026-10-14)
+
+The earlier pending statements in this running register are historical snapshots. Since then, both registered six-video raw v3 controls (legacy GRU/FIFO and frozen DINO/FIFO) completed, the source-JPM matrix reached 54 full-video controls, and an independently implemented FDTA-style baseline completed 9 offline fits plus 18 causal native FIFO replays. Temporal/quality offline ranking gains do not transfer to online tracking: relative to frozen DINO/FIFO they lose HOTA and IDF1 and add ID switches on both held-out videos. This negative causal result narrows the remaining hypotheses and rules out selecting the adapter as a contribution; it does not terminate the broader goal. See the exact hash-linked reports listed in `PHASE_VII_STATE.json` current_authoritative_snapshot.
+
 The six-video actual-state rank decomposition reconstructs native GRU/geometry/confidence row costs within1.2e-7. Pure retrieval and actual association scores differ. On SN-015 native original row Rank@1 is62.2969%, near geometry-only62.3249%, despite pure GRU35.8450% versus FIFO62.3623%. This explains the fixed-row contrast, without proving unchanged Hungarian decisions or endogenous trajectories. SN-015 all-verified-correct histories still have FIFO99.5950% versus GRU52.6510% (2,716queries): contamination alone is insufficient. Appearance-region pool restriction raises GRU to84.5078% versus FIFO94.1110% (7,081different queries); denominator/pool changes are disclosed and are not a deployed improvement.
 
 Original temporal-training producer diagnosis used the exact lifecycle-fixed query manifest referenced by the frozen checkpoint. The initial similarly named pre-fix directory failed the expected manifest hash guard; it was preserved and not accepted. The corrected query source has sha256352d290b0c4a2e228cce46322ff803aa44928c5978db539d5c744e714f27b84a.

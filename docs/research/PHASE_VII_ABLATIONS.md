@@ -2,6 +2,10 @@
 
 Status: IN_PROGRESS. Results below are the first conditional association-head probe at seed0; all encoder-level folds and three-seed confirmation remain pending.
 
+## Authoritative 2026-10-14 continuation
+
+The historical early-stage status above is retained for provenance. Current terminal evidence supersedes its pending wording where applicable: all30 source audits, both six-video raw v3 profiles, the 54-row native source-JPM matrix, and the independent FDTA-style 9-fit/18-native campaign are complete. The FDTA-style temporal and quality adapters improve the offline ranking diagnostic but do not improve causal native FIFO tracking; no online or novelty claim is selected. Exact results are in `PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json`, `PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json`, and `PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json`. Remaining work is genuine full Dense JEPA validation, final C/D combinations, external generalization and the final 20-question audit.
+
 All rows use the same complete SN-001/SN-015 V3 proposals, inherited RGB512 coordinate, ordinary GRU, native later association stages and measured confirmed output. Disabled output matches the historical baseline byte-for-byte on all684/6,570frames. New heads fit four other videos; SN-001 is inner calibration and SN-015 is an already exposed conditional new-head outer evaluation. These are not independent new-encoder generalization results.
 
 | Route | SN-001 HOTA | SN-001 IDF1 | SN-001 IDSW | SN-015 HOTA | SN-015 IDF1 | SN-015 IDSW |

@@ -12,6 +12,20 @@ Status: IN_PROGRESS. Preserve failed methods and discriminate alternatives; no f
 | VII-H5 | Do motion/occlusion cues add independent benefit? | Isolated Kalman/UKF/FishIoU/AGCIoU and observable occlusion controls | PROPOSED |
 | VII-H6 | What dominates complete online time, and which changes preserve precision? | Component profiler and batch8/batch128 same-input parity | PROPOSED |
 
+## Current evidence update (2026-10-14)
+
+The six-video raw v3 controls are now terminal for both frozen DINO/FIFO and legacy GRU/FIFO. The independent FDTA-style baseline has nine offline fits and 18 native causal FIFO replays. Its temporal and quality modes improve an offline past-gallery ranking diagnostic, but every temporal/quality aggregate loses HOTA and IDF1 against frozen DINO/FIFO and adds identity switches; MLP has no stable online gain. This updates VII-H4 and VII-H6 with a negative causal result while preserving the original hypotheses.
+
+| ID | Updated evidence | Decision | Remaining discriminating work |
+|---|---|---|---|
+| VII-H2 | Six-fold supervised DINO/local controls and 54 native source-JPM controls are complete; no stable local/JPM native gain | Do not select local/JPM as a contribution | Complete only evidence-backed final combinations |
+| VII-H3 | Local Dense JEPA/context controls and pixel-mask diagnostics show no stable identity/native benefit; MAE full pretraining is storage-blocked | Retain negative result and avoid claiming JEPA novelty | Verify any lawful full training only after an exact storage-safe plan |
+| VII-H4 | Centered/dictionary joint routes plus FDTA-style causal baseline do not beat ordinary FIFO/Hungarian under same input | No learned set decoder is promoted | Preserve NULL/competition failure analysis and test only a smaller targeted control |
+| VII-H5 | UKF, geometry and observable occlusion controls have no stable independent gain | Keep motion as diagnosis, not contribution | Do not launch expensive learned motion without a measured nonlinear-error signal |
+| VII-H6 | Six-video raw DINO and legacy profiles expose complete-system costs; FDTA native replay excludes detector/IR startup by design | Runtime claims remain baseline-specific | Isolate any final-method overhead on the same full raw protocol |
+
+The overall goal remains `IN_PROGRESS`; this ledger deliberately records a negative result rather than converting it into a project-wide NO_GO.
+
 Startup: 10 A100-SXM4-40GB devices idle; no compute processes listed; 162.883GiB free. Initial work is CPU/source acquisition and offline diagnostics. Preserve old assets and reference commits; no large JEPA training before explaining VII-H1.
 
 ## VII-H1 first measured result
