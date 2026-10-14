@@ -1,0 +1,64 @@
+{
+  "status": "EXPLICIT_EXTERNAL_GENERALIZATION_SCOPE_EXCLUSION_PAYLOAD_NOT_ACQUIRED",
+  "as_of": "2026-10-14",
+  "decision": "Do not claim external-scene generalization or zero-overlap; retain the primary metadata/license/identity limitations and do not auto-accept gated data access.",
+  "metadata_audit": {
+    "report": "docs/research/PHASE_VII_PRIORITY_EXTERNAL_DATA_MEASURED.json",
+    "report_sha256": "258ba44260ee2248f2bdf3f479646758e6259473ce71f7b4ed920caa092d43e6",
+    "status": "COMPLETE_PRIMARY_METADATA_AUDIT_WITH_ACCESS_AND_OVERLAP_LIMITS",
+    "payloads_acquired": false,
+    "metadata_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_priority_metadata_v2/manifest.json",
+    "metadata_manifest_sha256": "b4895ded5d3082bfa692848175a416df190c19ab2d29cbb6d4db566dda49f743"
+  },
+  "datasets": {
+    "MFT25": {
+      "creator_declared_license": "apache-2.0",
+      "access_gate": "Hugging Face gate requires contact-information sharing; no automatic acceptance or file request performed.",
+      "declared_test_sequences": [
+        "BT-002",
+        "BT-004",
+        "MSK-003",
+        "PF-002",
+        "SN-009",
+        "SN-011",
+        "SN-014"
+      ],
+      "payload_acquired": false,
+      "overlap": "Unresolved; names overlap BT/MSK/PF/SN families but image hashes/lineage and physical IDs were not inspected.",
+      "identity_cadence": "Unverified split, lifetime, FPS and RGB provenance."
+    },
+    "MFT-Edge": {
+      "code_pin": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+      "declared_sequences": [
+        "Cruise-01",
+        "Disturb-01",
+        "MSK-01",
+        "Normal-01",
+        "Normal-02",
+        "Normal-03",
+        "Normal-04",
+        "Normal-05",
+        "PF-01",
+        "PT-01"
+      ],
+      "payload_acquired": false,
+      "license": "No independently verified dataset grant; MIT source license does not license images/annotations.",
+      "overlap": "Unresolved; PF-01/MSK-01 names may relate to inherited families."
+    },
+    "FishMAE laboratory data": {
+      "code_pin": "cffcdeaf61c8c3a9768711a4615ff4af3899ca30",
+      "payload_acquired": false,
+      "license": "Pinned README supplies a local data_path but no verified public dataset/weight grant or terms.",
+      "identity_cadence": "Long-term retrieval/session identity and native cadence unverified."
+    }
+  },
+  "scope_closed": "The task-book external audit is closed at the permission/metadata boundary; actual external generalization is excluded until a lawful, independently documented payload with physical IDs, lineage, cadence and overlap evidence is available.",
+  "claims_forbidden": [
+    "external-scene performance",
+    "zero-overlap claim",
+    "external license compliance beyond recorded metadata",
+    "external-data training or native-MOT gain",
+    "independent novelty validation from inaccessible payloads"
+  ],
+  "remaining": "Final 20-question audit must preserve this explicit limitation; no data download or gated contact-information sharing is authorized by this record."
+}
