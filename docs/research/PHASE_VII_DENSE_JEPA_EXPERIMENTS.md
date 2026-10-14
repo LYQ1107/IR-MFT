@@ -206,3 +206,19 @@ OuterSN015 currentdetector wholevideo past-only gallery gap25 (630supported/644q
 | pixel_visible_target | 63.016 ± 0.884 | 29.897 ± 0.408 |
 
 Masked andvisiblelatent target modes haveidenticalmeanR1; pixelRGBreconstruction raisesR1slightly versusvisibleRGB butmAPis lower. No robust masking-specific identitybenefit, nativeMOT gain orJEPA novelty is established. Wholepast-gallery results cannot be compared directly with Bsingle-current-scene candidate retrieval. Source-matched strongerlocal identity heads, actualnative adaptedcoordinates/allfold/newmethod remain required.
+
+
+### Visible-token reconstruction comparison
+
+
+The previous pixel reconstruction controls trained the last two encoder blocks. The new owned MAE control removes queried patch embeddings before attention and trains all 12 blocks, the patch embedding, CLS token, and final norm. Pretrained positions and the unused original mask token remain fixed. A two-layer, 192-dimensional decoder reconstructs normalized current RGB patches; deployment uses the encoder alone. The visible-target control retains query pixels and uses the same learned query marker additively, so active parameter counts match. Encoder token counts and compute differ and must be reported separately.
+
+The unlabeled pool contains 15,217 valid detector crops from four fitting videos: BT-003 324, MSK-002 11,002, PF-001 3,113, and SN-001 778. Sampling never uses identity values or GT crop rows. Current RGB image headers and detector boxes supply letterbox geometry. BT-001 and SN-015 are excluded. These are sparse pilot crops, and inherited detector and foundation exposure remains explicit.
+
+On two real detector crops, the CPU check verifies gradients in every encoder block, patch embedding, and CLS token; deleting 129 queried patches leaves 65 and 130 encoder patches. Perturbing hidden pixels after the registered resize leaves predictions unchanged. All 208 model state entries restore exactly, and decoder calls are excluded from inference. Mixed precision, variable token counts, and active query-marker tests pass.
+
+Six fixed eight-epoch pretrains (150 steps per epoch, two modes, three seeds) and a distinct epoch-two exit/fresh-process resume run are registered. The queue waits for the owned GPU 1 native job to finish and exit, then checks actual idleness. Its storage forecast includes remaining native banks, raw traces, restart states, atomic checkpoint copies, and the 40 GiB reserve. Only explicitly temporary optimizer files created by this new queue can be retired after final encoders are retained; historical assets remain protected.
+
+This is an independently implemented DINO initialization for visible-token RGB reconstruction. Identity CE/Triplet supervision, the ordinary supervised encoder control, all folds, native MOT evaluation, and novelty verification remain required. It establishes neither completed pretraining nor identity gains, and does not reproduce the complete FishMAE method. Evidence: PHASE_VII_VISIBLE_TOKEN_FISH_MAE_CPU_MEASURED.json.
+
+RGB reconstruction is a control for the latent prediction experiments. Object-centric JEPA still needs its own identity evidence, matched temporal controls, and native tracking validation.

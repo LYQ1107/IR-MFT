@@ -194,3 +194,37 @@ Current-only deployment with fixed pad128 is separately verified on four actual 
 All nine unique first-fold source-JPM controls nowcomplete, plus separate exactrestart duplicate. Strictpast detector-gallery gap25 outerSN015 R1: globalBN60.688±1.126%, JPM61.905±.727%, samecapacityCLS61.587±.692%, frozenCLS57.937%; mAP30.755±.315/30.835±.599/30.478±.574 versusfrozen23.857. JPM-minus-capacity R1 perseed is+1/+3/+2 correctqueries outof630, a mean+.317pp, not a robust local novelty result. InnerBT001 R1 global20.566±1.540/JPM20.085±1.137/capacity20.994±.555 versusfrozen19.872, so the JPM contrast doesnotgeneralizeconsistently betweenexcludedvideos. Allseed/sample/support/BN/source/capacity/unknownselection evidence is in PHASE_VII_TRANSREID_JPM_THREE_SEED_MEASURED.json. Mean±sampleSD only; no statisticalsignificance, winningseed or historicalouter-based modelselection claim.
 
 The authoritative training budget is9unique×1200=10,800attempts, plus1200duplicate attempts for the actualrestart=12,000executions; successfulAMPupdates are reportedperfit andmaydiffer. Native queues havepassed prerequisiteprocess/idlechecks andnowexecute all18bank/54memory controls. NativeMOT andallsixfold gains remainunproved. Publication-format PNG/SVG/PDF measuredfigures remain outsideGit at /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/transreid_jpm_three_seed_figures_v1; dots show actualseeds, whiskers sampleSD, deterministicfrozen hasnoSD.
+
+
+### Completed independent observable-overlap and native-motion diagnosis
+
+All 42 full-video controls are complete: seven fixed configurations across six videos, each covering all 27,251 native frames. V3 proposals, RGB features, the legacy GRU seed 0, KF, history writes, lifecycle, and measured output policy are fixed. Disabled controls reproduce the original prediction bytes for every video. The intervention changes only the high-stage appearance weight: candidate quality is one minus its maximum continuous IoU with another current high-confidence detection. Constant-half, eligible-row mean, and three candidate-permutation controls distinguish weight reduction from candidate-specific information. Row means and gate histograms match on a fixed decision input; trajectories can subsequently diverge.
+
+| Control | Macro HOTA | Macro IDF1 |
+|---|---:|---:|
+| Original | 39.692 | 48.132 |
+| Constant half | 38.549 | 46.448 |
+| Eligible-row mean | 39.250 | 47.391 |
+| Candidate overlap | 39.721 | 47.982 |
+| Permutation seed 0 | 39.389 | 47.641 |
+| Permutation seed 1 | 39.697 | 47.874 |
+| Permutation seed 2 | 39.670 | 47.926 |
+
+Overlap weighting adds 0.029 HOTA points while losing 0.149 IDF1 points. BT-001 loses HOTA and IDF1 relative to the original. SN-001 has identical reported scores for row-mean, overlap, and all permutation controls. These results do not establish a stable independent contribution. Permutation seeds are placebo assignments, not three separately trained methods. All official per-video metrics, alpha arrays, source/input/GT/prediction hashes and threshold crossings are linked in PHASE_VII_OBSERVABLE_OCCLUSION_ALL42_MEASURED.json.
+
+A separate observer records native predicted motion states and reproduces all six prediction files before loading physical labels. Retrospective analysis requires at least three entirely known, consistent recent accepted proposal identities; unknown, mixed, short, missing-reference, and absent/nonunique current GT cases are excluded. Current GT is used only to evaluate center error, normalized by its box diagonal.
+
+| Video | Supported rows | Mean KF error | Mean two-measurement CV error |
+|---|---:|---:|---:|
+| SN-001 | 4,070 | 0.0552 | 0.0581 |
+| SN-015 | 52,658 | 0.0537 | 0.0590 |
+| PF-001 | 27,636 | 0.0352 | 0.0362 |
+| BT-001 | 15,618 | 0.0653 | 0.0671 |
+| BT-003 | 1,249 | 0.0685 | 0.0700 |
+| MSK-002 | 37,782 | 0.0619 | 0.0644 |
+
+The four fitting videos contribute 70,737 supported rows, with pooled KF/CV errors 0.05122/0.05313. KF and two-point CV have different history capacity, and the KF state can retain earlier pollution. The latest KF measurement and identity-write timestamps are checked separately; they agree in these supported samples. This comparison does not justify a broad learned-motion replacement or explain failures in excluded histories.
+
+Long accepted-measurement gaps have larger errors: MSK-002 has 302 rows with KF/CV means 0.715/0.720, SN-015 has 322 rows with 0.480/0.962, and inner BT-001 has 45 rows with 0.288/0.274. These are observed gaps, not true occlusion or turn labels. Among known true candidates in this support, exclusion by the original appearance graph occurs in 1/3,912, 79/51,670, 0/27,506, 2/14,908, 0/1,191, and 34/33,536 rows for the six videos in the table order. Missing detections and unclassified histories remain separate limitations. Full support, exclusions, and conditional error distributions are in PHASE_VII_NATIVE_MOTION_ERROR_MEASURED.json.
+
+Measured PNG/SVG/PDF figures are retained outside Git at /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/observable_motion_figures_v1. The figure compares conditional center errors and macro metric changes; it does not infer physical occlusion, nonlinear causes, or statistical significance.
