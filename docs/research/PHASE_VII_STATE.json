@@ -4,7 +4,7 @@
   "current_authoritative_snapshot": {
     "as_of": "2026-10-15",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "WORKTREE_PENDING_COMMIT",
+    "local_commit": "8a7dbfb",
     "remote_commit": "PENDING_PUSH",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
@@ -164,9 +164,9 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     },
     "remote_delivery_verification": {
-      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH",
+      "status": "PENDING_PUSH_VERIFICATION",
       "branch": "research/evidence-fishmot-v1",
-      "commit": "200addd6f706c275066f9fe51a52b04274d6a5a8"
+      "commit": "8a7dbfb"
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
@@ -184,7 +184,9 @@
       "matched_control": "visible_target",
       "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold/one seed only.",
       "finding": "Masked FIFO/last small HOTA-AssA-IDF1 increase but more IDSW; visible_target lower on identity metrics and also more IDSW; no stable component benefit."
-    }
+    },
+    "remote_verification_scope": "The prior remote commit was verified independently; this new native integration content is local at 8a7dbfb and awaits push verification.",
+    "worktree_at_audit": "Native visible-token adapter/report/tests are committed locally at 8a7dbfb; remote verification pending."
   },
   "branch": "research/evidence-fishmot-v1",
   "baseline_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
@@ -244,13 +246,13 @@
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
     "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
     "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
-    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "Firstfold global actualdetR1 improves57.9365->63.3862±0.7158 across3seeds; patchattention62.8571±0.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
     "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
     "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
     "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
     "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim",
-    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds\u00d73seeds\u00d74controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
-    "Globalactualdetcrop macroR136.1976\u00b10.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800\u00b10.3094notstableincremental gain",
+    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds×3seeds×4controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
+    "Globalactualdetcrop macroR136.1976±0.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800±0.3094notstableincremental gain",
     "Genuine learned local/temporal/regionalmaskedprediction/currentrelation model with independentstoppedEMAencoder implemented, noold512PLIMalias",
     "Nine firstseed actuallocalJEPA/controlCPUfits1200updates complete; allsameinputmaskdigests/currentquerysupports and unknownnotnegatives verified; three-seedcampaign continues",
     "Strongmatchedglobal72.695/ordinarylocalTemporal64.716/frozenFIFO64.894 beatfullJEPA44.504 onfirstoutercleanGT-history/currentdet scene; noJEPAidentity/native/noveltygain claimed",
@@ -265,7 +267,7 @@
     "V2fullseed0 complete6570frame endogenous nativehistory replay; HOTA30.694/IDF125.298 versus frozenFIFO32.225/30.445, no onlineJEPAgain",
     "254projecttests23warnings passed in18.85seconds; all new CLI modules compile",
     "Actual V2contextfullseed1 epoch2exit/newprocessresume vscontinuous exactlymatches student/independentEMAteacher/1200updates/opt/RNG/losses/metrics/support;250tensor/1array/1626scalar leaves",
-    "All27contextV2 firstfold CPUfits complete; fullR163.652\u00b11.064 vsordinaryTemporal63.948\u00b10.800/global72.813\u00b10.369, no extraJEPAidentitygain",
+    "All27contextV2 firstfold CPUfits complete; fullR163.652±1.064 vsordinaryTemporal63.948±0.800/global72.813±0.369, no extraJEPAidentitygain",
     "Scientificthree-seed V1/V2identity plot generated PNG/SVG/PDF and visuallyinspected; exactcontrolaliases explicit",
     "Nine centeredjoint/pair/activeparameter-matchedCrossTransformer three-seed CPUfits complete,28800actualupdates; matchedframe/code digests and zeroNULLranking supervision verified",
     "Untraineduniformcentered highstagecontrol giveszeroedits and exact baselinebytes onall684SN001/6570SN015frames",
@@ -478,7 +480,8 @@
     "limits": [
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
-    ]
+    ],
+    "source_commit": "8a7dbfb"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
