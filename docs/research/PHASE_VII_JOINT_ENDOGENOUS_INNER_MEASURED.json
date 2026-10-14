@@ -1,0 +1,1798 @@
+{
+  "status": "COMPLETE_INNER_ENDOGENOUS_AND_FIT_WARM_COVERAGE_SHIFT",
+  "inner": "SN-001",
+  "outer_not_read": "SN-015",
+  "native_observed_manifest_sha256": "38f0a6a00eed36268288edbe38baa9607e17b2a4e3f6398e3823ac3c0d951b32",
+  "native_runs": {
+    "pair_s0": {
+      "architecture": "pair",
+      "seed": 0,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "339628d7942ac4995b1fe804ec8790b86b12d1cf07e3990ae61c5d391aeb06e5",
+      "original_native_manifest_sha256": "c02d9f9c381c8e94b0c976512e7f2a3de61701e4a54a74ed841e7a824bd7c2db",
+      "model_checkpoint_sha256": "06c0df8e3f5b7fe18a4dc77e239d51b90f3ecb74a89e11595fbcfcbbb9da5b48",
+      "decisions_sha256": "1fc5f0eb6bc413f37950ba701ea7b24e7537028d3ec0d81b2c41c91d582c5f4d",
+      "model_observations_sha256": "87f73f28db5bd74b5bdb9b12a604cf078e712d52e5a9d03d75dc71989717e287",
+      "sparse_inputs_sha256": "dda6183352781c827a551edcbd7bf196ebb982dddf774dd5ca2394314458a965",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 13126,
+          "track_history_unknown_early_reference": 2221,
+          "target_old_identity_coverage_unknown": 265,
+          "unsupervised_unknown_or_nonunique": 3598,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 6842,
+          "known_history_observations": 68812,
+          "known_wrong_history_observations": 2420,
+          "latest_disagrees": 415,
+          "anchor_disagrees": 43,
+          "modal_disagrees": 395,
+          "target_known_existing": 2218,
+          "correct_existing": 1836,
+          "existing_without_recent_correct_cue": 45,
+          "existing_without_any_correct_cue": 6,
+          "false_null_for_known_existing": 269,
+          "track_history_mixed_known_identity": 463,
+          "wrong_existing": 113,
+          "track_history_known_consistent_with_unknowns": 3529,
+          "target_nonunique_physical_assignment": 2672,
+          "target_known_no_old_match_not_verified_birth": 18,
+          "false_existing_for_known_null": 17,
+          "correct_known_null": 1,
+          "track_history_known_no_correct_cue": 71
+        },
+        "by_target_history": {
+          "all_known_consistent": {
+            "correct_existing": 1225,
+            "supported_existing": 1398,
+            "false_null_for_known_existing": 139,
+            "wrong_existing": 34
+          },
+          "known_consistent_with_unknowns": {
+            "correct_existing": 611,
+            "supported_existing": 758,
+            "false_null_for_known_existing": 103,
+            "wrong_existing": 44
+          },
+          "mixed_known_identity": {
+            "wrong_existing": 33,
+            "supported_existing": 58,
+            "false_null_for_known_existing": 25
+          },
+          "known_no_correct_cue": {
+            "false_null_for_known_existing": 2,
+            "supported_existing": 4,
+            "wrong_existing": 2
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2218,
+            "rank1": 2054,
+            "percentage": 92.60595130748422
+          },
+          "fifo_cost": {
+            "queries": 2218,
+            "rank1": 2035,
+            "percentage": 91.74932371505861
+          },
+          "last_cost": {
+            "queries": 2218,
+            "rank1": 2033,
+            "percentage": 91.65915238954013
+          },
+          "gru_cost": {
+            "queries": 2218,
+            "rank1": 1291,
+            "percentage": 58.20559062218214
+          },
+          "geometry": {
+            "queries": 2218,
+            "rank1": 2057,
+            "percentage": 92.74120829576195
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2218,
+            "mean": 0.8310081560611456,
+            "p10_p50_p90": [
+              -0.4772661000490188,
+              0.9750057756900787,
+              2.0158796191215513
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2218,
+            "mean": 2.348528183277821,
+            "p10_p50_p90": [
+              1.425361406803131,
+              2.699359267950058,
+              3.384291884303093
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 53,
+            "correct_existing": 371,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 51,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 24
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 41,
+            "correct_existing": 360,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 61,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 25
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 47,
+            "correct_existing": 362,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 59,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 25
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 47,
+            "correct_existing": 364,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 58,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 24
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 50,
+            "correct_existing": 377,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 42,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 27
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 361,
+            "unsupervised_unknown_or_nonunique": 720,
+            "false_null_for_known_existing": 59,
+            "false_existing_for_known_null": 2,
+            "wrong_existing": 26
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "pair_s1": {
+      "architecture": "pair",
+      "seed": 1,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "e8582621d735f0059f7a0eed0680ea3ccbc9aad18d198894a0af7a94ef7c5ac0",
+      "original_native_manifest_sha256": "5910bfaf2e35c45c9f9d501221cd6bbd39d785e065db1ce891f17d6c8a9c4c51",
+      "model_checkpoint_sha256": "fd949b1c75b6df60c03a2dd3aa521974bd2d223dcac28ae72ace8011ef7fe48a",
+      "decisions_sha256": "d241b9c879c8b5ea13e8149608849af64b06983288228764df7dcfbf77ddf0f6",
+      "model_observations_sha256": "18508b7fa5f9c8da33d6571957bcfc6114098ad23808ff3da4d6357f1a2e20e1",
+      "sparse_inputs_sha256": "2b4303e9896d6a639e3bfeb5437919e777918383db0737da2183e1453e0e7644",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 10862,
+          "track_history_unknown_early_reference": 1116,
+          "target_old_identity_coverage_unknown": 198,
+          "unsupervised_unknown_or_nonunique": 2998,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 5824,
+          "known_history_observations": 63653,
+          "known_wrong_history_observations": 2906,
+          "latest_disagrees": 420,
+          "anchor_disagrees": 82,
+          "modal_disagrees": 457,
+          "target_known_existing": 2702,
+          "correct_existing": 2344,
+          "existing_without_recent_correct_cue": 22,
+          "existing_without_any_correct_cue": 12,
+          "false_null_for_known_existing": 260,
+          "track_history_mixed_known_identity": 559,
+          "wrong_existing": 98,
+          "track_history_known_consistent_with_unknowns": 3316,
+          "target_nonunique_physical_assignment": 2139,
+          "target_known_no_old_match_not_verified_birth": 134,
+          "false_existing_for_known_null": 113,
+          "correct_known_null": 21,
+          "track_history_known_no_correct_cue": 47
+        },
+        "by_target_history": {
+          "all_known_consistent": {
+            "correct_existing": 1682,
+            "supported_existing": 1888,
+            "false_null_for_known_existing": 154,
+            "wrong_existing": 52
+          },
+          "known_consistent_with_unknowns": {
+            "correct_existing": 662,
+            "supported_existing": 785,
+            "false_null_for_known_existing": 88,
+            "wrong_existing": 35
+          },
+          "mixed_known_identity": {
+            "wrong_existing": 6,
+            "supported_existing": 23,
+            "false_null_for_known_existing": 17
+          },
+          "known_no_correct_cue": {
+            "false_null_for_known_existing": 1,
+            "supported_existing": 6,
+            "wrong_existing": 5
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2702,
+            "rank1": 2557,
+            "percentage": 94.63360473723168
+          },
+          "fifo_cost": {
+            "queries": 2702,
+            "rank1": 2523,
+            "percentage": 93.37527757216877
+          },
+          "last_cost": {
+            "queries": 2702,
+            "rank1": 2524,
+            "percentage": 93.41228719467061
+          },
+          "gru_cost": {
+            "queries": 2702,
+            "rank1": 1709,
+            "percentage": 63.249444855662475
+          },
+          "geometry": {
+            "queries": 2702,
+            "rank1": 2564,
+            "percentage": 94.89267209474464
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2702,
+            "mean": 1.0340481590380344,
+            "p10_p50_p90": [
+              -0.19610849842429154,
+              1.15790393948555,
+              2.1886678934097294
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2702,
+            "mean": 2.6351185869963234,
+            "p10_p50_p90": [
+              1.7074254631996157,
+              2.932264029979706,
+              3.5791099786758425
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 44,
+            "correct_existing": 466,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 62,
+            "false_existing_for_known_null": 21,
+            "wrong_existing": 17,
+            "correct_known_null": 7
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 56,
+            "correct_existing": 472,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 55,
+            "false_existing_for_known_null": 20,
+            "wrong_existing": 18,
+            "correct_known_null": 8
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 43,
+            "correct_existing": 474,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 53,
+            "false_existing_for_known_null": 23,
+            "wrong_existing": 18,
+            "correct_known_null": 5
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 49,
+            "correct_existing": 473,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 54,
+            "false_existing_for_known_null": 23,
+            "wrong_existing": 18,
+            "correct_known_null": 5
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 52,
+            "correct_existing": 488,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 38,
+            "false_existing_for_known_null": 23,
+            "wrong_existing": 19,
+            "correct_known_null": 5
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 466,
+            "unsupervised_unknown_or_nonunique": 595,
+            "false_null_for_known_existing": 61,
+            "false_existing_for_known_null": 22,
+            "wrong_existing": 18,
+            "correct_known_null": 6
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "pair_s2": {
+      "architecture": "pair",
+      "seed": 2,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "ea0dccecb80cb8b3675463b4d16e838491d219801fbe94ecd4d246f56a4694c3",
+      "original_native_manifest_sha256": "0c2d68c7d0f3b43209c65c388da85ddf7da943f1e3892a6ec76466f119c92468",
+      "model_checkpoint_sha256": "4d6e036833dba8f33603a07f5c7bea59908b45b232f7eaa1003fdc8819440a95",
+      "decisions_sha256": "6e67e84bcac14ac3c53c878b58e9f97c138a6c3e05e98e4c369c73c155dd5f09",
+      "model_observations_sha256": "ab48f78acfafa36b14ff1677188ba05736f99fd558753c9d065bd911279b5464",
+      "sparse_inputs_sha256": "96cce818b576a5fadb6edcd3aad4918a683b381848ba7975bc482559a45d8811",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 12996,
+          "track_history_unknown_early_reference": 2240,
+          "target_old_identity_coverage_unknown": 239,
+          "unsupervised_unknown_or_nonunique": 3447,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 6780,
+          "known_history_observations": 67700,
+          "known_wrong_history_observations": 3068,
+          "latest_disagrees": 478,
+          "anchor_disagrees": 68,
+          "modal_disagrees": 465,
+          "target_known_existing": 2297,
+          "correct_existing": 1912,
+          "existing_without_recent_correct_cue": 29,
+          "existing_without_any_correct_cue": 9,
+          "false_null_for_known_existing": 282,
+          "track_history_mixed_known_identity": 610,
+          "wrong_existing": 103,
+          "track_history_known_consistent_with_unknowns": 3338,
+          "target_nonunique_physical_assignment": 2547,
+          "target_known_no_old_match_not_verified_birth": 90,
+          "false_existing_for_known_null": 82,
+          "correct_known_null": 8,
+          "track_history_known_no_correct_cue": 28
+        },
+        "by_target_history": {
+          "all_known_consistent": {
+            "correct_existing": 1354,
+            "supported_existing": 1588,
+            "false_null_for_known_existing": 172,
+            "wrong_existing": 62
+          },
+          "known_consistent_with_unknowns": {
+            "correct_existing": 500,
+            "supported_existing": 606,
+            "false_null_for_known_existing": 78,
+            "wrong_existing": 28
+          },
+          "mixed_known_identity": {
+            "wrong_existing": 10,
+            "supported_existing": 99,
+            "false_null_for_known_existing": 31,
+            "correct_existing": 58
+          },
+          "known_no_correct_cue": {
+            "false_null_for_known_existing": 1,
+            "supported_existing": 4,
+            "wrong_existing": 3
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2297,
+            "rank1": 2153,
+            "percentage": 93.73095341750108
+          },
+          "fifo_cost": {
+            "queries": 2297,
+            "rank1": 2131,
+            "percentage": 92.77318241184153
+          },
+          "last_cost": {
+            "queries": 2297,
+            "rank1": 2105,
+            "percentage": 91.64127122333478
+          },
+          "gru_cost": {
+            "queries": 2297,
+            "rank1": 1275,
+            "percentage": 55.50718328254245
+          },
+          "geometry": {
+            "queries": 2297,
+            "rank1": 2152,
+            "percentage": 93.68741837178929
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2297,
+            "mean": 0.8904897874017669,
+            "p10_p50_p90": [
+              -0.38476363420486437,
+              0.9948694705963135,
+              2.1682918071746835
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2297,
+            "mean": 2.4819697630914024,
+            "p10_p50_p90": [
+              1.3946344375610356,
+              2.8245304822921753,
+              3.5116577625274656
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 38,
+            "correct_existing": 383,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 62,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 18
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 39,
+            "correct_existing": 382,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 61,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 20
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 37,
+            "correct_existing": 377,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 66,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 20
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 37,
+            "correct_existing": 383,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 62,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 18
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 45,
+            "correct_existing": 394,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 48,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 21
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 387,
+            "unsupervised_unknown_or_nonunique": 689,
+            "false_null_for_known_existing": 57,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 2,
+            "wrong_existing": 19
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "cross_transformer_s0": {
+      "architecture": "cross_transformer",
+      "seed": 0,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "78caa7c1553836a98ed97e71477f1240d1e5188e62a65a8519d539160a3e2041",
+      "original_native_manifest_sha256": "35b7194996447738a840976f3cac8dd5f56a2aae9468402569076dda7f6cd77a",
+      "model_checkpoint_sha256": "ddbbad6c982b4dc268b483b884924075436bea7622f86207fb024e5236578fd4",
+      "decisions_sha256": "988d49fcfa8ef23b969c0360103bd9cd2d7e731417bd0ddeba12449958d9cc73",
+      "model_observations_sha256": "958701264129ae3b08149187fb72476de13db2d012dcdcb1afae770a531c2cf1",
+      "sparse_inputs_sha256": "db5db0ff27cf2b001bdcc68aa478aa1b7f2a54ecaa087a81383df5384ac3b588",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 8318,
+          "track_history_unknown_early_reference": 318,
+          "target_old_identity_coverage_unknown": 345,
+          "unsupervised_unknown_or_nonunique": 2623,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 3517,
+          "known_history_observations": 54092,
+          "known_wrong_history_observations": 13934,
+          "latest_disagrees": 2035,
+          "anchor_disagrees": 69,
+          "modal_disagrees": 2174,
+          "track_history_mixed_known_identity": 2563,
+          "target_known_existing": 2788,
+          "false_null_for_known_existing": 175,
+          "existing_without_recent_correct_cue": 427,
+          "existing_without_any_correct_cue": 9,
+          "correct_existing": 2073,
+          "wrong_existing": 540,
+          "target_nonunique_physical_assignment": 1617,
+          "target_known_no_old_match_not_verified_birth": 423,
+          "false_existing_for_known_null": 388,
+          "track_history_known_consistent_with_unknowns": 1871,
+          "correct_known_null": 35,
+          "track_history_known_no_correct_cue": 49
+        },
+        "by_target_history": {
+          "mixed_known_identity": {
+            "false_null_for_known_existing": 48,
+            "supported_existing": 537,
+            "wrong_existing": 442,
+            "correct_existing": 47
+          },
+          "all_known_consistent": {
+            "correct_existing": 1658,
+            "supported_existing": 1802,
+            "false_null_for_known_existing": 105,
+            "wrong_existing": 39
+          },
+          "known_consistent_with_unknowns": {
+            "false_null_for_known_existing": 22,
+            "supported_existing": 442,
+            "correct_existing": 367,
+            "wrong_existing": 53
+          },
+          "known_no_correct_cue": {
+            "wrong_existing": 6,
+            "supported_existing": 7,
+            "correct_existing": 1
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2788,
+            "rank1": 2180,
+            "percentage": 78.1922525107604
+          },
+          "fifo_cost": {
+            "queries": 2788,
+            "rank1": 2197,
+            "percentage": 78.80200860832137
+          },
+          "last_cost": {
+            "queries": 2788,
+            "rank1": 2191,
+            "percentage": 78.5868005738881
+          },
+          "gru_cost": {
+            "queries": 2788,
+            "rank1": 1342,
+            "percentage": 48.13486370157819
+          },
+          "geometry": {
+            "queries": 2788,
+            "rank1": 2204,
+            "percentage": 79.05308464849354
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2788,
+            "mean": 1.9318379000606953,
+            "p10_p50_p90": [
+              -0.7607032716274261,
+              2.1393359005451202,
+              4.31954083442688
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2788,
+            "mean": 0.8372677814006977,
+            "p10_p50_p90": [
+              -2.904252952337265,
+              1.582183599472046,
+              2.653596341609955
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 118,
+            "correct_existing": 408,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_existing_for_known_null": 77,
+            "wrong_existing": 110,
+            "correct_known_null": 7,
+            "false_null_for_known_existing": 39
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 130,
+            "correct_existing": 405,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_existing_for_known_null": 75,
+            "wrong_existing": 105,
+            "correct_known_null": 9,
+            "false_null_for_known_existing": 47
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 125,
+            "correct_existing": 406,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_existing_for_known_null": 78,
+            "wrong_existing": 102,
+            "correct_known_null": 6,
+            "false_null_for_known_existing": 49
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 113,
+            "correct_existing": 406,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_null_for_known_existing": 43,
+            "false_existing_for_known_null": 78,
+            "wrong_existing": 108,
+            "correct_known_null": 6
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 97,
+            "correct_existing": 431,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_existing_for_known_null": 77,
+            "wrong_existing": 105,
+            "correct_known_null": 7,
+            "false_null_for_known_existing": 21
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 418,
+            "unsupervised_unknown_or_nonunique": 527,
+            "false_null_for_known_existing": 35,
+            "false_existing_for_known_null": 77,
+            "wrong_existing": 104,
+            "correct_known_null": 7
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "cross_transformer_s1": {
+      "architecture": "cross_transformer",
+      "seed": 1,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "16435659d5952b8451b3a98e41ee81c25b59085aa02d83bc5ac68d2d4dbdddeb",
+      "original_native_manifest_sha256": "a9b832afbc8fb82e2fa622ed77795eb56997528875811fd07ba6a1fff129cca3",
+      "model_checkpoint_sha256": "9628f22b109ff336cc83b6e0510dbbc204218929cd0314048bfd79568b3cfe03",
+      "decisions_sha256": "b80d03ea46d0ec4725a8b6d070688bb9490c8caba92af87263192e814ee77811",
+      "model_observations_sha256": "e124348b9979cfdabc7bade7b4dce71e11956d6abd301958c0d06e0935f8521e",
+      "sparse_inputs_sha256": "3b2484ff5e0f35601494d5e968fcf5e98b463981828b19c595c84579a70258d3",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 13531,
+          "track_history_unknown_early_reference": 2673,
+          "target_old_identity_coverage_unknown": 335,
+          "unsupervised_unknown_or_nonunique": 3517,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 5850,
+          "known_history_observations": 68579,
+          "known_wrong_history_observations": 7195,
+          "latest_disagrees": 1529,
+          "anchor_disagrees": 147,
+          "modal_disagrees": 894,
+          "target_known_existing": 2212,
+          "correct_existing": 1682,
+          "existing_without_recent_correct_cue": 43,
+          "existing_without_any_correct_cue": 2,
+          "track_history_mixed_known_identity": 1959,
+          "false_null_for_known_existing": 360,
+          "target_known_no_old_match_not_verified_birth": 105,
+          "false_existing_for_known_null": 89,
+          "track_history_known_consistent_with_unknowns": 3009,
+          "wrong_existing": 170,
+          "target_nonunique_physical_assignment": 2521,
+          "correct_known_null": 16,
+          "track_history_known_no_correct_cue": 40
+        },
+        "by_target_history": {
+          "all_known_consistent": {
+            "correct_existing": 1198,
+            "supported_existing": 1508,
+            "false_null_for_known_existing": 230,
+            "wrong_existing": 80
+          },
+          "known_consistent_with_unknowns": {
+            "false_null_for_known_existing": 97,
+            "supported_existing": 582,
+            "wrong_existing": 52,
+            "correct_existing": 433
+          },
+          "mixed_known_identity": {
+            "wrong_existing": 38,
+            "supported_existing": 122,
+            "false_null_for_known_existing": 33,
+            "correct_existing": 51
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2212,
+            "rank1": 1932,
+            "percentage": 87.34177215189874
+          },
+          "fifo_cost": {
+            "queries": 2212,
+            "rank1": 1972,
+            "percentage": 89.1500904159132
+          },
+          "last_cost": {
+            "queries": 2212,
+            "rank1": 1926,
+            "percentage": 87.07052441229656
+          },
+          "gru_cost": {
+            "queries": 2212,
+            "rank1": 1129,
+            "percentage": 51.03978300180832
+          },
+          "geometry": {
+            "queries": 2212,
+            "rank1": 1985,
+            "percentage": 89.7377938517179
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2212,
+            "mean": 1.1702697168122875,
+            "p10_p50_p90": [
+              -0.9395087808370589,
+              1.2571088448166847,
+              3.1580882668495183
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2212,
+            "mean": 1.3168531600217492,
+            "p10_p50_p90": [
+              -0.48638340234756466,
+              1.597828984260559,
+              2.7060127139091494
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 239,
+            "correct_existing": 332,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_null_for_known_existing": 72,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 3,
+            "wrong_existing": 34
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 260,
+            "correct_existing": 329,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 3,
+            "false_null_for_known_existing": 78,
+            "wrong_existing": 31
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 252,
+            "correct_existing": 328,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_null_for_known_existing": 78,
+            "false_existing_for_known_null": 15,
+            "correct_known_null": 2,
+            "wrong_existing": 32
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 263,
+            "correct_existing": 328,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_existing_for_known_null": 15,
+            "false_null_for_known_existing": 75,
+            "correct_known_null": 2,
+            "wrong_existing": 35
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 436,
+            "correct_existing": 357,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_existing_for_known_null": 17,
+            "wrong_existing": 76,
+            "false_null_for_known_existing": 5
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 335,
+            "unsupervised_unknown_or_nonunique": 713,
+            "false_null_for_known_existing": 69,
+            "false_existing_for_known_null": 14,
+            "correct_known_null": 3,
+            "wrong_existing": 34
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "cross_transformer_s2": {
+      "architecture": "cross_transformer",
+      "seed": 2,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "c0f2c939cc7d9604cbe034f09ed44d484bc858eaab35aabf57f8e4cccb27cb2d",
+      "original_native_manifest_sha256": "fb4db86989390dbd5c54d953bc637c4faa5170b1e770d9194281507d5e31f60a",
+      "model_checkpoint_sha256": "f08e0308e4f730e7447791dcde8b2f47cf9712640a71cc4ade100013c3c83b6e",
+      "decisions_sha256": "0e7dd9bf0e8a0793d8e4b67a1f1415cd28c0c6aeabea38e3c76ab77557e89124",
+      "model_observations_sha256": "fd5e579bade0655750972ce6b278adf2c0c3034766e8f50561a8f4f2bea23783",
+      "sparse_inputs_sha256": "793224e345ed31809f9d13f06c3e08637b645e02f2913436bac96459a2e5c7a4",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 10296,
+          "track_history_unknown_early_reference": 790,
+          "target_old_identity_coverage_unknown": 363,
+          "unsupervised_unknown_or_nonunique": 3056,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 4140,
+          "known_history_observations": 61538,
+          "known_wrong_history_observations": 13736,
+          "latest_disagrees": 2529,
+          "anchor_disagrees": 78,
+          "modal_disagrees": 2024,
+          "track_history_mixed_known_identity": 3071,
+          "target_known_existing": 2344,
+          "false_null_for_known_existing": 285,
+          "existing_without_recent_correct_cue": 276,
+          "existing_without_any_correct_cue": 13,
+          "correct_existing": 1713,
+          "wrong_existing": 346,
+          "target_nonunique_physical_assignment": 2032,
+          "target_known_no_old_match_not_verified_birth": 434,
+          "false_existing_for_known_null": 404,
+          "track_history_known_consistent_with_unknowns": 2205,
+          "correct_known_null": 30,
+          "track_history_known_no_correct_cue": 90
+        },
+        "by_target_history": {
+          "mixed_known_identity": {
+            "false_null_for_known_existing": 60,
+            "supported_existing": 329,
+            "wrong_existing": 265,
+            "correct_existing": 4
+          },
+          "all_known_consistent": {
+            "correct_existing": 1169,
+            "supported_existing": 1361,
+            "false_null_for_known_existing": 160,
+            "wrong_existing": 32
+          },
+          "known_consistent_with_unknowns": {
+            "correct_existing": 539,
+            "supported_existing": 642,
+            "false_null_for_known_existing": 63,
+            "wrong_existing": 40
+          },
+          "known_no_correct_cue": {
+            "wrong_existing": 9,
+            "supported_existing": 12,
+            "false_null_for_known_existing": 2,
+            "correct_existing": 1
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2344,
+            "rank1": 1907,
+            "percentage": 81.3566552901024
+          },
+          "fifo_cost": {
+            "queries": 2344,
+            "rank1": 1914,
+            "percentage": 81.65529010238907
+          },
+          "last_cost": {
+            "queries": 2344,
+            "rank1": 1886,
+            "percentage": 80.46075085324232
+          },
+          "gru_cost": {
+            "queries": 2344,
+            "rank1": 1304,
+            "percentage": 55.63139931740614
+          },
+          "geometry": {
+            "queries": 2344,
+            "rank1": 1937,
+            "percentage": 82.63651877133105
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2344,
+            "mean": 1.45842636899495,
+            "p10_p50_p90": [
+              -1.4342555701732633,
+              1.5972749404609203,
+              4.029308062791825
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2344,
+            "mean": 1.1640896147606519,
+            "p10_p50_p90": [
+              -2.725502383708954,
+              1.8582658171653748,
+              3.0503115296363843
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 164,
+            "correct_existing": 349,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_existing_for_known_null": 82,
+            "false_null_for_known_existing": 56,
+            "correct_known_null": 8,
+            "wrong_existing": 68
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 196,
+            "correct_existing": 342,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_null_for_known_existing": 58,
+            "false_existing_for_known_null": 85,
+            "correct_known_null": 5,
+            "wrong_existing": 73
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 189,
+            "correct_existing": 352,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_existing_for_known_null": 84,
+            "correct_known_null": 6,
+            "wrong_existing": 69,
+            "false_null_for_known_existing": 52
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 173,
+            "correct_existing": 339,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_null_for_known_existing": 56,
+            "false_existing_for_known_null": 82,
+            "correct_known_null": 8,
+            "wrong_existing": 78
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 176,
+            "correct_existing": 380,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_existing_for_known_null": 85,
+            "correct_known_null": 5,
+            "wrong_existing": 89,
+            "false_null_for_known_existing": 4
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 346,
+            "unsupervised_unknown_or_nonunique": 605,
+            "false_existing_for_known_null": 82,
+            "false_null_for_known_existing": 52,
+            "correct_known_null": 8,
+            "wrong_existing": 75
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "joint_s0": {
+      "architecture": "joint",
+      "seed": 0,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "353a5162d646fcad35ec1f3b637673f4d7737eabb79fd9ea35376a31085bac2d",
+      "original_native_manifest_sha256": "23b9658505221db7a98ca4c53a264cb9a205bee3e3d6dea5a4ab6b59069902dc",
+      "model_checkpoint_sha256": "11631e81db482dac42e4b9b865e9051bb0336227e27f993755ead2d178f30f98",
+      "decisions_sha256": "316457f0555d9aaf9153291f27e085042b2c2aeba1e0715903b35956eb53ccb8",
+      "model_observations_sha256": "ae7885b2732b47ded16b5105f3789dd6a625708107bf4e0d72ede405f2c63596",
+      "sparse_inputs_sha256": "af27a720e68073184f6e81017fd8dbadaa749162c9df9cba550e7ac920350ee9",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 9837,
+          "track_history_unknown_early_reference": 738,
+          "target_old_identity_coverage_unknown": 474,
+          "unsupervised_unknown_or_nonunique": 3238,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 4593,
+          "known_history_observations": 59065,
+          "known_wrong_history_observations": 9231,
+          "latest_disagrees": 1416,
+          "anchor_disagrees": 131,
+          "modal_disagrees": 1484,
+          "track_history_mixed_known_identity": 2016,
+          "target_known_existing": 2192,
+          "correct_existing": 1793,
+          "existing_without_recent_correct_cue": 30,
+          "existing_without_any_correct_cue": 1,
+          "false_null_for_known_existing": 234,
+          "wrong_existing": 165,
+          "target_nonunique_physical_assignment": 2103,
+          "target_known_no_old_match_not_verified_birth": 404,
+          "false_existing_for_known_null": 353,
+          "track_history_known_consistent_with_unknowns": 2489,
+          "correct_known_null": 51,
+          "track_history_known_no_correct_cue": 1
+        },
+        "by_target_history": {
+          "all_known_consistent": {
+            "correct_existing": 1461,
+            "supported_existing": 1695,
+            "false_null_for_known_existing": 177,
+            "wrong_existing": 57
+          },
+          "mixed_known_identity": {
+            "false_null_for_known_existing": 25,
+            "supported_existing": 109,
+            "wrong_existing": 26,
+            "correct_existing": 58
+          },
+          "known_consistent_with_unknowns": {
+            "wrong_existing": 82,
+            "supported_existing": 388,
+            "correct_existing": 274,
+            "false_null_for_known_existing": 32
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 2192,
+            "rank1": 2000,
+            "percentage": 91.24087591240875
+          },
+          "fifo_cost": {
+            "queries": 2192,
+            "rank1": 1984,
+            "percentage": 90.51094890510949
+          },
+          "last_cost": {
+            "queries": 2192,
+            "rank1": 1968,
+            "percentage": 89.78102189781022
+          },
+          "gru_cost": {
+            "queries": 2192,
+            "rank1": 1427,
+            "percentage": 65.10036496350365
+          },
+          "geometry": {
+            "queries": 2192,
+            "rank1": 2002,
+            "percentage": 91.33211678832117
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 2192,
+            "mean": 1.3579795610764656,
+            "p10_p50_p90": [
+              -0.2532642543315886,
+              1.31782978028059,
+              3.0370236694812776
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 2192,
+            "mean": 1.3394242953509092,
+            "p10_p50_p90": [
+              0.2853370517492297,
+              1.577269732952118,
+              2.2739653050899507
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 157,
+            "correct_existing": 350,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 35,
+            "false_null_for_known_existing": 56,
+            "false_existing_for_known_null": 69,
+            "correct_known_null": 12
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 148,
+            "correct_existing": 363,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 37,
+            "false_existing_for_known_null": 67,
+            "correct_known_null": 14,
+            "false_null_for_known_existing": 41
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 162,
+            "correct_existing": 356,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 35,
+            "false_null_for_known_existing": 50,
+            "false_existing_for_known_null": 70,
+            "correct_known_null": 11
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 166,
+            "correct_existing": 355,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 37,
+            "false_existing_for_known_null": 66,
+            "false_null_for_known_existing": 49,
+            "correct_known_null": 15
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 167,
+            "correct_existing": 382,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 42,
+            "false_existing_for_known_null": 75,
+            "correct_known_null": 6,
+            "false_null_for_known_existing": 17
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 363,
+            "unsupervised_unknown_or_nonunique": 646,
+            "wrong_existing": 36,
+            "false_null_for_known_existing": 42,
+            "false_existing_for_known_null": 68,
+            "correct_known_null": 13
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "joint_s1": {
+      "architecture": "joint",
+      "seed": 1,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "1cf3922ce9c27c6899a01d0d9153b83d9e8acca44c4e0ba402c96427cb3bdcae",
+      "original_native_manifest_sha256": "76baa43a3df2b72307763e827d4c522572fdd55a65bc8208a0c16c06a1d4b5db",
+      "model_checkpoint_sha256": "4a270a638c4f85b04574fc9602e143113a82e5b44e7d48eba1b2c1e0f156e166",
+      "decisions_sha256": "19261ce237a069e1b018f009f9c0d876968ef31540ff5a1d3da38362f918d47b",
+      "model_observations_sha256": "4bbac26fc1b64e7d1b13bc159c384fe65a84a8f990f7974af3252281741f4bd8",
+      "sparse_inputs_sha256": "3fb5fd1e39a867e995e2127517ac47edf9c5793077a496061ddc64195079c8b6",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 14463,
+          "track_history_unknown_early_reference": 2929,
+          "target_old_identity_coverage_unknown": 464,
+          "unsupervised_unknown_or_nonunique": 3926,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 6318,
+          "known_history_observations": 71717,
+          "known_wrong_history_observations": 8179,
+          "latest_disagrees": 1524,
+          "anchor_disagrees": 68,
+          "modal_disagrees": 1186,
+          "track_history_mixed_known_identity": 1974,
+          "target_known_existing": 1852,
+          "false_null_for_known_existing": 326,
+          "existing_without_recent_correct_cue": 50,
+          "existing_without_any_correct_cue": 7,
+          "correct_existing": 1349,
+          "wrong_existing": 177,
+          "target_nonunique_physical_assignment": 2801,
+          "target_known_no_old_match_not_verified_birth": 56,
+          "false_existing_for_known_null": 46,
+          "correct_known_null": 10,
+          "track_history_known_consistent_with_unknowns": 3192,
+          "track_history_known_no_correct_cue": 50
+        },
+        "by_target_history": {
+          "mixed_known_identity": {
+            "false_null_for_known_existing": 57,
+            "supported_existing": 169,
+            "wrong_existing": 60,
+            "correct_existing": 52
+          },
+          "all_known_consistent": {
+            "correct_existing": 896,
+            "supported_existing": 1101,
+            "false_null_for_known_existing": 160,
+            "wrong_existing": 45
+          },
+          "known_consistent_with_unknowns": {
+            "correct_existing": 401,
+            "supported_existing": 578,
+            "false_null_for_known_existing": 108,
+            "wrong_existing": 69
+          },
+          "known_no_correct_cue": {
+            "wrong_existing": 3,
+            "supported_existing": 4,
+            "false_null_for_known_existing": 1
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 1852,
+            "rank1": 1574,
+            "percentage": 84.98920086393089
+          },
+          "fifo_cost": {
+            "queries": 1852,
+            "rank1": 1581,
+            "percentage": 85.36717062634989
+          },
+          "last_cost": {
+            "queries": 1852,
+            "rank1": 1572,
+            "percentage": 84.88120950323975
+          },
+          "gru_cost": {
+            "queries": 1852,
+            "rank1": 1055,
+            "percentage": 56.96544276457883
+          },
+          "geometry": {
+            "queries": 1852,
+            "rank1": 1594,
+            "percentage": 86.06911447084234
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 1852,
+            "mean": 0.8581998042347911,
+            "p10_p50_p90": [
+              -1.0774214386940002,
+              0.9506269451230764,
+              2.6368105053901676
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 1852,
+            "mean": 1.2109842329702418,
+            "p10_p50_p90": [
+              -1.1583359718322754,
+              1.5959384739398956,
+              2.6057409286499027
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 247,
+            "correct_existing": 267,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_null_for_known_existing": 63,
+            "false_existing_for_known_null": 7,
+            "wrong_existing": 44,
+            "correct_known_null": 1
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 261,
+            "correct_existing": 262,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_null_for_known_existing": 70,
+            "false_existing_for_known_null": 7,
+            "wrong_existing": 42,
+            "correct_known_null": 1
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 258,
+            "correct_existing": 265,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_null_for_known_existing": 69,
+            "false_existing_for_known_null": 6,
+            "correct_known_null": 2,
+            "wrong_existing": 40
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 256,
+            "correct_existing": 262,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_existing_for_known_null": 8,
+            "wrong_existing": 47,
+            "false_null_for_known_existing": 65
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 393,
+            "correct_existing": 316,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_existing_for_known_null": 8,
+            "wrong_existing": 58
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 266,
+            "unsupervised_unknown_or_nonunique": 786,
+            "false_existing_for_known_null": 8,
+            "false_null_for_known_existing": 67,
+            "wrong_existing": 41
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    },
+    "joint_s2": {
+      "architecture": "joint",
+      "seed": 2,
+      "frames": 684,
+      "prediction_byte_equal": true,
+      "prediction_sha256": "7c1d9517a2110f7f87788113ac0447038bd64084b7f53369708d05a4f48cc321",
+      "original_native_manifest_sha256": "335a08f64ebdeef95f624db2f8ac2b2aa7956669b028727b756f602bb8d09fb7",
+      "model_checkpoint_sha256": "0f8039fb245f4dbf32574fec5725bcce28807ad7c06a0bbd48eb1c38b3ae88df",
+      "decisions_sha256": "165466da6dc2cae3519bcbfa96f7a79361a4657d398594921939e462d874b0f5",
+      "model_observations_sha256": "d8411494721db9a5689977422f16b242299a5b45d7cb2417573452eff056b0da",
+      "sparse_inputs_sha256": "f860b02cf57721f89dfc6b0e44f4fe9079c3133922f9a76e76045715e66d2c49",
+      "sparse_frames": 136,
+      "online_physical_labels_loaded": false,
+      "offline_diagnosis": {
+        "counts": {
+          "frames": 683,
+          "detections": 5834,
+          "track_slots": 11664,
+          "track_history_unknown_early_reference": 1534,
+          "target_old_identity_coverage_unknown": 732,
+          "unsupervised_unknown_or_nonunique": 3891,
+          "target_unknown_detection": 661,
+          "track_history_all_known_consistent": 5293,
+          "known_history_observations": 64416,
+          "known_wrong_history_observations": 11775,
+          "latest_disagrees": 1803,
+          "anchor_disagrees": 141,
+          "modal_disagrees": 1940,
+          "track_history_mixed_known_identity": 2187,
+          "target_known_existing": 1664,
+          "wrong_existing": 157,
+          "existing_without_recent_correct_cue": 77,
+          "existing_without_any_correct_cue": 13,
+          "correct_existing": 1309,
+          "false_null_for_known_existing": 198,
+          "target_nonunique_physical_assignment": 2498,
+          "target_known_no_old_match_not_verified_birth": 279,
+          "false_existing_for_known_null": 252,
+          "track_history_known_consistent_with_unknowns": 2353,
+          "correct_known_null": 27,
+          "track_history_known_no_correct_cue": 297
+        },
+        "by_target_history": {
+          "mixed_known_identity": {
+            "wrong_existing": 54,
+            "supported_existing": 122,
+            "false_null_for_known_existing": 24,
+            "correct_existing": 44
+          },
+          "all_known_consistent": {
+            "correct_existing": 960,
+            "supported_existing": 1161,
+            "false_null_for_known_existing": 136,
+            "wrong_existing": 65
+          },
+          "known_consistent_with_unknowns": {
+            "wrong_existing": 28,
+            "supported_existing": 369,
+            "false_null_for_known_existing": 37,
+            "correct_existing": 304
+          },
+          "known_no_correct_cue": {
+            "wrong_existing": 10,
+            "supported_existing": 12,
+            "false_null_for_known_existing": 1,
+            "correct_existing": 1
+          }
+        },
+        "local_same_set_existing_rank1": {
+          "model_existing_logits": {
+            "queries": 1664,
+            "rank1": 1464,
+            "percentage": 87.98076923076923
+          },
+          "fifo_cost": {
+            "queries": 1664,
+            "rank1": 1456,
+            "percentage": 87.5
+          },
+          "last_cost": {
+            "queries": 1664,
+            "rank1": 1455,
+            "percentage": 87.43990384615384
+          },
+          "gru_cost": {
+            "queries": 1664,
+            "rank1": 907,
+            "percentage": 54.50721153846154
+          },
+          "geometry": {
+            "queries": 1664,
+            "rank1": 1476,
+            "percentage": 88.70192307692308
+          }
+        },
+        "logit_margins": {
+          "correct_minus_null": {
+            "count": 1664,
+            "mean": 1.541381302305336,
+            "p10_p50_p90": [
+              -0.7483917593955993,
+              1.636365469545126,
+              3.7502748608589176
+            ]
+          },
+          "correct_minus_best_wrong": {
+            "count": 1664,
+            "mean": 1.4708352541873375,
+            "p10_p50_p90": [
+              -0.9773092329502105,
+              1.876118391752243,
+              2.842869627475739
+            ]
+          }
+        },
+        "supervision": "Frozen strictly-past >=3observation EarlyReference consensus, not unconditional physical track truth. Unknown/nonunique and unknown old coverage ignored; absent verified match is not verified birth. All physical labels are independently matched same-frame proposals after all output parity checks.",
+        "local_cue_scope": "Same endogenous candidate/track sets only. Local per-candidate ranks omit one-to-one/NULL/lifecycle; not counterfactual native tracker gains.",
+        "offline_dictionary_sensitivity": {
+          "1001": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 188,
+            "correct_existing": 271,
+            "wrong_existing": 31,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_null_for_known_existing": 32,
+            "false_existing_for_known_null": 46,
+            "correct_known_null": 4
+          },
+          "1002": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 196,
+            "correct_existing": 268,
+            "wrong_existing": 31,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_null_for_known_existing": 35,
+            "false_existing_for_known_null": 47,
+            "correct_known_null": 3
+          },
+          "1003": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 173,
+            "correct_existing": 269,
+            "wrong_existing": 32,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_null_for_known_existing": 33,
+            "false_existing_for_known_null": 44,
+            "correct_known_null": 6
+          },
+          "1004": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 200,
+            "correct_existing": 263,
+            "false_null_for_known_existing": 40,
+            "wrong_existing": 31,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_existing_for_known_null": 43,
+            "correct_known_null": 7
+          },
+          "zero_dictionary": {
+            "frames": 136,
+            "detections": 1168,
+            "selected_assignment_changes": 220,
+            "correct_existing": 293,
+            "wrong_existing": 41,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_existing_for_known_null": 50
+          },
+          "original": {
+            "frames": 136,
+            "detections": 1168,
+            "correct_existing": 268,
+            "wrong_existing": 32,
+            "unsupervised_unknown_or_nonunique": 784,
+            "false_null_for_known_existing": 34,
+            "false_existing_for_known_null": 43,
+            "correct_known_null": 7
+          }
+        },
+        "dictionary_scope": "Fixed stride5 inner observed sets, four predeclared alternative distinct-code assignments and isolated zero-dictionary intervention. No retraining/threshold selection, no altered online outputs or claimed full tracker gain; arbitrary local dictionary embedding dependence is measured as a nuisance sensitivity."
+      }
+    }
+  },
+  "baseline_inner": {
+    "counts": {
+      "detections": 5834,
+      "track_slots": 6488,
+      "track_history_unknown_early_reference": 100,
+      "target_old_identity_coverage_unknown": 150,
+      "unsupervised_unknown_or_nonunique": 1505,
+      "frames": 683,
+      "target_unknown_detection": 661,
+      "track_history_all_known_consistent": 987,
+      "known_history_observations": 42357,
+      "known_wrong_history_observations": 23925,
+      "target_known_existing": 3484,
+      "correct_existing": 1077,
+      "track_history_mixed_known_identity": 3286,
+      "target_known_no_old_match_not_verified_birth": 845,
+      "false_existing_for_known_null": 821,
+      "track_history_known_consistent_with_unknowns": 1602,
+      "wrong_existing": 2396,
+      "target_nonunique_physical_assignment": 694,
+      "correct_known_null": 24,
+      "false_null_for_known_existing": 11,
+      "track_history_known_no_correct_cue": 513
+    },
+    "trace_sha256": "f9be891b3668ac50aa0d2512d49d9a66626be3d7f585f4c4b2da383ab5873118",
+    "trace": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/cross_train_gru_cfp_s0_c1_v1/SN-001.decisions.jsonl.gz"
+  },
+  "fitting_and_inner_warm": {
+    "BT-001": {
+      "counts": {
+        "detections": 5689,
+        "track_slots": 6171,
+        "target_known_no_old_match_not_verified_birth": 679,
+        "frames": 600,
+        "track_history_all_known_consistent": 1101,
+        "known_history_observations": 34283,
+        "known_wrong_history_observations": 12904,
+        "track_history_known_consistent_with_unknowns": 2694,
+        "track_history_unknown_early_reference": 85,
+        "target_known_existing": 2914,
+        "target_old_identity_coverage_unknown": 104,
+        "target_unknown_detection": 1394,
+        "track_history_mixed_known_identity": 1318,
+        "target_nonunique_physical_assignment": 598,
+        "track_history_known_no_correct_cue": 973
+      },
+      "query_sha256": "c310bc3788d3379768a7354b8072c1167d44aec4043be2f99dc06e731c00fa6d",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "BT-003": {
+      "counts": {
+        "detections": 479,
+        "track_slots": 486,
+        "target_known_no_old_match_not_verified_birth": 40,
+        "target_unknown_detection": 110,
+        "frames": 49,
+        "track_history_all_known_consistent": 185,
+        "known_history_observations": 2894,
+        "known_wrong_history_observations": 263,
+        "track_history_unknown_early_reference": 8,
+        "target_known_existing": 287,
+        "target_old_identity_coverage_unknown": 4,
+        "track_history_known_consistent_with_unknowns": 207,
+        "track_history_mixed_known_identity": 83,
+        "track_history_known_no_correct_cue": 3,
+        "target_nonunique_physical_assignment": 38
+      },
+      "query_sha256": "bb85188e7893b0e463740a5caf6974ac702a3f9f933c34b281eca81ac3dd5d8a",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "MSK-002": {
+      "counts": {
+        "detections": 12389,
+        "track_slots": 14186,
+        "target_known_no_old_match_not_verified_birth": 1547,
+        "target_unknown_detection": 2842,
+        "frames": 351,
+        "track_history_all_known_consistent": 3316,
+        "known_history_observations": 81944,
+        "known_wrong_history_observations": 33318,
+        "track_history_known_consistent_with_unknowns": 4785,
+        "track_history_unknown_early_reference": 159,
+        "target_known_existing": 5663,
+        "target_old_identity_coverage_unknown": 935,
+        "track_history_mixed_known_identity": 4977,
+        "track_history_known_no_correct_cue": 949,
+        "target_nonunique_physical_assignment": 1402
+      },
+      "query_sha256": "7271e7a9f6bb3de31dc6aeecfccdf77090ac2badbb3a4d36b4918cf76403d306",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "PF-001": {
+      "counts": {
+        "detections": 5936,
+        "track_slots": 6063,
+        "target_known_no_old_match_not_verified_birth": 1312,
+        "frames": 3000,
+        "track_history_all_known_consistent": 3009,
+        "known_history_observations": 45611,
+        "known_wrong_history_observations": 16139,
+        "target_known_existing": 3110,
+        "track_history_known_consistent_with_unknowns": 622,
+        "target_unknown_detection": 188,
+        "track_history_mixed_known_identity": 1877,
+        "track_history_unknown_early_reference": 51,
+        "target_nonunique_physical_assignment": 1314,
+        "track_history_known_no_correct_cue": 504,
+        "target_old_identity_coverage_unknown": 12
+      },
+      "query_sha256": "eb23cb296b7a4204c72e6126117d01a72d22e00e44f62c382f7041f66ae4f980",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    },
+    "SN-001": {
+      "counts": {
+        "detections": 1175,
+        "track_slots": 1293,
+        "target_known_no_old_match_not_verified_birth": 181,
+        "target_unknown_detection": 138,
+        "frames": 137,
+        "track_history_all_known_consistent": 198,
+        "known_history_observations": 8455,
+        "known_wrong_history_observations": 4771,
+        "track_history_unknown_early_reference": 17,
+        "target_known_existing": 695,
+        "target_old_identity_coverage_unknown": 25,
+        "track_history_mixed_known_identity": 658,
+        "track_history_known_consistent_with_unknowns": 318,
+        "target_nonunique_physical_assignment": 136,
+        "track_history_known_no_correct_cue": 102
+      },
+      "query_sha256": "31964306b82b97091d08f7fa6069314120126086b6167375b0e245f2517119fc",
+      "annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    }
+  },
+  "sources": {
+    "tools/cfp_record_joint_endogenous_shift.py": "892cc6252b5f5deb9ce896fbe3cca02f14c23427d70a3cef10e0f7fe1aeabb71",
+    "cfp/joint_endogenous_diagnosis.py": "14486175c4858f113dd16f8f86f09a2ea3e7b4fd0b31fd2acb25978f77a0b11c"
+  },
+  "scope": "Offline only after all9native output parities. Same physical proposal labeling. Warm/ordinarybaseline/joint endogenous set membership differs, so descriptive shift, not matched-head performance comparison or isolated causal proof. No outer weights, labels, frames or model-score selection. No new training/native benefit claim."
+}

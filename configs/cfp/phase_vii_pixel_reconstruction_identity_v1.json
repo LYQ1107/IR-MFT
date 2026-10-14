@@ -1,0 +1,56 @@
+{
+  "state": "FROZEN",
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "folds": "Outer each video, inner next in this declared cycle, fit other4. First outerSN015/innerBT001; both excluded from any fish gradient or state update.",
+  "first_outer": "SN-015",
+  "first_inner": "BT-001",
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "modes": [
+    "pixel_masked_reconstruction",
+    "pixel_visible_target"
+  ],
+  "local_counts": [
+    4
+  ],
+  "first_local_count": 4,
+  "dimension": 384,
+  "train_backbone_suffix_blocks": 2,
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "backbone_lr": 1e-05,
+  "head_lr": 0.0003,
+  "weight_decay": 0.0001,
+  "identities_per_frame": 8,
+  "observations_per_identity": 4,
+  "minimum_positive_gap": 25,
+  "triplet_weight": 1.0,
+  "same_frame_weight": 0.2,
+  "augmentation": {
+    "horizontal_flip_probability": 0.5,
+    "erase_probability": 0.2,
+    "erase_area_fraction": [
+      0.05,
+      0.2
+    ]
+  },
+  "checkpoint_selection": "Fixed finalepoch8, all inner/outer retrieval after training only; no checkpoints/hyperparameters chosen from outer video.",
+  "representation": "Official pinned DINOv2S last2blocks+norm, global384. Actual normalized RGB14x14x3patch targets with padding/augmentation visibility weights; half observable patches masked before any attention. Full-token encoder replacement rather than official MAE visible-token-only encoder and Transformer decoder.",
+  "comparison": "Same four fit videos/labels/1200attempted updates/augmentations/tail/head/sampling. Both modes train the identical384->768->588predictor from actual RGB patch targets. Only pre-attention mask differs. No EMA teacher or teacher compute. Compared with existing latentDINOdistillation/supervised recipes with explicitly different target/predictor capacity/forward budget.",
+  "novelty": "Masked autoencoding is established; this supervised identity plus RGB reconstruction control is not novel.",
+  "resume": "Lossless immutable official prefix plus all student/head/predictor/buffers/optimizer/scheduler/scaler/Python/NumPy/sampler/augmentation/mask/CPU/CUDA RNG. Register actualseed0masked reconstructionepoch2exit/freshprocessresume.",
+  "scope": "Owned genuine masked pixel reconstruction control on sparse pairedcrop pilot. Firstsixmode/seedfits plusrealrestart registered, excludesouterSN015/innerBT001. No officialFishMAE/MAE reproduction, retrieval/native gain, novelmechanism or completedgoal claim.",
+  "mask_fraction": 0.5,
+  "prediction_weight": 0.25,
+  "determinism": "torch deterministic algorithms; CUBLAS_WORKSPACE_CONFIG=:4096:8; all RNG captured"
+}
