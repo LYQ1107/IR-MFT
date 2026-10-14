@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-15",
-    "local_commit": "509acede7508a90ed2f4e2961246a360930c0599",
-    "remote_commit": "509acede7508a90ed2f4e2961246a360930c0599",
+    "local_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+    "remote_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -296,6 +296,7 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
+      "All-fold visible-token fit-only pretraining and strict raw replay are actively IN_PROGRESS from committed protocol 3b4f897; aggregate evidence remains open.",
       "Final combination gate is measured and NOT_JUSTIFIED; do not mechanically stack current components",
       "Only reopen with an independently measured complementary same-input signal; otherwise preserve frozen FIFO",
       "Preserve external payload/novelty scope exclusions and no positive final-method claim"
@@ -358,6 +359,54 @@
         "IDSW": 165.0
       },
       "finding": "Three-seed single-fold evidence is mixed: masked FIFO/last show small identity gains with extra IDSW, EMA is unstable, and visible_target is consistently lower with extra IDSW. No stable component benefit."
+    },
+    "visible_token_allfold_strict_raw": {
+      "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1",
+      "status": "IN_PROGRESS_FIT_ONLY_PRETRAINING_THEN_STRICT_RAW",
+      "hypothesis": "A fit-only visible-token backbone can be evaluated without outer/inner leakage across all six registered outer folds; masked deletion and matched visible-target control must be carried through complete raw current-only Protocol C before any aggregate or novelty claim.",
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "inner_rule": "next video in declared cycle [BT-001, BT-003, MSK-002, PF-001, SN-001, SN-015]",
+      "fit_rule": "remaining four videos per outer fold; outer and inner excluded from unlabeled pixel pool and encoder fit",
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "pretraining_configs": [
+        "configs/cfp/phase_vii_visible_token_outer_BT-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_BT-003_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_MSK-002_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_PF-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_SN-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_SN-015_v1.json"
+      ],
+      "pool_configs": [
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_BT-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_BT-003_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_MSK-002_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_PF-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-015_v1.json"
+      ],
+      "raw_config": "configs/cfp/phase_vii_visible_token_raw_profile_allfold_v1.json",
+      "source_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+      "pool_status": "COMPLETE_ALL_SIX_FIT_ONLY_UNLABELED_POOLS_OUTSIDE_GIT",
+      "pretraining_state": "/tmp/IR-MFT_phase7_visible_token_allfold_v2/pretrain_state.json",
+      "raw_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/raw_state.json",
+      "finalization_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/reports/finalize_state.json",
+      "output_storage": "/tmp; protected asset reserve preserved",
+      "claim_boundary": "IN_PROGRESS only; no all-fold metrics, stable component benefit, final combination or novelty claim until every declared run is independently replayed and officially scored."
     }
   },
   "experiments": [
@@ -4178,6 +4227,54 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED",
       "raw_outputs_outside_git": true,
       "source_commit": "509acede7508a90ed2f4e2961246a360930c0599"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1",
+      "status": "IN_PROGRESS_FIT_ONLY_PRETRAINING_THEN_STRICT_RAW",
+      "hypothesis": "A fit-only visible-token backbone can be evaluated without outer/inner leakage across all six registered outer folds; masked deletion and matched visible-target control must be carried through complete raw current-only Protocol C before any aggregate or novelty claim.",
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "inner_rule": "next video in declared cycle [BT-001, BT-003, MSK-002, PF-001, SN-001, SN-015]",
+      "fit_rule": "remaining four videos per outer fold; outer and inner excluded from unlabeled pixel pool and encoder fit",
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "pretraining_configs": [
+        "configs/cfp/phase_vii_visible_token_outer_BT-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_BT-003_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_MSK-002_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_PF-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_SN-001_v1.json",
+        "configs/cfp/phase_vii_visible_token_outer_SN-015_v1.json"
+      ],
+      "pool_configs": [
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_BT-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_BT-003_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_MSK-002_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_PF-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-001_v1.json",
+        "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-015_v1.json"
+      ],
+      "raw_config": "configs/cfp/phase_vii_visible_token_raw_profile_allfold_v1.json",
+      "source_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+      "pool_status": "COMPLETE_ALL_SIX_FIT_ONLY_UNLABELED_POOLS_OUTSIDE_GIT",
+      "pretraining_state": "/tmp/IR-MFT_phase7_visible_token_allfold_v2/pretrain_state.json",
+      "raw_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/raw_state.json",
+      "finalization_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/reports/finalize_state.json",
+      "output_storage": "/tmp; protected asset reserve preserved",
+      "claim_boundary": "IN_PROGRESS only; no all-fold metrics, stable component benefit, final combination or novelty claim until every declared run is independently replayed and officially scored."
     }
   ],
   "source_http_followup": {
@@ -4191,10 +4288,10 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
+    "Complete and independently finalize the six outer folds x two visible-token objectives x three seeds strict raw current-only matrix; do not claim aggregate benefit before replay/hash/TrackEval checks.",
     "SN-015 strict raw three-seed visible-token evidence is complete; all-fold native/whole-raw replay remains open",
     "Selective combinations only when an independently measured complementary same-input benefit exists; current evidence does not justify mechanical stacking",
-    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal",
-    "Extend strict raw only to remaining lawful outer folds/videos with a declared target and >=40 GiB reserve"
+    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal"
   ],
   "validation": {
     "project_tests": 219,
