@@ -337,7 +337,7 @@ Actualtwostageprompt/imageforward,contrastiveformula/optimizer/data/metric/confi
 
 - **novelty_overlap**: Identity-specificsoftpromptlearning, crossmodalmulti-positivecontrastive andfrozenlearnedtextanchors forvisualReID alreadyestablishedCLIP-ReID. AnyuseofCLIPinitialization/prompts doesnotalonejustifynewEvidenceFishMOTcontribution. Needfish-specificcrop/partpersistentphysicalidentityandcausalsetcompetition gains abovefrozen/image-finetune/twostagecontrastive controls.
 
-The later COVTrack pinned follow-up succeeds:9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b,32selected text files independently rechecked against recorded Git blob and SHA256. All30references now have exactavailablecommits. Source acquisition alone leaves COVTrack semanticauditpending. PriorTLSerrors/inventories remain preserved; no weights/data/externalcodeexecution.
+The later COVTrack pinned follow-up succeeds:9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b,32selected text files independently rechecked against recorded Git blob and SHA256. Its available source fields are now semantically audited with explicit missing-payload/module limits, and all30references have exactavailablecommits. PriorTLSerrors/inventories remain preserved; no weights/data/externalcodeexecution.
 
 <!-- exact-source-audit:SU-T -->
 

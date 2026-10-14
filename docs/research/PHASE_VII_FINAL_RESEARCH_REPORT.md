@@ -81,7 +81,7 @@ TransReID and CLIP-ReID static evaluators remove same-ID/same-camera positives, 
 
 The complete task book explicitly requires first completing environment/all30 source audits before further method development. Earlier executed visual/joint controls remain evidence, with their negative/confounded results preserved. All30available-source audits are now complete with missing-module/license/weight exclusions; this prerequisite gate is satisfied. The next work is controlled strong/local visual training, followed by genuine localJEPA and same-input C/D. Full goal remains IN_PROGRESS; actual localDenseJEPA training, stronger lawful pretrained baselines, repairedsetcompetition, independentmotion and all-fold/three-seed/fullrawonline remain required. See PHASE_VII_SOURCE_AUDIT_MEASURED.json for exact counts and artifact hashes.
 
-COVTrack source delivery now succeeds at exact9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b, bringing exactsourcepins to30/30. Its semantic audit remains one of14pending; this doesnot claim allreferenceauditsoranyalgorithm complete.
+COVTrack source delivery now succeeds at exact9b0ced5779ee36f5dd73dbe39b5ae5d57abb4b3b, bringing exactsourcepins to30/30. Its available source fields are audited with explicit payload/module exclusions; this doesnot claim an official pretrained reproduction or any algorithm complete.
 
 ## Frozen pretrained diagnostic outcome
 
