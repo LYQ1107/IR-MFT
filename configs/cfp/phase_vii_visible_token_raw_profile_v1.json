@@ -1,0 +1,18 @@
+{
+  "state": "FROZEN",
+  "videos": ["SN-015"],
+  "kinds": ["visible_token_masked", "visible_token_target"],
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "detections": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections",
+  "detector_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python",
+  "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+  "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+  "dino_reference": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+  "dino_weights": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/dinov2_vits14_pretrain.pth",
+  "dino_source_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+  "visible_expected_fit": ["BT-003", "MSK-002", "PF-001", "SN-001"],
+  "visible_expected_inner": "BT-001",
+  "visible_expected_outer": "SN-015",
+  "visible_seed_plan": [0, 1, 2],
+  "scope": "Strict whole-video current-only RGB -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 FP16 detector repeat-current-image batch8 -> current proposal crops -> visible-token checkpoint pad128 -> native FIFO lifecycle/output. SN-015 outer fold, fit BT-003/MSK-002/PF-001/SN-001, inner BT-001; matched masked_visible_tokens and visible_target objectives, seed-specific checkpoints. No GT/teacher/future/cached IR/proposals/features online. Validation reads current IR/proposals only after measured output. Single shared-machine runtime diagnostic; not an all-fold or final-method claim."
+}
