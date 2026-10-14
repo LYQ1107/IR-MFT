@@ -43,7 +43,7 @@ def main():
     if a.kind != expected_kind:
         raise ValueError('Visible-token kind/mode mismatch')
     physical=os.environ.get('CUDA_VISIBLE_DEVICES','');idle(physical)
-    if shutil.disk_usage(a.root).free<42*2**30:raise OSError('40GiBreserve plusmargin')
+    if shutil.disk_usage(a.root).free<40*2**30:raise OSError('40GiBreserve')
     data=Path(c['data_root']);index=a.asset_root/'identity_two_crop_index_v1';im=json.loads((index/'manifest.json').read_text());path=index/(a.video+'.frames.json');rows=json.loads(path.read_text());detections=Path(c['detections'])/(a.video+'.npz');dm=json.loads((Path(c['detections'])/'manifest.json').read_text())
     if sha256(path)!=im['videos'][a.video]['frame_paths_sha256'] or sha256(detections)!=dm['caches'][a.video]['sha256']:raise ValueError('Immutable currentframe/proposal provenance changed')
     with np.load(detections,allow_pickle=False) as source:frames,offsets,expected_boxes,expected_scores=[source[k].copy() for k in ['frame_ids','offsets','boxes','scores']]
