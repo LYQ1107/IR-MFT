@@ -1,0 +1,34 @@
+{
+  "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
+  "as_of": "2026-10-14",
+  "environment": {
+    "python": "/data3/liuyeqiang/.venvs/cfp-fishmot/bin/python",
+    "cuda_visible_devices": "",
+    "workdir": "/data3/liuyeqiang/IR-MFT"
+  },
+  "phase_vii_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests --ignore=tests/test_rgbt_pairing.py",
+  "phase_vii_result": {
+    "exit_code": 0,
+    "passed": 293,
+    "failed": 0,
+    "warnings": 24,
+    "scope": "Repository tests excluding the one legacy external-data fixture that points to an unavailable /data1 PFTrack annotation path."
+  },
+  "tests_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
+  "tests_result": {
+    "exit_code": 1,
+    "passed": 293,
+    "failed": 1,
+    "warnings": 24,
+    "failure": "tests/test_rgbt_pairing.py::RGBTDataPairingTest::test_fifty_train_pairs_and_shared_transform",
+    "reason": "FileNotFoundError: /data1/LWR/vranlee/CELL/PFTrack/data/mft26-ir/annotations/train.json; external dataset is not present in this workspace."
+  },
+  "full_repo_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q",
+  "full_repo_result": {
+    "exit_code": 2,
+    "collection_failure": "tutorials/ctracker/test_byte.py imports skimage.io; ModuleNotFoundError: No module named skimage",
+    "scope": "Legacy tutorial collection outside the Phase VII tests; no dependency installation or source modification performed."
+  },
+  "interpretation": "All 293 in-repository Phase VII tests that do not require the unavailable external PFTrack annotation pass. Full repository and the single external-data fixture remain explicitly limited; this is not a claim that every historical test has passed.",
+  "source_commit": "846bea912ede72b0b626913813f8647b76b2c9bd"
+}

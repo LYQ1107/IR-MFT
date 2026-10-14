@@ -84,3 +84,5 @@ The D-direction paper-faithful AGCIoU route is explicitly source-excluded after 
 External generalization is explicitly scope-excluded at the lawful metadata boundary: MFT25 is gated for contact-information sharing, while MFT-Edge/FishMAE payload terms, physical-ID lineage, cadence and overlap are unresolved. No external data were acquired or used, and internal six-video folds must not be described as external validation. See `PHASE_VII_EXTERNAL_GENERALIZATION_SCOPE_MEASURED.json`.
 
 The final 20-question coverage audit is complete: every user question is present and labelled with its current evidence boundary. This does not manufacture a positive method result; the overall goal remains IN_PROGRESS_UNACHIEVED. See `PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json`.
+
+Current test validation is 293 passing Phase VII repository tests with 24 warnings under the declared scope. One legacy RGBT fixture requires an absent external PFTrack annotation path and full-repository collection also sees a missing `skimage` tutorial dependency; these are preserved as environment limits rather than silently repaired. See `PHASE_VII_TEST_VALIDATION_MEASURED.json`.
