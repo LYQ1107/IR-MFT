@@ -1,0 +1,297 @@
+#!/usr/bin/env python3
+"""Fit-only actual pixel-mask/visible-target/supervised identity controls. Delta checkpoints retain full optimizer/RNG states against a hash-pinned immutable DINO base."""
+import argparse
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import random
+import shutil
+import subprocess
+import time
+
+import numpy as np
+import torch
+
+from cfp.crop_retrieval import embedding_crop_retrieval
+from cfp.dinov2_fish_data import load_crop_banks, pixel_batch, augment_observations
+from cfp.fish_masked_identity import MaskedPixelFishIdentity, masked_patch_identity_loss
+from cfp.masked_identity_checkpoint import frozen_base, delta_state, load_delta_state, sample_patch_queries
+from cfp.dinov2_identity import resized_observations
+from cfp.dinov2_identity import load_pinned_small
+from cfp.local_identity_training import SameFrameTemporalSampler, local_identity_objective
+from cfp.provenance import sha256, snapshot_sources, write_json
+
+
+def checkpoint(path, payload):
+    temporary = path.with_name(path.name+'.tmp')
+    torch.save(payload, temporary)
+    os.replace(temporary, path)
+
+
+def frozen_digest(model):
+    digest = hashlib.sha256()
+    for name, parameter in model.backbone.named_parameters():
+        if not parameter.requires_grad:
+            digest.update(name.encode())
+            digest.update(parameter.detach().cpu().contiguous().numpy().tobytes())
+    return digest.hexdigest()
+
+
+def gradient_norms(trainable):
+    """Overflow is explicit JSON null; finite gradients use stable FP64 norms."""
+    result = {}
+    for name, parameter in trainable.items():
+        if parameter.grad is not None:
+            value = float(parameter.grad.double().norm())
+            result[name] = value if math.isfinite(value) else None
+    return result
+
+
+def check_gpu(physical):
+    if physical not in ('0', '1', '2', '3'):
+        raise ValueError('Exactly one approved idle physical GPU0-3 required')
+    query = subprocess.check_output(['nvidia-smi', '-i', physical,
+        '--query-gpu=memory.used,utilization.gpu', '--format=csv,noheader,nounits'], text=True)
+    memory, utilization = [int(x.strip()) for x in query.split(',')]
+    if memory > 64 or utilization:
+        raise ValueError('Selected GPU is not idle; never interfere with other jobs')
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    for name in ('config', 'crops', 'features', 'index', 'reference', 'weights', 'source-proof', 'output'):
+        ap.add_argument('--'+name, type=Path, required=True)
+    ap.add_argument('--outer', required=True)
+    ap.add_argument('--mode', required=True)
+    ap.add_argument('--local-count', type=int, required=True)
+    ap.add_argument('--seed', type=int, required=True)
+    ap.add_argument('--resume', action='store_true')
+    ap.add_argument('--stop-after-epoch', type=int)
+    args = ap.parse_args()
+    config = json.loads(args.config.read_text())
+    if (config['state'] != 'FROZEN' or args.mode not in config['modes'] or args.seed not in config['seed_plan']
+            or args.local_count not in config['local_counts'] or args.outer not in config['videos']
+            or args.output.exists() and not args.resume or args.output.resolve().is_relative_to(Path.cwd().resolve())):
+        raise ValueError('Registered config/fold/mode/seed/K and new outside-Git output or identical resume required')
+    if args.stop_after_epoch is not None and not 1 <= args.stop_after_epoch < config['epochs']:
+        raise ValueError('Deliberate restart stop must precede final epoch')
+    cycle = config['videos']
+    inner = cycle[(cycle.index(args.outer)+1) % len(cycle)]
+    fit = [v for v in cycle if v not in (args.outer, inner)]
+    if len(fit) != 4 or args.outer == inner:
+        raise ValueError('Distinct heldout outer and calibration inner plus four fitting videos required')
+    physical = os.environ.get('CUDA_VISIBLE_DEVICES', '')
+    check_gpu(physical)
+    if shutil.disk_usage(args.output.parent).free < 40*2**30:
+        raise OSError('40GiB reserve')
+    torch.set_num_threads(2)
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
+    random.seed(args.seed)
+    if os.environ.get('CUBLAS_WORKSPACE_CONFIG') != ':4096:8':
+        raise ValueError('Deterministic CUDA launch workspace required')
+    torch.use_deterministic_algorithms(True)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cuda.matmul.allow_tf32 = False
+    torch.backends.cudnn.allow_tf32 = False
+    banks, dimensions, fm = load_crop_banks(args.crops, args.features, args.index)
+    sampler = SameFrameTemporalSampler(banks, fit, args.seed, config['identities_per_frame'],
+        config['observations_per_identity'], config['minimum_positive_gap'])
+    assert not any(v in (args.outer, inner) for v, _ in sampler.labels)
+    weight_manifest = json.loads((args.weights.parent/'manifest.json').read_text())
+    if weight_manifest['status'] != 'COMPLETE' or sha256(args.weights) != fm['weight_sha256']:
+        raise ValueError('Exact fresh official pretrained initialization required')
+    proofs = json.loads(args.source_proof.read_text())['imported_source_proofs']
+    backbone = load_pinned_small(args.reference, args.weights, proofs)
+    if config['train_backbone_suffix_blocks'] != 2:
+        raise ValueError('Registered fixed two-block masked student required')
+    model = MaskedPixelFishIdentity(backbone, len(sampler.labels), args.local_count, config['ema_decay'])
+    immutable_base = frozen_base(model)
+    if any(isinstance(m, torch.nn.modules.batchnorm._BatchNorm) for m in model.modules()):
+        raise ValueError('This registered Transformer recipe has no running BN state')
+    frozen_initial = frozen_digest(model.student)
+    initial_tail = {n: p.detach().clone() for n, p in model.student.backbone.named_parameters() if p.requires_grad}
+    check_gpu(physical)
+    torch.cuda.set_per_process_memory_fraction(.4)
+    model.cuda()
+    trainable = {n: p for n, p in model.named_parameters() if p.requires_grad}
+    optimizer = torch.optim.AdamW([
+        {'params': [p for p in model.student.backbone.parameters() if p.requires_grad], 'lr': config['backbone_lr']},
+        {'params': [p for p in model.student.head.parameters() if p.requires_grad], 'lr': config['head_lr']},
+        {'params': list(model.predictor.parameters()), 'lr': config['head_lr']}],
+        weight_decay=config['weight_decay'])
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=config['epochs'])
+    scaler = torch.cuda.amp.GradScaler()
+    augmentation_rng = np.random.default_rng(args.seed+2000)
+    mask_rng = np.random.default_rng(args.seed+3000)
+    sources = [__file__, 'cfp/fish_masked_identity.py', 'cfp/masked_identity_checkpoint.py', 'cfp/dinov2_fish_encoder.py', 'cfp/dinov2_fish_data.py', 'cfp/dinov2_identity.py',
+        'cfp/local_identity_encoder.py', 'cfp/local_identity_training.py', 'cfp/crop_retrieval.py', 'cfp/reid.py']
+    guard = dict(mode=args.mode, seed=args.seed, local_count=args.local_count, outer=args.outer, inner=inner,
+        fit=fit, config_sha256=sha256(args.config), crops_sha256=sha256(args.crops/'manifest.json'),
+        features_sha256=sha256(args.features/'manifest.json'), index_sha256=sha256(args.index/'manifest.json'),
+        pretrained_sha256=sha256(args.weights), source_sha256={p: sha256(p) for p in sources},
+        imported_source_proofs=proofs, physical_devices=physical, torch=torch.__version__,
+        cudnn=torch.backends.cudnn.version(), frozen_prefix_sha256=frozen_initial)
+    report = dict(status='RUNNING', guard=guard, config=config, epochs=[], evaluations={},
+        classifier_keys=[[v, i] for v, i in sampler.labels],
+        source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        parameters=sum(p.numel() for p in model.parameters()), trainable_parameters=sum(p.numel() for p in trainable.values()),
+        trainable_backbone_parameters=sum(p.numel() for p in model.student.backbone.parameters() if p.requires_grad),
+        trainable_head_parameters=sum(p.numel() for p in model.student.head.parameters() if p.requires_grad),
+        training_seconds=0., scope=config['scope'], checkpoint_format='hash_pinned_frozen_base_plus_delta_v1', fitting_invariant='Four fit videos only, independent stopped EMA. Current pixels masked before ALL attention. Teacher/predictor never used online. Outer/inner excluded from fitting and EMA updates.')
+    start_epoch = 0
+    if args.resume:
+        saved = torch.load(args.output/'last.pt', map_location='cpu', weights_only=False)
+        if saved['guard'] != guard or json.loads((args.output/'manifest.json').read_text())['status'] == 'COMPLETE':
+            raise ValueError('Only identical incomplete training may resume')
+        load_delta_state(model, saved['model_delta'], immutable_base)
+        optimizer.load_state_dict(saved['optimizer'])
+        scheduler.load_state_dict(saved['scheduler'])
+        scaler.load_state_dict(saved['scaler'])
+        sampler.rng.bit_generator.state = saved['rng_sampler']
+        augmentation_rng.bit_generator.state = saved['rng_augmentation']
+        mask_rng.bit_generator.state = saved['rng_mask']
+        random.setstate(saved['rng_python'])
+        np.random.set_state(saved['rng_numpy'])
+        torch.set_rng_state(saved['rng_torch'])
+        torch.cuda.set_rng_state_all(saved['rng_cuda'])
+        start_epoch, report = saved['epoch'], saved['report']
+    else:
+        args.output.mkdir(parents=True)
+        report['source_snapshots'] = snapshot_sources(args.output/'sources', sources+[args.config])
+    write_json(args.output/'manifest.json', report)
+    video_index = {v: i for i, v in enumerate(fit)}
+    for epoch in range(start_epoch+1, config['epochs']+1):
+        model.train()
+        losses, coverage = [], []
+        overflow_skips = 0
+        started = time.monotonic()
+        for step in range(config['steps_per_epoch']):
+            observations = sampler.sample()
+            images, masks = pixel_batch(observations, banks, dimensions)
+            images, masks = augment_observations(images, masks, augmentation_rng, config['augmentation'])
+            labels = torch.tensor([sampler.labels[(v, banks[v]['records'][i]['identity'])] for v, i in observations], device='cuda')
+            frames = torch.tensor([banks[v]['records'][i]['frame'] for v, i in observations], device='cuda')
+            videos = torch.tensor([video_index[v] for v, i in observations], device='cuda')
+            optimizer.zero_grad(set_to_none=True)
+            with torch.no_grad():
+                _, fraction = resized_observations(images, masks)
+                queries = sample_patch_queries(fraction.flatten(1), mask_rng, config['mask_fraction'])
+            with torch.cuda.amp.autocast():
+                applied = queries if args.mode != 'visible_target' else torch.zeros_like(queries)
+                observed = model.training_observations(images, masks, applied)
+                observed['target_mask'] = queries
+                prediction_loss, target_count = masked_patch_identity_loss(observed)
+                output = observed['identity']
+            valid = output['crop_valid']
+            if not valid.any():
+                raise ValueError('No observed content in entire sampled training batch')
+            supervised = dict(embedding=output['embedding'][valid], logits=output['logits'][valid].float())
+            loss, parts = local_identity_objective(supervised, labels[valid], frames[valid], videos[valid],
+                config['minimum_positive_gap'], config['triplet_weight'], config['same_frame_weight'])
+            identity_loss = loss
+            coefficient = config['prediction_weight'] if args.mode != 'supervised_only' else 0.
+            loss = loss + coefficient*prediction_loss
+            if not torch.isfinite(loss):
+                raise ValueError('Nonfinite identity loss')
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            if any(p.grad is not None for p in model.student.backbone.parameters() if not p.requires_grad):
+                raise ValueError('Frozen prefix received a fitting gradient')
+            finite = all(p.grad is None or torch.isfinite(p.grad).all() for p in trainable.values())
+            if epoch == 1 and step == 0:
+                report['first_step_gradient_norms'] = gradient_norms(trainable)
+                report['first_step_gradients_finite'] = bool(finite)
+            if finite and 'first_finite_step_gradient_norms' not in report:
+                report['first_finite_step_gradient_norms'] = gradient_norms(trainable)
+                report['first_finite_step'] = dict(epoch=epoch, step=step)
+                if not any(value is not None and value > 0 for n, value in report['first_finite_step_gradient_norms'].items()
+                        if n.startswith('student.backbone.blocks.')):
+                    raise ValueError('No real visual backbone gradient')
+                if args.mode != 'supervised_only' and not any(value is not None and value > 0 for n, value in report['first_finite_step_gradient_norms'].items() if n.startswith('predictor.')):
+                    raise ValueError('Matched masked/visible target predictor has no active gradient')
+            if finite:
+                torch.nn.utils.clip_grad_norm_(trainable.values(), 5.)
+            before = scaler.get_scale()
+            scaler.step(optimizer)
+            scaler.update()
+            skipped = scaler.get_scale() < before
+            overflow_skips += int(skipped)
+            if not finite and not skipped:
+                raise ValueError('AMP did not skip a nonfinite gradient')
+            model.update_target(successful=not skipped)
+            if not all(torch.isfinite(p).all() for p in trainable.values()):
+                raise ValueError('Nonfinite trained parameter')
+            losses.append([float(loss.detach()), parts['ce'], parts['temporal'], parts['same_frame'], float(prediction_loss.detach()), float(identity_loss.detach())])
+            coverage.append([int(valid.sum()), parts['same_frame_anchors'], parts['temporal_coverage'], target_count])
+        scheduler.step()
+        if 'first_finite_step_gradient_norms' not in report:
+            raise ValueError('No finite visual gradient during first epoch')
+        if frozen_digest(model.student) != frozen_initial:
+            raise ValueError('Frozen pretrained prefix changed')
+        seconds = time.monotonic()-started
+        report['training_seconds'] += seconds
+        entry = dict(epoch=epoch, loss_ce_temporal_frame=np.mean(losses, axis=0).tolist(),
+            sample_sameframe_temporal_coverage=np.mean(coverage, axis=0).tolist(), seconds=seconds,
+            attempted_steps=config['steps_per_epoch'], amp_overflow_skips=overflow_skips,
+            optimizer_updates=config['steps_per_epoch']-overflow_skips, teacher_updates=int(model.teacher_updates))
+        report['epochs'].append(entry)
+        checkpoint(args.output/'last.pt', dict(epoch=epoch, guard=guard, report=report,
+            model_delta=delta_state(model, immutable_base), optimizer=optimizer.state_dict(), scheduler=scheduler.state_dict(),
+            scaler=scaler.state_dict(), rng_sampler=sampler.rng.bit_generator.state,
+            rng_augmentation=augmentation_rng.bit_generator.state, rng_mask=mask_rng.bit_generator.state, rng_python=random.getstate(),
+            rng_numpy=np.random.get_state(), rng_torch=torch.get_rng_state(), rng_cuda=torch.cuda.get_rng_state_all()))
+        write_json(args.output/'manifest.json', report)
+        print(json.dumps(entry), flush=True)
+        if shutil.disk_usage(args.output).free < 40*2**30:
+            raise OSError('40GiB reserve')
+        if args.stop_after_epoch == epoch:
+            report.update(status='CHECKPOINTED_EARLY_STOP', stopped_after_epoch=epoch)
+            write_json(args.output/'manifest.json', report)
+            print(json.dumps({'status': report['status'], 'epoch': epoch}), flush=True)
+            return
+    if int(model.teacher_updates) != sum(e['optimizer_updates'] for e in report['epochs']):
+        raise ValueError('EMA must update once per successful optimizer step')
+    report['frozen_prefix_unchanged'] = True
+    report['trained_backbone_l2_change'] = float(sum((p.detach().cpu()-initial_tail[n]).square().sum()
+        for n, p in model.student.backbone.named_parameters() if n in initial_tail).sqrt())
+    if not report['trained_backbone_l2_change'] > 0:
+        raise ValueError('Visual optimizer never changed the registered backbone suffix')
+    model.eval()
+    for video in (inner, args.outer):
+        directory = args.output/video
+        directory.mkdir(exist_ok=args.resume)
+        shutil.copyfile(args.features/video/'records.json', directory/'records.json')
+        valid = banks[video]['arrays']['valid']
+        records = banks[video]['records']
+        shapes = {'embedding': (384,), 'raw_global': (384,)}  # No unused zero local arrays in global control.
+        arrays = {n: np.lib.format.open_memmap(directory/(n+'.npy'), mode='w+',
+            dtype=np.bool_ if n=='local_valid' else np.float32, shape=(len(records), *shape)) for n, shape in shapes.items()}
+        with torch.inference_mode():
+            for start in range(0, len(records), 128):
+                observations = [(video, i) for i in range(start, min(start+128, len(records)))]
+                images, masks = pixel_batch(observations, banks, dimensions)
+                output = model.online(images, masks)  # Student-only FP32 retrieval.
+                for name in shapes:
+                    arrays[name][start:start+len(observations)] = output[name].cpu().numpy()
+        for value in arrays.values():
+            value.flush()
+        artifacts = {n: dict(sha256=sha256(directory/(n+'.npy')), shape=list(value.shape), dtype=str(value.dtype)) for n, value in arrays.items()}
+        report['evaluations'][video] = dict(
+            retrieval=embedding_crop_retrieval(arrays['embedding'], records, valid, device='cuda'),
+            raw_global_retrieval=embedding_crop_retrieval(arrays['raw_global'], records, valid, device='cuda'),
+            artifacts=artifacts, records_sha256=sha256(directory/'records.json'))
+        write_json(args.output/'manifest.json', report)
+        print(video, report['evaluations'][video]['retrieval'], flush=True)
+    checkpoint(args.output/'final.pt', dict(model_delta=delta_state(model, immutable_base), guard=guard, config=config,
+        classifier_keys=report['classifier_keys'], epoch=config['epochs']))
+    report.update(status='COMPLETE', checkpoint_sha256=sha256(args.output/'final.pt'),
+        peak_gpu_allocated_bytes=torch.cuda.max_memory_allocated())
+    write_json(args.output/'manifest.json', report)
+
+
+if __name__ == '__main__':
+    main()

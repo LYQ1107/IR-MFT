@@ -1,0 +1,58 @@
+{
+  "state": "FROZEN",
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "folds": "Outer each video, inner next in this declared cycle, fit other4. First outerSN015/innerBT001; both excluded from any fish gradient or state update.",
+  "first_outer": "SN-015",
+  "first_inner": "BT-001",
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "modes": [
+    "supervised_only",
+    "visible_target",
+    "pixel_masked"
+  ],
+  "local_counts": [
+    4
+  ],
+  "first_local_count": 4,
+  "dimension": 384,
+  "train_backbone_suffix_blocks": 2,
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "backbone_lr": 1e-05,
+  "head_lr": 0.0003,
+  "weight_decay": 0.0001,
+  "identities_per_frame": 8,
+  "observations_per_identity": 4,
+  "minimum_positive_gap": 25,
+  "triplet_weight": 1.0,
+  "same_frame_weight": 0.2,
+  "augmentation": {
+    "horizontal_flip_probability": 0.5,
+    "erase_probability": 0.2,
+    "erase_area_fraction": [
+      0.05,
+      0.2
+    ]
+  },
+  "checkpoint_selection": "Fixed finalepoch8, all inner/outer retrieval after training only; no checkpoints/hyperparameters chosen from outer video.",
+  "representation": "Official pinned DINOv2S last2blocks+norm, global384. Independent stopped teacher targets actual current unmasked patch embeddings. Student replacement by official frozen mask token before ANY attention. Half observable patches queried; at least one visible patch remains when possible. Content fractions are padding/augmentation visibility, not fish anatomy/real occlusion.",
+  "comparison": "Same four fit videos/labels/1200attempted updates/augmentations/tail/head/sampling. All modes run identical three forward branches. visible_target and pixel_masked both train identical predictor/independentEMA; only pre-attention pixel masking differs. supervised_only coefficient0 is an explicit lower active-loss-capacity reference, not the matched predictor control. Query RNG is separate from sampling/augmentation RNG.",
+  "novelty": "Established masked distillation/EMA mechanisms used as controls; not novel and not official FishMAE reproduction.",
+  "resume": "Delta of model against exact immutable official frozen prefix; all frozen base keys must remain bitexact. Atomic optimizer/scheduler/AMP/all RNG including separate mask RNG. Genuine epoch2 exit/fresh-process resume equality still required.",
+  "scope": "Controlled genuine pixel-mask identity training on sparse paired crop pilot. First nine mode/seed configurations compare against visible-target and supervised controls; outer and next inner excluded. No performance/novelty/native or fullgoal claim until measured. All-six folds and native fullvideos remain required.",
+  "mask_fraction": 0.5,
+  "prediction_weight": 0.25,
+  "ema_decay": 0.99,
+  "determinism": "torch deterministic algorithms; CUBLAS_WORKSPACE_CONFIG=:4096:8; all RNG captured"
+}

@@ -122,3 +122,33 @@ Allsix K4 outer/inner-fold confirmation is now running on four CPUworkers: eight
 SamefixedcontextV2fullseed0, BT001inner only; outerrequest actually rejects before weights/banks/outputcreation. StoppedEMAteacher flexiblelocalFIFO R139.150% onexact447supported currentdetector queries vsfullcontext36.242%; fit-onlyconstanttargetmean8.949%. Targetidentitysignal isretained, and a trivialmean isnotcompetitive. CurrentGTtarget tokencosine loss atpastgap1/25/100: regionaldecoder0.522/0.627/0.694, teacherpastFIFO0.379/0.591/0.702, fitconstantmean0.991/0.991/0.992. A smalllonggap reconstruction difference is not identitybenefit; simplerhistory already beatsdecoder atgap1/25. Currenttarget is whollyexcludedfrompredictioninputs; masking merely selects lossqueries and doesnot create image-level visiblecontext masking in this forecastversion. No teacher forward isusedonline. Fullsame-support/absence/unknown/target-count proofs are in PHASE_VII_LOCAL_TARGET_IDENTITY_DIAGNOSIS_MEASURED.json.
 
 A separate ownedDINO/I-JEPA-style primitive now masks patch embeddings before ANYbackbone attention, withindependentstoppedEMAbackbone andteacher/decoder-free `.online()` encoder. ActualApacheDINO22M/2GTfitcrops fromBT003 passeshiddenprepared-pixel perturbation invariance whileunmaskedteacher changes. OneactualCPUoptimizer/EMAupdate hasfinitegradient paths into the final2visualblocks/maskpredictor, frozenprefix remains identical, teachergradients absent. This is144observedmaskedpatches andoneupdate, not a completed8epochmaskedfishfit ornewidentity/native/noveltyclaim. Genuine controlled training remainsrequired; this closes the cached-global-token masking leak hazard. See PHASE_VII_PIXEL_MASKED_IDENTITY_SMOKE_MEASURED.json.
+
+## Completed first-fold B native three-seed controls
+
+All 30 native SN-015 runs (ten configurations × three seeds × 6,570 frames) and pinned official evaluations are complete. The collector verifies fixed excluded outer/inner folds, exact training/checkpoint/current-feature/source hashes, all frame counts, and no GT/teacher/future online input. Results are mean ± sample standard deviation; all per-seed and official metrics remain in [PHASE_VII_LOCAL_NATIVE_THREE_SEED_MEASURED.json](PHASE_VII_LOCAL_NATIVE_THREE_SEED_MEASURED.json).
+
+| Mode | HOTA | AssA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|
+| Frozen CLS FIFO | 32.225 | 14.786 | 30.445 | 91.019 | 152.000 |
+| global | 31.031 ± 0.023 | 13.675 ± 0.020 | 26.364 ± 0.002 | 91.006 ± 0.005 | 145.000 ± 0.000 |
+| global_gru | 33.008 ± 1.528 | 15.490 ± 1.413 | 29.753 ± 2.118 | 91.011 ± 0.003 | 141.667 ± 1.155 |
+| local_attention | 30.964 ± 0.066 | 13.619 ± 0.061 | 26.954 ± 0.621 | 91.016 ± 0.010 | 144.333 ± 1.528 |
+| local_temporal | 30.858 ± 0.148 | 13.533 ± 0.116 | 25.679 ± 0.692 | 91.025 ± 0.008 | 145.333 ± 1.155 |
+| local_contrastive | 31.701 ± 0.999 | 14.295 ± 0.944 | 28.303 ± 1.820 | 91.015 ± 0.016 | 145.000 ± 1.732 |
+| no_ema | 31.370 ± 0.346 | 13.975 ± 0.319 | 28.094 ± 1.817 | 90.998 ± 0.015 | 149.667 ± 1.528 |
+| no_prediction | 30.973 ± 0.337 | 13.626 ± 0.285 | 27.355 ± 0.778 | 91.015 ± 0.013 | 144.333 ± 1.528 |
+| no_id | 32.710 ± 0.116 | 15.238 ± 0.121 | 30.732 ± 0.124 | 90.998 ± 0.003 | 159.000 ± 0.000 |
+| full | 31.201 ± 0.474 | 13.829 ± 0.430 | 27.727 ± 1.199 | 90.998 ± 0.011 | 149.333 ± 0.577 |
+| context_full | 30.630 ± 0.105 | 13.338 ± 0.099 | 25.679 ± 0.692 | 91.020 ± 0.012 | 146.667 ± 0.577 |
+
+Original full and context full both reduce HOTA and IDF1 against frozen FIFO. Ordinary global GRU has higher mean HOTA but lower mean IDF1 and substantial seed variation. No-ID has a small HOTA/IDF1 advantage with more switches; it still uses annotated temporal grouping during training and is not a JEPA identity-evidence gain. These single outer-video results do not establish all-six native generalization or independent novelty. All-six context training, ordinary native matrix, on-policy mixed-history diagnosis and controlled true pixel-mask training remain required.
+
+## Registered actual pixel-mask training control
+
+The new owned trainer uses the pinned Apache DINOv2-S backbone, four fitting videos and the original same-frame/temporal sampler, 8 × 150 attempted updates, identical augmentation, last two blocks plus final norm and global384 identity head. Outer SN-015 and inner BT-001 never update fitting or EMA state. Three modes and three seeds are registered in `phase_vii_pixel_masked_identity_v1.json`: supervised-only, visible-target distillation, and true pre-attention pixel masking. All modes run three forward branches. Visible-target and masked modes have the same active predictor and independently stopped EMA target; only masked input differs. The supervised-only zero auxiliary coefficient is an explicit lower active-loss-capacity reference. No anatomy or true occlusion labels are claimed from content fractions.
+
+Half of observable patches are queried using a separate captured RNG, retaining visible content where possible. Official frozen mask embeddings replace selected image embeddings before any backbone attention. Current unmasked teacher targets are training-only; online evaluation calls the student alone. EMA advances only after successful AMP optimizer updates, and the update count must match successful training steps. These are established masked distillation mechanisms, not novelty or official FishMAE reproduction.
+
+Lossless checkpoints omit only bitexact immutable pretrained prefix tensors. The actual licensed model CPU smoke restores all377model keys exactly from87delta keys plus290base keys after a real optimizer/EMA update, with36finite gradient fields and144masked observed patches; the model delta is37,076,321bytes. Student and teacher tails, classifier, predictor, all buffers and optimizer/scheduler/AMP states are saved; all Python/NumPy/CPU/CUDA/sampler/augmentation/mask RNG are captured. The one-update smoke proves serialization/masking/gradient correctness, not an8epoch fit or nativeMOT gain. See PHASE_VII_PIXEL_MASKED_CHECKPOINT_MEASURED.json.
+
+A durable first-fold queue is waiting for the assigned owned GPU1 native producer to fully complete and its process to exit, followed by an actual <=64MiB/zero-utilization check. It registers nine mode/seed fits plus a distinct seed0masked epoch2exit/fresh-process resume versus continuous8epoch fit. Exact model/optimizer/EMA/RNG/loss/retrieval comparison runs before subsequent controls. The initial storage plan reserves42GiB plus5GiB for other jobs and250MiB per fit. Sources/config are hash guarded; no active native/raw source helper was modified. All-six masked folds, genuine MAE pixel-reconstruction/strong source baselines, native pipelines and scientific benefit still require actual experiments.

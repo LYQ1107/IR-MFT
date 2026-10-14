@@ -78,3 +78,23 @@ All27contextV2 and9centeredCthree-seed controlled fits are complete; no extraJEP
 ## Complete geometry, target and raw-pipeline controls
 
 All16geometrycontrols×6videos andall18centeredC model/routes×2videos complete. SourceFishcentralbug/repair/continuous-vs-inclusiveIoU/DIoU/finiteAGCv1/affineoffset controls isolateeffects; no stableFishIoU/jointbenefit. Innerteacher39.150R1 versusfitmean8.949 rejects simplecollapse explanation, andpastFIFOtargetloss beatsregionaldecoder atgap1/25. Verifiedrealpixelmask primitive isoneactualCPUupdate, fullcontrolledtrainingpending. Both684frame rawSN001pipelines reproducecachedpredictions exactly withallcurrentIR/proposals equal; algorithmFPSlegacy1.2447/frozenDINO1.1083 andobservedvalidationwallFPSseparate. Fullsource/unknown/metric/runtimecoverage limits remain explicit; overallgoal active/unachieved.
+
+## Completed first-fold B native three-seed controls
+
+All 30 native SN-015 runs (ten configurations × three seeds × 6,570 frames) and pinned official evaluations are complete. The collector verifies fixed excluded outer/inner folds, exact training/checkpoint/current-feature/source hashes, all frame counts, and no GT/teacher/future online input. Results are mean ± sample standard deviation; all per-seed and official metrics remain in [PHASE_VII_LOCAL_NATIVE_THREE_SEED_MEASURED.json](PHASE_VII_LOCAL_NATIVE_THREE_SEED_MEASURED.json).
+
+| Mode | HOTA | AssA | IDF1 | MOTA | IDSW |
+|---|---:|---:|---:|---:|---:|
+| Frozen CLS FIFO | 32.225 | 14.786 | 30.445 | 91.019 | 152.000 |
+| global | 31.031 ± 0.023 | 13.675 ± 0.020 | 26.364 ± 0.002 | 91.006 ± 0.005 | 145.000 ± 0.000 |
+| global_gru | 33.008 ± 1.528 | 15.490 ± 1.413 | 29.753 ± 2.118 | 91.011 ± 0.003 | 141.667 ± 1.155 |
+| local_attention | 30.964 ± 0.066 | 13.619 ± 0.061 | 26.954 ± 0.621 | 91.016 ± 0.010 | 144.333 ± 1.528 |
+| local_temporal | 30.858 ± 0.148 | 13.533 ± 0.116 | 25.679 ± 0.692 | 91.025 ± 0.008 | 145.333 ± 1.155 |
+| local_contrastive | 31.701 ± 0.999 | 14.295 ± 0.944 | 28.303 ± 1.820 | 91.015 ± 0.016 | 145.000 ± 1.732 |
+| no_ema | 31.370 ± 0.346 | 13.975 ± 0.319 | 28.094 ± 1.817 | 90.998 ± 0.015 | 149.667 ± 1.528 |
+| no_prediction | 30.973 ± 0.337 | 13.626 ± 0.285 | 27.355 ± 0.778 | 91.015 ± 0.013 | 144.333 ± 1.528 |
+| no_id | 32.710 ± 0.116 | 15.238 ± 0.121 | 30.732 ± 0.124 | 90.998 ± 0.003 | 159.000 ± 0.000 |
+| full | 31.201 ± 0.474 | 13.829 ± 0.430 | 27.727 ± 1.199 | 90.998 ± 0.011 | 149.333 ± 0.577 |
+| context_full | 30.630 ± 0.105 | 13.338 ± 0.099 | 25.679 ± 0.692 | 91.020 ± 0.012 | 146.667 ± 0.577 |
+
+Original full and context full both reduce HOTA and IDF1 against frozen FIFO. Ordinary global GRU has higher mean HOTA but lower mean IDF1 and substantial seed variation. No-ID has a small HOTA/IDF1 advantage with more switches; it still uses annotated temporal grouping during training and is not a JEPA identity-evidence gain. These single outer-video results do not establish all-six native generalization or independent novelty. All-six context training, ordinary native matrix, on-policy mixed-history diagnosis and controlled true pixel-mask training remain required.
