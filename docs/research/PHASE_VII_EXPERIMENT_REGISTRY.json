@@ -263,9 +263,8 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
-      "Do not select a lucky seed; retain the three-seed masked/visible-target report and exact support/unknown counts",
-      "Only evaluate a native/all-fold adapter for these encoders if it is lawful and semantics-preserving under the storage guard",
-      "Evaluate a final combination only when independent component evidence makes it scientifically informative; otherwise preserve frozen FIFO as the reference",
+      "Final combination gate is measured and NOT_JUSTIFIED; do not mechanically stack current components",
+      "Only reopen with an independently measured complementary same-input signal; otherwise preserve frozen FIFO",
       "Preserve external payload/novelty scope exclusions and no positive final-method claim"
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
@@ -278,6 +277,11 @@
       "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH",
       "branch": "research/evidence-fishmot-v1",
       "commit": "200addd6f706c275066f9fe51a52b04274d6a5a8"
+    },
+    "final_combination_gate": {
+      "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
+      "sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+      "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
     }
   },
   "experiments": [
@@ -3928,6 +3932,15 @@
       "conclusion": "Negative/limited first-fold offline evidence. Masked seed1 matches frozen CLS but seeds0/2 are below it; visible_target is below in all three seeds. Unknown-selected counts differ. No native MOT, Dense-JEPA novelty, official FishMAE or final-method credit.",
       "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
       "report_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed"
+    },
+    {
+      "experiment_id": "VII_FINAL_COMBINATION_GATE_V1",
+      "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
+      "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
+      "report_sha256": "61d4afb5c4ca48b92da1d87a9a306d0595a2710ad341a02cbe6a71af8f93b7eb",
+      "scope": "Measured gate over the completed context/FDTA/JPM/joint/motion/occlusion/pixel and visible-token controls; no new model or compute run.",
+      "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {

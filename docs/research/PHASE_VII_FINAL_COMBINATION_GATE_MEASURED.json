@@ -1,0 +1,497 @@
+{
+  "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
+  "as_of": "2026-10-15",
+  "source_commit": "3f3c8deaed02a53e3aebc828bdc1d021f4c0da5a",
+  "purpose": "Evidence-backed decision on whether to run a final stacked EvidenceFishMOT combination. This is a measured gate, not a new model and not a project-wide NO_GO.",
+  "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
+  "decision_rule": {
+    "required": "At least one component must show an independent, same-input, held-out and reproducible benefit with a plausible complementary error signal; a negative or confounded component is not made positive by stacking it.",
+    "applied_to": "All registered A/B/C/D components and the new visible-token campaign; no outer winner or lucky seed selected."
+  },
+  "frozen_fifo_macro": {
+    "HOTA": 38.78368572140126,
+    "AssA": 26.685579394130933,
+    "IDF1": 47.42580468991998,
+    "MOTA": 73.45878401741977,
+    "IDSW": 114.5
+  },
+  "components": {
+    "context_v2_dense_jepa": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_CONTEXT_IDENTITY_NATIVE_ALLFOLDS_MEASURED.json",
+        "sha256": "2b1580fcf1e4c16fc25d695fef4c0d0ce585efbc27d31ab428773445c789e703",
+        "status": "COMPLETE_54_OUTERFOLD_NATIVE_ROWS"
+      },
+      "macro": {
+        "full": {
+          "HOTA": 38.49522231744553,
+          "AssA": 26.340940264401084,
+          "IDF1": 46.13840515580122,
+          "MOTA": 73.45868894331181,
+          "IDSW": 113.66666666666667
+        },
+        "local_temporal": {
+          "HOTA": 38.5567705878139,
+          "AssA": 26.40173232142217,
+          "IDF1": 46.183003653511214,
+          "MOTA": 73.45887509407443,
+          "IDSW": 113.61111111111111
+        },
+        "global": {
+          "HOTA": 38.37429544400869,
+          "AssA": 26.195333560098454,
+          "IDF1": 46.22558286378622,
+          "MOTA": 73.44917524020124,
+          "IDSW": 115.27777777777777
+        }
+      },
+      "delta_vs_frozen_fifo": {
+        "full": {
+          "HOTA": -0.2884634039557312,
+          "AssA": -0.344639129729849,
+          "IDF1": -1.2873995341187552,
+          "MOTA": -9.507410796061322e-05,
+          "IDSW": -0.8333333333333286
+        },
+        "local_temporal": {
+          "HOTA": -0.2269151335873616,
+          "AssA": -0.2838470727087632,
+          "IDF1": -1.242801036408764,
+          "MOTA": 9.10766546553532e-05,
+          "IDSW": -0.8888888888888857
+        },
+        "global": {
+          "HOTA": -0.40939027739257483,
+          "AssA": -0.49024583403247846,
+          "IDF1": -1.200221826133756,
+          "MOTA": -0.009608777218531372,
+          "IDSW": 0.7777777777777715
+        }
+      },
+      "finding": "All learned full/local_temporal/global modes lose macro HOTA/AssA/IDF1 to frozen FIFO; no independent online complementarity."
+    },
+    "fdta_style": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
+        "sha256": "aa53066716f01e47b42717d48fbd5daef6dc2f4cb21a7deca2dbc82f93ee2705",
+        "status": "COMPLETE_18_CAUSAL_NATIVE_REPLAYS"
+      },
+      "held_out_delta_vs_frozen_fifo": {
+        "mlp": {
+          "BT-001": {
+            "HOTA_mean": 35.82843313668402,
+            "HOTA_sd": 0.9747328713435196,
+            "HOTA_delta": 0.016293686766056,
+            "IDF1_mean": 43.187928659555396,
+            "IDF1_sd": 1.1269271539830137,
+            "IDF1_delta": -2.476898487063855,
+            "IDSW_mean": 102.0,
+            "IDSW_sd": 3.4641016151377544,
+            "IDSW_delta": 3.0
+          },
+          "SN-015": {
+            "HOTA_mean": 31.28532172786721,
+            "HOTA_sd": 0.0,
+            "HOTA_delta": -0.93970096620396,
+            "IDF1_mean": 28.713967179454276,
+            "IDF1_sd": 0.0,
+            "IDF1_delta": -1.730858691990564,
+            "IDSW_mean": 165.0,
+            "IDSW_sd": 0.0,
+            "IDSW_delta": 13.0
+          }
+        },
+        "temporal": {
+          "BT-001": {
+            "HOTA_mean": 35.096349853060715,
+            "HOTA_sd": 0.03056748855998849,
+            "HOTA_delta": -0.715789596857249,
+            "IDF1_mean": 42.244209626261046,
+            "IDF1_sd": 0.0017717947496246728,
+            "IDF1_delta": -3.420617520358205,
+            "IDSW_mean": 105.33333333333333,
+            "IDSW_sd": 0.5773502691896257,
+            "IDSW_delta": 6.333333333333329
+          },
+          "SN-015": {
+            "HOTA_mean": 31.308444156693472,
+            "HOTA_sd": 0.0,
+            "HOTA_delta": -0.916578537377698,
+            "IDF1_mean": 28.71627041422017,
+            "IDF1_sd": 0.0,
+            "IDF1_delta": -1.72855545722467,
+            "IDSW_mean": 162.0,
+            "IDSW_sd": 0.0,
+            "IDSW_delta": 10.0
+          }
+        },
+        "quality": {
+          "BT-001": {
+            "HOTA_mean": 35.113465807427595,
+            "HOTA_sd": 0.0017669225347640173,
+            "HOTA_delta": -0.698673642490369,
+            "IDF1_mean": 42.24533016860354,
+            "IDF1_sd": 0.0004099517513010192,
+            "IDF1_delta": -3.41949697801571,
+            "IDSW_mean": 105.0,
+            "IDSW_sd": 0.0,
+            "IDSW_delta": 6.0
+          },
+          "SN-015": {
+            "HOTA_mean": 31.308444156693472,
+            "HOTA_sd": 0.0,
+            "HOTA_delta": -0.916578537377698,
+            "IDF1_mean": 28.71627041422017,
+            "IDF1_sd": 0.0,
+            "IDF1_delta": -1.72855545722467,
+            "IDSW_mean": 162.0,
+            "IDSW_sd": 0.0,
+            "IDSW_delta": 10.0
+          }
+        }
+      },
+      "finding": "Temporal/quality modes lose HOTA and IDF1 on both held-out videos and add ID switches; MLP has only a one-video HOTA fluctuation while losing IDF1."
+    },
+    "source_jpm": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_SOURCE_JPM_NATIVE_COMPLETE_MEASURED.json",
+        "sha256": "6891e48fe5d7c288202eec771e0cdeb340d0527a1cd70568a157760df48f26f4",
+        "status": "COMPLETE_54_NATIVE_SOURCE_JPM_CONTROLS"
+      },
+      "fifo_summary": {
+        "BT-001": {
+          "global": {
+            "HOTA_mean": 32.037787778035735,
+            "HOTA_sd": 0.8027987760355053,
+            "IDF1_mean": 38.3429039098143,
+            "IDF1_sd": 1.22093174110181
+          },
+          "jpm": {
+            "HOTA_mean": 32.51129642829614,
+            "HOTA_sd": 0.439423536852215,
+            "IDF1_mean": 39.16304193868217,
+            "IDF1_sd": 0.7063937304538656
+          },
+          "cls_capacity": {
+            "HOTA_mean": 32.57326049756326,
+            "HOTA_sd": 0.4831436177747452,
+            "IDF1_mean": 39.15730784565757,
+            "IDF1_sd": 0.7013754940036687
+          }
+        },
+        "SN-015": {
+          "global": {
+            "HOTA_mean": 32.20621313373276,
+            "HOTA_sd": 0.1315763830144152,
+            "IDF1_mean": 29.80515507512465,
+            "IDF1_sd": 0.17460536348474975
+          },
+          "jpm": {
+            "HOTA_mean": 32.427149774808655,
+            "HOTA_sd": 0.1988813697195984,
+            "IDF1_mean": 30.17713297383074,
+            "IDF1_sd": 0.3348622709228594
+          },
+          "cls_capacity": {
+            "HOTA_mean": 32.2564252681066,
+            "HOTA_sd": 0.19303129635936367,
+            "IDF1_mean": 30.0612060342644,
+            "IDF1_sd": 0.4376330553428543
+          }
+        }
+      },
+      "finding": "JPM is above global on some rows but the matched-capacity CLS control is higher on BT-001 and SN-015; no stable spatial/JPM causal gain."
+    },
+    "joint_dictionary": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_DICTIONARY_JOINT_THREE_SEED_MEASURED.json",
+        "sha256": "05da612f0370c79083c358b60097f054036464c63e6d542685f6cfd19d4a78a6",
+        "status": "COMPLETE_FIRST_FOLD_DICTIONARY_SEPARATED_JOINT_THREE_SEED_CONTROLS"
+      },
+      "native_summary": {
+        "BT-001": {
+          "baseline": {
+            "HOTA": 35.812139449917964,
+            "IDF1": 45.66482714661925,
+            "IDSW": 99
+          },
+          "pair": {
+            "HOTA": 32.30773103518419,
+            "IDF1": 35.11409656886739,
+            "IDSW": 102.33333333333333
+          },
+          "cross_transformer": {
+            "HOTA": 24.50942408839821,
+            "IDF1": 26.797205201685504,
+            "IDSW": 207.0
+          },
+          "joint": {
+            "HOTA": 26.858598576154233,
+            "IDF1": 30.146477460242753,
+            "IDSW": 169.66666666666666
+          },
+          "coded_joint": {
+            "HOTA": 26.94235593456409,
+            "IDF1": 34.56965637682509,
+            "IDSW": 305.6666666666667
+          }
+        },
+        "SN-015": {
+          "baseline": {
+            "HOTA": 32.22498292191964,
+            "IDF1": 30.44482587144484,
+            "IDSW": 152
+          },
+          "pair": {
+            "HOTA": 30.443254462254476,
+            "IDF1": 26.434883177811454,
+            "IDSW": 162.33333333333334
+          },
+          "cross_transformer": {
+            "HOTA": 28.41310379345646,
+            "IDF1": 27.471169578717475,
+            "IDSW": 207.0
+          },
+          "joint": {
+            "HOTA": 28.049694039253495,
+            "IDF1": 25.983119510050273,
+            "IDSW": 176.0
+          },
+          "coded_joint": {
+            "HOTA": 30.850211955321814,
+            "IDF1": 32.2442844815909,
+            "IDSW": 294.6666666666667
+          }
+        }
+      },
+      "finding": "Pair/cross-transformer/joint/coded-joint routes are below frozen HOTA/IDF1 on both held-out videos or add switches; NULL/competition tradeoff remains unresolved."
+    },
+    "motion_occlusion": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_OBSERVABLE_OCCLUSION_ALL42_MEASURED.json",
+        "sha256": "ae0348c3c9cfba6777e853b37651c5c2bc739b0069745e0909f09ff3d0eace50",
+        "status": "COMPLETE_42_NATIVE_OBSERVABLE_OCCLUSION_CONTROLS"
+      },
+      "macro_by_configuration": {
+        "native0": {
+          "HOTA": 39.691966481756936,
+          "AssA": 27.795451965065848,
+          "IDF1": 48.1317813990639,
+          "IDSW": 113.16666666666667
+        },
+        "constant_half0": {
+          "HOTA": 38.54870554987417,
+          "AssA": 26.28506995304601,
+          "IDF1": 46.44766552321377,
+          "IDSW": 110.0
+        },
+        "row_mean0": {
+          "HOTA": 39.24997030431044,
+          "AssA": 27.274299675711614,
+          "IDF1": 47.391175365308925,
+          "IDSW": 112.66666666666667
+        },
+        "overlap0": {
+          "HOTA": 39.72124674335009,
+          "AssA": 27.85386289399726,
+          "IDF1": 47.98236489737976,
+          "IDSW": 111.16666666666667
+        },
+        "permuted_overlap0": {
+          "HOTA": 39.38934766540668,
+          "AssA": 27.43061729434564,
+          "IDF1": 47.641441537167076,
+          "IDSW": 112.16666666666667
+        },
+        "permuted_overlap1": {
+          "HOTA": 39.69721839567972,
+          "AssA": 27.81365156001296,
+          "IDF1": 47.8737493240566,
+          "IDSW": 112.0
+        },
+        "permuted_overlap2": {
+          "HOTA": 39.67003545195673,
+          "AssA": 27.781783697552296,
+          "IDF1": 47.9255063464823,
+          "IDSW": 114.33333333333333
+        }
+      },
+      "finding": "Overlap0 adds only +0.029 HOTA over native0 while losing IDF1; placebo permutations are heterogeneous, so independent motion/occlusion complementarity is not established."
+    },
+    "visible_token_reconstruction": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
+        "sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
+        "status": "COMPLETE_THREE_SEED_MASKED_AND_VISIBLE_TARGET_PRETRAIN_PROBES_NEGATIVE"
+      },
+      "sn015_summary": [
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.14285714285714,
+          "rank5_percent": 77.3015873015873,
+          "mAP_percent": 26.51266670842852,
+          "unknown_selected": 50,
+          "rank1_delta_percentage_points": -0.793650793650805,
+          "mAP_delta_percentage_points": 2.655496088437701,
+          "unknown_selected_delta": 8,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 57.936507936507944,
+          "rank5_percent": 77.14285714285715,
+          "mAP_percent": 26.99216168338287,
+          "unknown_selected": 47,
+          "rank1_delta_percentage_points": 0.0,
+          "mAP_delta_percentage_points": 3.1349910633920537,
+          "unknown_selected_delta": 5,
+          "support_equal": true
+        },
+        {
+          "mode": "masked_visible_tokens",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 56.82539682539682,
+          "rank5_percent": 78.25396825396825,
+          "mAP_percent": 26.78186797143788,
+          "unknown_selected": 59,
+          "rank1_delta_percentage_points": -1.1111111111111214,
+          "mAP_delta_percentage_points": 2.9246973514470618,
+          "unknown_selected_delta": 17,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 0,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 53.01587301587302,
+          "rank5_percent": 71.26984126984127,
+          "mAP_percent": 23.14341581990543,
+          "unknown_selected": 49,
+          "rank1_delta_percentage_points": -4.9206349206349245,
+          "mAP_delta_percentage_points": -0.7137548000853862,
+          "unknown_selected_delta": 7,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 1,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 49.682539682539684,
+          "rank5_percent": 70.7936507936508,
+          "mAP_percent": 22.143643055011857,
+          "unknown_selected": 52,
+          "rank1_delta_percentage_points": -8.25396825396826,
+          "mAP_delta_percentage_points": -1.7135275649789605,
+          "unknown_selected_delta": 10,
+          "support_equal": true
+        },
+        {
+          "mode": "visible_target",
+          "seed": 2,
+          "queries": 644,
+          "supported_queries": 630,
+          "missing_target": 14,
+          "rank1_percent": 51.746031746031754,
+          "rank5_percent": 72.38095238095238,
+          "mAP_percent": 22.862458581546317,
+          "unknown_selected": 43,
+          "rank1_delta_percentage_points": -6.19047619047619,
+          "mAP_delta_percentage_points": -0.9947120384445007,
+          "unknown_selected_delta": 1,
+          "support_equal": true
+        }
+      ],
+      "aggregate": {
+        "masked_visible_tokens": {
+          "rank1_percent": {
+            "mean": 57.301587301587304,
+            "sample_sd": 0.5723097262641311
+          },
+          "rank5_percent": {
+            "mean": 77.56613756613757,
+            "sample_sd": 0.6009426820952624
+          },
+          "mAP_percent": {
+            "mean": 26.76223212108309,
+            "sample_sd": 0.24034981322228147
+          },
+          "unknown_selected": {
+            "mean": 52,
+            "sample_sd": 6.244997998398398
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -0.6349206349206421,
+            "sample_sd": 0.5723097262641311
+          },
+          "mAP_delta_percentage_points": {
+            "mean": 2.905061501092272,
+            "sample_sd": 0.24034981322228147
+          }
+        },
+        "visible_target": {
+          "rank1_percent": {
+            "mean": 51.48148148148149,
+            "sample_sd": 1.682340010114779
+          },
+          "rank5_percent": {
+            "mean": 71.48148148148148,
+            "sample_sd": 0.814539911023313
+          },
+          "mAP_percent": {
+            "mean": 22.7165058188212,
+            "sample_sd": 0.5156190959090401
+          },
+          "unknown_selected": {
+            "mean": 48,
+            "sample_sd": 4.58257569495584
+          },
+          "rank1_delta_percentage_points": {
+            "mean": -6.455026455026458,
+            "sample_sd": 1.682340010114779
+          },
+          "mAP_delta_percentage_points": {
+            "mean": -1.1406648011696159,
+            "sample_sd": 0.5156190959090401
+          }
+        }
+      },
+      "finding": "Masked mean Rank-1 57.302%±0.572 and visible-target 51.481%±1.682 versus frozen CLS57.937% on equal support; one masked seed matches Rank-1 but unknown counts differ. Offline first-fold only, no native complementarity."
+    },
+    "pixel_identity_and_supervised_controls": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+        "sha256": "245517cde226b8f463ea24e9b1ec86a19cabf113906d827d5613cb09c93fe6da",
+        "status": "COMPLETE_FIRST_FOLD_PIXEL_IDENTITY_THREE_SEED_CONTROLS"
+      },
+      "finding": "Offline supervised/local/pixel controls contain ordinary domain-adaptation gains but no stable independent native gain; stacking their representations without a measured complementary error signal would be a new unvalidated method."
+    }
+  },
+  "why_no_new_run": [
+    "The only positive-looking rows are either offline identity diagnostics, capacity controls, or isolated video fluctuations; they do not satisfy the independent same-input held-out criterion together.",
+    "The native negative rows cover all six videos/three seeds for context and source-JPM/FDTA scopes and 42 occlusion controls; stacking would add parameters while hiding the causal negative evidence.",
+    "The visible-token campaign is first-fold and offline, so routing its encoder into native MOT would change the producer and confound the combination gate rather than test complementarity.",
+    "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
+  ],
+  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Frozen DINO/FIFO stays the strong reference; future work may reopen the gate only after an independently measured complementary signal.",
+  "resource_scope": {
+    "protected_asset_free_gib_snapshot": 40.146671,
+    "reserve_gib": 40.0,
+    "gpu_policy": "GPU0-3 only when idle; GPU4-9 excluded",
+    "new_compute_started": false
+  }
+}

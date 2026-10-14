@@ -24,6 +24,10 @@ The same continuation now includes a complete 54-row outer-fold context-V2 nativ
 
 First-fold global/local backbone fitting now completes seeds0/1/2, with no retained outer gain. Epoch2fresh-process restart reproduces continuous model/optimizer/AMP/allRNG and metrics exactly. This closes that narrow engineering verification, not the full research goal.
 
+## Final combination gate (2026-10-15)
+
+A measured combination gate now covers the completed context-V2, FDTA-style, source-JPM, dictionary-joint, observable-occlusion, visible-token and pixel/domain controls. Context full/local-temporal/global all lose the same-input frozen FIFO macro identity metrics; FDTA temporal/quality lose held-out HOTA and IDF1; JPM is not above the matched-capacity CLS control consistently; joint routes lose held-out HOTA/IDF1 or add switches; overlap fusion changes HOTA by only +0.029 macro points while lowering IDF1; and the visible-token campaign is offline first-fold evidence without native complementarity. The gate therefore records `DO_NOT_RUN_MECHANICAL_FINAL_STACKING` in `PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json`. This is a measured decision boundary, not a project-wide NO_GO; a future combination needs a new independent same-input complementary signal.
+
 ## Source audit completion: thirty available-source field audits
 
 All30 references now have all11 available source-level semantic fields and exact commit/blob/SHA reading proofs. The final completed set includes MOTRv2, TrackTrack and COVTrack;599listed source/config/license paths have exact provenance and targeted reading records. TFMFT missing model/criterion/sampler and TCEI missing train-entry modules remain explicit coverage exclusions, rather than verified complete training; this is not an exhaustive every-line reading claim or official pretrained reproduction. Weight delivery, unverified derivative/data terms and execution exclusions remain explicit in REPOSITORY_REGISTRY.
