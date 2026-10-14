@@ -44,4 +44,6 @@ The external generalization route is also closed at an explicit permission/metad
 
 The final-question coverage audit now confirms all 20 user questions are represented with measured, negative/limited, explicit-exclusion or recommendation-only statuses. `PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json` preserves the open boundaries; it is an audit artifact, not a positive contribution or project-wide NO_GO.
 
+Authoritative remaining work is the requirement-by-requirement task-book command/artifact audit and a final combination only if independent component evidence makes it informative. Current results do not justify a learned nonlinear-motion training run or a packaged positive method; the goal remains active and unachieved.
+
 The current validation scope is recorded in `PHASE_VII_TEST_VALIDATION_MEASURED.json`: 293 Phase VII repository tests pass with 24 warnings after excluding the unavailable external PFTrack fixture; the unexcluded fixture and unrelated legacy tutorial dependency remain explicit limits. No external data or package was installed to hide those boundaries.
