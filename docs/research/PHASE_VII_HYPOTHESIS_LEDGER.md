@@ -78,3 +78,5 @@ Actual GPU checks confirm both visible-token modes can train with deterministic 
 ## Visible-token RGB pretraining follow-up (2026-10-14)
 
 The first storage-safe `masked_visible_tokens` seed completed eight pretraining epochs and one frozen CE+Triplet identity probe. SN-015 detector gap25 Rank-1 fell from frozen CLS 57.937% to 57.143% (same 630/644 support), while unknown-selected counts changed 42→50. Therefore the single probe supplies no stable identity evidence and no native-MOT/JEPA novelty credit. The exact six-pretrain queue remains halted by storage reserve/forecast; preserve the completed seed and continue only with storage-safe combinations and final audits.
+
+The D-direction paper-faithful AGCIoU route is explicitly source-excluded after the primary TIDE formula/source audit: average scale and epsilon are unresolved, AGCv1/AGCv2 are not the active paper metric, and arbitrary repairs would be a new proxy. Existing geometry/UKF/observable-overlap controls remain negative or heterogeneous. See `PHASE_VII_AGCIOU_SCOPE_EXCLUSION_MEASURED.json`; no paper reproduction or motion contribution is claimed.

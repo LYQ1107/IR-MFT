@@ -1,0 +1,58 @@
+{
+  "status": "EXPLICIT_SOURCE_COVERAGE_EXCLUSION_PAPER_AGCIOU",
+  "as_of": "2026-10-14",
+  "decision": "Do not claim or run an invented paper-faithful AGCIoU implementation; retain the measured clipped AGCv1/source-function controls as separately labelled geometry controls.",
+  "primary_source": {
+    "title": "TIDE v1",
+    "url": "https://arxiv.org/html/2607.26412v1#S3.SS3",
+    "section": "3.3"
+  },
+  "source_pins": {
+    "tide_source_commit": "fba27aefd1da11bfc7f946240dd66d85ea02a39c",
+    "source_audit": "docs/research/PHASE_VII_30_PAPERS_CODE_AUDIT.md",
+    "source_audit_sha256": "b1207c4dd495cf32c3a164a7995109a51c61ef44c9712f179b88b9a48716d293",
+    "priority_external_audit": "docs/research/PHASE_VII_PRIORITY_EXTERNAL_DATA_MEASURED.json",
+    "priority_external_audit_sha256": "258ba44260ee2248f2bdf3f479646758e6259473ce71f7b4ed920caa092d43e6",
+    "measured_geometry_report": "docs/research/PHASE_VII_FISH_GEOMETRY_MEASURED.json",
+    "measured_geometry_report_sha256": "d04ada3023eab1e95f1cf096af4cfdd4a312ea22073b61151362f76e36ef8e62",
+    "independent_geometry_source": "cfp/fish_geometry.py",
+    "independent_geometry_source_sha256": "42cc3c11f27d9e75eafe0ef0f01b1a789897c10815a19837960c1537e235d2d2"
+  },
+  "paper_formula_observed": {
+    "terms": [
+      "normalized centroid distance",
+      "aspect alignment",
+      "area alignment",
+      "IoU <= 0.7 activation"
+    ],
+    "constants": {
+      "kd": 0.1,
+      "ks": 0.05,
+      "lambda": 0.5
+    },
+    "underspecified_choices": [
+      "average box scale s",
+      "epsilon for zero/near-zero denominators",
+      "score handling when the formula exceeds one"
+    ]
+  },
+  "pinned_source_findings": {
+    "AGCv1": "adds raw inverse center distance with a fixed offset and lacks the paper structural terms/activation; singular at coincident centers unless repaired.",
+    "AGCv2": "has no return in the inspected source body and is not an executable faithful metric.",
+    "active_path": "the inspected TIDE active matching path uses ordinary bbox IoU helpers; standalone AGCv1/AGCv2 are not the deployed association metric."
+  },
+  "measured_control_boundary": {
+    "existing_report": "docs/research/PHASE_VII_FISH_GEOMETRY_MEASURED.json",
+    "existing_control": "agc_clipped",
+    "interpretation": "finite clipped AGCv1/source-function control only; not paper AGCIoU, full TIDE, nonlinear motion, occlusion or novelty evidence."
+  },
+  "reason_for_exclusion": "Selecting an average scale, epsilon, clipping rule, activation repair or missing active-path integration would add unverified implementation choices and would be a new proxy rather than a source-faithful reproduction. The available primary source and pinned code do not provide enough information for an auditable faithful claim.",
+  "scope_closed": "Task-book D requirement is closed by explicit source-coverage exclusion; existing fixed-input geometry/UKF/observable-overlap controls remain valid. A learned nonlinear motion model is optional future work only if measured error evidence justifies it.",
+  "claims_forbidden": [
+    "paper-faithful AGCIoU reproduction",
+    "complete TIDE association reproduction",
+    "native MOT improvement from AGCIoU",
+    "nonlinear fish-motion or occlusion benefit",
+    "whole-raw runtime or novelty claim"
+  ]
+}
