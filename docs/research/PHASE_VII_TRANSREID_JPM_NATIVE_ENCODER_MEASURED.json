@@ -1,0 +1,35 @@
+{
+  "status": "VERIFIED_ACTUAL_CURRENT_JPM_ENCODER_AND_EXACT_PILOT_PIXELS",
+  "results": [
+    {
+      "video": "BT-001",
+      "current_frame": 1,
+      "current_proposals": 4,
+      "invalid_proposals_preserved": 1,
+      "pilot_pixel_bytes_equal": true,
+      "max_component_difference": 1.4416873455047607e-06,
+      "max_cosine_difference": 5.960464477539063e-08,
+      "coordinate_sha256": "dc795b7f65eb73c4d6804948e8bd7a86e24641048237624314f2c0e4a7256a56"
+    },
+    {
+      "video": "SN-015",
+      "current_frame": 1,
+      "current_proposals": 4,
+      "invalid_proposals_preserved": 1,
+      "pilot_pixel_bytes_equal": true,
+      "max_component_difference": 1.0570511221885681e-06,
+      "max_cosine_difference": 5.960464477539063e-08,
+      "coordinate_sha256": "dc795b7f65eb73c4d6804948e8bd7a86e24641048237624314f2c0e4a7256a56"
+    }
+  ],
+  "training_manifest_sha256": "0e7ad23fe5366538ba424bfe64e516871355d650e4029c4bde2c7a0438e7b689",
+  "sources": {
+    "tools/cfp_verify_native_jpm_encoder.py": "d646af0254430fbb45be8b720838d3891b62dbd4c482e494f571e3f473b34945",
+    "cfp/transreid_native_encoder.py": "652144d8aa32a2257dc18e758d0d5ab44c4657a6e0eb575bc5c0550dd260a8da",
+    "cfp/transreid_dino_jpm.py": "67fc39ff2b788a765f66b3fccfc47154b393fadb6e2d852c947fb3d4b0195010",
+    "third_party/transreid_jpm/shuffle.py": "f505f1092e8ada2a40edf5a71a8e389a0ec63d03e26ab038ab70f908d21bfe70",
+    "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+    "cfp/masked_identity_checkpoint.py": "12bd582e0dd300e2d1bc777393443cbeb20c512aa432146caadbe424445aca70"
+  },
+  "scope": "Separate aftertraining numericalproof, pilotrecords/validity/crops usedonlyascomparison targets, never deploymentinputs. CurrentonlyRGB/actualproposals andfixedfit-onlyBNneck forward withpad128, no GTlabels/histories/future. Fourorlesssampledactualproposals pervideo plusinvalidrow, notallframe/nativeMOT/rawFPS success; CPUvsrecordedGPUFP32 numericalagreement thresholds3e-5component/1e-5cosine explicit, no byte-equaldescriptor claim."
+}

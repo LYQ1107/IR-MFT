@@ -1,0 +1,393 @@
+{
+  "status": "COMPLETE_RAW_SN015_DINO_V3_WITH_EXACT_ACTUAL_TRACE_AND_OFFICIAL_SCORE",
+  "run": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_current_dino_frozen_fifo_SN-015_v3",
+  "manifest_sha256": "8537e8e222fa2d49fc8e7d6b14c11465e18ff63ba8a7758fef2253d0a517ebbf",
+  "manifest": {
+    "status": "COMPLETE_WHOLE_RAW_CURRENT_VIDEO_PROFILE",
+    "config": {
+      "state": "FROZEN",
+      "videos": [
+        "SN-001",
+        "SN-015",
+        "BT-003",
+        "BT-001",
+        "MSK-002",
+        "PF-001"
+      ],
+      "kinds": [
+        "legacy_gru",
+        "dino_frozen_fifo",
+        "dino_global_fifo"
+      ],
+      "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+      "detections": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections",
+      "detector_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python",
+      "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+      "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+      "rgb_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+      "predictor_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase3/predictor_v3_gru_association_anchor_seed0/epoch8.pt",
+      "legacy_features": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase2/causal_train_detection_features_postneck_seed0",
+      "legacy_prediction_reference": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase5/cross_train_gru_cfp_s0_c1_v1",
+      "dino_reference": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+      "dino_weights": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/dinov2_vits14_pretrain.pth",
+      "dino_source_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+      "legacy_feature_tolerance": 3e-05,
+      "dino_feature_tolerance": 3e-06,
+      "scope": "Whole native trainingvideos fromrawcurrentRGBonly, causalRGB-derivedEMAresponse/JPEG95, originalcu117V3FP16batch8 repeatscurrentimage(no futurebatch), originalRGBAMP orDINOFP32currentframepad128, nativecausaltracker/memory/assignment/output. No GT/teacher/cachedIR/proposals/features inferenceinputs. Referencecurrentpixels/proposals/features checkedafter measuredinference/output, notfedforward. Historicaldetector/privatepretrain/legacyenc exposures remainexplicit; syntheticresponse notindependentrealIRsensor. Single sharedmachine run; finalall3seeds/allmethod/repeatableruntime/strongsource/pixelmask/novelty stillrequired."
+    },
+    "config_sha256": "12921fa1d3f12820da3e9fd7e771a7990c95bbfc9796a4c67e02671efafe2b5f",
+    "video": "SN-015",
+    "kind": "dino_frozen_fifo",
+    "physical_gpu": "2",
+    "frames": 6570,
+    "completed_frames": 6570,
+    "encoder": {
+      "backbone_pretrained_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+      "source_reference": "dinov2.models.vision_transformer",
+      "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+      "imported_source_proofs": {
+        "dinov2/__init__.py": {
+          "git_blob_sha": "ae847e46898077fe3d8701b8a181d7b4e3d41cd9",
+          "sha256": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe"
+        },
+        "dinov2/hub/__init__.py": {
+          "git_blob_sha": "b88da6bf80be92af00b72dfdb0a806fa64a7a2d9",
+          "sha256": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f"
+        },
+        "dinov2/hub/utils.py": {
+          "git_blob_sha": "c6fa705f31736069cd68c5f642253cb5ad7fbe10",
+          "sha256": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131"
+        },
+        "dinov2/hub/backbones.py": {
+          "git_blob_sha": "af5fd95d38eb33f73a85b92a94a715773a4e70bc",
+          "sha256": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e"
+        },
+        "dinov2/layers/dino_head.py": {
+          "git_blob_sha": "0ace8ffd6297a1dd480b19db407b662a6ea0f565",
+          "sha256": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1"
+        },
+        "dinov2/layers/layer_scale.py": {
+          "git_blob_sha": "0b38971302b3c8fb3d4c05a5f0912fafe0e80816",
+          "sha256": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135"
+        },
+        "dinov2/layers/mlp.py": {
+          "git_blob_sha": "bbf9432aae9258612caeae910a7bde17999e328e",
+          "sha256": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa"
+        },
+        "dinov2/layers/patch_embed.py": {
+          "git_blob_sha": "8b7c0804784a42cf80c0297d110dcc68cc85b339",
+          "sha256": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142"
+        },
+        "dinov2/layers/swiglu_ffn.py": {
+          "git_blob_sha": "340cee356cb4ad7cb3c8bbefa121f39f7c4e5c6f",
+          "sha256": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119"
+        },
+        "dinov2/layers/attention.py": {
+          "git_blob_sha": "f1d3dabf14ffbd5eb68c3c16edc56d0da19b1265",
+          "sha256": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d"
+        },
+        "dinov2/layers/drop_path.py": {
+          "git_blob_sha": "1d640e0b969b8dcba96260243473700b4e5b24b5",
+          "sha256": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a"
+        },
+        "dinov2/layers/block.py": {
+          "git_blob_sha": "7e83b71ccb428ca099d2d1d49933dc837faeecfa",
+          "sha256": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636"
+        },
+        "dinov2/layers/__init__.py": {
+          "git_blob_sha": "d640d145fbfb8993d6e7ceec4eb22b5b0a3e62fa",
+          "sha256": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d"
+        },
+        "dinov2/models/vision_transformer.py": {
+          "git_blob_sha": "34694244ae4e6467a4aa315180a89b323336bf0b",
+          "sha256": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea"
+        },
+        "dinov2/models/__init__.py": {
+          "git_blob_sha": "817a63aeb07802ca02f75c9cef674b97355deb3f",
+          "sha256": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae"
+        }
+      },
+      "trained_encoder": null,
+      "dimension": 384,
+      "crop_hw": [
+        128,
+        256
+      ],
+      "model_hw": [
+        126,
+        252
+      ],
+      "crop_margin": 0.05,
+      "pixel_quantization": "NormalizedcropFP32->FP16->FP32, exact registered pilot input bytes",
+      "encoder_precision": "FP32; TF32disabled",
+      "encoder_batch_padding": 128,
+      "coordinate_kind": "frozen_DINO_CLS384",
+      "local_kind": "current real content-weighted geometricK4; no anatomy/GTocclusion",
+      "fitting_scope": "No fish fitting for frozen source; privatepretrain/video/biological overlap unverified",
+      "coordinate_sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9"
+    },
+    "detector": {
+      "torch": "2.0.0+cu117",
+      "cuda": "11.7",
+      "cudnn": 8500,
+      "parameters": 186199381,
+      "device": "NVIDIA A100-SXM4-40GB",
+      "current_frame_repeat": 8,
+      "owned_memory_fraction": 0.6
+    },
+    "detection_reference_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+    "frame_paths_sha256": "de9b203a4043305b16f88ddd137dbed4d8ea118951022aeaac0beb1c4a00df00",
+    "source_commit": "262cb26b9f017bc4c0663f758598e2dad664a48c",
+    "sources": {
+      "tools/cfp_profile_raw_current_video_v3.py": "c82a1d5898607c49fd150ae95ef7e179f44ec2da029d96f1038c6e1c04855b23",
+      "configs/cfp/phase_vii_whole_raw_current_profile_v1.json": "12921fa1d3f12820da3e9fd7e771a7990c95bbfc9796a4c67e02671efafe2b5f",
+      "cfp/raw_profile_tail_runtime.py": "78701ba0181ab4a34724e16e4cd07f58e7b87ab2d3ae66508ea1b064b2be42d8",
+      "tools/cfp_detector_worker_raw_profile_v2.py": "542bcddf39b216e6830e3dbcca3a4ef6e57f668829ac38d31c639aff77f0f7db",
+      "cfp/detector_runtime.py": "f939e94d70eb456a46a020581382c6d8e76ea9a2ad9497feec253f7012ab4ce6",
+      "cfp/detector_runtime_device_pad.py": "df9358c7869d4ebc9ccfa859f8f0ef2081c87dad9976915769b97f643b185ee8",
+      "cfp/online.py": "c8e356cb1587fb97b731a73ceeb0a41da49582bdab1f38951302a3bee49be915",
+      "cfp/pseudo_ir.py": "593a0b825479e3096e6ceefc8fab1da36a3ba8d70666801d7aac87b3f317e6bf",
+      "cfp/reid.py": "b00c8c3a6ba9935c0d186ab4eeee7f6dda3563bb6e8fa8fc915f68ee2e4499a8",
+      "cfp/dinov2_native_encoder.py": "edaa6fdc72c246caad9b4ead4932d1650b93ccd3da9c240c664416d4b89f62fd",
+      "cfp/dinov2_identity.py": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1",
+      "cfp/dinov2_fish_encoder.py": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0",
+      "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+      "cfp/lifecycle_crossover.py": "90a5d50b6f6cffe67a8a0468b1d4688d112eff2b5569c879f153f6eeb6a83fb7",
+      "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+      "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+      "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+      "cfp/history.py": "b9d55d97bcf3f25039940b1c45eb081aa73bdd11469063297f58e366eb96fb51",
+      "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+      "tools/cfp_cache_detection_features.py": "85b0ef7acf5df3812e6e7866df348318eb5fce8b65680f28cf576f01063256ed"
+    },
+    "scope": "Whole native trainingvideos fromrawcurrentRGBonly, causalRGB-derivedEMAresponse/JPEG95, originalcu117V3FP16batch8 repeatscurrentimage(no futurebatch), originalRGBAMP orDINOFP32currentframepad128, nativecausaltracker/memory/assignment/output. No GT/teacher/cachedIR/proposals/features inferenceinputs. Referencecurrentpixels/proposals/features checkedafter measuredinference/output, notfedforward. Historicaldetector/privatepretrain/legacyenc exposures remainexplicit; syntheticresponse notindependentrealIRsensor. Single sharedmachine run; finalall3seeds/allmethod/repeatableruntime/strongsource/pixelmask/novelty stillrequired.",
+    "loaded_GT_annotation_labels": false,
+    "precomputed_IR_used_for_inference": false,
+    "detector_IR_origin": "CurrentRGB_prefix_EMA_generated_by_parent",
+    "cached_detection_or_feature_used_for_inference": false,
+    "detector_nested_stage_seconds": {
+      "provided_ir_validation": 0.0,
+      "detector_preprocess_transfer": 320.4182048858347,
+      "detector_nms": 1135.9973266546513,
+      "proposal_transfer": 1.0225897223426728
+    },
+    "output_rows": 61924,
+    "stage_seconds": {
+      "RGB_decode_seconds": 39.99391170045419,
+      "causal_IR_generation_seconds": 2149.162182035019,
+      "IR_JPEG_roundtrip_seconds": 101.96150792984554,
+      "detector_IPC_full_RTT_seconds": 1818.8904494317248,
+      "association_and_memory_seconds": 48.26663781800744,
+      "measurement_output_seconds": 2.3695401937584393,
+      "current_crop_and_mask_seconds": 127.66453524336976,
+      "resize_transfer_seconds": 270.6049268764982,
+      "encoder_seconds": 434.8931747790921,
+      "feature_transfer_seconds": 2.3335854612960247
+    },
+    "reference_parity": {
+      "current_IR_pixel_equal_frames": 6570,
+      "proposal_byte_equal_frames": 6567,
+      "maximum_feature_component_difference": 2.637505531311035e-06,
+      "feature_rows": 69161
+    },
+    "detector_cache_tail_shape_validation": [
+      {
+        "frame": 6568,
+        "original_batch_size": 3,
+        "normal_online_batch": 8,
+        "online_boxes_sha256": "8c224f4ed5dcbf0ecf99e76e314b048992e00e3f56ee722e53dc11302fad922d",
+        "online_scores_sha256": "feb1ae90feb4d9b45344d269ff907c51ae30fa702b3b71061ba9d4cd6d2170b0",
+        "current_only_zeros_other_positions": true,
+        "reference_reconstructed_exactly": true,
+        "online_proposals_preserved": true,
+        "online_rows": 9,
+        "reference_rows": 9
+      },
+      {
+        "frame": 6569,
+        "original_batch_size": 3,
+        "normal_online_batch": 8,
+        "online_boxes_sha256": "a00d13047e5926b75a1bc15fdf1af4e43311e7e0c9f8bdd142dc67e05b94c261",
+        "online_scores_sha256": "628733de496ab591d2668fc48dbd0a4b2fcdee41c87c84a8734850bbdc3be8de",
+        "current_only_zeros_other_positions": true,
+        "reference_reconstructed_exactly": true,
+        "online_proposals_preserved": true,
+        "online_rows": 10,
+        "reference_rows": 10
+      },
+      {
+        "frame": 6570,
+        "original_batch_size": 3,
+        "normal_online_batch": 8,
+        "online_boxes_sha256": "6073db8dc8000108f4b19dd8698270fae96db3fd4eb99e1cd24d7bbe3388a11c",
+        "online_scores_sha256": "f40d2e4903637189c9c2f3583f27611f92f9844ec97346a7a7bc541a2ca59698",
+        "current_only_zeros_other_positions": true,
+        "reference_reconstructed_exactly": true,
+        "online_proposals_preserved": true,
+        "online_rows": 10,
+        "reference_rows": 10
+      }
+    ],
+    "feature_comparison_excluded_detector_tail_frames": [
+      6568,
+      6569,
+      6570
+    ],
+    "actual_current_output_trace_sha256": "5ef3fa68139657ac41e631dcd480dc60587e7033b9734e9c826b9510ca919587",
+    "measured_critical_path_seconds": 5020.693801958703,
+    "whole_raw_FPS": 1.3085840840237801,
+    "frame_latency_p50_p95_ms": [
+      763.7357599996903,
+      797.2794105513458
+    ],
+    "elapsed_with_validation_seconds": 5329.661834017999,
+    "current_RGB_IR_proposal_digest": "635f48976d7f1d242baaecad04a3ecda4934376a4fc1446ce011655c7c021dee",
+    "prediction_sha256": "9b15b843a0e01afec685bc967bf6eab9fb2ee5a56676cb9bb23308b006553184",
+    "parent_peak_gpu_allocated_bytes": 498118144,
+    "timing_scope": "Perframeactualcomplete criticalpath, includingRGBdecode/causalIR/JPEG/IPC+prep+batch8det+NMS/currentRGBcrop+pad128encode/association+memory+output. Referencevalidation/progressserialization/diagnosticoutputtrace/loadstartup excluded andreportedelapsed separately; no future/cachedinputs. Detectornestedtimings notdouble-counted. Single shared-machine run, norepeatability claim.",
+    "cache_reference_batch_policy": "OriginalglobalDataLoader batches8 withunpadfinalpartialbatch; declaredrawonlinealwaysrepeatscurrent8. Verifiedtail proposalsmaydiffer; oldcachedpredictions arenot raw8truth.",
+    "cache_reference_prediction_byte_equal": false,
+    "detector_shutdown": {
+      "torch": "2.0.0+cu117",
+      "cuda": "11.7",
+      "cudnn": 8500,
+      "parameters": 186199381,
+      "device": "NVIDIA A100-SXM4-40GB",
+      "current_frame_repeat": 8,
+      "owned_memory_fraction": 0.6,
+      "frames_processed": 6570,
+      "peak_gpu_memory_bytes": 2002886144,
+      "shutdown_returncode": 0
+    }
+  },
+  "actual_trace_replay_path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_current_dino_frozen_fifo_SN-015_v3.actual_trace_replay.json",
+  "actual_trace_replay_sha256": "8ef2fb2216ab4ced9f85406b39d691451cbe7d9da18a3e68b7520ae11448b490",
+  "actual_trace_replay": {
+    "status": "EXACT_ACTUAL_RAW_OUTPUT_TRACE_REPLAY_VERIFIED",
+    "frames": 6570,
+    "video": "SN-015",
+    "kind": "dino_frozen_fifo",
+    "run_manifest_sha256": "8537e8e222fa2d49fc8e7d6b14c11465e18ff63ba8a7758fef2253d0a517ebbf",
+    "trace_sha256": "5ef3fa68139657ac41e631dcd480dc60587e7033b9734e9c826b9510ca919587",
+    "raw_prediction_sha256": "9b15b843a0e01afec685bc967bf6eab9fb2ee5a56676cb9bb23308b006553184",
+    "replay_prediction_sha256": "9b15b843a0e01afec685bc967bf6eab9fb2ee5a56676cb9bb23308b006553184",
+    "prediction_byte_equal": true,
+    "sources": {
+      "tools/cfp_verify_raw_output_trace.py": "4981a47ea52803640ad62b16299ffe59297786bf9a20feacf7421f6ad6596a27"
+    },
+    "scope": "Cached currentoutputs are used only by this separate post-completion CPU replay, never raw inference. Certifies actualalways-pad8 raw proposal/feature/association consistency; olderglobalunpad3-tail cached benchmark may legitimately differ. Replay is not rawFPS and has no GT/teacher/future input."
+  },
+  "official_metrics_path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_current_dino_frozen_fifo_SN-015_v3.trackeval/metrics.json",
+  "official_metrics_sha256": "cec8dae07c4d8a448e6bf31f605b38468fd1e7e9152a51ec0fa96397bbde64bf",
+  "official_metrics": {
+    "HOTA": 32.22502269407117,
+    "DetA": 70.77358845411071,
+    "AssA": 14.78589693634921,
+    "DetRe": 76.37122733212225,
+    "DetPr": 77.3948711323558,
+    "AssRe": 16.099250691902622,
+    "AssPr": 55.65445835007103,
+    "LocA": 81.15605532497344,
+    "OWTA": 33.58707184228777,
+    "HOTA_TP": [
+      61203.0,
+      61163.0,
+      61092.0,
+      61000.0,
+      60871.0,
+      60704.0,
+      60494.0,
+      60183.0,
+      59749.0,
+      59034.0,
+      57938.0,
+      55888.0,
+      52677.0,
+      47532.0,
+      39873.0,
+      29281.0,
+      16470.0,
+      5119.0,
+      323.0
+    ],
+    "HOTA_FN": [
+      1551.0,
+      1591.0,
+      1662.0,
+      1754.0,
+      1883.0,
+      2050.0,
+      2260.0,
+      2571.0,
+      3005.0,
+      3720.0,
+      4816.0,
+      6866.0,
+      10077.0,
+      15222.0,
+      22881.0,
+      33473.0,
+      46284.0,
+      57635.0,
+      62431.0
+    ],
+    "HOTA_FP": [
+      721.0,
+      761.0,
+      832.0,
+      924.0,
+      1053.0,
+      1220.0,
+      1430.0,
+      1741.0,
+      2175.0,
+      2890.0,
+      3986.0,
+      6036.0,
+      9247.0,
+      14392.0,
+      22051.0,
+      32643.0,
+      45454.0,
+      56805.0,
+      61601.0
+    ],
+    "HOTA(0)": 42.0070845578929,
+    "LocA(0)": 76.8893989151875,
+    "HOTALocA(0)": 32.2989948183584,
+    "MOTA": 91.0188991936769,
+    "MOTP": 78.26170982636594,
+    "MODA": 91.2611148293336,
+    "CLR_Re": 94.96924498836728,
+    "CLR_Pr": 96.24216781861637,
+    "MTR": 71.42857142857143,
+    "PTR": 7.142857142857142,
+    "MLR": 21.428571428571427,
+    "sMOTA": 70.3742091423962,
+    "CLR_F1": 95.60146938513611,
+    "FP_per_frame": 0.35418569254185694,
+    "MOTAL": 91.25763800938913,
+    "MOTP_sum": 46641.63120521931,
+    "CLR_TP": 59597,
+    "CLR_FN": 3157,
+    "CLR_FP": 2327,
+    "IDSW": 152,
+    "MT": 10,
+    "PT": 1,
+    "ML": 3,
+    "Frag": 542.0,
+    "CLR_Frames": 6570,
+    "IDF1": 30.44482587144484,
+    "IDR": 30.243490454791726,
+    "IDP": 30.648859892771785,
+    "IDTP": 18979,
+    "IDFN": 43775,
+    "IDFP": 42945,
+    "Dets": 61924,
+    "GT_Dets": 62754,
+    "IDs": 83,
+    "GT_IDs": 14,
+    "Frames": 6570
+  },
+  "scope": "Single complete6570frame sharedmachine run, preserveoriginalbatch8 current-onlyactualinference; originalfinalcachebatch3 reproducedonlyafteroutputvalidation. Actualpredictionnotcache usedforreplay/officialscore. Earlierfailed6567prefix retained; notall6finalmethod/3seed/repeatedtiming claim."
+}
