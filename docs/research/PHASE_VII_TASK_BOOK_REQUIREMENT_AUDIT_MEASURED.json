@@ -1,0 +1,933 @@
+{
+  "status": "COMPLETE_TASK_BOOK_REQUIREMENT_AUDIT_GOAL_STILL_ACTIVE",
+  "as_of": "2026-10-14",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
+  "task_book_sha256": "04532c5b22c03aed30d6f6ed6d2e1ce9e492d2f63f971a63ef44360a7fafdda7",
+  "local_head_at_audit": "c2a9eed5d7868eaeaddcc069b52a1154b0c6498e",
+  "remote_branch_last_verified": "581a5ec55f17cf16f992366870fb7e1d8a1d3af1",
+  "remote_verification_scope": "Remote branch was last independently verified at 581a5ec before current local test-validation/task-book-audit updates; local c2a9eed is ahead and not yet claimed delivered.",
+  "worktree_at_audit": "local HEAD c2a9eed; working tree contains the authoritative state/registry/report/ledger updates plus this audit; no source/data/weight files are modified",
+  "resource_guards": {
+    "free_space_gib_min_required": 40,
+    "free_space_gib_at_last_snapshot": 41.0,
+    "gpu_policy": "GPU0-3 only when actually idle; GPU4-9 excluded"
+  },
+  "summary": {
+    "complete_or_scoped": 15,
+    "not_justified_or_unestablished": 2,
+    "total": 17
+  },
+  "requirements": [
+    {
+      "id": "P1_environment_branch_assets",
+      "status": "COMPLETE_WITH_ACTIVE_RESOURCE_GUARDS",
+      "requirement": "Verify protected Phase I–VI base/branch, current worktree, disk and GPU policy; preserve old assets.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_STATE.json",
+          "exists": true,
+          "sha256": "de932872d0bca1af3da966382019975348963c1e685cc3b1744977af1b525bd7"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FINAL_GOAL.md",
+          "exists": true,
+          "sha256": "a14f7b3db49ce625d2cb8dc62d92da9afbce19c313dd4ce00d7a8634ffbc23aa"
+        }
+      ]
+    },
+    {
+      "id": "P2_all30_source_audits",
+      "status": "COMPLETE_WITH_EXPLICIT_MISSING_LICENSE_WEIGHT_EXCLUSIONS",
+      "requirement": "Audit all 30 exact-commit source projects across the required semantic fields.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_SOURCE_AUDIT_MEASURED.json",
+          "exists": true,
+          "sha256": "eea5f30be82f81e148dbbb44eff0e28f80e48dad81e07783e5c40de1828da0e7"
+        },
+        {
+          "path": "docs/research/PHASE_VII_30_PAPERS_CODE_AUDIT.md",
+          "exists": true,
+          "sha256": "b1207c4dd495cf32c3a164a7995109a51c61ef44c9712f179b88b9a48716d293"
+        },
+        {
+          "path": "docs/research/PHASE_VII_REPOSITORY_REGISTRY.json",
+          "exists": true,
+          "sha256": "a6eb09db68c0beaa2fd8089395cc9bd864bd205b2068b831a2739d60b56eb38b"
+        }
+      ]
+    },
+    {
+      "id": "P3_a0_identity_history_diagnosis",
+      "status": "COMPLETE",
+      "requirement": "Reproduce FishReID/GRU ranking discrepancy and separate candidate/history/geometry/cost confounds.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_LOCAL_IDENTITY_EVIDENCE.md",
+          "exists": true,
+          "sha256": "1efafc9b4ffc728e907f96c77374b3eb0be3bf73e4f6972a91fa9a87144ce8d3"
+        },
+        {
+          "path": "docs/research/PHASE_VII_REID_COMPARISON.md",
+          "exists": true,
+          "sha256": "802b8065c23217e3da4f213e234fe44079505210eb42193e4bde1a8239b70cc1"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FAILURE_ANALYSIS.md",
+          "exists": true,
+          "sha256": "5fd91a9e33743387f826fc6c14fcfd9ea9d10f3969f337362c8d1ba772e8f0c2"
+        }
+      ]
+    },
+    {
+      "id": "P4_A_strong_visual_controls",
+      "status": "COMPLETE_INTERNAL_NEGATIVE_OR_BASELINE",
+      "requirement": "Run frozen/adapted DINO/local/pixel/FDTA/JPM identity controls with fold exclusion, support and full metrics.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+          "exists": true,
+          "sha256": "245517cde226b8f463ea24e9b1ec86a19cabf113906d827d5613cb09c93fe6da"
+        },
+        {
+          "path": "docs/research/PHASE_VII_SOURCE_JPM_NATIVE_COMPLETE_MEASURED.json",
+          "exists": true,
+          "sha256": "6891e48fe5d7c288202eec771e0cdeb340d0527a1cd70568a157760df48f26f4"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
+          "exists": true,
+          "sha256": "aa53066716f01e47b42717d48fbd5daef6dc2f4cb21a7deca2dbc82f93ee2705"
+        }
+      ]
+    },
+    {
+      "id": "P5_B_dense_jepa",
+      "status": "COMPLETE_INTERNAL_NEGATIVE",
+      "requirement": "Implement genuine object-centric Dense JEPA and matched temporal/noEMA/noPrediction/noID controls; validate allfold/native.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_CONTEXT_IDENTITY_ALLFOLDS_MEASURED.json",
+          "exists": true,
+          "sha256": "653bbebedfd34ce5814ae8772b67741583f6becb71fad85010a134f13f26189f"
+        },
+        {
+          "path": "docs/research/PHASE_VII_CONTEXT_IDENTITY_NATIVE_ALLFOLDS_MEASURED.json",
+          "exists": true,
+          "sha256": "2b1580fcf1e4c16fc25d695fef4c0d0ce585efbc27d31ab428773445c789e703"
+        },
+        {
+          "path": "docs/research/PHASE_VII_DENSE_JEPA_EXPERIMENTS.md",
+          "exists": true,
+          "sha256": "b9d396b09085f02d23a554487a01e236ee4ed312d67a2ddee148284a41d6feb4"
+        }
+      ]
+    },
+    {
+      "id": "P6_C_joint_association",
+      "status": "COMPLETE_INTERNAL_NEGATIVE_WITH_NULL_LIMITS",
+      "requirement": "Implement joint identity decoder, candidate competition, NULL/newborn controls and compare ordinary Hungarian.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_CENTERED_JOINT_THREE_SEED_MEASURED.json",
+          "exists": true,
+          "sha256": "70d3a29ae856e7de98f7f24684660c1a8dcd2336c340d941428910f17a1eeb4a"
+        },
+        {
+          "path": "docs/research/PHASE_VII_DICTIONARY_JOINT_RESTART_MEASURED.json",
+          "exists": true,
+          "sha256": "1f11d3c8e94d5cdf6f2141a2a7c3271942d346817bc96892e1dced3cb0728789"
+        },
+        {
+          "path": "docs/research/PHASE_VII_DICTIONARY_JOINT_THREE_SEED_MEASURED.json",
+          "exists": true,
+          "sha256": "05da612f0370c79083c358b60097f054036464c63e6d542685f6cfd19d4a78a6"
+        },
+        {
+          "path": "docs/research/PHASE_VII_JOINT_ASSOCIATION_EXPERIMENTS.md",
+          "exists": true,
+          "sha256": "1c70f638a39090ef1ebad76f49c232616a91daa763317dcfd9946d7f5910bb8f"
+        }
+      ]
+    },
+    {
+      "id": "P7_D_motion_occlusion",
+      "status": "COMPLETE_CONTROLS_WITH_AGCIOU_AND_NONLINEAR_SCOPE_LIMITS",
+      "requirement": "Isolate KF/UKF/geometry/occlusion and decide paper AGCIoU or explicit exclusion before learned motion.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_LINEAR_UNSCENTED_MOTION_MEASURED.json",
+          "exists": true,
+          "sha256": "5fa1b6606df2c2bee1b8fce907f2f9bc54c898589f92f23355e4f50fbbdab233"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FISH_GEOMETRY_MEASURED.json",
+          "exists": true,
+          "sha256": "d04ada3023eab1e95f1cf096af4cfdd4a312ea22073b61151362f76e36ef8e62"
+        },
+        {
+          "path": "docs/research/PHASE_VII_OBSERVABLE_OCCLUSION_ALL42_MEASURED.json",
+          "exists": true,
+          "sha256": "ae0348c3c9cfba6777e853b37651c5c2bc739b0069745e0909f09ff3d0eace50"
+        },
+        {
+          "path": "docs/research/PHASE_VII_AGCIOU_SCOPE_EXCLUSION_MEASURED.json",
+          "exists": true,
+          "sha256": "91456058514f9ded2d62b09baa6d04df52ebbf75c389831ff9a9e3634728c1a1"
+        }
+      ]
+    },
+    {
+      "id": "P8_protocol_A_identity",
+      "status": "COMPLETE_FOR_REGISTERED_INTERNAL_FOLDS",
+      "requirement": "Report Rank1/5/mAP/AUC/EER, gaps, GT/detector, clean/actual support and hard negatives.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_PIXEL_IDENTITY_THREE_SEED_MEASURED.json",
+          "exists": true,
+          "sha256": "245517cde226b8f463ea24e9b1ec86a19cabf113906d827d5613cb09c93fe6da"
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_IDENTITY_PROBE_MEASURED.json",
+          "exists": true,
+          "sha256": "0b37b41fe5b965d4d04b32dad832fdabb99cfe3abf2edf02ed9ed0fcc834767c"
+        }
+      ]
+    },
+    {
+      "id": "P9_protocol_B_native_mot",
+      "status": "COMPLETE_FOR_REGISTERED_NATIVE_CONTROLS",
+      "requirement": "Use fixed proposals/lifecycle/TrackEval and report HOTA/AssA/DetA/IDF1/MOTA/IDSW per video/seed.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_CONTEXT_IDENTITY_NATIVE_ALLFOLDS_MEASURED.json",
+          "exists": true,
+          "sha256": "2b1580fcf1e4c16fc25d695fef4c0d0ce585efbc27d31ab428773445c789e703"
+        },
+        {
+          "path": "docs/research/PHASE_VII_SOURCE_JPM_NATIVE_COMPLETE_MEASURED.json",
+          "exists": true,
+          "sha256": "6891e48fe5d7c288202eec771e0cdeb340d0527a1cd70568a157760df48f26f4"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FDTA_STYLE_NATIVE_MEASURED.json",
+          "exists": true,
+          "sha256": "aa53066716f01e47b42717d48fbd5daef6dc2f4cb21a7deca2dbc82f93ee2705"
+        }
+      ]
+    },
+    {
+      "id": "P10_protocol_C_raw_online",
+      "status": "COMPLETE_FOR_FROZEN_AND_LEGACY_REFERENCES_ONLY",
+      "requirement": "Measure full raw decode→IR→V3→crop→encoder→association→output FPS/latency and parity.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
+          "exists": true,
+          "sha256": "84a8e73d1a0791bf983bae124e52091fbdc03803c34c3194c82efc4116a772a9"
+        },
+        {
+          "path": "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
+          "exists": true,
+          "sha256": "30514f31a313b1e8a15a48bbb0b09875b615be1a7f65886b0b150f62066b8488"
+        },
+        {
+          "path": "docs/research/PHASE_VII_ONLINE_RUNTIME.md",
+          "exists": true,
+          "sha256": "679d169e45dab3005fb90d98720c33af89c24bca8f30b7f16679913fca09e5ef"
+        }
+      ]
+    },
+    {
+      "id": "P11_selective_combinations",
+      "status": "NOT_JUSTIFIED_BY_CURRENT_COMPONENT_EVIDENCE",
+      "requirement": "Test only scientifically informative A/B/C/D combinations; do not mechanically stack negative modules.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
+          "exists": true,
+          "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c"
+        },
+        {
+          "path": "docs/research/PHASE_VII_EXPERIMENT_REGISTRY.json",
+          "exists": true,
+          "sha256": "cbd3115642bc40eb7ec7a0984bcd0efc6c5ff4cd44089e16d135fb6cd438df6a"
+        }
+      ]
+    },
+    {
+      "id": "P12_external_generalization",
+      "status": "EXPLICIT_SCOPE_EXCLUSION_PAYLOAD_NOT_ACQUIRED",
+      "requirement": "Audit external data license/identity/lineage/overlap and do not claim unavailable generalization.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_EXTERNAL_GENERALIZATION_SCOPE_MEASURED.json",
+          "exists": true,
+          "sha256": "b8e055deaaa16468a970b1d846fa751f160cb69e4fa2a1b4682e5949316e6112"
+        },
+        {
+          "path": "docs/research/PHASE_VII_PRIORITY_EXTERNAL_DATA_MEASURED.json",
+          "exists": true,
+          "sha256": "258ba44260ee2248f2bdf3f479646758e6259473ce71f7b4ed920caa092d43e6"
+        }
+      ]
+    },
+    {
+      "id": "P13_required_documents",
+      "status": "COMPLETE_DOCUMENT_SET_PRESENT",
+      "requirement": "Generate all required Phase VII research documents and preserve IN_PROGRESS language.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_FINAL_GOAL.md",
+          "exists": true,
+          "sha256": "a14f7b3db49ce625d2cb8dc62d92da9afbce19c313dd4ce00d7a8634ffbc23aa"
+        },
+        {
+          "path": "docs/research/PHASE_VII_30_PAPERS_CODE_AUDIT.md",
+          "exists": true,
+          "sha256": "b1207c4dd495cf32c3a164a7995109a51c61ef44c9712f179b88b9a48716d293"
+        },
+        {
+          "path": "docs/research/PHASE_VII_DATA_PROTOCOL.md",
+          "exists": true,
+          "sha256": "942cf19693d21faefc69f6307bb75ed2b912f9f1e7bc85aca3969f7da2224e81"
+        },
+        {
+          "path": "docs/research/PHASE_VII_BASELINE_AUDIT.md",
+          "exists": true,
+          "sha256": "fe318910a1e43510617a93265edf5a23c7c66a860a6c449c2f6fcb3f6405f5fc"
+        },
+        {
+          "path": "docs/research/PHASE_VII_REID_COMPARISON.md",
+          "exists": true,
+          "sha256": "802b8065c23217e3da4f213e234fe44079505210eb42193e4bde1a8239b70cc1"
+        },
+        {
+          "path": "docs/research/PHASE_VII_LOCAL_IDENTITY_EVIDENCE.md",
+          "exists": true,
+          "sha256": "1efafc9b4ffc728e907f96c77374b3eb0be3bf73e4f6972a91fa9a87144ce8d3"
+        },
+        {
+          "path": "docs/research/PHASE_VII_DENSE_JEPA_EXPERIMENTS.md",
+          "exists": true,
+          "sha256": "b9d396b09085f02d23a554487a01e236ee4ed312d67a2ddee148284a41d6feb4"
+        },
+        {
+          "path": "docs/research/PHASE_VII_JOINT_ASSOCIATION_EXPERIMENTS.md",
+          "exists": true,
+          "sha256": "1c70f638a39090ef1ebad76f49c232616a91daa763317dcfd9946d7f5910bb8f"
+        },
+        {
+          "path": "docs/research/PHASE_VII_MOTION_EXPERIMENTS.md",
+          "exists": true,
+          "sha256": "b55f1e3894e1bcc4211ce473f76d2b7b330546bcc7a82752d85fbabd556dacca"
+        },
+        {
+          "path": "docs/research/PHASE_VII_ABLATIONS.md",
+          "exists": true,
+          "sha256": "358c73e2c36585c93382ea8f744b5633215a031107652374c5d4bdb0d0ff687d"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FAILURE_ANALYSIS.md",
+          "exists": true,
+          "sha256": "5fd91a9e33743387f826fc6c14fcfd9ea9d10f3969f337362c8d1ba772e8f0c2"
+        },
+        {
+          "path": "docs/research/PHASE_VII_ONLINE_RUNTIME.md",
+          "exists": true,
+          "sha256": "679d169e45dab3005fb90d98720c33af89c24bca8f30b7f16679913fca09e5ef"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
+          "exists": true,
+          "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c"
+        }
+      ]
+    },
+    {
+      "id": "P14_required_tests",
+      "status": "COMPLETE_PHASE_VII_SCOPE_WITH_EXTERNAL_FIXTURE_LIMIT",
+      "requirement": "Pass tests for masks/leakage/NULL/one-to-one/order/empty/stability/reproducibility/TrackEval.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
+          "exists": true,
+          "sha256": "e9842c9ced979bf6f797e99a36c16e8e829d7bf1989f534a80cbcb6e27ed3fe0"
+        }
+      ]
+    },
+    {
+      "id": "P15_github_delivery",
+      "status": "REMOTE_LAST_VERIFIED_BEFORE_CURRENT_LOCAL_UPDATES",
+      "requirement": "Commit and independently verify remote branch after each stage; do not claim unverified system push.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_STATE.json",
+          "exists": true,
+          "sha256": "de932872d0bca1af3da966382019975348963c1e685cc3b1744977af1b525bd7"
+        }
+      ]
+    },
+    {
+      "id": "P16_final20",
+      "status": "COMPLETE_COVERAGE_AUDIT_WITH_NO_POSITIVE_CLAIM",
+      "requirement": "Answer all 20 final questions with current evidence and explicit limitations.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
+          "exists": true,
+          "sha256": "b4e08e57fa9890ef9e40462c6aa8b2b88fd2d39daa7de35ffb76a7f876717a51"
+        },
+        {
+          "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
+          "exists": true,
+          "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c"
+        }
+      ]
+    },
+    {
+      "id": "P17_final_scientific_contribution",
+      "status": "NOT_ESTABLISHED",
+      "requirement": "Find a stable reproducible independent contribution and final architecture if evidence supports it.",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
+          "exists": true,
+          "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c"
+        },
+        {
+          "path": "docs/research/PHASE_VII_HYPOTHESIS_LEDGER.md",
+          "exists": true,
+          "sha256": "a8e5a2d5af9adfe7a7b718c02ca752183b15afc027a53551460847d9a2ec9b83"
+        }
+      ]
+    }
+  ],
+  "required_documents": [
+    {
+      "path": "PHASE_VII_FINAL_GOAL.md",
+      "exists": true,
+      "sha256": "a14f7b3db49ce625d2cb8dc62d92da9afbce19c313dd4ce00d7a8634ffbc23aa",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_30_PAPERS_CODE_AUDIT.md",
+      "exists": true,
+      "sha256": "b1207c4dd495cf32c3a164a7995109a51c61ef44c9712f179b88b9a48716d293",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_DATA_PROTOCOL.md",
+      "exists": true,
+      "sha256": "942cf19693d21faefc69f6307bb75ed2b912f9f1e7bc85aca3969f7da2224e81",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_BASELINE_AUDIT.md",
+      "exists": true,
+      "sha256": "fe318910a1e43510617a93265edf5a23c7c66a860a6c449c2f6fcb3f6405f5fc",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_REID_COMPARISON.md",
+      "exists": true,
+      "sha256": "802b8065c23217e3da4f213e234fe44079505210eb42193e4bde1a8239b70cc1",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_LOCAL_IDENTITY_EVIDENCE.md",
+      "exists": true,
+      "sha256": "1efafc9b4ffc728e907f96c77374b3eb0be3bf73e4f6972a91fa9a87144ce8d3",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_DENSE_JEPA_EXPERIMENTS.md",
+      "exists": true,
+      "sha256": "b9d396b09085f02d23a554487a01e236ee4ed312d67a2ddee148284a41d6feb4",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_JOINT_ASSOCIATION_EXPERIMENTS.md",
+      "exists": true,
+      "sha256": "1c70f638a39090ef1ebad76f49c232616a91daa763317dcfd9946d7f5910bb8f",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_MOTION_EXPERIMENTS.md",
+      "exists": true,
+      "sha256": "b55f1e3894e1bcc4211ce473f76d2b7b330546bcc7a82752d85fbabd556dacca",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_ABLATIONS.md",
+      "exists": true,
+      "sha256": "358c73e2c36585c93382ea8f744b5633215a031107652374c5d4bdb0d0ff687d",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_FAILURE_ANALYSIS.md",
+      "exists": true,
+      "sha256": "5fd91a9e33743387f826fc6c14fcfd9ea9d10f3969f337362c8d1ba772e8f0c2",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_ONLINE_RUNTIME.md",
+      "exists": true,
+      "sha256": "679d169e45dab3005fb90d98720c33af89c24bca8f30b7f16679913fca09e5ef",
+      "status": "PRESENT"
+    },
+    {
+      "path": "PHASE_VII_FINAL_RESEARCH_REPORT.md",
+      "exists": true,
+      "sha256": "56e0e9c63ea1d1fcb397f803813d40c102443a257e9da3b214332e7c89d8e23c",
+      "status": "PRESENT"
+    }
+  ],
+  "suggested_module_crosswalk": [
+    {
+      "task_book_path": "cfp/finegrained_reid.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/dinov2_fish_encoder.py",
+          "exists": true,
+          "sha256": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0"
+        },
+        {
+          "path": "cfp/local_identity_encoder.py",
+          "exists": true,
+          "sha256": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/fish_patch_encoder.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/dinov2_fish_encoder.py",
+          "exists": true,
+          "sha256": "98455a822d2671a60be30300dc77c46e660e663fb68216d05ae101f578455ba0"
+        },
+        {
+          "path": "cfp/dinov2_identity.py",
+          "exists": true,
+          "sha256": "9eade8887e5cd9f08c238d23eb372578114df0a6f112b7eb36c7c45f484189f1"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/fish_identity_adapter.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/identity_adapters.py",
+          "exists": false,
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/patch_association.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/local_identity_encoder.py",
+          "exists": true,
+          "sha256": "c6fe3be97b45b797d55a84c10bcd7ba4ea8ef728db857ae04a72a8f4373d0356"
+        },
+        {
+          "path": "cfp/joint_identity_decoder.py",
+          "exists": true,
+          "sha256": "566aba8859a0b1aa5b268f8683f0d28f0c6342c1e1551ce62262a0fd9a636372"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/object_dense_jepa.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/local_dense_jepa.py",
+          "exists": true,
+          "sha256": "37c761b9ac21fc629ffadf638e7ff6d549ce695e656576a13d9ab634422d1e4f"
+        },
+        {
+          "path": "cfp/local_dense_context_identity.py",
+          "exists": true,
+          "sha256": "77e107b89dee35b02100576b5d78417ed8aaab95c6e3986e2f9494c6cf25528f"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/dense_jepa_loss.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/local_dense_jepa.py",
+          "exists": true,
+          "sha256": "37c761b9ac21fc629ffadf638e7ff6d549ce695e656576a13d9ab634422d1e4f"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/joint_identity_decoder.py",
+      "status": "implemented",
+      "exact_exists": true,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/joint_identity_decoder.py",
+          "exists": true,
+          "sha256": "566aba8859a0b1aa5b268f8683f0d28f0c6342c1e1551ce62262a0fd9a636372"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/joint_assignment.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/joint_identity_decoder.py",
+          "exists": true,
+          "sha256": "566aba8859a0b1aa5b268f8683f0d28f0c6342c1e1551ce62262a0fd9a636372"
+        },
+        {
+          "path": "cfp/candidate_graph.py",
+          "exists": true,
+          "sha256": "7793138d5d343c2e5b1a70f816dc9ed45144d61d485f38a7044f58ae43ae9a90"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/occlusion_motion.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/observable_occlusion.py",
+          "exists": true,
+          "sha256": "0c9097406caf96406e5f937101b44627a04a2c14af922bdcbc34854b45c1e1a9"
+        },
+        {
+          "path": "cfp/fish_motion.py",
+          "exists": true,
+          "sha256": "87b70225b85db34ade53478c31a18bdca86cb53f1d88e91a8c6d124abcebe4c0"
+        }
+      ]
+    },
+    {
+      "task_book_path": "cfp/fish_motion.py",
+      "status": "implemented",
+      "exact_exists": true,
+      "implemented_equivalents": [
+        {
+          "path": "cfp/fish_motion.py",
+          "exists": true,
+          "sha256": "87b70225b85db34ade53478c31a18bdca86cb53f1d88e91a8c6d124abcebe4c0"
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_train_fish_reid.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_train_transreid_dino_jpm.py",
+          "exists": true,
+          "sha256": "772103655437e2150d7dda18711be84e4a0f6a4751379e05b5202ba54fe74e8e"
+        },
+        {
+          "path": "tools/cfp_train_fish_mae.py",
+          "exists": false,
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_train_dense_jepa.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_train_local_dense_context_identity.py",
+          "exists": true,
+          "sha256": "a0350d2661ad753b02502127830d1f3ece56a06d68f17630a917324343187ca8"
+        },
+        {
+          "path": "tools/cfp_train_local_dense_jepa.py",
+          "exists": true,
+          "sha256": "340c6458edb94b46cbf88aa8f55e6cfd8e6396e93e76b4a1c035ac017c517554"
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_train_joint_id.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_train_joint_identity.py",
+          "exists": true,
+          "sha256": "276736a91dd95de655a1cd7a00b6d628f36d2cd5b0db3e613c5efa9a8c451807"
+        },
+        {
+          "path": "tools/cfp_train_centered_joint_identity.py",
+          "exists": true,
+          "sha256": "725e25b741c03253b0920e4fdf1b9f2a9708df7323fe40a07de8a1cd7f4dbf91"
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_eval_identity.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_evaluate_dinov2_crop_evidence.py",
+          "exists": true,
+          "sha256": "9bf982df2e0aec52ac4412c479d7b9304a2b7355466e94c8e857c27cb35ce741"
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_eval_phase_vii.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_record_local_native_three_seed.py",
+          "exists": true,
+          "sha256": "ae7f1308643cc0da79ce06428273baf610e01c0bb8f9f54cc80ce2964581a0f6"
+        },
+        {
+          "path": "tools/cfp_replay_context_native.py",
+          "exists": false,
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "task_book_path": "tools/cfp_profile_online.py",
+      "status": "equivalent",
+      "exact_exists": false,
+      "implemented_equivalents": [
+        {
+          "path": "tools/cfp_profile_whole_raw_current.py",
+          "exists": false,
+          "sha256": null
+        }
+      ]
+    }
+  ],
+  "required_test_and_command_crosswalk": [
+    {
+      "id": "masks_and_visibility",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_local_dense_jepa.py",
+          "exists": true,
+          "sha256": "8c232409eed4ccca8fb228a2a31fbe3e3890ec24272004033b14f9a95bbdd853"
+        },
+        {
+          "path": "tests/test_visible_token_fish_mae.py",
+          "exists": true,
+          "sha256": "8b968938c939cca6fb1c6a700b8e6844fe3d9164f6d9ed27e6f7a5d25b189985"
+        },
+        {
+          "path": "tests/test_cfp_jepa_runtime.py",
+          "exists": true,
+          "sha256": "d615b30600f957687198e4d6640d31970a75f3eb94787bbc54fdc4c5d8a89aef"
+        }
+      ]
+    },
+    {
+      "id": "jepa_no_target_leakage",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_local_dense_jepa.py",
+          "exists": true,
+          "sha256": "8c232409eed4ccca8fb228a2a31fbe3e3890ec24272004033b14f9a95bbdd853"
+        },
+        {
+          "path": "tests/test_visible_token_fish_mae.py",
+          "exists": true,
+          "sha256": "8b968938c939cca6fb1c6a700b8e6844fe3d9164f6d9ed27e6f7a5d25b189985"
+        }
+      ]
+    },
+    {
+      "id": "NULL_and_candidate_masks",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_cfp_candidate_jepa.py",
+          "exists": true,
+          "sha256": "c71ab9d5447022d81cdb2fda2008e78ceaa4f1370aef510ed92483259e228acc"
+        },
+        {
+          "path": "tests/test_cfp_utility_queries.py",
+          "exists": true,
+          "sha256": "348dc53374aad4a65d1ffce7db5068852bf83741809d8e8ac83eb45d2d685ab4"
+        },
+        {
+          "path": "tests/test_cfp_online.py",
+          "exists": true,
+          "sha256": "2164401a35ba60307debeb2505e2571c49854d895463a4551b363c765bd44c92"
+        }
+      ]
+    },
+    {
+      "id": "one_to_one_and_assignment",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_cfp_joint_identity.py",
+          "exists": true,
+          "sha256": "c2c386d0416fd4d69a4a8e274e19d212ac613913b0ac308a7cae9d1af4b07383"
+        },
+        {
+          "path": "tests/test_cfp_candidate_graph.py",
+          "exists": true,
+          "sha256": "dd18dea99c351cce34a2e8ce2cc92e2b78ccb469381076d6200037bb623c3589"
+        }
+      ]
+    },
+    {
+      "id": "temporal_order_and_empty_inputs",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_cfp_online.py",
+          "exists": true,
+          "sha256": "2164401a35ba60307debeb2505e2571c49854d895463a4551b363c765bd44c92"
+        },
+        {
+          "path": "tests/test_cfp_candidate_graph.py",
+          "exists": true,
+          "sha256": "dd18dea99c351cce34a2e8ce2cc92e2b78ccb469381076d6200037bb623c3589"
+        }
+      ]
+    },
+    {
+      "id": "finite_stability",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "tests/test_cfp_online.py",
+          "exists": true,
+          "sha256": "2164401a35ba60307debeb2505e2571c49854d895463a4551b363c765bd44c92"
+        },
+        {
+          "path": "tests/test_cfp_jepa_runtime.py",
+          "exists": true,
+          "sha256": "d615b30600f957687198e4d6640d31970a75f3eb94787bbc54fdc4c5d8a89aef"
+        }
+      ]
+    },
+    {
+      "id": "restart_reproducibility",
+      "status": "MEASURED_PASS",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_LOCAL_DENSE_RESTART_MEASURED.json",
+          "exists": true,
+          "sha256": "936775a2095490673cc3dd878fa4475b2a33d34e0326790ca39219107ea2a4ad"
+        },
+        {
+          "path": "docs/research/PHASE_VII_CENTERED_JOINT_THREE_SEED_MEASURED.json",
+          "exists": true,
+          "sha256": "70d3a29ae856e7de98f7f24684660c1a8dcd2336c340d941428910f17a1eeb4a"
+        }
+      ]
+    },
+    {
+      "id": "TrackEval_metric_parity",
+      "status": "MEASURED_IN_REGISTERED_REPLAYS",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_CONTEXT_IDENTITY_NATIVE_ALLFOLDS_MEASURED.json",
+          "exists": true,
+          "sha256": "2b1580fcf1e4c16fc25d695fef4c0d0ce585efbc27d31ab428773445c789e703"
+        },
+        {
+          "path": "docs/research/PHASE_VII_SOURCE_JPM_NATIVE_COMPLETE_MEASURED.json",
+          "exists": true,
+          "sha256": "6891e48fe5d7c288202eec771e0cdeb340d0527a1cd70568a157760df48f26f4"
+        }
+      ]
+    },
+    {
+      "id": "declared_full_repository_command",
+      "status": "MEASURED_WITH_LIMIT",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
+          "exists": true,
+          "sha256": "e9842c9ced979bf6f797e99a36c16e8e829d7bf1989f534a80cbcb6e27ed3fe0"
+        }
+      ]
+    }
+  ],
+  "immediate_step_crosswalk": [
+    {
+      "id": "step1_environment_branch_assets",
+      "status": "COMPLETE_WITH_GUARDS"
+    },
+    {
+      "id": "step2_source_audit",
+      "status": "COMPLETE_WITH_EXCLUSIONS"
+    },
+    {
+      "id": "step3_history_gru_diagnosis",
+      "status": "COMPLETE"
+    },
+    {
+      "id": "step4_visual_reid_controls",
+      "status": "COMPLETE_INTERNAL_CONTROLS"
+    },
+    {
+      "id": "step5_fixed-proposal-native-replay",
+      "status": "COMPLETE_REGISTERED_CONTROLS"
+    },
+    {
+      "id": "step6_joint-decoder",
+      "status": "COMPLETE_INTERNAL_NEGATIVE_CONTROLS"
+    },
+    {
+      "id": "step7_dense-jepa",
+      "status": "COMPLETE_INTERNAL_NEGATIVE_CONTROLS"
+    },
+    {
+      "id": "step8_motion-occlusion",
+      "status": "COMPLETE_CONTROLS_WITH_AGCIOU_SCOPE_EXCLUSION"
+    },
+    {
+      "id": "step9_selective-combinations",
+      "status": "NOT_JUSTIFIED"
+    },
+    {
+      "id": "step10_three-seed/full-metric/raw",
+      "status": "COMPLETE_FOR_REGISTERED_REFERENCES_ONLY"
+    },
+    {
+      "id": "step11_adaptive-next-hypothesis",
+      "status": "COMPLETE_LEDGERED"
+    },
+    {
+      "id": "step12_github_delivery",
+      "status": "REMOTE_VERIFIED_BEFORE_LOCAL_AHEAD"
+    }
+  ],
+  "interpretation": "This matrix audits evidence coverage and explicit task-book artifacts/commands while preserving two unresolved scientific states: no justified positive final combination and no stable independent method contribution. Existing equivalents are mapped where suggested filenames differ; absent exact suggested filenames are not silently counted as evidence. It does not redefine either unresolved state as completion or a mechanical NO_GO."
+}
