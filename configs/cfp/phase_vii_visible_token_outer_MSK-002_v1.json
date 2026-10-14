@@ -1,0 +1,42 @@
+{
+  "state": "FROZEN",
+  "fit_videos": [
+    "BT-001",
+    "BT-003",
+    "SN-001",
+    "SN-015"
+  ],
+  "excluded_videos": [
+    "PF-001",
+    "MSK-002"
+  ],
+  "modes": [
+    "masked_visible_tokens",
+    "visible_target"
+  ],
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "epochs": 8,
+  "steps_per_epoch": 150,
+  "batch_size": 16,
+  "mask_ratio": 0.6,
+  "backbone_lr": 1e-05,
+  "decoder_lr": 0.0003,
+  "weight_decay": 0.0001,
+  "augmentation": {
+    "horizontal_flip_probability": 0.5,
+    "erase_probability": 0.2,
+    "erase_area_fraction": [
+      0.05,
+      0.2
+    ]
+  },
+  "checkpoint_selection": "Fixedfinalepoch8; noinner/outerpixels orretrievalselection duringpretraining.",
+  "storage_policy": "Ownnew .scratch-last.pt contains allmodel/optimizer/scaler/RNG for live/freshrestart. Allcompletedfinalencoder.pt retain fullcurrentbackbone only; decoder/finaltraining-state SHA retainedinmanifest. Restartpair keeps bothfullstates forbitexactproof. No historicalassets/checkpoints/cache deleted ormodified; runtimeguards enforce40GiBreserve includingremainingnativebanks.",
+  "representation": "All12blocks/patch_embed/CLS/norm oflicensed DINOv2S trainable; pretrainedposition isfixed to avoidnondeterministic CUDAbicubic-positionbackward andoriginalunusedmaskreplacementtokenfrozen. Thisis nearfullencoder ratherthanallparameter finetuning, visiblepatch embeddings removed beforeallattention for maskedmode, twoowned192DTransformerdecoderlayers overrestored163sequence. Samepercrop query/augmentation/sampleRNG andtargetloss, visible_target controlreadsquerypixels andthematchingdecoder-maskparameter is anadditivequery marker soactivecapacity exactlymatches; encodercompute explicitlydifferent, fixedupdatebudgetnotFLOPs equality.",
+  "source_scope": "Owned canonicalvisible-token currentRGBmasked reconstruction onexistinglicensedstudyproposal crops; not copiedunlicensedFishMAE/code/weights andnotofficialFishMAE/MAEreproduction. Noidentitylabels/teacher/future/externaldata training. Firststageunsupervisedcontrolonly; separateidentityCE/Triplet training, native/allfold/novelty verification remainrequired.",
+  "scope": "Outer-fold MSK-002: fit-only unlabeled full-encoder pretraining on BT-001,BT-003,SN-001,SN-015; inner PF-001 and outer MSK-002 excluded. Two visible-token objectives x three seeds. No current claim of identity gain/native MOT/novel method/final goal."
+}

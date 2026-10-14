@@ -21,7 +21,7 @@ def main():
     ap.add_argument('--storage-root',type=Path,
                     help='Filesystem used for new checkpoints/scratch. Input assets under --root remain immutable; both mounts must retain the 40 GiB reserve.')
     ap.add_argument('--mode',required=True);ap.add_argument('--seed',type=int,required=True);ap.add_argument('--resume',action='store_true');ap.add_argument('--stop-after-epoch',type=int);a=ap.parse_args();c=json.loads(a.config.read_text());gpu=os.environ.get('CUDA_VISIBLE_DEVICES');storage_root=a.storage_root or a.root
-    if c['state']!='FROZEN' or a.mode not in c['modes'] or a.seed not in c['seed_plan'] or a.output.exists() and not a.resume or gpu!='1' or os.environ.get('CUBLAS_WORKSPACE_CONFIG')!=':4096:8' or a.output.resolve().is_relative_to(Path.cwd().resolve()):raise ValueError('New registered outsideGit fit oridenticalresume on actualidle GPU1 anddeterministicworkspace required')
+    if c['state']!='FROZEN' or a.mode not in c['modes'] or a.seed not in c['seed_plan'] or a.output.exists() and not a.resume or gpu not in ('0','1','2','3') or os.environ.get('CUBLAS_WORKSPACE_CONFIG')!=':4096:8' or a.output.resolve().is_relative_to(Path.cwd().resolve()):raise ValueError('New registered outsideGit fit oridenticalresume on actualidle approvedGPU0-3 anddeterministicworkspace required')
     if a.stop_after_epoch is not None and not 1<=a.stop_after_epoch<c['epochs']:raise ValueError('Actualdeliberate termination beforefinalepoch required')
     memory,util=map(int,subprocess.check_output(['nvidia-smi','-i',gpu,'--query-gpu=memory.used,utilization.gpu','--format=csv,noheader,nounits'],text=True).split(','))
     if memory>64 or util:raise ValueError('Assigned GPU notactuallyidle; preserveotherjobs')

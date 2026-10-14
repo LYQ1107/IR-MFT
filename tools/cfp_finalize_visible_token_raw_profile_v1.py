@@ -27,7 +27,7 @@ def main():
         raise ValueError('Final report already exists; refuse overwrite')
     template = json.loads(args.protocol_template.read_text())
     if template.get('state') != 'FROZEN' or args.video not in template.get('train', []):
-        raise ValueError('Protocol template is not the frozen SN-015 train protocol')
+        raise ValueError('Protocol template does not contain the declared train video')
     results = []
     for run in args.outputs:
         manifest_path = run / 'manifest.json'
@@ -104,9 +104,9 @@ def main():
             }
         })
     write_json(args.report, {
-        'status': 'COMPLETE_VISIBLE_TOKEN_STRICT_RAW_SN015_RUNS_VERIFIED',
+        'status': 'COMPLETE_VISIBLE_TOKEN_STRICT_RAW_RUNS_VERIFIED',
         'video': args.video,
-        'scope': 'Completed strict current-only RGB -> causal pseudo-IR -> V3 detector -> visible-token encoder -> FIFO lifecycle -> output, followed by independent CPU trace replay and official TrackEval. Results are per declared outer fold/seed/objective; no all-fold or final-method claim.',
+        'scope': 'Completed strict current-only RGB -> causal pseudo-IR -> V3 detector -> visible-token encoder -> FIFO lifecycle -> output, followed by independent CPU trace replay and official TrackEval. Results are per declared outer fold/seed/objective; aggregate all-fold or final-method claims require every registered fold.',
         'protocol_template': str(args.protocol_template),
         'protocol_template_sha256': sha256(args.protocol_template),
         'trackeval_root': str(args.trackeval_root),

@@ -1,0 +1,15 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "kinds": ["visible_token_masked", "visible_token_target"],
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "detections": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections",
+  "detector_python": "/data3/liuyeqiang/.venvs/cfp-fishmot-cu117/bin/python",
+  "detector_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/mft26ir_rgbt_v3_best_single_gpu.pth.tar",
+  "scripts_root": "/data3/liuyeqiang/IR-MFT_assets/scripts",
+  "dino_reference": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+  "dino_weights": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/dinov2_vits14_pretrain.pth",
+  "dino_source_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+  "visible_seed_plan": [0, 1, 2],
+  "scope": "Strict whole-video current-only RGB -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector repeat-current-image batch8 -> current proposal crops -> fit-only visible-token checkpoint -> FIFO lifecycle/output. Each outer video has its own four-video pretraining fit set and next-cycle inner calibration video; no outer/inner pixels or identity values reach its encoder fit. No GT/teacher/future/cached inference input. All six outer folds, two objectives and three seeds are required before any all-fold or final-method claim."
+}
