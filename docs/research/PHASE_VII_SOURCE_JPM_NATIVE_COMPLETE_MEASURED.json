@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETE_54_NATIVE_SOURCE_JPM_CONTROLS",
+  "measured_by": "tools/cfp_record_native_jpm_matrix.py --require-complete",
+  "completed_full_videos": 54,
+  "dimensions": {
+    "videos": ["BT-001", "SN-015"],
+    "modes": ["global", "jpm", "cls_capacity"],
+    "seeds": [0, 1, 2],
+    "memories": ["last", "fifo", "ema"]
+  },
+  "exact_matrix_outside_git": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_source_jpm_complete_matrix_v1.json",
+  "exact_matrix_sha256": "99a41ed96f3a50d5f2afebdf4e9738fd79a42046709a55f13b4f8cd2781ce492",
+  "fifo_summary": {
+    "BT-001": {
+      "global": {"HOTA_mean": 32.037787778035735, "HOTA_sd": 0.8027987760355053, "IDF1_mean": 38.3429039098143, "IDF1_sd": 1.22093174110181},
+      "jpm": {"HOTA_mean": 32.51129642829614, "HOTA_sd": 0.439423536852215, "IDF1_mean": 39.16304193868217, "IDF1_sd": 0.7063937304538656},
+      "cls_capacity": {"HOTA_mean": 32.57326049756326, "HOTA_sd": 0.4831436177747452, "IDF1_mean": 39.15730784565757, "IDF1_sd": 0.7013754940036687}
+    },
+    "SN-015": {
+      "global": {"HOTA_mean": 32.20621313373276, "HOTA_sd": 0.1315763830144152, "IDF1_mean": 29.80515507512465, "IDF1_sd": 0.17460536348474975},
+      "jpm": {"HOTA_mean": 32.427149774808655, "HOTA_sd": 0.1988813697195984, "IDF1_mean": 30.17713297383074, "IDF1_sd": 0.3348622709228594},
+      "cls_capacity": {"HOTA_mean": 32.2564252681066, "HOTA_sd": 0.19303129635936367, "IDF1_mean": 30.0612060342644, "IDF1_sd": 0.4376330553428543}
+    }
+  },
+  "interpretation": "All 54 source-JPM full-video replays are complete. FIFO JPM is above global on both videos, but the same-capacity CLS control is slightly higher on BT-001 and higher than global on SN-015; this is not a stable spatial/JPM causal gain. Exact per-run manifests, feature hashes, checkpoint hashes, full TrackEval metrics and protocol checks are in the linked outside-Git matrix."
+}
