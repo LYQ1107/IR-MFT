@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_CANDIDATE_NEAREST_HISTORY_SN015_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "outer_video": "SN-015",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "appearance_max_distance": 0.35,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "memory_rule": "candidate_specific_minimum_cosine_distance_over_last_four_strictly_past_assigned_native_observations",
+  "selection": "Fixed before evaluation; no threshold, seed, video or outer metric selection.",
+  "expansion_gate": "Expand only if HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+  "scope": "A single fixed candidate-conditioned history rule tests whether raw historical evidence is lost by the FIFO prototype. For each legal current candidate, appearance cost is the minimum half-normalized-cosine distance to the track's last four strictly past accepted native observations. Geometry, appearance weight, eligibility threshold, proposal graph, lifecycle and output coordinates are unchanged. No GT, physical identity, future frame, teacher, external payload or current/future feature enters online replay. This SN-015 probe is a gate, not an all-video or final-method claim.",
+  "guards": {
+    "cpu_only": true,
+    "minimum_free_bytes": 42949672960,
+    "immutable_outputs": true,
+    "raw_fps": "not measured; cached native association timing only"
+  }
+}
