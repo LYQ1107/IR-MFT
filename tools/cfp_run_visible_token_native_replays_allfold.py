@@ -86,64 +86,74 @@ def main():
     write_json(args.state, state)
     env = dict(os.environ, PYTHONPATH=str(args.repo), CUDA_VISIBLE_DEVICES="",
                OMP_NUM_THREADS="2", OPENBLAS_NUM_THREADS="1")
-    for task in tasks:
-        if task["status"] == "COMPLETE":
-            continue
-        feature = Path(task["feature"])
-        output = Path(task["output"])
-        evaluation = Path(task["evaluation"])
-        feature_manifest = feature / "manifest.json"
-        if not feature_manifest.exists():
-            task["status"] = "WAITING_FEATURES"
-            state["tasks"] = tasks
+    while True:
+        waiting = 0
+        for task in tasks:
+            if task["status"] == "COMPLETE":
+                continue
+            feature = Path(task["feature"])
+            output = Path(task["output"])
+            evaluation = Path(task["evaluation"])
+            feature_manifest = feature / "manifest.json"
+            if not feature_manifest.exists():
+                task["status"] = "WAITING_FEATURES"
+                waiting += 1
+                continue
+            fm = json.loads(feature_manifest.read_text())
+            if fm.get("status") != "COMPLETE_NATIVE_CURRENT_VISIBLE_TOKEN_FEATURES":
+                task["status"] = "WAITING_FEATURES"
+                waiting += 1
+                continue
+            task["status"] = "RUNNING_REPLAY"
+            state["status"] = "RUNNING"
+            state["active"] = task
             write_json(args.state, state)
-            raise RuntimeError(f"Native feature bank is not complete: {feature}")
-        fm = json.loads(feature_manifest.read_text())
-        if fm.get("status") != "COMPLETE_NATIVE_CURRENT_VISIBLE_TOKEN_FEATURES":
-            raise RuntimeError(f"Native feature manifest is not complete: {feature_manifest}")
-        task["status"] = "RUNNING_REPLAY"
-        state["status"] = "RUNNING"
-        state["active"] = task
-        write_json(args.state, state)
-        if not output.exists():
-            command = [sys.executable, str(replay), "--config", str(config),
-                       "--features", str(feature), "--detections", str(detections),
-                       "--output", str(output), "--video", task["video"], "--memory", "fifo"]
-            if run_checked(command, args.repo, Path(task["log"]), env):
-                task["status"] = "FAILED"
-                task["error"] = "native replay returned nonzero"
-                write_json(args.state, state)
-                raise RuntimeError(task["error"])
-        replay_manifest = output / "manifest.json"
-        rm = json.loads(replay_manifest.read_text())
-        if rm.get("status") != "COMPLETE_NATIVE_CURRENT_IDENTITY_REPLAY":
-            raise RuntimeError(f"Replay did not complete: {replay_manifest}")
-        if not evaluation.exists():
-            evaluation.mkdir(parents=True)
-            protocol = json.loads(protocol_template.read_text())
-            protocol.update(train=[task["video"]], dev=[], historical_test=[],
-                            role="Offline official scoring of all-fold native visible-token replay; no metric selection")
-            write_json(evaluation / "protocol.json", protocol)
-            command = [sys.executable, str(evaluate), "--data-root", str(data_root),
-                       "--derived-gt-root", str(derived_gt), "--protocol", str(evaluation / "protocol.json"),
-                       "--partition", "train", "--predictions", str(output),
-                       "--output", str(evaluation), "--trackeval-root", str(trackeval)]
-            if run_checked(command, args.repo, evaluation / "evaluation.log", env):
-                raise RuntimeError(f"official scoring failed: {task['video']} {task['mode']} s{task['seed']}")
-        metrics_path = evaluation / "metrics.json"
-        metrics = json.loads(metrics_path.read_text())
-        video_metrics = metrics["metrics"][task["video"]]
-        artifact = metrics["artifacts"][task["video"]]
-        if artifact["prediction_sha256"] != rm["prediction_sha256"]:
-            raise ValueError("TrackEval prediction does not match native replay")
-        task.update(status="COMPLETE", replay_manifest_sha256=sha256(replay_manifest),
-                    metrics_sha256=sha256(metrics_path), metrics=video_metrics)
-        state["tasks"] = tasks
+            if not output.exists():
+                command = [sys.executable, str(replay), "--config", str(config),
+                           "--features", str(feature), "--detections", str(detections),
+                           "--output", str(output), "--video", task["video"], "--memory", "fifo"]
+                if run_checked(command, args.repo, Path(task["log"]), env):
+                    task["status"] = "FAILED"
+                    task["error"] = "native replay returned nonzero"
+                    write_json(args.state, state)
+                    raise RuntimeError(task["error"])
+            replay_manifest = output / "manifest.json"
+            rm = json.loads(replay_manifest.read_text())
+            if rm.get("status") != "COMPLETE_NATIVE_CURRENT_IDENTITY_REPLAY":
+                raise RuntimeError(f"Replay did not complete: {replay_manifest}")
+            if not evaluation.exists():
+                evaluation.mkdir(parents=True)
+                protocol = json.loads(protocol_template.read_text())
+                protocol.update(train=[task["video"]], dev=[], historical_test=[],
+                                role="Offline official scoring of all-fold native visible-token replay; no metric selection")
+                write_json(evaluation / "protocol.json", protocol)
+                command = [sys.executable, str(evaluate), "--data-root", str(data_root),
+                           "--derived-gt-root", str(derived_gt), "--protocol", str(evaluation / "protocol.json"),
+                           "--partition", "train", "--predictions", str(output),
+                           "--output", str(evaluation), "--trackeval-root", str(trackeval)]
+                if run_checked(command, args.repo, evaluation / "evaluation.log", env):
+                    raise RuntimeError(f"official scoring failed: {task['video']} {task['mode']} s{task['seed']}")
+            metrics_path = evaluation / "metrics.json"
+            metrics = json.loads(metrics_path.read_text())
+            video_metrics = metrics["metrics"][task["video"]]
+            artifact = metrics["artifacts"][task["video"]]
+            if artifact["prediction_sha256"] != rm["prediction_sha256"]:
+                raise ValueError("TrackEval prediction does not match native replay")
+            task.update(status="COMPLETE", replay_manifest_sha256=sha256(replay_manifest),
+                        metrics_sha256=sha256(metrics_path), metrics=video_metrics)
+            state["tasks"] = tasks
+            state["active"] = None
+            write_json(args.state, state)
+            print(json.dumps(dict(video=task["video"], mode=task["mode"], seed=task["seed"],
+                                  HOTA=video_metrics["HOTA"], IDF1=video_metrics["IDF1"],
+                                  IDSW=video_metrics["IDSW"])), flush=True)
+        if all(task["status"] == "COMPLETE" for task in tasks):
+            break
+        state["status"] = "WAITING_FEATURES" if waiting else "RUNNING"
         state["active"] = None
+        state["tasks"] = tasks
         write_json(args.state, state)
-        print(json.dumps(dict(video=task["video"], mode=task["mode"], seed=task["seed"],
-                              HOTA=video_metrics["HOTA"], IDF1=video_metrics["IDF1"],
-                              IDSW=video_metrics["IDSW"])), flush=True)
+        time.sleep(30)
     state.update(status="COMPLETE_ALLFOLD_NATIVE_REPLAYS_36", finished_unix=time.time(), active=None)
     write_json(args.state, state)
     report = dict(status="COMPLETE_ALLFOLD_NATIVE_REPLAYS_36", config=str(config),
