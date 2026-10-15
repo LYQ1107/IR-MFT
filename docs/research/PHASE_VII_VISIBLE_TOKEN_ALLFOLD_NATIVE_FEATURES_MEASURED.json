@@ -1,16 +1,30 @@
 {
-  "status": "IN_PROGRESS_NATIVE_CURRENT_VISIBLE_TOKEN_FEATURE_PRODUCER",
+  "status": "COMPLETE_ALLFOLD_NATIVE_VISIBLE_TOKEN_FEATURES_AND_REPLAYS_MEASURED",
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
-  "purpose": "Extend the completed strict-raw visible-token campaign with independent native Protocol-B current-frame feature production and unchanged FIFO replay. This snapshot is not a completion or contribution claim.",
+  "purpose": "Complete all-fold native Protocol-B current-frame feature production and unchanged FIFO replay for the registered visible-token objectives. The measurement is complete; it is descriptive evidence and does not establish a stable independent contribution or a final combination.",
   "campaign": {
     "expected_runs": 36,
-    "accepted_runs_at_snapshot": 15,
-    "active_runs_at_snapshot": 4,
-    "pending_runs_at_snapshot": 17,
-    "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
-    "modes": ["masked_visible_tokens", "visible_target"],
-    "seeds": [0, 1, 2],
+    "accepted_runs_at_snapshot": 36,
+    "active_runs_at_snapshot": 0,
+    "pending_runs_at_snapshot": 0,
+    "videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "modes": [
+      "masked_visible_tokens",
+      "visible_target"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
     "protocol": "Exact frozen causal V3 proposal/frame order; current RGB crop and fit-only visible-token checkpoint; every frame including empty-frame handling; native feature outputs remain outside Git.",
     "online_guards": {
       "loaded_GT_annotation_labels": false,
@@ -18,10 +32,16 @@
       "cached_detection_or_feature_used_for_inference": false,
       "no_future_or_teacher_online": true,
       "current_rgb_only_encoder_input": true
-    }
+    },
+    "status": "COMPLETE_ALLFOLD_NATIVE_FEATURES_AND_REPLAYS_36",
+    "feature_state_status": "COMPLETE_ALLFOLD_NATIVE_FEATURES_36",
+    "replay_state_status": "COMPLETE_ALLFOLD_NATIVE_REPLAYS_36",
+    "feature_state_sha256": "e6f6c4ed793a7f1da9bd32158023f93abaa65b2eb63d109e8d3f3dc53943be63",
+    "replay_state_sha256": "56a685405dcd9c6ecab9eb70cc5ce2874aa19383b86fc210c3fc1f2cc148746e",
+    "replay_report_sha256": "8a8dbaebb7002f6bf2fa1de08be2028aee986fba3e498754bb78778a22561a21"
   },
   "persistent_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/state.json",
-  "persistent_state_sha256_at_snapshot": "1409c27317696975ec99e62de344cbb1b59074f8812cefa84958157378cfe80e",
+  "persistent_state_sha256_at_snapshot": "e6f6c4ed793a7f1da9bd32158023f93abaa65b2eb63d109e8d3f3dc53943be63",
   "configuration": "configs/cfp/phase_vii_visible_token_native_features_allfold_v1.json",
   "configuration_sha256": "79538f50c2ae832390ae1bb7c0764a6f12f8c12fd013b39ef71e77682c8009c6",
   "driver": "tools/cfp_run_visible_token_native_features_allfold.py",
@@ -34,7 +54,176 @@
     "partial_outputs_accepted": false,
     "repair": "A 40 GiB guard rejection was preserved; completed feature banks were moved to /dev/shm and reached through the declared symlink, while interrupted partial banks were quarantined before resuming."
   },
-  "next_gate": "Complete all 36 native feature producers, replay each through unchanged FIFO and official TrackEval, then aggregate paired per-video/seed metrics. P11/P17 remain open until independent complementarity is demonstrated.",
+  "next_gate": "Native all-fold feature/replay measurement is complete. Preserve the negative/mixed result, update the requirement audit and final research ledger, and do not mechanically stack the component.",
   "raw_and_weights_policy": "Large feature banks, traces and checkpoints are outside Git; no data or weight upload.",
-  "source_commit_at_snapshot": "4450f358024e1ffe24c34277da78cbea48340525"
+  "source_commit_at_snapshot": "4450f358024e1ffe24c34277da78cbea48340525",
+  "replay_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/replay_state.json",
+  "replay_report": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/replay_report.json",
+  "aggregate_report": "/data3/liuyeqiang/IR-MFT/docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json",
+  "aggregate_report_sha256": "62f1d96193ecdcf761da68c80dfbd1babe771c7df83c3d002111c9a1d12286df",
+  "finding": {
+    "masked_visible_tokens": {
+      "HOTA": {
+        "mean": 38.3161434868247,
+        "sample_sd": 10.17194912104629,
+        "n": 18
+      },
+      "AssA": {
+        "mean": 26.06536862409455,
+        "sample_sd": 14.692218121656932,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 60.86046307707971,
+        "sample_sd": 11.822756191053188,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": 46.03743373419198,
+        "sample_sd": 18.09357976112075,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": 73.4321582115156,
+        "sample_sd": 18.54897452923744,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": 118.0,
+        "sample_sd": 136.00216261256332,
+        "n": 18
+      }
+    },
+    "visible_target": {
+      "HOTA": {
+        "mean": 38.24179390772458,
+        "sample_sd": 10.279451777985974,
+        "n": 18
+      },
+      "AssA": {
+        "mean": 26.03601168131381,
+        "sample_sd": 14.820724404641664,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 60.888736061599374,
+        "sample_sd": 11.785944214189705,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": 45.71045212190983,
+        "sample_sd": 18.384662369294443,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": 73.43127168562381,
+        "sample_sd": 18.548908094785595,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": 118.83333333333333,
+        "sample_sd": 136.01178582149765,
+        "n": 18
+      }
+    },
+    "visible_target_minus_masked": {
+      "HOTA": {
+        "mean": -0.07434957910013572,
+        "sample_sd": 1.1139442858555038,
+        "n": 18
+      },
+      "AssA": {
+        "mean": -0.029356942780741708,
+        "sample_sd": 1.213245461541898,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 0.028272984519669347,
+        "sample_sd": 0.19152672123404976,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": -0.3269816122821394,
+        "sample_sd": 1.6411814868320223,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": -0.0008865258917711097,
+        "sample_sd": 0.045145626432175595,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": 0.8333333333333334,
+        "sample_sd": 3.2221658773527584,
+        "n": 18
+      }
+    },
+    "paired_native_global_fifo_reference": {
+      "masked_visible_tokens": {
+        "HOTA": {
+          "mean": -0.046052580764231306,
+          "sample_sd": 0.7041805856876442,
+          "n": 18
+        },
+        "AssA": {
+          "mean": -0.12455613622083798,
+          "sample_sd": 0.8477903208669847,
+          "n": 18
+        },
+        "DetA": {
+          "mean": 0.0418507780596242,
+          "sample_sd": 0.0809132157819693,
+          "n": 18
+        },
+        "IDF1": {
+          "mean": -0.3057714214650819,
+          "sample_sd": 1.4694261319899047,
+          "n": 18
+        },
+        "MOTA": {
+          "mean": -0.0032381865226807824,
+          "sample_sd": 0.04390840071374358,
+          "n": 18
+        },
+        "IDSW": {
+          "mean": 1.2222222222222223,
+          "sample_sd": 1.8005082797253327,
+          "n": 18
+        }
+      },
+      "visible_target": {
+        "HOTA": {
+          "mean": -0.12040215986436703,
+          "sample_sd": 0.5289892470633124,
+          "n": 18
+        },
+        "AssA": {
+          "mean": -0.1539130790015797,
+          "sample_sd": 0.5578897602431885,
+          "n": 18
+        },
+        "DetA": {
+          "mean": 0.07012376257929355,
+          "sample_sd": 0.19906605597218946,
+          "n": 18
+        },
+        "IDF1": {
+          "mean": -0.6327530337472214,
+          "sample_sd": 0.8259288606697355,
+          "n": 18
+        },
+        "MOTA": {
+          "mean": -0.004124712414451892,
+          "sample_sd": 0.04377159224550896,
+          "n": 18
+        },
+        "IDSW": {
+          "mean": 2.0555555555555554,
+          "sample_sd": 3.3161320881629233,
+          "n": 18
+        }
+      }
+    },
+    "interpretation": "Masked and visible-target families are nearly tied in aggregate, with masked HOTA/IDF1 slightly higher than visible-target but no stable independent gain. Against the descriptive native global FIFO reference, both objectives have negative mean HOTA/AssA/IDF1 deltas and increased mean IDSW. P11 remains NOT_JUSTIFIED_BY_CURRENT_COMPONENT_EVIDENCE and P17 remains NOT_ESTABLISHED."
+  }
 }

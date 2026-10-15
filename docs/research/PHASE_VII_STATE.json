@@ -1,11 +1,11 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_RECOVERED_PERSISTENT",
+  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_NATIVE_AND_STRICT_RAW_MEASURED_PENDING_SCIENTIFIC_CONTRIBUTION",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "3208e95579e9ff5c7ce36836279f83fcddc6d5ed",
-    "remote_commit": "97bfb8c97e41031c5484ffaa15bc4081726733c2",
+    "local_commit": "f66494f8c28c3268903cfd7c227da8cc0daa9c21",
+    "remote_commit": "c4933fbf4f1f35f529041946565cabb6c3c25779",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -152,10 +152,10 @@
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "All-fold strict raw visible-token measurement is complete; all-fold native/combination evidence still must be interpreted only through the requirement audit.",
+      "All-fold strict-raw and all-fold native visible-token measurements are complete; both are mixed/negative and must not be converted into a novelty or final-method claim.",
       "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
-      "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths."
+      "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed native feature banks remain in declared volatile staging with the /data3 symlink path."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -741,6 +741,133 @@
         "status": "COMPLETE_ENGINEERING_REPAIR_RUNTIME_SUMMARY_RECOMPUTED",
         "aggregate_sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679"
       }
+    },
+    "visible_token_native_allfold": {
+      "status": "COMPLETE_ALLFOLD_NATIVE_VISIBLE_TOKEN_FEATURES_AND_REPLAYS_MEASURED",
+      "feature_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/state.json",
+      "feature_state_sha256": "e6f6c4ed793a7f1da9bd32158023f93abaa65b2eb63d109e8d3f3dc53943be63",
+      "replay_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/replay_state.json",
+      "replay_state_sha256": "56a685405dcd9c6ecab9eb70cc5ce2874aa19383b86fc210c3fc1f2cc148746e",
+      "replay_report": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/replay_report.json",
+      "replay_report_sha256": "8a8dbaebb7002f6bf2fa1de08be2028aee986fba3e498754bb78778a22561a21",
+      "aggregate_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json",
+      "aggregate_report_sha256": "62f1d96193ecdcf761da68c80dfbd1babe771c7df83c3d002111c9a1d12286df",
+      "coverage": {
+        "feature_tasks": 36,
+        "replay_tasks": 36,
+        "feature_statuses": [
+          "COMPLETE"
+        ],
+        "replay_statuses": [
+          "COMPLETE"
+        ],
+        "all_feature_guards_pass": true,
+        "all_replay_guards_pass": true,
+        "all_feature_frame_order_pass": true,
+        "baseline_rows_paired": 36
+      },
+      "aggregate": {
+        "masked_visible_tokens": {
+          "HOTA": {
+            "mean": 38.3161434868247,
+            "sample_sd": 10.17194912104629,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.06536862409455,
+            "sample_sd": 14.692218121656932,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.86046307707971,
+            "sample_sd": 11.822756191053188,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 46.03743373419198,
+            "sample_sd": 18.09357976112075,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.4321582115156,
+            "sample_sd": 18.54897452923744,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.0,
+            "sample_sd": 136.00216261256332,
+            "n": 18
+          }
+        },
+        "visible_target": {
+          "HOTA": {
+            "mean": 38.24179390772458,
+            "sample_sd": 10.279451777985974,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.03601168131381,
+            "sample_sd": 14.820724404641664,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.888736061599374,
+            "sample_sd": 11.785944214189705,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 45.71045212190983,
+            "sample_sd": 18.384662369294443,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.43127168562381,
+            "sample_sd": 18.548908094785595,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.83333333333333,
+            "sample_sd": 136.01178582149765,
+            "n": 18
+          }
+        }
+      },
+      "paired_control": {
+        "HOTA": {
+          "mean": -0.07434957910013572,
+          "sample_sd": 1.1139442858555038,
+          "n": 18
+        },
+        "AssA": {
+          "mean": -0.029356942780741708,
+          "sample_sd": 1.213245461541898,
+          "n": 18
+        },
+        "DetA": {
+          "mean": 0.028272984519669347,
+          "sample_sd": 0.19152672123404976,
+          "n": 18
+        },
+        "IDF1": {
+          "mean": -0.3269816122821394,
+          "sample_sd": 1.6411814868320223,
+          "n": 18
+        },
+        "MOTA": {
+          "mean": -0.0008865258917711097,
+          "sample_sd": 0.045145626432175595,
+          "n": 18
+        },
+        "IDSW": {
+          "mean": 0.8333333333333334,
+          "sample_sd": 3.2221658773527584,
+          "n": 18
+        }
+      },
+      "finding": "All-fold native FIFO replay is complete and mixed/negative. It does not establish stable independent complementarity, P11 selective-combination value, or P17 final contribution.",
+      "runtime_boundary": "Feature-production and CPU replay association timing only; decode/IR/detector/crop/encoder whole-pipeline timing remains the separately measured strict-raw report.",
+      "raw_outputs_outside_git": true,
+      "volatile_feature_staging": "/dev/shm/IR-MFT_phase7_visible_token_native_allfold_v1/features"
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -974,10 +1101,9 @@
   ],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Commit the strict raw SN-015 three-seed report and synchronized evidence audits",
-    "Verify local/remote HEAD independently; keep raw traces, native feature banks and weights outside Git",
-    "Extend to all-fold raw only with a declared target and >=40 GiB reserve",
-    "Keep final combination gate NOT_JUSTIFIED and goal IN_PROGRESS_UNACHIEVED"
+    "Preserve all-fold native visible-token evidence and update requirement audit/registry/report.",
+    "Do not run mechanical combinations; P11 remains not justified and P17 remains unestablished.",
+    "Maintain explicit external-generalization and unavailable-source exclusions."
   ],
   "validation": {
     "project_tests": 275,
@@ -1092,5 +1218,5 @@
     "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths."
   ],
   "active_processes_at_snapshot": [],
-  "free_space_gib_at_snapshot": 40.11628341674805
+  "free_space_gib_at_snapshot": 48.0
 }
