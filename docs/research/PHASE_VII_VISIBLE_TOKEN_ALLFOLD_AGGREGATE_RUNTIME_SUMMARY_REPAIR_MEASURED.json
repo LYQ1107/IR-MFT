@@ -1,0 +1,48 @@
+{
+  "status": "COMPLETE_ENGINEERING_REPAIR_RUNTIME_SUMMARY_RECOMPUTED",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_AGGREGATE_RUNTIME_SUMMARY_REPAIR_V1",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "observed_condition": "Every accepted raw manifest contained whole_raw_FPS and frame_latency_p50_p95_ms, but the aggregate reducer summarized only TrackEval metric keys. The first report therefore displayed null/nan runtime summary fields even though per-run runtime measurements existed.",
+  "scientific_effect": "None. No raw manifest, prediction, trace, official metric, guard or frame result changed; this repair only exposes values already present in the 36 accepted manifests.",
+  "repair": {
+    "script": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/run_aggregate_recovery.py",
+    "script_sha256": "2e29ce7ffd4779c700b48568748fd1f0832ec76bf31dd4ab89bb613ff93044af",
+    "behavior": "For each objective, compute mean/sample-SD/n over the 18 accepted runs for whole_raw_FPS, frame_latency_p50_ms and frame_latency_p95_ms.",
+    "source_fields": [
+      "whole_raw_FPS",
+      "frame_latency_p50_p95_ms"
+    ]
+  },
+  "verification": {
+    "aggregate_before_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+    "aggregate_after_sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679",
+    "repo_copy_sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679",
+    "accepted_runs": 36,
+    "masked_visible_tokens": {
+      "n": 18,
+      "whole_raw_FPS_mean": 1.2630125407039807,
+      "whole_raw_FPS_sample_std": 0.10934149177343107,
+      "latency_p50_ms_mean": 788.7079151390329,
+      "latency_p50_ms_sample_std": 71.98604978209298,
+      "latency_p95_ms_mean": 867.6887681526447,
+      "latency_p95_ms_sample_std": 119.62811620258566
+    },
+    "visible_target": {
+      "n": 18,
+      "whole_raw_FPS_mean": 1.2820642189771538,
+      "whole_raw_FPS_sample_std": 0.10793804715789335,
+      "latency_p50_ms_mean": 779.5781107778465,
+      "latency_p50_ms_sample_std": 71.09459154408958,
+      "latency_p95_ms_mean": 840.7948295005857,
+      "latency_p95_ms_sample_std": 101.09217088508474
+    },
+    "raw_state_status": "COMPLETE_ALLFOLD_RAW_36",
+    "finalizer_status": "COMPLETE_ALL_SIX_FINALIZERS",
+    "trace_replays_verified": true,
+    "trackeval_prediction_hashes_match": true,
+    "online_guards_unchanged": true,
+    "scientific_claim_allowed": false
+  },
+  "note": "This is an aggregation/reporting repair only. It does not establish a stable component, independent complementarity, P11 selective-combination value, P17 contribution or a final stacking justification."
+}

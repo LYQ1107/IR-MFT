@@ -1,9 +1,9 @@
-Warning: truncated output (original token count: 102826)
-Total output lines: 11849
+Warning: truncated output (original token count: 103024)
+Total output lines: 11879
 
 {
   "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
-  "as_of": "2026-10-15",
+  "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1_RECOVERED_PERSISTENT",
   "scope": "All six outer folds, two visible-token objectives, three seeds. Each run is strict whole-video current-only RGB -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector -> current proposal crops -> fit-only visible-token checkpoint -> FIFO lifecycle/output, followed by independent CPU actual-trace replay and official TrackEval.",
@@ -5998,21 +5998,7 @@ Total output lines: 11849
           }
         },
         {
-          "…2826 tokens truncated…mputed_IR_used_for_inference": false,
-            "cached_detection_or_feature_used_for_inference": false,
-            "no_future_or_teacher_online": true,
-            "current_rgb_only_encoder_input": true,
-            "proposal_source": "causal_v3_train_detections_repeated_current_rgb_prefix"
-          }
-        },
-        {
-          "run": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw/BT-001/visible_target_s1",
-          "kind": "visible_token_target",
-          "mode": "visible_target",
-          "seed": 1,
-          "training_checkpoint": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/pretrain/BT-001/visible_target_s1",
-          "training_checkpoint_sha256": "f50059102a0a033ac95c99d6e8b8a1d31f606d7ff6993f06d7fbef4726c23a37",
-          "raw_manifest_sha256": "a51e72c31619f8cca960d32a3609a133ee34ce2c62d266468528c399f11ffce6",
+          "…3024 tokens truncated…     "raw_manifest_sha256": "a51e72c31619f8cca960d32a3609a133ee34ce2c62d266468528c399f11ffce6",
           "prediction_sha256": "6645135cc96744d9028026f41e24d9bd1dfe352132301906970da187a32b8570",
           "trace_sha256": "a3a69ac90449d60917ce0c48873b3ec3027da6cd5a3b8ffd1e29519fe0ddcd03",
           "trace_replay": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw/BT-001/visible_target_s1.actual_trace_replay.json",
@@ -11288,6 +11274,21 @@ Total output lines: 11849
         "mean": 51.79223186912623,
         "sample_std": 19.651290771393075,
         "n": 18
+      },
+      "whole_raw_FPS": {
+        "mean": 1.2630125407039807,
+        "sample_std": 0.10934149177343107,
+        "n": 18
+      },
+      "frame_latency_p50_ms": {
+        "mean": 788.7079151390329,
+        "sample_std": 71.98604978209298,
+        "n": 18
+      },
+      "frame_latency_p95_ms": {
+        "mean": 867.6887681526447,
+        "sample_std": 119.62811620258566,
+        "n": 18
       }
     },
     "visible_target": {
@@ -11514,6 +11515,21 @@ Total output lines: 11849
       "sMOTA": {
         "mean": 51.78488569213654,
         "sample_std": 19.655271585210212,
+        "n": 18
+      },
+      "whole_raw_FPS": {
+        "mean": 1.2820642189771538,
+        "sample_std": 0.10793804715789335,
+        "n": 18
+      },
+      "frame_latency_p50_ms": {
+        "mean": 779.5781107778465,
+        "sample_std": 71.09459154408958,
+        "n": 18
+      },
+      "frame_latency_p95_ms": {
+        "mean": 840.7948295005857,
+        "sample_std": 101.09217088508474,
         "n": 18
       }
     }

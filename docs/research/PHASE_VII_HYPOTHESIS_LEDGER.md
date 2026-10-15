@@ -105,6 +105,8 @@ A measured combination gate now covers the completed context-V2, FDTA-style, sou
 
 VII-H2/VII-H3/VII-H6 now have a complete current-only raw boundary across all six outer folds, both visible-token objectives and three seeds (36/36). The aggregate `docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json` reports independent actual-output trace replay, official TrackEval and online guards with no GT/future/cached inference inputs. The fresh all-fold measurement remains a mixed/negative component result and supplies no stable complementarity or final stacking justification. The goal remains `IN_PROGRESS_UNACHIEVED`; all large traces, feature banks and checkpoints remain outside Git.
 
+The aggregate runtime-summary repair now reports FPS 1.2630±0.1093 with p50/p95 788.7±72.0/867.7±119.6 ms for masked_visible_tokens and FPS 1.2821±0.1079 with p50/p95 779.6±71.1/840.8±101.1 ms for visible_target (18 runs per objective). These values were already present in accepted manifests; the repair only exposed them in the reducer output. See `PHASE_VII_VISIBLE_TOKEN_ALLFOLD_AGGREGATE_RUNTIME_SUMMARY_REPAIR_MEASURED.json`.
+
 
 ## Finalizer protocol scope repair (2026-10-16)
 
