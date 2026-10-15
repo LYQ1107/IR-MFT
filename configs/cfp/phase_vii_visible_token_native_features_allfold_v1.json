@@ -1,0 +1,17 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "seed_plan": [0, 1, 2],
+  "mode_plan": ["masked_visible_tokens", "visible_target"],
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir-causal-v1",
+  "frame_index": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/identity_two_crop_index_v1",
+  "detections": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections",
+  "dino_reference": "/data3/liuyeqiang/CFP-FishMOT_references/phase7/DINOv2",
+  "dino_weights": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/external_models/dinov2_vits14_v1/dinov2_vits14_pretrain.pth",
+  "dino_source_proof": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/dinov2_small_inference_source_smoke_v1.json",
+  "pretrain_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/pretrain",
+  "encoder_batch_padding": 128,
+  "max_feature_bytes_per_video": 1073741824,
+  "reserve_gib": 40,
+  "scope": "All six outer videos x two fit-only visible-token objectives x three seeds. Exact causal V3 proposal/frame order and every native frame, including empty frames, are preserved. Encoder reads only current RGB and current proposal boxes; no GT, physical identity, teacher, future frame or cached inference feature is loaded. Outputs are feature-producer evidence for native Protocol B, not a raw end-to-end FPS claim."
+}
