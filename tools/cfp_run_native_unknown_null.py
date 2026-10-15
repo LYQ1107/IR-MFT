@@ -148,14 +148,13 @@ def _run_video(video: str, variant: dict, config: dict, config_path: Path, outpu
         parity = prediction.read_bytes() == reference.read_bytes()
         if variant["expected_prediction_parity"] and not parity:
             raise ValueError(f"Matched no-rule control failed frozen prediction parity for {video}")
-        evaluation = _evaluate(video, output, Path(str(output) + ".trackeval"), config_path)
         report.update(
             status="COMPLETE_NATIVE_UNKNOWN_NULL_REPLAY", frames=len(timings), completed_frames=len(timings),
             output_rows=rows, prediction_sha256=sha256(prediction), reference_sha256=sha256(reference),
             prediction_byte_equal=parity, association_seconds=float(sum(timings)),
             association_latency_p50_p95_ms=(1000 * np.percentile(timings, [50, 95])).tolist(),
-            null_rule_counts=tracker.null_rule_counts, official_metrics=evaluation["metrics"][video],
-            official_metrics_sha256=sha256(Path(str(output) + ".trackeval") / "metrics.json"),
+            null_rule_counts=tracker.null_rule_counts,
+            labels_opened_during_prediction=False,
         )
         write_json(output / "manifest.json", report)
         return report
@@ -185,8 +184,32 @@ def main():
         for video in config["videos"]:
             result = _run_video(video, variant, config, args.config,
                                 args.output / variant["name"] / video)
+            result["output_dir"] = str(args.output / variant["name"] / video)
             manifest["results"].append(result)
             write_json(args.output / "manifest.json", manifest)
+    # Freeze every prediction and reference hash before any official evaluator
+    # opens derived physical labels.  This keeps the evaluation boundary
+    # separate from the causal online replay.
+    if len(manifest["results"]) != len(config["variants"]) * len(config["videos"]):
+        raise ValueError("Prediction coverage incomplete before label opening")
+    for result in manifest["results"]:
+        prediction = Path(result["output_dir"]) / f"{result['video']}.txt"
+        if sha256(prediction) != result["prediction_sha256"]:
+            raise ValueError(f"Prediction changed before evaluation: {prediction}")
+        if result["variant"]["expected_prediction_parity"] and not result["prediction_byte_equal"]:
+            raise ValueError(f"Matched control parity missing: {prediction}")
+    manifest["prediction_hashes_locked"] = True
+    manifest["physical_labels_opened_after_all_prediction_hashes"] = True
+    write_json(args.output / "manifest.json", manifest)
+    for result in manifest["results"]:
+        evaluation = _evaluate(result["video"], Path(result["output_dir"]),
+                               Path(result["output_dir"] + ".trackeval"), args.config)
+        result.update(official_metrics=evaluation["metrics"][result["video"]],
+                      official_metrics_sha256=sha256(Path(result["output_dir"] + ".trackeval") / "metrics.json"),
+                      labels_opened_during_prediction=False,
+                      labels_opened_after_all_prediction_hashes=True)
+        write_json(Path(result["output_dir"]) / "manifest.json", result)
+        write_json(args.output / "manifest.json", manifest)
     manifest.update(status="COMPLETE_NATIVE_UNKNOWN_NULL_REPLAY", online_labels_loaded=False,
                     all_variants_complete=True, all_videos_complete=True)
     write_json(args.output / "manifest.json", manifest)
