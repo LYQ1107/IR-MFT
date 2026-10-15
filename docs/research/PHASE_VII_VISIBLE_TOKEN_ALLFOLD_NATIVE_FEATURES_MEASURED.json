@@ -1,0 +1,40 @@
+{
+  "status": "IN_PROGRESS_NATIVE_CURRENT_VISIBLE_TOKEN_FEATURE_PRODUCER",
+  "as_of": "2026-10-16",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "purpose": "Extend the completed strict-raw visible-token campaign with independent native Protocol-B current-frame feature production and unchanged FIFO replay. This snapshot is not a completion or contribution claim.",
+  "campaign": {
+    "expected_runs": 36,
+    "accepted_runs_at_snapshot": 15,
+    "active_runs_at_snapshot": 4,
+    "pending_runs_at_snapshot": 17,
+    "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+    "modes": ["masked_visible_tokens", "visible_target"],
+    "seeds": [0, 1, 2],
+    "protocol": "Exact frozen causal V3 proposal/frame order; current RGB crop and fit-only visible-token checkpoint; every frame including empty-frame handling; native feature outputs remain outside Git.",
+    "online_guards": {
+      "loaded_GT_annotation_labels": false,
+      "precomputed_IR_used_for_inference": false,
+      "cached_detection_or_feature_used_for_inference": false,
+      "no_future_or_teacher_online": true,
+      "current_rgb_only_encoder_input": true
+    }
+  },
+  "persistent_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/state.json",
+  "persistent_state_sha256_at_snapshot": "1409c27317696975ec99e62de344cbb1b59074f8812cefa84958157378cfe80e",
+  "configuration": "configs/cfp/phase_vii_visible_token_native_features_allfold_v1.json",
+  "configuration_sha256": "79538f50c2ae832390ae1bb7c0764a6f12f8c12fd013b39ef71e77682c8009c6",
+  "driver": "tools/cfp_run_visible_token_native_features_allfold.py",
+  "driver_sha256": "a4bf709cb0d3f45fa23aad83ed41daafbfd32ad00134b34684bf8e53edb02f6f",
+  "resource_guard_repair": {
+    "report": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/resource_guard_repair_v1.json",
+    "sha256_at_snapshot": "b99222ca5083823fb53666cbf20b2b8b029ef264d4d02a8141f8d3c4a0624b0b",
+    "status": "COMPLETE_ENGINEERING_REPAIR_RESOURCE_GUARD_AND_VOLATILE_STAGING",
+    "accepted_before_repair": 11,
+    "partial_outputs_accepted": false,
+    "repair": "A 40 GiB guard rejection was preserved; completed feature banks were moved to /dev/shm and reached through the declared symlink, while interrupted partial banks were quarantined before resuming."
+  },
+  "next_gate": "Complete all 36 native feature producers, replay each through unchanged FIFO and official TrackEval, then aggregate paired per-video/seed metrics. P11/P17 remain open until independent complementarity is demonstrated.",
+  "raw_and_weights_policy": "Large feature banks, traces and checkpoints are outside Git; no data or weight upload.",
+  "source_commit_at_snapshot": "4450f358024e1ffe24c34277da78cbea48340525"
+}
