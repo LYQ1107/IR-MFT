@@ -19,7 +19,8 @@
       "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
       "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
       "docs/research/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json",
-      "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json"
+      "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
+      "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -160,7 +161,8 @@
       "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
       "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths.",
-      "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified."
+      "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified.",
+      "The fixed causal nonlinear MLP audit also fails both held-out means and the outer long-gap tail; no learned-motion replay is justified."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -1022,7 +1024,8 @@
   "pending": [
     "Selective combinations only if an independently measured complementary same-input signal appears",
     "Preserve negative C/D, external payload and final raw profiling boundaries; the direct local4 probe did not pass its expansion gate",
-    "The causal residual motion-error audit failed its held-out replay gate; preserve the negative signal and do not launch learned motion without a new independent error source."
+    "The causal residual motion-error audit failed its held-out replay gate; preserve the negative signal and do not launch learned motion without a new independent error source.",
+    "The fixed causal nonlinear MLP audit also fails its held-out gate; preserve both motion predictability failures and do not launch learned motion without a new independent signal."
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
@@ -1034,7 +1037,8 @@
     "Keep all-fold visible-token/native evidence, edge-engagement audit and rejected local4 probe as terminal mixed/negative evidence; do not mechanically stack components.",
     "P11 remains not justified and P17 remains unestablished; preserve the explicit final-combination gate.",
     "Maintain explicit external-generalization and unavailable-source exclusions.",
-    "Retain the causal motion-error predictability failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified."
+    "Retain the causal motion-error predictability failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified.",
+    "Retain the fixed nonlinear MLP failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified."
   ],
   "validation": {
     "project_tests": 295,
@@ -1171,5 +1175,18 @@
     "heldout_outer_gap_gt1_kf_mean": 0.48027514662228904,
     "heldout_outer_gap_gt1_corrected_mean": 0.5186736289243757,
     "scope": "Causal features only; GT/physical identity retrospective after six prediction parities; no tracker output changed."
+  },
+  "motion_error_nonlinear_predictability": {
+    "status": "COMPLETE_CAUSAL_NONLINEAR_MOTION_ERROR_PREDICTABILITY_AUDIT",
+    "report": "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+    "report_sha256": "0ab6158ed7d609be3639193c0bc5961285ad7d21e5c1a49f4611a57c038af368",
+    "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+    "inner_kf_mean": 0.06526764082353836,
+    "inner_corrected_mean": 0.06629493769327167,
+    "outer_kf_mean": 0.05372183427543231,
+    "outer_corrected_mean": 0.05387537646045669,
+    "outer_gap_gt1_kf_mean": 0.48027514662228904,
+    "outer_gap_gt1_corrected_mean": 0.5327692637426557,
+    "scope": "Fixed 10-32-32-2 Tanh CPU MLP, seed0, 40 epochs, fit-only four videos; physical labels retrospective after prediction parities; no tracker output changed."
   }
 }

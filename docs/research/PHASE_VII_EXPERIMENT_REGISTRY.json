@@ -334,7 +334,8 @@
       "All-fold strict raw and native visible-token measurements are complete; the direct local4 probe also failed its pre-registered gate, so no local-token expansion or stacking is justified.",
       "Final combination gate remains NOT_JUSTIFIED; preserve DO_NOT_RUN_MECHANICAL_FINAL_STACKING.",
       "External generalization and unavailable source/license exclusions remain explicit.",
-      "The causal motion-error predictability audit fails its held-out gate; no learned-motion replay is justified."
+      "The causal motion-error predictability audit fails its held-out gate; no learned-motion replay is justified.",
+      "The fixed nonlinear motion-error predictability audit fails its held-out gate; no learned-motion replay is justified."
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -621,6 +622,14 @@
       "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
       "scope": "Fixed causal ridge residual model fit on four videos, held out on BT-001/SN-015; no native replay.",
       "finding": "Corrected normalized center error worsens on both held-out videos and the SN-015 gap>1 tail; leave-one-video-out is mixed."
+    },
+    "motion_error_nonlinear_predictability": {
+      "status": "COMPLETE_CAUSAL_NONLINEAR_MOTION_ERROR_PREDICTABILITY_AUDIT",
+      "report": "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+      "report_sha256": "0ab6158ed7d609be3639193c0bc5961285ad7d21e5c1a49f4611a57c038af368",
+      "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+      "scope": "Fixed 10-32-32-2 Tanh CPU MLP on causal features, fit-only four videos, held out BT-001/SN-015; no native replay.",
+      "finding": "Corrected error worsens on both held-out means and the SN-015 gap>1 tail; leave-one-video-out is mixed."
     }
   },
   "experiments": [
@@ -4719,6 +4728,27 @@
       "scope": "Read-only after six GT-free native prediction parities; accepted past geometry and native predicted box only; physical labels retrospective; no tracker output, checkpoint or feature bank changed.",
       "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
       "finding": "Full fit model worsens held-out BT-001 0.065268->0.065562 and SN-015 0.053722->0.054083; SN-015 gap>1 0.480275->0.518674; leave-one-fit-video-out is mixed.",
+      "claim_boundary": "No nonlinear-motion native-MOT or final-combination credit."
+    },
+    {
+      "experiment_id": "VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_V1",
+      "hypothesis": "A fixed nonlinear predictor may reveal a causal residual signal missed by the linear audit before a learned-motion native replay.",
+      "status": "COMPLETE_CAUSAL_NONLINEAR_MOTION_ERROR_PREDICTABILITY_AUDIT_NEGATIVE",
+      "config": "tools/cfp_diagnose_motion_error_nonlinear_predictability.py",
+      "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_motion_error_nonlinear_predictability.py --observation /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_motion_readonly_all6_v1 --output docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+      "report": "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+      "report_sha256": "0ab6158ed7d609be3639193c0bc5961285ad7d21e5c1a49f4611a57c038af368",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner_video": "BT-001",
+      "outer_video": "SN-015",
+      "scope": "Read-only after six GT-free native prediction parities; same causal feature schema; physical labels retrospective; no tracker output, checkpoint or feature bank changed.",
+      "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+      "finding": "Fixed MLP worsens held-out BT-001 0.065268->0.066295, SN-015 0.053722->0.053875 and SN-015 gap>1 0.480275->0.532769; leave-one-fit-video-out is mixed.",
       "claim_boundary": "No nonlinear-motion native-MOT or final-combination credit."
     }
   ],

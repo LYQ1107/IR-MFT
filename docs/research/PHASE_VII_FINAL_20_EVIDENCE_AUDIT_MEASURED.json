@@ -3,7 +3,7 @@
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "source_report": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
-  "source_report_sha256": "3423fcdcd43e699d2418f7ebd0dbaaca6009224ee7f27e1d7416e299e8546e1f",
+  "source_report_sha256": "d9aec34066e3ae43d917f6bb8ff77b6cb0106cab4e750681c37ae196b9dbdce2",
   "question_rows_found": [
     1,
     2,
@@ -124,7 +124,8 @@
     "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
     "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
     "docs/research/PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json",
-    "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json"
+    "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
+    "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json"
   ],
   "open_boundaries": [
     "Final-combination gate is measured NOT_JUSTIFIED; no mechanical stacking or positive final method",
@@ -132,7 +133,8 @@
     "No external payload/zero-overlap validation",
     "Large scientific assets remain outside Git",
     "Strict raw and native visible-token evidence now cover all six outer folds, both objectives and seeds0/1/2; the 36-run native edge-engagement audit is byte-identical and complete; a direct local4 pooling probe fails its pre-registered HOTA/IDF1/no-extra-IDSW gate; independent complementarity and final novelty remain unestablished.",
-    "The fixed causal motion-error predictability audit worsens both held-out errors; no learned-motion replay or nonlinear-motion contribution is justified."
+    "The fixed causal motion-error predictability audit worsens both held-out errors; no learned-motion replay or nonlinear-motion contribution is justified.",
+    "The fixed causal nonlinear MLP also worsens both held-out means and the outer long-gap tail; no learned-motion replay is justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -202,5 +204,11 @@
     "report_sha256": "58abebdd50376ff98cbbb17ad63855c5fbbc5515ecc5a6baf3447c4313681669",
     "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
     "scope": "Causal residual model fit on four videos and held out on BT-001/SN-015; no native replay."
+  },
+  "motion_error_nonlinear_predictability": {
+    "report": "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+    "report_sha256": "0ab6158ed7d609be3639193c0bc5961285ad7d21e5c1a49f4611a57c038af368",
+    "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+    "scope": "Fixed causal MLP fit on four videos and held out on BT-001/SN-015; no native replay."
   }
 }
