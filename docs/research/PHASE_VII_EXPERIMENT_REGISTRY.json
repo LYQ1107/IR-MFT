@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "3208e95579e9ff5c7ce36836279f83fcddc6d5ed",
-    "remote_commit": "97bfb8c97e41031c5484ffaa15bc4081726733c2",
+    "local_commit": "f66494f8c28c3268903cfd7c227da8cc0daa9c21",
+    "remote_commit": "c4933fbf4f1f35f529041946565cabb6c3c25779",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -329,11 +329,9 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
-      "All-fold visible-token fit-only pretraining and strict raw replay are COMPLETE from the persistent recovery; the aggregate closes the raw measurement boundary while all-fold native feature replay, contribution and combination evidence remain limited.",
-      "All-fold native feature replay is not promoted to a method claim without a new registered scientific question and matched complementarity control",
-      "Final combination gate is measured and NOT_JUSTIFIED; do not mechanically stack current components",
-      "Only reopen with an independently measured complementary same-input signal; otherwise preserve frozen FIFO",
-      "Preserve external payload/novelty scope exclusions and no positive final-method claim"
+      "All-fold strict raw and native visible-token measurements are complete; both report mixed/negative evidence and no stable new contribution.",
+      "Final combination gate remains NOT_JUSTIFIED; preserve DO_NOT_RUN_MECHANICAL_FINAL_STACKING.",
+      "External generalization and unavailable source/license exclusions remain explicit."
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -483,6 +481,92 @@
       "sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
       "status": "COMPLETE_ENGINEERING_REPAIR_SCOPED_SINGLE_VIDEO_OFFICIAL_EVALUATION",
       "aggregate_sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679"
+    },
+    "visible_token_native_allfold": {
+      "status": "COMPLETE_ALLFOLD_NATIVE_VISIBLE_TOKEN_FEATURES_AND_REPLAYS_MEASURED",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json",
+      "report_sha256": "62f1d96193ecdcf761da68c80dfbd1babe771c7df83c3d002111c9a1d12286df",
+      "coverage": {
+        "feature_tasks": 36,
+        "replay_tasks": 36,
+        "feature_statuses": [
+          "COMPLETE"
+        ],
+        "replay_statuses": [
+          "COMPLETE"
+        ],
+        "all_feature_guards_pass": true,
+        "all_replay_guards_pass": true,
+        "all_feature_frame_order_pass": true,
+        "baseline_rows_paired": 36
+      },
+      "aggregate": {
+        "masked_visible_tokens": {
+          "HOTA": {
+            "mean": 38.3161434868247,
+            "sample_sd": 10.17194912104629,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.06536862409455,
+            "sample_sd": 14.692218121656932,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.86046307707971,
+            "sample_sd": 11.822756191053188,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 46.03743373419198,
+            "sample_sd": 18.09357976112075,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.4321582115156,
+            "sample_sd": 18.54897452923744,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.0,
+            "sample_sd": 136.00216261256332,
+            "n": 18
+          }
+        },
+        "visible_target": {
+          "HOTA": {
+            "mean": 38.24179390772458,
+            "sample_sd": 10.279451777985974,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.03601168131381,
+            "sample_sd": 14.820724404641664,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.888736061599374,
+            "sample_sd": 11.785944214189705,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 45.71045212190983,
+            "sample_sd": 18.384662369294443,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.43127168562381,
+            "sample_sd": 18.548908094785595,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.83333333333333,
+            "sample_sd": 136.01178582149765,
+            "n": 18
+          }
+        }
+      },
+      "finding": "No stable independent contribution or combination value."
     }
   },
   "experiments": [
@@ -4394,6 +4478,106 @@
       "aggregate_sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679",
       "scientific_claim_allowed": false,
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_VISIBLE_TOKEN_V1",
+      "status": "COMPLETE_ALLFOLD_NATIVE_VISIBLE_TOKEN_FEATURES_AND_REPLAYS_MEASURED",
+      "hypothesis": "Fit-only visible-token current RGB features may improve native FIFO identity association across all registered outer folds without outer/inner leakage.",
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "modes": [
+        "masked_visible_tokens",
+        "visible_target"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "feature_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/state.json",
+      "feature_state_sha256": "e6f6c4ed793a7f1da9bd32158023f93abaa65b2eb63d109e8d3f3dc53943be63",
+      "replay_state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/replay_state.json",
+      "replay_state_sha256": "56a685405dcd9c6ecab9eb70cc5ce2874aa19383b86fc210c3fc1f2cc148746e",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json",
+      "report_sha256": "62f1d96193ecdcf761da68c80dfbd1babe771c7df83c3d002111c9a1d12286df",
+      "scope": "Native Protocol B current-frame feature production for all six outer videos, two fit-only visible-token objectives and three seeds; unchanged FIFO current-identity replay and scoped official TrackEval. This is not a raw end-to-end FPS measurement and does not itself establish a contribution.",
+      "aggregate": {
+        "masked_visible_tokens": {
+          "HOTA": {
+            "mean": 38.3161434868247,
+            "sample_sd": 10.17194912104629,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.06536862409455,
+            "sample_sd": 14.692218121656932,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.86046307707971,
+            "sample_sd": 11.822756191053188,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 46.03743373419198,
+            "sample_sd": 18.09357976112075,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.4321582115156,
+            "sample_sd": 18.54897452923744,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.0,
+            "sample_sd": 136.00216261256332,
+            "n": 18
+          }
+        },
+        "visible_target": {
+          "HOTA": {
+            "mean": 38.24179390772458,
+            "sample_sd": 10.279451777985974,
+            "n": 18
+          },
+          "AssA": {
+            "mean": 26.03601168131381,
+            "sample_sd": 14.820724404641664,
+            "n": 18
+          },
+          "DetA": {
+            "mean": 60.888736061599374,
+            "sample_sd": 11.785944214189705,
+            "n": 18
+          },
+          "IDF1": {
+            "mean": 45.71045212190983,
+            "sample_sd": 18.384662369294443,
+            "n": 18
+          },
+          "MOTA": {
+            "mean": 73.43127168562381,
+            "sample_sd": 18.548908094785595,
+            "n": 18
+          },
+          "IDSW": {
+            "mean": 118.83333333333333,
+            "sample_sd": 136.01178582149765,
+            "n": 18
+          }
+        }
+      },
+      "decision": "MEASURED_MIXED_NEGATIVE_NO_STABLE_INDEPENDENT_CONTRIBUTION",
+      "p11": "NOT_JUSTIFIED_BY_CURRENT_COMPONENT_EVIDENCE",
+      "p17": "NOT_ESTABLISHED",
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "feature_banks_outside_git": true
     }
   ],
   "source_http_followup": {
@@ -4407,10 +4591,8 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Complete and independently finalize the six outer folds x two visible-token objectives x three seeds strict raw current-only matrix; do not claim aggregate benefit before replay/hash/TrackEval checks.",
-    "SN-015 strict raw three-seed visible-token evidence is complete; all-fold native/whole-raw replay remains open",
-    "Selective combinations only when an independently measured complementary same-input benefit exists; current evidence does not justify mechanical stacking",
-    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal"
+    "Selective combinations only when an independently measured complementary same-input benefit exists; current all-fold native evidence does not justify mechanical stacking.",
+    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal."
   ],
   "validation": {
     "project_tests": 219,
