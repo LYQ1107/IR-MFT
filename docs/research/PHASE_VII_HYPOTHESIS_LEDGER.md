@@ -100,6 +100,10 @@ VII-H2/VII-H3 update: the controlled first-fold campaign now has three seeds for
 
 A measured combination gate now covers the completed context-V2, FDTA-style, source-JPM, dictionary-joint, observable-occlusion, visible-token and pixel/domain controls. Context full/local-temporal/global all lose the same-input frozen FIFO macro identity metrics; FDTA temporal/quality lose held-out HOTA and IDF1; JPM is not above the matched-capacity CLS control consistently; joint routes lose held-out HOTA/IDF1 or add switches; overlap fusion changes HOTA by only +0.029 macro points while lowering IDF1; and the visible-token campaign now has complete all-fold native evidence without stable complementarity. The gate therefore records `DO_NOT_RUN_MECHANICAL_FINAL_STACKING` in `PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json`. This is a measured decision boundary, not a project-wide NO_GO; a future combination needs a new independent same-input complementary signal.
 
+## VII-H5 causal motion-error predictability follow-up (2026-10-16)
+
+The six-video GT-free native motion observation now has a fixed causal residual-predictability audit. A ridge model using accepted past geometry and the native predicted box was fit only on BT-003/MSK-002/PF-001/SN-001. It worsened held-out BT-001 normalized center error from 0.065268 to 0.065562 and held-out SN-015 from 0.053722 to 0.054083; the SN-015 gap>1 tail worsened from 0.480275 to 0.518674. Leave-one-fit-video-out outcomes are mixed. `PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json` records the exact feature schema, model coefficients, counts and source hashes. The replay gate fails, so no learned nonlinear-motion native run is justified; this closes the current error-signal follow-up without claiming a project-wide NO_GO.
+
 
 ## Visible-token all-fold strict raw recovery (2026-10-15)
 

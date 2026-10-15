@@ -1,0 +1,279 @@
+{
+  "status": "COMPLETE_CAUSAL_MOTION_ERROR_PREDICTABILITY_AUDIT",
+  "observation": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_motion_readonly_all6_v1",
+  "observation_manifest_sha256": "8faef8acfca3ee08fa537570872c7d8ebf3fe8d59519a6bccce0f6e8213de4e3",
+  "videos": {
+    "BT-003": {
+      "role": "fit",
+      "supported_rows": 1249,
+      "counts": {
+        "skip_short_or_unknown_history": 23,
+        "skip_mixed_or_unknown_identity": 1170
+      },
+      "gap_gt1_rows": 0
+    },
+    "MSK-002": {
+      "role": "fit",
+      "supported_rows": 37782,
+      "counts": {
+        "skip_short_or_unknown_history": 396,
+        "skip_mixed_or_unknown_identity": 32950
+      },
+      "gap_gt1_rows": 302
+    },
+    "PF-001": {
+      "role": "fit",
+      "supported_rows": 27636,
+      "counts": {
+        "skip_short_or_unknown_history": 43,
+        "skip_mixed_or_unknown_identity": 2666
+      },
+      "gap_gt1_rows": 0
+    },
+    "SN-001": {
+      "role": "fit",
+      "supported_rows": 4070,
+      "counts": {
+        "skip_short_or_unknown_history": 48,
+        "skip_mixed_or_unknown_identity": 2380,
+        "skip_missing_or_nonunique_current_target": 6
+      },
+      "gap_gt1_rows": 10
+    },
+    "BT-001": {
+      "role": "inner",
+      "supported_rows": 15618,
+      "counts": {
+        "skip_short_or_unknown_history": 74,
+        "skip_mixed_or_unknown_identity": 15208
+      },
+      "gap_gt1_rows": 45
+    },
+    "SN-015": {
+      "role": "outer",
+      "supported_rows": 52658,
+      "counts": {
+        "skip_short_or_unknown_history": 273,
+        "skip_mixed_or_unknown_identity": 12842,
+        "skip_missing_or_nonunique_current_target": 209
+      },
+      "gap_gt1_rows": 322
+    }
+  },
+  "fit_videos": [
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "inner_video": "BT-001",
+  "outer_video": "SN-015",
+  "feature_schema": [
+    "intercept",
+    "gap",
+    "log1p_gap",
+    "velocity_x_over_last_diag",
+    "velocity_y_over_last_diag",
+    "acceleration_x_over_last_diag",
+    "acceleration_y_over_last_diag",
+    "kf_minus_last_x_over_last_diag",
+    "kf_minus_last_y_over_last_diag",
+    "log_last_width",
+    "log_last_height"
+  ],
+  "ridge_alpha": 10.0,
+  "scope": "Read-only retrospective audit after six GT-free native prediction parities. The fixed ridge residual model uses only accepted past boxes, their timestamps, the native predicted box and past-derived geometry at online time. Physical IDs and current targets are loaded only after the parity checks and are never fed to a tracker. No model checkpoint or native replay is produced.",
+  "sources": {
+    "tools/cfp_diagnose_motion_error_predictability.py": "d757030db5a26239d1f4ff0400355331e47c8ec45f6c31a0fab7c42fbdeab0f5",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a",
+    "cfp/joint_set_supervision.py": "8c9c35173b9101da24e4fbb58a574508bbed2a5bfc85a067b61644cbbf35b7a8"
+  },
+  "fit_model": {
+    "fit_rows": 70737,
+    "normalization_mean": [
+      1.0665422621824505,
+      0.7014745921000517,
+      -0.0004664154427212346,
+      0.0012319192603107184,
+      -3.073961237954016e-05,
+      4.72636877467629e-05,
+      -0.0008294456083300001,
+      0.0013095323942423469,
+      4.914021557761002,
+      4.714558238190272
+    ],
+    "normalization_scale": [
+      1.2409263851181032,
+      0.13508210142598173,
+      0.031029223193281757,
+      0.023206250038469323,
+      0.020736403593419432,
+      0.020652703670320724,
+      0.06256102413713734,
+      0.03573042793869963,
+      1.051878410683357,
+      1.0837058841495264
+    ],
+    "weights": [
+      [
+        0.004697343224615138,
+        0.0034349892732492347
+      ],
+      [
+        0.029561092192741667,
+        0.006061276911236116
+      ],
+      [
+        -0.03515512979497073,
+        -0.0011309339890838246
+      ],
+      [
+        0.013740078495674374,
+        -0.006566714360870147
+      ],
+      [
+        -0.005664590247334526,
+        0.007839700167393774
+      ],
+      [
+        -0.003061250502573159,
+        0.00320342469538026
+      ],
+      [
+        0.004300280123425102,
+        -0.0011364019063168436
+      ],
+      [
+        -0.04381254474257393,
+        0.0134968823385316
+      ],
+      [
+        0.012523306163624928,
+        -0.01979752218078198
+      ],
+      [
+        -0.000988845423172629,
+        -0.0038171330269762905
+      ],
+      [
+        -0.0005166480783749321,
+        0.0013743218107473473
+      ]
+    ],
+    "inner_score": {
+      "n": 15618,
+      "kf_mean": 0.06526764082353836,
+      "corrected_mean": 0.06556189999178245,
+      "cv_mean": 0.06714310877933381,
+      "kf_median": 0.055640575035342685,
+      "corrected_median": 0.05585768651824367,
+      "cv_median": 0.05691294409614042,
+      "gap_gt1_n": 45,
+      "gap_gt1_kf_mean": 0.2875635539555308,
+      "gap_gt1_corrected_mean": 0.3369634467878807,
+      "gap_gt1_cv_mean": 0.27383001844393334,
+      "corrected_minus_kf_mean": 0.0002942591682440904
+    },
+    "outer_score": {
+      "n": 52658,
+      "kf_mean": 0.05372183427543231,
+      "corrected_mean": 0.05408283871860722,
+      "cv_mean": 0.05900965277793179,
+      "kf_median": 0.04267574760419994,
+      "corrected_median": 0.043252083951364595,
+      "cv_median": 0.044823208803282014,
+      "gap_gt1_n": 322,
+      "gap_gt1_kf_mean": 0.48027514662228904,
+      "gap_gt1_corrected_mean": 0.5186736289243757,
+      "gap_gt1_cv_mean": 0.9616629950135958,
+      "corrected_minus_kf_mean": 0.0003610044431749046
+    },
+    "fit_score": {
+      "n": 70737,
+      "kf_mean": 0.05122334788658404,
+      "corrected_mean": 0.04946449827817069,
+      "cv_mean": 0.05312702651586317,
+      "kf_median": 0.0403483500799437,
+      "corrected_median": 0.03953168852378924,
+      "cv_median": 0.041385301215144187,
+      "gap_gt1_n": 312,
+      "gap_gt1_kf_mean": 0.7012698664816756,
+      "gap_gt1_corrected_mean": 0.4906026214641878,
+      "gap_gt1_cv_mean": 0.7101108593360962,
+      "corrected_minus_kf_mean": -0.0017588496084133473
+    }
+  },
+  "leave_one_fit_video_out": {
+    "BT-003": {
+      "train_rows": 69488,
+      "score": {
+        "n": 1249,
+        "kf_mean": 0.0684606534821328,
+        "corrected_mean": 0.0677469607000069,
+        "cv_mean": 0.07001092284579136,
+        "kf_median": 0.05890718865173664,
+        "corrected_median": 0.058210124516163884,
+        "cv_median": 0.05959638969041245,
+        "gap_gt1_n": 0,
+        "gap_gt1_kf_mean": null,
+        "gap_gt1_corrected_mean": null,
+        "gap_gt1_cv_mean": null,
+        "corrected_minus_kf_mean": -0.0007136927821259076
+      }
+    },
+    "MSK-002": {
+      "train_rows": 32955,
+      "score": {
+        "n": 37782,
+        "kf_mean": 0.0619328769516318,
+        "corrected_mean": 0.06715542257900302,
+        "cv_mean": 0.06439102902138104,
+        "kf_median": 0.04866767088624116,
+        "corrected_median": 0.049216157698330015,
+        "cv_median": 0.0503730381325154,
+        "gap_gt1_n": 302,
+        "gap_gt1_kf_mean": 0.7152981514696451,
+        "gap_gt1_corrected_mean": 1.3259995224827539,
+        "gap_gt1_cv_mean": 0.7203643039808583,
+        "corrected_minus_kf_mean": 0.0052225456273712195
+      }
+    },
+    "PF-001": {
+      "train_rows": 43101,
+      "score": {
+        "n": 27636,
+        "kf_mean": 0.03521537241649986,
+        "corrected_mean": 0.03586994915422143,
+        "cv_mean": 0.0362382801177578,
+        "kf_median": 0.03090801946256997,
+        "corrected_median": 0.03166910516356097,
+        "cv_median": 0.031761379440216314,
+        "gap_gt1_n": 0,
+        "gap_gt1_kf_mean": null,
+        "gap_gt1_corrected_mean": null,
+        "gap_gt1_cv_mean": null,
+        "corrected_minus_kf_mean": 0.0006545767377215753
+      }
+    },
+    "SN-001": {
+      "train_rows": 66667,
+      "score": {
+        "n": 4070,
+        "kf_mean": 0.05521341871380061,
+        "corrected_mean": 0.05452916215857151,
+        "cv_mean": 0.058058934692394905,
+        "kf_median": 0.046286255528634454,
+        "corrected_median": 0.04609128875305177,
+        "cv_median": 0.047884717591945195,
+        "gap_gt1_n": 10,
+        "gap_gt1_kf_mean": 0.27761565984499337,
+        "gap_gt1_corrected_mean": 0.29036943525619263,
+        "gap_gt1_cv_mean": 0.4004568310642768,
+        "corrected_minus_kf_mean": -0.0006842565552291
+      }
+    }
+  },
+  "decision_rule": "A learned-motion replay would require corrected_mean < kf_mean on both the held-out inner and outer videos, with no worsening of the outer gap>1 subset.",
+  "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+  "interpretation": "The fixed causal residual model is not a tracker component. Its four-video fit model worsens both held-out inner and outer mean center error and worsens the outer long-gap tail; leave-one-video-out behavior is mixed. The pre-registered replay gate therefore fails, so no nonlinear-motion replay or final combination is justified by this signal."
+}
