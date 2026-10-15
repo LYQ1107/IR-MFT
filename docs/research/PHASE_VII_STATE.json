@@ -4,8 +4,8 @@
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "b2595b9eecbf616369662945abbc53f6ac70432d",
-    "remote_commit": "062d59002ab184acce39203c20f4577788105350",
+    "local_commit": "1171860918c94322e12d4bd169d7944027aab9b8",
+    "remote_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -179,8 +179,9 @@
     },
     "remote_delivery_verification": {
       "branch": "research/evidence-fishmot-v1",
-      "commit": "b09591b95d92f1a1cb1383deab67859951cd4684",
-      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH"
+      "content_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
+      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT",
+      "scope": "H9 native cue observer code/config/report and authoritative metadata; raw traces remain outside Git."
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
@@ -206,7 +207,7 @@
       "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold across three seeds and both objectives. The separate persistent recovery closes all-fold strict raw evidence; this entry remains the single-fold native scope.",
       "finding": "Masked FIFO/last small mean identity gains are coupled to extra IDSW; EMA is unstable; visible_target is consistently lower with extra IDSW; no stable component benefit."
     },
-    "remote_verification_scope": "Remote content commit b09591b95d92f1a1cb1383deab67859951cd4684 independently verified with git ls-remote and GitHub file reads; medoid and appearance-weight pilot evidence are delivered; raw scientific assets remain outside Git.",
+    "remote_verification_scope": "Remote content commit dd1560d4b897511958bd2275541a258d32ccae1d independently verified with git ls-remote and GitHub file reads; metadata follow-up is recorded separately.",
     "worktree_at_audit": "Native medoid and appearance-weight pilot artifacts delivered in content commit b09591b95d92f1a1cb1383deab67859951cd4684; raw observation assets remain outside Git.",
     "visible_token_strict_raw_sn015": {
       "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
@@ -978,6 +979,13 @@
       "margin_gate_correction": 4,
       "margin_gate_harm": 0,
       "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY"
+    },
+    "delivery": {
+      "branch": "research/evidence-fishmot-v1",
+      "local_head_at_run": "1171860918c94322e12d4bd169d7944027aab9b8",
+      "remote_branch_head": "dd1560d4b897511958bd2275541a258d32ccae1d",
+      "content_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
+      "remote_branch_pointer_is_metadata_after_content": true
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -1112,7 +1120,7 @@
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
     "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 296 passed, 24 warnings; py_compile/diff-check/JSON validation passed. External fixture/dependency limits remain explicit.",
-    "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
+    "report_sha256": "e41a683ced6de60aadf91dccb4fb63d99580010c0ef313a1dca5f537ecc6cf2b"
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
@@ -1166,8 +1174,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "source_commit": "c7c130211e78f111d3f51d116596c0c9305c181f",
-    "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
+    "source_commit": "1171860918c94322e12d4bd169d7944027aab9b8",
+    "report_sha256": "e41a683ced6de60aadf91dccb4fb63d99580010c0ef313a1dca5f537ecc6cf2b"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "f842fd669493e603f13f1a31d64068a3d53c18bc20f0806dbd2b1a56550e00a1",
@@ -1277,14 +1285,14 @@
   "task_book_requirement_audit": {
     "status": "COMPLETE_TASK_BOOK_AUDIT_GOAL_STILL_ACTIVE",
     "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
-    "report_sha256": "3bdc6d88b1ac977da1720aff9da84a84c5891aa2a4f4163b2d32c4c60e321ae2"
+    "report_sha256": "0f137dd3e0966966f279dce224d845cc62aa377db94a2b31e7781ba69b6a949f"
   },
-  "experiment_registry_sha256": "664799e411058f881c15dabcce89194e8f9c529f08d0cacab86eac2770ac95a8",
+  "experiment_registry_sha256": "b52ca4e2f327c0e996f772af99642c60f40ab541adccbe3e261b3bf937311f8c",
   "remote_delivery_verification": {
     "branch": "research/evidence-fishmot-v1",
-    "content_commit": "062d59002ab184acce39203c20f4577788105350",
+    "content_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
     "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT",
-    "scope": "Visibility-quality code/config/report and authoritative metadata fetched from GitHub at the content commit; raw scientific assets remain outside Git."
+    "scope": "H9 native cue observer code/config/report and authoritative metadata fetched from GitHub at the content commit; raw traces remain outside Git."
   },
   "native_visibility_quality_probe_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
   "native_cue_disagreement_audit": {
