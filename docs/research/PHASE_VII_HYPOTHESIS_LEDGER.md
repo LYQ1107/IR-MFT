@@ -106,6 +106,8 @@ The six-video GT-free native motion observation now has a fixed causal residual-
 
 The same causal feature set was then checked with one predetermined CPU nonlinear model: a seed-0 10-32-32-2 Tanh MLP for 40 epochs, with no outer tuning. It worsened held-out BT-001 from 0.065268 to 0.066295 and SN-015 from 0.053722 to 0.053875; SN-015 gap>1 worsened from 0.480275 to 0.532769. The leave-one-fit-video-out results are mixed. `PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json` closes this low-cost signal check; no native replay is justified.
 
+The DINOv2 crop-control follow-up is now terminal at Protocol A scope. The read-only audit `PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json` verifies 144 fixed runs: K4/K8 × six leave-two-video-out folds × four matched modes × seeds0/1/2. Global, simple, capacity and patch-attention modes remain crop-retrieval controls; their all-fold coverage does not supply native-MOT or final-combination credit.
+
 
 ## Visible-token all-fold strict raw recovery (2026-10-15)
 

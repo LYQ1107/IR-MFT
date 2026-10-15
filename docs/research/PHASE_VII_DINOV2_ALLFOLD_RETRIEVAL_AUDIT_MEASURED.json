@@ -1,0 +1,176 @@
+{
+  "status": "COMPLETE_DINOV2_ALLFOLD_K4_K8_THREE_SEED_CROP_CONTROLS",
+  "reports": {
+    "k4": {
+      "report": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json",
+      "report_sha256": "e73e3977993b6a5d85c87f43075bac50823743b92793701dfb1aa8da81a0ef2b",
+      "k": 4,
+      "status_before_audit": "IN_PROGRESS",
+      "completed_fits": 72,
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "modes": [
+        "global",
+        "simple",
+        "global_capacity",
+        "patch_attention"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "runs": 72,
+      "macro_actual_detector_gap25": {
+        "global": {
+          "values": [
+            35.971609997033724,
+            35.9406222047465,
+            36.68056245386754
+          ],
+          "mean": 36.19759821854925,
+          "sample_sd": 0.41854617459145504
+        },
+        "simple": {
+          "values": [
+            35.827676717507224,
+            36.433009342613865,
+            36.51916063639227
+          ],
+          "mean": 36.259948898837784,
+          "sample_sd": 0.37682879457272855
+        },
+        "global_capacity": {
+          "values": [
+            35.959188724019235,
+            36.43979411987886,
+            36.17465031306839
+          ],
+          "mean": 36.19121105232216,
+          "sample_sd": 0.2407303059355441
+        },
+        "patch_attention": {
+          "values": [
+            35.63168130258526,
+            36.22285370519834,
+            36.08553418228559
+          ],
+          "mean": 35.98002306335639,
+          "sample_sd": 0.3093875394486652
+        }
+      },
+      "macro_frozen_cls_actual_detector_gap25": 33.86915396802403,
+      "source": {
+        "tools/cfp_record_dinov2_fish_allfolds.py": "705548a4bd0b6f79e09c6186711c19f7b23505bf1cc8e7344e099d8c09bcce33",
+        "configs/cfp/phase_vii_dinov2_fish_training_v1.json": "f430a5652efd9d0cd89fc96417f5712c1cf38aa0b5348db1882d64e512a0c1e3"
+      },
+      "scope": "Six leave-two-video-out train-video crop folds, fixed8epochs/1200attempted steps, three seeds/four matched modes. No architecture/seed/checkpoint/threshold selected from outer values. Crop retrieval/discrimination only; no allnative/MOT/external-scene/novelty or completed finalgoal claim."
+    },
+    "k8": {
+      "report": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K8_MEASURED.json",
+      "report_sha256": "52d75d4668a70e62036f852a28e880ff44a7cfc998f1e897dfe547f590d8133f",
+      "k": 8,
+      "status_before_audit": "IN_PROGRESS",
+      "completed_fits": 72,
+      "outer_videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "modes": [
+        "global",
+        "simple",
+        "global_capacity",
+        "patch_attention"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "runs": 72,
+      "macro_actual_detector_gap25": {
+        "global": {
+          "values": [
+            36.03181645201419,
+            36.1768160956014,
+            35.874192897497984
+          ],
+          "mean": 36.027608481704526,
+          "sample_sd": 0.15135547650541262
+        },
+        "simple": {
+          "values": [
+            35.85379832554974,
+            36.26139514910701,
+            36.067138683664105
+          ],
+          "mean": 36.060777386106956,
+          "sample_sd": 0.20387285798617752
+        },
+        "global_capacity": {
+          "values": [
+            36.27122955512786,
+            36.40532842863351,
+            36.43539069739635
+          ],
+          "mean": 36.37064956038591,
+          "sample_sd": 0.08740244896411566
+        },
+        "patch_attention": {
+          "values": [
+            36.00129429578582,
+            35.668019598104344,
+            36.370862737388165
+          ],
+          "mean": 36.01339221042611,
+          "sample_sd": 0.35157771440119345
+        }
+      },
+      "macro_frozen_cls_actual_detector_gap25": 33.86915396802403,
+      "source": {
+        "tools/cfp_record_dinov2_fish_allfolds.py": "705548a4bd0b6f79e09c6186711c19f7b23505bf1cc8e7344e099d8c09bcce33",
+        "configs/cfp/phase_vii_dinov2_fish_training_v1.json": "f430a5652efd9d0cd89fc96417f5712c1cf38aa0b5348db1882d64e512a0c1e3"
+      },
+      "scope": "Six leave-two-video-out train-video crop folds, fixed8epochs/1200attempted steps, three seeds/four matched modes. No architecture/seed/checkpoint/threshold selected from outer values. Crop retrieval/discrimination only; no allnative/MOT/external-scene/novelty or completed finalgoal claim."
+    }
+  },
+  "coverage": {
+    "outer_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "modes": [
+      "global",
+      "simple",
+      "global_capacity",
+      "patch_attention"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_k": 72,
+    "runs_total": 144,
+    "all_fold_mode_seed_coverage": true,
+    "same_input_and_matched_capacity_guard": true,
+    "fit_excludes_outer_and_inner": true
+  },
+  "decision": "CLOSE_PROTOCOL_A_DINOV2_ALLFOLD_CROP_DIAGNOSTIC",
+  "scope": "Read-only audit of the existing six leave-two-video-out DINOv2-S crop retrieval reports. It validates 144 fixed final-epoch runs across K4/K8, four matched modes and three seeds. It supplies Protocol A identity/crop evidence only; it does not claim native MOT, raw online FPS, external generalization or a final novelty contribution.",
+  "interpretation": "The all-fold K4/K8 crop controls are complete and reproducible at the declared report level. Global/simple/capacity/patch modes remain matched diagnostics; their aggregate retrieval differences do not authorize a new native replay or mechanical final stacking."
+}

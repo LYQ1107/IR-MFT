@@ -316,8 +316,8 @@
       "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
       "all_question_ids_present": true,
       "goal_status": "IN_PROGRESS_UNACHIEVED",
-      "source_report_sha256": "3423fcdcd43e699d2418f7ebd0dbaaca6009224ee7f27e1d7416e299e8546e1f",
-      "audit_report_sha256": "f32cdf38f8a91de004a541c30f1855e788dd0a388a114e6a5982142625ffb0ff"
+      "source_report_sha256": "869f3d409e79965d11876bcd95f18a7a383426cdc1dd2fcfb11dc399dd3e63aa",
+      "audit_report_sha256": "868ed8a58fd8a664118aa5cdb21d67fc3ac51003054941553d6256f06a1479d1"
     },
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
@@ -630,6 +630,19 @@
       "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
       "scope": "Fixed 10-32-32-2 Tanh CPU MLP on causal features, fit-only four videos, held out BT-001/SN-015; no native replay.",
       "finding": "Corrected error worsens on both held-out means and the SN-015 gap>1 tail; leave-one-video-out is mixed."
+    },
+    "dinov2_allfold_retrieval_audit": {
+      "status": "COMPLETE_DINOV2_ALLFOLD_K4_K8_THREE_SEED_CROP_CONTROLS",
+      "report": "docs/research/PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json",
+      "report_sha256": "203651918b8aaf970c6cbbcb5d6a7366682dc5ede42da7b2c5ffa7bbd97b279f",
+      "k4_report": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json",
+      "k4_report_sha256": "e73e3977993b6a5d85c87f43075bac50823743b92793701dfb1aa8da81a0ef2b",
+      "k8_report": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K8_MEASURED.json",
+      "k8_report_sha256": "52d75d4668a70e62036f852a28e880ff44a7cfc998f1e897dfe547f590d8133f",
+      "runs_total": 144,
+      "coverage": "six outer folds x four matched modes x seeds0/1/2 for K4 and K8; 72 runs per K",
+      "decision": "CLOSE_PROTOCOL_A_DINOV2_ALLFOLD_CROP_DIAGNOSTIC",
+      "claim_boundary": "Crop retrieval/discrimination only; no native MOT, raw online FPS, external-scene or final novelty claim."
     }
   },
   "experiments": [
@@ -3685,7 +3698,7 @@
     },
     {
       "experiment_id": "VII_A_DINOV2_ALL_FOLDS_K4_K8_THREE_SEEDS_V1",
-      "status": "RUNNING_ALL_FOUR_MODE_DRIVERS",
+      "status": "COMPLETE_144_K4_K8_THREE_SEED_CROP_CONTROLS",
       "config": "configs/cfp/phase_vii_dinov2_fish_training_v1.json",
       "planned_runs": 144,
       "six_outer_videos": [
@@ -3714,7 +3727,9 @@
         8
       ],
       "max_gpus": 4,
-      "scope": "Preregistered same budget/inputs/loss, no outer-value recipe/checkpoint selection; reserve40GiB, check idleGPU0-3 and every source before each job, actual terminal failure halts own driver. Native-allframe/JEPA/strong-source/external work unfinished."
+      "scope": "All six outer folds, K4/K8, four matched modes and seeds0/1/2 (144 fits/diagnostics); Protocol A crop retrieval only. Native MOT/raw FPS/external novelty remain outside this entry.",
+      "measured": "docs/research/PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json",
+      "measured_sha256": "6908be0c511c393c14ffb6dc63495834aaa1cfe5b5e74c341207e9c6b494ea9d"
     },
     {
       "experiment_id": "VII_EXTERNAL_FISH_PRIMARY_METADATA_V1",
@@ -3741,7 +3756,9 @@
       ],
       "local_count": 4,
       "measured": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K4_MEASURED.json",
-      "scope": "Globalmeanpositive6/6cropfolds, local incremental superiority notestablished; notnativeMOT/externalnovelty."
+      "scope": "Globalmeanpositive6/6cropfolds, local incremental superiority notestablished; notnativeMOT/externalnovelty.",
+      "measured_sha256": "e73e3977993b6a5d85c87f43075bac50823743b92793701dfb1aa8da81a0ef2b",
+      "audit": "docs/research/PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json"
     },
     {
       "experiment_id": "VII_B_GENUINE_LOCAL_DENSE_JEPA_PILOT_V1",
@@ -3788,10 +3805,12 @@
     },
     {
       "experiment_id": "VII_SUPERVISED_K8_ALLFOLD_COMPLETE",
-      "status": "COMPLETE",
+      "status": "COMPLETE_72_ACTUAL_FITS_AND_MATCHED_DIAGNOSTICS",
       "fits": 72,
       "measured": "docs/research/PHASE_VII_DINOV2_FISH_ALL_FOLDS_K8_MEASURED.json",
-      "scope": "AllK4/K8 total144; no stable localcapacitycontrolled benefit"
+      "scope": "AllK4/K8 total144; no stable localcapacitycontrolled benefit",
+      "measured_sha256": "52d75d4668a70e62036f852a28e880ff44a7cfc998f1e897dfe547f590d8133f",
+      "audit": "docs/research/PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json"
     },
     {
       "experiment_id": "VII_LOCAL_DENSE_FIRSTFOLD_THREE_SEED_COMPLETE",
