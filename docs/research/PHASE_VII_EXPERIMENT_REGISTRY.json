@@ -5,7 +5,7 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+    "local_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
     "remote_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
@@ -780,6 +780,40 @@
         "IDSW": -1.7777777777777777
       },
       "decision": "DO_NOT_ADOPT_RAW_CLS_AS_A_STANDALONE_NATIVE_REPLACEMENT",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    "native_raw_cls_complementarity": {
+      "experiment_id": "VII_NATIVE_RAW_CLS_COMPLEMENTARITY_AUDIT_V1",
+      "status": "COMPLETE_RAW_CLS_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+      "report": "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
+      "report_sha256": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157",
+      "config": "configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json",
+      "config_sha256": "e67ba70864536f431394dd6ac0db9e816b965a02decd5b4d9094da50243e8b0d",
+      "external_root": "/tmp/IR-MFT_phase7_native_raw_cls_complementarity_v1",
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "clean_history_rows": 428220,
+        "prediction_hashes_locked": true,
+        "physical_labels_opened_after_all_prediction_hashes": true,
+        "online_guards_clean": true
+      },
+      "aggregate_counts": {
+        "rows": 428220,
+        "candidate_missing_rows": 26312,
+        "embedding_top1": 428126,
+        "raw_top1": 428131,
+        "raw_correction": 5,
+        "raw_harm": 0,
+        "raw_disagreement": 5,
+        "margin_activation": 128705,
+        "margin_top1": 428131,
+        "margin_correction": 5,
+        "margin_harm": 0,
+        "margin_changed_top": 5
+      },
+      "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   },
@@ -5383,6 +5417,118 @@
       "next_experiment": "Preserve raw_cls as a measured diagnostic; do not tune a raw/head blend or select a video-specific fallback. Require a new independently measured same-input signal before any combination.",
       "scope": "Six registered internal outer videos, source-matched global-DINO raw_cls versus fitted embedding, FIFO native memory and official TrackEval offline scoring. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_RAW_CLS_COMPLEMENTARITY_AUDIT_V1",
+      "status": "COMPLETE_RAW_CLS_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+      "hypothesis": "The source-matched raw CLS cue may correct a fitted embedding top-1 decision on the same causal candidate graph; measure correction/harm and fixed-margin complementarity before any combination replay.",
+      "change": "Read-only observer replay of the accepted fitted global-embedding FIFO route while reconstructing raw-CLS FIFO costs for identical tracks, strictly past histories and current proposal candidates.",
+      "architecture": "Frozen PredictiveAssociationTracker with RecentIdentityControl FIFO length4/maxage1500; no output, graph, geometry, threshold, lifecycle or memory change.",
+      "inputs": "Six registered videos x seeds0/1/2 source-matched global-DINO banks containing embedding/raw_cls/valid, exact causal V3 proposal rows and accepted embedding prediction references.",
+      "outputs": "18 byte-parity predictions, 18 compressed dual-cue traces and retrospective candidate-level correction/harm counts; all raw traces outside Git.",
+      "loss": "None; no fitting, threshold search, label use online or combination replay.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "memory": "fifo",
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_audit_native_raw_cls_complementarity.py --config configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json --assets-root /data3/liuyeqiang/IR-MFT_assets/cfp --output /tmp/IR-MFT_phase7_native_raw_cls_complementarity_v1",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_record_native_raw_cls_complementarity.py --root /tmp/IR-MFT_phase7_native_raw_cls_complementarity_v1 --config configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json --output docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_raw_cls_complementarity.py"
+      ],
+      "source_commit_at_stage_collection": "baf9439b5b0445de6c6b4c014d627e343281dacb",
+      "config": "configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json",
+      "config_sha256": "e67ba70864536f431394dd6ac0db9e816b965a02decd5b4d9094da50243e8b0d",
+      "report": "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
+      "report_sha256": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157",
+      "external_root": "/tmp/IR-MFT_phase7_native_raw_cls_complementarity_v1",
+      "raw_outputs_outside_git": true,
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "clean_history_rows": 428220,
+        "prediction_hashes_locked": true,
+        "physical_labels_opened_after_all_prediction_hashes": true,
+        "online_guards_clean": true
+      },
+      "aggregate_counts": {
+        "rows": 428220,
+        "candidate_missing_rows": 26312,
+        "embedding_top1": 428126,
+        "raw_top1": 428131,
+        "raw_correction": 5,
+        "raw_harm": 0,
+        "raw_disagreement": 5,
+        "margin_activation": 128705,
+        "margin_top1": 428131,
+        "margin_correction": 5,
+        "margin_harm": 0,
+        "margin_changed_top": 5
+      },
+      "promotion_gate": "Every registered video must have raw correction > raw harm and fixed-margin correction > harm with at least one activation.",
+      "per_video_gate": {
+        "BT-001": {
+          "raw_correction": 5,
+          "raw_harm": 0,
+          "margin_activation": 15564,
+          "margin_correction": 5,
+          "margin_harm": 0
+        },
+        "BT-003": {
+          "raw_correction": 0,
+          "raw_harm": 0,
+          "margin_activation": 1218,
+          "margin_correction": 0,
+          "margin_harm": 0
+        },
+        "MSK-002": {
+          "raw_correction": 0,
+          "raw_harm": 0,
+          "margin_activation": 1754,
+          "margin_correction": 0,
+          "margin_harm": 0
+        },
+        "PF-001": {
+          "raw_correction": 0,
+          "raw_harm": 0,
+          "margin_activation": 27954,
+          "margin_correction": 0,
+          "margin_harm": 0
+        },
+        "SN-001": {
+          "raw_correction": 0,
+          "raw_harm": 0,
+          "margin_activation": 1900,
+          "margin_correction": 0,
+          "margin_harm": 0
+        },
+        "SN-015": {
+          "raw_correction": 0,
+          "raw_harm": 0,
+          "margin_activation": 80315,
+          "margin_correction": 0,
+          "margin_harm": 0
+        }
+      },
+      "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
+      "failure_type": "The fixed every-video promotion gate fails because only BT-001 supplies raw/margin corrections; the other five videos have zero raw disagreements.",
+      "next_experiment": "Do not run raw-CLS margin stacking, threshold relaxation or a video-specific fallback; require a new independently measured same-input signal.",
+      "scope": "Six registered internal videos x seeds0/1/2; same-input candidate-level diagnostic with official labels opened only after all hashes. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
+      "failed_attempts_preserved": [
+        "/tmp/IR-MFT_phase7_raw_cls_complementarity_failures/attempt1"
+      ],
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -5400,17 +5546,18 @@
     "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
     "Keep external payload and unavailable source/license exclusions explicit.",
     "Preserve the causal motion-error predictability failures; do not run learned motion without a new independent signal.",
-    "Preserve the matched negative NULL replay; require an independently justified signal before any further candidate-set replay."
+    "Preserve the matched negative NULL replay; require an independently justified signal before any further candidate-set replay.",
+    "Preserve the raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal."
   ],
   "validation": {
-    "project_tests": 301,
+    "project_tests": 305,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
     "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
-    "scope": "Actual full project suite after source-matched raw-CLS control module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
-    "phase_vii_passed": 301,
+    "scope": "Actual full project suite after source-matched raw-CLS complementarity audit module/tests; 305 scoped tests pass with external fixture/dependency limits explicit.",
+    "phase_vii_passed": 305,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
-    "report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b"
+    "report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2"
   },
   "execution_failures": [
     {
@@ -5438,7 +5585,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 301,
+    "phase_vii_passed": 305,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -5446,8 +5593,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b",
-    "source_commit": "1408f6b1a9455089460b4937808956dbe51c039e"
+    "report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2",
+    "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -5675,5 +5822,5 @@
     "scope": "Six registered internal train videos, frozen DINO384 current proposals, FIFO native memory, one fixed rule and one matched no-rule arm. Official TrackEval is offline scoring only. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   },
-  "test_validation_report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b"
+  "test_validation_report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2"
 }

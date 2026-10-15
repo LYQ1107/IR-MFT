@@ -1,0 +1,411 @@
+{
+  "status": "COMPLETE_RAW_CLS_COMPLEMENTARITY_AUDIT",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_NATIVE_RAW_CLS_COMPLEMENTARITY_AUDIT_V1",
+  "config": "configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json",
+  "config_sha256": "e67ba70864536f431394dd6ac0db9e816b965a02decd5b4d9094da50243e8b0d",
+  "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
+  "source_sha256": {
+    "tools/cfp_record_native_raw_cls_complementarity.py": "2490fe19df9a64f9b715f31c2a85715c06f67491b95f05261f303ca322352f78",
+    "tools/cfp_audit_native_raw_cls_complementarity.py": "c9b3f382b19b9f2eaf9674d50c475b56a734221135019841008327dd3428cc1c",
+    "configs/cfp/phase_vii_native_raw_cls_complementarity_v1.json": "e67ba70864536f431394dd6ac0db9e816b965a02decd5b4d9094da50243e8b0d",
+    "cfp/native_raw_cls_complementarity.py": "630c407a55744e969ef972ba03d17aceff2b0cf7c0d35e918e4b1d79f7cc2eae",
+    "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+    "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a"
+  },
+  "scope": "Read-only same-input candidate-edge complementarity audit. The online tracker remains the fitted-embedding FIFO route and must be byte-identical to its accepted global-bank predictions. Prediction hashes are locked for all 18 runs before physical labels are opened. No GT, physical identity, future frame, teacher, external payload or cached inference feature enters online replay; labels are retrospective reducer inputs only.",
+  "coverage": {
+    "expected_replays": 18,
+    "completed_replays": 18,
+    "all_prediction_hashes_locked": true,
+    "physical_labels_opened_after_all_prediction_hashes": true,
+    "online_guards_clean": true
+  },
+  "per_replay": {
+    "BT-001_s0": {
+      "video": "BT-001",
+      "seed": 0,
+      "prediction_sha256": "e0de8a155f2905b7bc916ebc8f6f70e67e2145170c76b3e5fe0ebec719641759",
+      "trace_sha256": "9de1b169a2c30dcce5b397d6bc09bc6240e09cf05dfac3d7774b2f67104fbe45",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29494
+    },
+    "BT-001_s1": {
+      "video": "BT-001",
+      "seed": 1,
+      "prediction_sha256": "30e904caeaf130f51ae31b15534f7a3f3df7844c47036100ae9f8ea684305250",
+      "trace_sha256": "1ccec375df78087d54e1ba6b690f24bd254762bac8866610017397f318067f9d",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29537
+    },
+    "BT-001_s2": {
+      "video": "BT-001",
+      "seed": 2,
+      "prediction_sha256": "01477a965d9d4cbb14c1986d375bcda90861285edcd91099af3eed39c11fd6df",
+      "trace_sha256": "eedbae7b7322b49b5932ed758276ef442fa4d77e657db55399a8ff18fd80460c",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29537
+    },
+    "BT-003_s0": {
+      "video": "BT-003",
+      "seed": 0,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "c39a180304c3c19fe39060e0a23eca4213adcc5cb147fef34babefaf869fe2a9",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "BT-003_s1": {
+      "video": "BT-003",
+      "seed": 1,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "46ed5b9f86fbaa7459be44afe0fb3afafa84dc2c9c5aef60bfefae98ae9c9a6e",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "BT-003_s2": {
+      "video": "BT-003",
+      "seed": 2,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "4a308cd0ff383277306fa497c9bf8fc5f2f8d7b008b467abfe8b604fbdc401bb",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "MSK-002_s0": {
+      "video": "MSK-002",
+      "seed": 0,
+      "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "trace_sha256": "b0f5742e0f5be43a8b5b5ed284633487b6d66b0388d8962940bdb2b2fd1e2997",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "MSK-002_s1": {
+      "video": "MSK-002",
+      "seed": 1,
+      "prediction_sha256": "213fee71a746943488baceaf8abb576d2aba3bf6239a20f2b4021b2deb8d64f5",
+      "trace_sha256": "86533a1c6ccbd447c1d731e10aff19e89c1543b10edc78087863ef5481fb5ab0",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "MSK-002_s2": {
+      "video": "MSK-002",
+      "seed": 2,
+      "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "trace_sha256": "7773a885b7407f75a0c6c830a0657777060046d789478ce176b806bbfc9f9576",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "PF-001_s0": {
+      "video": "PF-001",
+      "seed": 0,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "923e4ec7ac5dfd288ac519fc6bc1b0096f9362d4e7982459748fb6967d12d584",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "PF-001_s1": {
+      "video": "PF-001",
+      "seed": 1,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "6cd97680ddbfe57071a416792bd63efa3e5970e8d97ebd2c88e7cc3c74ad96d1",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "PF-001_s2": {
+      "video": "PF-001",
+      "seed": 2,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "fcfa51a2f2d18cae031db084df66bc520f39f7b39cb31367c55887dabefce5b8",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "SN-001_s0": {
+      "video": "SN-001",
+      "seed": 0,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "e83422de23d70eb15fa5d3bfbfc882b3b94378a3c9ccb0d628fe13a7bfde923a",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-001_s1": {
+      "video": "SN-001",
+      "seed": 1,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "45ced3414e4e6d1d5209d1dd5845afb0007bb6db93def0e4349871fb2144a718",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-001_s2": {
+      "video": "SN-001",
+      "seed": 2,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "f7e3d4a6cde79b35aaaad30e4c5579170a05fbfac08fc0cbd2a92a6082b120ae",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-015_s0": {
+      "video": "SN-015",
+      "seed": 0,
+      "prediction_sha256": "cbdc7128c28108e54f2fe2933ff358bb146d69b793c1438d3486e9e0d892fb9a",
+      "trace_sha256": "c19a531dbe44f960eda9e4356d2fd626e20ddaaed7bd58e6939b9b770933bb4c",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    },
+    "SN-015_s1": {
+      "video": "SN-015",
+      "seed": 1,
+      "prediction_sha256": "87d9a92bd50d65715bf9180a6f7ccefe49170227ea06dbee2c3331390b4fe973",
+      "trace_sha256": "94cb89772af8b2ba98e0f7f76fbf7750762e92e06c9b64d10b12b4b0806aa17e",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    },
+    "SN-015_s2": {
+      "video": "SN-015",
+      "seed": 2,
+      "prediction_sha256": "97d98a2b9d02c418cb889e6b386a147202f3d79c04bc9c27b0e7c2c6f5ccc728",
+      "trace_sha256": "6741ce28616572365093ae11ff3d91aa708b468473b8ff40c78b26e3738bc735",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    }
+  },
+  "aggregate_counts": {
+    "rows": 428220,
+    "candidate_missing_rows": 26312,
+    "embedding_top1": 428126,
+    "raw_top1": 428131,
+    "raw_correction": 5,
+    "raw_harm": 0,
+    "raw_disagreement": 5,
+    "margin_activation": 128705,
+    "margin_top1": 428131,
+    "margin_correction": 5,
+    "margin_harm": 0,
+    "margin_changed_top": 5
+  },
+  "per_video_counts": {
+    "BT-001": {
+      "rows": 52005,
+      "candidate_missing_rows": 3204,
+      "embedding_top1": 51947,
+      "raw_top1": 51952,
+      "raw_correction": 5,
+      "raw_harm": 0,
+      "raw_disagreement": 5,
+      "margin_activation": 15564,
+      "margin_top1": 51952,
+      "margin_correction": 5,
+      "margin_harm": 0,
+      "margin_changed_top": 5
+    },
+    "BT-003": {
+      "rows": 4299,
+      "candidate_missing_rows": 234,
+      "embedding_top1": 4299,
+      "raw_top1": 4299,
+      "raw_correction": 0,
+      "raw_harm": 0,
+      "raw_disagreement": 0,
+      "margin_activation": 1218,
+      "margin_top1": 4299,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "MSK-002": {
+      "rows": 112443,
+      "candidate_missing_rows": 16506,
+      "embedding_top1": 112434,
+      "raw_top1": 112434,
+      "raw_correction": 0,
+      "raw_harm": 0,
+      "raw_disagreement": 0,
+      "margin_activation": 1754,
+      "margin_top1": 112434,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "PF-001": {
+      "rows": 84099,
+      "candidate_missing_rows": 498,
+      "embedding_top1": 84093,
+      "raw_top1": 84093,
+      "raw_correction": 0,
+      "raw_harm": 0,
+      "raw_disagreement": 0,
+      "margin_activation": 27954,
+      "margin_top1": 84093,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "SN-001": {
+      "rows": 13218,
+      "candidate_missing_rows": 675,
+      "embedding_top1": 13218,
+      "raw_top1": 13218,
+      "raw_correction": 0,
+      "raw_harm": 0,
+      "raw_disagreement": 0,
+      "margin_activation": 1900,
+      "margin_top1": 13218,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "SN-015": {
+      "rows": 162156,
+      "candidate_missing_rows": 5195,
+      "embedding_top1": 162135,
+      "raw_top1": 162135,
+      "raw_correction": 0,
+      "raw_harm": 0,
+      "raw_disagreement": 0,
+      "margin_activation": 80315,
+      "margin_top1": 162135,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    }
+  },
+  "per_seed_counts": {
+    "0": {
+      "rows": 142738,
+      "candidate_missing_rows": 8765,
+      "embedding_top1": 142707,
+      "raw_top1": 142708,
+      "raw_correction": 1,
+      "raw_harm": 0,
+      "raw_disagreement": 1,
+      "margin_activation": 42909,
+      "margin_top1": 142708,
+      "margin_correction": 1,
+      "margin_harm": 0,
+      "margin_changed_top": 1
+    },
+    "1": {
+      "rows": 142741,
+      "candidate_missing_rows": 8773,
+      "embedding_top1": 142710,
+      "raw_top1": 142711,
+      "raw_correction": 1,
+      "raw_harm": 0,
+      "raw_disagreement": 1,
+      "margin_activation": 42873,
+      "margin_top1": 142711,
+      "margin_correction": 1,
+      "margin_harm": 0,
+      "margin_changed_top": 1
+    },
+    "2": {
+      "rows": 142741,
+      "candidate_missing_rows": 8774,
+      "embedding_top1": 142709,
+      "raw_top1": 142712,
+      "raw_correction": 3,
+      "raw_harm": 0,
+      "raw_disagreement": 3,
+      "margin_activation": 42923,
+      "margin_top1": 142712,
+      "margin_correction": 3,
+      "margin_harm": 0,
+      "margin_changed_top": 3
+    }
+  },
+  "promotion_gate": {
+    "required": "Every registered video must have raw correction > raw harm and fixed-margin correction > harm with at least one activation.",
+    "per_video": {
+      "BT-001": {
+        "rows": 52005,
+        "raw_correction": 5,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": true,
+        "margin_activation": 15564,
+        "margin_correction": 5,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": true
+      },
+      "BT-003": {
+        "rows": 4299,
+        "raw_correction": 0,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": false,
+        "margin_activation": 1218,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "MSK-002": {
+        "rows": 112443,
+        "raw_correction": 0,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": false,
+        "margin_activation": 1754,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "PF-001": {
+        "rows": 84099,
+        "raw_correction": 0,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": false,
+        "margin_activation": 27954,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "SN-001": {
+        "rows": 13218,
+        "raw_correction": 0,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": false,
+        "margin_activation": 1900,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "SN-015": {
+        "rows": 162156,
+        "raw_correction": 0,
+        "raw_harm": 0,
+        "raw_correction_gt_harm": false,
+        "margin_activation": 80315,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      }
+    },
+    "pass_": false
+  },
+  "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
+  "finding": "Raw CLS changed the fixed combined top-1 decision only five times across 428,220 clean-history rows, all five corrections occurring in BT-001 and none in the other five registered videos. The strict every-video promotion gate therefore fails; the fixed-margin rule is not promoted to an online combination replay. This is a same-input diagnostic boundary, not a project-wide NO_GO.",
+  "next_boundary": "Do not run raw-CLS margin stacking or a video-specific fallback. Require a new independently measured signal rather than relaxing the predeclared gate.",
+  "external_root": "/tmp/IR-MFT_phase7_native_raw_cls_complementarity_v1",
+  "failed_attempts_preserved": [
+    "/tmp/IR-MFT_phase7_raw_cls_complementarity_failures/attempt1"
+  ],
+  "raw_outputs_outside_git": true,
+  "goal_status": "IN_PROGRESS_UNACHIEVED"
+}

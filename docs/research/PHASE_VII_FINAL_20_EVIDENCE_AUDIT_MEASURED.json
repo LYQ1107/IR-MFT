@@ -3,7 +3,7 @@
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "source_report": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
-  "source_report_sha256": "bd5c87f1a61fc3e83af3cd2882bac60de1e3f0a2485a94de400ba5fbbef9f221",
+  "source_report_sha256": "a332653cbde245261b6446ff1d32dd8efbd63d4e2ff8eeb1c1e4f146a0f6ef8e",
   "question_rows_found": [
     1,
     2,
@@ -126,7 +126,8 @@
     "docs/research/PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json",
     "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
     "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
-    "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json"
+    "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
+    "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json"
   ],
   "open_boundaries": [
     "Final-combination gate is measured NOT_JUSTIFIED; no mechanical stacking or positive final method",
@@ -136,7 +137,8 @@
     "Strict raw and native visible-token evidence now cover all six outer folds, both objectives and seeds0/1/2; the 36-run native edge-engagement audit is byte-identical and complete; a direct local4 pooling probe fails its pre-registered HOTA/IDF1/no-extra-IDSW gate; independent complementarity and final novelty remain unestablished.",
     "The fixed causal motion-error predictability audit worsens both held-out errors; no learned-motion replay or nonlinear-motion contribution is justified.",
     "The fixed causal nonlinear MLP also worsens both held-out means and the outer long-gap tail; no learned-motion replay is justified.",
-    "Source-matched raw_cls versus fitted global embedding native control is complete across six videos x three seeds and negative in aggregate; no raw/head blend or fallback is justified."
+    "Source-matched raw_cls versus fitted global embedding native control is complete across six videos x three seeds and negative in aggregate; no raw/head blend or fallback is justified.",
+    "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -212,5 +214,20 @@
     "report_sha256": "0ab6158ed7d609be3639193c0bc5961285ad7d21e5c1a49f4611a57c038af368",
     "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
     "scope": "Fixed causal MLP fit on four videos and held out on BT-001/SN-015; no native replay."
+  },
+  "raw_cls_complementarity": {
+    "report": "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
+    "status": "COMPLETE_RAW_CLS_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+    "scope": "All six videos x seeds0/1/2; 428220 clean-history candidate rows; prediction hashes locked before physical labels.",
+    "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
+    "aggregate_counts": {
+      "rows": 428220,
+      "raw_correction": 5,
+      "raw_harm": 0,
+      "margin_activation": 128705,
+      "margin_correction": 5,
+      "margin_harm": 0
+    },
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

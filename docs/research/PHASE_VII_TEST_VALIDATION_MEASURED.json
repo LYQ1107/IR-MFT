@@ -9,22 +9,22 @@
   "phase_vii_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests --ignore=tests/test_rgbt_pairing.py",
   "phase_vii_result": {
     "exit_code": 0,
-    "passed": 301,
+    "passed": 305,
     "failed": 0,
     "warnings": 24,
     "scope": "Repository tests excluding the one legacy external-data fixture that points to an unavailable /data1 PFTrack annotation path.",
-    "source_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
-    "rerun": "301 passed, 24 warnings in 7.97s after remote-history merge; source-matched raw-CLS and native unknown-null control tests included"
+    "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
+    "rerun": "305 passed, 24 warnings in 10.92s after raw-CLS complementarity audit implementation and tests"
   },
   "tests_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
   "tests_result": {
     "exit_code": 1,
-    "passed": 301,
+    "passed": 305,
     "failed": 1,
     "warnings": 24,
     "failure": "tests/test_rgbt_pairing.py::RGBTDataPairingTest::test_fifty_train_pairs_and_shared_transform",
     "reason": "FileNotFoundError: /data1/LWR/vranlee/CELL/PFTrack/data/mft26-ir/annotations/train.json; external dataset is not present in this workspace.",
-    "source_commit": "1408f6b1a9455089460b4937808956dbe51c039e"
+    "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb"
   },
   "full_repo_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q",
   "full_repo_result": {
@@ -32,10 +32,11 @@
     "collection_failure": "tutorials/ctracker/test_byte.py imports skimage.io; ModuleNotFoundError: No module named skimage",
     "scope": "Legacy tutorial collection outside the Phase VII tests; no dependency installation or source modification performed."
   },
-  "interpretation": "All 301 in-repository Phase VII tests that do not require the unavailable external PFTrack annotation pass. Full repository and the single external-data fixture remain explicitly limited; this is not a claim that every historical test has passed.",
-  "source_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+  "interpretation": "All 305 in-repository Phase VII tests that do not require the unavailable external PFTrack annotation pass. Full repository and the single external-data fixture remain explicitly limited; this is not a claim that every historical test has passed.",
+  "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
   "additional_scoped_tests": {
     "tests/test_native_raw_cls_control.py": "2 passed in the full 301-test scope",
-    "tests/test_native_unknown_null.py": "2 passed in the full 301-test scope"
+    "tests/test_native_unknown_null.py": "2 passed in the full 301-test scope",
+    "tests/test_native_raw_cls_complementarity.py": "4 passed in the full 305-test scope"
   }
 }
