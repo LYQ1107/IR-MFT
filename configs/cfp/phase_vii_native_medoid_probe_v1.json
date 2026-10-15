@@ -1,0 +1,16 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "memory_rule": "medoid_of_last_four_observed_native_identity_embeddings",
+  "selection": "Fixed before evaluation; no threshold, seed, video or outer metric selection.",
+  "scope": "Read-only native probe over the unchanged causal V3 proposals and existing native DINO feature banks. The medoid is selected only from each track's past assigned identity writes; current candidates, GT, future frames and teacher features are excluded. This is a single fixed memory rule, not a stack or learned final method."
+}
