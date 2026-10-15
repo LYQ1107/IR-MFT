@@ -1,0 +1,1049 @@
+{
+  "status": "COMPLETE_NATIVE_SOURCE_MATCHED_RAW_CLS_CONTROL",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
+  "config": "configs/cfp/phase_vii_native_raw_cls_control_v1.json",
+  "config_sha256": "16ebdfb8a4b18d6085ca939bdb460526fa774575924287fa90faab525ac287d7",
+  "source_commit": "f2615721fe86a73d5bf45c8d2be514cdd540a7a4",
+  "source_sha256": {
+    "tools/cfp_record_native_raw_cls_control.py": "1bc8cf4071b249a56251adc6670ec6324772470d636523c88d2f2d97070d1d9b",
+    "configs/cfp/phase_vii_native_raw_cls_control_v1.json": "16ebdfb8a4b18d6085ca939bdb460526fa774575924287fa90faab525ac287d7",
+    "cfp/native_raw_cls_control.py": "73e21bd204223c12b44bc9dc0cff4775aaddaeca36695b88cea2d064c833f60c",
+    "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+    "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+  },
+  "scope": "All six outer videos x three registered fit seeds. Each raw_cls replay uses the same source-matched global-DINO native bank, current proposal rows, FIFO history, geometry, candidate eligibility, lifecycle and output coordinates as its paired embedding replay. raw_cls is the normalized CLS output before the fitted identity head; no model, threshold, candidate graph, lifecycle or output change is introduced. No GT, physical identity, future frame, teacher, external payload or cached inference feature enters online replay. Official TrackEval is offline scoring after prediction hashes are locked; this is a source-matched raw-gallery control, not a final method or novelty claim.",
+  "feature_field": "raw_cls",
+  "matched_control_field": "embedding",
+  "videos": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "rows": [
+    {
+      "video": "BT-001",
+      "seed": 0,
+      "raw": {
+        "HOTA": 32.43485843795304,
+        "AssA": 18.758340931387682,
+        "DetA": 56.292130409788996,
+        "IDF1": 39.19223144383589,
+        "MOTA": 64.64666666666666,
+        "IDSW": 100.0
+      },
+      "embedding": {
+        "HOTA": 33.44840190409673,
+        "AssA": 19.992451256211613,
+        "DetA": 56.15783407130728,
+        "IDF1": 39.98050223551955,
+        "MOTA": 64.41333333333333,
+        "IDSW": 110.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": -1.0135434661436875,
+        "AssA": -1.2341103248239307,
+        "DetA": 0.13429633848171818,
+        "IDF1": -0.7882707916836651,
+        "MOTA": 0.23333333333333428,
+        "IDSW": -10.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s0/manifest.json",
+      "raw_manifest_sha256": "f4cdbeb7f65e4dc95b4aa2bbb216f0476450a895182df5d9a523e60f95c92fc0",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "134b52f9fcdace39d3469e2c8f48a07acaddb286987a9edd266a7d4f518de7d2",
+      "raw_prediction_sha256": "884bdb82ecb07dd45d2423579b99a6d4875321deb4ffc1b6ba3865282b982138",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "5ce52e5a62d3a01d571a58b7ae9f2bd60f065575a7fe76dce68e9490c93c409c",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "8a58aca6b5d64a3f64a6c702bea01a6f8d56564067b5879bda13a4b63b8c9262",
+      "baseline_prediction_sha256": "e0de8a155f2905b7bc916ebc8f6f70e67e2145170c76b3e5fe0ebec719641759"
+    },
+    {
+      "video": "BT-001",
+      "seed": 1,
+      "raw": {
+        "HOTA": 32.81334831730026,
+        "AssA": 19.15819722180434,
+        "DetA": 56.40374220834654,
+        "IDF1": 39.26741157691339,
+        "MOTA": 64.57000000000001,
+        "IDSW": 100.0
+      },
+      "embedding": {
+        "HOTA": 33.56763482222444,
+        "AssA": 20.097884844976306,
+        "DetA": 56.262141382184936,
+        "IDF1": 40.1397450325008,
+        "MOTA": 64.49666666666667,
+        "IDSW": 106.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": -0.7542865049241811,
+        "AssA": -0.9396876231719666,
+        "DetA": 0.14160082616160707,
+        "IDF1": -0.8723334555874089,
+        "MOTA": 0.07333333333333769,
+        "IDSW": -6.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s1/manifest.json",
+      "raw_manifest_sha256": "5b1a4c40d8080c4c389b8d400d5e80aa17c2bebb44d1db2c41ed32f03fdd364d",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "76d58c5232932f6b196532cc1c2c8573922368da8ff27783fb7570e197299810",
+      "raw_prediction_sha256": "f0c991b2ed092f80f7dfd09f186d6b9482343805ad0700604b0bd47cf9b21864",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "8ad8fbcab94b90444045fcd85a491bf3d42f27f53a37ccfa60a067a96eaf301c",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "7410891f69ff313a69bb21817e63c9c30422c566ee8935c6cc8b33fa3a46075e",
+      "baseline_prediction_sha256": "30e904caeaf130f51ae31b15534f7a3f3df7844c47036100ae9f8ea684305250"
+    },
+    {
+      "video": "BT-001",
+      "seed": 2,
+      "raw": {
+        "HOTA": 32.43485843795304,
+        "AssA": 18.758340931387682,
+        "DetA": 56.292130409788996,
+        "IDF1": 39.19223144383589,
+        "MOTA": 64.64666666666666,
+        "IDSW": 100.0
+      },
+      "embedding": {
+        "HOTA": 33.56763482222444,
+        "AssA": 20.097884844976306,
+        "DetA": 56.262141382184936,
+        "IDF1": 40.1397450325008,
+        "MOTA": 64.49666666666667,
+        "IDSW": 106.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": -1.132776384271402,
+        "AssA": -1.3395439135886242,
+        "DetA": 0.02998902760405997,
+        "IDF1": -0.9475135886649113,
+        "MOTA": 0.14999999999999147,
+        "IDSW": -6.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s2/manifest.json",
+      "raw_manifest_sha256": "3940a575ac089cfd4eb0ab082e4ebdb16c3b3886b8b6d4b46989bb0dcce69ae3",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-001_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "b207c5fd1d65ffd47b75dd290d177b609efb218e8a93b5d68bfcdbd68dff1937",
+      "raw_prediction_sha256": "884bdb82ecb07dd45d2423579b99a6d4875321deb4ffc1b6ba3865282b982138",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "3271a1827793fb85fea5ac45b3670857cf7ac7005a7707818d01dc677520f37d",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-001_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "a02fb139139190c3ebde138237cb10f2a819c26e8c5e49d75256083d5f5fd6cd",
+      "baseline_prediction_sha256": "01477a965d9d4cbb14c1986d375bcda90861285edcd91099af3eed39c11fd6df"
+    },
+    {
+      "video": "BT-003",
+      "seed": 0,
+      "raw": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "embedding": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s0/manifest.json",
+      "raw_manifest_sha256": "8a88f30179049a6e2a3b32b008dfd26754237328079107ca29e732ec4b00e86e",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "c3b09875629422f8de5c0af214891fd2deeae0043b037f0f3c99fa14b2a46897",
+      "raw_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "68771d642b94bd55ead746c1cb89d37eb15b5f991617fdade25d901d1392380c",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "e0089d969a4b9604241ed02cb0372fdfbd55de7b6ba129188cb37e112cff95d5",
+      "baseline_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8"
+    },
+    {
+      "video": "BT-003",
+      "seed": 1,
+      "raw": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "embedding": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s1/manifest.json",
+      "raw_manifest_sha256": "7482edb1abe48e233c01111895c55acb50e86ce1dd752134340e59c96e90149d",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "5f0a47b85f2c3af50bf9765f709ef2ba131fdd214128e41722545e839a7df7da",
+      "raw_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "b3b2d4b568dcd030666191e3bf787ec02c14c75d200e0b76eec763de585cc47d",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "bf3331d5d79a00f42ffe5b5cea8dbdaa380f0d74dfca0ba29f5d5d9515075f87",
+      "baseline_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8"
+    },
+    {
+      "video": "BT-003",
+      "seed": 2,
+      "raw": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "embedding": {
+        "HOTA": 55.30530219492446,
+        "AssA": 55.629264183703185,
+        "DetA": 55.01358918142476,
+        "IDF1": 78.95392278953923,
+        "MOTA": 62.674897119341566,
+        "IDSW": 9.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s2/manifest.json",
+      "raw_manifest_sha256": "62ab5ff8b87992f5f95fcef62a10b123ebb84790647e73b51778db58ab2fd47d",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/BT-003_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "3c036f794359ec1662f1360b2e9f2b8f8b4b281ef8fd8163b5276f4b59ef5c69",
+      "raw_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "490c34c8b6e3cfda816c41b0765ac6fcc248127a447d0a29d5bce58f01704e8b",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_BT-003_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "beb06fced9025ece23085b0626f4c634405aed96a0cc4961e6135a10d82f6a09",
+      "baseline_prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8"
+    },
+    {
+      "video": "MSK-002",
+      "seed": 0,
+      "raw": {
+        "HOTA": 23.978028467792193,
+        "AssA": 13.31378917071052,
+        "DetA": 43.53945400194497,
+        "IDF1": 29.201061904824797,
+        "MOTA": 45.19177841541254,
+        "IDSW": 384.0
+      },
+      "embedding": {
+        "HOTA": 23.982046875386047,
+        "AssA": 13.317746485009014,
+        "DetA": 43.540617586267,
+        "IDF1": 29.200290563296573,
+        "MOTA": 45.196463078995144,
+        "IDSW": 384.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": -0.004018407593854079,
+        "AssA": -0.003957314298494552,
+        "DetA": -0.0011635843220290099,
+        "IDF1": 0.0007713415282246672,
+        "MOTA": -0.004684663582601445,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s0/manifest.json",
+      "raw_manifest_sha256": "b77426cf65459ab1f8d7c03c6b3e98c0127488b80cddf7189cc87a1a0660aeff",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "fd4637cfb6378693ca5f96175bef0191e4cb846018a428fea0843b11b41994f3",
+      "raw_prediction_sha256": "34ea6b1980691276bce9012c72f097104f71ac8ea69be44aaa2c809c74a7a3d6",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "bf140077b0f0a4b4baf270175ae53a65ef4ee54962d2459d664c79ccabf0fd36",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "9c52b7d1ed8ffdbf95f71fd8ac2b92c92bccfb81d6038eecc08232fbe1327cdb",
+      "baseline_prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff"
+    },
+    {
+      "video": "MSK-002",
+      "seed": 1,
+      "raw": {
+        "HOTA": 23.978028467792193,
+        "AssA": 13.31378917071052,
+        "DetA": 43.53945400194497,
+        "IDF1": 29.201061904824797,
+        "MOTA": 45.19177841541254,
+        "IDSW": 384.0
+      },
+      "embedding": {
+        "HOTA": 23.989703772965328,
+        "AssA": 13.325671602291186,
+        "DetA": 43.540617586267,
+        "IDF1": 29.200290563296573,
+        "MOTA": 45.196463078995144,
+        "IDSW": 384.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": -0.011675305173135087,
+        "AssA": -0.011882431580666264,
+        "DetA": -0.0011635843220290099,
+        "IDF1": 0.0007713415282246672,
+        "MOTA": -0.004684663582601445,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s1/manifest.json",
+      "raw_manifest_sha256": "d1a5e472e4d205b5c3e6680c6b25bd486f619a1cb56e991aae8539e1e87b5e4e",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "4453dce4b9f6bfbdfab59d7b8e7ea508b684854e11147144375e9ff67784ff99",
+      "raw_prediction_sha256": "34ea6b1980691276bce9012c72f097104f71ac8ea69be44aaa2c809c74a7a3d6",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "d39893d6f68ab3189129413f10e64929beb8fc3535dc0943a94eb5f2bea67958",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "315c5f3981c4ec418f52cf3c3dead368006a5ef5e3f243030529f93b1dd744f9",
+      "baseline_prediction_sha256": "213fee71a746943488baceaf8abb576d2aba3bf6239a20f2b4021b2deb8d64f5"
+    },
+    {
+      "video": "MSK-002",
+      "seed": 2,
+      "raw": {
+        "HOTA": 23.982046875386047,
+        "AssA": 13.317746485009014,
+        "DetA": 43.540617586267,
+        "IDF1": 29.200290563296573,
+        "MOTA": 45.196463078995144,
+        "IDSW": 384.0
+      },
+      "embedding": {
+        "HOTA": 23.982046875386047,
+        "AssA": 13.317746485009014,
+        "DetA": 43.540617586267,
+        "IDF1": 29.200290563296573,
+        "MOTA": 45.196463078995144,
+        "IDSW": 384.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s2/manifest.json",
+      "raw_manifest_sha256": "c4d338ed2a407ea833c76347c8aac139b7a852327eeaadde83e8383254c370e2",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/MSK-002_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "438c9e366c5e18c1a1c22a80a876a3b49378e8229b484fbf5bd4abe2be9926ec",
+      "raw_prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "a4b0204af1917c8b4fa2111cf2f89901285cf6bcd6cd1269c21070a1823b542a",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_MSK-002_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "fe84936eebdf3bd3ccf2d05820ff329979c372cd91aec6d417935c4b28115116",
+      "baseline_prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff"
+    },
+    {
+      "video": "PF-001",
+      "seed": 0,
+      "raw": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "embedding": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s0/manifest.json",
+      "raw_manifest_sha256": "d015b7cdb572f53df2457df919bf99dfd71aee5ab199b44623438d40486db793",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "937eec7d1fcdf0d348a75c5d3169a2618248389b7bf36082f1a63cacc350cf80",
+      "raw_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "4e81373265860c202f7c545992fb84383a36d37be15ce9647868c11e85cb8fba",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "b294285b99c9f56bbb8dca1dfe4ee2136a33291f459119c0c67fea81b50a92af",
+      "baseline_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811"
+    },
+    {
+      "video": "PF-001",
+      "seed": 1,
+      "raw": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "embedding": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s1/manifest.json",
+      "raw_manifest_sha256": "d31a711915ad4c778a4cbddc162fe3bacb3ecd3ab1b43c0103449175df7095a6",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "9ac114d59b678d014848ef3ba281b8c339c13a3f02252a529ddb99ea8b2f7a15",
+      "raw_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "36b8d65cc97e6b26a68c8709ae28aec86d5703359eab90c7ff506c96a9db120d",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "5c85c6e9caa2eb7c17ef84c47b0c89c7226b026e33ccff6515d058b5faceea39",
+      "baseline_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811"
+    },
+    {
+      "video": "PF-001",
+      "seed": 2,
+      "raw": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "embedding": {
+        "HOTA": 42.35458355695784,
+        "AssA": 22.647579361120833,
+        "DetA": 79.26732598766647,
+        "IDF1": 39.847499289333314,
+        "MOTA": 98.28666666666666,
+        "IDSW": 19.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s2/manifest.json",
+      "raw_manifest_sha256": "8af37cc81a11b029ee9f5fba8cee6cca3166ea80aa4e189f48cd28d86f592785",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/PF-001_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "d20b19a2fc618e9e478c64fc1cc84594110864c4e703dc85494a65d8365a8a9c",
+      "raw_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "40c74dbd3301ac2f5ac475ae4bdac5b89b99d9b36a6d7fcc1e4947e3e4c99f49",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_PF-001_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "64710b89fa3ee7939732ce90483abbc3b56f87c7fcb5d8274dcdee71fd6ad2e8",
+      "baseline_prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811"
+    },
+    {
+      "video": "SN-001",
+      "seed": 0,
+      "raw": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "embedding": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s0/manifest.json",
+      "raw_manifest_sha256": "f582b0c2950b6ed8c50e59356ee997cf64a9b9ce11340908e4a3c2ac4d3fb2d9",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "84e61f224e80feeafa4b86cc7ecc1f8e53c2afa43d952c3b397953b56d7c56e4",
+      "raw_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "07eb2c52b33899396126b6d3e5b36451f581dff4d61da9a73a88c75a0bcbc85b",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "b946451fdaa101395bedfb14cdab4761c273dcbc0aeacb83e902da0d322d6985",
+      "baseline_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296"
+    },
+    {
+      "video": "SN-001",
+      "seed": 1,
+      "raw": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "embedding": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s1/manifest.json",
+      "raw_manifest_sha256": "7c0422bf78675344db56a65a3484cfde11fa21f9d4cdaf521b945b0834f59d74",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "6f70f429cea9919182d6f18ade27ddf9fc86ed3ec3626a0d12422ca8ef9ca848",
+      "raw_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "1b37e8229c73e21aaa35b77a88ec8677ee9e581baa176d79c922786568e2b22e",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "5611719cb06997a141e91bd06e235098d893f8b11899f94f082c043449a87342",
+      "baseline_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296"
+    },
+    {
+      "video": "SN-001",
+      "seed": 2,
+      "raw": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "embedding": {
+        "HOTA": 43.016270398520035,
+        "AssA": 30.89749750303084,
+        "DetA": 60.147527781469144,
+        "IDF1": 60.443462479286666,
+        "MOTA": 78.99577804583836,
+        "IDSW": 24.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.0,
+        "AssA": 0.0,
+        "DetA": 0.0,
+        "IDF1": 0.0,
+        "MOTA": 0.0,
+        "IDSW": 0.0
+      },
+      "prediction_byte_equal": true,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s2/manifest.json",
+      "raw_manifest_sha256": "f38ac667d37de4dd2bc9c31e6c7c714a6cab219e6abaee206167726b8bd36fb9",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-001_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "15988bcbeb804db51d6576398a34f0e5e7fcf1b1ec910b2c4147264f1d90d3af",
+      "raw_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "ec06350b0196be56b1150ff76d41b0949ae0b9cf4a5d8f8fd1a1b2306b1ebe82",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-001_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "be46fe2cee64b16539d051bca005845001ff0a02e3bbfc2a97c39a00d33bbe19",
+      "baseline_prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296"
+    },
+    {
+      "video": "SN-015",
+      "seed": 0,
+      "raw": {
+        "HOTA": 32.23328913218885,
+        "AssA": 14.797170816130029,
+        "DetA": 70.7612782736584,
+        "IDF1": 29.691472383289625,
+        "MOTA": 90.99499633489498,
+        "IDSW": 154.0
+      },
+      "embedding": {
+        "HOTA": 32.04163283994084,
+        "AssA": 14.632803064670677,
+        "DetA": 70.71716974077839,
+        "IDF1": 29.527391712312838,
+        "MOTA": 90.99180928705741,
+        "IDSW": 156.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.1916562922480125,
+        "AssA": 0.164367751459352,
+        "DetA": 0.04410853288001704,
+        "IDF1": 0.16408067097678725,
+        "MOTA": 0.0031870478375708444,
+        "IDSW": -2.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s0/manifest.json",
+      "raw_manifest_sha256": "1e02cb93e9b8ec400f62bd07f12f9aee4f9a0d48dabbcd7ca301bfe620a02c7d",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s0.trackeval/metrics.json",
+      "raw_metrics_sha256": "89bd6dd7e0f562c141220ffa25729b8649f583434a1ee651bc88404f66750162",
+      "raw_prediction_sha256": "86b65a12ced171fb10d8035cc9852618f915a9778d8da9e7bc1a3fa3e1628188",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s0_v1/manifest.json",
+      "baseline_manifest_sha256": "b2eb968c0d4b8948d22f693beff6b29dad6104536b1da19bdfa8f52b337d0e96",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s0_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "22191828bc5086f0ca87c44f8b817f22a1010a0302926d15b4f1ee7fdcf4b636",
+      "baseline_prediction_sha256": "cbdc7128c28108e54f2fe2933ff358bb146d69b793c1438d3486e9e0d892fb9a"
+    },
+    {
+      "video": "SN-015",
+      "seed": 1,
+      "raw": {
+        "HOTA": 32.23264638595696,
+        "AssA": 14.79676446939652,
+        "DetA": 70.76020459766467,
+        "IDF1": 29.69194863939304,
+        "MOTA": 90.99499633489498,
+        "IDSW": 154.0
+      },
+      "embedding": {
+        "HOTA": 31.956049293387778,
+        "AssA": 14.556706003680105,
+        "DetA": 70.71460065938025,
+        "IDF1": 29.527391712312838,
+        "MOTA": 90.98862223921981,
+        "IDSW": 158.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.2765970925691832,
+        "AssA": 0.2400584657164142,
+        "DetA": 0.045603938284415335,
+        "IDF1": 0.1645569270802021,
+        "MOTA": 0.0063740956751701106,
+        "IDSW": -4.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s1/manifest.json",
+      "raw_manifest_sha256": "7122a4f3670b892754adbb3fe9524721745aed1b9e8372cf3e724e0a69f7e257",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s1.trackeval/metrics.json",
+      "raw_metrics_sha256": "abe287fda0adc86fbccd86306f3586d4c490c408b90a4fa4250099b5ded0e652",
+      "raw_prediction_sha256": "dc20cc7b946facaeb1acbcbc619a5302a002e621c44c51faf54a9174b5487adf",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s1_v1/manifest.json",
+      "baseline_manifest_sha256": "f6906d63159e511c113b0fe2ec06f43d9295a4b36bd96e6073e0ae33a01da731",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s1_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "348290102fea80724c5a1385ed30fe58f39d669318e0b6d0cf4fbd5c4e9780b7",
+      "baseline_prediction_sha256": "87d9a92bd50d65715bf9180a6f7ccefe49170227ea06dbee2c3331390b4fe973"
+    },
+    {
+      "video": "SN-015",
+      "seed": 2,
+      "raw": {
+        "HOTA": 32.233561567635135,
+        "AssA": 14.797433031799656,
+        "DetA": 70.76122250914945,
+        "IDF1": 29.691472383289625,
+        "MOTA": 90.99499633489498,
+        "IDSW": 154.0
+      },
+      "embedding": {
+        "HOTA": 31.955909559782285,
+        "AssA": 14.55672795528816,
+        "DetA": 70.71395253604356,
+        "IDF1": 29.527391712312838,
+        "MOTA": 90.98862223921981,
+        "IDSW": 158.0
+      },
+      "delta_raw_minus_embedding": {
+        "HOTA": 0.2776520078528506,
+        "AssA": 0.24070507651149597,
+        "DetA": 0.04726997310588388,
+        "IDF1": 0.16408067097678725,
+        "MOTA": 0.0063740956751701106,
+        "IDSW": -4.0
+      },
+      "prediction_byte_equal": false,
+      "raw_manifest": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s2/manifest.json",
+      "raw_manifest_sha256": "1bf54bc5c3490738a06e885f933e91d53df8b1b83a094fdd55d5700bd7f5c3bf",
+      "raw_metrics": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s2.trackeval/metrics.json",
+      "raw_metrics_sha256": "618710c6ff5677d87ed45750ad5278d645def73feb8e08a25a5c89417917076d",
+      "raw_prediction_sha256": "5b13a43c21046d2c12bd0944731a00bee8921d2bacdbed30a328869a69759757",
+      "baseline_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s2_v1/manifest.json",
+      "baseline_manifest_sha256": "9f19b35748ae07fe50cf782042c7c1ac1986ada119d0ed8a2f2b7f2657b70dcf",
+      "baseline_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_global_SN-015_fifo_s2_v1.trackeval/metrics.json",
+      "baseline_metrics_sha256": "f94b4bf232e368c20104d09cce8aee60c983fa8e6017ce5cc7fc40211e5f1d30",
+      "baseline_prediction_sha256": "97d98a2b9d02c418cb889e6b386a147202f3d79c04bc9c27b0e7c2c6f5ccc728"
+    }
+  ],
+  "coverage": {
+    "expected": 18,
+    "completed": 18,
+    "all_prediction_hashes_locked": true,
+    "physical_labels_opened_after_all_prediction_hashes": true,
+    "online_GT_teacher_future_used": false,
+    "loaded_GT_annotation_labels": false,
+    "cached_detection_or_feature_used_for_inference": false,
+    "future_or_teacher_online_used": false,
+    "precomputed_IR_used_for_inference": false
+  },
+  "aggregate": {
+    "raw_cls": {
+      "HOTA": {
+        "mean": 38.241618585620266,
+        "sample_sd": 10.313019163581297,
+        "n": 18
+      },
+      "AssA": {
+        "mean": 26.029699742883363,
+        "sample_sd": 14.852733884660555,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 60.84308682501306,
+        "sample_sd": 11.8226714218797,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": 46.22576866211006,
+        "sample_sd": 18.437354907834525,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": 73.4611315412988,
+        "sample_sd": 18.540579118950088,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": 115.0,
+        "sample_sd": 134.71538625605334,
+        "n": 18
+      }
+    },
+    "matched_embedding": {
+      "HOTA": {
+        "mean": 38.36219606758894,
+        "sample_sd": 10.250684052567339,
+        "n": 18
+      },
+      "AssA": {
+        "mean": 26.18992476031539,
+        "sample_sd": 14.788493373853086,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 60.818612299020074,
+        "sample_sd": 11.822644894781453,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": 46.343205155657046,
+        "sample_sd": 18.40846064844281,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": 73.43539639803826,
+        "sample_sd": 18.551749627382854,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": 116.77777777777777,
+        "sample_sd": 134.77456364810072,
+        "n": 18
+      }
+    },
+    "raw_cls_minus_matched_embedding": {
+      "HOTA": {
+        "mean": -0.12057748196867853,
+        "sample_sd": 0.40643220149354614,
+        "n": 18
+      },
+      "AssA": {
+        "mean": -0.16022501743202333,
+        "sample_sd": 0.47780519157727436,
+        "n": 18
+      },
+      "DetA": {
+        "mean": 0.02447452599298019,
+        "sample_sd": 0.04502681471907474,
+        "n": 18
+      },
+      "IDF1": {
+        "mean": -0.11743649354698664,
+        "sample_sd": 0.35253699551597223,
+        "n": 18
+      },
+      "MOTA": {
+        "mean": 0.025735143260520645,
+        "sample_sd": 0.06441418050752173,
+        "n": 18
+      },
+      "IDSW": {
+        "mean": -1.7777777777777777,
+        "sample_sd": 2.9814239699997196,
+        "n": 18
+      }
+    }
+  },
+  "per_video": {
+    "BT-001": {
+      "HOTA": {
+        "mean": -0.9668687851130903,
+        "sample_sd": 0.19351367284781057,
+        "n": 3
+      },
+      "AssA": {
+        "mean": -1.1711139538615072,
+        "sample_sd": 0.20723819703970855,
+        "n": 3
+      },
+      "DetA": {
+        "mean": 0.10196206408246174,
+        "sample_sd": 0.06243738759755589,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": -0.8693726119786618,
+        "sample_sd": 0.07966267660428686,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": 0.15222222222222115,
+        "sample_sd": 0.08002314480013552,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": -7.333333333333333,
+        "sample_sd": 2.309401076758503,
+        "n": 3
+      }
+    },
+    "BT-003": {
+      "HOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "AssA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "DetA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      }
+    },
+    "MSK-002": {
+      "HOTA": {
+        "mean": -0.005231237588996389,
+        "sample_sd": 0.005931391503626818,
+        "n": 3
+      },
+      "AssA": {
+        "mean": -0.005279915293053605,
+        "sample_sd": 0.006050619812086212,
+        "n": 3
+      },
+      "DetA": {
+        "mean": -0.0007757228813526732,
+        "sample_sd": 0.0006717957215482771,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": 0.0005142276854831115,
+        "sample_sd": 0.00044533423895764894,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": -0.00312310905506763,
+        "sample_sd": 0.002704691780477781,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      }
+    },
+    "PF-001": {
+      "HOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "AssA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "DetA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      }
+    },
+    "SN-001": {
+      "HOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "AssA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "DetA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "n": 3
+      }
+    },
+    "SN-015": {
+      "HOTA": {
+        "mean": 0.24863513089001543,
+        "sample_sd": 0.0493479406997646,
+        "n": 3
+      },
+      "AssA": {
+        "mean": 0.21504376456242072,
+        "sample_sd": 0.04388790555946904,
+        "n": 3
+      },
+      "DetA": {
+        "mean": 0.04566081475677208,
+        "sample_sd": 0.0015814873617146156,
+        "n": 3
+      },
+      "IDF1": {
+        "mean": 0.16423942301125885,
+        "sample_sd": 0.00027496658950976037,
+        "n": 3
+      },
+      "MOTA": {
+        "mean": 0.0053117463959703555,
+        "sample_sd": 0.001840042926958151,
+        "n": 3
+      },
+      "IDSW": {
+        "mean": -3.3333333333333335,
+        "sample_sd": 1.1547005383792515,
+        "n": 3
+      }
+    }
+  },
+  "decision": "DO_NOT_ADOPT_RAW_CLS_AS_A_STANDALONE_NATIVE_REPLACEMENT",
+  "finding": "The source-matched raw CLS coordinate is better on outer SN-015 and byte-equivalent on BT-003/PF-001/SN-001, but it loses aggregate HOTA, AssA and IDF1 against the paired fitted global embedding because BT-001 losses dominate. IDSW falls on average, while DetA/MOTA changes are small. The direction is video-dependent and does not establish a stable independent native contribution or justify selective stacking.",
+  "failure_type": "All-fold paired raw_cls_minus_embedding means are negative for HOTA, AssA and IDF1; no video-independent improvement gate is met.",
+  "next_boundary": "Preserve raw_cls as a measured diagnostic and do not tune a raw/head blend or select a video-specific fallback. A new combination requires an independently measured same-input signal; current native identity and NULL probes remain negative.",
+  "external_root": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1",
+  "raw_outputs_outside_git": true,
+  "official_trackeval_commit": "12c8791b303e0a0b50f753af204249e622d0281a",
+  "goal_status": "IN_PROGRESS_UNACHIEVED"
+}

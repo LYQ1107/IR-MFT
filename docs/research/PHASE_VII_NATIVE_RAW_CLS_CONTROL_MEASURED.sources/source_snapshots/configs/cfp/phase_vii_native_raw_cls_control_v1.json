@@ -1,0 +1,30 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "seeds": [0, 1, 2],
+  "encoder_family": "global",
+  "feature_field": "raw_cls",
+  "matched_control_field": "embedding",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "memory": "fifo",
+  "selection": "Feature field fixed before any official metric is opened; no threshold, seed, video, memory or outer metric selection.",
+  "hypothesis": "The source-matched DINO backbone CLS coordinate may retain identity information that the fitted global identity head removes; use raw_cls as the sole current and strictly-past FIFO appearance coordinate under the unchanged native association protocol.",
+  "scope": "All six outer videos x three registered fit seeds. Each raw_cls replay uses the same source-matched global-DINO native bank, current proposal rows, FIFO history, geometry, candidate eligibility, lifecycle and output coordinates as its paired embedding replay. raw_cls is the normalized CLS output before the fitted identity head; no model, threshold, candidate graph, lifecycle or output change is introduced. No GT, physical identity, future frame, teacher, external payload or cached inference feature enters online replay. Official TrackEval is offline scoring after prediction hashes are locked; this is a source-matched raw-gallery control, not a final method or novelty claim.",
+  "decision_gate": "Report paired all-video mean deltas for HOTA, AssA, IDF1, MOTA and IDSW; no expansion or combination is selected from an outer result.",
+  "guards": {
+    "cpu_only": true,
+    "minimum_free_bytes": 42949672960,
+    "immutable_outputs": true,
+    "online_gt_teacher_future_used": false,
+    "raw_fps": "not measured; native association replay only"
+  }
+}

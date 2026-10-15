@@ -316,18 +316,18 @@
       "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
       "all_question_ids_present": true,
       "goal_status": "IN_PROGRESS_UNACHIEVED",
-      "source_report_sha256": "869f3d409e79965d11876bcd95f18a7a383426cdc1dd2fcfb11dc399dd3e63aa",
-      "audit_report_sha256": "868ed8a58fd8a664118aa5cdb21d67fc3ac51003054941553d6256f06a1479d1"
+      "source_report_sha256": "bd5c87f1a61fc3e83af3cd2882bac60de1e3f0a2485a94de400ba5fbbef9f221",
+      "audit_report_sha256": "d6ac67a448c55fc7dd6d06f68088cf62322c1812685b1e6001f5b1055591cf6a"
     },
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 299,
+      "phase_vii_passed": 301,
       "phase_vii_failed": 0,
       "warnings": 24,
       "full_tests_external_fixture_failure": "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations",
       "full_repo_collection_failure": "legacy tutorial imports missing skimage",
-      "report_sha256": "964b8f8d3d21d4f317784fa7f02019b680ebc412b406806fac75304a1ba8bd86"
+      "report_sha256": "9fdf41c5030208a2bf4c09459d996b969199f66affadd553a1cdf8898955690f"
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
@@ -764,6 +764,23 @@
         "MOTA": -0.12951575109003954
       },
       "total_abstained_rows": 2488
+    },
+    "native_raw_cls_control": {
+      "status": "COMPLETE_NATIVE_SOURCE_MATCHED_RAW_CLS_CONTROL",
+      "report": "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
+      "report_sha256": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
+      "config": "configs/cfp/phase_vii_native_raw_cls_control_v1.json",
+      "config_sha256": "16ebdfb8a4b18d6085ca939bdb460526fa774575924287fa90faab525ac287d7",
+      "aggregate_delta_raw_cls_minus_embedding": {
+        "HOTA": -0.12057748196867853,
+        "AssA": -0.16022501743202333,
+        "DetA": 0.02447452599298019,
+        "IDF1": -0.11743649354698664,
+        "MOTA": 0.025735143260520645,
+        "IDSW": -1.7777777777777777
+      },
+      "decision": "DO_NOT_ADOPT_RAW_CLS_AS_A_STANDALONE_NATIVE_REPLACEMENT",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   },
   "experiments": [
@@ -5290,6 +5307,82 @@
       "next_experiment": "Do not select another NULL threshold; require a new independently justified observable signal or source-matched raw-gallery control.",
       "scope": "Six registered internal train videos, frozen DINO384 current proposals, FIFO native memory, one fixed rule and one matched no-rule arm. Official TrackEval is offline scoring only. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
+      "status": "COMPLETE_NATIVE_SOURCE_MATCHED_RAW_CLS_CONTROL",
+      "hypothesis": "The source-matched DINO backbone CLS coordinate may retain identity information that the fitted global identity head removes; a fixed raw_cls FIFO replay could preserve identity without changing the native graph.",
+      "change": "Use the normalized source-matched global-DINO raw_cls field as the sole current and strictly-past FIFO appearance coordinate; keep all geometry, eligibility, thresholds, lifecycle, memory length and output coordinates unchanged.",
+      "architecture": "Frozen native PredictiveAssociationTracker with RecentIdentityControl FIFO length4/maxage1500; no learned model, score calibration, candidate graph, NULL policy or lifecycle change.",
+      "inputs": "All six outer videos x seeds0/1/2 source-matched global-DINO native banks. The raw_cls and fitted embedding fields are from the same current-only excluded-video encoder bank; physical labels are opened only after all 18 raw prediction hashes pass.",
+      "outputs": "18 raw_cls native predictions, paired existing embedding metrics, per-video/seed deltas and aggregate report outside Git.",
+      "loss": "None; no fitting or threshold search.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "memory": "fifo",
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_replay_native_raw_cls_control.py --config configs/cfp/phase_vii_native_raw_cls_control_v1.json --features /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_SN-015_k4_s0_v1 --detections /data3/liuyeqiang/IR-MFT_assets/cfp/phase0/causal_v3_train_detections --output /tmp/IR-MFT_phase7_native_raw_cls_control_v1/SN-015_s0 --video SN-015 --seed 0",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_record_native_raw_cls_control.py --config configs/cfp/phase_vii_native_raw_cls_control_v1.json --root /tmp/IR-MFT_phase7_native_raw_cls_control_v1 --assets-root /data3/liuyeqiang/IR-MFT_assets/cfp/phase7 --output docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_raw_cls_control.py"
+      ],
+      "source_commit_at_stage_collection": "f2615721fe86a73d5bf45c8d2be514cdd540a7a4",
+      "config": "configs/cfp/phase_vii_native_raw_cls_control_v1.json",
+      "config_sha256": "16ebdfb8a4b18d6085ca939bdb460526fa774575924287fa90faab525ac287d7",
+      "report": "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
+      "report_sha256": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
+      "external_root": "/tmp/IR-MFT_phase7_native_raw_cls_control_v1",
+      "raw_outputs_outside_git": true,
+      "metrics": {
+        "raw_cls": {
+          "HOTA": 38.241618585620266,
+          "AssA": 26.029699742883363,
+          "DetA": 60.84308682501306,
+          "IDF1": 46.22576866211006,
+          "MOTA": 73.4611315412988,
+          "IDSW": 115.0
+        },
+        "matched_embedding": {
+          "HOTA": 38.36219606758894,
+          "AssA": 26.18992476031539,
+          "DetA": 60.818612299020074,
+          "IDF1": 46.343205155657046,
+          "MOTA": 73.43539639803826,
+          "IDSW": 116.77777777777777
+        },
+        "raw_cls_minus_matched_embedding": {
+          "HOTA": -0.12057748196867853,
+          "AssA": -0.16022501743202333,
+          "DetA": 0.02447452599298019,
+          "IDF1": -0.11743649354698664,
+          "MOTA": 0.025735143260520645,
+          "IDSW": -1.7777777777777777
+        }
+      },
+      "prediction_hashes_locked": true,
+      "physical_labels_opened_after_all_prediction_hashes": true,
+      "online_guard_summary": {
+        "cached_detection_or_feature_used_beyond_current_inputs": false,
+        "future_or_teacher_online": false,
+        "labels_opened_during_prediction": false,
+        "loaded_GT_annotation_labels_during_inference": false,
+        "precomputed_IR_used_for_inference": false
+      },
+      "decision": "DO_NOT_ADOPT_RAW_CLS_AS_A_STANDALONE_NATIVE_REPLACEMENT",
+      "failure_type": "All-fold paired raw_cls-minus-embedding means are negative for HOTA, AssA and IDF1; the SN-015 improvement is offset by BT-001 losses and the direction is video-dependent.",
+      "next_experiment": "Preserve raw_cls as a measured diagnostic; do not tune a raw/head blend or select a video-specific fallback. Require a new independently measured same-input signal before any combination.",
+      "scope": "Six registered internal outer videos, source-matched global-DINO raw_cls versus fitted embedding, FIFO native memory and official TrackEval offline scoring. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -5310,13 +5403,14 @@
     "Preserve the matched negative NULL replay; require an independently justified signal before any further candidate-set replay."
   ],
   "validation": {
-    "project_tests": 299,
+    "project_tests": 301,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
     "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
-    "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
-    "phase_vii_passed": 299,
-    "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
+    "scope": "Actual full project suite after source-matched raw-CLS control module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
+    "phase_vii_passed": 301,
+    "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
+    "report_sha256": "9fdf41c5030208a2bf4c09459d996b969199f66affadd553a1cdf8898955690f"
   },
   "execution_failures": [
     {
@@ -5344,16 +5438,16 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 299,
+    "phase_vii_passed": 301,
     "phase_vii_failed": 0,
     "warnings": 24,
-    "tests_scope": "pytest -q tests --ignore=tests/test_rgbt_pairing.py",
+    "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
     "limits": [
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
     "report_sha256": "964b8f8d3d21d4f317784fa7f02019b680ebc412b406806fac75304a1ba8bd86",
-    "source_commit": "d172655"
+    "source_commit": "f2615721fe86a73d5bf45c8d2be514cdd540a7a4"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -5580,5 +5674,6 @@
     "next_experiment": "Do not select another NULL threshold; require a new independently justified observable signal or source-matched raw-gallery control.",
     "scope": "Six registered internal train videos, frozen DINO384 current proposals, FIFO native memory, one fixed rule and one matched no-rule arm. Official TrackEval is offline scoring only. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
-  }
+  },
+  "test_validation_report_sha256": "9fdf41c5030208a2bf4c09459d996b969199f66affadd553a1cdf8898955690f"
 }
