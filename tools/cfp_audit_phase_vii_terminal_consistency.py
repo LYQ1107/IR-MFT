@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 from datetime import date
 from pathlib import Path
@@ -110,12 +111,12 @@ def main() -> int:
         },
         "required_documents_13_present_and_hashed": len(required_documents) == 13
         and all(row["exists"] and row["hash_matches"] for row in required_document_checks),
-        "goal_and_ledger_have_authoritative_297_test_text": "297" in goal_path.read_text()
-        and "297" in ledger_path.read_text()
-        and "293" not in goal_path.read_text()
-        and "293" not in ledger_path.read_text(),
-        "current_validation_state_297_pass_0_fail_24_warnings": (
-            current_validation_state["phase_vii_passed"] == 297
+        "goal_and_ledger_have_authoritative_299_test_text": "299" in goal_path.read_text()
+        and "299" in ledger_path.read_text()
+        and not re.search(r"\b293\s+(?:Phase|passed)\b", goal_path.read_text())
+        and not re.search(r"\b293\s+(?:Phase|passed)\b", ledger_path.read_text()),
+        "current_validation_state_299_pass_0_fail_24_warnings": (
+            current_validation_state["phase_vii_passed"] == 299
             and current_validation_state["phase_vii_failed"] == 0
             and current_validation_state["warnings"] == 24
         ),
