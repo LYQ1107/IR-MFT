@@ -1,7 +1,7 @@
 {
-  "status": "COMPLETE_TERMINAL_CONSISTENCY_CROSSCHECK_CANDIDATE_NEAREST_GOAL_STILL_ACTIVE",
+  "status": "COMPLETE_TERMINAL_CONSISTENCY_CROSSCHECK_VISIBILITY_QUALITY_GOAL_STILL_ACTIVE",
   "as_of": "2026-10-16",
-  "scope": "Read-only document/hash/coverage/delivery cross-check after the candidate-conditioned nearest-history probe. It does not establish a positive method, P11 combination value, P17 contribution, external generalization or project completion.",
+  "scope": "Read-only document/hash/coverage/delivery cross-check after the candidate-nearest-history and visibility-quality probes. It does not establish a positive method, P11 combination value, P17 contribution, external generalization or project completion.",
   "checks": {
     "task_book_requirement_rows_17": true,
     "task_book_summary_15_scoped_2_open": true,
@@ -12,6 +12,7 @@
     "native_allfold_36_features_and_36_replays": true,
     "strict_raw_allfold_36_runs": true,
     "dinov2_allfold_144_crop_controls": true,
+    "visibility_quality_probe_complete_and_gate_rejected": true,
     "candidate_nearest_probe_complete_and_gate_rejected": true,
     "p11_open_without_current_component_justification": true,
     "p17_open_without_stable_independent_contribution": true,
@@ -108,8 +109,8 @@
     {
       "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
       "exists": true,
-      "expected_sha256": "639aa419fb79991875c4e24a553d1577f1d76bf221203f7b84ead8dedd369f6a",
-      "actual_sha256": "639aa419fb79991875c4e24a553d1577f1d76bf221203f7b84ead8dedd369f6a",
+      "expected_sha256": "29bafed4ea6e02c122fc5846895afb95543077f4d5371e36621862505c19c6cf",
+      "actual_sha256": "29bafed4ea6e02c122fc5846895afb95543077f4d5371e36621862505c19c6cf",
       "hash_matches": true
     }
   ],
@@ -128,31 +129,46 @@
     "P12_external_generalization": "EXPLICIT_SCOPE_EXCLUSION_PAYLOAD_NOT_ACQUIRED",
     "P13_required_documents": "COMPLETE_DOCUMENT_SET_PRESENT",
     "P14_required_tests": "COMPLETE_PHASE_VII_SCOPE_WITH_EXTERNAL_FIXTURE_LIMIT",
-    "P15_github_delivery": "REMOTE_VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT_9EBE96B",
+    "P15_github_delivery": "REMOTE_VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT_062D590",
     "P16_final20": "COMPLETE_COVERAGE_AUDIT_WITH_NO_POSITIVE_CLAIM",
     "P17_final_scientific_contribution": "NOT_ESTABLISHED"
   },
   "authoritative_hashes": {
-    "state": "c7aadba06b7f2f375aaf1a986bda59a5ab9fe1bf8104998970d2c00707fbba89",
-    "registry": "3b6ff1da261e369fd7b4a685cd03655e729e529f6e8c3eca24089d8465c51ebb",
-    "task_book_audit": "f2e5bf76bc84374c32308158ae615056c95248356fdff8550d909d7a9c839e9e",
+    "state": "e283c38b06c9e2967489222fc6031dfcf0754a3668befb8db932c8741d626cde",
+    "registry": "26bf85ff99c818ff958cb0374587ced0b563bb4397b655f9a48fed8df46725c7",
+    "task_book_audit": "033bba64b40b2fe5e97c4d25cba93fb58da71b5674159e7b5b8d9e2d3710a74b",
     "goal": "705f0a9efdda03f0c43e0e72d2a97842022e153c10e259d13bbe50989d2f0f3e",
-    "hypothesis_ledger": "060bd6599a07e78c3940e3e92f93c01d543e9b8c847f51f3c8f143f1ba570d2a",
-    "final_research_report": "639aa419fb79991875c4e24a553d1577f1d76bf221203f7b84ead8dedd369f6a",
+    "hypothesis_ledger": "4756de0cc5481201626e9c192cec6a162a594d90bd964087faca48dc7b2b9bb1",
+    "final_research_report": "29bafed4ea6e02c122fc5846895afb95543077f4d5371e36621862505c19c6cf",
     "candidate_nearest_report": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
-    "test_validation": "9a26d0c766bff6fb357fbe3c11f91db8f045f269d9039f452a41cf7b454cea64"
+    "visibility_quality_report": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+    "test_validation": "062ccbe48b8826f9dbbc76326fb52a794a126d09046bc8dd716b982cbb8ce267"
+  },
+  "visibility_quality_probe": {
+    "report": "docs/research/PHASE_VII_NATIVE_VISIBILITY_QUALITY_SN015_MEASURED.json",
+    "report_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+    "metrics": {
+      "HOTA": 31.970562251815853,
+      "AssA": 14.552404473937406,
+      "DetA": 70.81308616440086,
+      "IDF1": 28.412618205442865,
+      "MOTA": 91.01411862192052,
+      "IDSW": 148
+    },
+    "delta_vs_frozen_fifo": {
+      "HOTA": -0.2544206701037872,
+      "AssA": -0.2334851730831673,
+      "DetA": 0.03963637926146646,
+      "IDF1": -2.0322076660019768,
+      "MOTA": -0.004780571756384688,
+      "IDSW": -4
+    },
+    "decision": "DO_NOT_EXPAND_VISIBILITY_QUALITY_GATE_CAMPAIGN",
+    "official_trackeval_complete": true
   },
   "candidate_nearest_probe": {
     "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json",
     "report_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
-    "metrics": {
-      "HOTA": 30.82476408734051,
-      "AssA": 13.509426277634184,
-      "DetA": 70.97053478557103,
-      "IDF1": 26.647633406579306,
-      "MOTA": 91.00137043057016,
-      "IDSW": 149
-    },
     "delta_vs_frozen_fifo": {
       "HOTA": -1.4002188345791282,
       "AssA": -1.2764633693863896,
@@ -161,16 +177,15 @@
       "MOTA": -0.01752876310673912,
       "IDSW": -3
     },
-    "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
-    "official_trackeval_complete": true
+    "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN"
   },
   "delivery": {
     "branch": "research/evidence-fishmot-v1",
-    "local_head_at_run": "9041e6521b71296743688f952297a434e54617ad",
-    "remote_branch_head": "9ebe96baf256dbc9b703fe2b99471c04f02757e1",
-    "remote_ls_remote_head": "9ebe96baf256dbc9b703fe2b99471c04f02757e1",
+    "local_head_at_run": "b2595b9eecbf616369662945abbc53f6ac70432d",
+    "remote_branch_head": "062d59002ab184acce39203c20f4577788105350",
+    "remote_ls_remote_head": "062d59002ab184acce39203c20f4577788105350",
     "remote_error": null,
-    "task_audit_content_pointer": "9ebe96baf256dbc9b703fe2b99471c04f02757e1",
+    "task_audit_content_pointer": "062d59002ab184acce39203c20f4577788105350",
     "remote_branch_pointer_is_metadata_after_content": true
   },
   "coverage": {
@@ -182,11 +197,10 @@
     "dinov2_crop_runs": 144
   },
   "open_boundaries": [
-    "Strict raw and native visible-token evidence cover all six outer folds, both objectives and seeds0/1/2; the native edge-engagement audit is byte-identical across 36 runs.",
-    "The local4 pooling probe and candidate-conditioned nearest-history probe both fail their pre-registered expansion gates; no mechanical stacking or memory campaign is justified.",
+    "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete.",
+    "The local4 pooling, raw-history nearest and visibility-quality probes fail their simultaneous HOTA/IDF1/no-extra-IDSW gates; no expansion or mechanical stacking is justified.",
     "P11 selective combinations and P17 stable independent contribution remain unestablished.",
     "No external payload/zero-overlap validation; large scientific assets remain outside Git.",
-    "The scalar weight pilot selected the existing 0.3 default and had zero selected outer delta; its non-selected tradeoff is descriptive only.",
-    "The causal linear and fixed nonlinear motion predictability audits fail their replay gates; learned motion remains closed without a new independent signal."
+    "The scalar weight pilot selected existing 0.3 with zero selected outer delta; the motion predictability audits fail held-out gates."
   ]
 }
