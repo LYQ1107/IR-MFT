@@ -150,7 +150,7 @@
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 295,
+      "phase_vii_passed": 296,
       "phase_vii_failed": 0,
       "warnings": 24,
       "limits": [
@@ -160,13 +160,13 @@
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; a direct local4 pooling probe also failed its pre-registered gate.",
-      "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
+      "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete; local4 pooling, candidate-nearest-history, visibility-quality and cue-disagreement margin probes fail their gates.",
+      "Final combination remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
+      "The six-video cue audit finds 11 appearance corrections versus 217 harms on clean rows; the fixed margin gate has no held-out outer correction, so no appearance campaign is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
-      "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths.",
-      "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified.",
-      "The fixed causal nonlinear MLP audit also fails both held-out means and the outer long-gap tail; no learned-motion replay is justified.",
-      "The single-fold scalar appearance-weight calibration selected the existing 0.3 default and had zero outer delta; a non-selected 0.1 HOTA/IDSW tradeoff is descriptive only, so no weight campaign or final claim is justified."
+      "Large scientific assets remain outside Git.",
+      "Both causal motion-error predictability audits fail held-out gates; no learned motion replay is justified.",
+      "Scalar weight calibration selects existing 0.3 with zero selected outer delta; no weight campaign is justified."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -963,6 +963,21 @@
         "IDF1": -2.0322076660019768,
         "IDSW": -4
       }
+    },
+    "native_cue_disagreement_audit": {
+      "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+      "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+      "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+      "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+      "all_six_prediction_byte_equal": true,
+      "observed_track_rows": 207458,
+      "clean_rows_with_current_positive": 132996,
+      "appearance_correction": 11,
+      "appearance_harm": 217,
+      "margin_gate_activation": 29,
+      "margin_gate_correction": 4,
+      "margin_gate_harm": 0,
+      "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY"
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -1023,13 +1038,13 @@
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
     "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
     "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
-    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "Firstfold global actualdetR1 improves57.9365->63.3862±0.7158 across3seeds; patchattention62.8571±0.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
     "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
     "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
     "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
     "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim",
-    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds\u00d73seeds\u00d74controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
-    "Globalactualdetcrop macroR136.1976\u00b10.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800\u00b10.3094notstableincremental gain",
+    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds×3seeds×4controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
+    "Globalactualdetcrop macroR136.1976±0.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800±0.3094notstableincremental gain",
     "Genuine learned local/temporal/regionalmaskedprediction/currentrelation model with independentstoppedEMAencoder implemented, noold512PLIMalias",
     "Nine firstseed actuallocalJEPA/controlCPUfits1200updates complete; allsameinputmaskdigests/currentquerysupports and unknownnotnegatives verified; three-seedcampaign continues",
     "Strongmatchedglobal72.695/ordinarylocalTemporal64.716/frozenFIFO64.894 beatfullJEPA44.504 onfirstoutercleanGT-history/currentdet scene; noJEPAidentity/native/noveltygain claimed",
@@ -1044,7 +1059,7 @@
     "V2fullseed0 complete6570frame endogenous nativehistory replay; HOTA30.694/IDF125.298 versus frozenFIFO32.225/30.445, no onlineJEPAgain",
     "254projecttests23warnings passed in18.85seconds; all new CLI modules compile",
     "Actual V2contextfullseed1 epoch2exit/newprocessresume vscontinuous exactlymatches student/independentEMAteacher/1200updates/opt/RNG/losses/metrics/support;250tensor/1array/1626scalar leaves",
-    "All27contextV2 firstfold CPUfits complete; fullR163.652\u00b11.064 vsordinaryTemporal63.948\u00b10.800/global72.813\u00b10.369, no extraJEPAidentitygain",
+    "All27contextV2 firstfold CPUfits complete; fullR163.652±1.064 vsordinaryTemporal63.948±0.800/global72.813±0.369, no extraJEPAidentitygain",
     "Scientificthree-seed V1/V2identity plot generated PNG/SVG/PDF and visuallyinspected; exactcontrolaliases explicit",
     "Nine centeredjoint/pair/activeparameter-matchedCrossTransformer three-seed CPUfits complete,28800actualupdates; matchedframe/code digests and zeroNULLranking supervision verified",
     "Untraineduniformcentered highstagecontrol giveszeroedits and exact baselinebytes onall684SN001/6570SN015frames",
@@ -1069,13 +1084,15 @@
     "All144 DINOv2 K4/K8 crop-control runs independently coverage-audited and terminal; Protocol A only, no native-MOT or novelty claim.",
     "Pre-registered native appearance-weight pilot: inner-selected w=0.3 matched frozen FIFO on outer SN-015; non-selected w=0.1 exposed an HOTA/IDF1 tradeoff and was not promoted.",
     "Pre-registered SN-015 candidate-conditioned nearest-history native probe completed; HOTA/IDF1 fell despite three fewer IDSW and expansion was rejected.",
-    "Pre-registered SN-015 visibility-quality native probe completed; HOTA/IDF1 fell despite four fewer IDSW and expansion was rejected."
+    "Pre-registered SN-015 visibility-quality native probe completed; HOTA/IDF1 fell despite four fewer IDSW and expansion was rejected.",
+    "Six-video causal native cue-disagreement audit completed with byte-equal FIFO parity; fixed margin gate rejected and no replay launched"
   ],
   "pending": [
-    "Selective combinations only if an independently measured complementary same-input signal appears",
-    "Preserve rejected local4, candidate-nearest-history and visibility-quality probes; do not tune their outer metrics",
-    "Preserve external payload and raw profiling boundaries",
-    "Preserve both causal motion-error predictability failures; do not launch learned motion without a new independent signal."
+    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and rejected local4, raw-history, visibility-quality and margin-gate probes.",
+    "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
+    "Keep external payload and unavailable source/license exclusions explicit.",
+    "Preserve both causal motion-error predictability failures; do not launch learned motion without a new independent signal.",
+    "Use an unknown-preserving NULL/candidate-competition or source-matched raw-gallery diagnostic only after its signal is independently specified."
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
@@ -1090,12 +1107,12 @@
     "Retain motion predictability failures and scalar-weight no-expansion boundary."
   ],
   "validation": {
-    "project_tests": 295,
+    "project_tests": 296,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
-    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 295 passed, 24 warnings; py_compile/diff-check/JSON validation passed. External fixture/dependency limits remain explicit.",
-    "report_sha256": "062ccbe48b8826f9dbbc76326fb52a794a126d09046bc8dd716b982cbb8ce267"
+    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 296 passed, 24 warnings; py_compile/diff-check/JSON validation passed. External fixture/dependency limits remain explicit.",
+    "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
@@ -1141,7 +1158,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 295,
+    "phase_vii_passed": 296,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -1149,8 +1166,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "source_commit": "2030ebe3a1a1a9f0fd24fb26b83d11d8e668ad27",
-    "report_sha256": "062ccbe48b8826f9dbbc76326fb52a794a126d09046bc8dd716b982cbb8ce267"
+    "source_commit": "c7c130211e78f111d3f51d116596c0c9305c181f",
+    "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "f842fd669493e603f13f1a31d64068a3d53c18bc20f0806dbd2b1a56550e00a1",
@@ -1198,8 +1215,9 @@
     "finalizer_protocol_scope_repair_sha256": "27a62e8c84146b2cc1926ea99c9cd1aba8a107ad7fcb81fe5a02469f8e65daee"
   },
   "remaining_authoritative": [
-    "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete; local4 pooling, candidate-nearest-history and visibility-quality probes all fail their gates.",
+    "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete; local4 pooling, candidate-nearest-history, visibility-quality and cue-disagreement margin probes fail their gates.",
     "Final combination remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
+    "The six-video cue audit finds 11 appearance corrections versus 217 harms on clean rows; the fixed margin gate has no held-out outer correction, so no appearance campaign is justified.",
     "No independent external payload/zero-overlap validation or stable independent contribution is established.",
     "Large scientific assets remain outside Git.",
     "Both causal motion-error predictability audits fail held-out gates; no learned motion replay is justified.",
@@ -1258,14 +1276,33 @@
   "native_candidate_nearest_probe_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
   "task_book_requirement_audit": {
     "status": "COMPLETE_TASK_BOOK_AUDIT_GOAL_STILL_ACTIVE",
-    "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json"
+    "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
+    "report_sha256": "3bdc6d88b1ac977da1720aff9da84a84c5891aa2a4f4163b2d32c4c60e321ae2"
   },
-  "experiment_registry_sha256": "26bf85ff99c818ff958cb0374587ced0b563bb4397b655f9a48fed8df46725c7",
+  "experiment_registry_sha256": "664799e411058f881c15dabcce89194e8f9c529f08d0cacab86eac2770ac95a8",
   "remote_delivery_verification": {
     "branch": "research/evidence-fishmot-v1",
     "content_commit": "062d59002ab184acce39203c20f4577788105350",
     "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT",
     "scope": "Visibility-quality code/config/report and authoritative metadata fetched from GitHub at the content commit; raw scientific assets remain outside Git."
   },
-  "native_visibility_quality_probe_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c"
+  "native_visibility_quality_probe_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+  "native_cue_disagreement_audit": {
+    "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+    "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+    "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+    "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_cue_disagreement_audit_v1/manifest.json",
+    "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+    "all_six_prediction_byte_equal": true,
+    "observed_track_rows": 207458,
+    "clean_rows_with_current_positive": 132996,
+    "appearance_correction": 11,
+    "appearance_harm": 217,
+    "margin_gate_activation": 29,
+    "margin_gate_correction": 4,
+    "margin_gate_harm": 0,
+    "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
+    "next_hypothesis": "Run an unknown-preserving NULL/candidate-competition diagnostic or source-matched raw-gallery control only if its signal is independently specified; do not tune this margin gate or appearance thresholds."
+  },
+  "native_cue_disagreement_report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97"
 }

@@ -9,17 +9,17 @@
   "phase_vii_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests --ignore=tests/test_rgbt_pairing.py",
   "phase_vii_result": {
     "exit_code": 0,
-    "passed": 295,
+    "passed": 296,
     "failed": 0,
     "warnings": 24,
     "scope": "Repository tests excluding the one legacy external-data fixture that points to an unavailable /data1 PFTrack annotation path.",
-    "source_commit": "bf8d50bf4c04aeb5f6c9530372caa6b5d81dde52",
-    "rerun": "295 passed, 24 warnings in 9.53s after visibility-quality probe implementation"
+    "source_commit": "c7c130211e78f111d3f51d116596c0c9305c181f",
+    "rerun": "296 passed, 24 warnings in 8.78s after native cue disagreement observer implementation"
   },
   "tests_command": "PYTHONPATH=. CUDA_VISIBLE_DEVICES=\"\" /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
   "tests_result": {
     "exit_code": 1,
-    "passed": 295,
+    "passed": 296,
     "failed": 1,
     "warnings": 24,
     "failure": "tests/test_rgbt_pairing.py::RGBTDataPairingTest::test_fifty_train_pairs_and_shared_transform",
@@ -31,6 +31,6 @@
     "collection_failure": "tutorials/ctracker/test_byte.py imports skimage.io; ModuleNotFoundError: No module named skimage",
     "scope": "Legacy tutorial collection outside the Phase VII tests; no dependency installation or source modification performed."
   },
-  "interpretation": "All 295 in-repository Phase VII tests that do not require the unavailable external PFTrack annotation pass. Full repository and the single external-data fixture remain explicitly limited; this is not a claim that every historical test has passed.",
-  "source_commit": "bf8d50bf4c04aeb5f6c9530372caa6b5d81dde52"
+  "interpretation": "All 296 in-repository Phase VII tests that do not require the unavailable external PFTrack annotation pass. Full repository and the single external-data fixture remain explicitly limited; this is not a claim that every historical test has passed.",
+  "source_commit": "c7c130211e78f111d3f51d116596c0c9305c181f"
 }

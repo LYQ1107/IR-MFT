@@ -1,0 +1,961 @@
+{
+  "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+  "experiment_id": "VII_NATIVE_CUE_DISAGREEMENT_AUDIT_V1",
+  "hypothesis": "Current appearance evidence should be used only where its candidate-set confidence is stronger than frozen geometry; a fixed causal margin gate may preserve rare appearance corrections without adding a learned model or tuning.",
+  "config": "configs/cfp/phase_vii_native_cue_disagreement_v1.json",
+  "config_sha256": "0cd2f554953ad580a4d2268f6473ad4e94abc3e3d3dfc7876b8b77b432fbfc5e",
+  "source_commit_at_observation": "c7c130211e78f111d3f51d116596c0c9305c181f",
+  "observation_source_snapshots": {
+    "tools/cfp_diagnose_native_cue_disagreement.py": "42c30effb4a64da9c8eb0e606172b1c3a69df898494678aa93ddf7aa8d842a74",
+    "configs/cfp/phase_vii_native_cue_disagreement_v1.json": "0cd2f554953ad580a4d2268f6473ad4e94abc3e3d3dfc7876b8b77b432fbfc5e",
+    "cfp/native_cue_observation.py": "a1d1154fc032319add146101848327e0edfe83cde92e16c386d023efd7ad4194",
+    "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+    "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+    "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a",
+    "cfp/lifecycle_crossover.py": "90a5d50b6f6cffe67a8a0468b1d4688d112eff2b5569c879f153f6eeb6a83fb7"
+  },
+  "finalizer_source_commit": "c7c130211e78f111d3f51d116596c0c9305c181f",
+  "finalizer_source_sha256": "eda97e72fff9e05bf91e1ed8e7185f1f6e232acb6590ea2c5654d8e036a3b898",
+  "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_cue_disagreement_audit_v1/manifest.json",
+  "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+  "scope": "Read-only causal observation of the frozen native DINO384 FIFO association graph over all six train videos. It measures whether current appearance ranking provides stable complementary evidence to geometry and whether a fixed history-consistency/margin rule is predictive. It does not alter tracker outputs, train a model, tune a threshold, claim a new tracker or replace official TrackEval.",
+  "online_information_boundary": "The observer uses only current frozen DINO proposal embeddings and strictly past native accepted proposal indices. Physical labels and annotation files are loaded only after all baseline prediction byte parities are verified.",
+  "parity": {
+    "all_six_prediction_byte_equal": true,
+    "videos": {
+      "BT-001": {
+        "frames": 3000,
+        "output_rows": 29617,
+        "prediction_sha256": "7d4c22bfb91892fa2028274befc7346d9c3c4e1dc0eec84a8a9f760a3c0d5ded",
+        "reference_sha256": "7d4c22bfb91892fa2028274befc7346d9c3c4e1dc0eec84a8a9f760a3c0d5ded",
+        "trace_sha256": "e09f4e0965574cb455fa8bf0574f0fbb706b49a41e2183b5570c81279c6a70ed",
+        "association_seconds": 48.817645094910404
+      },
+      "BT-003": {
+        "frames": 243,
+        "output_rows": 2388,
+        "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+        "reference_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+        "trace_sha256": "76ad28fbce41d80fa15835217b4863d17aa7d874a434050da7828abe291cce37",
+        "association_seconds": 3.7585151210878394
+      },
+      "MSK-002": {
+        "frames": 1754,
+        "output_rows": 66045,
+        "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+        "reference_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+        "trace_sha256": "52558803e405d3bf056458672f8fc606eb69c74f0676a978ca9c5c92e8a9fbdb",
+        "association_seconds": 175.0006202618024
+      },
+      "PF-001": {
+        "frames": 15000,
+        "output_rows": 29803,
+        "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+        "reference_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+        "trace_sha256": "25239296ca158baa92f1bf9cbe4dd969eae05c685fdd9767097334e826e5672b",
+        "association_seconds": 53.60583179642708
+      },
+      "SN-001": {
+        "frames": 684,
+        "output_rows": 6041,
+        "prediction_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+        "reference_sha256": "b1683933f13d7b655ded2d26fe94a1509f78d8ea234195de574c3ac81db7597d",
+        "trace_sha256": "c6f457e944f3249993df96db7842ff812dd83cdf569a145a6533d626449d426b",
+        "association_seconds": 9.995306426018942
+      },
+      "SN-015": {
+        "frames": 6570,
+        "output_rows": 61924,
+        "prediction_sha256": "73e5912e10b53e120c31d9865d0796593590646741b2ee08ed4944b2e17c8bcb",
+        "reference_sha256": "73e5912e10b53e120c31d9865d0796593590646741b2ee08ed4944b2e17c8bcb",
+        "trace_sha256": "b3372dbd2116f737ed2d0ebde00f71af432cd5b46672672b2142e3fad0feb5eb",
+        "association_seconds": 100.6093266770913
+      }
+    }
+  },
+  "offline_protocol": {
+    "clean_history_definition": "Every retained native proposal label is known and all retained labels are the same physical identity; mixed or unknown histories are summarized separately and excluded from clean cue comparison.",
+    "margin_gate_definition": "Descriptive only: on a clean row with at least two geometry-legal candidates, appearance is active when its current candidate cost top-two margin is strictly greater than the geometry cost top-two margin. No threshold or weight is fitted.",
+    "labels_loaded_after_all_parity": true,
+    "physical_annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+  },
+  "aggregate_counts": {
+    "observed_calls": 54502,
+    "observed_track_rows": 207458,
+    "empty_history_rows": 192,
+    "mixed_or_unknown_history_rows": 67721,
+    "clean_history_rows": 139545,
+    "clean_rows_with_current_positive": 132996,
+    "candidate_missing_rows": 6651,
+    "geometry_top1": 132875,
+    "appearance_top1": 132669,
+    "baseline_top1": 132879,
+    "fixed_blend_top1": 132879,
+    "margin_gate_top1": 132879,
+    "appearance_correction": 11,
+    "appearance_harm": 217,
+    "fixed_blend_correction": 4,
+    "fixed_blend_harm": 0,
+    "margin_gate_activation": 29,
+    "margin_gate_correction": 4,
+    "margin_gate_harm": 0,
+    "margin_gate_changed_top": 4,
+    "history_frame_checks": 1647801,
+    "candidate_frame_checks": 2093542
+  },
+  "videos": {
+    "BT-001": {
+      "counts": {
+        "observed_calls": 6000,
+        "observed_track_rows": 31053,
+        "empty_history_rows": 15,
+        "mixed_or_unknown_history_rows": 15394,
+        "clean_history_rows": 15644,
+        "clean_rows_with_current_positive": 14924,
+        "candidate_missing_rows": 720,
+        "geometry_top1": 14913,
+        "appearance_top1": 14908,
+        "baseline_top1": 14917,
+        "fixed_blend_top1": 14917,
+        "margin_gate_top1": 14917,
+        "appearance_correction": 10,
+        "appearance_harm": 15,
+        "fixed_blend_correction": 4,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 23,
+        "margin_gate_correction": 4,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 4,
+        "history_frame_checks": 247197,
+        "candidate_frame_checks": 150154
+      },
+      "history_consistency": {
+        "n": 15644,
+        "mean": 0.8943785670939933,
+        "q10_q50_q90": [
+          0.8521046698093414,
+          0.8985401391983032,
+          0.9300074636936188
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 4259,
+          "mean": 0.5042264939621038,
+          "q10_q50_q90": [
+            0.3612268686294556,
+            0.5186662673950195,
+            0.6344992220401765
+          ]
+        },
+        "appearance": {
+          "n": 4259,
+          "mean": 0.11931498444928448,
+          "q10_q50_q90": [
+            0.05335050821304321,
+            0.11548084020614624,
+            0.19136807918548585
+          ]
+        },
+        "difference": {
+          "n": 4259,
+          "mean": -0.3849115095128193,
+          "q10_q50_q90": [
+            -0.5219812452793121,
+            -0.3918716013431549,
+            -0.23908402323722833
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 7205,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 7205,
+          "appearance_top1": 7199,
+          "baseline_top1": 7205,
+          "fixed_blend_top1": 7205,
+          "margin_gate_top1": 7205,
+          "appearance_correction": 0,
+          "appearance_harm": 6,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 3,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 7587,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 7576,
+          "appearance_top1": 7577,
+          "baseline_top1": 7580,
+          "fixed_blend_top1": 7580,
+          "margin_gate_top1": 7580,
+          "appearance_correction": 10,
+          "appearance_harm": 9,
+          "fixed_blend_correction": 4,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 20,
+          "margin_gate_correction": 4,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 4,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 132,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 132,
+          "appearance_top1": 132,
+          "baseline_top1": 132,
+          "fixed_blend_top1": 132,
+          "margin_gate_top1": 132,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    },
+    "BT-003": {
+      "counts": {
+        "observed_calls": 486,
+        "observed_track_rows": 2442,
+        "empty_history_rows": 0,
+        "mixed_or_unknown_history_rows": 1176,
+        "clean_history_rows": 1266,
+        "clean_rows_with_current_positive": 1206,
+        "candidate_missing_rows": 60,
+        "geometry_top1": 1206,
+        "appearance_top1": 1206,
+        "baseline_top1": 1206,
+        "fixed_blend_top1": 1206,
+        "margin_gate_top1": 1206,
+        "appearance_correction": 0,
+        "appearance_harm": 0,
+        "fixed_blend_correction": 0,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 0,
+        "margin_gate_correction": 0,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 0,
+        "history_frame_checks": 19221,
+        "candidate_frame_checks": 12460
+      },
+      "history_consistency": {
+        "n": 1266,
+        "mean": 0.890645097452694,
+        "q10_q50_q90": [
+          0.8430808782577515,
+          0.8953627049922943,
+          0.9292869567871094
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 302,
+          "mean": 0.4749349180534975,
+          "q10_q50_q90": [
+            0.34331868290901185,
+            0.48374760150909424,
+            0.5993025004863739
+          ]
+        },
+        "appearance": {
+          "n": 302,
+          "mean": 0.11415761788159806,
+          "q10_q50_q90": [
+            0.059746342897415164,
+            0.10789470374584198,
+            0.17639759182929993
+          ]
+        },
+        "difference": {
+          "n": 302,
+          "mean": -0.36077730017189946,
+          "q10_q50_q90": [
+            -0.48785152435302737,
+            -0.367593377828598,
+            -0.2278197199106216
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 531,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 531,
+          "appearance_top1": 531,
+          "baseline_top1": 531,
+          "fixed_blend_top1": 531,
+          "margin_gate_top1": 531,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 656,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 656,
+          "appearance_top1": 656,
+          "baseline_top1": 656,
+          "fixed_blend_top1": 656,
+          "margin_gate_top1": 656,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 19,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 19,
+          "appearance_top1": 19,
+          "baseline_top1": 19,
+          "fixed_blend_top1": 19,
+          "margin_gate_top1": 19,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    },
+    "MSK-002": {
+      "counts": {
+        "observed_calls": 3508,
+        "observed_track_rows": 71162,
+        "empty_history_rows": 93,
+        "mixed_or_unknown_history_rows": 33118,
+        "clean_history_rows": 37951,
+        "clean_rows_with_current_positive": 33711,
+        "candidate_missing_rows": 4266,
+        "geometry_top1": 33685,
+        "appearance_top1": 33616,
+        "baseline_top1": 33685,
+        "fixed_blend_top1": 33685,
+        "margin_gate_top1": 33685,
+        "appearance_correction": 0,
+        "appearance_harm": 69,
+        "fixed_blend_correction": 0,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 0,
+        "margin_gate_correction": 0,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 0,
+        "history_frame_checks": 564422,
+        "candidate_frame_checks": 1346950
+      },
+      "history_consistency": {
+        "n": 37951,
+        "mean": 0.8811519845166962,
+        "q10_q50_q90": [
+          0.8309380412101746,
+          0.8855642676353455,
+          0.9252018332481384
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 508,
+          "mean": 0.4722426730230099,
+          "q10_q50_q90": [
+            0.37931436896324155,
+            0.4771342873573303,
+            0.5602400302886963
+          ]
+        },
+        "appearance": {
+          "n": 508,
+          "mean": 0.0369761788000272,
+          "q10_q50_q90": [
+            0.006993579864501953,
+            0.029768064618110657,
+            0.07374047935009002
+          ]
+        },
+        "difference": {
+          "n": 508,
+          "mean": -0.43526649422298264,
+          "q10_q50_q90": [
+            -0.5320972084999085,
+            -0.44418513774871826,
+            -0.3376720994710922
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 11004,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 11004,
+          "appearance_top1": 10990,
+          "baseline_top1": 11004,
+          "fixed_blend_top1": 11004,
+          "margin_gate_top1": 11004,
+          "appearance_correction": 0,
+          "appearance_harm": 14,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 21675,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 21675,
+          "appearance_top1": 21625,
+          "baseline_top1": 21675,
+          "fixed_blend_top1": 21675,
+          "margin_gate_top1": 21675,
+          "appearance_correction": 0,
+          "appearance_harm": 50,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 1006,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 1006,
+          "appearance_top1": 1001,
+          "baseline_top1": 1006,
+          "fixed_blend_top1": 1006,
+          "margin_gate_top1": 1006,
+          "appearance_correction": 0,
+          "appearance_harm": 5,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    },
+    "PF-001": {
+      "counts": {
+        "observed_calls": 30000,
+        "observed_track_rows": 30345,
+        "empty_history_rows": 10,
+        "mixed_or_unknown_history_rows": 2697,
+        "clean_history_rows": 27638,
+        "clean_rows_with_current_positive": 27507,
+        "candidate_missing_rows": 131,
+        "geometry_top1": 27505,
+        "appearance_top1": 27487,
+        "baseline_top1": 27505,
+        "fixed_blend_top1": 27505,
+        "margin_gate_top1": 27505,
+        "appearance_correction": 0,
+        "appearance_harm": 18,
+        "fixed_blend_correction": 0,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 0,
+        "margin_gate_correction": 0,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 0,
+        "history_frame_checks": 241910,
+        "candidate_frame_checks": 55239
+      },
+      "history_consistency": {
+        "n": 27638,
+        "mean": 0.9382691123359791,
+        "q10_q50_q90": [
+          0.8981943607330323,
+          0.9465355575084686,
+          0.968119102716446
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 8952,
+          "mean": 0.5614984997109551,
+          "q10_q50_q90": [
+            0.41028725504875185,
+            0.573369063436985,
+            0.69499252140522
+          ]
+        },
+        "appearance": {
+          "n": 8952,
+          "mean": 0.07003877355556493,
+          "q10_q50_q90": [
+            0.033425694704055785,
+            0.06391498446464539,
+            0.11397981643676758
+          ]
+        },
+        "difference": {
+          "n": 8952,
+          "mean": -0.49145972615539013,
+          "q10_q50_q90": [
+            -0.6186891615390777,
+            -0.5015220120549202,
+            -0.34846876561641693
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 24599,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 24597,
+          "appearance_top1": 24583,
+          "baseline_top1": 24597,
+          "fixed_blend_top1": 24597,
+          "margin_gate_top1": 24597,
+          "appearance_correction": 0,
+          "appearance_harm": 14,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 2781,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 2781,
+          "appearance_top1": 2777,
+          "baseline_top1": 2781,
+          "fixed_blend_top1": 2781,
+          "margin_gate_top1": 2781,
+          "appearance_correction": 0,
+          "appearance_harm": 4,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 127,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 127,
+          "appearance_top1": 127,
+          "baseline_top1": 127,
+          "fixed_blend_top1": 127,
+          "margin_gate_top1": 127,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    },
+    "SN-001": {
+      "counts": {
+        "observed_calls": 1368,
+        "observed_track_rows": 6505,
+        "empty_history_rows": 8,
+        "mixed_or_unknown_history_rows": 2398,
+        "clean_history_rows": 4099,
+        "clean_rows_with_current_positive": 3933,
+        "candidate_missing_rows": 167,
+        "geometry_top1": 3932,
+        "appearance_top1": 3924,
+        "baseline_top1": 3932,
+        "fixed_blend_top1": 3932,
+        "margin_gate_top1": 3932,
+        "appearance_correction": 0,
+        "appearance_harm": 8,
+        "fixed_blend_correction": 0,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 0,
+        "margin_gate_correction": 0,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 0,
+        "history_frame_checks": 51441,
+        "candidate_frame_checks": 35006
+      },
+      "history_consistency": {
+        "n": 4099,
+        "mean": 0.8767619125143322,
+        "q10_q50_q90": [
+          0.8149820923805237,
+          0.8808824419975281,
+          0.9328537940979004
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 530,
+          "mean": 0.5091503548172285,
+          "q10_q50_q90": [
+            0.3829832673072815,
+            0.5207713097333908,
+            0.6187700480222702
+          ]
+        },
+        "appearance": {
+          "n": 530,
+          "mean": 0.1070825238272829,
+          "q10_q50_q90": [
+            0.041435602307319644,
+            0.09478895366191864,
+            0.18913300633430483
+          ]
+        },
+        "difference": {
+          "n": 530,
+          "mean": -0.4020678309899456,
+          "q10_q50_q90": [
+            -0.5086946561932564,
+            -0.40894247591495514,
+            -0.29256993532180786
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 1335,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 1335,
+          "appearance_top1": 1333,
+          "baseline_top1": 1335,
+          "fixed_blend_top1": 1335,
+          "margin_gate_top1": 1335,
+          "appearance_correction": 0,
+          "appearance_harm": 2,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 2355,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 2355,
+          "appearance_top1": 2349,
+          "baseline_top1": 2355,
+          "fixed_blend_top1": 2355,
+          "margin_gate_top1": 2355,
+          "appearance_correction": 0,
+          "appearance_harm": 6,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 242,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 242,
+          "appearance_top1": 242,
+          "baseline_top1": 242,
+          "fixed_blend_top1": 242,
+          "margin_gate_top1": 242,
+          "appearance_correction": 0,
+          "appearance_harm": 0,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    },
+    "SN-015": {
+      "counts": {
+        "observed_calls": 13140,
+        "observed_track_rows": 65951,
+        "empty_history_rows": 66,
+        "mixed_or_unknown_history_rows": 12938,
+        "clean_history_rows": 52947,
+        "clean_rows_with_current_positive": 51715,
+        "candidate_missing_rows": 1307,
+        "geometry_top1": 51634,
+        "appearance_top1": 51528,
+        "baseline_top1": 51634,
+        "fixed_blend_top1": 51634,
+        "margin_gate_top1": 51634,
+        "appearance_correction": 1,
+        "appearance_harm": 107,
+        "fixed_blend_correction": 0,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 6,
+        "margin_gate_correction": 0,
+        "margin_gate_harm": 0,
+        "margin_gate_changed_top": 0,
+        "history_frame_checks": 523610,
+        "candidate_frame_checks": 493733
+      },
+      "history_consistency": {
+        "n": 52947,
+        "mean": 0.9120520763638846,
+        "q10_q50_q90": [
+          0.8498291134834289,
+          0.9205482006072998,
+          0.9622313737869262
+        ]
+      },
+      "margins": {
+        "geometry": {
+          "n": 25051,
+          "mean": 0.5726855646924905,
+          "q10_q50_q90": [
+            0.4342232048511505,
+            0.5875347852706909,
+            0.6888562142848969
+          ]
+        },
+        "appearance": {
+          "n": 25051,
+          "mean": 0.12847607805245337,
+          "q10_q50_q90": [
+            0.050465553998947144,
+            0.11134889721870422,
+            0.2388741374015808
+          ]
+        },
+        "difference": {
+          "n": 25051,
+          "mean": -0.4442094866400372,
+          "q10_q50_q90": [
+            -0.5740239322185516,
+            -0.45673027634620667,
+            -0.29721394181251526
+          ]
+        }
+      },
+      "groups": {
+        "consistency_ge_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 34795,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 34790,
+          "appearance_top1": 34764,
+          "baseline_top1": 34790,
+          "fixed_blend_top1": 34790,
+          "margin_gate_top1": 34790,
+          "appearance_correction": 1,
+          "appearance_harm": 27,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 1,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_0.80_0.90": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 15701,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 15700,
+          "appearance_top1": 15632,
+          "baseline_top1": 15700,
+          "fixed_blend_top1": 15700,
+          "margin_gate_top1": 15700,
+          "appearance_correction": 0,
+          "appearance_harm": 68,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 5,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        },
+        "consistency_lt_0.80": {
+          "observed_calls": 0,
+          "observed_track_rows": 0,
+          "empty_history_rows": 0,
+          "mixed_or_unknown_history_rows": 0,
+          "clean_history_rows": 0,
+          "clean_rows_with_current_positive": 1144,
+          "candidate_missing_rows": 0,
+          "geometry_top1": 1144,
+          "appearance_top1": 1132,
+          "baseline_top1": 1144,
+          "fixed_blend_top1": 1144,
+          "margin_gate_top1": 1144,
+          "appearance_correction": 0,
+          "appearance_harm": 12,
+          "fixed_blend_correction": 0,
+          "fixed_blend_harm": 0,
+          "margin_gate_activation": 0,
+          "margin_gate_correction": 0,
+          "margin_gate_harm": 0,
+          "margin_gate_changed_top": 0,
+          "history_frame_checks": 0,
+          "candidate_frame_checks": 0
+        }
+      }
+    }
+  },
+  "predeclared_gate_checks": {
+    "BT-001": {
+      "activation": 23,
+      "correction": 4,
+      "harm": 0,
+      "correction_gt_harm": true
+    },
+    "SN-015": {
+      "activation": 6,
+      "correction": 0,
+      "harm": 0,
+      "correction_gt_harm": false
+    },
+    "aggregate_counts": {
+      "activation": 29,
+      "correction": 4,
+      "harm": 0,
+      "correction_gt_harm": true
+    }
+  },
+  "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
+  "interpretation": "Across 132,996 clean-history rows with a current physical positive inside the raw-geometry legal set, appearance-only ranking corrected 11 geometry top-1 errors but harmed 217 geometry-correct rows. The fixed 0.3 blend changed the row top choice only four times and corrected four rows without a top-choice harm; the fixed margin gate activated 29 rows, corrected four on BT-001, and corrected none on the held-out outer SN-015 (six activations). The predeclared inner/outer/aggregate gate therefore fails; no margin-gated native replay or appearance campaign is justified. This is a retrospective edge-ranking audit, not a new tracker result or a project-wide NO_GO.",
+  "next_hypothesis": "Use the verified candidate-missing and duplicate/competition boundaries to design an unknown-preserving set/NULL diagnostic or source-matched raw-gallery control; do not tune appearance thresholds or replay this margin gate."
+}

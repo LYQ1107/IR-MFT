@@ -5,7 +5,7 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "b2595b9eecbf616369662945abbc53f6ac70432d",
+    "local_commit": "c7c130211e78f111d3f51d116596c0c9305c181f",
     "remote_commit": "062d59002ab184acce39203c20f4577788105350",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
@@ -322,12 +322,12 @@
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 295,
+      "phase_vii_passed": 296,
       "phase_vii_failed": 0,
       "warnings": 24,
       "full_tests_external_fixture_failure": "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations",
       "full_repo_collection_failure": "legacy tutorial imports missing skimage",
-      "report_sha256": "b3e7a4a2d3dbb24d46121caa5270fbbadc490a769b622b4a453bd7147c0f6451"
+      "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
@@ -335,13 +335,15 @@
       "Final combination gate remains NOT_JUSTIFIED; preserve DO_NOT_RUN_MECHANICAL_FINAL_STACKING.",
       "External generalization and unavailable source/license exclusions remain explicit.",
       "The causal motion-error predictability audit fails its held-out gate; no learned-motion replay is justified.",
-      "The fixed nonlinear motion-error predictability audit fails its held-out gate; no learned-motion replay is justified."
+      "The fixed nonlinear motion-error predictability audit fails its held-out gate; no learned-motion replay is justified.",
+      "The cue-disagreement audit finds appearance harm dominates and no outer margin-gate correction; do not launch an appearance campaign."
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
       "status": "COMPLETE_TASK_BOOK_REQUIREMENT_AUDIT_GOAL_STILL_ACTIVE",
       "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
-      "goal_status": "IN_PROGRESS_UNACHIEVED"
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "report_sha256": "3bdc6d88b1ac977da1720aff9da84a84c5891aa2a4f4163b2d32c4c60e321ae2"
     },
     "remote_delivery_verification": {
       "branch": "research/evidence-fishmot-v1",
@@ -676,6 +678,19 @@
         "IDSW": -4
       },
       "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
+    },
+    "native_cue_disagreement_audit": {
+      "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+      "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+      "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+      "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+      "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
+      "clean_rows_with_current_positive": 132996,
+      "appearance_correction": 11,
+      "appearance_harm": 217,
+      "margin_gate_activation": 29,
+      "margin_gate_correction": 4,
+      "margin_gate_harm": 0
     }
   },
   "experiments": [
@@ -4973,6 +4988,66 @@
         "cached_inference_features": false
       },
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_CUE_DISAGREEMENT_AUDIT_V1",
+      "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+      "hypothesis": "A current appearance cue should be trusted only when its candidate-set confidence is stronger than frozen geometry; a fixed causal top-two margin gate might preserve rare corrections without learned thresholds or a changed proposal graph.",
+      "change": "Read-only association-cost observer around the exact frozen native DINO384 FIFO route; recomputed causal FIFO prototype only for audit, recorded raw geometry, fused geometry, appearance and returned baseline costs, then used physical labels retrospectively after all six output byte parities.",
+      "architecture": "No new online architecture or loss. FIFO RecentIdentityControl length4/maxage1500; descriptive fixed margin gate activates when appearance top-two cost margin is strictly greater than geometry top-two margin on at least two raw-geometry-legal candidates.",
+      "inputs": "Current native frozen DINO384 proposal embeddings and exact causal V3 proposal rows; strictly past accepted native proposal indices only online. Physical train labels loaded only after all six baseline parities.",
+      "outputs": "External six-video gzip cue traces, byte-equal FIFO predictions, and compact retrospective report.",
+      "loss": "None; no training or threshold/weight fitting.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seed": 0,
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_native_cue_disagreement.py --config configs/cfp/phase_vii_native_cue_disagreement_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_cue_disagreement_audit_v1",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_cue_observation.py"
+      ],
+      "source_commit_at_stage_collection": "c7c130211e78f111d3f51d116596c0c9305c181f1",
+      "config": "configs/cfp/phase_vii_native_cue_disagreement_v1.json",
+      "config_sha256": "0cd2f554953ad580a4d2268f6473ad4e94abc3e3d3dfc7876b8b77b432fbfc5e",
+      "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+      "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+      "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_cue_disagreement_audit_v1/manifest.json",
+      "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+      "source_sha256": {
+        "cfp/native_cue_observation.py": "a1d1154fc032319add146101848327e0edfe83cde92e16c386d023efd7ad4194",
+        "tools/cfp_diagnose_native_cue_disagreement.py": "eda97e72fff9e05bf91e1ed8e7185f1f6e232acb6590ea2c5654d8e036a3b898",
+        "tests/test_native_cue_observation.py": "3143c015b2ee7abf7516d0dfabd65f5faf474e7c1f88f68d97dd04cdac814995"
+      },
+      "metrics": {
+        "clean_rows_with_current_positive": 132996,
+        "appearance_correction": 11,
+        "appearance_harm": 217,
+        "fixed_blend_correction": 4,
+        "fixed_blend_harm": 0,
+        "margin_gate_activation": 29,
+        "margin_gate_correction": 4,
+        "margin_gate_harm": 0,
+        "inner_BT-001": {
+          "activation": 23,
+          "correction": 4,
+          "harm": 0
+        },
+        "outer_SN-015": {
+          "activation": 6,
+          "correction": 0,
+          "harm": 0
+        }
+      },
+      "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
+      "failure_type": "No stable held-out outer correction; appearance-only cue harms exceed corrections in aggregate and the fixed gate has zero outer correction.",
+      "next_experiment": "Run an unknown-preserving NULL/candidate-competition diagnostic or source-matched raw-gallery control only if its signal is independently specified; do not tune this margin gate or appearance thresholds.",
+      "scope": "Six-video internal native association edge audit; no official TrackEval improvement, raw end-to-end FPS claim, external generalization, or novelty claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -4986,18 +5061,19 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and rejected local4, raw-history and visibility-quality probes.",
+    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and rejected local4, raw-history, visibility-quality and margin-gate probes.",
     "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
     "Keep external payload and unavailable source/license exclusions explicit.",
-    "Preserve the causal motion-error predictability failure; do not run learned motion without a new independent signal."
+    "Preserve the causal motion-error predictability failures; do not run learned motion without a new independent signal.",
+    "Use an unknown-preserving NULL/candidate-competition or source-matched raw-gallery diagnostic only after its signal is independently specified."
   ],
   "validation": {
-    "project_tests": 219,
-    "warnings": 18,
+    "project_tests": 296,
+    "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
     "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
     "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
-    "phase_vii_passed": 295,
+    "phase_vii_passed": 296,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
   },
   "execution_failures": [
@@ -5026,7 +5102,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 295,
+    "phase_vii_passed": 296,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -5034,7 +5110,7 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "report_sha256": "062ccbe48b8826f9dbbc76326fb52a794a126d09046bc8dd716b982cbb8ce267"
+    "report_sha256": "56bef7bc865bb3240041eedd8150f6a81f334b790fe07ed2637b466f3f4b9dee"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -5078,5 +5154,19 @@
       "IDSW": -4
     },
     "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
+  },
+  "native_cue_disagreement_audit": {
+    "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
+    "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+    "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+    "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
+    "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
+    "clean_rows_with_current_positive": 132996,
+    "appearance_correction": 11,
+    "appearance_harm": 217,
+    "margin_gate_activation": 29,
+    "margin_gate_correction": 4,
+    "margin_gate_harm": 0,
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

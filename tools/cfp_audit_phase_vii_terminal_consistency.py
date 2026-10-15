@@ -110,12 +110,12 @@ def main() -> int:
         },
         "required_documents_13_present_and_hashed": len(required_documents) == 13
         and all(row["exists"] and row["hash_matches"] for row in required_document_checks),
-        "goal_and_ledger_have_authoritative_295_test_text": "295" in goal_path.read_text()
-        and "295" in ledger_path.read_text()
+        "goal_and_ledger_have_authoritative_296_test_text": "296" in goal_path.read_text()
+        and "296" in ledger_path.read_text()
         and "293" not in goal_path.read_text()
         and "293" not in ledger_path.read_text(),
-        "current_validation_state_295_pass_0_fail_24_warnings": (
-            current_validation_state["phase_vii_passed"] == 295
+        "current_validation_state_296_pass_0_fail_24_warnings": (
+            current_validation_state["phase_vii_passed"] == 296
             and current_validation_state["phase_vii_failed"] == 0
             and current_validation_state["warnings"] == 24
         ),
