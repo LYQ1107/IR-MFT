@@ -89,7 +89,7 @@ Current test validation is 301 passing Phase VII repository tests with 24 warnin
 
 Authoritative remaining work is now limited to the requirement-by-requirement task-book command/artifact audit and a storage-safe final combination only if independent component evidence makes it informative. No current error signal justifies learned nonlinear motion training, and no positive final method should be invented.
 
-The task-book requirement/artifact/command audit is complete in `PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json`. It confirms coverage while preserving the two unresolved scientific states: no independently justified positive final combination and no stable independent contribution. Remote delivery is independently verified at content commit `66d3fc99797eeefe879d723273a673cbaad04b0e` with `git ls-remote`; the branch and local HEAD are aligned.
+The task-book requirement/artifact/command audit is complete in `PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json`. It confirms coverage while preserving the two unresolved scientific states: no independently justified positive final combination and no stable independent contribution. Remote delivery is independently verified at content commit `1408f6b1a9455089460b4937808956dbe51c039e` with `git ls-remote`; the branch and local HEAD are aligned.
 
 
 ## Visible-token three-seed interpretation (2026-10-15)

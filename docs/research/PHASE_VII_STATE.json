@@ -4,8 +4,8 @@
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "9e1ddfd3baf6c494ce400174b185362c01dc7508",
-    "remote_commit": "9ecb6c5a0b5902cd381bc1a34cbcf957628d406d",
+    "local_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+    "remote_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -155,7 +155,7 @@
       "phase_vii_failed": 0,
       "warnings": 24,
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
-      "report_sha256": "9fdf41c5030208a2bf4c09459d996b969199f66affadd553a1cdf8898955690f"
+      "report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b"
     },
     "remaining_authoritative": [
       "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete; local4 pooling, candidate-nearest-history, visibility-quality and cue-disagreement margin probes fail their gates.",
@@ -178,9 +178,9 @@
     },
     "remote_delivery_verification": {
       "branch": "research/evidence-fishmot-v1",
-      "content_commit": "9ecb6c5a0b5902cd381bc1a34cbcf957628d406d",
-      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT",
-      "scope": "H10 candidate-set audit code/config/report and authoritative metadata; raw traces remain outside Git."
+      "content_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+      "status": "VERIFIED_GIT_LS_REMOTE_AFTER_MERGED_DELIVERY",
+      "scope": "Merged H11/raw-CLS content and the pre-existing remote delivery history were preserved and verified; raw replay outputs remain outside Git."
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
@@ -1177,7 +1177,7 @@
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
     "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 301 passed, 24 warnings; source-matched raw-CLS control tests included. External fixture/dependency limits remain explicit.",
-    "report_sha256": "964b8f8d3d21d4f317784fa7f02019b680ebc412b406806fac75304a1ba8bd86",
+    "report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b",
     "phase_vii_passed": 301
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
@@ -1232,8 +1232,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "source_commit": "f2615721fe86a73d5bf45c8d2be514cdd540a7a4",
-    "report_sha256": "964b8f8d3d21d4f317784fa7f02019b680ebc412b406806fac75304a1ba8bd86"
+    "source_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+    "report_sha256": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "f842fd669493e603f13f1a31d64068a3d53c18bc20f0806dbd2b1a56550e00a1",
@@ -1351,9 +1351,9 @@
   "experiment_registry_sha256": "d2bf45e61728cbf98bb2749288d0b21123ebc013ccdfe4cf9b55bfc0b0bffcd4",
   "remote_delivery_verification": {
     "branch": "research/evidence-fishmot-v1",
-    "content_commit": "3769ceadb375244a94493e41d48a510854cafc1f",
-    "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH_CONTENT",
-    "scope": "H11 fixed native unknown-preserving NULL replay code/config/report and authoritative metadata fetched from GitHub at the content commit; raw traces remain outside Git."
+    "content_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
+    "status": "VERIFIED_GIT_LS_REMOTE_AFTER_MERGED_DELIVERY",
+    "scope": "Merged H11/native raw-CLS content and pre-existing remote delivery history were preserved and verified; raw traces remain outside Git."
   },
   "native_visibility_quality_probe_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
   "native_cue_disagreement_audit": {
@@ -1428,7 +1428,7 @@
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   },
   "native_candidate_set_boundaries_report_sha256": "d318cd8bcec6aee05323cb5c4df3a8655e97e6b0991d542e09373801cbb21ee4",
-  "remote_verification_scope": "Remote H11 content commit fetched and hash-verified; metadata pointer follow-up remains separate.",
+  "remote_verification_scope": "Remote merged content commit 1408f6b1a9455089460b4937808956dbe51c039e was fetched, merged without force-push, and verified with git ls-remote; a metadata follow-up remains separate.",
   "native_unknown_null": {
     "experiment_id": "VII_NATIVE_UNKNOWN_PRESERVING_NULL_V1",
     "status": "COMPLETE_NATIVE_UNKNOWN_PRESERVING_NULL_MATCHED_REPLAY",
@@ -1548,15 +1548,15 @@
   "native_unknown_null_report_sha256": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
   "authoritative_hashes": {
     "native_unknown_null": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
-    "hypothesis_ledger": "996182b4ff3f1f1e3e6e8bed1fe96520a17b1d764e4d02b3d3512b7f416da08d",
+    "hypothesis_ledger": "e810fcd3ab25f9f983d1c07be17266c533a77065198d9b3f080fa65a36d9cc5f",
     "final_research_report": "bd5c87f1a61fc3e83af3cd2882bac60de1e3f0a2485a94de400ba5fbbef9f221",
-    "test_validation": "9fdf41c5030208a2bf4c09459d996b969199f66affadd553a1cdf8898955690f",
-    "goal": "7c55c48eaf27e2a6f815d61cfac7781e75d347be83cb5bc49e02ca1c8fec5e34",
+    "test_validation": "fd4f033f6c53b44ce21e1ae4c90f229e50ce261dfe8554c12d08a3a05317641b",
+    "goal": "de6439ec790c1caa33652a30e4e7c40aded63388dd31b2780622c821ce2feeb8",
     "native_raw_cls_control": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
-    "task_book_audit": "c2238580f9db5f35e4814a4f4884e468318e87898b30837785e741201765c698",
+    "task_book_audit": "d157ac0c063f6e7fa0d028a6a8cded14e649ef4b2ff952873726bca8b7990be7",
     "final_20_audit": "d6ac67a448c55fc7dd6d06f68088cf62322c1812685b1e6001f5b1055591cf6a",
-    "registry": "d2bf45e61728cbf98bb2749288d0b21123ebc013ccdfe4cf9b55bfc0b0bffcd4",
-    "terminal_consistency": "ed4d28e7549d2b28701266b1bb35f3b2047251e0ffdc655e532bd1839782abf5"
+    "registry": "14b830ece4cf2f01e023deb6222a094c0004812d16139a3f29a1b5a334062c32",
+    "terminal_consistency": "49055541987e667bea7a556bc195d1523df74d4735ae0fd0102c8c9e524281da"
   },
   "native_raw_cls_control": {
     "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
