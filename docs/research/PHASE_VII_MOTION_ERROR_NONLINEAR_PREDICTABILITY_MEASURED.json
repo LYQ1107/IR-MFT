@@ -1,0 +1,244 @@
+{
+  "status": "COMPLETE_CAUSAL_NONLINEAR_MOTION_ERROR_PREDICTABILITY_AUDIT",
+  "observation": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_motion_readonly_all6_v1",
+  "observation_manifest_sha256": "8faef8acfca3ee08fa537570872c7d8ebf3fe8d59519a6bccce0f6e8213de4e3",
+  "fit_videos": [
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001"
+  ],
+  "inner_video": "BT-001",
+  "outer_video": "SN-015",
+  "model": {
+    "architecture": "Linear(10,32)-Tanh-Linear(32,32)-Tanh-Linear(32,2)",
+    "seed": 0,
+    "epochs": 40,
+    "batch_size": 1024,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "device": "cpu",
+    "feature_schema": [
+      "gap",
+      "log1p_gap",
+      "velocity_x_over_last_diag",
+      "velocity_y_over_last_diag",
+      "acceleration_x_over_last_diag",
+      "acceleration_y_over_last_diag",
+      "kf_minus_last_x_over_last_diag",
+      "kf_minus_last_y_over_last_diag",
+      "log_last_width",
+      "log_last_height"
+    ],
+    "state_sha256": "e3786b349c782a52a4820d4b5e50dff14cbd5c80763179f0014c157caee7bc77",
+    "fit_rows": 70737,
+    "normalization_mean": [
+      1.0665422677993774,
+      0.7009960412979126,
+      -0.00046641312655992806,
+      0.0012319182278588414,
+      -3.073974221479148e-05,
+      4.726380939246155e-05,
+      -0.0008294459548778832,
+      0.0013095480389893055,
+      4.913992404937744,
+      4.714629173278809
+    ],
+    "normalization_scale": [
+      1.2419146299362183,
+      0.13522717356681824,
+      0.03102906234562397,
+      0.023205742239952087,
+      0.02073635719716549,
+      0.020652471110224724,
+      0.06255737692117691,
+      0.03572921082377434,
+      1.051866888999939,
+      1.0837136507034302
+    ]
+  },
+  "scope": "Read-only fixed nonlinear residual audit after six GT-free native prediction parities. The MLP uses only the causal features from the linear audit. Physical IDs and current targets are loaded only after parity checks and never enter a tracker. No checkpoint, native replay, feature bank or official prediction is written.",
+  "sources": {
+    "tools/cfp_diagnose_motion_error_nonlinear_predictability.py": "735861d66d0aa55879c722e1cb1eb444183ba579a71bcaa51f1dd13b6184dd93",
+    "tools/cfp_diagnose_motion_error_predictability.py": "d757030db5a26239d1f4ff0400355331e47c8ec45f6c31a0fab7c42fbdeab0f5",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a",
+    "cfp/joint_set_supervision.py": "8c9c35173b9101da24e4fbb58a574508bbed2a5bfc85a067b61644cbbf35b7a8"
+  },
+  "videos": {
+    "BT-003": {
+      "role": "fit",
+      "supported_rows": 1249,
+      "counts": {
+        "skip_short_or_unknown_history": 23,
+        "skip_mixed_or_unknown_identity": 1170
+      },
+      "gap_gt1_rows": 0
+    },
+    "MSK-002": {
+      "role": "fit",
+      "supported_rows": 37782,
+      "counts": {
+        "skip_short_or_unknown_history": 396,
+        "skip_mixed_or_unknown_identity": 32950
+      },
+      "gap_gt1_rows": 302
+    },
+    "PF-001": {
+      "role": "fit",
+      "supported_rows": 27636,
+      "counts": {
+        "skip_short_or_unknown_history": 43,
+        "skip_mixed_or_unknown_identity": 2666
+      },
+      "gap_gt1_rows": 0
+    },
+    "SN-001": {
+      "role": "fit",
+      "supported_rows": 4070,
+      "counts": {
+        "skip_short_or_unknown_history": 48,
+        "skip_mixed_or_unknown_identity": 2380,
+        "skip_missing_or_nonunique_current_target": 6
+      },
+      "gap_gt1_rows": 10
+    },
+    "BT-001": {
+      "role": "inner",
+      "supported_rows": 15618,
+      "counts": {
+        "skip_short_or_unknown_history": 74,
+        "skip_mixed_or_unknown_identity": 15208
+      },
+      "gap_gt1_rows": 45
+    },
+    "SN-015": {
+      "role": "outer",
+      "supported_rows": 52658,
+      "counts": {
+        "skip_short_or_unknown_history": 273,
+        "skip_mixed_or_unknown_identity": 12842,
+        "skip_missing_or_nonunique_current_target": 209
+      },
+      "gap_gt1_rows": 322
+    }
+  },
+  "fit_score": {
+    "n": 70737,
+    "kf_mean": 0.05122334788658404,
+    "corrected_mean": 0.04889046285565573,
+    "cv_mean": 0.05312702651586317,
+    "kf_median": 0.0403483500799437,
+    "corrected_median": 0.040202502494875,
+    "cv_median": 0.041385301215144187,
+    "corrected_minus_kf_mean": -0.0023328850309283083,
+    "gap_gt1_n": 312,
+    "gap_gt1_kf_mean": 0.7012698664816756,
+    "gap_gt1_corrected_mean": 0.23394535967582478,
+    "gap_gt1_cv_mean": 0.7101108593360962
+  },
+  "inner_score": {
+    "n": 15618,
+    "kf_mean": 0.06526764082353836,
+    "corrected_mean": 0.06629493769327167,
+    "cv_mean": 0.06714310877933381,
+    "kf_median": 0.055640575035342685,
+    "corrected_median": 0.05709817073310974,
+    "cv_median": 0.05691294409614042,
+    "corrected_minus_kf_mean": 0.0010272968697333101,
+    "gap_gt1_n": 45,
+    "gap_gt1_kf_mean": 0.2875635539555308,
+    "gap_gt1_corrected_mean": 0.23089105234493149,
+    "gap_gt1_cv_mean": 0.27383001844393334
+  },
+  "outer_score": {
+    "n": 52658,
+    "kf_mean": 0.05372183427543231,
+    "corrected_mean": 0.05387537646045669,
+    "cv_mean": 0.05900965277793179,
+    "kf_median": 0.04267574760419994,
+    "corrected_median": 0.04283882428025847,
+    "cv_median": 0.044823208803282014,
+    "corrected_minus_kf_mean": 0.00015354218502437733,
+    "gap_gt1_n": 322,
+    "gap_gt1_kf_mean": 0.48027514662228904,
+    "gap_gt1_corrected_mean": 0.5327692637426557,
+    "gap_gt1_cv_mean": 0.9616629950135958
+  },
+  "leave_one_fit_video_out": {
+    "BT-003": {
+      "train_rows": 69488,
+      "model_state_sha256": "72ee12658ebcecd15ea97faa47b4ce5c60d987152561156317f9293e923d9f51",
+      "score": {
+        "n": 1249,
+        "kf_mean": 0.0684606534821328,
+        "corrected_mean": 0.06805096837414945,
+        "cv_mean": 0.07001092284579136,
+        "kf_median": 0.05890718865173664,
+        "corrected_median": 0.058318291145382777,
+        "cv_median": 0.05959638969041245,
+        "corrected_minus_kf_mean": -0.00040968510798335134,
+        "gap_gt1_n": 0,
+        "gap_gt1_kf_mean": null,
+        "gap_gt1_corrected_mean": null,
+        "gap_gt1_cv_mean": null
+      }
+    },
+    "MSK-002": {
+      "train_rows": 32955,
+      "model_state_sha256": "e3ed33c84394d1c40d922ac4408372a0281c6f19d355b8733756e2c97a72d483",
+      "score": {
+        "n": 37782,
+        "kf_mean": 0.0619328769516318,
+        "corrected_mean": 0.06232639297490821,
+        "cv_mean": 0.06439102902138104,
+        "kf_median": 0.04866767088624116,
+        "corrected_median": 0.049373864732488434,
+        "cv_median": 0.0503730381325154,
+        "corrected_minus_kf_mean": 0.00039351602327641205,
+        "gap_gt1_n": 302,
+        "gap_gt1_kf_mean": 0.7152981514696451,
+        "gap_gt1_corrected_mean": 0.7031764494989363,
+        "gap_gt1_cv_mean": 0.7203643039808583
+      }
+    },
+    "PF-001": {
+      "train_rows": 43101,
+      "model_state_sha256": "d8ebf80ab34446a0fc0778e4dc31ade5ebccfcc85523270ca8fdf7e35a5c2b2e",
+      "score": {
+        "n": 27636,
+        "kf_mean": 0.03521537241649986,
+        "corrected_mean": 0.04938304643688251,
+        "cv_mean": 0.0362382801177578,
+        "kf_median": 0.03090801946256997,
+        "corrected_median": 0.04599159667487587,
+        "cv_median": 0.031761379440216314,
+        "corrected_minus_kf_mean": 0.014167674020382652,
+        "gap_gt1_n": 0,
+        "gap_gt1_kf_mean": null,
+        "gap_gt1_corrected_mean": null,
+        "gap_gt1_cv_mean": null
+      }
+    },
+    "SN-001": {
+      "train_rows": 66667,
+      "model_state_sha256": "b8f3b2b7ff2bfb6862344399c6988312146bc00744d224f90054a4ec6b4d0480",
+      "score": {
+        "n": 4070,
+        "kf_mean": 0.05521341871380061,
+        "corrected_mean": 0.05490299958552121,
+        "cv_mean": 0.058058934692394905,
+        "kf_median": 0.046286255528634454,
+        "corrected_median": 0.046816833524744014,
+        "cv_median": 0.047884717591945195,
+        "corrected_minus_kf_mean": -0.00031041912827940027,
+        "gap_gt1_n": 10,
+        "gap_gt1_kf_mean": 0.27761565984499337,
+        "gap_gt1_corrected_mean": 0.2854794840236197,
+        "gap_gt1_cv_mean": 0.4004568310642768
+      }
+    }
+  },
+  "decision_rule": "A learned-motion native replay would require corrected_mean < kf_mean on both held-out inner and outer videos, with no worsening of the outer gap>1 subset.",
+  "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+  "interpretation": "The fixed causal MLP worsens both held-out mean errors and the outer long-gap tail; leave-one-video-out outcomes are mixed. The replay gate therefore fails and no learned nonlinear-motion native run or final-combination claim is justified."
+}

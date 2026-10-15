@@ -87,3 +87,5 @@ A separate pre-registered SN-015 seed-1 visibility-weighted local4 probe tested 
 ## Causal motion-error predictability boundary (2026-10-16)
 
 After the six GT-free native prediction parities were verified, a fixed ridge residual model used only accepted past geometry and the native predicted box. It was fit on four videos and evaluated on excluded inner BT-001 and outer SN-015. The corrected center error worsened on both held-out videos (0.065268→0.065562 and 0.053722→0.054083), and the outer long-gap tail worsened (0.480275→0.518674). The leave-one-fit-video-out results are mixed. `PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json` therefore rejects a learned-motion replay; no nonlinear-motion contribution or final stacking is inferred.
+
+A fixed CPU 10-32-32-2 Tanh MLP then checked the same causal features for a nonlinear signal, with seed 0, 40 epochs and no outer tuning. It also worsened both held-out means (BT-001 0.065268→0.066295; SN-015 0.053722→0.053875) and the SN-015 long-gap tail (0.480275→0.532769). `PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json` records this second negative boundary; no learned-motion native replay is launched.

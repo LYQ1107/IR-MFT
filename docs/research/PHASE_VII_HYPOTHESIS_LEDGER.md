@@ -104,6 +104,8 @@ A measured combination gate now covers the completed context-V2, FDTA-style, sou
 
 The six-video GT-free native motion observation now has a fixed causal residual-predictability audit. A ridge model using accepted past geometry and the native predicted box was fit only on BT-003/MSK-002/PF-001/SN-001. It worsened held-out BT-001 normalized center error from 0.065268 to 0.065562 and held-out SN-015 from 0.053722 to 0.054083; the SN-015 gap>1 tail worsened from 0.480275 to 0.518674. Leave-one-fit-video-out outcomes are mixed. `PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json` records the exact feature schema, model coefficients, counts and source hashes. The replay gate fails, so no learned nonlinear-motion native run is justified; this closes the current error-signal follow-up without claiming a project-wide NO_GO.
 
+The same causal feature set was then checked with one predetermined CPU nonlinear model: a seed-0 10-32-32-2 Tanh MLP for 40 epochs, with no outer tuning. It worsened held-out BT-001 from 0.065268 to 0.066295 and SN-015 from 0.053722 to 0.053875; SN-015 gap>1 worsened from 0.480275 to 0.532769. The leave-one-fit-video-out results are mixed. `PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json` closes this low-cost signal check; no native replay is justified.
+
 
 ## Visible-token all-fold strict raw recovery (2026-10-15)
 
