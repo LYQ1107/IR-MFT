@@ -1,0 +1,46 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_UNKNOWN_PRESERVING_NULL_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "partition": "train",
+  "memory": "fifo",
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "null_rule": {
+    "null_cost": 0.97,
+    "ambiguity_margin": 0.05,
+    "legal_geometry_max": 0.9,
+    "formula": "For each confirmed-track row, if at least two finite current candidates satisfy raw_geometry <= 0.9, and the second-smallest frozen association cost is <= 0.97 with (c2-c1) <= 0.05, set every legal edge to nextafter(0.97,+inf) so the frozen 0.97 assignment threshold abstains. No labels or unknown flags are used online.",
+    "abstention_cost_semantics": "0.97 is the frozen Hungarian match threshold; it is the fixed cost of declining an ambiguous association, not a physical NULL label."
+  },
+  "variants": [
+    {
+      "name": "matched_no_rule_control",
+      "enabled": false,
+      "expected_prediction_parity": true
+    },
+    {
+      "name": "unknown_preserving_null",
+      "enabled": true,
+      "expected_prediction_parity": false
+    }
+  ],
+  "source_report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_SET_BOUNDARIES_MEASURED.json",
+  "online_information_boundary": "Both arms use current frozen DINO384 proposal embeddings, current detector boxes/scores and strictly past native FIFO memory only. Physical labels are opened only after both arm predictions and hashes are complete.",
+  "scope": "Six-video native current-only replay of one fixed observable ambiguity/NULL abstention rule against a matched no-rule control. This is a candidate-set boundary experiment, not a tuned final method or novelty claim.",
+  "guards": {
+    "minimum_free_bytes": 42949672960,
+    "cpu_only": true,
+    "output_external_to_repo": true,
+    "labels_after_predictions": true,
+    "no_gt_teacher_future_online": true
+  },
+  "decision_gate": "Report all six videos and both arms. Do not select or tune a threshold from outer metrics; a replay can only establish whether this predeclared rule changes native outputs and whether any aggregate gain survives the matched control."
+}
