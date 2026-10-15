@@ -89,7 +89,9 @@ def _run_video(video: str, variant: dict, config: dict, config_path: Path, outpu
     # The per-video directory is created below.  Reserve the filesystem that
     # actually receives this run (the normal persistent asset mount or an
     # explicitly chosen external volatile staging mount).
-    reserve_path = output.parent if output.parent.exists() else ASSETS
+    reserve_path = output
+    while not reserve_path.exists():
+        reserve_path = reserve_path.parent
     if shutil.disk_usage(reserve_path).free < config["guards"]["minimum_free_bytes"]:
         raise OSError("40GiB reserve")
     detections, features, dp, fm, frames, offsets, boxes, scores, embedding = _load_inputs(video, config)
