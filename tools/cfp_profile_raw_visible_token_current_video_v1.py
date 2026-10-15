@@ -19,9 +19,17 @@ from yolox.tracker.basetrack import BaseTrack
 
 def idle(physical):
     if physical not in ['0','1','2','3']:raise ValueError('Onlyapproved GPU0–3')
-    values=subprocess.check_output(['nvidia-smi','-i',physical,'--query-gpu=memory.used,utilization.gpu','--format=csv,noheader,nounits'],text=True)
-    memory,util=[int(x.strip()) for x in values.split(',')]
-    if memory>64 or util:raise ValueError('GPU notidle, preserveotherjobs')
+    values=subprocess.check_output(['nvidia-smi','-i',physical,'--query-gpu=memory.used,memory.total,utilization.gpu','--format=csv,noheader,nounits'],text=True)
+    memory,total,util=[int(x.strip()) for x in values.split(',')]
+    overlap=os.environ.get('CFP_ALLOW_GPU_OVERLAP')=='1'
+    if overlap:
+        # Raw inference has a smaller allocator cap than pretraining. Keep a
+        # launch-time margin for the pre-existing process on the shared card.
+        reserve=int(os.environ.get('CFP_GPU_OVERLAP_RESERVE_MB','4096'))
+        budget=int(os.environ.get('CFP_GPU_OVERLAP_BUDGET_MB','8192'))
+        if total<40000 or memory+budget+reserve>total:raise ValueError('Insufficientshared-GPUheadroom')
+    elif memory>64 or util:raise ValueError('GPU notidle, preserveotherjobs')
+    return dict(enabled=overlap,launch_memory_used_mb=memory,device_total_mb=total,launch_utilization_percent=util,allocator_budget_mb=(budget if overlap else None),reserve_mb=(reserve if overlap else None))
 
 
 def main():
@@ -42,20 +50,20 @@ def main():
     expected_kind = {'masked_visible_tokens':'visible_token_masked', 'visible_target':'visible_token_target'}[a.visible_mode]
     if a.kind != expected_kind:
         raise ValueError('Visible-token kind/mode mismatch')
-    physical=os.environ.get('CUDA_VISIBLE_DEVICES','');idle(physical)
+    physical=os.environ.get('CUDA_VISIBLE_DEVICES','');overlap_guard=idle(physical)
     if shutil.disk_usage(a.root).free<40*2**30:raise OSError('40GiBreserve')
     data=Path(c['data_root']);index=a.asset_root/'identity_two_crop_index_v1';im=json.loads((index/'manifest.json').read_text());path=index/(a.video+'.frames.json');rows=json.loads(path.read_text());detections=Path(c['detections'])/(a.video+'.npz');dm=json.loads((Path(c['detections'])/'manifest.json').read_text())
     if sha256(path)!=im['videos'][a.video]['frame_paths_sha256'] or sha256(detections)!=dm['caches'][a.video]['sha256']:raise ValueError('Immutable currentframe/proposal provenance changed')
     with np.load(detections,allow_pickle=False) as source:frames,offsets,expected_boxes,expected_scores=[source[k].copy() for k in ['frame_ids','offsets','boxes','scores']]
     if not np.array_equal(frames,np.arange(1,len(frames)+1)) or [r['frame_id'] for r in rows]!=frames.tolist():raise ValueError('Every native frame required')
     if sha256(c['detector_checkpoint'])!=V3_CHECKPOINT_SHA256:raise ValueError('FrozenV3 changed')
-    torch.set_num_threads(2);cv2.setNumThreads(1);torch.manual_seed(0);idle(physical);torch.cuda.set_per_process_memory_fraction(.2)
+    torch.set_num_threads(2);cv2.setNumThreads(1);overlap_guard=idle(physical);torch.cuda.set_per_process_memory_fraction(.2)
     encoder=None;predictor=None
     encoder=CurrentVisibleTokenIdentityEncoder(c['dino_reference'],c['dino_weights'],c['dino_source_proof'],a.training,a.video,a.visible_mode,a.visible_seed,a.expected_fit,a.expected_inner,'cuda',128)
     encoder_meta=encoder.metadata
     detector=RawProfileDetectorRuntime(c['detector_python'],c['detector_checkpoint'],c['scripts_root']);generator=CausalPseudoIR(c['scripts_root']);a.output.mkdir()
     sources=[__file__,a.config,'cfp/raw_profile_tail_runtime.py','tools/cfp_detector_worker_raw_profile_v2.py','cfp/detector_runtime.py','cfp/detector_runtime_device_pad.py','cfp/online.py','cfp/pseudo_ir.py','cfp/reid.py','cfp/dinov2_native_encoder.py','cfp/dinov2_identity.py','cfp/dinov2_fish_encoder.py','cfp/visible_token_native_encoder.py','cfp/native_local_identity.py','cfp/lifecycle_crossover.py','cfp/predictive.py','cfp/association.py','cfp/predictive_association.py','cfp/history.py','cfp/provenance.py','tools/cfp_cache_detection_features.py']
-    report=dict(status='RUNNING',config=c,config_sha256=sha256(a.config),video=a.video,kind=a.kind,visible_mode=a.visible_mode,visible_seed=a.visible_seed,training_checkpoint=str(a.training),expected_fit=a.expected_fit,expected_inner=a.expected_inner,asset_root=str(a.asset_root),physical_gpu=physical,frames=len(frames),completed_frames=0,encoder=encoder_meta,detector=dict(detector.metadata),detection_reference_sha256=sha256(detections),frame_paths_sha256=sha256(path),source_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),sources=snapshot_sources(a.output/'sources',sources),scope=c['scope']+' Visible-token seed-specific current-only raw profile; no cached embedding reference is fed online.',loaded_GT_annotation_labels=False,precomputed_IR_used_for_inference=False,detector_IR_origin='CurrentRGB_prefix_EMA_generated_by_parent',cached_detection_or_feature_used_for_inference=False,feature_reference_comparison='not_applicable_visible_token_current_only')
+    report=dict(status='RUNNING',config=c,config_sha256=sha256(a.config),video=a.video,kind=a.kind,visible_mode=a.visible_mode,visible_seed=a.visible_seed,training_checkpoint=str(a.training),expected_fit=a.expected_fit,expected_inner=a.expected_inner,asset_root=str(a.asset_root),physical_gpu=physical,gpu_overlap=overlap_guard,frames=len(frames),completed_frames=0,encoder=encoder_meta,detector=dict(detector.metadata),detection_reference_sha256=sha256(detections),frame_paths_sha256=sha256(path),source_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),sources=snapshot_sources(a.output/'sources',sources),scope=c['scope']+' Visible-token seed-specific current-only raw profile; no cached embedding reference is fed online.',loaded_GT_annotation_labels=False,precomputed_IR_used_for_inference=False,detector_IR_origin='CurrentRGB_prefix_EMA_generated_by_parent',cached_detection_or_feature_used_for_inference=False,feature_reference_comparison='not_applicable_visible_token_current_only')
     write_json(a.output/'manifest.json',report);BaseTrack._count=0
     if predictor:tracker=make_cfp_lifecycle(load_bot_reference('/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT'),'gru',predictor,.3)
     else:tracker=PredictiveAssociationTracker(SimpleNamespace(track_thresh=.58,track_buffer=45,match_thresh=.97,mot20=False),frame_rate=25,predictor=RecentIdentityControl('fifo'),memory='predictor',history_view='recent',appearance_weight=.3,proximity_iou=.1,ema=.9)
