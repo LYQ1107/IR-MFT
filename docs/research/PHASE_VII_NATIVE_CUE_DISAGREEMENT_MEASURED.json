@@ -79,7 +79,8 @@
     "clean_history_definition": "Every retained native proposal label is known and all retained labels are the same physical identity; mixed or unknown histories are summarized separately and excluded from clean cue comparison.",
     "margin_gate_definition": "Descriptive only: on a clean row with at least two geometry-legal candidates, appearance is active when its current candidate cost top-two margin is strictly greater than the geometry cost top-two margin. No threshold or weight is fitted.",
     "labels_loaded_after_all_parity": true,
-    "physical_annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6"
+    "physical_annotation_sha256": "ebaf734f7a6b40e7e329b531ad8bd6e7c2fe0be649491e3dd627b4faaf0ed8b6",
+    "clean_positive_count_note": "The existing clean_rows_with_current_positive count is any current candidate (132,996); after raw-geometry legality filtering, 132,894 rows retain a positive candidate. The candidate-set audit records this distinction."
   },
   "aggregate_counts": {
     "observed_calls": 54502,
@@ -103,7 +104,9 @@
     "margin_gate_harm": 0,
     "margin_gate_changed_top": 4,
     "history_frame_checks": 1647801,
-    "candidate_frame_checks": 2093542
+    "candidate_frame_checks": 2093542,
+    "clean_rows_with_current_positive_any_candidate": 132996,
+    "clean_rows_with_current_positive_legal": 132894
   },
   "videos": {
     "BT-001": {
@@ -956,6 +959,6 @@
     }
   },
   "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
-  "interpretation": "Across 132,996 clean-history rows with a current physical positive inside the raw-geometry legal set, appearance-only ranking corrected 11 geometry top-1 errors but harmed 217 geometry-correct rows. The fixed 0.3 blend changed the row top choice only four times and corrected four rows without a top-choice harm; the fixed margin gate activated 29 rows, corrected four on BT-001, and corrected none on the held-out outer SN-015 (six activations). The predeclared inner/outer/aggregate gate therefore fails; no margin-gated native replay or appearance campaign is justified. This is a retrospective edge-ranking audit, not a new tracker result or a project-wide NO_GO.",
-  "next_hypothesis": "Use the verified candidate-missing and duplicate/competition boundaries to design an unknown-preserving set/NULL diagnostic or source-matched raw-gallery control; do not tune appearance thresholds or replay this margin gate."
+  "interpretation": "Across 132,996 clean-history rows with a current physical positive candidate, 132,894 retained a positive inside the raw-geometry legal set. Appearance-only ranking corrected 11 geometry top-1 errors but harmed 217 geometry-correct rows. The fixed 0.3 blend changed the row top choice only four times and corrected four rows without a top-choice harm; the fixed margin gate activated 29 rows, corrected four on BT-001, and corrected none on the held-out outer SN-015 (six activations). The predeclared inner/outer/aggregate gate therefore fails; no margin-gated native replay or appearance campaign is justified. This is a retrospective edge-ranking audit, not a new tracker result or a project-wide NO_GO.",
+  "next_hypothesis": "Use the verified legal candidate-missing, unknown-label and multi-identity competition boundaries to design an unknown-preserving set/NULL diagnostic or source-matched raw-gallery control; do not tune appearance thresholds or replay this margin gate."
 }
