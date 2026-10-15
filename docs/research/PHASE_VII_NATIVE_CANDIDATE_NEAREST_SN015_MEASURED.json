@@ -1,0 +1,117 @@
+{
+  "status": "COMPLETE_SN015_NATIVE_CANDIDATE_NEAREST_HISTORY_PROBE_REJECTED",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_NATIVE_CANDIDATE_NEAREST_HISTORY_SN015_V1",
+  "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
+  "hypothesis": "The FIFO prototype may discard a useful identity cue by averaging past observations; a fixed candidate-conditioned minimum distance to the last four strictly past accepted native observations could retain the best raw cue without changing proposal geometry, lifecycle, thresholds or output.",
+  "selection_guard": "Rule fixed before evaluation; no threshold, seed, video or outer metric selected. SN-015 is a single outer gate, not an all-video or final-method claim.",
+  "scope": {
+    "outer": "SN-015",
+    "features": "frozen DINO K4 native current-only bank",
+    "memory": "candidate-conditioned minimum half-normalized-cosine distance over last four strictly past assigned native observations",
+    "history_source": "actual accepted native proposal writes only",
+    "frames": 6570,
+    "gt_or_future_online_used": false,
+    "teacher_or_cached_inference_features_used": false,
+    "proposal_graph_changed": false,
+    "geometry_lifecycle_output_changed": false,
+    "full_raw_fps_claim": false,
+    "raw_fps_scope": "cached native association timing only"
+  },
+  "pre_registration": {
+    "config": "configs/cfp/phase_vii_native_candidate_nearest_probe_v1.json",
+    "config_sha256": "b2c85ef343517ecfa33656fc06bf6fcda0e9641aae4939188931d2ac5ed68459",
+    "driver": "tools/cfp_replay_native_candidate_nearest.py",
+    "source_commit": "a94a48ae33d5a9c0bfdcfa0d02dde996e2d050a4",
+    "source_hashes": {
+      "tools/cfp_replay_native_candidate_nearest.py": "3eb3d46bff4b56a7716d8e038bc8e59342f77379039b27cc2eaaaec538198b7b",
+      "configs/cfp/phase_vii_native_candidate_nearest_probe_v1.json": "b2c85ef343517ecfa33656fc06bf6fcda0e9641aae4939188931d2ac5ed68459",
+      "cfp/native_candidate_nearest.py": "f38f5cdbf0ba39c7a84a8f44c4a56fd02757827f3aced5ff88bde7cbe36f3586",
+      "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+      "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+    },
+    "fixed_history_length": 4,
+    "maximum_history_age_frames": 1500,
+    "appearance_weight": 0.3,
+    "proximity_iou": 0.1,
+    "appearance_max_distance": 0.35,
+    "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase"
+  },
+  "artifacts": {
+    "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_nearest_SN-015_frozen_v1/manifest.json",
+    "manifest_sha256": "33ee4ed8071033b169826a0d8d46df9e10300dee7666b2294ea58d6e2cdde03d",
+    "metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_nearest_SN-015_frozen_v1.trackeval/metrics.json",
+    "metrics_sha256": "8c285a52a104ddd2cce5090972dae11129736b047cf7a3da29572906de5cbd42",
+    "prediction": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_nearest_SN-015_frozen_v1/SN-015.txt",
+    "prediction_sha256": "5b135c565935c059c8f0e11db944ee1880f6342c2904e7678134156dbb13d93f",
+    "protocol": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_nearest_SN-015_frozen_v1.trackeval/protocol.json",
+    "protocol_sha256": "9fb2ed6a8f0e9bd1ab965b9d06218f975c62249af7fe88f5509f40308221c7d3",
+    "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+    "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+    "paired_fifo_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_frozen_SN-015_fifo_s0_v1/manifest.json",
+    "paired_fifo_manifest_sha256": "81e6c93b53ef0d61b22e8492852caadeae2bd038fc30f0ad525f5aeb99eaedfa",
+    "paired_fifo_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_frozen_SN-015_fifo_s0_v1.trackeval/metrics.json",
+    "paired_fifo_metrics_sha256": "dcdac0bbbff5b62810a419f76253e9caf0c8b951f79b73d4ba4ae722246fbb23",
+    "paired_fifo_prediction_sha256": "73e5912e10b53e120c31d9865d0796593590646741b2ee08ed4944b2e17c8bcb"
+  },
+  "metrics": {
+    "frozen_fifo": {
+      "HOTA": 32.22498292191964,
+      "AssA": 14.785889647020573,
+      "DetA": 70.77344978513939,
+      "IDF1": 30.44482587144484,
+      "MOTA": 91.0188991936769,
+      "IDSW": 152
+    },
+    "candidate_nearest": {
+      "HOTA": 30.82476408734051,
+      "AssA": 13.509426277634184,
+      "DetA": 70.97053478557103,
+      "IDF1": 26.647633406579306,
+      "MOTA": 91.00137043057016,
+      "IDSW": 149
+    },
+    "candidate_nearest_minus_fifo": {
+      "HOTA": -1.4002188345791282,
+      "AssA": -1.2764633693863896,
+      "DetA": 0.1970850004316418,
+      "IDF1": -3.7971924648655353,
+      "MOTA": -0.01752876310673912,
+      "IDSW": -3
+    }
+  },
+  "gate_result": {
+    "hota_improved": false,
+    "idf1_improved": false,
+    "idsw_not_increased": true,
+    "passed": false
+  },
+  "runtime": {
+    "native_replay_status": "COMPLETE_NATIVE_CANDIDATE_NEAREST_REPLAY",
+    "frames": 6570,
+    "output_rows": 61940,
+    "association_seconds": 27.57064742231887,
+    "association_latency_p50_p95_ms": [
+      4.141416498896433,
+      4.8462185015523565
+    ],
+    "candidate_nearest_counts": {
+      "scored_rows": 65884,
+      "eligible_edges": 107828,
+      "past_observations": 262896
+    },
+    "official_trackeval_commit": "12c8791b303e0a0b50f753af204249e622d0281a",
+    "official_trackeval_complete": true
+  },
+  "interpretation": "The fixed candidate-conditioned nearest-history rule lowers HOTA by 1.4002 points and IDF1 by 3.7972 points on SN-015 while reducing IDSW by 3. The simultaneous pre-registered gate fails, so raw-history retention is not promoted or expanded. This is a bounded negative outer probe, not a project-wide NO_GO and not evidence for a positive final contribution.",
+  "next_boundary": "Do not tune history length, age, distance thresholds or blend weights from this outer result. Preserve the existing FIFO default and require a new independently measured same-input signal before any selective combination or final-method claim.",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "validation": {
+    "immutable_output": true,
+    "native_replay_complete": true,
+    "official_trackeval_complete": true,
+    "prediction_hash_matches_manifest": true,
+    "online_gt_teacher_future_used": false,
+    "cpu_only": true
+  }
+}

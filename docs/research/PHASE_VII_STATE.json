@@ -4,7 +4,7 @@
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "11639353b488257ec4b9bb2b1cd3349ed8fbfbc5",
+    "local_commit": "a94a48ae33d5a9c0bfdcfa0d02dde996e2d050a4",
     "remote_commit": "b09591b95d92f1a1cb1383deab67859951cd4684",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
@@ -21,7 +21,8 @@
       "docs/research/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json",
       "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
       "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
-      "docs/research/PHASE_VII_NATIVE_WEIGHT_CALIBRATION_SN015_MEASURED.json"
+      "docs/research/PHASE_VII_NATIVE_WEIGHT_CALIBRATION_SN015_MEASURED.json",
+      "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -936,6 +937,19 @@
       "selected_weight": 0.3,
       "scope": "One fit-only inner selection and held-out outer native FIFO pilot; no all-fold or final-method claim.",
       "decision": "DO_NOT_EXPAND_SINGLE_FOLD_WEIGHT_CALIBRATION"
+    },
+    "candidate_nearest_probe": {
+      "status": "COMPLETE_SN015_NATIVE_CANDIDATE_NEAREST_HISTORY_PROBE_REJECTED",
+      "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json",
+      "report_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
+      "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
+      "outer": "SN-015",
+      "delta_vs_frozen_fifo": {
+        "HOTA": -1.4002188345791282,
+        "IDF1": -3.7971924648655353,
+        "IDSW": -3
+      },
+      "scope": "One fixed native outer gate; no all-video, three-seed, full raw FPS or final-method claim."
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -1040,11 +1054,13 @@
     "36-run read-only native replay engagement audit: prediction hashes byte-identical to accepted outputs and active FIFO prediction_counts positive for all runs",
     "Pre-registered SN-015 masked visible-token visibility-weighted local4 native probe completed; HOTA-only change with unchanged IDF1 and one extra IDSW rejected expansion",
     "All144 DINOv2 K4/K8 crop-control runs independently coverage-audited and terminal; Protocol A only, no native-MOT or novelty claim.",
-    "Pre-registered native appearance-weight pilot: inner-selected w=0.3 matched frozen FIFO on outer SN-015; non-selected w=0.1 exposed an HOTA/IDF1 tradeoff and was not promoted."
+    "Pre-registered native appearance-weight pilot: inner-selected w=0.3 matched frozen FIFO on outer SN-015; non-selected w=0.1 exposed an HOTA/IDF1 tradeoff and was not promoted.",
+    "Pre-registered SN-015 candidate-conditioned nearest-history native probe completed; HOTA/IDF1 fell despite three fewer IDSW and expansion was rejected."
   ],
   "pending": [
     "Selective combinations only if an independently measured complementary same-input signal appears",
     "Preserve negative C/D, external payload and final raw profiling boundaries; the direct local4 probe did not pass its expansion gate",
+    "Preserve the rejected candidate-conditioned nearest-history probe; do not tune its history length/age/thresholds from the outer result",
     "The causal residual motion-error audit failed its held-out replay gate; preserve the negative signal and do not launch learned motion without a new independent error source.",
     "The fixed causal nonlinear MLP audit also fails its held-out gate; preserve both motion predictability failures and do not launch learned motion without a new independent signal."
   ],
@@ -1056,10 +1072,10 @@
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
     "Keep all-fold visible-token/native evidence, edge-engagement audit and rejected local4 probe as terminal mixed/negative evidence; do not mechanically stack components.",
+    "Keep the candidate-conditioned nearest-history SN-015 result as a bounded negative; do not expand or tune raw-history memory from its outer metrics.",
     "P11 remains not justified and P17 remains unestablished; preserve the explicit final-combination gate.",
     "Maintain explicit external-generalization and unavailable-source exclusions.",
     "Retain the causal motion-error predictability failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified.",
-    "Retain the fixed nonlinear MLP failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified.",
     "Retain the fit-only appearance-weight pilot as a no-expansion boundary; do not select w=0.1 from the held-out outer result or mechanically stack it."
   ],
   "validation": {
@@ -1169,15 +1185,15 @@
     "finalizer_protocol_scope_repair_sha256": "27a62e8c84146b2cc1926ea99c9cd1aba8a107ad7fcb81fe5a02469f8e65daee"
   },
   "remaining_authoritative": [
-    "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; a direct local4 pooling probe also failed its pre-registered gate.",
-    "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
+    "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; a direct local4 pooling probe and the candidate-conditioned nearest-history probe both failed their pre-registered gates.",
+    "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, raw-history expansion, mechanical stacking or positive final method is justified.",
     "No independent external payload/zero-overlap validation or stable independent contribution is established.",
     "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths.",
     "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified.",
     "The single-fold scalar appearance-weight calibration selected the existing 0.3 default and had zero outer delta; a non-selected 0.1 HOTA/IDSW tradeoff is descriptive only, so no weight campaign or final claim is justified."
   ],
   "active_processes_at_snapshot": [],
-  "free_space_gib_at_snapshot": 48.0,
+  "free_space_gib_at_snapshot": 41.45658874511719,
   "motion_error_predictability": {
     "status": "COMPLETE_CAUSAL_MOTION_ERROR_PREDICTABILITY_AUDIT",
     "report": "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
@@ -1225,5 +1241,11 @@
     "decision": "CLOSE_PROTOCOL_A_DINOV2_ALLFOLD_CROP_DIAGNOSTIC",
     "claim_boundary": "Crop retrieval/discrimination only; no native MOT, raw online FPS, external-scene or final novelty claim."
   },
-  "native_weight_calibration_sha256": "8aec30c121cac257734d71c9f3dfca0e83e721a7a239a95bc6a73d7a50fe61bf"
+  "native_weight_calibration_sha256": "8aec30c121cac257734d71c9f3dfca0e83e721a7a239a95bc6a73d7a50fe61bf",
+  "native_candidate_nearest_probe_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
+  "task_book_requirement_audit": {
+    "status": "COMPLETE_TASK_BOOK_AUDIT_GOAL_STILL_ACTIVE",
+    "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json"
+  },
+  "experiment_registry_sha256": "17f991c269a061c2b3477d03d736786a675d37b7c97b8f828979109cd39b9abb"
 }

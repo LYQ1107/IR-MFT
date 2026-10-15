@@ -5,7 +5,7 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "b52436b",
+    "local_commit": "a94a48ae33d5a9c0bfdcfa0d02dde996e2d050a4",
     "remote_commit": "aeef14082ce5a51d2e1d03266ce0e26efb61193f",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
@@ -643,6 +643,23 @@
       "coverage": "six outer folds x four matched modes x seeds0/1/2 for K4 and K8; 72 runs per K",
       "decision": "CLOSE_PROTOCOL_A_DINOV2_ALLFOLD_CROP_DIAGNOSTIC",
       "claim_boundary": "Crop retrieval/discrimination only; no native MOT, raw online FPS, external-scene or final novelty claim."
+    },
+    "native_candidate_nearest_probe": {
+      "status": "COMPLETE_SN015_NATIVE_CANDIDATE_NEAREST_HISTORY_PROBE_REJECTED",
+      "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json",
+      "report_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
+      "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
+      "outer": "SN-015",
+      "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+      "delta_vs_frozen_fifo": {
+        "HOTA": -1.4002188345791282,
+        "AssA": -1.2764633693863896,
+        "DetA": 0.1970850004316418,
+        "IDF1": -3.7971924648655353,
+        "MOTA": -0.01752876310673912,
+        "IDSW": -3
+      },
+      "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
     }
   },
   "experiments": [
@@ -4833,6 +4850,59 @@
       "decision": "DO_NOT_EXPAND_SINGLE_FOLD_WEIGHT_CALIBRATION",
       "scope": "One pre-registered native SN-015 outer pilot; unchanged frozen DINO384/FIFO/V3 proposals/lifecycle/output; no all-fold, three-seed, raw FPS or final-method claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_CANDIDATE_NEAREST_HISTORY_SN015_V1",
+      "status": "COMPLETE_SN015_NATIVE_CANDIDATE_NEAREST_HISTORY_PROBE_REJECTED",
+      "hypothesis": "FIFO prototype averaging may discard a useful identity cue; a fixed candidate-conditioned minimum over the last four strictly past native observations could retain the best raw cue.",
+      "outer": "SN-015",
+      "memory": "candidate-conditioned minimum half-normalized-cosine distance over last four strictly past assigned native observations",
+      "config": "configs/cfp/phase_vii_native_candidate_nearest_probe_v1.json",
+      "config_sha256": "b2c85ef343517ecfa33656fc06bf6fcda0e9641aae4939188931d2ac5ed68459",
+      "driver": "tools/cfp_replay_native_candidate_nearest.py",
+      "source_commit": "a94a48ae33d5a9c0bfdcfa0d02dde996e2d050a4",
+      "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json",
+      "report_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
+      "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_nearest_SN-015_frozen_v1.trackeval/metrics.json",
+      "metrics_sha256": "8c285a52a104ddd2cce5090972dae11129736b047cf7a3da29572906de5cbd42",
+      "prediction_sha256": "5b135c565935c059c8f0e11db944ee1880f6342c2904e7678134156dbb13d93f",
+      "selection": "Fixed before evaluation; no threshold, seed, video or outer metric selection.",
+      "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+      "metrics": {
+        "frozen_fifo": {
+          "HOTA": 32.22498292191964,
+          "AssA": 14.785889647020573,
+          "DetA": 70.77344978513939,
+          "IDF1": 30.44482587144484,
+          "MOTA": 91.0188991936769,
+          "IDSW": 152
+        },
+        "candidate_nearest": {
+          "HOTA": 30.82476408734051,
+          "AssA": 13.509426277634184,
+          "DetA": 70.97053478557103,
+          "IDF1": 26.647633406579306,
+          "MOTA": 91.00137043057016,
+          "IDSW": 149
+        },
+        "delta": {
+          "HOTA": -1.4002188345791282,
+          "AssA": -1.2764633693863896,
+          "DetA": 0.1970850004316418,
+          "IDF1": -3.7971924648655353,
+          "MOTA": -0.01752876310673912,
+          "IDSW": -3
+        }
+      },
+      "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
+      "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim.",
+      "online_guards": {
+        "gt": false,
+        "future": false,
+        "teacher": false,
+        "cached_inference_features": false
+      },
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -4847,6 +4917,7 @@
   },
   "pending": [
     "Preserve measured mixed/negative all-fold native and strict-raw boundaries and the rejected local4 probe.",
+    "Preserve the rejected SN-015 candidate-conditioned nearest-history probe; do not tune history length/age/thresholds from its outer result.",
     "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
     "Keep external payload and unavailable source/license exclusions explicit.",
     "Preserve the causal motion-error predictability failure; do not run learned motion without a new independent signal."
@@ -4896,5 +4967,22 @@
     ],
     "report_sha256": "b3e7a4a2d3dbb24d46121caa5270fbbadc490a769b622b4a453bd7147c0f6451"
   },
-  "goal_status": "IN_PROGRESS_UNACHIEVED"
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "native_candidate_nearest_probe": {
+    "status": "COMPLETE_SN015_NATIVE_CANDIDATE_NEAREST_HISTORY_PROBE_REJECTED",
+    "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_NEAREST_SN015_MEASURED.json",
+    "report_sha256": "dda8aa42a646b41156a208235b823149f3a0a066b847f73a11c811ed3ed533b7",
+    "decision": "DO_NOT_EXPAND_CANDIDATE_NEAREST_HISTORY_CAMPAIGN",
+    "outer": "SN-015",
+    "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+    "delta_vs_frozen_fifo": {
+      "HOTA": -1.4002188345791282,
+      "AssA": -1.2764633693863896,
+      "DetA": 0.1970850004316418,
+      "IDF1": -3.7971924648655353,
+      "MOTA": -0.01752876310673912,
+      "IDSW": -3
+    },
+    "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
+  }
 }
