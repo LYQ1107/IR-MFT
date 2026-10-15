@@ -1,0 +1,120 @@
+{
+  "status": "COMPLETE_SN015_NATIVE_VISIBILITY_QUALITY_PROBE_REJECTED",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_NATIVE_VISIBILITY_QUALITY_GATE_SN015_V1",
+  "decision": "DO_NOT_EXPAND_VISIBILITY_QUALITY_GATE_CAMPAIGN",
+  "hypothesis": "Observable crop content may predict when a current appearance cue is unreliable; attenuating the fixed appearance blend by the current candidate mean visibility4 fraction could reduce identity mistakes without changing candidate legality or lifecycle.",
+  "selection_guard": "Rule fixed before evaluation; no threshold, seed, video or outer metric selected. SN-015 is a single outer gate, not an all-video or final-method claim.",
+  "scope": {
+    "outer": "SN-015",
+    "features": "frozen DINO K4 native current-only bank",
+    "memory": "unchanged FIFO strictly past native identity prototype",
+    "quality_signal": "mean current candidate letterbox visibility4 fraction",
+    "effective_weight": "0.3 times current candidate mean visibility4",
+    "history_source": "actual accepted native proposal writes only",
+    "frames": 6570,
+    "gt_or_future_online_used": false,
+    "teacher_or_cached_inference_features_used": false,
+    "proposal_graph_changed": false,
+    "appearance_legality_changed": false,
+    "geometry_lifecycle_output_changed": false,
+    "full_raw_fps_claim": false,
+    "raw_fps_scope": "cached native association timing only"
+  },
+  "pre_registration": {
+    "config": "configs/cfp/phase_vii_native_visibility_quality_probe_sn015_v1.json",
+    "config_sha256": "648e5b33caa031da54731e6bccf6c4c946b202e051146c7578db471dda083cf5",
+    "driver": "tools/cfp_replay_native_visibility_quality.py",
+    "source_commit": "bf8d50bf4c04aeb5f6c9530372caa6b5d81dde52",
+    "source_hashes": {
+      "tools/cfp_replay_native_visibility_quality.py": "e681b18be9c8ce47b5687a7f06b158aac769b71a03fc11e21ccb685d07724dad",
+      "configs/cfp/phase_vii_native_visibility_quality_probe_sn015_v1.json": "648e5b33caa031da54731e6bccf6c4c946b202e051146c7578db471dda083cf5",
+      "cfp/native_visibility_quality.py": "9bc66ccc8c424538528413e61a9098b93b660efff244346e7c50a6e5353ffd0e",
+      "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+      "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+    },
+    "appearance_weight": 0.3,
+    "proximity_iou": 0.1,
+    "appearance_max_distance": 0.35,
+    "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase"
+  },
+  "artifacts": {
+    "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_visibility_quality_SN-015_frozen_v1/manifest.json",
+    "manifest_sha256": "14e45629c1b90aa22774661e3178ed7dd4a0a9abe0f64972839930d32e2a85d2",
+    "metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_visibility_quality_SN-015_frozen_v1.trackeval/metrics.json",
+    "metrics_sha256": "fc668560c9a08fb2fcfcd934b87ae18f5cd92df6d03f0bd717a60f78ec1cad84",
+    "prediction": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_visibility_quality_SN-015_frozen_v1/SN-015.txt",
+    "prediction_sha256": "5790a9dec19c773b65218870d1056354646f95e139bf3325265ebd9f6c0820b6",
+    "protocol": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_visibility_quality_SN-015_frozen_v1.trackeval/protocol.json",
+    "protocol_sha256": "3acafc480aac57bed05786b6f93371e58df3a03742b6b5416c9f9b9f8e4bf9ce",
+    "feature_manifest_sha256": "d0c2c3a9d52983eb19708ef082b8b4a81ed670978c739fcae975fd26f4ef6e14",
+    "visibility4_sha256": "3dedccec0816a354f1132538a821d168c6d4aa0c185b5762ce1aed0ac0282ce7",
+    "detection_sha256": "97667a7937b6ae2ad93cd4a6f057629095397be8d9097795cd8460da91e119f0",
+    "paired_fifo_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_frozen_SN-015_fifo_s0_v1/manifest.json",
+    "paired_fifo_manifest_sha256": "81e6c93b53ef0d61b22e8492852caadeae2bd038fc30f0ad525f5aeb99eaedfa",
+    "paired_fifo_metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_frozen_SN-015_fifo_s0_v1.trackeval/metrics.json",
+    "paired_fifo_metrics_sha256": "dcdac0bbbff5b62810a419f76253e9caf0c8b951f79b73d4ba4ae722246fbb23",
+    "paired_fifo_prediction_sha256": "73e5912e10b53e120c31d9865d0796593590646741b2ee08ed4944b2e17c8bcb"
+  },
+  "metrics": {
+    "frozen_fifo": {
+      "HOTA": 32.22498292191964,
+      "AssA": 14.785889647020573,
+      "DetA": 70.77344978513939,
+      "IDF1": 30.44482587144484,
+      "MOTA": 91.0188991936769,
+      "IDSW": 152
+    },
+    "visibility_quality": {
+      "HOTA": 31.970562251815853,
+      "AssA": 14.552404473937406,
+      "DetA": 70.81308616440086,
+      "IDF1": 28.412618205442865,
+      "MOTA": 91.01411862192052,
+      "IDSW": 148
+    },
+    "visibility_quality_minus_fifo": {
+      "HOTA": -0.2544206701037872,
+      "AssA": -0.2334851730831673,
+      "DetA": 0.03963637926146646,
+      "IDF1": -2.0322076660019768,
+      "MOTA": -0.004780571756384688,
+      "IDSW": -4
+    }
+  },
+  "gate_result": {
+    "hota_improved": false,
+    "idf1_improved": false,
+    "idsw_not_increased": true,
+    "passed": false
+  },
+  "runtime": {
+    "native_replay_status": "COMPLETE_NATIVE_VISIBILITY_QUALITY_REPLAY",
+    "frames": 6570,
+    "output_rows": 61923,
+    "association_seconds": 30.95689573810523,
+    "association_latency_p50_p95_ms": [
+      4.724483500467613,
+      5.374264302008668
+    ],
+    "visibility_quality_counts": {
+      "scored_rows": 65876,
+      "eligible_edges": 107832,
+      "quality_sum": 74405.92730508745,
+      "quality_count": 107832
+    },
+    "official_trackeval_commit": "12c8791b303e0a0b50f753af204249e622d0281a",
+    "official_trackeval_complete": true
+  },
+  "interpretation": "The fixed visibility-quality attenuation reduces HOTA by 0.2544 points and IDF1 by 2.0322 points on SN-015 while reducing IDSW by 4. The simultaneous HOTA/IDF1/no-extra-IDSW gate fails, so the quality gate is not expanded or promoted. This is a bounded negative outer probe, not a project-wide NO_GO and not evidence for a positive final contribution.",
+  "next_boundary": "Do not tune visibility transforms, thresholds or blend weights from this outer result. Preserve the original FIFO appearance rule and require a new independently measured same-input signal before any selective combination or final-method claim.",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "validation": {
+    "immutable_output": true,
+    "native_replay_complete": true,
+    "official_trackeval_complete": true,
+    "prediction_hash_matches_manifest": true,
+    "online_gt_teacher_future_used": false,
+    "cpu_only": true
+  }
+}

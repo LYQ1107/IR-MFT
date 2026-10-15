@@ -660,6 +660,22 @@
         "IDSW": -3
       },
       "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
+    },
+    "native_visibility_quality_probe": {
+      "status": "COMPLETE_SN015_NATIVE_VISIBILITY_QUALITY_PROBE_REJECTED",
+      "report": "docs/research/PHASE_VII_NATIVE_VISIBILITY_QUALITY_SN015_MEASURED.json",
+      "report_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+      "decision": "DO_NOT_EXPAND_VISIBILITY_QUALITY_GATE_CAMPAIGN",
+      "outer": "SN-015",
+      "delta_vs_frozen_fifo": {
+        "HOTA": -0.2544206701037872,
+        "AssA": -0.2334851730831673,
+        "DetA": 0.03963637926146646,
+        "IDF1": -2.0322076660019768,
+        "MOTA": -0.004780571756384688,
+        "IDSW": -4
+      },
+      "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
     }
   },
   "experiments": [
@@ -4903,6 +4919,60 @@
         "cached_inference_features": false
       },
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_VISIBILITY_QUALITY_GATE_SN015_V1",
+      "status": "COMPLETE_SN015_NATIVE_VISIBILITY_QUALITY_PROBE_REJECTED",
+      "hypothesis": "Observable crop content may predict unreliable current appearance; attenuate the fixed blend by current mean visibility4 without changing candidate legality or lifecycle.",
+      "outer": "SN-015",
+      "memory": "unchanged FIFO strictly past native identity prototype",
+      "quality_rule": "effective appearance weight = 0.3 * current candidate mean visibility4",
+      "config": "configs/cfp/phase_vii_native_visibility_quality_probe_sn015_v1.json",
+      "config_sha256": "648e5b33caa031da54731e6bccf6c4c946b202e051146c7578db471dda083cf5",
+      "driver": "tools/cfp_replay_native_visibility_quality.py",
+      "source_commit": "bf8d50b",
+      "report": "docs/research/PHASE_VII_NATIVE_VISIBILITY_QUALITY_SN015_MEASURED.json",
+      "report_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+      "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_visibility_quality_SN-015_frozen_v1.trackeval/metrics.json",
+      "metrics_sha256": "fc668560c9a08fb2fcfcd934b87ae18f5cd92df6d03f0bd717a60f78ec1cad84",
+      "prediction_sha256": "5790a9dec19c773b65218870d1056354646f95e139bf3325265ebd9f6c0820b6",
+      "selection": "Fixed before evaluation; no threshold, seed, video or outer metric selection.",
+      "gate": "HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+      "metrics": {
+        "frozen_fifo": {
+          "HOTA": 32.22498292191964,
+          "AssA": 14.785889647020573,
+          "DetA": 70.77344978513939,
+          "IDF1": 30.44482587144484,
+          "MOTA": 91.0188991936769,
+          "IDSW": 152
+        },
+        "visibility_quality": {
+          "HOTA": 31.970562251815853,
+          "AssA": 14.552404473937406,
+          "DetA": 70.81308616440086,
+          "IDF1": 28.412618205442865,
+          "MOTA": 91.01411862192052,
+          "IDSW": 148
+        },
+        "delta": {
+          "HOTA": -0.2544206701037872,
+          "AssA": -0.2334851730831673,
+          "DetA": 0.03963637926146646,
+          "IDF1": -2.0322076660019768,
+          "MOTA": -0.004780571756384688,
+          "IDSW": -4
+        }
+      },
+      "decision": "DO_NOT_EXPAND_VISIBILITY_QUALITY_GATE_CAMPAIGN",
+      "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim.",
+      "online_guards": {
+        "gt": false,
+        "future": false,
+        "teacher": false,
+        "cached_inference_features": false
+      },
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -4916,8 +4986,7 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and the rejected local4 probe.",
-    "Preserve the rejected SN-015 candidate-conditioned nearest-history probe; do not tune history length/age/thresholds from its outer result.",
+    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and rejected local4, raw-history and visibility-quality probes.",
     "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
     "Keep external payload and unavailable source/license exclusions explicit.",
     "Preserve the causal motion-error predictability failure; do not run learned motion without a new independent signal."
@@ -4965,7 +5034,7 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "report_sha256": "9a26d0c766bff6fb357fbe3c11f91db8f045f269d9039f452a41cf7b454cea64"
+    "report_sha256": "062ccbe48b8826f9dbbc76326fb52a794a126d09046bc8dd716b982cbb8ce267"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -4993,5 +5062,21 @@
     "remote_error": null,
     "content_commit": "9ebe96baf256dbc9b703fe2b99471c04f02757e1",
     "remote_branch_pointer_is_metadata_after_content": true
+  },
+  "native_visibility_quality_probe": {
+    "status": "COMPLETE_SN015_NATIVE_VISIBILITY_QUALITY_PROBE_REJECTED",
+    "report": "docs/research/PHASE_VII_NATIVE_VISIBILITY_QUALITY_SN015_MEASURED.json",
+    "report_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
+    "decision": "DO_NOT_EXPAND_VISIBILITY_QUALITY_GATE_CAMPAIGN",
+    "outer": "SN-015",
+    "delta_vs_frozen_fifo": {
+      "HOTA": -0.2544206701037872,
+      "AssA": -0.2334851730831673,
+      "DetA": 0.03963637926146646,
+      "IDF1": -2.0322076660019768,
+      "MOTA": -0.004780571756384688,
+      "IDSW": -4
+    },
+    "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
   }
 }
