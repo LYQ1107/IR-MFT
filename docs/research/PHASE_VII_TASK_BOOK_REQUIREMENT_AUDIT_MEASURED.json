@@ -4,14 +4,14 @@
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "task_book_sha256": "04532c5b22c03aed30d6f6ed6d2e1ce9e492d2f63f971a63ef44360a7fafdda7",
-  "local_head_at_audit": "509acede7508a90ed2f4e2961246a360930c0599",
+  "local_head_at_audit": "561451f5d3586a4560b8806a46614589f6dcca9c",
   "remote_branch_last_verified": "509acede7508a90ed2f4e2961246a360930c0599",
   "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub file reads at c739d0e.",
   "worktree_at_audit": "Visible-token native three-seed evidence is present remotely at dc83b1f; strict current-only visible-token whole-raw profiler and frozen config are present remotely at 3528762, with the SN-015 seed1 masked/visible-target runs currently measured outside Git.",
   "resource_guards": {
     "free_space_gib_min_required": 40,
-    "free_space_gib_at_last_snapshot": 40.15009689331055,
-    "gpu_policy": "GPU0-3 only when actually idle; GPU4-9 excluded"
+    "free_space_gib_at_last_snapshot": 42.38393783569336,
+    "gpu_policy": "User-authorized overlap with unrelated jobs on GPUs 0-3 only; same-campaign raw is limited to one worker per GPU after the detector IPC timeout trial; GPUs 4-9 untouched."
   },
   "summary": {
     "complete_or_scoped": 15,
@@ -22,17 +22,17 @@
     {
       "id": "P1_environment_branch_assets",
       "status": "COMPLETE_WITH_ACTIVE_RESOURCE_GUARDS",
-      "requirement": "Verify protected Phase I\u2013VI base/branch, current worktree, disk and GPU policy; preserve old assets.",
+      "requirement": "Verify protected Phase I–VI base/branch, current worktree, disk and GPU policy; preserve old assets.",
       "evidence": [
         {
           "path": "docs/research/PHASE_VII_STATE.json",
           "exists": true,
-          "sha256": "60d234594e25edd8b48fc0f77da2a8a7ebb214fa206de15ae6029653b1cabc11"
+          "sha256": "80955220e43914e18de96b96706cbaa0ec51990b200ea8a22cc3aee08c113818"
         },
         {
           "path": "docs/research/PHASE_VII_FINAL_GOAL.md",
           "exists": true,
-          "sha256": "3ab791e8b8c317c9a9419a6b10d4aa8d1a59986e5476831be4c5451488b2ee35"
+          "sha256": "2f7ca7cdb62c22878beea942ca02e2437473b2afc26b1b44e8fdc47b6f85d71d"
         }
       ]
     },
@@ -235,8 +235,8 @@
     },
     {
       "id": "P10_protocol_C_raw_online",
-      "status": "COMPLETE_FOR_FROZEN_LEGACY_AND_SN015_VISIBLE_TOKEN_STRICT_RAW_SINGLE_FOLD",
-      "requirement": "Measure full raw decode\u2192IR\u2192V3\u2192crop\u2192encoder\u2192association\u2192output FPS/latency and parity.",
+      "status": "COMPLETE_FOR_FROZEN_LEGACY_AND_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW",
+      "requirement": "Measure full raw decode→IR→V3→crop→encoder→association→output FPS/latency and parity.",
       "evidence": [
         {
           "path": "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
@@ -259,6 +259,27 @@
           "sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
           "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
           "scope": "SN-015 one outer fold, both objectives x seeds0/1/2, whole current-only Protocol C with exact CPU trace replay and official TrackEval"
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+          "exists": true,
+          "sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+          "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+          "scope": "All six outer videos × two visible-token objectives × three seeds; complete current-only Protocol C with trace replay and official TrackEval."
+        },
+        {
+          "path": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+          "exists": true,
+          "sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+          "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+          "scope": "Persistent external aggregate; raw outputs remain outside Git."
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+          "exists": true,
+          "sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
+          "status": "COMPLETE_ENGINEERING_REPAIR_SCOPED_SINGLE_VIDEO_OFFICIAL_EVALUATION",
+          "scope": "Per-video official TrackEval finalization was rerun with a scoped train partition; all six reports and 36 runs verified."
         }
       ]
     },
@@ -270,12 +291,19 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "110c5c107ab928d8540e17543d4323514b5cff41358fa1d6f1710f17af75b1a3"
+          "sha256": "93195259ff0c1a29ba5b49783cd28bd2f6919eca4cededfbdb81a541effcc648"
         },
         {
           "path": "docs/research/PHASE_VII_EXPERIMENT_REGISTRY.json",
           "exists": true,
-          "sha256": "bf2a68b217dcd6d373fc09688ae5e000646b15e3d18fe5727a29c08e150e50b1"
+          "sha256": "770d846579a9bc7760a8961ec418f752f6ae5c83519e77a8e105e3f34da30aee"
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+          "exists": true,
+          "sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+          "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+          "scope": "Fresh all-fold strict raw evidence remains mixed/negative and does not justify mechanical stacking."
         }
       ]
     },
@@ -304,7 +332,7 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_GOAL.md",
           "exists": true,
-          "sha256": "3ab791e8b8c317c9a9419a6b10d4aa8d1a59986e5476831be4c5451488b2ee35"
+          "sha256": "2f7ca7cdb62c22878beea942ca02e2437473b2afc26b1b44e8fdc47b6f85d71d"
         },
         {
           "path": "docs/research/PHASE_VII_30_PAPERS_CODE_AUDIT.md",
@@ -364,7 +392,7 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "110c5c107ab928d8540e17543d4323514b5cff41358fa1d6f1710f17af75b1a3"
+          "sha256": "93195259ff0c1a29ba5b49783cd28bd2f6919eca4cededfbdb81a541effcc648"
         }
       ]
     },
@@ -388,7 +416,7 @@
         {
           "path": "docs/research/PHASE_VII_STATE.json",
           "exists": true,
-          "sha256": "60d234594e25edd8b48fc0f77da2a8a7ebb214fa206de15ae6029653b1cabc11"
+          "sha256": "80955220e43914e18de96b96706cbaa0ec51990b200ea8a22cc3aee08c113818"
         }
       ]
     },
@@ -400,12 +428,12 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
           "exists": true,
-          "sha256": "f08d8f0d91d2a7e86b99bf5928e265a21bf7274e503b0d6e5de28e40f68a347f"
+          "sha256": "bd40393242ca64bc762b9964d032015fbdbce95072aa46b3daf0ab109a614dd7"
         },
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "110c5c107ab928d8540e17543d4323514b5cff41358fa1d6f1710f17af75b1a3"
+          "sha256": "93195259ff0c1a29ba5b49783cd28bd2f6919eca4cededfbdb81a541effcc648"
         }
       ]
     },
@@ -417,12 +445,19 @@
         {
           "path": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
           "exists": true,
-          "sha256": "110c5c107ab928d8540e17543d4323514b5cff41358fa1d6f1710f17af75b1a3"
+          "sha256": "93195259ff0c1a29ba5b49783cd28bd2f6919eca4cededfbdb81a541effcc648"
         },
         {
           "path": "docs/research/PHASE_VII_HYPOTHESIS_LEDGER.md",
           "exists": true,
-          "sha256": "dc6cc4b4503a8305b73fd2dde4e7d97f1cb2d2377b22e9e314ff926958827d78"
+          "sha256": "62fa40cadb1b852fbed756c8830724be21ad9c9f9c6fe6845071c7380542a361"
+        },
+        {
+          "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+          "exists": true,
+          "sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+          "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+          "scope": "Fresh all-fold raw evidence closes measurement coverage but reports no stable independent contribution."
         }
       ]
     }
@@ -897,7 +932,7 @@
         {
           "path": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
           "exists": true,
-          "sha256": "e9842c9ced979bf6f797e99a36c16e8e829d7bf1989f534a80cbcb6e27ed3fe0"
+          "sha256": "b3e7a4a2d3dbb24d46121caa5270fbbadc490a769b622b4a453bd7147c0f6451"
         }
       ]
     }
@@ -941,14 +976,14 @@
       "evidence": [
         {
           "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-          "sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
+          "sha256": "7f6e39f071a7db60ac5716589da9986f95301dea18ce22e06d6cc16fd7eac3e8",
           "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
         }
       ]
     },
     {
       "id": "step10_three-seed/full-metric/raw",
-      "status": "COMPLETE_FOR_REGISTERED_REFERENCES_AND_VISIBLE_TOKEN_SINGLE_FOLD_THREE_SEED_NATIVE_METRICS"
+      "status": "COMPLETE_FOR_REGISTERED_REFERENCES_AND_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW"
     },
     {
       "id": "step11_adaptive-next-hypothesis",
@@ -959,7 +994,7 @@
       "status": "REMOTE_VERIFIED_CONTENT_AND_RAW_TOOL_COMMIT_3528762"
     }
   ],
-  "interpretation": "Coverage/claim audit of the user task book. The visible-token native continuation and strict raw Protocol C now close the registered SN-015 one-outer-fold three-seed boundary with a matched control, but do not create a stable component benefit, positive final method, external generalization claim or project-wide completion. All-fold visible-token native/raw replay and final novelty remain explicit open boundaries.",
+  "interpretation": "Coverage/claim audit of the user task book. The visible-token native continuation and strict raw Protocol C close the registered SN-015 one-outer-fold three-seed boundary with a matched control, and the persistent recovery separately closes the all-fold strict raw boundary. These results do not create a stable component benefit, positive final method, external generalization claim or project-wide completion; all-fold native feature replay and final novelty remain explicit open boundaries.",
   "user_task_book_attachment": "/data3/liuyeqiang/.codex/attachments/181bfd56-cc1c-46e7-9427-7a3a170c7db3/Pasted text.txt",
   "user_task_book_attachment_sha256": "7a11049f9e3c12ad20aefb5a11865cfbc729a0d281d6530b5095a9ff09213882",
   "user_task_book_attachment_line_endings": "CRLF",
@@ -977,11 +1012,11 @@
       "sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
       "status": "COMPLETE_SN015_NATIVE_VISIBLE_TOKEN_THREE_SEED_LIMITED_MIXED",
       "finding": "Masked FIFO/last show small mean identity gains but extra IDSW; EMA is unstable; visible-target is consistently lower with extra IDSW; no stable native gain.",
-      "scope": "SN-015 one lawful outer fold; masked_visible_tokens and visible_target x seeds0/1/2; FIFO/last/EMA official TrackEval; all-fold/whole-raw remain open.",
+      "scope": "SN-015 one lawful outer fold; masked_visible_tokens and visible_target x seeds0/1/2; FIFO/last/EMA official TrackEval. The separate persistent recovery closes all-fold strict raw evidence; this entry remains the single-fold native scope.",
       "strict_raw_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
       "strict_raw_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
       "strict_raw_status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
-      "strict_raw_scope": "SN-015 one lawful outer fold; two objectives x seeds0/1/2; all 6,570 current frames; independent CPU trace replay and official TrackEval; all-fold raw open.",
+      "strict_raw_scope": "SN-015 one lawful outer fold; two objectives x seeds0/1/2; all 6,570 current frames; independent CPU trace replay and official TrackEval. The separate persistent recovery closes all-fold strict raw evidence; this entry remains the single-fold scope.",
       "strict_raw_summary": {
         "masked_visible_tokens": {
           "whole_raw_FPS_mean": 1.219578202728116,
@@ -1012,14 +1047,14 @@
   },
   "final_combination_gate": {
     "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-    "sha256": "51a09d2c295195ac4606966f6275185575b2d2da5f78a362a2d9c4a7a6444187",
+    "sha256": "7f6e39f071a7db60ac5716589da9986f95301dea18ce22e06d6cc16fd7eac3e8",
     "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
   },
   "strict_raw_visible_token_followup": {
     "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
     "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
     "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
-    "scope": "One lawful outer fold SN-015, fit BT-003/MSK-002/PF-001/SN-001, inner BT-001, two fit-only visible-token objectives x seeds 0/1/2. Whole current-only Protocol C is measured as RGB decode -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector -> current proposal crops -> visible-token checkpoint -> FIFO lifecycle -> output. No GT, future, teacher or cached inference input; all-fold and final-method claims remain open.",
+    "scope": "One lawful outer fold SN-015, fit BT-003/MSK-002/PF-001/SN-001, inner BT-001, two fit-only visible-token objectives x seeds 0/1/2. Whole current-only Protocol C is measured as RGB decode -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector -> current proposal crops -> visible-token checkpoint -> FIFO lifecycle -> output. No GT, future, teacher or cached inference input; all-fold strict raw evidence is closed by the separate persistent recovery, while final-method claims remain open.",
     "summary": {
       "masked_visible_tokens": {
         "whole_raw_FPS_mean": 1.219578202728116,
@@ -1052,6 +1087,9 @@
       "all_cached_detection_or_feature_used_for_inference_false": true,
       "all_no_future_or_teacher_online_true": true,
       "all_current_rgb_only_encoder_input_true": true
-    }
+    },
+    "finalizer_protocol_scope_repair": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+    "finalizer_protocol_scope_repair_sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
+    "finalizer_status": "COMPLETE_ALL_SIX_FINALIZERS"
   }
 }

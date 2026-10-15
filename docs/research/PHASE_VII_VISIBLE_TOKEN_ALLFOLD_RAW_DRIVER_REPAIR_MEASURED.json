@@ -1,0 +1,58 @@
+{
+  "status": "COMPLETE_PREMEASUREMENT_DRIVER_ARGUMENT_REPAIR",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1",
+  "scope": "The first raw-driver launch failed before any raw manifest or frame measurement because the temporary scheduler omitted the required --output argument. The failed attempt is retained as an execution correction and is excluded from scientific results.",
+  "initial_failure": {
+    "argument_error": "cfp_profile_raw_visible_token_current_video_v1.py: required argument --output was missing",
+    "affected_runs": 4,
+    "affected_outer_video": "BT-001",
+    "affected_modes": [
+      "masked_visible_tokens",
+      "visible_target"
+    ],
+    "affected_seeds": [
+      0,
+      1,
+      2
+    ],
+    "raw_manifests_accepted": 0,
+    "measurement_frames_accepted": 0,
+    "error_log_sha256": {
+      "BT-001_masked_visible_tokens_s0.log.arg_missing_output_error": "be538d83a1d8f6a24fd4bfdf6d41f4e2fb9c9f62d751b4a6b95aec903c04c042",
+      "BT-001_masked_visible_tokens_s1.log.arg_missing_output_error": "be538d83a1d8f6a24fd4bfdf6d41f4e2fb9c9f62d751b4a6b95aec903c04c042",
+      "BT-001_masked_visible_tokens_s2.log.arg_missing_output_error": "be538d83a1d8f6a24fd4bfdf6d41f4e2fb9c9f62d751b4a6b95aec903c04c042",
+      "BT-001_visible_target_s0.log.arg_missing_output_error": "be538d83a1d8f6a24fd4bfdf6d41f4e2fb9c9f62d751b4a6b95aec903c04c042"
+    }
+  },
+  "repair": {
+    "driver_path": "/tmp/run_visible_token_allfold_raw_v1.py",
+    "driver_sha256": "1361e41842ad05cd41eb06c406005e4f7f7c61725a840838639209c1cc5d9a8a",
+    "required_argument_added": "--output <declared run output directory>",
+    "syntax_check": "python -m py_compile passed",
+    "state_reset": "All 36 raw tasks reset to PENDING; no failed attempt retained as a measurement.",
+    "restarted_driver_pid": 1477514,
+    "formal_source_commit": "e3b51484f8bcc6798b9da3ef9df65bb65a8a3539",
+    "repaired_raw_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/raw_state.json"
+  },
+  "post_repair_verification": {
+    "first_runs": "BT-001 masked_visible_tokens seeds0/1/2 and visible_target seed0",
+    "manifest_status": "RUNNING",
+    "frames_declared": 3000,
+    "completed_frames_at_verification": 160,
+    "online_guards": {
+      "loaded_GT_annotation_labels": false,
+      "precomputed_IR_used_for_inference": false,
+      "cached_detection_or_feature_used_for_inference": false
+    },
+    "inner": "BT-003",
+    "fit": [
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "scientific_claim_allowed": false
+  },
+  "created_unix": 1792021977.5172215,
+  "conclusion": "The argument error is an engineering correction before accepted measurement; only post-repair manifests enter finalizer and aggregate evidence."
+}

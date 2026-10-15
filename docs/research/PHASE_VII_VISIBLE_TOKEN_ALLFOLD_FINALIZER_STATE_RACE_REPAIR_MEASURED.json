@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETE_ENGINEERING_RECOVERY_JSON_RACE_REPAIRED",
+  "as_of": "2026-10-15",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_STATE_RACE_REPAIR_V1",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "observed_condition": "The persistent finalizer read raw_state.json while the raw scheduler was rewriting it and exited on a transient JSONDecodeError before any finalizer report was launched.",
+  "scientific_effect": "None. No raw run, frame, metric, or failed output was accepted or altered by this orchestration failure.",
+  "repair": {
+    "finalizer": "Retry transient JSON reads and write finalize_state.json through an atomic temporary-file replacement.",
+    "aggregate": "Retry transient finalize-state and report reads and write the aggregate through an atomic temporary-file replacement.",
+    "raw_staging": "Reconcile a completed destination left by a move-before-symlink race, then recreate the declared symlink; reject a destination that is not complete.",
+    "restart": "Restarted staging, finalization and aggregation on the same persistent raw campaign; the raw scheduler and its completed outputs were left unchanged."
+  },
+  "verification": {
+    "raw_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/raw_state.json",
+    "raw_status_at_repair": "RECOVERY_RAW_RUNNING",
+    "raw_counts_at_repair": {
+      "COMPLETE": 18,
+      "RUNNING": 4,
+      "PENDING": 14
+    },
+    "same_campaign_workers_per_gpu": 1,
+    "approved_gpus": ["0", "1", "2", "3"],
+    "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
+    "scientific_claim_allowed": false
+  },
+  "note": "This records an orchestration repair boundary only; it is not evidence for a method contribution or a metric improvement."
+}

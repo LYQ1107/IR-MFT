@@ -1,0 +1,45 @@
+{
+  "status": "RECOVERY_REQUIRED_EPHEMERAL_ROOT_REMOVED",
+  "generated_at": "2026-10-15",
+  "scope": "All-fold visible-token strict-raw campaign continuity audit after the ephemeral /tmp root disappeared before aggregate finalization.",
+  "previous_root": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1",
+  "previous_handoff_snapshot": {
+    "source_commit": "e3b51484f8bcc6798b9da3ef9df65bb65a8a3539",
+    "reported_task_counts": {
+      "COMPLETE": 18,
+      "RUNNING": 4,
+      "PENDING": 14,
+      "FAILED": 0
+    },
+    "accepted_complete_manifest_count": 18,
+    "accepted_complete_videos": ["BT-001", "BT-003", "MSK-002"],
+    "aggregate_report_exists": false,
+    "integrity_audit_sha256": "e201369d4e7bda8320ff1155e5a073b1400cc5a6fa2735b0dad2aa55ff16bc28",
+    "finalizer_status": "RUNNING"
+  },
+  "current_authoritative_observation": {
+    "previous_root_exists": false,
+    "previous_raw_state_exists": false,
+    "previous_pretraining_root_exists": false,
+    "previous_driver_processes_present": false,
+    "aggregate_claim_accepted": false,
+    "interpretation": "The former /tmp state and process handles are absent; the prior 18 manifests cannot be independently re-opened and are not promoted to an all-fold result."
+  },
+  "recovery": {
+    "persistent_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2",
+    "pool_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/pools",
+    "pretraining_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/pretrain_state.json",
+    "raw_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw",
+    "source_commit": "e3b51484f8bcc6798b9da3ef9df65bb65a8a3539",
+    "pool_status": "COMPLETE_ALL_SIX_OUTER_FIT_ONLY_POOLS",
+    "pretraining_status": "RECOVERY_PRETRAIN_RUNNING_WAITING_APPROVED_GPU0_3",
+    "raw_status": "NOT_STARTED_AFTER_RECOVERY_PRETRAIN",
+    "aggregate_status": "NOT_GENERATED",
+    "online_guards": {
+      "loaded_GT_annotation_labels": false,
+      "precomputed_IR_used_for_inference": false,
+      "cached_detection_or_feature_used_for_inference": false
+    }
+  },
+  "conclusion": "This is a continuity/recovery record, not an all-fold scientific result. The Phase VII goal remains IN_PROGRESS_UNACHIEVED until a fresh persistent 36-task raw replay and independent finalization complete."
+}

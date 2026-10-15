@@ -1,0 +1,41 @@
+{
+  "status": "COMPLETE_PREMEASUREMENT_RAW_TRAINING_PATH_REPAIR",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1_RECOVERED_PERSISTENT",
+  "as_of": "2026-10-15",
+  "scope": "Engineering preflight correction before accepted raw measurement; the failed child initialized no accepted raw manifest or frame.",
+  "initial_failure": {
+    "argument": "--training pointed to encoder_final.pt, while CurrentVisibleTokenIdentityEncoder requires the containing pretrain directory with manifest.json and encoder_final.pt.",
+    "exception": "NotADirectoryError: .../encoder_final.pt/manifest.json",
+    "affected_runs": 4,
+    "accepted_manifests": 0,
+    "accepted_frames": 0,
+    "log_sha256": "a25879f568461c9ef6e09e711adbfbf4ede1eb23737402e8326ce537e4844ff4"
+  },
+  "repair": {
+    "driver": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/run_raw_recovery.py",
+    "driver_sha256": "b0de9778c3d009a32eee5682813f2e0a81cfafd32bb116c4123c909ebcbc7897",
+    "training_argument": "pretrain/<outer>/<mode_sseed> directory",
+    "syntax_check": "py_compile passed",
+    "state_reset": "36 raw tasks reset to PENDING; incomplete engineering directories removed; no failed attempt retained as a measurement.",
+    "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c"
+  },
+  "post_repair_verification": {
+    "first_batch": [
+      "BT-001 masked_visible_tokens s0",
+      "BT-001 masked_visible_tokens s1",
+      "BT-001 masked_visible_tokens s2",
+      "BT-001 visible_target s0"
+    ],
+    "manifest_status": "RUNNING",
+    "completed_frames_at_record": 96,
+    "frames_declared": 3000,
+    "online_guards": {
+      "loaded_GT_annotation_labels": false,
+      "precomputed_IR_used_for_inference": false,
+      "cached_detection_or_feature_used_for_inference": false
+    },
+    "gpu_overlap_enabled": true,
+    "scientific_claim_allowed": false
+  },
+  "conclusion": "The path error is an engineering correction excluded from scientific results. Only post-repair manifests with complete frames, trace replay and finalizer verification enter the aggregate."
+}

@@ -99,3 +99,13 @@ VII-H2/VII-H3 update: the controlled first-fold campaign now has three seeds for
 ## Final combination gate (2026-10-15)
 
 A measured combination gate now covers the completed context-V2, FDTA-style, source-JPM, dictionary-joint, observable-occlusion, visible-token and pixel/domain controls. Context full/local-temporal/global all lose the same-input frozen FIFO macro identity metrics; FDTA temporal/quality lose held-out HOTA and IDF1; JPM is not above the matched-capacity CLS control consistently; joint routes lose held-out HOTA/IDF1 or add switches; overlap fusion changes HOTA by only +0.029 macro points while lowering IDF1; and the visible-token campaign is offline first-fold evidence without native complementarity. The gate therefore records `DO_NOT_RUN_MECHANICAL_FINAL_STACKING` in `PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json`. This is a measured decision boundary, not a project-wide NO_GO; a future combination needs a new independent same-input complementary signal.
+
+
+## Visible-token all-fold strict raw recovery (2026-10-15)
+
+VII-H2/VII-H3/VII-H6 now have a complete current-only raw boundary across all six outer folds, both visible-token objectives and three seeds (36/36). The aggregate `docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json` reports independent actual-output trace replay, official TrackEval and online guards with no GT/future/cached inference inputs. The fresh all-fold measurement remains a mixed/negative component result and supplies no stable complementarity or final stacking justification. The goal remains `IN_PROGRESS_UNACHIEVED`; all large traces, feature banks and checkpoints remain outside Git.
+
+
+## Finalizer protocol scope repair (2026-10-16)
+
+The first CPU finalizer launch exposed an evaluation-scope mismatch: each outer-fold output directory contains only its declared video prediction file, while the copied frozen protocol listed all six train videos. The resulting missing-sibling-file errors were finalization failures only; no raw prediction, trace, checkpoint, or metric was accepted from that attempt. The finalizer now writes a scoped per-video train partition while retaining the frozen protocol metadata, derived-GT hashes, source protocol SHA-256, and explicit evaluation scope. All six per-video reports were rerun successfully, and the persistent aggregate verifies 36/36 trace replays and TrackEval prediction-hash matches. This repair does not alter the scientific conclusion: P11 selective-combination value and P17 stable independent contribution remain unestablished.

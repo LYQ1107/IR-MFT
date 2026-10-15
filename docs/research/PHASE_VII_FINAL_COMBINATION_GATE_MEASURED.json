@@ -1,6 +1,6 @@
 {
   "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
-  "as_of": "2026-10-15",
+  "as_of": "2026-10-16",
   "source_commit": "509acede7508a90ed2f4e2961246a360930c0599",
   "purpose": "Evidence-backed decision on whether to run a final stacked EvidenceFishMOT combination. This is a measured gate, not a new model and not a project-wide NO_GO.",
   "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
@@ -329,7 +329,12 @@
         "strict_raw_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
         "strict_raw_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
         "strict_raw_status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
-        "strict_raw_scope": "SN-015 one outer fold, masked_visible_tokens/visible_target x seeds0/1/2, whole current-only Protocol C, exact CPU trace replay and official TrackEval; all-fold raw open."
+        "strict_raw_scope": "SN-015 one outer fold, masked_visible_tokens/visible_target x seeds0/1/2, whole current-only Protocol C, exact CPU trace replay and official TrackEval; all-fold evidence is recorded separately below.",
+        "allfold_strict_raw_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+        "allfold_strict_raw_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+        "allfold_strict_raw_status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+        "allfold_strict_raw_scope": "All six outer folds x two objectives x three seeds; 36/36 strict whole-video current-only runs with independent CPU trace replay, scoped official TrackEval and online guards.",
+        "allfold_strict_raw_finding": "The aggregate remains mixed/negative relative to the matched visible-target control and does not establish independent complementarity."
       },
       "sn015_summary": [
         {
@@ -631,7 +636,7 @@
     "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
   ],
-  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Strict raw visible-token runtime is complete for SN-015 seeds0/1/2, but all-fold raw coverage, independent complementarity and final novelty remain open.",
+  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Strict raw visible-token runtime is complete for all six folds and seeds; independent complementarity, P11 selective-combination value and P17 final novelty remain unestablished.",
   "resource_scope": {
     "protected_asset_free_gib_snapshot": 40.11628341674805,
     "reserve_gib": 40.0,
