@@ -1,0 +1,25 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_VISIBILITY_QUALITY_GATE_SN015_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "outer_video": "SN-015",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "appearance_max_distance": 0.35,
+  "quality_rule": "effective_appearance_weight_equals_registered_weight_times_mean_current_letterbox_visibility4",
+  "memory_rule": "unchanged_fifo_strictly_past_native_identity_prototype",
+  "selection": "Fixed before evaluation; no threshold, seed, video or outer metric selection.",
+  "expansion_gate": "Expand only if HOTA and IDF1 both improve over paired frozen FIFO and IDSW does not increase.",
+  "scope": "A single fixed candidate-quality rule tests whether observable crop content should reduce trust in appearance without changing the proposal graph, appearance legality threshold, FIFO history, geometry, lifecycle or output coordinates. The effective appearance blend for each legal current candidate is 0.3 multiplied by that candidate's mean visibility4 fraction from the frozen native DINO bank. No GT, physical identity, future frame, teacher, external payload or current/future feature enters online replay beyond the current candidate's causal crop-quality metadata. This SN-015 probe is a gate, not an all-video or final-method claim.",
+  "guards": {
+    "cpu_only": true,
+    "minimum_free_bytes": 42949672960,
+    "immutable_outputs": true,
+    "raw_fps": "not measured; cached native association timing only"
+  }
+}
