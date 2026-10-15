@@ -52,7 +52,7 @@ Authoritative remaining work is the requirement-by-requirement task-book command
 
 The current validation scope is recorded in `PHASE_VII_TEST_VALIDATION_MEASURED.json`: 293 Phase VII repository tests pass with 24 warnings after excluding the unavailable external PFTrack fixture; the unexcluded fixture and unrelated legacy tutorial dependency remain explicit limits. No external data or package was installed to hide those boundaries.
 
-The requirement-by-requirement task-book audit is now complete in `PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json`. It covers the 17 requirement rows, all 13 required documents, the suggested implementation paths with measured equivalents, the required-test/command crosswalk, and the 12 immediate execution steps. The audit records the delivery boundary explicitly: the audit/document set is independently verified on remote commit `200addd`. The EvidenceFishMOT goal therefore remains IN_PROGRESS and unachieved; only an evidence-supported final combination remains eligible for the next scientific decision.
+The requirement-by-requirement task-book audit is now complete in `PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json`. It covers the 17 requirement rows, all 13 required documents, the suggested implementation paths with measured equivalents, the required-test/command crosswalk, and the 12 immediate execution steps. The audit records the delivery boundary explicitly: the audit/document set is independently verified on remote commit `97bfb8c`. The EvidenceFishMOT goal therefore remains IN_PROGRESS and unachieved; only an evidence-supported final combination remains eligible for the next scientific decision.
 
 
 ## Visible-token RGB pretraining continuation (2026-10-15)
