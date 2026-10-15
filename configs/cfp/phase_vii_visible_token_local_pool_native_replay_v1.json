@@ -1,0 +1,10 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "modes": ["masked_visible_tokens", "visible_target"],
+  "seeds": [0, 1, 2],
+  "memory": "fifo",
+  "pool": "visibility_weighted_local4_then_l2_normalize",
+  "scope": "Pre-registered fit-free current-only control: replace the visible-token CLS embedding with the same bank's visibility-weighted geometric K4 local-token mean, preserving the exact current proposal rows, native FIFO history, lifecycle, output filtering and official TrackEval. No training, GT, physical identity, future frame, teacher, cached inference feature or mechanical score stacking is used. The control is Protocol B association evidence only; it is not a raw end-to-end FPS measurement.",
+  "decision_rule": "Expand from the SN-015 seed-1 probe to all six videos x two objectives x three seeds only if the probe completes with all guards and improves both HOTA and IDF1 without increasing IDSW relative to the paired CLS replay; otherwise record the local-pool hypothesis as not supported and do not stack it."
+}

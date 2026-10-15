@@ -1,0 +1,57 @@
+{
+  "status": "COMPLETE_SN015_MASKED_VISIBLE_TOKEN_LOCAL_POOL_PROBE_REJECTED",
+  "as_of": "2026-10-16",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "experiment_id": "VII_H2_VISIBLE_TOKEN_LOCAL_POOL_NATIVE_SN015_S1_V1",
+  "hypothesis": "The same current-only visible-token bank local geometric K4 regions may provide an online identity signal that is stronger than its CLS embedding without adding parameters or stacking scores.",
+  "decision_rule": "Expand only if HOTA and IDF1 both improve over paired CLS FIFO and IDSW does not increase.",
+  "decision": "DO_NOT_EXPAND_LOCAL_POOL_CAMPAIGN",
+  "scope": "One outer SN-015/inner BT-001 fold, masked_visible_tokens seed1, fit-free visibility-weighted local4 mean replacing the bank embedding; exact current proposal rows, FIFO lifecycle and scoped official TrackEval.",
+  "pool_definition": "For each proposal, weighted mean of local4 vectors with visibility4 fractions, divide by max(sum visibility4,1e-6), then L2-normalize; invalid proposals are zeroed.",
+  "source_feature_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1",
+  "derived_feature_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_local_pool_allfold_v1/derived/features/SN-015/masked_visible_tokens_s1",
+  "local_pool_replay": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_local_pool_allfold_v1/replays/local_pool_masked_visible_tokens_SN-015_s1_v1",
+  "local_pool_trackeval": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_local_pool_allfold_v1/replays/local_pool_masked_visible_tokens_SN-015_s1_v1.trackeval",
+  "source_manifest_sha256": "72052a28346e58e460b8c246f4417aeb9ad0ba5a3cf74ac378c3a621fcc1df98",
+  "derived_manifest_sha256": "acff421d03d632d082381954ffe4f76c9fa0ac3e900998a844f9836a6ce8f512",
+  "replay_manifest_sha256": "64473a2ca4b2b5bc08e8dfec9bf8d6e88f55e7c16974023cb3cff0f8016f9285",
+  "trackeval_metrics_sha256": "dc6f1b0cb8ccdbce6d6e19ad1f06fa888b764c9c6e26650aaa53b89708e26ce1",
+  "prediction_sha256": "5f8581c8cea0f6c8111088aaafd97f5c0e2c039cce108eb52ef64c45a794f0f5",
+  "baseline_report": "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
+  "baseline_report_sha256": "8eab9f96b9b579826342ce16e8394fcb2a0c9080016e779e2ee9ad0283e05c54",
+  "baseline_memory": "fifo",
+  "baseline_metrics": {
+    "HOTA": 32.57056910721817,
+    "AssA": 15.096505947500688,
+    "DetA": 70.80541468919645,
+    "IDF1": 30.801802813286926,
+    "MOTA": 90.99180928705741,
+    "IDSW": 159
+  },
+  "local_pool_metrics": {
+    "HOTA": 32.63887604036953,
+    "AssA": 15.161673253144503,
+    "DetA": 70.79161687718639,
+    "IDF1": 30.801802813286926,
+    "MOTA": 90.97746757178825,
+    "IDSW": 160
+  },
+  "delta_local_pool_minus_cls": {
+    "HOTA": 0.06830693315136216,
+    "AssA": 0.0651673056438149,
+    "DetA": -0.013797812010068355,
+    "IDF1": 0.0,
+    "MOTA": -0.014341715269154065,
+    "IDSW": 1
+  },
+  "online_guards": {
+    "loaded_GT_annotation_labels": false,
+    "precomputed_IR_used_for_inference": false,
+    "cached_detection_or_feature_used_for_inference": false,
+    "future_or_teacher_online": false,
+    "current_rgb_only_encoder_input": true,
+    "physical_identity_or_training_used": false
+  },
+  "interpretation": "HOTA rises by 0.0683 points, but IDF1 falls by 0.0010 and IDSW rises from 159 to 160. The preregistered three-part gate therefore fails; local4 pooling is not independently supported and is not expanded or stacked.",
+  "raw_end_to_end_fps_measured": false
+}

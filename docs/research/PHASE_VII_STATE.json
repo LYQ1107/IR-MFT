@@ -1,11 +1,11 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_NATIVE_AND_STRICT_RAW_MEASURED_PENDING_SCIENTIFIC_CONTRIBUTION",
+  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_NATIVE_STRICT_RAW_AND_LOCAL_POOL_PROBE_MEASURED_PENDING_SCIENTIFIC_CONTRIBUTION",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "200170e53e647f0b49ca532995686cadd9e22405",
-    "remote_commit": "0693fd2831a2196988a764e8f5ef5633ec987bfe",
+    "local_commit": "11b09a7852bc5159c473437da4e9e29b8831f4f6",
+    "remote_commit": "4720ff27941ef459ec530286c8acab3454d84b34",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -135,10 +135,11 @@
       "claim": "Metadata/permission audit complete; external payload, lineage, cadence and overlap unavailable; no external-scene claim."
     },
     "final_20_audit": {
-      "status": "COMPLETE_FINAL_20_EVIDENCE_AUDIT_GOAL_STILL_ACTIVE",
-      "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
       "all_question_ids_present": true,
-      "claim": "Coverage audit complete; positive contribution and project-wide NO_GO remain unclaimed."
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
+      "report_sha256": "d26d2d65244ba553bdfa74a2187e6cf716ac60a7195bf43b4ed639d9c23be4b2",
+      "status": "COMPLETE_FINAL_20_EVIDENCE_AUDIT_GOAL_STILL_ACTIVE"
     },
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
@@ -153,8 +154,8 @@
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; interpret them only through the requirement audit.",
-      "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
+      "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; a direct local4 pooling probe also failed its pre-registered gate.",
+      "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
       "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths."
     ],
@@ -163,14 +164,14 @@
     "gpu_policy": "User-authorized overlap with unrelated jobs on GPUs 0-3 only; same-campaign raw is limited to one worker per GPU after the detector IPC timeout trial; GPUs 4-9 untouched.",
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
-      "status": "COMPLETE_TASK_BOOK_REQUIREMENT_AUDIT_GOAL_STILL_ACTIVE",
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
       "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
-      "goal_status": "IN_PROGRESS_UNACHIEVED"
+      "status": "COMPLETE_TASK_BOOK_REQUIREMENT_AUDIT_GOAL_STILL_ACTIVE"
     },
     "remote_delivery_verification": {
-      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH",
       "branch": "research/evidence-fishmot-v1",
-      "commit": "0693fd2831a2196988a764e8f5ef5633ec987bfe"
+      "commit": "4720ff27941ef459ec530286c8acab3454d84b34",
+      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH"
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
@@ -196,8 +197,8 @@
       "scope": "Current-only native current RGB/frozen V3 proposal bank, native lifecycle and official TrackEval; one outer fold across three seeds and both objectives. The separate persistent recovery closes all-fold strict raw evidence; this entry remains the single-fold native scope.",
       "finding": "Masked FIFO/last small mean identity gains are coupled to extra IDSW; EMA is unstable; visible_target is consistently lower with extra IDSW; no stable component benefit."
     },
-    "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub commit/file reads at 0693fd2831a2196988a764e8f5ef5633ec987bfe.",
-    "worktree_at_audit": "Persistent all-fold strict-raw aggregate, runtime-summary repair and authoritative documentation are present locally and remotely at 8fdd37a; raw outputs and checkpoints remain outside Git.",
+    "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub commit/file reads at 4720ff27941ef459ec530286c8acab3454d84b34; the local4 probe is recorded in the pending metadata refresh.",
+    "worktree_at_audit": "All-fold strict-raw/native visible-token evidence, edge-engagement audit and the bounded SN-015 local4 probe are complete locally; raw outputs and checkpoints remain outside Git.",
     "visible_token_strict_raw_sn015": {
       "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
       "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
@@ -897,6 +898,20 @@
         "scope": "Read-only metadata audit over six videos x two visible-token objectives x three seeds. No official output is overwritten; no GT, physical ID, teacher, future frame, or model is used. The replay timing remains association-only and is not an end-to-end FPS measurement.",
         "interpretation": "The accepted replay manifests' identity_counts field is an inherited AppearanceTracker counter and remains zero for the PredictiveAssociationTracker. The active native FIFO association path is recorded by prediction_counts; all 36 instrumented replays must have positive predicted_rows and modified_edges while remaining byte-identical to the accepted predictions."
       }
+    },
+    "visible_token_local_pool_probe": {
+      "experiment_id": "VII_H2_VISIBLE_TOKEN_LOCAL_POOL_NATIVE_SN015_S1_V1",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json",
+      "report_sha256": "7fe396e6e29f29114029aff0b40eab4044cc574a9492cdcefeddf477f6af00cb",
+      "status": "COMPLETE_SN015_MASKED_VISIBLE_TOKEN_LOCAL_POOL_PROBE_REJECTED",
+      "decision": "DO_NOT_EXPAND_LOCAL_POOL_CAMPAIGN",
+      "scope": "SN-015 outer / BT-001 inner, masked_visible_tokens seed1, visibility-weighted local4 mean replacing the bank CLS embedding; current-only FIFO native replay and scoped TrackEval.",
+      "delta_vs_cls_fifo": {
+        "HOTA": 0.06830693315136216,
+        "IDF1": 0.0,
+        "IDSW": 1
+      },
+      "online_guards_clean": true
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -998,11 +1013,12 @@
     "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited.",
     "Three-seed SN-015 native visible-token continuation completed: masked/visible-target x seeds0/1/2 with FIFO/last/EMA official TrackEval; masked gains remain mixed with extra IDSW and visible-target is lower",
     "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only whole-raw Protocol C completed with exact CPU trace replays and official TrackEval",
-    "36-run read-only native replay engagement audit: prediction hashes byte-identical to accepted outputs and active FIFO prediction_counts positive for all runs"
+    "36-run read-only native replay engagement audit: prediction hashes byte-identical to accepted outputs and active FIFO prediction_counts positive for all runs",
+    "Pre-registered SN-015 masked visible-token visibility-weighted local4 native probe completed; HOTA-only change with unchanged IDF1 and one extra IDSW rejected expansion"
   ],
   "pending": [
     "Selective combinations only if an independently measured complementary same-input signal appears",
-    "Preserve negative C/D, external payload and final raw profiling boundaries"
+    "Preserve negative C/D, external payload and final raw profiling boundaries; the direct local4 probe did not pass its expansion gate"
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
@@ -1011,7 +1027,7 @@
   "active_jobs": [],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Keep the all-fold visible-token/native evidence and engagement audit as terminal mixed/negative evidence; do not mechanically stack components.",
+    "Keep all-fold visible-token/native evidence, edge-engagement audit and rejected local4 probe as terminal mixed/negative evidence; do not mechanically stack components.",
     "P11 remains not justified and P17 remains unestablished; preserve the explicit final-combination gate.",
     "Maintain explicit external-generalization and unavailable-source exclusions."
   ],
@@ -1122,10 +1138,11 @@
     "finalizer_protocol_scope_repair_sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f"
   },
   "remaining_authoritative": [
-    "All-fold strict raw visible-token measurement is complete; all-fold native/combination evidence still must be interpreted only through the requirement audit.",
-    "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
+    "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; a direct local4 pooling probe also failed its pre-registered gate.",
+    "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
     "No independent external payload/zero-overlap validation or stable independent contribution is established.",
     "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths."
   ],
   "active_processes_at_snapshot": [],
-  "f
+  "free_space_gib_at_snapshot": 48.0
+}

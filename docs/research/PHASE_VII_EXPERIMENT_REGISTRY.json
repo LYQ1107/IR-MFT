@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "200170e53e647f0b49ca532995686cadd9e22405",
-    "remote_commit": "0693fd2831a2196988a764e8f5ef5633ec987bfe",
+    "local_commit": "11b09a7852bc5159c473437da4e9e29b8831f4f6",
+    "remote_commit": "4720ff27941ef459ec530286c8acab3454d84b34",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -315,7 +315,9 @@
       "status": "COMPLETE_FINAL_20_EVIDENCE_AUDIT_GOAL_STILL_ACTIVE",
       "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
       "all_question_ids_present": true,
-      "goal_status": "IN_PROGRESS_UNACHIEVED"
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "source_report_sha256": "9125ab35024ae6879a0ce8ac7a060a90e9029c379023f96a1d936ed87fcc2444",
+      "audit_report_sha256": "d26d2d65244ba553bdfa74a2187e6cf716ac60a7195bf43b4ed639d9c23be4b2"
     },
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
@@ -329,7 +331,7 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
-      "All-fold strict raw and native visible-token measurements are complete; both report mixed/negative evidence and no stable new contribution.",
+      "All-fold strict raw and native visible-token measurements are complete; the direct local4 probe also failed its pre-registered gate, so no local-token expansion or stacking is justified.",
       "Final combination gate remains NOT_JUSTIFIED; preserve DO_NOT_RUN_MECHANICAL_FINAL_STACKING.",
       "External generalization and unavailable source/license exclusions remain explicit."
     ],
@@ -340,9 +342,9 @@
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     },
     "remote_delivery_verification": {
-      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH",
       "branch": "research/evidence-fishmot-v1",
-      "commit": "0693fd2831a2196988a764e8f5ef5633ec987bfe"
+      "commit": "4720ff27941ef459ec530286c8acab3454d84b34",
+      "status": "VERIFIED_GIT_LS_REMOTE_AND_GITHUB_FETCH"
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
@@ -595,6 +597,21 @@
       },
       "scope": "Read-only metadata audit over six videos x two visible-token objectives x three seeds. No official output is overwritten; no GT, physical ID, teacher, future frame, or model is used. The replay timing remains association-only and is not an end-to-end FPS measurement.",
       "interpretation": "The accepted replay manifests' identity_counts field is an inherited AppearanceTracker counter and remains zero for the PredictiveAssociationTracker. The active native FIFO association path is recorded by prediction_counts; all 36 instrumented replays must have positive predicted_rows and modified_edges while remaining byte-identical to the accepted predictions."
+    },
+    "remote_verification_scope": "Remote branch HEAD independently verified with git ls-remote and GitHub commit/file reads at 4720ff27941ef459ec530286cacab3454d84b34.",
+    "visible_token_local_pool_probe": {
+      "experiment_id": "VII_H2_VISIBLE_TOKEN_LOCAL_POOL_NATIVE_SN015_S1_V1",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json",
+      "report_sha256": "7fe396e6e29f29114029aff0b40eab4044cc574a9492cdcefeddf477f6af00cb",
+      "status": "COMPLETE_SN015_MASKED_VISIBLE_TOKEN_LOCAL_POOL_PROBE_REJECTED",
+      "decision": "DO_NOT_EXPAND_LOCAL_POOL_CAMPAIGN",
+      "scope": "SN-015 outer / BT-001 inner, masked_visible_tokens seed1, fit-free visibility-weighted local4 mean, FIFO native replay",
+      "delta_vs_cls_fifo": {
+        "HOTA": 0.06830693315136216,
+        "IDF1": 0.0,
+        "IDSW": 1
+      },
+      "online_guards_clean": true
     }
   },
   "experiments": [
@@ -4634,6 +4651,45 @@
         "scope": "Read-only metadata audit over six videos x two visible-token objectives x three seeds. No official output is overwritten; no GT, physical ID, teacher, future frame, or model is used. The replay timing remains association-only and is not an end-to-end FPS measurement.",
         "interpretation": "The accepted replay manifests' identity_counts field is an inherited AppearanceTracker counter and remains zero for the PredictiveAssociationTracker. The active native FIFO association path is recorded by prediction_counts; all 36 instrumented replays must have positive predicted_rows and modified_edges while remaining byte-identical to the accepted predictions."
       }
+    },
+    {
+      "experiment_id": "VII_H2_VISIBLE_TOKEN_LOCAL_POOL_NATIVE_SN015_S1_V1",
+      "hypothesis": "Same-input visible-token geometric local4 regions may improve native FIFO identity over the bank CLS embedding without extra parameters or score stacking.",
+      "status": "COMPLETE_SN015_MASKED_VISIBLE_TOKEN_LOCAL_POOL_PROBE_REJECTED",
+      "goal_status": "IN_PROGRESS_UNACHIEVED",
+      "outer": "SN-015",
+      "inner": "BT-001",
+      "mode": "masked_visible_tokens",
+      "seed": 1,
+      "memory": "fifo",
+      "feature_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1",
+      "derived_feature_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_local_pool_allfold_v1/derived/features/SN-015/masked_visible_tokens_s1",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json",
+      "report_sha256": "7fe396e6e29f29114029aff0b40eab4044cc574a9492cdcefeddf477f6af00cb",
+      "config": "configs/cfp/phase_vii_visible_token_local_pool_native_replay_v1.json",
+      "config_sha256": "0799e2545dd20f7cf88d3e65c6fbc0c19064e18e7f36fd531911c41c8bec23b1",
+      "driver": "tools/cfp_run_visible_token_local_pool_native_replays.py",
+      "driver_sha256": "6ad3e0e25f414520d3c4bd0993ad64d7add8d92422f52cdb21edc25a9b3a25ad",
+      "pre_registered_gate": "Expand only if HOTA and IDF1 both improve over paired CLS FIFO and IDSW does not increase.",
+      "aggregate": {
+        "baseline_cls_fifo": {
+          "HOTA": 32.57056910721817,
+          "IDF1": 30.801802813286926,
+          "IDSW": 159
+        },
+        "local_pool_fifo": {
+          "HOTA": 32.63887604036953,
+          "IDF1": 30.801802813286926,
+          "IDSW": 160
+        },
+        "delta_local_pool_minus_cls": {
+          "HOTA": 0.06830693315136216,
+          "IDF1": 0.0,
+          "IDSW": 1
+        }
+      },
+      "decision": "HOTA improved only while IDF1 was unchanged and IDSW increased; do not expand or stack.",
+      "scope": "Fit-free Protocol B native current-only association control; no raw end-to-end FPS claim; no GT, future, teacher, physical identity or cached inference input."
     }
   ],
   "source_http_followup": {
@@ -4647,8 +4703,9 @@
     "cov_followup_status": "ACQUISITION_FAILED_NETWORK_RETRY_PRESERVED"
   },
   "pending": [
-    "Selective combinations only when an independently measured complementary same-input benefit exists; current all-fold native and edge-engagement evidence does not justify mechanical stacking.",
-    "C repaired NULL/competition and D motion controls remain internal negative/limited evidence; no learned nonlinear motion without a new measured error signal."
+    "Preserve measured mixed/negative all-fold native and strict-raw boundaries and the rejected local4 probe.",
+    "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
+    "Keep external payload and unavailable source/license exclusions explicit."
   ],
   "validation": {
     "project_tests": 219,
