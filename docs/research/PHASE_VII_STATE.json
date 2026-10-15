@@ -20,7 +20,8 @@
       "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
       "docs/research/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json",
       "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
-      "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json"
+      "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
+      "docs/research/PHASE_VII_NATIVE_WEIGHT_CALIBRATION_SN015_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -162,7 +163,8 @@
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
       "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths.",
       "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified.",
-      "The fixed causal nonlinear MLP audit also fails both held-out means and the outer long-gap tail; no learned-motion replay is justified."
+      "The fixed causal nonlinear MLP audit also fails both held-out means and the outer long-gap tail; no learned-motion replay is justified.",
+      "The single-fold scalar appearance-weight calibration selected the existing 0.3 default and had zero outer delta; a non-selected 0.1 HOTA/IDSW tradeoff is descriptive only, so no weight campaign or final claim is justified."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -917,6 +919,23 @@
         "IDSW": 1
       },
       "online_guards_clean": true
+    },
+    "native_weight_calibration_pilot": {
+      "status": "COMPLETE_SN015_NATIVE_WEIGHT_CALIBRATION_NO_STABLE_OUTER_GAIN",
+      "report": "docs/research/PHASE_VII_NATIVE_WEIGHT_CALIBRATION_SN015_MEASURED.json",
+      "report_sha256": "8aec30c121cac257734d71c9f3dfca0e83e721a7a239a95bc6a73d7a50fe61bf",
+      "config": "configs/cfp/phase_vii_native_weight_calibration_sn015_v1.json",
+      "config_sha256": "ca3ec92728bdbc078f50b3569a6aae8b7f13f473efa6076907955fdac8203ac6",
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "candidate_weights": [
+        0.1,
+        0.3,
+        0.5
+      ],
+      "selected_weight": 0.3,
+      "scope": "One fit-only inner selection and held-out outer native FIFO pilot; no all-fold or final-method claim.",
+      "decision": "DO_NOT_EXPAND_SINGLE_FOLD_WEIGHT_CALIBRATION"
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -977,13 +996,13 @@
     "DINOv2 CLS paired-detector gap25 beatsImageNet on3of6; naive K4/K8concat not consistently better, no novel/local/nativeMOT gain claimed",
     "219tests18warnings pass; immutable weights/features/checks/source snapshots outsideGit",
     "Twelve officialDINOv2 fish identity fits completed; fresh initialization, fit-only final2blocks/norm/head, unchanged frozenprefix and real finite gradients verified",
-    "Firstfold global actualdetR1 improves57.9365->63.3862±0.7158 across3seeds; patchattention62.8571±0.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
+    "Firstfold global actualdetR1 improves57.9365->63.3862\u00b10.7158 across3seeds; patchattention62.8571\u00b10.5723 equalsmean capacitycontrol, no local/native/novelty gain claim",
     "All twelve actual/uniquepaired trained diagnostics reproduce frozenreference/training evaluator/supports exactly; allgapR1R5mAP/AUCEER/unknowns recorded",
     "Real separate strict deterministic globalDINO seed1GPU0 epoch2exit/freshresume versuscontinuous exact295tensor/1array/1248scalar state/loss/coverage/retrieval equality; original uncontrolled203differenceproof preserved",
     "226tests18warnings pass afternewhead/data/AMPoverflow regression; failedseed0v1serialization runs preserved and excluded",
     "Initial4externalfishdata primary metadata candidates audited; exact creatorBrackishMOTversion4 CC BY-SA4.0 differssecondaryterms; no externalrawpayload/fitting/externalperformance claim",
-    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds×3seeds×4controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
-    "Globalactualdetcrop macroR136.1976±0.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800±0.3094notstableincremental gain",
+    "All72K4DINO supervised fits/diagnostics complete; sixouter/innerfolds\u00d73seeds\u00d74controls exactsource/data/sampling/frozenprefix/capacity/supportverified",
+    "Globalactualdetcrop macroR136.1976\u00b10.4185 vsfrozen33.8692 and meanpositive6of6; localattention35.9800\u00b10.3094notstableincremental gain",
     "Genuine learned local/temporal/regionalmaskedprediction/currentrelation model with independentstoppedEMAencoder implemented, noold512PLIMalias",
     "Nine firstseed actuallocalJEPA/controlCPUfits1200updates complete; allsameinputmaskdigests/currentquerysupports and unknownnotnegatives verified; three-seedcampaign continues",
     "Strongmatchedglobal72.695/ordinarylocalTemporal64.716/frozenFIFO64.894 beatfullJEPA44.504 onfirstoutercleanGT-history/currentdet scene; noJEPAidentity/native/noveltygain claimed",
@@ -998,7 +1017,7 @@
     "V2fullseed0 complete6570frame endogenous nativehistory replay; HOTA30.694/IDF125.298 versus frozenFIFO32.225/30.445, no onlineJEPAgain",
     "254projecttests23warnings passed in18.85seconds; all new CLI modules compile",
     "Actual V2contextfullseed1 epoch2exit/newprocessresume vscontinuous exactlymatches student/independentEMAteacher/1200updates/opt/RNG/losses/metrics/support;250tensor/1array/1626scalar leaves",
-    "All27contextV2 firstfold CPUfits complete; fullR163.652±1.064 vsordinaryTemporal63.948±0.800/global72.813±0.369, no extraJEPAidentitygain",
+    "All27contextV2 firstfold CPUfits complete; fullR163.652\u00b11.064 vsordinaryTemporal63.948\u00b10.800/global72.813\u00b10.369, no extraJEPAidentitygain",
     "Scientificthree-seed V1/V2identity plot generated PNG/SVG/PDF and visuallyinspected; exactcontrolaliases explicit",
     "Nine centeredjoint/pair/activeparameter-matchedCrossTransformer three-seed CPUfits complete,28800actualupdates; matchedframe/code digests and zeroNULLranking supervision verified",
     "Untraineduniformcentered highstagecontrol giveszeroedits and exact baselinebytes onall684SN001/6570SN015frames",
@@ -1020,7 +1039,8 @@
     "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only whole-raw Protocol C completed with exact CPU trace replays and official TrackEval",
     "36-run read-only native replay engagement audit: prediction hashes byte-identical to accepted outputs and active FIFO prediction_counts positive for all runs",
     "Pre-registered SN-015 masked visible-token visibility-weighted local4 native probe completed; HOTA-only change with unchanged IDF1 and one extra IDSW rejected expansion",
-    "All144 DINOv2 K4/K8 crop-control runs independently coverage-audited and terminal; Protocol A only, no native-MOT or novelty claim."
+    "All144 DINOv2 K4/K8 crop-control runs independently coverage-audited and terminal; Protocol A only, no native-MOT or novelty claim.",
+    "Pre-registered native appearance-weight pilot: inner-selected w=0.3 matched frozen FIFO on outer SN-015; non-selected w=0.1 exposed an HOTA/IDF1 tradeoff and was not promoted."
   ],
   "pending": [
     "Selective combinations only if an independently measured complementary same-input signal appears",
@@ -1039,7 +1059,8 @@
     "P11 remains not justified and P17 remains unestablished; preserve the explicit final-combination gate.",
     "Maintain explicit external-generalization and unavailable-source exclusions.",
     "Retain the causal motion-error predictability failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified.",
-    "Retain the fixed nonlinear MLP failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified."
+    "Retain the fixed nonlinear MLP failure as a terminal D-direction boundary; no learned-motion replay or final stacking is justified.",
+    "Retain the fit-only appearance-weight pilot as a no-expansion boundary; do not select w=0.1 from the held-out outer result or mechanically stack it."
   ],
   "validation": {
     "project_tests": 295,
@@ -1152,7 +1173,8 @@
     "Final combination gate remains NOT_JUSTIFIED; no local-token expansion, mechanical stacking or positive final method is justified.",
     "No independent external payload/zero-overlap validation or stable independent contribution is established.",
     "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths.",
-    "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified."
+    "The fixed causal motion-error predictability audit worsened both held-out inner and outer error, so no learned-motion replay is justified.",
+    "The single-fold scalar appearance-weight calibration selected the existing 0.3 default and had zero outer delta; a non-selected 0.1 HOTA/IDSW tradeoff is descriptive only, so no weight campaign or final claim is justified."
   ],
   "active_processes_at_snapshot": [],
   "free_space_gib_at_snapshot": 48.0,
@@ -1202,5 +1224,6 @@
     "coverage": "six outer folds x four matched modes x seeds0/1/2 for K4 and K8; 72 runs per K",
     "decision": "CLOSE_PROTOCOL_A_DINOV2_ALLFOLD_CROP_DIAGNOSTIC",
     "claim_boundary": "Crop retrieval/discrimination only; no native MOT, raw online FPS, external-scene or final novelty claim."
-  }
+  },
+  "native_weight_calibration_sha256": "8aec30c121cac257734d71c9f3dfca0e83e721a7a239a95bc6a73d7a50fe61bf"
 }

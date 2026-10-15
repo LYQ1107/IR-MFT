@@ -4769,6 +4769,70 @@
       "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
       "finding": "Fixed MLP worsens held-out BT-001 0.065268->0.066295, SN-015 0.053722->0.053875 and SN-015 gap>1 0.480275->0.532769; leave-one-fit-video-out is mixed.",
       "claim_boundary": "No nonlinear-motion native-MOT or final-combination credit."
+    },
+    {
+      "experiment_id": "VII_NATIVE_APPEARANCE_WEIGHT_CALIBRATION_SN015_V1",
+      "status": "COMPLETE_SN015_NATIVE_WEIGHT_CALIBRATION_NO_STABLE_OUTER_GAIN",
+      "hypothesis": "The fixed appearance blend weight 0.3 could be a major confound in the negative native identity results; fit-only selection among the already declared 0.1/0.3/0.5 candidates should improve the held-out outer fold if the confound is real.",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner": "BT-001",
+      "outer": "SN-015",
+      "candidate_weights": [
+        0.1,
+        0.3,
+        0.5
+      ],
+      "memory": "fifo",
+      "config": "configs/cfp/phase_vii_native_weight_calibration_sn015_v1.json",
+      "config_sha256": "ca3ec92728bdbc078f50b3569a6aae8b7f13f473efa6076907955fdac8203ac6",
+      "driver": "tools/cfp_replay_native_weight_calibration.py",
+      "driver_sha256": "4bdcc8ec9eab4b86e64b921ee39dd18e1e7b6cdcc401c070d2afbf9e23d72a53",
+      "report": "docs/research/PHASE_VII_NATIVE_WEIGHT_CALIBRATION_SN015_MEASURED.json",
+      "report_sha256": "8aec30c121cac257734d71c9f3dfca0e83e721a7a239a95bc6a73d7a50fe61bf",
+      "selection": "BT-001 HOTA, then IDF1, then IDSW; outer SN-015 held out",
+      "selected_weight": 0.3,
+      "inner_metrics": {
+        "w0.1": {
+          "HOTA": 35.48756087880351,
+          "IDF1": 43.70909823136557,
+          "IDSW": 85
+        },
+        "w0.3": {
+          "HOTA": 35.812139449917964,
+          "IDF1": 45.66482714661925,
+          "IDSW": 99
+        },
+        "w0.5": {
+          "HOTA": 32.15371316776069,
+          "IDF1": 38.696031692741556,
+          "IDSW": 119
+        }
+      },
+      "outer_metrics": {
+        "w0.1": {
+          "HOTA": 33.85753547525138,
+          "IDF1": 29.969840862423,
+          "IDSW": 140
+        },
+        "w0.3": {
+          "HOTA": 32.22498292191964,
+          "IDF1": 30.44482587144484,
+          "IDSW": 152
+        },
+        "w0.5": {
+          "HOTA": 28.639929128148626,
+          "IDF1": 24.119595467049493,
+          "IDSW": 173
+        }
+      },
+      "decision": "DO_NOT_EXPAND_SINGLE_FOLD_WEIGHT_CALIBRATION",
+      "scope": "One pre-registered native SN-015 outer pilot; unchanged frozen DINO384/FIFO/V3 proposals/lifecycle/output; no all-fold, three-seed, raw FPS or final-method claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
