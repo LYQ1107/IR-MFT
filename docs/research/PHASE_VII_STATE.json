@@ -17,7 +17,8 @@
       "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_MEASURED.json",
       "docs/research/PHASE_VII_VISIBLE_TOKEN_NATIVE_SN015_THREE_SEED_MEASURED.json",
       "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
-      "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json"
+      "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "docs/research/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json"
     ],
     "native_context_outerfold": {
       "status": "COMPLETE_54_OUTERFOLD_CONTEXT_V2_NATIVE_ROWS",
@@ -152,10 +153,10 @@
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
     },
     "remaining_authoritative": [
-      "All-fold strict-raw and all-fold native visible-token measurements are complete; both are mixed/negative and must not be converted into a novelty or final-method claim.",
+      "All-fold strict raw and native visible-token measurements, including the 36-run native edge-engagement audit, are complete; interpret them only through the requirement audit.",
       "Final combination gate remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
-      "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed native feature banks remain in declared volatile staging with the /data3 symlink path."
+      "Large checkpoints, feature banks, traces and raw outputs remain outside Git; completed raw directories are staged in volatile /dev/shm with declared symlink paths."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -867,7 +868,35 @@
       "finding": "All-fold native FIFO replay is complete and mixed/negative. It does not establish stable independent complementarity, P11 selective-combination value, or P17 final contribution.",
       "runtime_boundary": "Feature-production and CPU replay association timing only; decode/IR/detector/crop/encoder whole-pipeline timing remains the separately measured strict-raw report.",
       "raw_outputs_outside_git": true,
-      "volatile_feature_staging": "/dev/shm/IR-MFT_phase7_visible_token_native_allfold_v1/features"
+      "volatile_feature_staging": "/dev/shm/IR-MFT_phase7_visible_token_native_allfold_v1/features",
+      "engagement_audit": {
+        "status": "COMPLETE_ALLFOLD_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36",
+        "report": "docs/research/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json",
+        "report_sha256": "8f4b2c9402f20d9d93549f042019eaa77c138cda10bb7fa1fc6d403f2ceeb63c",
+        "external_report": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json",
+        "external_output_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/visible_token_native_allfold_v1/native_replay_engagement_audit_v1_1792093466",
+        "task_count": 36,
+        "all_prediction_hashes_equal": true,
+        "all_native_prediction_paths_engaged": true,
+        "aggregate_prediction_counts": {
+          "masked_visible_tokens": {
+            "n": 18,
+            "predicted_rows_total": 621359,
+            "modified_edges_total": 790305,
+            "modified_edges_min": 3384,
+            "modified_edges_max": 108467
+          },
+          "visible_target": {
+            "n": 18,
+            "predicted_rows_total": 621950,
+            "modified_edges_total": 791192,
+            "modified_edges_min": 3384,
+            "modified_edges_max": 108530
+          }
+        },
+        "scope": "Read-only metadata audit over six videos x two visible-token objectives x three seeds. No official output is overwritten; no GT, physical ID, teacher, future frame, or model is used. The replay timing remains association-only and is not an end-to-end FPS measurement.",
+        "interpretation": "The accepted replay manifests' identity_counts field is an inherited AppearanceTracker counter and remains zero for the PredictiveAssociationTracker. The active native FIFO association path is recorded by prediction_counts; all 36 instrumented replays must have positive predicted_rows and modified_edges while remaining byte-identical to the accepted predictions."
+      }
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -968,10 +997,10 @@
     "275projecttests24warnings passed16.43s, compiledownednewcontrol/profile/diagnosis tools",
     "Six actual 8-epoch four-fit-video visible-token pretrains (masked_visible_tokens and visible_target x seeds0/1/2) plus six frozen CE+Triplet first-fold probes completed with exact hashes; matched identity result is negative/limited.",
     "Three-seed SN-015 native visible-token continuation completed: masked/visible-target x seeds0/1/2 with FIFO/last/EMA official TrackEval; masked gains remain mixed with extra IDSW and visible-target is lower",
-    "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only whole-raw Protocol C completed with exact CPU trace replays and official TrackEval"
+    "SN-015 masked_visible_tokens/visible_target seeds0/1/2 strict current-only whole-raw Protocol C completed with exact CPU trace replays and official TrackEval",
+    "36-run read-only native replay engagement audit: prediction hashes byte-identical to accepted outputs and active FIFO prediction_counts positive for all runs"
   ],
   "pending": [
-    "All-fold strict raw visible-token replay is complete; all-fold native feature replay remains a separate unregistered boundary",
     "Selective combinations only if an independently measured complementary same-input signal appears",
     "Preserve negative C/D, external payload and final raw profiling boundaries"
   ],
@@ -979,138 +1008,19 @@
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
   "storage_free_gib": 40.13754653930664,
   "source_audit_complete": 30,
-  "active_jobs": [
-    {
-      "kind": "GPU_NATIVE_DINO",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_matrix_worker1_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 8,
-      "total": 11,
-      "driver_pid": 544287,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_global_PF-001_k4_s2_v1",
-        "pid": 615030
-      }
-    },
-    {
-      "kind": "GPU_NATIVE_DINO",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_matrix_worker3_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 6,
-      "total": 10,
-      "driver_pid": 544288,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_patch_attention_PF-001_k4_s1_v1",
-        "pid": 605166
-      }
-    },
-    {
-      "kind": "CPU_CONTEXT_ALLFOLD_K4",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/context_identity_allfold_k4_worker0_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 20,
-      "total": 36,
-      "driver_pid": 570527,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-001_k4_s1_v2",
-        "pid": 614962
-      }
-    },
-    {
-      "kind": "CPU_CONTEXT_ALLFOLD_K4",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/context_identity_allfold_k4_worker1_v1.json",
-      "status_at_snapshot": "COMPLETE_ALL_SIX_CONTEXT_IDENTITY_K4_FOLDS",
-      "completed_at_snapshot": 36,
-      "total": 36,
-      "driver_pid": 570536,
-      "active_at_snapshot": null
-    },
-    {
-      "kind": "CPU_CONTEXT_ALLFOLD_K4",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/context_identity_allfold_k4_worker2_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 27,
-      "total": 36,
-      "driver_pid": 570534,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_local_temporal_BT-003_k4_s2_v2",
-        "pid": 615342
-      }
-    },
-    {
-      "kind": "CPU_CONTEXT_ALLFOLD_K4",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/context_identity_allfold_k4_worker3_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 21,
-      "total": 36,
-      "driver_pid": 570539,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_no_id_SN-001_k4_s1_v2",
-        "pid": 615646
-      }
-    },
-    {
-      "kind": "CPU_NATIVE_LOCAL",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_local_identity_controls_driver_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 28,
-      "total": 30,
-      "driver_pid": 545537,
-      "active_at_snapshot": {
-        "model": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/local_dense_context_full_SN-015_k4_s1_v2",
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_context_full_SN-015_s1_v2",
-        "pid": 614825
-      }
-    },
-    {
-      "kind": "CPU_NATIVE_MATRIX",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_current_identity_matrix_driver_v1.json",
-      "status_at_snapshot": "WAITING_ACTUAL_PRODUCER",
-      "completed_at_snapshot": 81,
-      "total": 126,
-      "driver_pid": 546692,
-      "active_at_snapshot": {
-        "features": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_dino_patch_attention_PF-001_k4_s1_v1",
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_identity_patch_attention_PF-001_last_s1_v1"
-      }
-    },
-    {
-      "kind": "WHOLE_RAW_GPU",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_whole_legacy_gru_driver_v2.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 1,
-      "total": 6,
-      "driver_pid": 609382,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_current_legacy_gru_SN-015_v2",
-        "pid": 613955
-      }
-    },
-    {
-      "kind": "WHOLE_RAW_GPU",
-      "state": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_whole_dino_frozen_fifo_driver_v1.json",
-      "status_at_snapshot": "RUNNING",
-      "completed_at_snapshot": 1,
-      "total": 6,
-      "driver_pid": 608360,
-      "active_at_snapshot": {
-        "output": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/raw_current_dino_frozen_fifo_SN-015_v1",
-        "pid": 608377
-      }
-    }
-  ],
+  "active_jobs": [],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
   "next_actions": [
-    "Preserve all-fold native visible-token evidence and update requirement audit/registry/report.",
-    "Do not run mechanical combinations; P11 remains not justified and P17 remains unestablished.",
+    "Keep the all-fold visible-token/native evidence and engagement audit as terminal mixed/negative evidence; do not mechanically stack components.",
+    "P11 remains not justified and P17 remains unestablished; preserve the explicit final-combination gate.",
     "Maintain explicit external-generalization and unavailable-source exclusions."
   ],
   "validation": {
-    "project_tests": 275,
+    "project_tests": 295,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
-    "scope": "ActualfullCPU suite275passed24warnings pluslicensedpurefunctionparity, 96geometry/36Cnativeofficialvideos, realDINOoneupdatepixelmask/targetdiag andbothfirstrawcompletevideo byteparity. Notfullmaskedtraining/allrawvideos/finalmethod/goal completion."
+    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 295 passed, 24 warnings; py_compile/diff-check/JSON validation passed. External fixture/dependency limits remain explicit."
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
