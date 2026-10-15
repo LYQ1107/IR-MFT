@@ -1,0 +1,30 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_CUE_DISAGREEMENT_AUDIT_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "inner_video": "BT-001",
+  "outer_video": "SN-015",
+  "partition": "train",
+  "memory": "fifo",
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "clean_history_definition": "Every retained native proposal label is known and all retained labels are the same physical identity; mixed or unknown histories are summarized separately and excluded from clean cue comparison.",
+  "margin_gate_definition": "Descriptive only: on a clean row with at least two geometry-legal candidates, appearance is active when its current candidate cost top-two margin is strictly greater than the geometry cost top-two margin. No threshold or weight is fitted.",
+  "online_information_boundary": "The observer uses only current frozen DINO proposal embeddings and strictly past native accepted proposal indices. Physical labels and annotation files are loaded only after all baseline prediction byte parities are verified.",
+  "guards": {
+    "minimum_free_bytes": 42949672960,
+    "cpu_only": true,
+    "output_external_to_repo": true,
+    "reference_memory": "fifo",
+    "reference_seed": 0
+  },
+  "scope": "Read-only causal observation of the frozen native DINO384 FIFO association graph over all six train videos. It measures whether current appearance ranking provides stable complementary evidence to geometry and whether a fixed history-consistency/margin rule is predictive. It does not alter tracker outputs, train a model, tune a threshold, claim a new tracker or replace official TrackEval.",
+  "decision_gate": "A follow-up native replay is justified only if a predeclared fixed observable gate has the same sign of correction-over-harm on both held-out inner/outer videos and the six-video aggregate, with no evidence that the effect is confined to one producer/video. Otherwise close this diagnostic without an appearance campaign."
+}
