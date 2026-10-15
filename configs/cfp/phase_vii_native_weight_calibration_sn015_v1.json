@@ -1,0 +1,34 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_APPEARANCE_WEIGHT_CALIBRATION_SN015_V1",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "fit_videos": ["BT-003", "MSK-002", "PF-001", "SN-001"],
+  "inner_video": "BT-001",
+  "outer_video": "SN-015",
+  "candidate_weights": [0.1, 0.3, 0.5],
+  "selection": {
+    "video": "BT-001",
+    "metric_priority": ["HOTA", "IDF1", "IDSW"],
+    "direction": ["max", "max", "min"],
+    "tie_break": "smallest appearance weight"
+  },
+  "memory": "fifo",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "appearance_max_distance": 0.35,
+  "feature_source": "native frozen DINO384 current-frame proposal banks, exact Protocol B coordinates",
+  "proposal_source": "causal V3 train proposal cache, all frames including empty frames",
+  "scope": "Pre-registered diagnostic of the declared scalar geometry/appearance blend. Only the inner BT-001 official score selects among the three previously declared weights; all three weights are then replayed on outer SN-015 without selection. Frozen DINO, FIFO memory, proposals, lifecycle, thresholds, output coordinates and TrackEval are unchanged. No GT, future, teacher, current candidate, physical identity or external payload enters online replay. This single-fold pilot does not justify an all-fold or final-method claim.",
+  "guards": {
+    "cpu_only": true,
+    "minimum_free_bytes": 42949672960,
+    "immutable_outputs": true,
+    "raw_fps": "not measured; cached native association timing only"
+  }
+}

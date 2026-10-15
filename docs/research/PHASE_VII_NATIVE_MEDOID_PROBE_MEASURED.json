@@ -1,0 +1,58 @@
+{
+  "status": "COMPLETE_SN015_FIXED_NATIVE_MEDOID_PROBE_REJECTED",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_H6_NATIVE_MEDOID_MEMORY_SN015_FROZEN_V1",
+  "decision": "DO_NOT_EXPAND_MEDOID_MEMORY_CAMPAIGN",
+  "hypothesis": "A deterministic medoid of the last four strictly past assigned native identity embeddings could suppress a noisy history observation without changing the proposal graph, appearance weight, geometry, lifecycle or encoder.",
+  "selection_guard": "Rule fixed before evaluation; no threshold, seed, video or outer metric selected. One SN-015 outer probe is a gate, not a claim of all-video generalization.",
+  "scope": {
+    "outer": "SN-015",
+    "features": "frozen DINO K4 native current-only bank",
+    "memory": "medoid of last four observed native identity embeddings",
+    "history_source": "actual assigned proposal writes only",
+    "frames": 6570,
+    "gt_or_future_online_used": false,
+    "teacher_or_cached_inference_features_used": false,
+    "proposal_graph_changed": false,
+    "full_raw_fps_claim": false
+  },
+  "artifacts": {
+    "manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_medoid_probe_SN-015_frozen_v1/manifest.json",
+    "manifest_sha256": "d03d791734892dc5606db1fe1366b62042a683033a1aaaabe47e7cdaf52b522a",
+    "metrics": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_medoid_probe_SN-015_frozen_v1.trackeval/metrics.json",
+    "metrics_sha256": "076ae6256bf5ca7a60e576ce1e6d515e83279d2180445ac7cdabaf022ac38434",
+    "prediction": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_medoid_probe_SN-015_frozen_v1/SN-015.txt",
+    "prediction_sha256": "11d3dd1a00fdae91aadd92ee2c7684eaca2bbb7acebc4fcf132bee506913c376",
+    "protocol": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_medoid_probe_SN-015_frozen_v1.trackeval/protocol.json",
+    "protocol_sha256": "e1c73341e48ddeee618f4e331a85ba97e8ddd7ceef2cd646ae1a9072e292ae13",
+    "source_commit": "e4d4bf4dadf5bf91067bbe52912f8597c53decd0"
+  },
+  "metrics": {
+    "frozen_fifo": {
+      "HOTA": 32.22498292191964,
+      "AssA": 14.785889647020573,
+      "DetA": 70.77344978513939,
+      "IDF1": 30.44482587144484,
+      "MOTA": 91.0188991936769,
+      "IDSW": 152
+    },
+    "medoid": {
+      "HOTA": 30.434462655223843,
+      "AssA": 13.18519126016334,
+      "DetA": 70.88760180287238,
+      "IDF1": 26.460067690037377,
+      "MOTA": 90.99818338273258,
+      "IDSW": 153
+    },
+    "medoid_minus_fifo": {
+      "HOTA": -1.790520266695797,
+      "AssA": -1.6006983868572338,
+      "DetA": 0.11415201773299088,
+      "IDF1": -3.9847581814074644,
+      "MOTA": -0.020715810944324176,
+      "IDSW": 1
+    }
+  },
+  "interpretation": "The fixed medoid worsens HOTA by 1.7905 points and IDF1 by 3.9848 points while adding one ID switch versus the paired frozen FIFO replay. This rejects the medoid-memory hypothesis for expansion; it does not support a project-wide NO_GO or a positive contribution claim.",
+  "next_boundary": "Do not tune medoid distance, history length or thresholds from this outer result. Any further exploration must use a distinct independently motivated signal and fit-only selection."
+}
