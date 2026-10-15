@@ -1,0 +1,39 @@
+{
+  "status": "ACTIVE_AUDITED_OVERLAP_RECOVERY_POLICY",
+  "as_of": "2026-10-15",
+  "authorization": "User explicitly authorized overlapping execution while existing GPU jobs were present.",
+  "scope": "Persistent all-fold visible-token pretraining and strict raw recovery only; GPUs 0-3 are assigned, GPUs 4-9 untouched.",
+  "pretrain": {
+    "env": "CFP_ALLOW_GPU_OVERLAP=1",
+    "allocator_fraction": 0.4,
+    "budget_mb": 16384,
+    "launch_reserve_mb": 4096,
+    "minimum_device_total_mb": 40000
+  },
+  "raw": {
+    "env": "CFP_ALLOW_GPU_OVERLAP=1",
+    "allocator_fraction": 0.2,
+    "budget_mb": 8192,
+    "launch_reserve_mb": 4096,
+    "minimum_device_total_mb": 40000,
+    "same_campaign_workers_per_gpu": 1,
+    "unrelated_job_overlap": "Enabled when launch memory + 8192 MiB budget + 4096 MiB reserve fits; GPUs 4-9 remain excluded.",
+    "same_campaign_overlap_trial": "Two workers per GPU was tested and halted after detector IPC timeout; see PHASE_VII_VISIBLE_TOKEN_ALLFOLD_OVERLAP_TIMEOUT_REPAIR_MEASURED.json."
+  },
+  "provenance": {
+    "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
+    "pretrain_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/pretrain_state.json",
+    "raw_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/raw_state.json",
+    "persistent_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2",
+    "pretrain_checkpoint_retirement": "Verified scratch hash then retired temporary optimizer state; manifest retains retired hash.",
+    "raw_quota_staging": "Completed raw directories staged to /dev/shm while declared /data3 paths remain symlinks; manifests and traces are not altered."
+  },
+  "verification": {
+    "python_compile": "passed",
+    "pytest": "295 passed; 1 environment fixture failure at tests/test_rgbt_pairing.py due missing /data1/LWR/vranlee/CELL/PFTrack train.json",
+    "pretrain_allfold_count": 36,
+    "raw_allfold_count": "in_progress_after_clean_retry",
+    "goal_status": "IN_PROGRESS_UNACHIEVED",
+    "raw_overlap_trial": "Contained engineering failure; no incomplete run accepted; retry uses one worker per GPU."
+  }
+}

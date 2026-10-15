@@ -4,8 +4,8 @@
   "branch": "research/evidence-fishmot-v1",
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
-    "as_of": "2026-10-15",
-    "local_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+    "as_of": "2026-10-16",
+    "local_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
     "remote_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
@@ -21,7 +21,7 @@
         "status": "COMPLETE_SN015_VISIBLE_TOKEN_STRICT_RAW_THREE_SEED_LIMITED_MIXED",
         "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_STRICT_RAW_SN015_THREE_SEED_MEASURED.json",
         "report_sha256": "69fe867ab54b007cb8cff3bdad2edc3daa1775738de89f1305266823ecaeeb6e",
-        "scope": "SN-015 one outer fold, two objectives x seeds0/1/2, whole current-only Protocol C; all-fold raw open.",
+        "scope": "SN-015 one outer fold, two objectives x seeds0/1/2, whole current-only Protocol C; all-fold strict raw evidence is recorded separately in the persistent recovery entry.",
         "aggregate": {
           "masked_visible_tokens": {
             "whole_raw_FPS_mean": 1.219578202728116,
@@ -48,6 +48,33 @@
             "IDSW_mean": 165.0
           }
         }
+      },
+      "visible_token_allfold_strict_raw_recovered_persistent": {
+        "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
+        "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+        "report_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+        "aggregate_external": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+        "aggregate_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+        "scope": "All six outer folds, two visible-token objectives, three seeds. Each run is strict whole-video current-only RGB -> causal RGB-derived pseudo-IR/JPEG95 -> cu117 V3 detector -> current proposal crops -> fit-only visible-token checkpoint -> FIFO lifecycle/output, followed by independent CPU actual-trace replay and official TrackEval.",
+        "coverage": {
+          "expected_runs": 36,
+          "actual_runs": 36,
+          "all_six_videos": true,
+          "all_modes_seeds": true
+        },
+        "online_guard_summary": {
+          "all_loaded_GT_annotation_labels_false": true,
+          "all_precomputed_IR_used_for_inference_false": true,
+          "all_cached_detection_or_feature_used_for_inference_false": true,
+          "all_no_future_or_teacher_online_true": true
+        },
+        "source_commits": [
+          "561451f5d3586a4560b8806a46614589f6dcca9c"
+        ],
+        "persistent_root": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2",
+        "raw_outputs_outside_git": true,
+        "volatile_staging_root": "/dev/shm/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw",
+        "claim_boundary": "This closes the fresh all-fold strict-raw measurement boundary only. It does not establish a stable independent novelty contribution or justify mechanical final stacking; Phase VII goal remains IN_PROGRESS_UNACHIEVED pending full requirement audit and final documentation."
       }
     },
     "native_source_jpm": {
@@ -296,7 +323,7 @@
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
-      "All-fold visible-token fit-only pretraining and strict raw replay are actively IN_PROGRESS from committed protocol 3b4f897; aggregate evidence remains open.",
+      "All-fold visible-token fit-only pretraining and strict raw replay are COMPLETE from the persistent recovery; the aggregate closes the raw measurement boundary while contribution and combination evidence remain limited.",
       "Final combination gate is measured and NOT_JUSTIFIED; do not mechanically stack current components",
       "Only reopen with an independently measured complementary same-input signal; otherwise preserve frozen FIFO",
       "Preserve external payload/novelty scope exclusions and no positive final-method claim"
@@ -314,7 +341,7 @@
     },
     "final_combination_gate": {
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
+      "sha256": "7f6e39f071a7db60ac5716589da9986f95301dea18ce22e06d6cc16fd7eac3e8",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED"
     },
     "visible_token_native_sn015": {
@@ -362,7 +389,7 @@
     },
     "visible_token_allfold_strict_raw": {
       "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1",
-      "status": "IN_PROGRESS_FIT_ONLY_PRETRAINING_THEN_STRICT_RAW",
+      "status": "COMPLETE_ALLFOLD_STRICT_RAW_RECOVERED_PERSISTENT",
       "hypothesis": "A fit-only visible-token backbone can be evaluated without outer/inner leakage across all six registered outer folds; masked deletion and matched visible-target control must be carried through complete raw current-only Protocol C before any aggregate or novelty claim.",
       "outer_videos": [
         "BT-001",
@@ -400,13 +427,49 @@
         "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-015_v1.json"
       ],
       "raw_config": "configs/cfp/phase_vii_visible_token_raw_profile_allfold_v1.json",
-      "source_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+      "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
       "pool_status": "COMPLETE_ALL_SIX_FIT_ONLY_UNLABELED_POOLS_OUTSIDE_GIT",
-      "pretraining_state": "/tmp/IR-MFT_phase7_visible_token_allfold_v2/pretrain_state.json",
-      "raw_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/raw_state.json",
-      "finalization_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/reports/finalize_state.json",
-      "output_storage": "/tmp; protected asset reserve preserved",
-      "claim_boundary": "IN_PROGRESS only; no all-fold metrics, stable component benefit, final combination or novelty claim until every declared run is independently replayed and officially scored."
+      "pretraining_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/pretrain_state.json",
+      "raw_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/raw_state.json",
+      "finalization_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/reports/finalize_state.json",
+      "output_storage": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "report_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+      "aggregate_external": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "coverage": {
+        "expected_runs": 36,
+        "actual_runs": 36,
+        "all_six_videos": true,
+        "all_modes_seeds": true
+      },
+      "online_guard_summary": {
+        "all_loaded_GT_annotation_labels_false": true,
+        "all_precomputed_IR_used_for_inference_false": true,
+        "all_cached_detection_or_feature_used_for_inference_false": true,
+        "all_no_future_or_teacher_online_true": true
+      },
+      "independent_verification": {
+        "all_finalizer_reports_complete": true,
+        "all_runs_complete_frames": true,
+        "all_trace_replays_verified": true,
+        "all_trackeval_prediction_hash_matches_manifest": true
+      },
+      "raw_outputs_outside_git": true,
+      "volatile_staging_root": "/dev/shm/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw",
+      "finalization_status": "COMPLETE_ALL_SIX_FINALIZERS",
+      "finalizer_protocol_scope_repair": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+      "claim_boundary": "This closes the all-fold strict-raw measurement boundary only. It does not establish a stable independent novelty contribution, P11 selective-combination value, P17 final contribution or justify mechanical final stacking; Phase VII goal remains IN_PROGRESS_UNACHIEVED."
+    },
+    "overlap_repair": {
+      "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_OVERLAP_TIMEOUT_REPAIR_MEASURED.json",
+      "sha256": "6deec436e8af98d6c15fa84f490052332ce83c07116ff37e20a7ef5f8df2569b",
+      "final_same_campaign_workers_per_gpu": 1
+    },
+    "finalizer_protocol_scope_repair": {
+      "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+      "sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
+      "status": "COMPLETE_ENGINEERING_REPAIR_SCOPED_SINGLE_VIDEO_OFFICIAL_EVALUATION",
+      "aggregate_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c"
     }
   },
   "experiments": [
@@ -4062,7 +4125,7 @@
       "experiment_id": "VII_FINAL_COMBINATION_GATE_V1",
       "status": "COMPLETE_FINAL_COMBINATION_GATE_NOT_JUSTIFIED",
       "report": "docs/research/PHASE_VII_FINAL_COMBINATION_GATE_MEASURED.json",
-      "report_sha256": "4a3119c9c2c21b7effb072242ee07dd92432fe03b8b8b93515e1052a69f35dc1",
+      "report_sha256": "7f6e39f071a7db60ac5716589da9986f95301dea18ce22e06d6cc16fd7eac3e8",
       "scope": "Measured gate over the completed context/FDTA/JPM/joint/motion/occlusion/pixel and visible-token controls; no new model or compute run.",
       "decision": "DO_NOT_RUN_MECHANICAL_FINAL_STACKING",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
@@ -4230,7 +4293,7 @@
     },
     {
       "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_V1",
-      "status": "IN_PROGRESS_FIT_ONLY_PRETRAINING_THEN_STRICT_RAW",
+      "status": "COMPLETE_ALLFOLD_STRICT_RAW_RECOVERED_PERSISTENT",
       "hypothesis": "A fit-only visible-token backbone can be evaluated without outer/inner leakage across all six registered outer folds; masked deletion and matched visible-target control must be carried through complete raw current-only Protocol C before any aggregate or novelty claim.",
       "outer_videos": [
         "BT-001",
@@ -4268,13 +4331,44 @@
         "configs/cfp/phase_vii_unlabeled_detector_crop_pool_outer_SN-015_v1.json"
       ],
       "raw_config": "configs/cfp/phase_vii_visible_token_raw_profile_allfold_v1.json",
-      "source_commit": "3b4f89777b6262085715e45bef551c69b8ffda9b",
+      "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
       "pool_status": "COMPLETE_ALL_SIX_FIT_ONLY_UNLABELED_POOLS_OUTSIDE_GIT",
-      "pretraining_state": "/tmp/IR-MFT_phase7_visible_token_allfold_v2/pretrain_state.json",
-      "raw_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/raw_state.json",
-      "finalization_state": "/tmp/IR-MFT_phase7_visible_token_allfold_raw_v1/reports/finalize_state.json",
-      "output_storage": "/tmp; protected asset reserve preserved",
-      "claim_boundary": "IN_PROGRESS only; no all-fold metrics, stable component benefit, final combination or novelty claim until every declared run is independently replayed and officially scored."
+      "pretraining_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/pretrain_state.json",
+      "raw_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/raw_state.json",
+      "finalization_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/reports/finalize_state.json",
+      "output_storage": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2",
+      "claim_boundary": "This closes the fresh all-fold strict-raw measurement boundary only. It does not establish a stable independent novelty contribution or justify mechanical final stacking; Phase VII goal remains IN_PROGRESS_UNACHIEVED pending full requirement audit and final documentation.",
+      "report": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "report_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+      "aggregate_external": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "aggregate_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+      "pretraining_state_sha256": "ca4ed089ca86b9a42e94824478bc765e05f84f69ad93b00457691ad26ececa3c",
+      "raw_state_sha256": "bbf3f927a1966cb6532bfecb97a32ebf654c30c724a5acabef1c1e7dff6ccacc",
+      "finalization_state_sha256": "a66f8d83b938f2cbec0d955cc03e23cdd46d4d4d6ab4cf91d293ffffba4e1d92",
+      "volatile_staging_root": "/dev/shm/IR-MFT_phase7_visible_token_allfold_recovery_v2/raw",
+      "raw_outputs_outside_git": true,
+      "finalizer_protocol_scope_repair": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+      "finalizer_protocol_scope_repair_sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
+      "finalization_status": "COMPLETE_ALL_SIX_FINALIZERS"
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_OVERLAP2_TIMEOUT_REPAIR_V1",
+      "status": "COMPLETE_ENGINEERING_REPAIR_RETRYING_SINGLE_RAW_WORKER_PER_GPU",
+      "measured": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_OVERLAP_TIMEOUT_REPAIR_MEASURED.json",
+      "measured_sha256": "6deec436e8af98d6c15fa84f490052332ce83c07116ff37e20a7ef5f8df2569b",
+      "scope": "Bounded same-campaign two-worker/GPU trial timed out in detector IPC at 32/3000; incomplete outputs rejected and clean one-worker/GPU retry resumed.",
+      "scientific_claim_allowed": false
+    },
+    {
+      "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_V1",
+      "status": "COMPLETE_ENGINEERING_REPAIR_SCOPED_SINGLE_VIDEO_OFFICIAL_EVALUATION",
+      "measured": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_MEASURED.json",
+      "measured_sha256": "bf347c0e09c56ac97b27222961c7f021e12151d146643b0d1b523fe02e1d218f",
+      "aggregate": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+      "aggregate_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+      "scope": "Per-video official TrackEval protocol was scoped to the declared outer video after the initial six-video protocol requested absent sibling prediction files.",
+      "scientific_claim_allowed": false,
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {

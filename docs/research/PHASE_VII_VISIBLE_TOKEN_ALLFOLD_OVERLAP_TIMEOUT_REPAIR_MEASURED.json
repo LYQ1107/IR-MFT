@@ -1,0 +1,43 @@
+{
+  "status": "COMPLETE_ENGINEERING_REPAIR_RETRYING_SINGLE_RAW_WORKER_PER_GPU",
+  "as_of": "2026-10-15",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_OVERLAP2_TIMEOUT_REPAIR_V1",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "authorization": "User explicitly authorized overlapping execution; the trial remained bounded to GPUs 0-3 with 8 GiB raw per-process allocator budget and 4 GiB reserve.",
+  "trial": {
+    "scheduler": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/run_raw_recovery_overlap2.py",
+    "workers_per_gpu": 2,
+    "approved_gpus": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "started_tasks": 8,
+    "retained_complete_before_halt": 4,
+    "failed_task": {
+      "video": "BT-001",
+      "mode": "visible_target",
+      "seed": 1,
+      "frames_accepted": 32,
+      "frames_expected": 3000,
+      "returncode": 1,
+      "log": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/logs/raw_BT-001_visible_target_s1.log"
+    },
+    "failure": "detector_runtime.receive_arrays timed out while receiving the cu117 detector worker IPC response; the shutdown receive also timed out. No OOM was reported and no incomplete manifest was accepted."
+  },
+  "containment": {
+    "driver_action": "HALTED_RECOVERY_RAW",
+    "incomplete_tasks_reset_to_pending": 32,
+    "incomplete_output_directories_removed": true,
+    "complete_manifests_retained": 4,
+    "failed_frames_or_metrics_accepted": false,
+    "retry_scheduler": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/run_raw_recovery.py",
+    "retry_workers_per_gpu": 1,
+    "overlap_policy": "CFP_ALLOW_GPU_OVERLAP remains enabled for coexistence with unrelated jobs, but same-campaign raw detector workers are limited to one per approved GPU after the observed IPC timeout."
+  },
+  "persistent_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/state/raw_state.json",
+  "source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
+  "scientific_claim_allowed": false,
+  "note": "This is an engineering scheduling boundary, not a scientific metric result. The four retained complete runs remain immutable and the 32-task raw campaign is retrying from clean declared paths."
+}

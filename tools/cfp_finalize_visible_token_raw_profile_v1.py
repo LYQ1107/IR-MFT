@@ -53,7 +53,18 @@ def main():
         evaluation = Path(str(run) + '.trackeval')
         evaluation.mkdir()
         protocol = evaluation / 'protocol.json'
-        protocol.write_text(json.dumps(template, ensure_ascii=False, indent=2) + '\n')
+        # A raw output directory contains predictions for this outer video
+        # only.  Keep the frozen protocol metadata and GT hashes, but scope
+        # the official evaluator's train partition to the current video so
+        # it never looks for sibling-video prediction files in this run.
+        scoped_template = dict(template)
+        scoped_template['train'] = [args.video]
+        scoped_template['evaluation_scope'] = {
+            'partition': 'train',
+            'video': args.video,
+            'source_protocol_sha256': sha256(args.protocol_template),
+        }
+        protocol.write_text(json.dumps(scoped_template, ensure_ascii=False, indent=2) + '\n')
         cmd = [
             sys.executable, 'tools/cfp_evaluate.py',
             '--data-root', str(args.data_root),
@@ -109,6 +120,7 @@ def main():
         'scope': 'Completed strict current-only RGB -> causal pseudo-IR -> V3 detector -> visible-token encoder -> FIFO lifecycle -> output, followed by independent CPU trace replay and official TrackEval. Results are per declared outer fold/seed/objective; aggregate all-fold or final-method claims require every registered fold.',
         'protocol_template': str(args.protocol_template),
         'protocol_template_sha256': sha256(args.protocol_template),
+        'evaluation_protocol_scope': {'partition': 'train', 'video': args.video, 'scoped_protocol_per_run': True},
         'trackeval_root': str(args.trackeval_root),
         'trackeval_commit': json.loads((args.trackeval_root / 'README.md').read_text()).get('commit') if (args.trackeval_root / 'README.md').exists() else None,
         'runs': results,

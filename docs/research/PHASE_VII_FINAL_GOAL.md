@@ -60,3 +60,18 @@ The requirement-by-requirement task-book audit is now complete in `PHASE_VII_TAS
 The six actual pretrains used an owned visible-token deletion objective and a matched visible-target reconstruction control with identical fit videos, eight epochs, 1,200 attempted steps and fixed final-epoch selection. Full resumable states remained on `/tmp`; final encoders, probe heads and manifests were copied to the protected asset mount after an exact free-space forecast, leaving 40.1501 GiB free. The compact measured record retains all BT-001/SN-015 GT/detector/raw-global retrieval metrics, source/config/pool hashes, and stable artifact paths.
 
 The first-fold identity result is limited and negative: masked-visible-token mean detector-gap25 Rank-1 is 57.302% (sample SD 0.572) versus frozen CLS 57.937%; visible-target mean is 51.481% (sample SD 1.682). Masked seed1 equals the reference, but seed0/2 are lower and unknown-selected counts are 47/50/59 versus 42; visible-target is lower for all seeds. Reconstruction loss therefore does not establish an identity contribution. Native/all-fold integration of these encoders remains an open, semantics-sensitive task rather than an implied result.
+
+
+## All-fold strict raw recovery (2026-10-15)
+
+The persistent visible-token recovery closes the declared all-fold raw boundary: 6 outer videos × 2 objectives × 3 seeds = 36/36 complete current-only Protocol C runs, with exact CPU trace replay and official TrackEval verification. The measured aggregate is `docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json` (SHA-256 `94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c`); raw outputs and traces stay outside Git.
+
+masked_visible_tokens: HOTA 38.3162±10.1719, AssA 26.0654±14.6922, DetA 60.8605±11.8228, IDF1 46.0374±18.0936, MOTA 73.4322±18.5490, IDSW 118.00±136.00; whole-raw FPS nan±0.000; latency p50 nan±0.0 ms, p95 nan±0.0 ms.
+visible_target: HOTA 38.2418±10.2794, AssA 26.0360±14.8207, DetA 60.8888±11.7860, IDF1 45.7105±18.3847, MOTA 73.4313±18.5489, IDSW 118.83±136.01; whole-raw FPS nan±0.000; latency p50 nan±0.0 ms, p95 nan±0.0 ms.
+
+This is coverage and measurement closure, not a positive contribution claim. The online guards exclude GT labels, precomputed IR, cached inference features and future/teacher inputs. The matched control and switch behavior remain the decision boundary, so the final combination gate remains `DO_NOT_RUN_MECHANICAL_FINAL_STACKING` and the EvidenceFishMOT goal remains `IN_PROGRESS_UNACHIEVED`.
+
+
+## Finalizer protocol scope repair (2026-10-16)
+
+The first CPU finalizer launch exposed an evaluation-scope mismatch: each outer-fold output directory contains only its declared video prediction file, while the copied frozen protocol listed all six train videos. The resulting missing-sibling-file errors were finalization failures only; no raw prediction, trace, checkpoint, or metric was accepted from that attempt. The finalizer now writes a scoped per-video train partition while retaining the frozen protocol metadata, derived-GT hashes, source protocol SHA-256, and explicit evaluation scope. All six per-video reports were rerun successfully, and the persistent aggregate verifies 36/36 trace replays and TrackEval prediction-hash matches. This repair does not alter the scientific conclusion: P11 selective-combination value and P17 stable independent contribution remain unestablished.

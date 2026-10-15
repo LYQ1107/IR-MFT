@@ -1,0 +1,30 @@
+{
+  "status": "COMPLETE_ENGINEERING_REPAIR_SCOPED_SINGLE_VIDEO_OFFICIAL_EVALUATION",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_VISIBLE_TOKEN_ALLFOLD_FINALIZER_PROTOCOL_SCOPE_REPAIR_V1",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "observed_condition": "The first CPU finalizer launch copied the frozen six-video train protocol into each single-outer-video TrackEval directory. The evaluator consequently requested sibling prediction files that are not present in a single-video raw output directory; BT-003 and SN-001 exposed this as a missing BT-001.txt error before any metric was accepted.",
+  "scientific_effect": "None. All 36 raw manifests, predictions and actual-output traces were already complete; the failed finalizer produced no accepted metrics and did not modify raw inference outputs.",
+  "repair": {
+    "code": "tools/cfp_finalize_visible_token_raw_profile_v1.py",
+    "behavior": "Each per-video finalizer now preserves the frozen protocol metadata and derived-GT hashes while writing a scoped evaluator protocol whose train partition contains only the declared outer video.",
+    "provenance": "The scoped protocol records the source frozen protocol SHA-256 and the final report records evaluation_protocol_scope={partition: train, video: declared outer video, scoped_protocol_per_run: true}.",
+    "cleanup": "Only incomplete finalizer replay/evaluation artifacts were removed; raw manifests, predictions, traces, checkpoints and feature banks were retained.",
+    "rerun": "All six per-video finalizers were rerun from clean finalizer artifacts and completed successfully; the aggregate then verified all 36 runs."
+  },
+  "verification": {
+    "aggregate": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
+    "aggregate_sha256": "94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c",
+    "finalization_state": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/reports/finalize_state.json",
+    "finalization_state_sha256": "a66f8d83b938f2cbec0d955cc03e23cdd46d4d4d6ab4cf91d293ffffba4e1d92",
+    "finalization_status": "COMPLETE_ALL_SIX_FINALIZERS",
+    "per_video_reports": 6,
+    "verified_raw_runs": 36,
+    "all_trace_replays_verified": true,
+    "all_trackeval_prediction_hashes_match": true,
+    "finalizer_source_sha256_before_commit": "de9fb56ad0cb95aa3ae79bc8695697ffc4e054902e9d33646939a9df21dc8028",
+    "raw_source_commit": "561451f5d3586a4560b8806a46614589f6dcca9c",
+    "scientific_claim_allowed": false
+  },
+  "note": "This is a protocol-scoping and finalization repair boundary. It does not establish a method contribution, selective-combination value, or positive metric effect."
+}
