@@ -64,12 +64,14 @@ The first-fold identity result is limited and negative: masked-visible-token mea
 
 ## All-fold strict raw recovery (2026-10-15)
 
-The persistent visible-token recovery closes the declared all-fold raw boundary: 6 outer videos × 2 objectives × 3 seeds = 36/36 complete current-only Protocol C runs, with exact CPU trace replay and official TrackEval verification. The measured aggregate is `docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json` (SHA-256 `94edeaea4245c95483b04b8cb375366fa3ec41b53303c6aeb733ce34528a094c`); raw outputs and traces stay outside Git.
+The persistent visible-token recovery closes the declared all-fold raw boundary: 6 outer videos × 2 objectives × 3 seeds = 36/36 complete current-only Protocol C runs, with exact CPU trace replay and official TrackEval verification. The measured aggregate is `docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json` (SHA-256 `a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679`); raw outputs and traces stay outside Git.
 
-masked_visible_tokens: HOTA 38.3162±10.1719, AssA 26.0654±14.6922, DetA 60.8605±11.8228, IDF1 46.0374±18.0936, MOTA 73.4322±18.5490, IDSW 118.00±136.00; whole-raw FPS nan±0.000; latency p50 nan±0.0 ms, p95 nan±0.0 ms.
-visible_target: HOTA 38.2418±10.2794, AssA 26.0360±14.8207, DetA 60.8888±11.7860, IDF1 45.7105±18.3847, MOTA 73.4313±18.5489, IDSW 118.83±136.01; whole-raw FPS nan±0.000; latency p50 nan±0.0 ms, p95 nan±0.0 ms.
+masked_visible_tokens: HOTA 38.3162±10.1719, AssA 26.0654±14.6922, DetA 60.8605±11.8228, IDF1 46.0374±18.0936, MOTA 73.4322±18.5490, IDSW 118.00±136.00; whole-raw FPS 1.2630±0.1093; latency p50 788.7±72.0 ms, p95 867.7±119.6 ms (n=18).
+visible_target: HOTA 38.2418±10.2794, AssA 26.0360±14.8207, DetA 60.8888±11.7860, IDF1 45.7105±18.3847, MOTA 73.4313±18.5489, IDSW 118.83±136.01; whole-raw FPS 1.2821±0.1079; latency p50 779.6±71.1 ms, p95 840.8±101.1 ms (n=18).
 
 This is coverage and measurement closure, not a positive contribution claim. The online guards exclude GT labels, precomputed IR, cached inference features and future/teacher inputs. The matched control and switch behavior remain the decision boundary, so the final combination gate remains `DO_NOT_RUN_MECHANICAL_FINAL_STACKING` and the EvidenceFishMOT goal remains `IN_PROGRESS_UNACHIEVED`.
+
+The runtime-summary repair `PHASE_VII_VISIBLE_TOKEN_ALLFOLD_AGGREGATE_RUNTIME_SUMMARY_REPAIR_MEASURED.json` recomputes whole-raw FPS and p50/p95 latency from the 36 accepted manifests; it does not change any raw output, TrackEval metric or scientific conclusion.
 
 
 ## Finalizer protocol scope repair (2026-10-16)
