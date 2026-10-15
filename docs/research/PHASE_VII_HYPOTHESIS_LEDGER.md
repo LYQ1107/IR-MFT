@@ -122,3 +122,8 @@ This closes the native measurement boundary and P9 coverage, but it does not jus
 ## Native replay edge-engagement audit (2026-10-16)
 
 The 36 accepted native manifests used an inherited `identity_counts` field that stays zero for the active predictive FIFO tracker. A read-only instrumented copy of the exact replay source recorded the active `prediction_counts` path for all six videos, both objectives and seeds 0/1/2. Prediction hashes were byte-identical to the accepted outputs in all 36 cases; every case had positive predicted rows and modified candidate edges. This repairs the interpretation of the metadata only. It does not change the mixed/negative HOTA/AssA/IDF1 result, create a new component benefit or reopen mechanical stacking. See `PHASE_VII_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36_MEASURED.json`.
+
+
+## Visibility-weighted local-token probe (2026-10-16)
+
+The visible-token banks expose real geometric `local4` regions in addition to CLS. A pre-registered SN-015 seed-1 control pooled those regions with their `visibility4` fractions and used the normalized result as the sole current/history appearance vector. HOTA moved from 32.5706 to 32.6389, IDF1 stayed at 30.8018, and IDSW rose from 159 to 160. The simultaneous HOTA+IDF1/no-extra-IDSW gate therefore failed; the local-pool hypothesis was not expanded or stacked. The complete bounded record is `PHASE_VII_VISIBLE_TOKEN_LOCAL_POOL_SN015_MASKED_S1_MEASURED.json`.
