@@ -86,7 +86,9 @@ def _evaluate(video: str, prediction_dir: Path, evaluation: Path, config_path: P
 def _run_video(video: str, variant: dict, config: dict, config_path: Path, output: Path):
     if output.exists():
         raise ValueError(f"Immutable output already exists: {output}")
-    if shutil.disk_usage(output.parent).free < config["guards"]["minimum_free_bytes"]:
+    # The per-video directory is created below, so check the already-existing
+    # external asset mount rather than a not-yet-created child path.
+    if shutil.disk_usage(ASSETS).free < config["guards"]["minimum_free_bytes"]:
         raise OSError("40GiB reserve")
     detections, features, dp, fm, frames, offsets, boxes, scores, embedding = _load_inputs(video, config)
     output.mkdir(parents=True)
