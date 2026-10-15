@@ -5,7 +5,7 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "f14c4ce88e6622b689f23bc41c960ff87a6ec286",
+    "local_commit": "899e18c",
     "remote_commit": "34e77d7bfd0f5c689222478f92fe403b4cd7bb73",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
@@ -316,7 +316,7 @@
       "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
       "all_question_ids_present": true,
       "goal_status": "IN_PROGRESS_UNACHIEVED",
-      "source_report_sha256": "584471a3d6dc573c8722d5495410467a6403fbbd286a1fa11a779e7a46c2686a",
+      "source_report_sha256": "3423fcdcd43e699d2418f7ebd0dbaaca6009224ee7f27e1d7416e299e8546e1f",
       "audit_report_sha256": "f32cdf38f8a91de004a541c30f1855e788dd0a388a114e6a5982142625ffb0ff"
     },
     "current_validation": {
@@ -333,7 +333,8 @@
     "remaining": [
       "All-fold strict raw and native visible-token measurements are complete; the direct local4 probe also failed its pre-registered gate, so no local-token expansion or stacking is justified.",
       "Final combination gate remains NOT_JUSTIFIED; preserve DO_NOT_RUN_MECHANICAL_FINAL_STACKING.",
-      "External generalization and unavailable source/license exclusions remain explicit."
+      "External generalization and unavailable source/license exclusions remain explicit.",
+      "The causal motion-error predictability audit fails its held-out gate; no learned-motion replay is justified."
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
@@ -612,6 +613,14 @@
         "IDSW": 1
       },
       "online_guards_clean": true
+    },
+    "motion_error_predictability": {
+      "status": "COMPLETE_CAUSAL_MOTION_ERROR_PREDICTABILITY_AUDIT",
+      "report": "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
+      "report_sha256": "58abebdd50376ff98cbbb17ad63855c5fbbc5515ecc5a6baf3447c4313681669",
+      "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+      "scope": "Fixed causal ridge residual model fit on four videos, held out on BT-001/SN-015; no native replay.",
+      "finding": "Corrected normalized center error worsens on both held-out videos and the SN-015 gap>1 tail; leave-one-video-out is mixed."
     }
   },
   "experiments": [
@@ -4690,6 +4699,27 @@
       },
       "decision": "HOTA improved only while IDF1 was unchanged and IDSW increased; do not expand or stack.",
       "scope": "Fit-free Protocol B native current-only association control; no raw end-to-end FPS claim; no GT, future, teacher, physical identity or cached inference input."
+    },
+    {
+      "experiment_id": "VII_MOTION_ERROR_PREDICTABILITY_V1",
+      "hypothesis": "A fixed causal residual model may expose a reproducible nonlinear-error signal in long accepted-measurement gaps before an expensive learned-motion replay.",
+      "status": "COMPLETE_CAUSAL_MOTION_ERROR_PREDICTABILITY_AUDIT_NEGATIVE",
+      "config": "tools/cfp_diagnose_motion_error_predictability.py",
+      "command": "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_motion_error_predictability.py --observation /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_motion_readonly_all6_v1 --output docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
+      "report": "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
+      "report_sha256": "58abebdd50376ff98cbbb17ad63855c5fbbc5515ecc5a6baf3447c4313681669",
+      "fit_videos": [
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001"
+      ],
+      "inner_video": "BT-001",
+      "outer_video": "SN-015",
+      "scope": "Read-only after six GT-free native prediction parities; accepted past geometry and native predicted box only; physical labels retrospective; no tracker output, checkpoint or feature bank changed.",
+      "decision": "DO_NOT_RUN_LEARNED_MOTION_REPLAY",
+      "finding": "Full fit model worsens held-out BT-001 0.065268->0.065562 and SN-015 0.053722->0.054083; SN-015 gap>1 0.480275->0.518674; leave-one-fit-video-out is mixed.",
+      "claim_boundary": "No nonlinear-motion native-MOT or final-combination credit."
     }
   ],
   "source_http_followup": {
@@ -4705,7 +4735,8 @@
   "pending": [
     "Preserve measured mixed/negative all-fold native and strict-raw boundaries and the rejected local4 probe.",
     "Run a new combination only if a genuinely independent same-input complementary signal is first established.",
-    "Keep external payload and unavailable source/license exclusions explicit."
+    "Keep external payload and unavailable source/license exclusions explicit.",
+    "Preserve the causal motion-error predictability failure; do not run learned motion without a new independent signal."
   ],
   "validation": {
     "project_tests": 219,
