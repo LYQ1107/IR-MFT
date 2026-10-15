@@ -1,0 +1,370 @@
+{
+  "status": "COMPLETE_RETROSPECTIVE_NATIVE_CANDIDATE_SET_BOUNDARIES",
+  "experiment_id": "VII_NATIVE_CANDIDATE_SET_BOUNDARIES_V1",
+  "hypothesis": "The remaining native appearance boundary may be candidate-set uncertainty rather than a scalar cue weight: measure unknown labels, legal multi-identity competition and missing legal positives before specifying an unknown-preserving set/NULL rule.",
+  "config": "configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json",
+  "config_sha256": "788b5e47729439893cde653a992601f119e1e49560c189ed94aeaa0d606af667",
+  "source_report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
+  "source_report_sha256": "b4d3331d284a0b3b452cd748562f154cee18a812682da59924731f29a214dfb6",
+  "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1/manifest.json",
+  "external_manifest_sha256": "18703cab331916a245a131d61b9f08808274569c7817f2358c64ec9372c6fd28",
+  "source_sha256": {
+    "cfp/native_candidate_set_audit.py": "63f615c54afca3f01b8676fbeb69f83dd6c5946c548134bd6e620aad04fc2da5",
+    "tools/cfp_diagnose_native_candidate_set_boundaries.py": "d6ba32b5730bb1b1513065a99801d0cf0970f9c4daa42d8b6b4c719b26743778"
+  },
+  "scope": "Read-only retrospective analysis of all six accepted native DINO384/FIFO cue traces; no replay, threshold fitting, tracker change, online label use or TrackEval gain claim.",
+  "online_information_boundary": "Trace and prediction hashes were checked for all six videos before physical proposal labels were opened. The audit only classifies candidate labels after that barrier.",
+  "trace_and_prediction_hashes_verified": true,
+  "aggregate_counts": {
+    "observed_track_rows": 207458,
+    "empty_history_rows": 192,
+    "clean_history_rows": 139545,
+    "mixed_or_unknown_history_rows": 67721,
+    "candidate_rows": 207401,
+    "no_legal_candidate_rows": 15388,
+    "unknown_legal_rows": 33507,
+    "known_only_legal_rows": 158506,
+    "no_known_legal_rows": 21261,
+    "competition_rows": 47500,
+    "duplicate_same_identity_rows": 0,
+    "clean_positive_rows": 132894,
+    "clean_positive_missing_rows": 2967,
+    "clean_positive_unknown_competition_rows": 4212,
+    "clean_positive_other_identity_competition_rows": 36755,
+    "clean_positive_duplicate_same_identity_rows": 0,
+    "clean_baseline_top1_correct": 132879,
+    "clean_baseline_top1_wrong": 15,
+    "history_index_checks": 0,
+    "candidate_index_checks": 3567319
+  },
+  "videos": {
+    "BT-001": {
+      "counts": {
+        "observed_track_rows": 31053,
+        "empty_history_rows": 15,
+        "clean_history_rows": 15644,
+        "mixed_or_unknown_history_rows": 15394,
+        "candidate_rows": 31045,
+        "no_legal_candidate_rows": 951,
+        "unknown_legal_rows": 9984,
+        "known_only_legal_rows": 20110,
+        "no_known_legal_rows": 5396,
+        "competition_rows": 6011,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 14924,
+        "clean_positive_missing_rows": 595,
+        "clean_positive_unknown_competition_rows": 1182,
+        "clean_positive_other_identity_competition_rows": 3267,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 14917,
+        "clean_baseline_top1_wrong": 7,
+        "history_index_checks": 0,
+        "candidate_index_checks": 294480
+      },
+      "legal_candidate_count": {
+        "n": 31045,
+        "mean": 1.409760025769045,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 31045,
+        "mean": 1.0080528265421163,
+        "q10_q50_q90": [
+          0.0,
+          1.0,
+          2.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 31045,
+        "mean": 0.40170719922692866,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "BT-003": {
+      "counts": {
+        "observed_track_rows": 2442,
+        "empty_history_rows": 0,
+        "clean_history_rows": 1266,
+        "mixed_or_unknown_history_rows": 1176,
+        "candidate_rows": 2441,
+        "no_legal_candidate_rows": 23,
+        "unknown_legal_rows": 750,
+        "known_only_legal_rows": 1668,
+        "no_known_legal_rows": 429,
+        "competition_rows": 451,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 1206,
+        "clean_positive_missing_rows": 56,
+        "clean_positive_unknown_competition_rows": 65,
+        "clean_positive_other_identity_competition_rows": 239,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 1206,
+        "clean_baseline_top1_wrong": 0,
+        "history_index_checks": 0,
+        "candidate_index_checks": 23988
+      },
+      "legal_candidate_count": {
+        "n": 2441,
+        "mean": 1.387546087668988,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 2441,
+        "mean": 1.0061450225317492,
+        "q10_q50_q90": [
+          0.0,
+          1.0,
+          2.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 2441,
+        "mean": 0.3814010651372388,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "MSK-002": {
+      "counts": {
+        "observed_track_rows": 71162,
+        "empty_history_rows": 93,
+        "clean_history_rows": 37951,
+        "mixed_or_unknown_history_rows": 33118,
+        "candidate_rows": 71162,
+        "no_legal_candidate_rows": 13108,
+        "unknown_legal_rows": 13434,
+        "known_only_legal_rows": 44620,
+        "no_known_legal_rows": 12916,
+        "competition_rows": 621,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 33685,
+        "clean_positive_missing_rows": 942,
+        "clean_positive_unknown_competition_rows": 123,
+        "clean_positive_other_identity_competition_rows": 387,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 33685,
+        "clean_baseline_top1_wrong": 0,
+        "history_index_checks": 0,
+        "candidate_index_checks": 2520859
+      },
+      "legal_candidate_count": {
+        "n": 71162,
+        "mean": 0.8368089710800708,
+        "q10_q50_q90": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 71162,
+        "mean": 0.6430398246255024,
+        "q10_q50_q90": [
+          0.0,
+          1.0,
+          1.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 71162,
+        "mean": 0.19376914645456844,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "PF-001": {
+      "counts": {
+        "observed_track_rows": 30345,
+        "empty_history_rows": 10,
+        "clean_history_rows": 27638,
+        "mixed_or_unknown_history_rows": 2697,
+        "candidate_rows": 30339,
+        "no_legal_candidate_rows": 1,
+        "unknown_legal_rows": 1575,
+        "known_only_legal_rows": 28763,
+        "no_known_legal_rows": 635,
+        "competition_rows": 9707,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 27507,
+        "clean_positive_missing_rows": 130,
+        "clean_positive_unknown_competition_rows": 331,
+        "clean_positive_other_identity_competition_rows": 8670,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 27505,
+        "clean_baseline_top1_wrong": 2,
+        "history_index_checks": 0,
+        "candidate_index_checks": 60174
+      },
+      "legal_candidate_count": {
+        "n": 30339,
+        "mean": 1.3622070602195195,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 30339,
+        "mean": 1.298988101123966,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 30339,
+        "mean": 0.06321895909555358,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "SN-001": {
+      "counts": {
+        "observed_track_rows": 6505,
+        "empty_history_rows": 8,
+        "clean_history_rows": 4099,
+        "mixed_or_unknown_history_rows": 2398,
+        "candidate_rows": 6502,
+        "no_legal_candidate_rows": 367,
+        "unknown_legal_rows": 865,
+        "known_only_legal_rows": 5270,
+        "no_known_legal_rows": 565,
+        "competition_rows": 799,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 3932,
+        "clean_positive_missing_rows": 131,
+        "clean_positive_unknown_competition_rows": 89,
+        "clean_positive_other_identity_competition_rows": 451,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 3932,
+        "clean_baseline_top1_wrong": 0,
+        "history_index_checks": 0,
+        "candidate_index_checks": 55512
+      },
+      "legal_candidate_count": {
+        "n": 6502,
+        "mean": 1.1294986158105198,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 6502,
+        "mean": 0.9866195016917871,
+        "q10_q50_q90": [
+          0.0,
+          1.0,
+          2.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 6502,
+        "mean": 0.1428791141187327,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "SN-015": {
+      "counts": {
+        "observed_track_rows": 65951,
+        "empty_history_rows": 66,
+        "clean_history_rows": 52947,
+        "mixed_or_unknown_history_rows": 12938,
+        "candidate_rows": 65912,
+        "no_legal_candidate_rows": 938,
+        "unknown_legal_rows": 6899,
+        "known_only_legal_rows": 58075,
+        "no_known_legal_rows": 1320,
+        "competition_rows": 29911,
+        "duplicate_same_identity_rows": 0,
+        "clean_positive_rows": 51640,
+        "clean_positive_missing_rows": 1113,
+        "clean_positive_unknown_competition_rows": 2422,
+        "clean_positive_other_identity_competition_rows": 23741,
+        "clean_positive_duplicate_same_identity_rows": 0,
+        "clean_baseline_top1_correct": 51634,
+        "clean_baseline_top1_wrong": 6,
+        "history_index_checks": 0,
+        "candidate_index_checks": 612306
+      },
+      "legal_candidate_count": {
+        "n": 65912,
+        "mean": 1.6448446413399684,
+        "q10_q50_q90": [
+          1.0,
+          2.0,
+          3.0
+        ]
+      },
+      "known_identity_count": {
+        "n": 65912,
+        "mean": 1.5172199296031073,
+        "q10_q50_q90": [
+          1.0,
+          1.0,
+          2.0
+        ]
+      },
+      "unknown_candidate_count": {
+        "n": 65912,
+        "mean": 0.12762471173686127,
+        "q10_q50_q90": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  },
+  "support_gate": {
+    "all_videos_have_known_competition_rows": true,
+    "per_video": {
+      "BT-001": true,
+      "BT-003": true,
+      "MSK-002": true,
+      "PF-001": true,
+      "SN-001": true,
+      "SN-015": true
+    },
+    "clean_positive_unknown_competition_rows": 4212,
+    "clean_positive_other_identity_competition_rows": 36755
+  },
+  "semantic_boundary": {
+    "h9_any_candidate_positive_rows": 132996,
+    "legal_positive_rows": 132894,
+    "h9_report_sha256": "b4d3331d284a0b3b452cd748562f154cee18a812682da59924731f29a214dfb6",
+    "note": "The H9 field clean_rows_with_current_positive counted any candidate before legal filtering; this audit separates the 132,894 legal-positive rows."
+  },
+  "decision": "DO_NOT_RUN_SET_COMPETITION_NATIVE_REPLAY",
+  "interpretation": "All six videos contain legal multi-identity competition (47,500 rows), 33,507 rows with at least one unknown legal candidate and 21,261 rows with no known legal candidate. On clean-history rows, 4,212 legal-positive rows also contain an unknown candidate and 36,755 contain another known identity; 2,967 clean rows have no legal positive. The frozen baseline is top-1 correct on 132,879 of 132,894 legal-positive rows. These are support boundaries, not evidence that an online NULL or set rule will improve tracking.",
+  "next_hypothesis": "Specify one unknown-preserving NULL/set rule with an explicit abstention cost and a matched no-rule control only if the rule can be evaluated without treating unknown labels as negative supervision."
+}

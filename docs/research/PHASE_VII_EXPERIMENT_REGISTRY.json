@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "1171860918c94322e12d4bd169d7944027aab9b8",
-    "remote_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
+    "local_commit": "becafda822c37072a57133274f61f41489794cb2",
+    "remote_commit": "ca552baa2fac82b7e4dd6bb79868c3c874e4b873",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -322,12 +322,12 @@
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 296,
+      "phase_vii_passed": 297,
       "phase_vii_failed": 0,
       "warnings": 24,
       "full_tests_external_fixture_failure": "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations",
       "full_repo_collection_failure": "legacy tutorial imports missing skimage",
-      "report_sha256": "e41a683ced6de60aadf91dccb4fb63d99580010c0ef313a1dca5f537ecc6cf2b"
+      "report_sha256": "64013af3827b4de315b2c8efa295337fc86c45cac176c7109091ae45fc3620eb"
     },
     "scientific_interpretation": "Offline FDTA-style temporal/quality ranking gains do not transfer to native causal FIFO tracking; no positive online or novelty claim is retained.",
     "remaining": [
@@ -336,14 +336,15 @@
       "External generalization and unavailable source/license exclusions remain explicit.",
       "The causal motion-error predictability audit fails its held-out gate; no learned-motion replay is justified.",
       "The fixed nonlinear motion-error predictability audit fails its held-out gate; no learned-motion replay is justified.",
-      "The cue-disagreement audit finds appearance harm dominates and no outer margin-gate correction; do not launch an appearance campaign."
+      "The cue-disagreement audit finds appearance harm dominates and no outer margin-gate correction; do not launch an appearance campaign.",
+      "Candidate-set support is present across all six videos, but no unknown-preserving NULL rule is specified; do not post-hoc replay set competition."
     ],
     "goal_status": "IN_PROGRESS_UNACHIEVED",
     "task_book_requirement_audit": {
       "status": "COMPLETE_TASK_BOOK_REQUIREMENT_AUDIT_GOAL_STILL_ACTIVE",
       "report": "docs/research/PHASE_VII_TASK_BOOK_REQUIREMENT_AUDIT_MEASURED.json",
       "goal_status": "IN_PROGRESS_UNACHIEVED",
-      "report_sha256": "0f137dd3e0966966f279dce224d845cc62aa377db94a2b31e7781ba69b6a949f"
+      "report_sha256": "9a425239daead323274eb34398bfbfa84bb64bacf642c8881d4a75e3e72c2972"
     },
     "remote_delivery_verification": {
       "branch": "research/evidence-fishmot-v1",
@@ -683,7 +684,7 @@
     "native_cue_disagreement_audit": {
       "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
       "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
-      "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+      "report_sha256": "b4d3331d284a0b3b452cd748562f154cee18a812682da59924731f29a214dfb6",
       "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
       "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
       "clean_rows_with_current_positive": 132996,
@@ -691,7 +692,60 @@
       "appearance_harm": 217,
       "margin_gate_activation": 29,
       "margin_gate_correction": 4,
-      "margin_gate_harm": 0
+      "margin_gate_harm": 0,
+      "clean_rows_with_current_positive_legal": 132894
+    },
+    "native_candidate_set_boundaries": {
+      "experiment_id": "VII_NATIVE_CANDIDATE_SET_BOUNDARIES_V1",
+      "status": "COMPLETE_RETROSPECTIVE_NATIVE_CANDIDATE_SET_BOUNDARIES",
+      "hypothesis": "The remaining native appearance boundary may be candidate-set uncertainty rather than a scalar cue weight: measure unknown labels, legal multi-identity competition and missing legal positives before specifying an unknown-preserving set/NULL rule.",
+      "change": "Read-only reducer over all six accepted H9 native cue traces after trace/prediction hash verification; no tracker replay or score change.",
+      "architecture": "No online architecture, loss, threshold or proposal-graph change.",
+      "inputs": "Accepted six-video native DINO384/FIFO cue traces and proposal rows; physical proposal labels opened only after all trace and prediction hashes passed.",
+      "outputs": "External per-video/aggregate candidate-set boundary manifest and compact report.",
+      "loss": "None; no training or fitting.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seed": 0,
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_native_candidate_set_boundaries.py --config configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_candidate_set_boundaries.py"
+      ],
+      "source_commit_at_stage_collection": "becafda822c37072a57133274f61f41489794cb2",
+      "config": "configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json",
+      "config_sha256": "788b5e47729439893cde653a992601f119e1e49560c189ed94aeaa0d606af667",
+      "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_SET_BOUNDARIES_MEASURED.json",
+      "report_sha256": "d318cd8bcec6aee05323cb5c4df3a8655e97e6b0991d542e09373801cbb21ee4",
+      "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1/manifest.json",
+      "external_manifest_sha256": "18703cab331916a245a131d61b9f08808274569c7817f2358c64ec9372c6fd28",
+      "source_sha256": {
+        "cfp/native_candidate_set_audit.py": "63f615c54afca3f01b8676fbeb69f83dd6c5946c548134bd6e620aad04fc2da5",
+        "tools/cfp_diagnose_native_candidate_set_boundaries.py": "d6ba32b5730bb1b1513065a99801d0cf0970f9c4daa42d8b6b4c719b26743778",
+        "tests/test_native_candidate_set_boundaries.py": "38dbeb3d7792ad2a75d2cdba1d481d8cfe7d110854ae7fac2826e47c3e84eb2d"
+      },
+      "metrics": {
+        "observed_track_rows": 207458,
+        "competition_rows": 47500,
+        "unknown_legal_rows": 33507,
+        "no_known_legal_rows": 21261,
+        "clean_positive_rows_legal": 132894,
+        "clean_positive_missing_rows": 2967,
+        "clean_positive_unknown_competition_rows": 4212,
+        "clean_positive_other_identity_competition_rows": 36755,
+        "clean_baseline_top1_correct": 132879,
+        "clean_baseline_top1_wrong": 15
+      },
+      "decision": "DO_NOT_RUN_SET_COMPETITION_NATIVE_REPLAY",
+      "failure_type": "Descriptive support exists across all six videos, but no unknown-preserving abstention rule or matched no-rule online protocol was pre-specified; a replay would be post-hoc rule selection.",
+      "next_experiment": "Specify one unknown-preserving NULL/set rule with an explicit abstention cost and matched no-rule control only if unknown labels remain outside online supervision.",
+      "scope": "Six-video internal retrospective candidate-set audit; no TrackEval improvement, raw FPS claim, external generalization or novelty claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   },
   "experiments": [
@@ -5016,7 +5070,7 @@
       "config": "configs/cfp/phase_vii_native_cue_disagreement_v1.json",
       "config_sha256": "0cd2f554953ad580a4d2268f6473ad4e94abc3e3d3dfc7876b8b77b432fbfc5e",
       "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
-      "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+      "report_sha256": "b4d3331d284a0b3b452cd748562f154cee18a812682da59924731f29a214dfb6",
       "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_cue_disagreement_audit_v1/manifest.json",
       "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
       "source_sha256": {
@@ -5042,12 +5096,65 @@
           "activation": 6,
           "correction": 0,
           "harm": 0
-        }
+        },
+        "clean_rows_with_current_positive_legal": 132894
       },
       "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
       "failure_type": "No stable held-out outer correction; appearance-only cue harms exceed corrections in aggregate and the fixed gate has zero outer correction.",
       "next_experiment": "Run an unknown-preserving NULL/candidate-competition diagnostic or source-matched raw-gallery control only if its signal is independently specified; do not tune this margin gate or appearance thresholds.",
       "scope": "Six-video internal native association edge audit; no official TrackEval improvement, raw end-to-end FPS claim, external generalization, or novelty claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_CANDIDATE_SET_BOUNDARIES_V1",
+      "status": "COMPLETE_RETROSPECTIVE_NATIVE_CANDIDATE_SET_BOUNDARIES",
+      "hypothesis": "The remaining native appearance boundary may be candidate-set uncertainty rather than a scalar cue weight: measure unknown labels, legal multi-identity competition and missing legal positives before specifying an unknown-preserving set/NULL rule.",
+      "change": "Read-only reducer over all six accepted H9 native cue traces after trace/prediction hash verification; no tracker replay or score change.",
+      "architecture": "No online architecture, loss, threshold or proposal-graph change.",
+      "inputs": "Accepted six-video native DINO384/FIFO cue traces and proposal rows; physical proposal labels opened only after all trace and prediction hashes passed.",
+      "outputs": "External per-video/aggregate candidate-set boundary manifest and compact report.",
+      "loss": "None; no training or fitting.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seed": 0,
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_native_candidate_set_boundaries.py --config configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_candidate_set_boundaries.py"
+      ],
+      "source_commit_at_stage_collection": "becafda822c37072a57133274f61f41489794cb2",
+      "config": "configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json",
+      "config_sha256": "788b5e47729439893cde653a992601f119e1e49560c189ed94aeaa0d606af667",
+      "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_SET_BOUNDARIES_MEASURED.json",
+      "report_sha256": "d318cd8bcec6aee05323cb5c4df3a8655e97e6b0991d542e09373801cbb21ee4",
+      "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1/manifest.json",
+      "external_manifest_sha256": "18703cab331916a245a131d61b9f08808274569c7817f2358c64ec9372c6fd28",
+      "source_sha256": {
+        "cfp/native_candidate_set_audit.py": "63f615c54afca3f01b8676fbeb69f83dd6c5946c548134bd6e620aad04fc2da5",
+        "tools/cfp_diagnose_native_candidate_set_boundaries.py": "d6ba32b5730bb1b1513065a99801d0cf0970f9c4daa42d8b6b4c719b26743778",
+        "tests/test_native_candidate_set_boundaries.py": "38dbeb3d7792ad2a75d2cdba1d481d8cfe7d110854ae7fac2826e47c3e84eb2d"
+      },
+      "metrics": {
+        "observed_track_rows": 207458,
+        "competition_rows": 47500,
+        "unknown_legal_rows": 33507,
+        "no_known_legal_rows": 21261,
+        "clean_positive_rows_legal": 132894,
+        "clean_positive_missing_rows": 2967,
+        "clean_positive_unknown_competition_rows": 4212,
+        "clean_positive_other_identity_competition_rows": 36755,
+        "clean_baseline_top1_correct": 132879,
+        "clean_baseline_top1_wrong": 15
+      },
+      "decision": "DO_NOT_RUN_SET_COMPETITION_NATIVE_REPLAY",
+      "failure_type": "Descriptive support exists across all six videos, but no unknown-preserving abstention rule or matched no-rule online protocol was pre-specified; a replay would be post-hoc rule selection.",
+      "next_experiment": "Specify one unknown-preserving NULL/set rule with an explicit abstention cost and matched no-rule control only if unknown labels remain outside online supervision.",
+      "scope": "Six-video internal retrospective candidate-set audit; no TrackEval improvement, raw FPS claim, external generalization or novelty claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
@@ -5069,12 +5176,12 @@
     "Use an unknown-preserving NULL/candidate-competition or source-matched raw-gallery diagnostic only after its signal is independently specified."
   ],
   "validation": {
-    "project_tests": 296,
+    "project_tests": 297,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_dinov2_frozen_v1.log",
     "log_sha256": "8c5716cf3b4673e007e1e96d3122c47f0b82ddcd42c8fbe022b003427e98b6a1",
     "scope": "Actual full project suite after new DINOv2 observation module/tests; evaluators additionally verified by exact allsix legacy metric parity.",
-    "phase_vii_passed": 296,
+    "phase_vii_passed": 297,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py"
   },
   "execution_failures": [
@@ -5103,7 +5210,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 296,
+    "phase_vii_passed": 297,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -5111,7 +5218,7 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "report_sha256": "e41a683ced6de60aadf91dccb4fb63d99580010c0ef313a1dca5f537ecc6cf2b"
+    "report_sha256": "64013af3827b4de315b2c8efa295337fc86c45cac176c7109091ae45fc3620eb"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -5131,13 +5238,13 @@
     },
     "scope": "One fixed SN-015 native outer gate on frozen DINO384/K4 current-only features and causal V3 proposals; no all-fold, three-seed, full-raw-FPS or final-method claim."
   },
-  "remote_verification_scope": "Remote content commit dd1560d4b897511958bd2275541a258d32ccae1d independently verified with git ls-remote and GitHub file reads; metadata follow-up is recorded separately.",
+  "remote_verification_scope": "Remote content commit ca552baa2fac82b7e4dd6bb79868c3c874e4b873 independently verified with git ls-remote and GitHub file reads; next content stage is being prepared.",
   "delivery": {
     "branch": "research/evidence-fishmot-v1",
-    "local_head_at_run": "1171860918c94322e12d4bd169d7944027aab9b8",
-    "remote_branch_head": "dd1560d4b897511958bd2275541a258d32ccae1d",
+    "local_head_at_run": "becafda822c37072a57133274f61f41489794cb2",
+    "remote_branch_head": "ca552baa2fac82b7e4dd6bb79868c3c874e4b873",
     "remote_error": null,
-    "content_commit": "dd1560d4b897511958bd2275541a258d32ccae1d",
+    "content_commit": "ca552baa2fac82b7e4dd6bb79868c3c874e4b873",
     "remote_branch_pointer_is_metadata_after_content": true
   },
   "native_visibility_quality_probe": {
@@ -5159,7 +5266,7 @@
   "native_cue_disagreement_audit": {
     "status": "COMPLETE_RETROSPECTIVE_NATIVE_CUE_DISAGREEMENT_AUDIT",
     "report": "docs/research/PHASE_VII_NATIVE_CUE_DISAGREEMENT_MEASURED.json",
-    "report_sha256": "065b42302d210376d3ba361e25d14cc66c183efedda2b98de32777f2a83cde97",
+    "report_sha256": "b4d3331d284a0b3b452cd748562f154cee18a812682da59924731f29a214dfb6",
     "external_manifest_sha256": "8e149868ce19b320fbd74ed1b8946d11d13235023fbee3673050d4cf082c30fd",
     "decision": "DO_NOT_RUN_MARGIN_GATE_NATIVE_REPLAY",
     "clean_rows_with_current_positive": 132996,
@@ -5168,6 +5275,59 @@
     "margin_gate_activation": 29,
     "margin_gate_correction": 4,
     "margin_gate_harm": 0,
+    "goal_status": "IN_PROGRESS_UNACHIEVED",
+    "clean_rows_with_current_positive_legal": 132894
+  },
+  "native_candidate_set_boundaries": {
+    "experiment_id": "VII_NATIVE_CANDIDATE_SET_BOUNDARIES_V1",
+    "status": "COMPLETE_RETROSPECTIVE_NATIVE_CANDIDATE_SET_BOUNDARIES",
+    "hypothesis": "The remaining native appearance boundary may be candidate-set uncertainty rather than a scalar cue weight: measure unknown labels, legal multi-identity competition and missing legal positives before specifying an unknown-preserving set/NULL rule.",
+    "change": "Read-only reducer over all six accepted H9 native cue traces after trace/prediction hash verification; no tracker replay or score change.",
+    "architecture": "No online architecture, loss, threshold or proposal-graph change.",
+    "inputs": "Accepted six-video native DINO384/FIFO cue traces and proposal rows; physical proposal labels opened only after all trace and prediction hashes passed.",
+    "outputs": "External per-video/aggregate candidate-set boundary manifest and compact report.",
+    "loss": "None; no training or fitting.",
+    "videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "seed": 0,
+    "commands": [
+      "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_diagnose_native_candidate_set_boundaries.py --config configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json --output /data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1",
+      "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_candidate_set_boundaries.py"
+    ],
+    "source_commit_at_stage_collection": "becafda822c37072a57133274f61f41489794cb2",
+    "config": "configs/cfp/phase_vii_native_candidate_set_boundaries_v1.json",
+    "config_sha256": "788b5e47729439893cde653a992601f119e1e49560c189ed94aeaa0d606af667",
+    "report": "docs/research/PHASE_VII_NATIVE_CANDIDATE_SET_BOUNDARIES_MEASURED.json",
+    "report_sha256": "d318cd8bcec6aee05323cb5c4df3a8655e97e6b0991d542e09373801cbb21ee4",
+    "external_manifest": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/native_candidate_set_boundaries_v1/manifest.json",
+    "external_manifest_sha256": "18703cab331916a245a131d61b9f08808274569c7817f2358c64ec9372c6fd28",
+    "source_sha256": {
+      "cfp/native_candidate_set_audit.py": "63f615c54afca3f01b8676fbeb69f83dd6c5946c548134bd6e620aad04fc2da5",
+      "tools/cfp_diagnose_native_candidate_set_boundaries.py": "d6ba32b5730bb1b1513065a99801d0cf0970f9c4daa42d8b6b4c719b26743778",
+      "tests/test_native_candidate_set_boundaries.py": "38dbeb3d7792ad2a75d2cdba1d481d8cfe7d110854ae7fac2826e47c3e84eb2d"
+    },
+    "metrics": {
+      "observed_track_rows": 207458,
+      "competition_rows": 47500,
+      "unknown_legal_rows": 33507,
+      "no_known_legal_rows": 21261,
+      "clean_positive_rows_legal": 132894,
+      "clean_positive_missing_rows": 2967,
+      "clean_positive_unknown_competition_rows": 4212,
+      "clean_positive_other_identity_competition_rows": 36755,
+      "clean_baseline_top1_correct": 132879,
+      "clean_baseline_top1_wrong": 15
+    },
+    "decision": "DO_NOT_RUN_SET_COMPETITION_NATIVE_REPLAY",
+    "failure_type": "Descriptive support exists across all six videos, but no unknown-preserving abstention rule or matched no-rule online protocol was pre-specified; a replay would be post-hoc rule selection.",
+    "next_experiment": "Specify one unknown-preserving NULL/set rule with an explicit abstention cost and matched no-rule control only if unknown labels remain outside online supervision.",
+    "scope": "Six-video internal retrospective candidate-set audit; no TrackEval improvement, raw FPS claim, external generalization or novelty claim.",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }
