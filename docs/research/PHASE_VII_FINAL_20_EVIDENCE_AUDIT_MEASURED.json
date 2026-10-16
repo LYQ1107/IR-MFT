@@ -3,7 +3,7 @@
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "source_report": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
-  "source_report_sha256": "5dd3446bff580a9c96c9ad2a819234a13bd37b0fc6a1b9d89a5a20ba1fe74f36",
+  "source_report_sha256": "074eb69255f497fbab992690a980300351deaf5585e147a1cbba6f74d6a0c957",
   "question_rows_found": [
     1,
     2,
@@ -154,6 +154,13 @@
       "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
       "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
       "exists": true
+    },
+    {
+      "path": "docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json",
+      "sha256": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+      "status": "COMPLETE_PATCH_ATTENTION_COMPLEMENTARITY_GATE_FAILED",
+      "scope": "18 source-matched global-control hashes and traces locked before labels; 428220 clean-history rows; fixed patch-attention FIFO complementarity audit; no combination replay.",
+      "exists": true
     }
   ],
   "open_boundaries": [
@@ -168,7 +175,8 @@
     "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified.",
     "Fixed local4 same-graph complementarity is complete across six videos x seeds0/1/2: 0 corrections, 0 harms and 0 top-choice disagreements over 428220 clean-history rows; the margin gate changes no top choice, so no local4 combination replay is justified.",
     "Learned local-attention all-fold native replay is complete but fails the preregistered four-of-six HOTA+IDF1/no-macro-IDSW gate; strict-raw promotion is not justified.",
-    "Learned local-contrastive all-fold native replay improves both HOTA and IDF1 on only BT-003 and MSK-002; macro HOTA/IDF1 fall and no strict-raw promotion or final combination is justified."
+    "Learned local-contrastive all-fold native replay improves both HOTA and IDF1 on only BT-003 and MSK-002; macro HOTA/IDF1 fall and no strict-raw promotion or final combination is justified.",
+    "Source-matched patch-attention complementarity is complete across six videos x seeds0/1/2: one correction and zero harms in 428220 clean-history rows, but five videos have no correction, so the every-video gate fails and no combination replay is justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -327,6 +335,108 @@
       "passed": false,
       "no_outer_threshold_or_seed_selection": true
     },
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "patch_attention_complementarity": {
+    "experiment_id": "VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_AUDIT_V1",
+    "status": "COMPLETE_PATCH_ATTENTION_COMPLEMENTARITY_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json",
+    "report_sha256": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+    "config": "configs/cfp/phase_vii_native_patch_attention_complementarity_v1.json",
+    "config_sha256": "4afff0c6d1f104555e08c3414e6cc0c8ad7d87f9cb44443aacfe3092211a20f8",
+    "external_root": "/tmp/IR-MFT_phase7_native_patch_attention_complementarity_v1_retry",
+    "external_manifest_sha256": "24f0a44a59ba1b811b4def70fe9eef79c51df9e9905cc3cf9c21bf61404db209",
+    "matched_control_report_sha256": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
+    "coverage": {
+      "registered_videos": 6,
+      "registered_seeds": 3,
+      "matched_control_replays": 18,
+      "clean_history_rows": 428220,
+      "candidate_missing_rows": 26312,
+      "all_control_prediction_hashes_locked": true,
+      "all_control_trace_hashes_locked": true,
+      "patch_banks_verified": true,
+      "physical_labels_opened_after_all_control_hashes": true,
+      "online_guards_clean": true,
+      "labels_retrospective_only": true
+    },
+    "aggregate_counts": {
+      "rows": 428220,
+      "patch_correction": 1,
+      "patch_harm": 0,
+      "patch_disagreement": 1,
+      "margin_activation": 5446,
+      "margin_correction": 1,
+      "margin_harm": 0,
+      "margin_changed_top": 1
+    },
+    "promotion_gate": {
+      "required": "Every registered video must have patch-attention correction > patch-attention harm and fixed-margin correction > harm with at least one activation.",
+      "per_video": {
+        "BT-001": {
+          "rows": 52005,
+          "patch_correction": 1,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": true,
+          "margin_activation": 622,
+          "margin_correction": 1,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": true
+        },
+        "BT-003": {
+          "rows": 4299,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 86,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "MSK-002": {
+          "rows": 112443,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 182,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "PF-001": {
+          "rows": 84099,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 216,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-001": {
+          "rows": 13218,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 71,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-015": {
+          "rows": 162156,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 4269,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        }
+      },
+      "pass_": false
+    },
+    "decision": "DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

@@ -6187,6 +6187,137 @@
       "finding": "The outer-excluded learned local-contrastive route improves both HOTA and IDF1 only on BT-003 and MSK-002; BT-001 and SN-015 lose both, PF-001 is unchanged, and SN-001 is slightly lower. Macro HOTA and IDF1 fall, so no strict-raw promotion or final combination is justified.",
       "next_experiment": "A new final combination requires a genuinely independent same-input complementary signal; do not tune this route or stack it after the failed fixed gate.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_AUDIT_V1",
+      "status": "COMPLETE_PATCH_ATTENTION_COMPLEMENTARITY_GATE_FAILED",
+      "hypothesis": "A source-matched supervised DINO patch-attention coordinate may preserve rare identity evidence removed by the fitted global embedding; measure correction/harm on the exact causal graph before any replay.",
+      "change": "Read-only retrospective reducer over the accepted fitted-global FIFO traces; patch-attention embeddings are normalized into a fixed four-observation FIFO prototype while geometry, proposals, lifecycle and output remain untouched.",
+      "architecture": "No online tracker change; patch-attention is a diagnostic appearance coordinate only.",
+      "inputs": "Six registered videos x seeds0/1/2 native patch-attention banks, exact causal V3 proposals, and the 18 byte-locked global-embedding observer traces.",
+      "outputs": "18 verified control prediction/trace hashes and 428220 clean-history candidate rows with patch correction/harm and fixed-margin counts; no combination replay.",
+      "loss": "None; no fitting, threshold search, label use online, or output regeneration.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "memory": "fifo",
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data3/liuyeqiang/IR-MFT OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_audit_native_patch_attention_complementarity.py --config configs/cfp/phase_vii_native_patch_attention_complementarity_v1.json --assets-root /data3/liuyeqiang/IR-MFT_assets/cfp --output /tmp/IR-MFT_phase7_native_patch_attention_complementarity_v1_retry --repo /data3/liuyeqiang/IR-MFT",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests/test_native_patch_attention_complementarity.py"
+      ],
+      "source_commit_at_stage_collection": "9690f5910dd86f84ffa85906086a174ca4fe9a68",
+      "config": "configs/cfp/phase_vii_native_patch_attention_complementarity_v1.json",
+      "config_sha256": "4afff0c6d1f104555e08c3414e6cc0c8ad7d87f9cb44443aacfe3092211a20f8",
+      "report": "docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json",
+      "report_sha256": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+      "external_root": "/tmp/IR-MFT_phase7_native_patch_attention_complementarity_v1_retry",
+      "external_manifest_sha256": "24f0a44a59ba1b811b4def70fe9eef79c51df9e9905cc3cf9c21bf61404db209",
+      "patch_attention_outputs_outside_git": true,
+      "coverage": {
+        "registered_videos": 6,
+        "registered_seeds": 3,
+        "matched_control_replays": 18,
+        "clean_history_rows": 428220,
+        "candidate_missing_rows": 26312,
+        "all_control_prediction_hashes_locked": true,
+        "all_control_trace_hashes_locked": true,
+        "patch_banks_verified": true,
+        "physical_labels_opened_after_all_control_hashes": true,
+        "online_guards_clean": true,
+        "labels_retrospective_only": true
+      },
+      "aggregate_counts": {
+        "rows": 428220,
+        "candidate_missing_rows": 26312,
+        "patch_unavailable_rows": 0,
+        "embedding_top1": 428126,
+        "patch_top1": 428127,
+        "patch_correction": 1,
+        "patch_harm": 0,
+        "patch_disagreement": 1,
+        "margin_activation": 5446,
+        "margin_top1": 428127,
+        "margin_correction": 1,
+        "margin_harm": 0,
+        "margin_changed_top": 1
+      },
+      "promotion_gate": {
+        "BT-001": {
+          "rows": 52005,
+          "patch_correction": 1,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": true,
+          "margin_activation": 622,
+          "margin_correction": 1,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": true
+        },
+        "BT-003": {
+          "rows": 4299,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 86,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "MSK-002": {
+          "rows": 112443,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 182,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "PF-001": {
+          "rows": 84099,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 216,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-001": {
+          "rows": 13218,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 71,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-015": {
+          "rows": 162156,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 4269,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        }
+      },
+      "decision": "DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY",
+      "failure_type": "Patch attention changes one top choice, a correction on BT-001, but no other registered video has a positive correction-minus-harm; the strict every-video gate therefore fails.",
+      "next_experiment": "Do not run patch-attention margin stacking, a patch/global blend or a video-specific fallback; require a new independently measured signal.",
+      "scope": "Six registered internal videos x seeds0/1/2; same-input retrospective diagnostic with labels opened only after all control hashes; no online GT/future/teacher/cached inference, raw FPS or final-method claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -6208,7 +6339,8 @@
     "Preserve the raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal.",
     "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal.",
     "Preserve the all-fold local-attention native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal.",
-    "Preserve the all-fold local-contrastive native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal."
+    "Preserve the all-fold local-contrastive native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal.",
+    "Preserve the source-matched patch-attention same-graph complementarity gate failure; do not run patch margin stacking, a patch/global blend or a video-specific fallback without a new independent signal."
   ],
   "validation": {
     "project_tests": 309,
@@ -6248,7 +6380,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 309,
+    "phase_vii_passed": 313,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -6256,8 +6388,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
-    "source_commit": "24226bbfd6e9725214ded58bd6b4b77c90da6af2"
+    "report_sha256": "9d14af72f5cbc0224f86b15b4e35d9e23940a0a579f842f5ee9870750326bdfb",
+    "source_commit": "9690f5910dd86f84ffa85906086a174ca4fe9a68"
   },
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "native_candidate_nearest_probe": {
@@ -6485,7 +6617,7 @@
     "scope": "Six registered internal train videos, frozen DINO384 current proposals, FIFO native memory, one fixed rule and one matched no-rule arm. Official TrackEval is offline scoring only. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   },
-  "test_validation_report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
+  "test_validation_report_sha256": "9d14af72f5cbc0224f86b15b4e35d9e23940a0a579f842f5ee9870750326bdfb",
   "native_local4_complementarity": {
     "experiment_id": "VII_NATIVE_LOCAL4_COMPLEMENTARITY_AUDIT_V1",
     "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT_GATE_FAILED",
@@ -6644,6 +6776,108 @@
     },
     "decision": "DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW",
     "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned fine-grained local-contrastive identity route. This closes one direct local representation candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated.",
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "native_patch_attention_complementarity": {
+    "experiment_id": "VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_AUDIT_V1",
+    "status": "COMPLETE_PATCH_ATTENTION_COMPLEMENTARITY_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json",
+    "report_sha256": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+    "config": "configs/cfp/phase_vii_native_patch_attention_complementarity_v1.json",
+    "config_sha256": "4afff0c6d1f104555e08c3414e6cc0c8ad7d87f9cb44443aacfe3092211a20f8",
+    "external_root": "/tmp/IR-MFT_phase7_native_patch_attention_complementarity_v1_retry",
+    "external_manifest_sha256": "24f0a44a59ba1b811b4def70fe9eef79c51df9e9905cc3cf9c21bf61404db209",
+    "matched_control_report_sha256": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
+    "coverage": {
+      "registered_videos": 6,
+      "registered_seeds": 3,
+      "matched_control_replays": 18,
+      "clean_history_rows": 428220,
+      "candidate_missing_rows": 26312,
+      "all_control_prediction_hashes_locked": true,
+      "all_control_trace_hashes_locked": true,
+      "patch_banks_verified": true,
+      "physical_labels_opened_after_all_control_hashes": true,
+      "online_guards_clean": true,
+      "labels_retrospective_only": true
+    },
+    "aggregate_counts": {
+      "rows": 428220,
+      "patch_correction": 1,
+      "patch_harm": 0,
+      "patch_disagreement": 1,
+      "margin_activation": 5446,
+      "margin_correction": 1,
+      "margin_harm": 0,
+      "margin_changed_top": 1
+    },
+    "promotion_gate": {
+      "required": "Every registered video must have patch-attention correction > patch-attention harm and fixed-margin correction > harm with at least one activation.",
+      "per_video": {
+        "BT-001": {
+          "rows": 52005,
+          "patch_correction": 1,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": true,
+          "margin_activation": 622,
+          "margin_correction": 1,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": true
+        },
+        "BT-003": {
+          "rows": 4299,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 86,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "MSK-002": {
+          "rows": 112443,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 182,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "PF-001": {
+          "rows": 84099,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 216,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-001": {
+          "rows": 13218,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 71,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        },
+        "SN-015": {
+          "rows": 162156,
+          "patch_correction": 0,
+          "patch_harm": 0,
+          "patch_correction_gt_harm": false,
+          "margin_activation": 4269,
+          "margin_correction": 0,
+          "margin_harm": 0,
+          "margin_correction_gt_harm": false
+        }
+      },
+      "pass_": false
+    },
+    "decision": "DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

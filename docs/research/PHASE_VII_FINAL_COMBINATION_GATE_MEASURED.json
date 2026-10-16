@@ -723,6 +723,23 @@
         "no_outer_threshold_or_seed_selection": true
       },
       "finding": "The outer-excluded learned local-contrastive route improves both HOTA and IDF1 only on BT-003 and MSK-002; BT-001 and SN-015 lose both, PF-001 is unchanged, and SN-001 is slightly lower. Macro HOTA and IDF1 fall, so no strict-raw promotion or final combination is justified."
+    },
+    "patch_attention_native": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json",
+        "sha256": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+        "status": "COMPLETE_PATCH_ATTENTION_COMPLEMENTARITY_GATE_FAILED"
+      },
+      "same_graph": {
+        "clean_history_rows": 428220,
+        "patch_correction": 1,
+        "patch_harm": 0,
+        "margin_activation": 5446,
+        "margin_correction": 1,
+        "margin_harm": 0
+      },
+      "finding": "One correction occurs on BT-001 and no harms occur, but five registered videos have zero correction and zero harm; the every-video promotion gate fails.",
+      "decision": "DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY"
     }
   },
   "why_no_new_run": [
@@ -731,9 +748,10 @@
     "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run.",
     "The learned local-attention native route is now all-fold measured and fails its four-of-six HOTA+IDF1/no-macro-IDSW gate; it does not provide an independent component for stacking.",
-    "The all-fold local-contrastive native route fails its preregistered promotion gate; its negative macro identity deltas and two qualifying videos do not support strict-raw expansion or stacking."
+    "The all-fold local-contrastive native route fails its preregistered promotion gate; its negative macro identity deltas and two qualifying videos do not support strict-raw expansion or stacking.",
+    "The source-matched patch-attention same-graph audit finds one correction and zero harms, all useful movement on BT-001; five videos are neutral, so it supplies no stable every-video complementarity and no new combination is justified."
   ],
-  "remaining_boundary": "No stable independent same-input complementary signal has passed a fixed all-fold gate; learned local-attention and local-contrastive routes both remain negative/mixed.",
+  "remaining_boundary": "No stable independent same-input complementary signal has passed a fixed all-fold gate; learned local-attention and local-contrastive routes both remain negative/mixed. Patch-attention complementarity is now measured; do not stack or blend it unless a new fixed gate with an independent signal passes.",
   "resource_scope": {
     "protected_asset_free_gib_snapshot": 40.11628341674805,
     "reserve_gib": 40.0,

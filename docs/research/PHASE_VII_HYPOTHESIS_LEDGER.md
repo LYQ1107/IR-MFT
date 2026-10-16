@@ -199,3 +199,13 @@ Decision: `DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW`. This is a measured dir
 **Measured result.** 18/18 native replays pass. BT-003 and MSK-002 improve both metrics; BT-001 and SN-015 lose both, PF-001 is unchanged and SN-001 is slightly lower. Macro HOTA/IDF1 fall by 0.2290/1.1618 points and the gate fails.
 
 **Decision.** `DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW`. No final stack, memory tuning or threshold search is justified. The full record is `docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json` (SHA-256 `b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b`).
+
+## H17 — source-matched patch-attention complementarity boundary (2026-10-16)
+
+**Hypothesis.** A supervised DINO patch-attention embedding may preserve rare fine-grained identity evidence removed by the fitted global embedding, while keeping the causal proposal graph and FIFO lifecycle fixed.
+
+**Pre-registration.** Reuse the 18 accepted global-embedding observer traces only after verifying every prediction and trace hash. Normalize patch embeddings, average the last four strictly past accepted proposals within 1500 frames, and use the fixed 0.3 geometry/appearance blend. Promote a combination replay only if patch corrections exceed harms and the fixed margin gate has positive correction-minus-harm on every registered video. Physical labels are retrospective reducer inputs.
+
+**Measured result.** The audit covers 428220 clean-history rows. Patch attention changes one top choice: one correction and zero harms, all on BT-001. The fixed margin gate activates 5446 rows and retains that one correction; BT-003, MSK-002, PF-001, SN-001 and SN-015 have zero correction and zero harm. All 18 control hashes and patch-bank proposal indices are verified before labels.
+
+**Decision.** `DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY`. The gate fails because five registered videos are neutral, so patch attention supplies no stable every-video complementarity or P17 credit. Full evidence is `docs/research/PHASE_VII_NATIVE_PATCH_ATTENTION_COMPLEMENTARITY_MEASURED.json` (SHA-256 `d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248).
