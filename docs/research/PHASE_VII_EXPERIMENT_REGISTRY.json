@@ -5,8 +5,8 @@
   "task_book": "docs/research/PHASE_VII_TASK_BOOK.md",
   "current_authoritative_update": {
     "as_of": "2026-10-16",
-    "local_commit": "b538f93",
-    "remote_commit": "b538f93",
+    "local_commit": "bd67d07fdd02bd4af1ec38c10e3e1b3bd13b4045",
+    "remote_commit": "bd67d07fdd02bd4af1ec38c10e3e1b3bd13b4045",
     "source_audits": "COMPLETE_30_AVAILABLE_SOURCE_FIELDS_WITH_EXPLICIT_EXCLUSIONS",
     "raw_profiles": {
       "frozen_dino_fifo": {
@@ -815,7 +815,86 @@
       },
       "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
-    }
+    },
+    "native_local_contrastive_allfold": {
+      "experiment_id": "VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_V1",
+      "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+      "report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+      "report_sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+      "config": "configs/cfp/phase_vii_native_local_contrastive_allfold_v1.json",
+      "config_sha256": "a400a43b6f851df8afaf7c4bd0593c854bf28ffe0f7b37524c2f6786eceeb298",
+      "external_root": "/tmp/IR-MFT_phase7_native_local_contrastive_v1",
+      "external_report_sha256": "25fa06a04d4aabe2332e3c2336b517116fc7a2131ca7623d78d52b2d87800918",
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "all_replays_complete": true,
+        "online_guards_clean": true,
+        "labels_used_only_by_offline_trackeval": true,
+        "raw_outputs_outside_git": true
+      },
+      "macro": {
+        "local_contrastive_fifo": {
+          "HOTA": 38.55467323732664,
+          "AssA": 26.396741321157425,
+          "DetA": 61.03150399540426,
+          "IDF1": 46.26396993258035,
+          "MOTA": 73.43673516317668,
+          "IDSW": 113.8888888888889
+        },
+        "frozen_fifo": {
+          "HOTA": 38.78368572140126,
+          "AssA": 26.685579394130936,
+          "DetA": 60.845779285070115,
+          "IDF1": 47.42580468991998,
+          "MOTA": 73.45878401741977,
+          "IDSW": 114.5
+        },
+        "delta": {
+          "HOTA": -0.22901248407462305,
+          "AssA": -0.28883807297351183,
+          "DetA": 0.18572471033414217,
+          "IDF1": -1.1618347573396264,
+          "MOTA": -0.02204885424309566,
+          "IDSW": -0.6111111111111001
+        }
+      },
+      "promotion_gate": {
+        "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+        "minimum_videos": 4,
+        "qualifying_videos": [
+          "BT-003",
+          "MSK-002"
+        ],
+        "qualifying_video_count": 2,
+        "positive_macro_hota": false,
+        "positive_macro_idf1": false,
+        "macro_idsw_not_increased": true,
+        "passed": false,
+        "no_outer_threshold_or_seed_selection": true
+      },
+      "decision": "DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW",
+      "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned fine-grained local-contrastive identity route. This closes one direct local representation candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    "local_contrastive_report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+    "local_contrastive_report_sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+    "local_contrastive_gate": {
+      "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+      "minimum_videos": 4,
+      "qualifying_videos": [
+        "BT-003",
+        "MSK-002"
+      ],
+      "qualifying_video_count": 2,
+      "positive_macro_hota": false,
+      "positive_macro_idf1": false,
+      "macro_idsw_not_increased": true,
+      "passed": false,
+      "no_outer_threshold_or_seed_selection": true
+    },
+    "local_contrastive_status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED"
   },
   "experiments": [
     {
@@ -5795,6 +5874,316 @@
       },
       "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned local spatial-attention identity route. This closes a direct fine-grained local-evidence candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_V1",
+      "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+      "hypothesis": "An outer-excluded local-contrastive representation trained on native DINO K4 spatial tokens may provide stable fine-grained identity evidence under the unchanged FIFO association graph.",
+      "change": "Use the fit-only ContextIdentityStudent local_contrastive route for current/history local tokens; retain the exact native proposals, geometry eligibility, FIFO length/max-age, lifecycle, thresholds and output coordinates.",
+      "architecture": "ContextIdentityStudent local_contrastive with K4 local observation encoder and relation scorer; training EMA/prediction branches are excluded from online inference by the context-identity deployment path.",
+      "inputs": "All six native DINO K4 outer-fold banks and actual assigned strictly past proposal references; each evaluated video is excluded from fitting and calibration.",
+      "outputs": "18 native CPU FIFO replays, scoped official TrackEval metrics, prediction hashes and compact gate report; raw outputs/state remain outside Git.",
+      "loss": "Existing outer-fold local-contrastive training checkpoint; no online fitting, threshold search, seed selection, GT, teacher or future input.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "memory": "fifo",
+      "context_identity": true,
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=/data3/liuyeqiang/IR-MFT OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_native_local_contrastive_allfold.py --root /data3/liuyeqiang/IR-MFT_assets/cfp/phase7 --output-root /tmp/IR-MFT_phase7_native_local_contrastive_v1 --state /tmp/IR-MFT_phase7_native_local_contrastive_v1/state.json --report /tmp/IR-MFT_phase7_native_local_contrastive_v1/report.json --repo /data3/liuyeqiang/IR-MFT",
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests --ignore=tests/test_rgbt_pairing.py"
+      ],
+      "source_commit_at_stage_collection": "bd67d07fdd02bd4af1ec38c10e3e1b3bd13b4045",
+      "config": "configs/cfp/phase_vii_native_local_contrastive_allfold_v1.json",
+      "config_sha256": "a400a43b6f851df8afaf7c4bd0593c854bf28ffe0f7b37524c2f6786eceeb298",
+      "report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+      "report_sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+      "external_root": "/tmp/IR-MFT_phase7_native_local_contrastive_v1",
+      "external_report_sha256": "25fa06a04d4aabe2332e3c2336b517116fc7a2131ca7623d78d52b2d87800918",
+      "external_state_sha256": "94b66dc0a15bf54ef958b76784bc41c88dbc58e33c0dceb4443b5dae4ffd757b",
+      "source_sha256": {
+        "tools/cfp_run_native_local_contrastive_allfold.py": "b27088bcf8e04cf52fbf5491203348e543298c19363a22a716341bd4b8cce0ec",
+        "configs/cfp/phase_vii_native_local_contrastive_allfold_v1.json": "a400a43b6f851df8afaf7c4bd0593c854bf28ffe0f7b37524c2f6786eceeb298",
+        "configs/cfp/phase_vii_native_current_identity_replay_v1.json": "60eefe68b066b87e29437b41ac0c4d165b44a78c074ecabdcb7dff1774c48dbf",
+        "configs/cfp/phase_vii_joint_evaluation_subset_v1.json": "30e3faa885b70401a18b030e18b3d5373f9cc240ef49b9c458d7b696226413ba",
+        "tools/cfp_replay_native_current_identity.py": "8aa75f10a699f56bf0476f81401ba8c8eed1f2f7e16049cf0444d175e2a05098",
+        "tools/cfp_evaluate.py": "3b01840007a5fb765e5388694500574aeeef8fa94afb38ed8ebf4b9615b4b308",
+        "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+        "cfp/local_dense_jepa.py": "37c761b9ac21fc629ffadf638e7ff6d549ce695e656576a13d9ab634422d1e4f",
+        "cfp/local_dense_context_identity.py": "77e107b89dee35b02100576b5d78417ed8aaab95c6e3986e2f9494c6cf25528f",
+        "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+        "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+        "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+        "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6"
+      },
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "all_replays_complete": true,
+        "online_guards_clean": true,
+        "labels_used_only_by_offline_trackeval": true,
+        "raw_outputs_outside_git": true
+      },
+      "run_validation": {
+        "replays": 18,
+        "expected_replays": 18,
+        "all_replays_complete": true,
+        "prediction_hashes_bound_to_official_metrics": true,
+        "online_GT_teacher_future_used_false": true,
+        "manifest_statuses_complete": true,
+        "online_guard_false": true,
+        "native_history_source_true": true,
+        "prediction_sha256_matches_manifest_and_trackeval": true
+      },
+      "metrics": {
+        "local_contrastive_fifo": {
+          "HOTA": 38.55467323732664,
+          "AssA": 26.396741321157425,
+          "DetA": 61.03150399540426,
+          "IDF1": 46.26396993258035,
+          "MOTA": 73.43673516317668,
+          "IDSW": 113.8888888888889
+        },
+        "frozen_fifo": {
+          "HOTA": 38.78368572140126,
+          "AssA": 26.685579394130936,
+          "DetA": 60.845779285070115,
+          "IDF1": 47.42580468991998,
+          "MOTA": 73.45878401741977,
+          "IDSW": 114.5
+        },
+        "delta": {
+          "HOTA": -0.22901248407462305,
+          "AssA": -0.28883807297351183,
+          "DetA": 0.18572471033414217,
+          "IDF1": -1.1618347573396264,
+          "MOTA": -0.02204885424309566,
+          "IDSW": -0.6111111111111001
+        }
+      },
+      "per_video": {
+        "BT-001": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 35.1116292384662,
+            "AssA": 21.89891448600669,
+            "DetA": 56.41228906364119,
+            "IDF1": 41.61204948901233,
+            "MOTA": 64.48,
+            "IDSW": 96.66666666666667
+          },
+          "frozen_fifo": {
+            "HOTA": 35.812139449917964,
+            "AssA": 22.8263996693714,
+            "DetA": 56.332165388453916,
+            "IDF1": 45.66482714661925,
+            "MOTA": 64.58,
+            "IDSW": 99.0
+          },
+          "delta": {
+            "HOTA": -0.7005102114517641,
+            "AssA": -0.9274851833647126,
+            "DetA": 0.08012367518727359,
+            "IDF1": -4.052777657606924,
+            "MOTA": -0.09999999999999432,
+            "IDSW": -2.3333333333333286
+          },
+          "improves_both_hota_idf1": false
+        },
+        "BT-003": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 55.8190285749728,
+            "AssA": 55.893066869560094,
+            "DetA": 55.777457694619635,
+            "IDF1": 79.6761469794478,
+            "MOTA": 62.63374485596708,
+            "IDSW": 9.0
+          },
+          "frozen_fifo": {
+            "HOTA": 55.30530219492446,
+            "AssA": 55.629264183703185,
+            "DetA": 55.01358918142476,
+            "IDF1": 78.95392278953923,
+            "MOTA": 62.674897119341566,
+            "IDSW": 9.0
+          },
+          "delta": {
+            "HOTA": 0.5137263800483396,
+            "AssA": 0.26380268585690914,
+            "DetA": 0.7638685131948719,
+            "IDF1": 0.7222241899085589,
+            "MOTA": -0.04115226337448519,
+            "IDSW": 0.0
+          },
+          "improves_both_hota_idf1": true
+        },
+        "MSK-002": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 24.163803321533084,
+            "AssA": 13.512584118786004,
+            "DetA": 43.54970106820681,
+            "IDF1": 29.648967189478757,
+            "MOTA": 45.21324979016611,
+            "IDSW": 389.0
+          },
+          "frozen_fifo": {
+            "HOTA": 23.982046875386047,
+            "AssA": 13.317746485009014,
+            "DetA": 43.540617586267,
+            "IDF1": 29.200290563296573,
+            "MOTA": 45.196463078995144,
+            "IDSW": 384.0
+          },
+          "delta": {
+            "HOTA": 0.18175644614703756,
+            "AssA": 0.1948376337769897,
+            "DetA": 0.009083481939811122,
+            "IDF1": 0.4486766261821842,
+            "MOTA": 0.016786711170965418,
+            "IDSW": 5.0
+          },
+          "improves_both_hota_idf1": true
+        },
+        "PF-001": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 42.35458355695784,
+            "AssA": 22.647579361120833,
+            "DetA": 79.26732598766647,
+            "IDF1": 39.847499289333314,
+            "MOTA": 98.28666666666668,
+            "IDSW": 19.0
+          },
+          "frozen_fifo": {
+            "HOTA": 42.35458355695784,
+            "AssA": 22.647579361120833,
+            "DetA": 79.26732598766647,
+            "IDF1": 39.847499289333314,
+            "MOTA": 98.28666666666666,
+            "IDSW": 19.0
+          },
+          "delta": {
+            "HOTA": 0.0,
+            "AssA": 0.0,
+            "DetA": 0.0,
+            "IDF1": 0.0,
+            "MOTA": 1.4210854715202004e-14,
+            "IDSW": 0.0
+          },
+          "improves_both_hota_idf1": false
+        },
+        "SN-001": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 43.021344141899654,
+            "AssA": 30.904215997629233,
+            "DetA": 60.147527781469144,
+            "IDF1": 60.43820195165574,
+            "MOTA": 78.98572577402493,
+            "IDSW": 24.666666666666668
+          },
+          "frozen_fifo": {
+            "HOTA": 43.023059329301624,
+            "AssA": 30.90659701856059,
+            "DetA": 60.147527781469144,
+            "IDF1": 60.443462479286666,
+            "MOTA": 78.99577804583836,
+            "IDSW": 24.0
+          },
+          "delta": {
+            "HOTA": -0.0017151874019702973,
+            "AssA": -0.0023810209313559483,
+            "DetA": 0.0,
+            "IDF1": -0.0052605276309236615,
+            "MOTA": -0.01005227181343571,
+            "IDSW": 0.6666666666666679
+          },
+          "improves_both_hota_idf1": false
+        },
+        "SN-015": {
+          "seeds": [
+            0,
+            1,
+            2
+          ],
+          "local_contrastive_fifo": {
+            "HOTA": 30.857650590130266,
+            "AssA": 13.524087093841706,
+            "DetA": 71.03472237682234,
+            "IDF1": 26.360954696554206,
+            "MOTA": 91.02102389223529,
+            "IDSW": 145.0
+          },
+          "frozen_fifo": {
+            "HOTA": 32.22498292191964,
+            "AssA": 14.785889647020573,
+            "DetA": 70.77344978513939,
+            "IDF1": 30.44482587144484,
+            "MOTA": 91.0188991936769,
+            "IDSW": 152.0
+          },
+          "delta": {
+            "HOTA": -1.367332331789374,
+            "AssA": -1.2618025531788675,
+            "DetA": 0.26127259168295325,
+            "IDF1": -4.083871174890636,
+            "MOTA": 0.002124698558390037,
+            "IDSW": -7.0
+          },
+          "improves_both_hota_idf1": false
+        }
+      },
+      "promotion_gate": {
+        "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+        "minimum_videos": 4,
+        "qualifying_videos": [
+          "BT-003",
+          "MSK-002"
+        ],
+        "qualifying_video_count": 2,
+        "positive_macro_hota": false,
+        "positive_macro_idf1": false,
+        "macro_idsw_not_increased": true,
+        "passed": false,
+        "no_outer_threshold_or_seed_selection": true
+      },
+      "decision": "DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW",
+      "finding": "The outer-excluded learned local-contrastive route improves both HOTA and IDF1 only on BT-003 and MSK-002; BT-001 and SN-015 lose both, PF-001 is unchanged, and SN-001 is slightly lower. Macro HOTA and IDF1 fall, so no strict-raw promotion or final combination is justified.",
+      "next_experiment": "A new final combination requires a genuinely independent same-input complementary signal; do not tune this route or stack it after the failed fixed gate.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -5815,7 +6204,8 @@
     "Preserve the matched negative NULL replay; require an independently justified signal before any further candidate-set replay.",
     "Preserve the raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal.",
     "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal.",
-    "Preserve the all-fold local-attention native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal."
+    "Preserve the all-fold local-attention native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal.",
+    "Preserve the all-fold local-contrastive native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal."
   ],
   "validation": {
     "project_tests": 309,
@@ -5825,7 +6215,9 @@
     "scope": "Actual full project suite after local4 complementarity audit module/tests; 309 scoped tests pass with external fixture/dependency limits explicit.",
     "phase_vii_passed": 309,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
-    "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642"
+    "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
+    "local_contrastive_allfold_replays": 18,
+    "local_contrastive_targeted_tests": 10
   },
   "execution_failures": [
     {
@@ -6188,5 +6580,67 @@
       "pass": false
     },
     "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW"
+  },
+  "native_local_contrastive_allfold": {
+    "experiment_id": "VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_V1",
+    "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+    "report_sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+    "config": "configs/cfp/phase_vii_native_local_contrastive_allfold_v1.json",
+    "config_sha256": "a400a43b6f851df8afaf7c4bd0593c854bf28ffe0f7b37524c2f6786eceeb298",
+    "external_root": "/tmp/IR-MFT_phase7_native_local_contrastive_v1",
+    "external_report_sha256": "25fa06a04d4aabe2332e3c2336b517116fc7a2131ca7623d78d52b2d87800918",
+    "coverage": {
+      "videos": 6,
+      "seeds": 3,
+      "replays": 18,
+      "all_replays_complete": true,
+      "online_guards_clean": true,
+      "labels_used_only_by_offline_trackeval": true,
+      "raw_outputs_outside_git": true
+    },
+    "macro": {
+      "local_contrastive_fifo": {
+        "HOTA": 38.55467323732664,
+        "AssA": 26.396741321157425,
+        "DetA": 61.03150399540426,
+        "IDF1": 46.26396993258035,
+        "MOTA": 73.43673516317668,
+        "IDSW": 113.8888888888889
+      },
+      "frozen_fifo": {
+        "HOTA": 38.78368572140126,
+        "AssA": 26.685579394130936,
+        "DetA": 60.845779285070115,
+        "IDF1": 47.42580468991998,
+        "MOTA": 73.45878401741977,
+        "IDSW": 114.5
+      },
+      "delta": {
+        "HOTA": -0.22901248407462305,
+        "AssA": -0.28883807297351183,
+        "DetA": 0.18572471033414217,
+        "IDF1": -1.1618347573396264,
+        "MOTA": -0.02204885424309566,
+        "IDSW": -0.6111111111111001
+      }
+    },
+    "promotion_gate": {
+      "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+      "minimum_videos": 4,
+      "qualifying_videos": [
+        "BT-003",
+        "MSK-002"
+      ],
+      "qualifying_video_count": 2,
+      "positive_macro_hota": false,
+      "positive_macro_idf1": false,
+      "macro_idsw_not_increased": true,
+      "passed": false,
+      "no_outer_threshold_or_seed_selection": true
+    },
+    "decision": "DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW",
+    "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned fine-grained local-contrastive identity route. This closes one direct local representation candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated.",
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

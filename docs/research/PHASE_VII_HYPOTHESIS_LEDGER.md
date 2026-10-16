@@ -189,3 +189,13 @@ The direct learned local-evidence candidate was frozen before replay: an outer-f
 Against the paired frozen FIFO reference, local-attention improves both HOTA and IDF1 on only BT-003 and MSK-002. BT-001 gains 0.007 HOTA but loses 2.038 IDF1, SN-001 loses both metrics, and SN-015 loses 1.261 HOTA and 3.491 IDF1. The six-video macro changes HOTA/AssA/IDF1/MOTA/IDSW by −0.1091/−0.1449/−0.7284/−0.0071/+0.0556. The pre-registered gate required both HOTA and IDF1 gains on at least four videos, positive macro HOTA and IDF1, and no macro IDSW increase; it fails with two qualifying videos and negative macro identity metrics.
 
 Decision: `DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW`. This is a measured direct local-ReID boundary, not a project-wide NO_GO: no memory tuning, threshold search, video-specific fallback or strict-raw expansion is justified from this route. Full hashes, per-seed metrics and guard fields are in `PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json`; replay outputs remain outside Git under `/tmp/IR-MFT_phase7_native_local_attention_v1`. P11 selective combination and P17 independent contribution remain unestablished.
+
+## H16 — Learned local-contrastive identity evidence under native FIFO (2026-10-16)
+
+**Hypothesis.** An outer-excluded local-contrastive representation over native DINO K4 spatial tokens will transfer a fine-grained identity signal to the unchanged online association graph.
+
+**Pre-registration.** Use the existing `ContextIdentityStudent` `local_contrastive` checkpoints, six outer videos and seeds 0/1/2, FIFO memory, exact frozen proposals/lifecycle/geometry/output, and the fixed gate: at least four of six videos must improve both HOTA and IDF1, macro HOTA and IDF1 must be positive, and macro IDSW must not increase. No seed/video/threshold selection is allowed.
+
+**Measured result.** 18/18 native replays pass. BT-003 and MSK-002 improve both metrics; BT-001 and SN-015 lose both, PF-001 is unchanged and SN-001 is slightly lower. Macro HOTA/IDF1 fall by 0.2290/1.1618 points and the gate fails.
+
+**Decision.** `DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW`. No final stack, memory tuning or threshold search is justified. The full record is `docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json` (SHA-256 `b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b`).

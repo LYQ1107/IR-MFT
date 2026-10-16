@@ -3,7 +3,7 @@
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "source_report": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
-  "source_report_sha256": "04852701eac6dc402587c6cdb3e0b8e59d1893f1349ebaba4fcb0d498a05ca42",
+  "source_report_sha256": "5dd3446bff580a9c96c9ad2a819234a13bd37b0fc6a1b9d89a5a20ba1fe74f36",
   "question_rows_found": [
     1,
     2,
@@ -70,7 +70,16 @@
     },
     {
       "question_id": 11,
-      "status": "COMPLETE_54_NATIVE_ROWS_THREE_SEEDS"
+      "status": "COMPLETE_54_NATIVE_ROWS_THREE_SEEDS",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+          "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+          "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+          "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
+          "exists": true
+        }
+      ]
     },
     {
       "question_id": 12,
@@ -94,7 +103,16 @@
     },
     {
       "question_id": 17,
-      "status": "COMPLETE_SOURCE_AUDITS_AND_ALLFOLD_VISIBLE_TOKEN_MIXED_LOCAL_CONTROL_REJECTED"
+      "status": "COMPLETE_SOURCE_AUDITS_AND_ALLFOLD_VISIBLE_TOKEN_MIXED_LOCAL_CONTROL_REJECTED",
+      "evidence": [
+        {
+          "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+          "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+          "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+          "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
+          "exists": true
+        }
+      ]
     },
     {
       "question_id": 18,
@@ -129,7 +147,14 @@
     "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
     "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
     "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json",
-    "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json"
+    "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json",
+    {
+      "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+      "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+      "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+      "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
+      "exists": true
+    }
   ],
   "open_boundaries": [
     "Final-combination gate is measured NOT_JUSTIFIED; no mechanical stacking or positive final method",
@@ -142,7 +167,8 @@
     "Source-matched raw_cls versus fitted global embedding native control is complete across six videos x three seeds and negative in aggregate; no raw/head blend or fallback is justified.",
     "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified.",
     "Fixed local4 same-graph complementarity is complete across six videos x seeds0/1/2: 0 corrections, 0 harms and 0 top-choice disagreements over 428220 clean-history rows; the margin gate changes no top choice, so no local4 combination replay is justified.",
-    "Learned local-attention all-fold native replay is complete but fails the preregistered four-of-six HOTA+IDF1/no-macro-IDSW gate; strict-raw promotion is not justified."
+    "Learned local-attention all-fold native replay is complete but fails the preregistered four-of-six HOTA+IDF1/no-macro-IDSW gate; strict-raw promotion is not justified.",
+    "Learned local-contrastive all-fold native replay improves both HOTA and IDF1 on only BT-003 and MSK-002; macro HOTA/IDF1 fall and no strict-raw promotion or final combination is justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -255,5 +281,52 @@
     "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
     "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW",
     "scope": "All six videos x seeds0/1/2 native FIFO replay using outer-excluded learned local-attention models; macro HOTA/IDF1 fall and only two videos improve both."
+  },
+  "local_contrastive_allfold": {
+    "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+    "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+    "decision": "DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW",
+    "macro": {
+      "local_contrastive_fifo": {
+        "HOTA": 38.55467323732664,
+        "AssA": 26.396741321157425,
+        "DetA": 61.03150399540426,
+        "IDF1": 46.26396993258035,
+        "MOTA": 73.43673516317668,
+        "IDSW": 113.8888888888889
+      },
+      "frozen_fifo": {
+        "HOTA": 38.78368572140126,
+        "AssA": 26.685579394130936,
+        "DetA": 60.845779285070115,
+        "IDF1": 47.42580468991998,
+        "MOTA": 73.45878401741977,
+        "IDSW": 114.5
+      },
+      "delta": {
+        "HOTA": -0.22901248407462305,
+        "AssA": -0.28883807297351183,
+        "DetA": 0.18572471033414217,
+        "IDF1": -1.1618347573396264,
+        "MOTA": -0.02204885424309566,
+        "IDSW": -0.6111111111111001
+      }
+    },
+    "promotion_gate": {
+      "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+      "minimum_videos": 4,
+      "qualifying_videos": [
+        "BT-003",
+        "MSK-002"
+      ],
+      "qualifying_video_count": 2,
+      "positive_macro_hota": false,
+      "positive_macro_idf1": false,
+      "macro_idsw_not_increased": true,
+      "passed": false,
+      "no_outer_threshold_or_seed_selection": true
+    },
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

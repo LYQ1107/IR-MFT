@@ -677,6 +677,52 @@
         "pass": false
       },
       "finding": "18 outer-excluded native FIFO replays improve both HOTA and IDF1 on only BT-003 and MSK-002; macro HOTA/AssA/IDF1 are negative and macro IDSW increases slightly, so no strict-raw promotion or stacking is justified."
+    },
+    "learned_local_contrastive_native": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+        "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+        "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED"
+      },
+      "macro": {
+        "HOTA": 38.55467323732664,
+        "AssA": 26.396741321157425,
+        "DetA": 61.03150399540426,
+        "IDF1": 46.26396993258035,
+        "MOTA": 73.43673516317668,
+        "IDSW": 113.8888888888889
+      },
+      "frozen_fifo": {
+        "HOTA": 38.78368572140126,
+        "AssA": 26.685579394130936,
+        "DetA": 60.845779285070115,
+        "IDF1": 47.42580468991998,
+        "MOTA": 73.45878401741977,
+        "IDSW": 114.5
+      },
+      "delta_vs_frozen_fifo": {
+        "HOTA": -0.22901248407462305,
+        "AssA": -0.28883807297351183,
+        "DetA": 0.18572471033414217,
+        "IDF1": -1.1618347573396264,
+        "MOTA": -0.02204885424309566,
+        "IDSW": -0.6111111111111001
+      },
+      "promotion_gate": {
+        "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over paired frozen FIFO in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+        "minimum_videos": 4,
+        "qualifying_videos": [
+          "BT-003",
+          "MSK-002"
+        ],
+        "qualifying_video_count": 2,
+        "positive_macro_hota": false,
+        "positive_macro_idf1": false,
+        "macro_idsw_not_increased": true,
+        "passed": false,
+        "no_outer_threshold_or_seed_selection": true
+      },
+      "finding": "The outer-excluded learned local-contrastive route improves both HOTA and IDF1 only on BT-003 and MSK-002; BT-001 and SN-015 lose both, PF-001 is unchanged, and SN-001 is slightly lower. Macro HOTA and IDF1 fall, so no strict-raw promotion or final combination is justified."
     }
   },
   "why_no_new_run": [
@@ -684,9 +730,10 @@
     "The native negative rows cover all six videos/three seeds for context and source-JPM/FDTA scopes and 42 occlusion controls; stacking would add parameters while hiding the causal negative evidence.",
     "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
     "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run.",
-    "The learned local-attention native route is now all-fold measured and fails its four-of-six HOTA+IDF1/no-macro-IDSW gate; it does not provide an independent component for stacking."
+    "The learned local-attention native route is now all-fold measured and fails its four-of-six HOTA+IDF1/no-macro-IDSW gate; it does not provide an independent component for stacking.",
+    "The all-fold local-contrastive native route fails its preregistered promotion gate; its negative macro identity deltas and two qualifying videos do not support strict-raw expansion or stacking."
   ],
-  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. The all-fold learned local-attention native route also fails its preregistered promotion gate; independent complementarity, P11 selective-combination value and P17 final novelty remain unestablished.",
+  "remaining_boundary": "No stable independent same-input complementary signal has passed a fixed all-fold gate; learned local-attention and local-contrastive routes both remain negative/mixed.",
   "resource_scope": {
     "protected_asset_free_gib_snapshot": 40.11628341674805,
     "reserve_gib": 40.0,

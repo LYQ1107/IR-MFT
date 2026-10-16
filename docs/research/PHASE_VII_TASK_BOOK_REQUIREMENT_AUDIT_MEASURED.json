@@ -22,7 +22,7 @@
     {
       "id": "P1_environment_branch_assets",
       "status": "COMPLETE_WITH_ACTIVE_RESOURCE_GUARDS",
-      "requirement": "Verify protected Phase I\u2013VI base/branch, current worktree, disk and GPU policy; preserve old assets.",
+      "requirement": "Verify protected Phase I–VI base/branch, current worktree, disk and GPU policy; preserve old assets.",
       "evidence": [
         {
           "path": "docs/research/PHASE_VII_STATE.json",
@@ -285,7 +285,7 @@
           "path": "docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json",
           "sha256": "62f1d96193ecdcf761da68c80dfbd1babe771c7df83c3d002111c9a1d12286df",
           "status": "COMPLETE_ALLFOLD_NATIVE_VISIBLE_TOKEN_REPLAYS_MEASURED",
-          "scope": "All six outer videos \u00d7 two fit-only visible-token objectives \u00d7 three seeds; native current-frame feature banks, unchanged FIFO replay and scoped official TrackEval.",
+          "scope": "All six outer videos × two fit-only visible-token objectives × three seeds; native current-frame feature banks, unchanged FIFO replay and scoped official TrackEval.",
           "exists": true
         }
       ]
@@ -293,7 +293,7 @@
     {
       "id": "P10_protocol_C_raw_online",
       "status": "COMPLETE_FOR_FROZEN_LEGACY_AND_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW",
-      "requirement": "Measure full raw decode\u2192IR\u2192V3\u2192crop\u2192encoder\u2192association\u2192output FPS/latency and parity.",
+      "requirement": "Measure full raw decode→IR→V3→crop→encoder→association→output FPS/latency and parity.",
       "evidence": [
         {
           "path": "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
@@ -322,7 +322,7 @@
           "exists": true,
           "sha256": "a82b2090f4fffa5d65e43d9d3f810668a08b5c21864a15843dd86d887046e679",
           "status": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED",
-          "scope": "All six outer videos \u00d7 two visible-token objectives \u00d7 three seeds; complete current-only Protocol C with trace replay and official TrackEval."
+          "scope": "All six outer videos × two visible-token objectives × three seeds; complete current-only Protocol C with trace replay and official TrackEval."
         },
         {
           "path": "/data3/liuyeqiang/IR-MFT_phase7_visible_token_allfold_recovery_v2/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json",
@@ -431,6 +431,13 @@
           "sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
           "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
           "scope": "18 all-fold native local-attention FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails."
+        },
+        {
+          "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+          "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+          "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+          "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
+          "exists": true
         }
       ]
     },
@@ -656,6 +663,13 @@
           "sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
           "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
           "scope": "18 all-fold native local-attention FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails."
+        },
+        {
+          "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+          "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+          "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+          "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
+          "exists": true
         }
       ]
     }
@@ -1315,7 +1329,7 @@
     },
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   },
-  "source_report_sha256": "04852701eac6dc402587c6cdb3e0b8e59d1893f1349ebaba4fcb0d498a05ca42",
+  "source_report_sha256": "5dd3446bff580a9c96c9ad2a819234a13bd37b0fc6a1b9d89a5a20ba1fe74f36",
   "open_boundaries": [
     "Strict raw and native visible-token evidence cover all six outer folds, both objectives and seeds0/1/2; the native edge-engagement audit is byte-identical across 36 runs.",
     "The local4 pooling, raw-history nearest, visibility-quality and native cue margin probes fail their predeclared expansion/held-out gates; no component expansion or mechanical stacking is justified.",
@@ -1324,7 +1338,8 @@
     "The scalar appearance-weight pilot selected existing 0.3 and had zero selected outer delta; non-selected tradeoff is descriptive only.",
     "The fixed unknown-preserving NULL replay is negative against a byte-identical six-video control; further candidate-set replay requires a new independent signal.",
     "Raw CLS same-graph complementarity audit is complete but its every-video promotion gate fails; no raw-CLS margin stack or fallback is justified.",
-    "Fixed local4 same-graph complementarity audit is complete across six videos x seeds0/1/2 with zero corrections, harms or top-choice disagreements; its every-video promotion gate fails and no local4 combination replay is justified."
+    "Fixed local4 same-graph complementarity audit is complete across six videos x seeds0/1/2 with zero corrections, harms or top-choice disagreements; its every-video promotion gate fails and no local4 combination replay is justified.",
+    "The all-fold local-contrastive native replay is complete but fails the fixed four-of-six HOTA+IDF1/no-macro-IDSW gate; no strict-raw promotion or stable contribution is established."
   ],
   "native_replay_engagement_audit": {
     "status": "COMPLETE_ALLFOLD_NATIVE_REPLAY_ENGAGEMENT_AUDIT_36",
@@ -1588,6 +1603,13 @@
       "sha256": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
       "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT_GATE_FAILED",
       "scope": "18 same-input global-embedding observer replays; 0 local4 corrections, 0 harms and 0 top-choice disagreements across 428220 clean-history rows; every-video promotion gate fails; no combination replay.",
+      "exists": true
+    },
+    {
+      "path": "docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json",
+      "sha256": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
+      "status": "COMPLETE_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_GATE_FAILED",
+      "scope": "18 all-fold native local-contrastive FIFO replays; preregistered four-of-six HOTA+IDF1/no-macro-IDSW promotion gate fails; no strict-raw promotion.",
       "exists": true
     }
   ]
