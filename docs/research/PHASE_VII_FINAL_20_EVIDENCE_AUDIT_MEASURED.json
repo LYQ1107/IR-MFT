@@ -3,7 +3,7 @@
   "as_of": "2026-10-16",
   "goal_status": "IN_PROGRESS_UNACHIEVED",
   "source_report": "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md",
-  "source_report_sha256": "a332653cbde245261b6446ff1d32dd8efbd63d4e2ff8eeb1c1e4f146a0f6ef8e",
+  "source_report_sha256": "ae004196d1d92137624cc964be0c2d743095f9177dc133670cb7426184bae0eb",
   "question_rows_found": [
     1,
     2,
@@ -127,7 +127,8 @@
     "docs/research/PHASE_VII_MOTION_ERROR_PREDICTABILITY_MEASURED.json",
     "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
     "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
-    "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json"
+    "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
+    "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json"
   ],
   "open_boundaries": [
     "Final-combination gate is measured NOT_JUSTIFIED; no mechanical stacking or positive final method",
@@ -138,7 +139,8 @@
     "The fixed causal motion-error predictability audit worsens both held-out errors; no learned-motion replay or nonlinear-motion contribution is justified.",
     "The fixed causal nonlinear MLP also worsens both held-out means and the outer long-gap tail; no learned-motion replay is justified.",
     "Source-matched raw_cls versus fitted global embedding native control is complete across six videos x three seeds and negative in aggregate; no raw/head blend or fallback is justified.",
-    "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified."
+    "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified.",
+    "Fixed local4 same-graph complementarity is complete across six videos x seeds0/1/2: 0 corrections, 0 harms and 0 top-choice disagreements over 428220 clean-history rows; the margin gate changes no top choice, so no local4 combination replay is justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -226,6 +228,21 @@
       "raw_harm": 0,
       "margin_activation": 128705,
       "margin_correction": 5,
+      "margin_harm": 0
+    },
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "local4_complementarity": {
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json",
+    "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+    "scope": "All six videos x seeds0/1/2; 428220 clean-history candidate rows; prediction hashes locked before physical labels.",
+    "decision": "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY",
+    "aggregate_counts": {
+      "rows": 428220,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "margin_activation": 105628,
+      "margin_correction": 0,
       "margin_harm": 0
     },
     "goal_status": "IN_PROGRESS_UNACHIEVED"

@@ -73,6 +73,7 @@ def main() -> int:
     _, dinov2 = load("docs/research/PHASE_VII_DINOV2_ALLFOLD_RETRIEVAL_AUDIT_MEASURED.json")
     _, native = load("docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_NATIVE_REPLAYS_MEASURED.json")
     _, strict_raw = load("docs/research/PHASE_VII_VISIBLE_TOKEN_ALLFOLD_STRICT_RAW_MEASURED.json")
+    _, local4 = load("docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json")
     goal_path = ROOT / "docs/research/PHASE_VII_FINAL_GOAL.md"
     ledger_path = ROOT / "docs/research/PHASE_VII_HYPOTHESIS_LEDGER.md"
     report_path = ROOT / "docs/research/PHASE_VII_FINAL_RESEARCH_REPORT.md"
@@ -111,12 +112,12 @@ def main() -> int:
         },
         "required_documents_13_present_and_hashed": len(required_documents) == 13
         and all(row["exists"] and row["hash_matches"] for row in required_document_checks),
-        "goal_and_ledger_have_authoritative_305_test_text": "305" in goal_path.read_text()
-        and "305" in ledger_path.read_text()
-        and not re.search(r"\b(?:293|301)\s+(?:Phase|passed)\b", goal_path.read_text())
-        and not re.search(r"\b(?:293|301)\s+(?:Phase|passed)\b", ledger_path.read_text()),
-        "current_validation_state_305_pass_0_fail_24_warnings": (
-            current_validation_state["phase_vii_passed"] == 305
+        "goal_and_ledger_have_authoritative_309_test_text": "309" in goal_path.read_text()
+        and "309" in ledger_path.read_text()
+        and not re.search(r"\b(?:293|301|305)\s+(?:Phase|passed)\b", goal_path.read_text())
+        and not re.search(r"\b(?:293|301|305)\s+(?:Phase|passed)\b", ledger_path.read_text()),
+        "current_validation_state_309_pass_0_fail_24_warnings": (
+            current_validation_state["phase_vii_passed"] == 309
             and current_validation_state["phase_vii_failed"] == 0
             and current_validation_state["warnings"] == 24
         ),
@@ -137,6 +138,16 @@ def main() -> int:
         "dinov2_allfold_144_crop_controls": (
             dinov2["status"] == "COMPLETE_DINOV2_ALLFOLD_K4_K8_THREE_SEED_CROP_CONTROLS"
             and dinov2["coverage"]["runs_total"] == 144
+        ),
+        "local4_complementarity_gate_failed_without_replay": (
+            local4["status"] == "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT"
+            and local4["decision"] == "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY"
+            and local4["aggregate_counts"]["rows"] == 428220
+            and local4["aggregate_counts"]["local4_correction"] == 0
+            and local4["aggregate_counts"]["local4_harm"] == 0
+            and local4["aggregate_counts"]["margin_correction"] == 0
+            and local4["aggregate_counts"]["margin_harm"] == 0
+            and local4["promotion_gate"]["pass_"] is False
         ),
         "p11_open_without_current_component_justification": req_status.get(
             "P11_selective_combinations"
@@ -191,6 +202,8 @@ def main() -> int:
             "native_replay_tasks": native["coverage"]["replay_tasks"],
             "strict_raw_runs": strict_raw["coverage"]["actual_runs"],
             "dinov2_crop_runs": dinov2["coverage"]["runs_total"],
+            "local4_clean_history_rows": local4["aggregate_counts"]["rows"],
+            "local4_prediction_replays": local4["coverage"]["expected_replays"],
         },
         "open_boundaries": task["open_boundaries"],
     }

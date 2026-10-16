@@ -1,0 +1,407 @@
+{
+  "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT",
+  "as_of": "2026-10-16",
+  "experiment_id": "VII_NATIVE_LOCAL4_COMPLEMENTARITY_AUDIT_V1",
+  "config": "configs/cfp/phase_vii_native_local4_complementarity_v1.json",
+  "config_sha256": "1b6d9e3f53be02eee3bb8ed7b7952a6c6daf1dc57399585d1b89125c5667eba3",
+  "source_commit": "24226bbfd6e9725214ded58bd6b4b77c90da6af2",
+  "source_sha256": {
+    "tools/cfp_record_native_local4_complementarity.py": "a32d65a86645e82c400fd16d54f1549623a5d27015b084957cd0d04c0fba0d59",
+    "tools/cfp_audit_native_local4_complementarity.py": "c858cd24bca9add0e0453227d5eaa64c1a7c006dc8c6f2089a050c7062efa588",
+    "configs/cfp/phase_vii_native_local4_complementarity_v1.json": "1b6d9e3f53be02eee3bb8ed7b7952a6c6daf1dc57399585d1b89125c5667eba3",
+    "cfp/native_local4_complementarity.py": "69e7e7c5fa6ff51f3f400a433809aa831fc1573b8abe67bd79dec2c3eed420a6",
+    "cfp/predictive_association.py": "20cfd5fb3d8d7610e4d70e5418d0a6f82f77fbdaae287795d9e40632f52f31b2",
+    "cfp/predictive.py": "731813e93bb450d1802b6d97d70e91cf15cc161de2b7b9694b3c5f2400679ef9",
+    "cfp/association.py": "2a2ce3b84cf9919070247d94af1d8814ec8b6602aedf59708c2a766620de57be",
+    "cfp/native_local_identity.py": "e12727ef366d7e58b7db93b51eea58cdeb71d85cd8fb8959dda2b41394f52124",
+    "cfp/provenance.py": "3a8bc27b8369bea47c7b8bba59435f909bcacdacdf524c6c929e940e95a30ef6",
+    "cfp/recovery_supervision.py": "b86e5fdfa92d9290f26e74d68daedf09de950e1b9b30127e4443aded0f63330a"
+  },
+  "scope": "Read-only same-input candidate-edge complementarity audit. The online tracker remains the fitted-embedding FIFO route and must be byte-identical to its accepted global-bank predictions. Prediction hashes are locked for all 18 runs before physical labels are opened. No GT, physical identity, future frame, teacher, external payload or cached inference feature enters online replay; labels are retrospective reducer inputs only.",
+  "coverage": {
+    "expected_replays": 18,
+    "completed_replays": 18,
+    "all_prediction_hashes_locked": true,
+    "physical_labels_opened_after_all_prediction_hashes": true,
+    "online_guards_clean": true
+  },
+  "per_replay": {
+    "BT-001_s0": {
+      "video": "BT-001",
+      "seed": 0,
+      "prediction_sha256": "e0de8a155f2905b7bc916ebc8f6f70e67e2145170c76b3e5fe0ebec719641759",
+      "trace_sha256": "ac0933226f559d0d8704f13e30edb4b158fa0789bc5dc5aa2979f5304461bf25",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29494
+    },
+    "BT-001_s1": {
+      "video": "BT-001",
+      "seed": 1,
+      "prediction_sha256": "30e904caeaf130f51ae31b15534f7a3f3df7844c47036100ae9f8ea684305250",
+      "trace_sha256": "0059bd3204e45998672d843ad754056743fb437b78389753c587773997d77e6d",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29537
+    },
+    "BT-001_s2": {
+      "video": "BT-001",
+      "seed": 2,
+      "prediction_sha256": "01477a965d9d4cbb14c1986d375bcda90861285edcd91099af3eed39c11fd6df",
+      "trace_sha256": "8117f4b12f039ece8c56f8ed7de26cec203c65e41111c17bac4ad5673777edda",
+      "prediction_byte_equal": true,
+      "frames": 3000,
+      "output_rows": 29537
+    },
+    "BT-003_s0": {
+      "video": "BT-003",
+      "seed": 0,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "6ccac602eb0d13af89556490962f6cca8c808605de4ae947cb6b782366a18656",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "BT-003_s1": {
+      "video": "BT-003",
+      "seed": 1,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "a57f081e62e111d4edab2a3b653991a56e943c8e49803d8499bdb0e77eb43127",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "BT-003_s2": {
+      "video": "BT-003",
+      "seed": 2,
+      "prediction_sha256": "f764224d5244f5aa20e05aff962457a7743778a508fe5f37c9432fe9c1bb6ed8",
+      "trace_sha256": "fa6ea4ad20a0e9db26180b5494725a54fa4fafae2786786cafd750494a565c9b",
+      "prediction_byte_equal": true,
+      "frames": 243,
+      "output_rows": 2388
+    },
+    "MSK-002_s0": {
+      "video": "MSK-002",
+      "seed": 0,
+      "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "trace_sha256": "4cca33dafaf19403b9f5477734b2e41631bd800ad6b9675ae48bdfeb7016e221",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "MSK-002_s1": {
+      "video": "MSK-002",
+      "seed": 1,
+      "prediction_sha256": "213fee71a746943488baceaf8abb576d2aba3bf6239a20f2b4021b2deb8d64f5",
+      "trace_sha256": "282a0bf71a6d513f707c0a809c2df4daf6ddbea8ed04526e88d7c2eea0c8902f",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "MSK-002_s2": {
+      "video": "MSK-002",
+      "seed": 2,
+      "prediction_sha256": "63a3b35460f17b12db40fc1fc536e76b16f740e0cd3ceb927667863ff5709dff",
+      "trace_sha256": "b042522dc32aa1c8dffeaeff029589862d6065c2e22620665a8a1c1b083fd359",
+      "prediction_byte_equal": true,
+      "frames": 1754,
+      "output_rows": 66045
+    },
+    "PF-001_s0": {
+      "video": "PF-001",
+      "seed": 0,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "4b9de1a89a14166d58b3cab8a9001c6253676a893e02ad0a83c3418c9d5b95a3",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "PF-001_s1": {
+      "video": "PF-001",
+      "seed": 1,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "9f8549ed0b34efb23ef1e0b8540bdf20c119998c16f53d965f53e0ff5ab96bf3",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "PF-001_s2": {
+      "video": "PF-001",
+      "seed": 2,
+      "prediction_sha256": "4a5017b917453ebd6124390541a8d2339099409f5f69aa54890886f4f0563811",
+      "trace_sha256": "9e9ad2bc756f77105b96e3c1ff2c93dee4053737fc469287ebba6ef6ab0444dd",
+      "prediction_byte_equal": true,
+      "frames": 15000,
+      "output_rows": 29803
+    },
+    "SN-001_s0": {
+      "video": "SN-001",
+      "seed": 0,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "3bfd7b95503a3b7446b144149da88af742067f733225cb4f90a64fa9b5c6369e",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-001_s1": {
+      "video": "SN-001",
+      "seed": 1,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "62c4a80938ddfdd4231a1446226813c13aa7e4440c0a5201d0d2971ca36866e3",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-001_s2": {
+      "video": "SN-001",
+      "seed": 2,
+      "prediction_sha256": "4dfcc10540b58fb7e6398050961f0de883d3b6cb880bdb4fd78502c57a0b5296",
+      "trace_sha256": "8208561358ffe9661d4a8227c343656f4b9641431981d1be4ed9c6a0b11e2eaa",
+      "prediction_byte_equal": true,
+      "frames": 684,
+      "output_rows": 6041
+    },
+    "SN-015_s0": {
+      "video": "SN-015",
+      "seed": 0,
+      "prediction_sha256": "cbdc7128c28108e54f2fe2933ff358bb146d69b793c1438d3486e9e0d892fb9a",
+      "trace_sha256": "9519c2a94a540fc4a2b5ce273fd2ea6b26b3903bd35acd4e8f0674ef8230e40c",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    },
+    "SN-015_s1": {
+      "video": "SN-015",
+      "seed": 1,
+      "prediction_sha256": "87d9a92bd50d65715bf9180a6f7ccefe49170227ea06dbee2c3331390b4fe973",
+      "trace_sha256": "3dba9d560d90cb69babbfd0a4bf76eea3663120ac7196e6bd54edd1d28598acd",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    },
+    "SN-015_s2": {
+      "video": "SN-015",
+      "seed": 2,
+      "prediction_sha256": "97d98a2b9d02c418cb889e6b386a147202f3d79c04bc9c27b0e7c2c6f5ccc728",
+      "trace_sha256": "b865469d31b749439a2ffc3ac1a8d6d920a744cd326228d5bdfa8fdb4cbd5bc6",
+      "prediction_byte_equal": true,
+      "frames": 6570,
+      "output_rows": 61937
+    }
+  },
+  "aggregate_counts": {
+    "rows": 428220,
+    "candidate_missing_rows": 26312,
+    "embedding_top1": 428126,
+    "local4_top1": 428126,
+    "local4_correction": 0,
+    "local4_harm": 0,
+    "local4_disagreement": 0,
+    "margin_activation": 105628,
+    "margin_top1": 428126,
+    "margin_correction": 0,
+    "margin_harm": 0,
+    "margin_changed_top": 0
+  },
+  "per_video_counts": {
+    "BT-001": {
+      "rows": 52005,
+      "candidate_missing_rows": 3204,
+      "embedding_top1": 51947,
+      "local4_top1": 51947,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 13783,
+      "margin_top1": 51947,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "BT-003": {
+      "rows": 4299,
+      "candidate_missing_rows": 234,
+      "embedding_top1": 4299,
+      "local4_top1": 4299,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 1199,
+      "margin_top1": 4299,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "MSK-002": {
+      "rows": 112443,
+      "candidate_missing_rows": 16506,
+      "embedding_top1": 112434,
+      "local4_top1": 112434,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 1624,
+      "margin_top1": 112434,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "PF-001": {
+      "rows": 84099,
+      "candidate_missing_rows": 498,
+      "embedding_top1": 84093,
+      "local4_top1": 84093,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 26175,
+      "margin_top1": 84093,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "SN-001": {
+      "rows": 13218,
+      "candidate_missing_rows": 675,
+      "embedding_top1": 13218,
+      "local4_top1": 13218,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 1617,
+      "margin_top1": 13218,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "SN-015": {
+      "rows": 162156,
+      "candidate_missing_rows": 5195,
+      "embedding_top1": 162135,
+      "local4_top1": 162135,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 61230,
+      "margin_top1": 162135,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    }
+  },
+  "per_seed_counts": {
+    "0": {
+      "rows": 142738,
+      "candidate_missing_rows": 8765,
+      "embedding_top1": 142707,
+      "local4_top1": 142707,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 34042,
+      "margin_top1": 142707,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "1": {
+      "rows": 142741,
+      "candidate_missing_rows": 8773,
+      "embedding_top1": 142710,
+      "local4_top1": 142710,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 34403,
+      "margin_top1": 142710,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "2": {
+      "rows": 142741,
+      "candidate_missing_rows": 8774,
+      "embedding_top1": 142709,
+      "local4_top1": 142709,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 37183,
+      "margin_top1": 142709,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    }
+  },
+  "promotion_gate": {
+    "required": "Every registered video must have local4 correction > local4 harm and fixed-margin correction > harm with at least one activation.",
+    "per_video": {
+      "BT-001": {
+        "rows": 52005,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 13783,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "BT-003": {
+        "rows": 4299,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 1199,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "MSK-002": {
+        "rows": 112443,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 1624,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "PF-001": {
+        "rows": 84099,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 26175,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "SN-001": {
+        "rows": 13218,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 1617,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      },
+      "SN-015": {
+        "rows": 162156,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_correction_gt_harm": false,
+        "margin_activation": 61230,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_correction_gt_harm": false
+      }
+    },
+    "pass_": false
+  },
+  "decision": "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY",
+  "finding": "The fixed visibility-weighted local4 cue changes the combined top-1 decision only when it has causal strip support; the per-video counts below are the registered same-graph complementarity evidence. The strict every-video promotion gate decides whether a local4 combination replay is allowed. This is a same-input diagnostic boundary, not a project-wide NO_GO.",
+  "next_boundary": "Do not run local4 margin stacking or a video-specific fallback unless the predeclared every-video gate passes; otherwise require a new independently measured signal.",
+  "local4_outputs_outside_git": true,
+  "goal_status": "IN_PROGRESS_UNACHIEVED"
+}

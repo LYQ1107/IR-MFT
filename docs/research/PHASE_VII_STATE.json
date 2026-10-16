@@ -1,10 +1,10 @@
 {
   "status": "IN_PROGRESS",
-  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_NATIVE_STRICT_RAW_LOCAL_POOL_MOTION_NATIVE_NULL_RAW_CLS_AND_COMPLEMENTARITY_AUDITS_PENDING_SCIENTIFIC_CONTRIBUTION",
+  "stage": "COMPLETE_VISIBLE_TOKEN_ALLFOLD_NATIVE_STRICT_RAW_LOCAL_POOL_MOTION_NATIVE_NULL_RAW_CLS_COMPLEMENTARITY_LOCAL4_AUDITS_PENDING_SCIENTIFIC_CONTRIBUTION",
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
+    "local_commit": "24226bbfd6e9725214ded58bd6b4b77c90da6af2",
     "remote_commit": "1408f6b1a9455089460b4937808956dbe51c039e",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
@@ -145,21 +145,20 @@
       "all_question_ids_present": true,
       "goal_status": "IN_PROGRESS_UNACHIEVED",
       "report": "docs/research/PHASE_VII_FINAL_20_EVIDENCE_AUDIT_MEASURED.json",
-      "report_sha256": "d06033393d7b8355b62cc03cf7bf838f265075d2fc60cff1c88447a315f81b58",
+      "report_sha256": "196492962ceba94aec52581fd64e90ca7ecc4b99f31bc2f528920d3c3c80d631",
       "status": "COMPLETE_FINAL_20_EVIDENCE_AUDIT_GOAL_STILL_ACTIVE",
-      "source_report_sha256": "a332653cbde245261b6446ff1d32dd8efbd63d4e2ff8eeb1c1e4f146a0f6ef8e"
+      "source_report_sha256": "ae004196d1d92137624cc964be0c2d743095f9177dc133670cb7426184bae0eb"
     },
     "current_validation": {
       "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
       "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-      "phase_vii_passed": 305,
+      "phase_vii_passed": 309,
       "phase_vii_failed": 0,
       "warnings": 24,
       "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
-      "report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2"
+      "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642"
     },
     "remaining_authoritative": [
-      "All-fold strict raw/native visible-token measurements and edge-engagement audit are complete; local4 pooling, candidate-nearest-history, visibility-quality and cue-disagreement margin probes fail their gates.",
       "Final combination remains NOT_JUSTIFIED; no mechanical stacking or positive final method is justified.",
       "The six-video cue audit finds 11 appearance corrections versus 217 harms on clean rows; the fixed margin gate has no held-out outer correction, so no appearance campaign is justified.",
       "No independent external payload/zero-overlap validation or stable independent contribution is established.",
@@ -167,7 +166,8 @@
       "Both causal motion-error predictability audits fail held-out gates; no learned motion replay is justified.",
       "Scalar weight calibration selects existing 0.3 with zero selected outer delta; no weight campaign is justified.",
       "The all-fold source-matched raw_cls versus fitted global embedding control is complete and negative in aggregate; no raw/head blend is justified.",
-      "The source-matched raw-CLS same-graph complementarity audit fails its every-video promotion gate; no raw-CLS margin stack or fallback is justified."
+      "The source-matched raw-CLS same-graph complementarity audit fails its every-video promotion gate; no raw-CLS margin stack or fallback is justified.",
+      "The source-matched local4 same-graph complementarity audit has zero corrections, harms or top-choice disagreements and fails the every-video promotion gate; no local4 margin stack or fallback is justified."
     ],
     "active_processes_at_snapshot": [],
     "free_space_gib_at_snapshot": 42.38395309448242,
@@ -1068,6 +1068,36 @@
       },
       "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    "native_local4_complementarity": {
+      "experiment_id": "VII_NATIVE_LOCAL4_COMPLEMENTARITY_AUDIT_V1",
+      "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+      "report": "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json",
+      "report_sha256": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
+      "config": "configs/cfp/phase_vii_native_local4_complementarity_v1.json",
+      "config_sha256": "1b6d9e3f53be02eee3bb8ed7b7952a6c6daf1dc57399585d1b89125c5667eba3",
+      "external_root": "/tmp/IR-MFT_phase7_native_local4_complementarity_v1",
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "clean_history_rows": 428220,
+        "prediction_hashes_locked": true,
+        "physical_labels_opened_after_all_prediction_hashes": true,
+        "online_guards_clean": true
+      },
+      "aggregate_counts": {
+        "rows": 428220,
+        "local4_correction": 0,
+        "local4_harm": 0,
+        "local4_disagreement": 0,
+        "margin_activation": 105628,
+        "margin_correction": 0,
+        "margin_harm": 0,
+        "margin_changed_top": 0
+      },
+      "decision": "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   },
   "branch": "research/evidence-fishmot-v1",
@@ -1186,7 +1216,8 @@
     "Preserve both causal motion-error predictability failures; do not launch learned motion without a new independent signal.",
     "Preserve the matched negative unknown-preserving NULL replay; do not tune another NULL threshold without an independent signal.",
     "Preserve the all-fold source-matched raw_cls versus fitted-embedding control as mixed/negative; do not tune a raw/head blend or video-specific fallback.",
-    "Preserve the source-matched raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal."
+    "Preserve the source-matched raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal.",
+    "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal."
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
@@ -1200,16 +1231,17 @@
     "Maintain explicit external-generalization and unavailable source/license exclusions.",
     "Retain motion predictability failures and scalar-weight no-expansion boundary.",
     "Keep the fixed unknown-preserving NULL rule closed after its six-video matched negative replay; no further candidate-set replay without an independent signal.",
-    "Keep the source-matched raw-CLS control as a paired diagnostic; its aggregate HOTA/AssA/IDF1 deltas are negative and no combination is justified."
+    "Keep the source-matched raw-CLS control as a paired diagnostic; its aggregate HOTA/AssA/IDF1 deltas are negative and no combination is justified.",
+    "Keep the source-matched local4 complementarity boundary closed; no local4 stack or fallback is justified without a new independent signal."
   ],
   "validation": {
-    "project_tests": 305,
+    "project_tests": 309,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
-    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 305 passed, 24 warnings; raw-CLS complementarity audit tests included. External fixture/dependency limits remain explicit.",
-    "report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2",
-    "phase_vii_passed": 305
+    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 309 passed, 24 warnings; local4 complementarity audit tests included. External fixture/dependency limits remain explicit.",
+    "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
+    "phase_vii_passed": 309
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
@@ -1255,7 +1287,7 @@
   "validation_current_authoritative": {
     "status": "COMPLETE_PHASE_VII_TEST_SCOPE_VALIDATION_WITH_EXTERNAL_FIXTURE_LIMIT",
     "report": "docs/research/PHASE_VII_TEST_VALIDATION_MEASURED.json",
-    "phase_vii_passed": 305,
+    "phase_vii_passed": 309,
     "phase_vii_failed": 0,
     "warnings": 24,
     "tests_scope": "PYTHONPATH=. pytest -q tests --ignore=tests/test_rgbt_pairing.py",
@@ -1263,8 +1295,8 @@
       "tests/test_rgbt_pairing.py requires unavailable /data1 PFTrack annotations/train.json",
       "full repository collection reaches unrelated missing skimage.io tutorial dependency"
     ],
-    "source_commit": "baf9439b5b0445de6c6b4c014d627e343281dacb",
-    "report_sha256": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2"
+    "source_commit": "24226bbfd6e9725214ded58bd6b4b77c90da6af2",
+    "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642"
   },
   "visual_token_three_seed_sha256": "c2cbebce25e61e60478f6eb78940fc085c2525a7814d5b8fd5695c7adb9cb2ed",
   "final_combination_gate_sha256": "f842fd669493e603f13f1a31d64068a3d53c18bc20f0806dbd2b1a56550e00a1",
@@ -1581,15 +1613,16 @@
   "authoritative_hashes": {
     "native_unknown_null": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
     "hypothesis_ledger": "26d3b9e24c6e9a6d9d3f13a5d1d254b7a6f896b628a3d18d6ba0e65a6e615aa8",
-    "final_research_report": "a332653cbde245261b6446ff1d32dd8efbd63d4e2ff8eeb1c1e4f146a0f6ef8e",
-    "test_validation": "73ba8f68a0700ab8be46cc9830a9dbfff2bbb971cbccfedde94b0aa6218e54e2",
+    "final_research_report": "ae004196d1d92137624cc964be0c2d743095f9177dc133670cb7426184bae0eb",
+    "test_validation": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
     "goal": "61a79bc110e3b644cd21cdf92f918da02504f2d8fc043f0270cace0b5207af70",
     "native_raw_cls_control": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
     "task_book_audit": "86f11e67fefb64b49b77d130e3c138b2b14aec3ece12e6041c1450f672c0c181",
-    "final_20_audit": "d06033393d7b8355b62cc03cf7bf838f265075d2fc60cff1c88447a315f81b58",
-    "registry": "a8645fae52124b7d8c2c6d48fcd0798a2bbfff18fc58771fdf606571797838e8",
+    "final_20_audit": "196492962ceba94aec52581fd64e90ca7ecc4b99f31bc2f528920d3c3c80d631",
+    "registry": "5fd1ea0dfe8ff55504f3213d8b0ae10bbfce00636260a52c24ff14c200a39804",
     "terminal_consistency": "49055541987e667bea7a556bc195d1523df74d4735ae0fd0102c8c9e524281da",
-    "native_raw_cls_complementarity": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157"
+    "native_raw_cls_complementarity": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157",
+    "native_local4_complementarity": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca"
   },
   "native_raw_cls_control": {
     "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
@@ -1644,6 +1677,36 @@
       "margin_harm": 0
     },
     "decision": "DO_NOT_RUN_RAW_CLS_COMBINATION_REPLAY",
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "native_local4_complementarity": {
+    "experiment_id": "VII_NATIVE_LOCAL4_COMPLEMENTARITY_AUDIT_V1",
+    "status": "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json",
+    "report_sha256": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
+    "config": "configs/cfp/phase_vii_native_local4_complementarity_v1.json",
+    "config_sha256": "1b6d9e3f53be02eee3bb8ed7b7952a6c6daf1dc57399585d1b89125c5667eba3",
+    "external_root": "/tmp/IR-MFT_phase7_native_local4_complementarity_v1",
+    "coverage": {
+      "videos": 6,
+      "seeds": 3,
+      "replays": 18,
+      "clean_history_rows": 428220,
+      "prediction_hashes_locked": true,
+      "physical_labels_opened_after_all_prediction_hashes": true,
+      "online_guards_clean": true
+    },
+    "aggregate_counts": {
+      "rows": 428220,
+      "local4_correction": 0,
+      "local4_harm": 0,
+      "local4_disagreement": 0,
+      "margin_activation": 105628,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "decision": "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }
