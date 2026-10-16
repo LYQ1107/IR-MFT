@@ -29,10 +29,14 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True,
                         help="External phase7 asset root containing models/features")
+    parser.add_argument("--output-root", type=Path,
+                        help="Separate output filesystem with the 40GiB reserve")
     parser.add_argument("--state", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     args = parser.parse_args()
+    output_root = args.output_root or args.root
+    output_root.mkdir(parents=True, exist_ok=True)
 
     config_path = args.repo / "configs/cfp/phase_vii_native_local_attention_allfold_v1.json"
     replay_config = args.repo / "configs/cfp/phase_vii_native_current_identity_replay_v1.json"
@@ -83,7 +87,7 @@ def main():
                 raise ValueError("Guarded source drift")
             model = args.root / f"local_dense_context_local_attention_{video}_k4_s{seed}_v2"
             features = args.root / f"native_dino_frozen_{video}_k4_v1"
-            output = args.root / f"native_local_attention_allfold_{video}_s{seed}_v1"
+            output = output_root / f"native_local_attention_allfold_{video}_s{seed}_v1"
             evaluation = Path(str(output) + ".trackeval")
             log = Path(str(output) + ".log")
             state["active"] = dict(video=video, seed=seed, model=str(model), output=str(output))
