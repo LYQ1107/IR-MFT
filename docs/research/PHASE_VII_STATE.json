@@ -4,8 +4,8 @@
   "current_authoritative_snapshot": {
     "as_of": "2026-10-16",
     "note": "The active_jobs and pending arrays below are historical snapshot records. Current terminal states and delivered evidence are authoritative in the reports listed here.",
-    "local_commit": "b538f93",
-    "remote_commit": "b538f93",
+    "local_commit": "080609eb862f4f8ac934175c610d9038c53a3921",
+    "remote_commit": "080609eb862f4f8ac934175c610d9038c53a3921",
     "terminal_reports": [
       "docs/research/PHASE_VII_RAW_DINO_FIFO_V3_COMPLETE_MEASURED.json",
       "docs/research/PHASE_VII_RAW_LEGACY_GRU_V3_COMPLETE_MEASURED.json",
@@ -1163,7 +1163,9 @@
         "pass": false
       },
       "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW"
-    }
+    },
+    "remote_ref": "refs/heads/research/evidence-fishmot-v1",
+    "remote_ref_sha256": "080609eb862f4f8ac934175c610d9038c53a3921"
   },
   "branch": "research/evidence-fishmot-v1",
   "baseline_commit": "042608779d936bcd442d8c266734a6d4d47636c1",
@@ -1482,9 +1484,9 @@
   "experiment_registry_sha256": "5be07ee779ceda258f9d09c409c14c713eba8c5b75f296fcbcc9352e08752a79",
   "remote_delivery_verification": {
     "branch": "research/evidence-fishmot-v1",
-    "content_commit": "b538f93",
-    "status": "VERIFIED_GIT_LS_REMOTE_AFTER_MERGED_DELIVERY",
-    "scope": "Merged H11/native raw-CLS content and pre-existing remote delivery history were preserved and verified; raw traces remain outside Git."
+    "content_commit": "080609eb862f4f8ac934175c610d9038c53a3921",
+    "status": "VERIFIED_GIT_LS_REMOTE_AFTER_LOCAL_CONTRASTIVE_DELIVERY",
+    "scope": "Scientific local-contrastive report/config/docs were pushed and the branch ref was independently verified with git ls-remote; raw replay outputs remain outside Git."
   },
   "native_visibility_quality_probe_sha256": "b27819fab077d4abeb7d3e6ad45e10e21e64802d4fb61d21bf541520b79e572c",
   "native_cue_disagreement_audit": {
@@ -1559,7 +1561,7 @@
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   },
   "native_candidate_set_boundaries_report_sha256": "d318cd8bcec6aee05323cb5c4df3a8655e97e6b0991d542e09373801cbb21ee4",
-  "remote_verification_scope": "Remote merged content commit 1408f6b1a9455089460b4937808956dbe51c039e was fetched, merged without force-push, and verified with git ls-remote; a metadata follow-up remains separate.",
+  "remote_verification_scope": "Remote ref research/evidence-fishmot-v1 was independently verified with git ls-remote at 080609eb862f4f8ac934175c610d9038c53a3921 after the local-contrastive scientific content push; metadata follow-up is a separate delivery commit.",
   "native_unknown_null": {
     "experiment_id": "VII_NATIVE_UNKNOWN_PRESERVING_NULL_V1",
     "status": "COMPLETE_NATIVE_UNKNOWN_PRESERVING_NULL_MATCHED_REPLAY",
@@ -1679,19 +1681,20 @@
   "native_unknown_null_report_sha256": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
   "authoritative_hashes": {
     "native_unknown_null": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
-    "hypothesis_ledger": "8205d218b291ac0405d88b4f3925278d21cf8fa6f84d2cf745bda31a8c16d4ac",
-    "final_research_report": "04852701eac6dc402587c6cdb3e0b8e59d1893f1349ebaba4fcb0d498a05ca42",
+    "hypothesis_ledger": "8e3748c67f698f6750c78a40cb355f2d197df6df71102afb187766f3930c3b32",
+    "final_research_report": "5dd3446bff580a9c96c9ad2a819234a13bd37b0fc6a1b9d89a5a20ba1fe74f36",
     "test_validation": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
     "goal": "460f4ecebc3549bb40477b3e3bdfa566095d85d7d3bde06ce68bb13fbee246fe",
     "native_raw_cls_control": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
     "task_book_audit": "b4ac3697e7310c8fa5ea5dd887ee1adfe3ab990957594b2030615a52f457128e",
-    "final_20_audit": "318f0db2e95990e4abca44608787ba07a0fdb675189d7c03724706d2af38a43b",
+    "final_20_audit": "f8c8f66b331070751ec167526fb2c61328d1db71377f68d76437537b33033df1",
     "registry": "5be07ee779ceda258f9d09c409c14c713eba8c5b75f296fcbcc9352e08752a79",
     "terminal_consistency": "49055541987e667bea7a556bc195d1523df74d4735ae0fd0102c8c9e524281da",
     "native_raw_cls_complementarity": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157",
     "native_local4_complementarity": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
     "final_combination_gate": "f03f8d930f7daa4403e3fa725908e62f52cd219c281881d16fabe0ba7bafd7fc",
-    "native_local_attention_allfold": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51"
+    "native_local_attention_allfold": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
+    "native_local_contrastive_allfold": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b"
   },
   "native_raw_cls_control": {
     "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
