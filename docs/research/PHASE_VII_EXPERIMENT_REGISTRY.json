@@ -5656,6 +5656,145 @@
       "next_experiment": "Do not run local4 margin stacking, threshold relaxation or a video-specific fallback; require a new independently measured same-input signal.",
       "scope": "Six registered internal videos x seeds0/1/2; same-input candidate-level diagnostic with official labels opened only after all hashes. No external generalization, raw end-to-end FPS, novelty or final-method claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_V1",
+      "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
+      "hypothesis": "A learned local spatial-attention identity representation can use fine-grained current crop evidence while preserving the frozen causal native proposal graph and improve online association across held-out videos.",
+      "change": "Replace only the confirmed-track high-stage appearance cue with the outer-fold fit-only ContextIdentityStudent local_attention route over the same native K4 DINO spatial tokens; keep FIFO memory, geometry, lifecycle, thresholds and output coordinates fixed.",
+      "architecture": "ContextIdentityStudent local_attention; learned local token attention and identity/relation head, prediction teacher excluded from online inference; native actual assigned history only.",
+      "inputs": "Six outer videos x seeds0/1/2, source-matched native frozen-DINO K4 current bank, exact causal V3 proposals and unchanged PredictiveAssociationTracker.",
+      "outputs": "18 complete native FIFO replays and official TrackEval metrics; raw outputs and state remain outside Git under /tmp.",
+      "loss": "Fit-only outer models were pre-trained under the registered context-V2 local-dense identity/JEPA controls; no outer threshold, seed or checkpoint selection.",
+      "videos": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "memory": "fifo",
+      "commands": [
+        "env CUDA_VISIBLE_DEVICES= PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python tools/cfp_run_native_local_attention_allfold.py --root /data3/liuyeqiang/IR-MFT_assets/cfp/phase7 --output-root /tmp/IR-MFT_phase7_native_local_attention_v1 --state /tmp/IR-MFT_phase7_native_local_attention_v1/state.json --report /tmp/IR-MFT_phase7_native_local_attention_v1/report.json --repo /data3/liuyeqiang/IR-MFT",
+        "PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m py_compile tools/cfp_run_native_local_attention_allfold.py"
+      ],
+      "source_commit_at_stage_collection": "5b1011a050cf28e180dbf2a057384f2086a7cc96",
+      "config": "configs/cfp/phase_vii_native_local_attention_allfold_v1.json",
+      "config_sha256": "c6e944ae71f20f14f77d7d12a822aaf8d073c8c4c3a0353973e3c53b38c8aeaa",
+      "report": "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json",
+      "report_sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
+      "external_root": "/tmp/IR-MFT_phase7_native_local_attention_v1",
+      "external_report_sha256": "07707e65ffe786e950b6a56f503aa9ce260ebe469e52a9892b6bd32b3b8a3081",
+      "external_state_sha256": "02fc170f8e5f648f055a496c470e6ee69fad31b03b6f8c6e71ab9d5a994d8e5d",
+      "raw_outputs_outside_git": true,
+      "coverage": {
+        "videos": 6,
+        "seeds": 3,
+        "replays": 18,
+        "all_replays_complete": true,
+        "online_guards_clean": true,
+        "labels_used_only_by_offline_trackeval": true,
+        "raw_outputs_outside_git": true
+      },
+      "macro": {
+        "local_attention_fifo": {
+          "HOTA": 38.67461906177356,
+          "AssA": 26.540712520533845,
+          "IDF1": 46.697445103998014,
+          "MOTA": 73.45168997571143,
+          "IDSW": 114.55555555555556
+        },
+        "frozen_fifo": {
+          "HOTA": 38.78368572140126,
+          "AssA": 26.685579394130936,
+          "IDF1": 47.42580468991998,
+          "MOTA": 73.45878401741977,
+          "IDSW": 114.5
+        },
+        "delta": {
+          "HOTA": -0.10906665962770035,
+          "AssA": -0.14486687359709194,
+          "IDF1": -0.7283595859219645,
+          "MOTA": -0.007094041708342047,
+          "IDSW": 0.055555555555557135
+        }
+      },
+      "per_video_gate": {
+        "BT-001": {
+          "delta_hota": 0.007012748180862616,
+          "delta_idf1": -2.0377875575125444,
+          "delta_idsw": 2.6666666666666714,
+          "improves_both_hota_idf1": false
+        },
+        "BT-003": {
+          "delta_hota": 0.5106088077970412,
+          "delta_idf1": 0.7802964795637592,
+          "delta_idsw": 0.0,
+          "improves_both_hota_idf1": true
+        },
+        "MSK-002": {
+          "delta_hota": 0.1857664317036587,
+          "delta_idf1": 0.4620619958183525,
+          "delta_idsw": 5.333333333333314,
+          "improves_both_hota_idf1": true
+        },
+        "PF-001": {
+          "delta_hota": 0.0,
+          "delta_idf1": 0.0,
+          "delta_idsw": 0.0,
+          "improves_both_hota_idf1": false
+        },
+        "SN-001": {
+          "delta_hota": -0.09648833561056591,
+          "delta_idf1": -0.08421862926207524,
+          "delta_idsw": 0.0,
+          "improves_both_hota_idf1": false
+        },
+        "SN-015": {
+          "delta_hota": -1.2612996098372058,
+          "delta_idf1": -3.490509804139325,
+          "delta_idsw": -7.666666666666657,
+          "improves_both_hota_idf1": false
+        }
+      },
+      "promotion_gate": {
+        "rule": {
+          "description": "Promote to strict raw whole-video validation only if local-attention FIFO improves both HOTA and IDF1 over the paired frozen FIFO reference in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+          "minimum_videos": 4,
+          "metrics": [
+            "HOTA",
+            "IDF1"
+          ],
+          "macro_idsw_must_not_increase": true,
+          "no_outer_threshold_or_seed_selection": true
+        },
+        "videos_improving_both": [
+          "BT-003",
+          "MSK-002"
+        ],
+        "count_improving_both": 2,
+        "macro_hota_positive": false,
+        "macro_idf1_positive": false,
+        "macro_idsw_not_increased": false,
+        "pass": false
+      },
+      "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW",
+      "failure_type": "The route improves both HOTA and IDF1 on only two videos; macro HOTA/IDF1 are negative and macro IDSW increases slightly.",
+      "next_experiment": "Do not promote local_attention to strict raw, tune memory or select a video-specific fallback. Require a new independently measured signal before another combination.",
+      "online_guard_summary": {
+        "loaded_GT_annotation_labels_during_inference": false,
+        "future_or_teacher_online": false,
+        "cached_detection_or_feature_used_beyond_current_inputs": false,
+        "actual_native_history_source": true
+      },
+      "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned local spatial-attention identity route. This closes a direct fine-grained local-evidence candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {
@@ -5675,7 +5814,8 @@
     "Preserve the causal motion-error predictability failures; do not run learned motion without a new independent signal.",
     "Preserve the matched negative NULL replay; require an independently justified signal before any further candidate-set replay.",
     "Preserve the raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal.",
-    "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal."
+    "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal.",
+    "Preserve the all-fold local-attention native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independently measured signal."
   ],
   "validation": {
     "project_tests": 309,
@@ -5984,5 +6124,69 @@
     },
     "decision": "DO_NOT_RUN_LOCAL4_COMBINATION_REPLAY",
     "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "native_local_attention_allfold": {
+    "experiment_id": "VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_V1",
+    "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json",
+    "report_sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
+    "config": "configs/cfp/phase_vii_native_local_attention_allfold_v1.json",
+    "config_sha256": "c6e944ae71f20f14f77d7d12a822aaf8d073c8c4c3a0353973e3c53b38c8aeaa",
+    "external_root": "/tmp/IR-MFT_phase7_native_local_attention_v1",
+    "external_report_sha256": "07707e65ffe786e950b6a56f503aa9ce260ebe469e52a9892b6bd32b3b8a3081",
+    "coverage": {
+      "videos": 6,
+      "seeds": 3,
+      "replays": 18,
+      "all_replays_complete": true,
+      "online_guards_clean": true,
+      "labels_used_only_by_offline_trackeval": true,
+      "raw_outputs_outside_git": true
+    },
+    "macro": {
+      "local_attention_fifo": {
+        "HOTA": 38.67461906177356,
+        "AssA": 26.540712520533845,
+        "IDF1": 46.697445103998014,
+        "MOTA": 73.45168997571143,
+        "IDSW": 114.55555555555556
+      },
+      "frozen_fifo": {
+        "HOTA": 38.78368572140126,
+        "AssA": 26.685579394130936,
+        "IDF1": 47.42580468991998,
+        "MOTA": 73.45878401741977,
+        "IDSW": 114.5
+      },
+      "delta": {
+        "HOTA": -0.10906665962770035,
+        "AssA": -0.14486687359709194,
+        "IDF1": -0.7283595859219645,
+        "MOTA": -0.007094041708342047,
+        "IDSW": 0.055555555555557135
+      }
+    },
+    "promotion_gate": {
+      "rule": {
+        "description": "Promote to strict raw whole-video validation only if local-attention FIFO improves both HOTA and IDF1 over the paired frozen FIFO reference in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+        "minimum_videos": 4,
+        "metrics": [
+          "HOTA",
+          "IDF1"
+        ],
+        "macro_idsw_must_not_increase": true,
+        "no_outer_threshold_or_seed_selection": true
+      },
+      "videos_improving_both": [
+        "BT-003",
+        "MSK-002"
+      ],
+      "count_improving_both": 2,
+      "macro_hota_positive": false,
+      "macro_idf1_positive": false,
+      "macro_idsw_not_increased": false,
+      "pass": false
+    },
+    "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW"
   }
 }

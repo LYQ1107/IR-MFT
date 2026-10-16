@@ -634,15 +634,59 @@
         "status": "COMPLETE_FIRST_FOLD_PIXEL_IDENTITY_THREE_SEED_CONTROLS"
       },
       "finding": "Offline supervised/local/pixel controls contain ordinary domain-adaptation gains but no stable independent native gain; stacking their representations without a measured complementary error signal would be a new unvalidated method."
+    },
+    "learned_local_attention_native": {
+      "evidence": {
+        "report": "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json",
+        "sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
+        "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED"
+      },
+      "macro": {
+        "HOTA": 38.67461906177356,
+        "AssA": 26.540712520533845,
+        "IDF1": 46.697445103998014,
+        "MOTA": 73.45168997571143,
+        "IDSW": 114.55555555555556
+      },
+      "delta_vs_frozen_fifo": {
+        "HOTA": -0.10906665962770035,
+        "AssA": -0.14486687359709194,
+        "IDF1": -0.7283595859219645,
+        "MOTA": -0.007094041708342047,
+        "IDSW": 0.055555555555557135
+      },
+      "promotion_gate": {
+        "rule": {
+          "description": "Promote to strict raw whole-video validation only if local-attention FIFO improves both HOTA and IDF1 over the paired frozen FIFO reference in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+          "minimum_videos": 4,
+          "metrics": [
+            "HOTA",
+            "IDF1"
+          ],
+          "macro_idsw_must_not_increase": true,
+          "no_outer_threshold_or_seed_selection": true
+        },
+        "videos_improving_both": [
+          "BT-003",
+          "MSK-002"
+        ],
+        "count_improving_both": 2,
+        "macro_hota_positive": false,
+        "macro_idf1_positive": false,
+        "macro_idsw_not_increased": false,
+        "pass": false
+      },
+      "finding": "18 outer-excluded native FIFO replays improve both HOTA and IDF1 on only BT-003 and MSK-002; macro HOTA/AssA/IDF1 are negative and macro IDSW increases slightly, so no strict-raw promotion or stacking is justified."
     }
   },
   "why_no_new_run": [
     "The only positive-looking rows are either offline identity diagnostics, capacity controls, or isolated video fluctuations; they do not satisfy the independent same-input held-out criterion together.",
     "The native negative rows cover all six videos/three seeds for context and source-JPM/FDTA scopes and 42 occlusion controls; stacking would add parameters while hiding the causal negative evidence.",
     "The native visible-token boundary now covers one lawful SN-015 outer fold across seeds 0/1/2 for masked_visible_tokens and matched visible_target controls; masked gains remain coupled to extra ID switches and the control is lower, so all-fold stacking is still unjustified.",
-    "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run."
+    "No current measured nonlinear-error signal or external payload justifies another expensive motion or generalization run.",
+    "The learned local-attention native route is now all-fold measured and fails its four-of-six HOTA+IDF1/no-macro-IDSW gate; it does not provide an independent component for stacking."
   ],
-  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. Strict raw visible-token runtime is complete for all six folds and seeds; independent complementarity, P11 selective-combination value and P17 final novelty remain unestablished.",
+  "remaining_boundary": "The final combination remains NOT_JUSTIFIED and the EvidenceFishMOT goal remains IN_PROGRESS_UNACHIEVED. The all-fold learned local-attention native route also fails its preregistered promotion gate; independent complementarity, P11 selective-combination value and P17 final novelty remain unestablished.",
   "resource_scope": {
     "protected_asset_free_gib_snapshot": 40.11628341674805,
     "reserve_gib": 40.0,

@@ -128,7 +128,8 @@
     "docs/research/PHASE_VII_MOTION_ERROR_NONLINEAR_PREDICTABILITY_MEASURED.json",
     "docs/research/PHASE_VII_NATIVE_RAW_CLS_CONTROL_MEASURED.json",
     "docs/research/PHASE_VII_NATIVE_RAW_CLS_COMPLEMENTARITY_MEASURED.json",
-    "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json"
+    "docs/research/PHASE_VII_NATIVE_LOCAL4_COMPLEMENTARITY_MEASURED.json",
+    "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json"
   ],
   "open_boundaries": [
     "Final-combination gate is measured NOT_JUSTIFIED; no mechanical stacking or positive final method",
@@ -140,7 +141,8 @@
     "The fixed causal nonlinear MLP also worsens both held-out means and the outer long-gap tail; no learned-motion replay is justified.",
     "Source-matched raw_cls versus fitted global embedding native control is complete across six videos x three seeds and negative in aggregate; no raw/head blend or fallback is justified.",
     "Raw CLS same-graph complementarity audit is complete across six videos x three seeds: five corrections and zero harms all occur in BT-001, so the fixed every-video promotion gate fails and no combination replay is justified.",
-    "Fixed local4 same-graph complementarity is complete across six videos x seeds0/1/2: 0 corrections, 0 harms and 0 top-choice disagreements over 428220 clean-history rows; the margin gate changes no top choice, so no local4 combination replay is justified."
+    "Fixed local4 same-graph complementarity is complete across six videos x seeds0/1/2: 0 corrections, 0 harms and 0 top-choice disagreements over 428220 clean-history rows; the margin gate changes no top choice, so no local4 combination replay is justified.",
+    "Learned local-attention all-fold native replay is complete but fails the preregistered four-of-six HOTA+IDF1/no-macro-IDSW gate; strict-raw promotion is not justified."
   ],
   "visible_token_three_seed_campaign": "docs/research/PHASE_VII_VISIBLE_TOKEN_MAE_THREE_SEED_MEASURED.json",
   "combination_gate": {
@@ -246,5 +248,12 @@
       "margin_harm": 0
     },
     "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "local_attention_allfold": {
+    "report": "docs/research/PHASE_VII_NATIVE_LOCAL_ATTENTION_ALLFOLD_MEASURED.json",
+    "sha256": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
+    "status": "COMPLETE_NATIVE_LOCAL_ATTENTION_ALLFOLD_GATE_FAILED",
+    "decision": "DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW",
+    "scope": "All six videos x seeds0/1/2 native FIFO replay using outer-excluded learned local-attention models; macro HOTA/IDF1 fall and only two videos improve both."
   }
 }
