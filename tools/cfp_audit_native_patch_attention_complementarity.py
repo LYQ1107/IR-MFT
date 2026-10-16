@@ -107,7 +107,7 @@ def _verify_locked_controls(config, assets_root, trace_root, control_report_path
     if not control_report_path.exists():
         raise FileNotFoundError(control_report_path)
     control_report = json.loads(control_report_path.read_text())
-    if (control_report.get("status") != "COMPLETE_NATIVE_LOCAL4_COMPLEMENTARITY_AUDIT"
+    if (control_report.get("status") != "COMPLETE_LOCAL4_COMPLEMENTARITY_AUDIT"
             or control_report.get("coverage", {}).get("completed_replays") != 18):
         raise ValueError("The matched-control complementarity report is not complete")
     expected = control_report.get("per_replay", {})
