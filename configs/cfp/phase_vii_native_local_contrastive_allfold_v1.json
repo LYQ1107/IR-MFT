@@ -1,0 +1,26 @@
+{
+  "state": "FROZEN",
+  "videos": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "seeds": [0, 1, 2],
+  "mode": "local_contrastive",
+  "model_prefix": "local_dense_context_local_contrastive",
+  "feature_prefix": "native_dino_frozen",
+  "memory": "fifo",
+  "context_identity": true,
+  "replay_config": "configs/cfp/phase_vii_native_current_identity_replay_v1.json",
+  "proposal_and_lifecycle": "Inherited frozen causal V3 proposal bank, geometry gate, lifecycle and output writer; only confirmed high-stage appearance cue is replaced.",
+  "online_guards": [
+    "No GT, physical identity, teacher, future frame or precomputed inference feature enters native replay.",
+    "Only actual assigned past proposal indices are written to each native track history.",
+    "Current feature rows are from the current frame and the unchanged proposal bank.",
+    "CPU-only association replay; GPU0 remains untouched and no more than four idle GPUs are used by this campaign."
+  ],
+  "promotion_gate": {
+    "description": "Promote to strict raw whole-video validation only if local-contrastive FIFO improves both HOTA and IDF1 over the paired frozen FIFO reference in at least four of six videos, has positive macro deltas for both metrics, and does not increase macro IDSW.",
+    "minimum_videos": 4,
+    "metrics": ["HOTA", "IDF1"],
+    "macro_idsw_must_not_increase": true,
+    "no_outer_threshold_or_seed_selection": true
+  },
+  "scope": "Pre-registered all-six-video x three-seed native FIFO replay for the learned fine-grained local-contrastive identity route. This closes one direct local representation candidate only; it does not claim raw end-to-end FPS or final-goal completion before the gate is evaluated."
+}
