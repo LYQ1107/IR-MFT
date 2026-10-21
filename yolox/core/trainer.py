@@ -221,7 +221,10 @@ class Trainer:
 
         self.save_ckpt(ckpt_name="latest")
 
-        if (self.epoch + 1) % self.exp.eval_interval == 0:
+        if (
+            (self.epoch + 1) % self.exp.eval_interval == 0
+            and os.environ.get("MFT26IR_SKIP_TRAIN_EVAL", "0") != "1"
+        ):
             all_reduce_norm(self.model)
             self.evaluate_and_save_model()
 
