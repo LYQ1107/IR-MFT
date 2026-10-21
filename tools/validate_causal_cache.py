@@ -17,6 +17,11 @@ def main():
     parser.add_argument("--cache-root", default=os.environ.get("MFT26IR_CAUSAL_CACHE_ROOT", "/data3/liuyeqiang/IR-MFT_assets/causal_aux_cache"))
     parser.add_argument("--protocol", default="configs/cfp/protocol_v2.json")
     parser.add_argument("--output", default=None)
+    parser.add_argument(
+        "--sample-frames",
+        default="1,mid,last",
+        help="comma-separated frame selectors; use '1' for a fast cache smoke",
+    )
     args = parser.parse_args()
 
     protocol = json.load(open(args.protocol, "r", encoding="utf-8"))
@@ -28,7 +33,18 @@ def main():
             [image for image in payload["images"] if videos[int(image["video_id"])] == sequence],
             key=lambda image: int(image["frame_id"]),
         )
-        sample_ids = {1, len(images), max(1, len(images) // 2)}
+        sample_ids = set()
+        for selector in args.sample_frames.split(","):
+            selector = selector.strip().lower()
+            if selector == "first" or selector == "1":
+                sample_ids.add(1)
+            elif selector == "mid":
+                sample_ids.add(max(1, len(images) // 2))
+            elif selector == "last":
+                sample_ids.add(len(images))
+            else:
+                sample_ids.add(int(selector))
+        max_sample = max(sample_ids)
         generator = CausalAuxiliaryGenerator(alpha=0.01)
         for image in images:
             frame_id = int(image["frame_id"])
@@ -38,6 +54,8 @@ def main():
                 raise FileNotFoundError(visible_path)
             online = generator(visible, sequence_id=sequence, frame_id=frame_id)
             if frame_id not in sample_ids:
+                if frame_id >= max_sample:
+                    break
                 continue
             stem = os.path.join(args.cache_root, "train", image["vi_file_name"])
             stem = stem.rsplit(".", 1)[0]
@@ -55,6 +73,8 @@ def main():
                 "max_abs_pixel_error": int(delta.max()),
                 "mean_abs_pixel_error": float(delta.mean()),
             })
+            if frame_id >= max_sample:
+                break
     result = {"status": "PASS", "samples": rows, "max_abs_pixel_error": max(row["max_abs_pixel_error"] for row in rows)}
     text = json.dumps(result, indent=2, ensure_ascii=False)
     if args.output:
@@ -65,4 +85,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
