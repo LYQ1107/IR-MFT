@@ -1,10 +1,33 @@
 import cv2
 import numpy as np
-import lap
+from scipy.optimize import linear_sum_assignment
+
+try:
+    import lap
+except ImportError:  # optional acceleration dependency
+    lap = None
 from scipy.spatial.distance import cdist
 
-from cython_bbox import bbox_overlaps as bbox_ious
+try:
+    from cython_bbox import bbox_overlaps as bbox_ious
+except ImportError:  # pure NumPy fallback keeps evaluator importable
+    def bbox_ious(a, b):
+        a = np.asarray(a, dtype=np.float64)
+        b = np.asarray(b, dtype=np.float64)
+        if a.size == 0 or b.size == 0:
+            return np.zeros((len(a), len(b)), dtype=np.float64)
+        top_left = np.maximum(a[:, None, :2], b[None, :, :2])
+        bottom_right = np.minimum(a[:, None, 2:], b[None, :, 2:])
+        wh = np.clip(bottom_right - top_left, 0.0, None)
+        intersection = wh[..., 0] * wh[..., 1]
+        area_a = np.clip(a[:, 2] - a[:, 0], 0.0, None) * np.clip(a[:, 3] - a[:, 1], 0.0, None)
+        area_b = np.clip(b[:, 2] - b[:, 0], 0.0, None) * np.clip(b[:, 3] - b[:, 1], 0.0, None)
+        union = area_a[:, None] + area_b[None, :] - intersection
+        return np.divide(intersection, union, out=np.zeros_like(intersection), where=union > 0)
 from yolox.motdt_tracker import kalman_filter
+
+if "float" not in np.__dict__:
+    np.float = float
 
 
 def _indices_to_matches(cost_matrix, indices, thresh):
@@ -21,14 +44,27 @@ def _indices_to_matches(cost_matrix, indices, thresh):
 def linear_assignment(cost_matrix, thresh):
     if cost_matrix.size == 0:
         return np.empty((0, 2), dtype=int), tuple(range(cost_matrix.shape[0])), tuple(range(cost_matrix.shape[1]))
-    matches, unmatched_a, unmatched_b = [], [], []
-    cost, x, y = lap.lapjv(cost_matrix, extend_cost=True, cost_limit=thresh)
-    for ix, mx in enumerate(x):
-        if mx >= 0:
-            matches.append([ix, mx])
-    unmatched_a = np.where(x < 0)[0]
-    unmatched_b = np.where(y < 0)[0]
-    matches = np.asarray(matches)
+    if lap is not None:
+        matches, unmatched_a, unmatched_b = [], [], []
+        cost, x, y = lap.lapjv(cost_matrix, extend_cost=True, cost_limit=thresh)
+        for ix, mx in enumerate(x):
+            if mx >= 0:
+                matches.append([ix, mx])
+        unmatched_a = np.where(x < 0)[0]
+        unmatched_b = np.where(y < 0)[0]
+        return np.asarray(matches, dtype=int).reshape(-1, 2), unmatched_a, unmatched_b
+    cost_matrix = np.asarray(cost_matrix, dtype=np.float64)
+    finite = np.isfinite(cost_matrix)
+    values = cost_matrix[finite]
+    scale = max(float(np.max(np.abs(values))) if values.size else 1.0, abs(float(thresh)), 1.0)
+    safe = np.where(finite, cost_matrix, scale * 1e6)
+    rows, cols = linear_sum_assignment(safe)
+    accepted = [(int(row), int(col)) for row, col in zip(rows, cols) if finite[row, col] and cost_matrix[row, col] <= thresh]
+    matches = np.asarray(accepted, dtype=int).reshape(-1, 2)
+    matched_a = {row for row, _ in accepted}
+    matched_b = {col for _, col in accepted}
+    unmatched_a = np.asarray([row for row in range(cost_matrix.shape[0]) if row not in matched_a], dtype=int)
+    unmatched_b = np.asarray([col for col in range(cost_matrix.shape[1]) if col not in matched_b], dtype=int)
     return matches, unmatched_a, unmatched_b
 
 
