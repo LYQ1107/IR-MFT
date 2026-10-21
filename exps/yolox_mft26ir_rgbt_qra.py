@@ -26,8 +26,11 @@ class Exp(V1Exp):
         self.warmup_epochs = 1
         self.no_aug_epochs = 0
         self.enable_mixup = False
+        train_size = os.environ.get("MFT26IR_TRAIN_SIZE")
+        if train_size:
+            width, height = [int(value) for value in train_size.lower().split("x")]
+            self.input_size = (width, height)
 
 
 if __name__ == "__main__":
     print(Exp())
-
