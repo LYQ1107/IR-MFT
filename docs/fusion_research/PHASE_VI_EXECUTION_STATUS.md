@@ -37,3 +37,32 @@ artifacts are intentionally outside Git. Candidate training/evaluation remains
 an external running job (Stage 1 uses 320x576 training crops for the short
 screening budget; formal tracking evaluation stays at the fixed 800x1440 test
 size) and its status is recorded in the asset directory.
+
+## Stage 2 screening evidence
+
+The first two trained candidates were run with the same detector/tracker
+protocol. Their checkpoints and per-frame outputs are external to Git under
+`/data3/liuyeqiang/IR-MFT_assets`.
+
+| candidate | split | frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | result |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| F1 dynamic quality | Dev | 4,834 | 13.049 | 28.794 | 6.0217 | 9.2367 | -45.718 | 1,112 | gate collapse / negative |
+| F1 dynamic quality | Test | 15,985 | 16.529 | 27.106 | 10.328 | 12.562 | -48.971 | 2,422 | gate collapse / negative |
+| F2a quality + spatial | Dev | 4,834 | 14.742 | 33.616 | 6.5436 | 11.860 | -12.206 | 867 | negative, but better than F1 Dev |
+| F2a quality + spatial | Test | 15,985 | 16.501 | 28.268 | 9.7849 | 12.983 | -40.636 | 2,224 | negative, no HOTA gain over F1 |
+
+The fixed V3 static-fusion reference is HOTA 46.086 on Dev (4,834 frames) and
+the historical Test reference is HOTA 31.091 on 15,985 frames. Therefore F1
+and F2a are retained as auditable negative experiments; they are not reported
+as improvements. F1's learned gate is nearly constant (roughly 0.054--0.061
+per pyramid level). F2a has the same collapse pattern, although its Dev
+detection scores and MOTA are less poor. These observations motivate testing
+the quality-spatial and redundancy-aware candidates with the same protocol
+before drawing a conclusion.
+
+F2b (`quality_spatial`) and F2c (`quality_spatial_redundancy`) are trained next
+with two-process DDP on physical GPUs 2 and 3 only. The short screening
+training resolution is 320x576, while all formal Dev/Test tracking metrics use
+the fixed protocol resolution and all seven Test sequences. No other GPU is
+used, and no checkpoint, cache frame, prediction file, or TrackEval artifact is
+tracked in Git.
