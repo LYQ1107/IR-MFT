@@ -1,0 +1,105 @@
+{
+  "status": "COMPLETE_REQUIREMENT_AUDIT_WITH_SCOPED_BOUNDARIES",
+  "as_of": "2026-10-21",
+  "goal_status": "FINAL_SCOPED_CONCLUSION_DELIVERED",
+  "branch": "research/recoverability-candidate-jepa-v1",
+  "verified_local_commit_before_audit": "042608779d936bcd442d8c266734a6d4d47636c1",
+  "verified_remote_commit_before_audit": "042608779d936bcd442d8c266734a6d4d47636c1",
+  "requirements": [
+    {
+      "id": "step1_baseline_protocol",
+      "status": "COMPLETE",
+      "evidence": [
+        "docs/research/PHASE_VI_BASELINE_AUDIT.json",
+        "docs/research/PHASE_VI_FINAL_GOAL.md",
+        "docs/research/PHASE_VI_EXPERIMENT_REGISTRY.json",
+        "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/baseline_audit_pathrepair_v2/manifest.json"
+      ],
+      "finding": "88 inherited hashes, three exact strong-GRU/current-measurement replays and six official baseline evaluations are recorded; V3 detector, causal IR, ReID, output policy and TrackEval are frozen."
+    },
+    {
+      "id": "step2_recoverability_diagnosis",
+      "status": "COMPLETE_SCOPED",
+      "evidence": ["docs/research/PHASE_VI_RECOVERABILITY_ANALYSIS.md", "docs/research/PHASE_VI_RECOVERABILITY_MEASURED.json", "docs/research/PHASE_VI_JOINT_ORACLE_MEASURED.json"],
+      "finding": "Candidate coverage, stage coverage, reranking, history contamination, lifecycle and unknown/unverified support are separated; the joint intervention is retrospective diagnosis, not an online oracle."
+    },
+    {
+      "id": "step3_recoverability_aware_association",
+      "status": "COMPLETE_SCOPED_NEGATIVE",
+      "evidence": ["docs/research/PHASE_VI_RISK_ACTION_MEASURED.json", "docs/research/PHASE_VI_RISK_ONLINE_EVIDENCE.json", "docs/research/PHASE_VI_RISK_RESUME_PROOF.json", "docs/research/PHASE_VI_QUOTA_CALIBRATION_PRECISION_AUDIT.json"],
+      "finding": "Observable risk, ordinary MLP, threshold, quota and memory-protection controls were compared against ordinary GRU; learned absolute gates do not transfer reliably and deployment recommendation remains the ordinary baseline."
+    },
+    {
+      "id": "step4_candidate_conditioned_jepa",
+      "status": "COMPLETE_SCOPED_NEGATIVE_OR_MIXED",
+      "evidence": ["docs/research/PHASE_VI_OOF_AND_DECODER_PROGRESS.md", "docs/research/PHASE_VI_MEMORY_AND_RELATION_PROGRESS.md", "docs/research/PHASE_VI_RELATION_RESUME_PROOF.json", "docs/research/PHASE_VI_RESIDUAL_RESUME_PROOF.json", "docs/research/PHASE_VI_SYNTHESIS_MEASURED.json"],
+      "finding": "Candidate attention, EMA/no-EMA, masking, corruption, NULL, recoverability evidence, ordinary Transformer and residual relation controls were trained/evaluated with actual accepted histories and exact resume checks; EMA and candidate-JEPA necessity are not independently established."
+    },
+    {
+      "id": "step5_k1_k2_multihypothesis",
+      "status": "COMPLETE_SCOPED_NEGATIVE",
+      "evidence": ["docs/research/PHASE_VI_ISOLATED_MEMORY_K2_MEASURED.json", "docs/research/PHASE_VI_MEMORY_AND_STABILITY_MEASURED.json", "docs/research/PHASE_VI_SYNTHESIS_MEASURED.json"],
+      "finding": "K=1/K=2, branch isolation, protected writes, nested assignment and full six-video controls are complete; K2 is marginal and lowers the selected AB result, so it is not retained."
+    },
+    {
+      "id": "step6_autonomous_iteration",
+      "status": "COMPLETE",
+      "evidence": ["docs/research/PHASE_VI_HYPOTHESIS_LEDGER.md", "docs/research/PHASE_VI_EXPERIMENT_REGISTRY.json", "docs/research/PHASE_VI_SYNTHESIS_MEASURED.json"],
+      "finding": "Failures were converted into new hypotheses and controls; the conclusion is based on accumulated evidence rather than a fixed number of failed trials."
+    },
+    {
+      "id": "step7_three_seed_online_validation",
+      "status": "COMPLETE_WITH_EXPLICIT_SCOPE",
+      "evidence": ["docs/research/PHASE_VI_SYNTHESIS_MEASURED.json", "docs/research/PHASE_VI_FINAL_RESEARCH_REPORT.md", "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/identity_extended_official_v1.json", "docs/research/PHASE_VI_EXACT_RUNTIME_FULL.json"],
+      "finding": "Three identity-coordinate seeds, per-video/multi-metric official evaluations and a 4,834-frame strict-online risk deployment are recorded. The unretained identity-coordinate candidate was not deployed raw; that limitation is explicit and does not masquerade as a result."
+    },
+    {
+      "id": "step8_scientific_conclusion",
+      "status": "COMPLETE_SCOPED",
+      "evidence": ["docs/research/PHASE_VI_FINAL_RESEARCH_REPORT.md", "docs/research/PHASE_VI_SYNTHESIS_MEASURED.json", "docs/research/PHASE_VI_FINAL_GOAL.md"],
+      "finding": "The strong ordinary GRU/current-measurement baseline remains recommended; A/B/C and the candidate identity-coordinate family remain diagnostics, with all important negative results and generalization limits retained."
+    },
+    {
+      "id": "step9_github_delivery",
+      "status": "COMPLETE_PENDING_FINAL_AUDIT_COMMIT",
+      "evidence": ["/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/github_delivery_20261013_a630d23.json", "git ls-remote origin refs/heads/research/recoverability-candidate-jepa-v1"],
+      "finding": "The prior delivery was independently verified at 0426087; this audit and its state update will be pushed as the final small-file delivery."
+    }
+  ],
+  "final_report_requirements": {
+    "items_1_to_22": "COMPLETE",
+    "report": "docs/research/PHASE_VI_FINAL_RESEARCH_REPORT.md",
+    "coverage": "Route, A/B/C implementations, recoverability diagnosis, JEPA teacher/student, K1/K2 behavior, RIS/PLIM/Fish-JEPA/GRU/Transformer comparisons, N01/N10, full metrics, per-video tables, three-seed statistics, ablations, online runtime/FPS, contamination limits, negative results, hypothesis transitions, recommendation, reproduction commands, GitHub branch and unperformed external follow-ups are all present."
+  },
+  "online_and_data_guards": {
+    "no_GT_future_teacher_online": true,
+    "unknown_labels_separated_from_known_wrong": true,
+    "heldout_video_exclusion_for_supervised_producers": true,
+    "historical_assets_preserved": true,
+    "external_generalization_unclaimed": true,
+    "raw_unretained_candidate_deployment_unperformed_and_disclosed": true
+  },
+  "fresh_validation": {
+    "command": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 CUDA_VISIBLE_DEVICES= PYTHONPATH=/var/tmp/ir_mft_stubs:. /data3/liuyeqiang/.venvs/fgrefmot-rmot-sports-20261019/bin/python -m pytest -q tests",
+    "result": "185 passed, 2 skipped",
+    "skips": "tests/test_cfp_causal_ir.py parametrized pywt checks; pywt is unavailable in the replay environment",
+    "historical_final_validation": {
+      "result": "187 passed",
+      "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase6/project_tests_20261013_final_scoped.log",
+      "log_sha256": "6260b9d723ff8f057c3a4519d35dd46e00850734320e27be3923e0805608dee9"
+    },
+    "temporary_compatibility_bridge_outside_git": true
+  },
+  "storage_and_delivery": {
+    "reserve_mount": "/data3/liuyeqiang",
+    "free_gib_at_audit": 41.94,
+    "large_weights_features_data_and_traces_committed": false,
+    "remote_branch": "research/recoverability-candidate-jepa-v1",
+    "remote_commit_before_audit": "042608779d936bcd442d8c266734a6d4d47636c1"
+  },
+  "remaining_scope": [
+    "Raw deployment of the unretained identity-coordinate candidate remains deliberately unperformed.",
+    "Independent external-data validation, faithful full MOTIP/GOT reproduction, larger hypothesis groups, learned branch selection, joint competing-track training and detector/encoder retraining remain future work.",
+    "These limits do not invalidate the scoped Phase VI conclusion or the recommended ordinary baseline."
+  ]
+}

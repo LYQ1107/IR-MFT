@@ -341,3 +341,7 @@ Campaign commands and immutable outputs are recorded in each measured official J
 Latest verified delivery is recorded in PHASE_VI_STATE.json and local phase6/github_delivery evidence. Current new evidence is only claimed published after a live remote hash check. [Scientific summary figure](figures/phase_vi_synthesis.svg) depicts completed matrix/model-initialization controls, not final identity-pipeline generalization.
 
 This is a scoped final scientific conclusion: the candidate mechanisms remain valuable diagnostics, but the available three-seed evidence does not justify replacing the strong ordinary baseline. External and raw candidate-deployment follow-ups remain explicit.
+
+## 23. Requirement audit and delivery boundary (2026-10-21)
+
+The requirement-by-requirement audit is recorded in `docs/research/PHASE_VI_FINAL_COMPLETION_AUDIT_MEASURED.json`. It verifies Steps 1–9, all 22 final-report items, strict-online/unknown-label/history guards, three-seed per-video evaluation, storage protection and the prior live remote hash. The available replay environment reran 185 tests with 2 `pywt`-dependent skips; the historical final log records 187 passed tests. The unretained identity-coordinate raw deployment and external-data validation remain deliberately unperformed and are not presented as completed evidence. The final small-file audit update is pending its own remote hash check.

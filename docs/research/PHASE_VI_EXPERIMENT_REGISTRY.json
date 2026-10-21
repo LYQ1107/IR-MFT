@@ -1,5 +1,5 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "FINAL_SCOPED_CONCLUSION_AUDIT_COMPLETE",
   "protocol": "configs/cfp/phase_vi_protocol_v1.json",
   "experiments": [
     {
@@ -16397,8 +16397,12 @@
     }
   ],
   "validation": {
-    "project_tests": 187,
-    "command": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
-    "log_sha256": "782c71055dcc90222a1a348183871c026f91dc80c579dd84e8ad102c5b114c43"
+    "historical_project_tests": 187,
+    "historical_command": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir-causal-v1 OPENBLAS_NUM_THREADS=1 PYTHONPATH=. /data3/liuyeqiang/.venvs/cfp-fishmot/bin/python -m pytest -q tests",
+    "historical_log_sha256": "782c71055dcc90222a1a348183871c026f91dc80c579dd84e8ad102c5b114c43",
+    "fresh_project_tests": 185,
+    "fresh_skipped": 2,
+    "fresh_skip_reason": "pywt unavailable in replay environment",
+    "completion_audit": "docs/research/PHASE_VI_FINAL_COMPLETION_AUDIT_MEASURED.json"
   }
 }

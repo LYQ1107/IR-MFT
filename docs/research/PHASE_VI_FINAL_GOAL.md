@@ -1,6 +1,6 @@
 # Phase VI final research goal
 
-Status: FINAL_SCOPED_CONCLUSION. Start from verified `00ae0e8`, branch `research/recoverability-candidate-jepa-v1`.
+Status: FINAL_SCOPED_CONCLUSION_AUDIT_COMPLETE. Start from verified `00ae0e8`, branch `research/recoverability-candidate-jepa-v1`. Requirement-by-requirement evidence is recorded in `docs/research/PHASE_VI_FINAL_COMPLETION_AUDIT_MEASURED.json`; raw deployment of the unretained identity-coordinate candidate and independent external validation remain explicit scope limits.
 
 Learning when and how to recover identity: given strictly past accepted observations and the current detection set, can a tracker identify recoverable ambiguity, distinguish candidate explanations, reject unsupported assignments and protect stable identity memory?
 
