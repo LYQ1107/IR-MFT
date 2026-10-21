@@ -140,7 +140,7 @@ class Exp(MyExp):
                 self.train_auxiliary_mode if split == "train" else self.auxiliary_mode
             ),
             causal_alpha=self.causal_alpha,
-            causal_cache_root=self.causal_cache_root,
+            causal_cache_root=os.path.join(self.causal_cache_root, data_name),
             sequence_filter=sequence_filter,
         )
 

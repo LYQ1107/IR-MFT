@@ -24,11 +24,11 @@ import numpy as np
 import torch
 
 # The pinned local motmetrics fork predates NumPy 1.24 aliases.
-if not hasattr(np, "float"):
+if "float" not in np.__dict__:
     np.float = float
-if not hasattr(np, "int"):
+if "int" not in np.__dict__:
     np.int = int
-if not hasattr(np, "bool"):
+if "bool" not in np.__dict__:
     np.bool = bool
 
 from yolox.exp import get_exp
@@ -192,9 +192,9 @@ def run_trackeval(result_dir, gt_root, output_dir, sequences, trackeval_root, da
     # The historical fork is customized for this MOT-RGBT layout and still
     # uses NumPy aliases removed in NumPy 1.24. Keep the compatibility local to
     # this process rather than modifying the shared evaluation toolkit.
-    if not hasattr(np, "float"):
+    if "float" not in np.__dict__:
         np.float = float
-    if not hasattr(np, "int"):
+    if "int" not in np.__dict__:
         np.int = int
 
     sys.path.insert(0, trackeval_root)
