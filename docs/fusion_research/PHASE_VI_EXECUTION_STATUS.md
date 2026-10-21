@@ -40,7 +40,7 @@ size) and its status is recorded in the asset directory.
 
 ## Stage 2 screening evidence
 
-The first two trained candidates were run with the same detector/tracker
+The trained candidates were run with the same detector/tracker
 protocol. Their checkpoints and per-frame outputs are external to Git under
 `/data3/liuyeqiang/IR-MFT_assets`.
 
@@ -52,22 +52,24 @@ protocol. Their checkpoints and per-frame outputs are external to Git under
 | F2a quality + spatial | Test | 15,985 | 16.501 | 28.268 | 9.7849 | 12.983 | -40.636 | 2,224 | negative, no HOTA gain over F1 |
 | F2b quality + spatial | Dev | 4,834 | 14.332 | 31.188 | 6.6399 | 10.656 | -25.589 | 1,035 | negative / gate collapse |
 | F2b quality + spatial | Test | 15,985 | 15.679 | 27.131 | 9.2641 | 12.002 | -47.678 | 2,430 | negative / gate collapse |
+| F2c quality + spatial + redundancy | Dev | 4,834 | 13.544 | 32.708 | 5.6676 | 9.6878 | -16.162 | 954 | negative / gate collapse |
+| F2c quality + spatial + redundancy | Test | 15,985 | 16.270 | 29.073 | 9.2834 | 12.467 | -34.716 | 2,432 | negative / gate collapse |
 
 The fixed V3 static-fusion reference is HOTA 46.086 on Dev (4,834 frames) and
 the historical Test reference is HOTA 31.091 on 15,985 frames. Therefore F1
 and F2a are retained as auditable negative experiments; they are not reported
 as improvements. F1's learned gate is nearly constant (roughly 0.054--0.061
 per pyramid level). F2a has the same collapse pattern, although its Dev
-detection scores and MOTA are less poor. These observations motivate testing
-the quality-spatial and redundancy-aware candidates with the same protocol
-before drawing a conclusion.
+detection scores and MOTA are less poor. These observations led to testing the
+quality-spatial and redundancy-aware candidates with the same protocol.
 
-F2b (`quality_spatial`) and F2c (`quality_spatial_redundancy`) are trained next
-with two-process DDP on physical GPUs 2 and 3 only. The short screening
-training resolution is 320x576, while all formal Dev/Test tracking metrics use
-the fixed protocol resolution and all seven Test sequences. No other GPU is
-used, and no checkpoint, cache frame, prediction file, or TrackEval artifact is
-tracked in Git.
+F2b (`quality_spatial`) and F2c (`quality_spatial_redundancy`) were trained
+under the physical GPU 2/3 cap. F2b used two-process DDP on GPUs 2 and 3; F2c
+used GPU 3 only because GPU 2 was occupied by an unrelated external job. The
+short screening training resolution is 320x576, while all formal Dev/Test
+tracking metrics use the fixed protocol resolution and all seven Test
+sequences. No other GPU is used, and no checkpoint, cache frame, prediction
+file, or TrackEval artifact is tracked in Git.
 
 F2b used the final three-epoch checkpoint. On all 4,834 Dev frames its
 TrackEval summary is HOTA 14.332, DetA 31.188, AssA 6.6399, IDF1 10.656,
@@ -75,3 +77,17 @@ MOTA -25.589, and IDSW 1,035 at 6.21 FPS. On all 15,985 Test frames it is
 HOTA 15.679, DetA 27.131, AssA 9.2641, IDF1 12.002, MOTA -47.678, and
 IDSW 2,430 at 6.68 FPS. Both splits remain negative against the fixed V3
 reference and F2a; the Test result also declines from F1/F2a HOTA.
+
+F2c used the final three-epoch checkpoint. Its Dev result is HOTA 13.544,
+DetA 32.708, AssA 5.6676, IDF1 9.6878, MOTA -16.162, and IDSW 954 at
+6.74 FPS. Its complete seven-sequence Test result is HOTA 16.270, DetA
+29.073, AssA 9.2834, IDF1 12.467, MOTA -34.716, and IDSW 2,432 at 7.89
+FPS over exactly 15,985 frames. The effective fusion weights remain nearly
+constant (Dev/Test means about 0.0575, 0.0616/0.0617, and 0.0532 per level)
+and the redundancy statistic is 3.35e-4 with zero measured variation. This
+candidate therefore remains a negative, auditable screening result: it does
+not improve HOTA over F1 (16.529), F2a (16.501), F2b (15.679), or the fixed
+V3/historical Test references.
+
+All large checkpoints, caches, prediction files, and TrackEval artifacts remain
+under `/data3/liuyeqiang/IR-MFT_assets` and are excluded from Git.
