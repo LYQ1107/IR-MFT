@@ -50,6 +50,7 @@ protocol. Their checkpoints and per-frame outputs are external to Git under
 | F1 dynamic quality | Test | 15,985 | 16.529 | 27.106 | 10.328 | 12.562 | -48.971 | 2,422 | gate collapse / negative |
 | F2a quality + spatial | Dev | 4,834 | 14.742 | 33.616 | 6.5436 | 11.860 | -12.206 | 867 | negative, but better than F1 Dev |
 | F2a quality + spatial | Test | 15,985 | 16.501 | 28.268 | 9.7849 | 12.983 | -40.636 | 2,224 | negative, no HOTA gain over F1 |
+| F2b quality + spatial | Dev | 4,834 | 14.332 | 31.188 | 6.6399 | 10.656 | -25.589 | 1,035 | negative / gate collapse |
 
 The fixed V3 static-fusion reference is HOTA 46.086 on Dev (4,834 frames) and
 the historical Test reference is HOTA 31.091 on 15,985 frames. Therefore F1
@@ -66,3 +67,9 @@ training resolution is 320x576, while all formal Dev/Test tracking metrics use
 the fixed protocol resolution and all seven Test sequences. No other GPU is
 used, and no checkpoint, cache frame, prediction file, or TrackEval artifact is
 tracked in Git.
+
+F2b Dev used the final three-epoch checkpoint and all 4,834 Dev frames. Its
+TrackEval summary is HOTA 14.332, DetA 31.188, AssA 6.6399, IDF1 10.656,
+MOTA -25.589, and IDSW 1,035 at 6.21 FPS. This is below both the V3 reference
+and F2a Dev HOTA, so it remains a negative result pending the required full
+Test evaluation.
