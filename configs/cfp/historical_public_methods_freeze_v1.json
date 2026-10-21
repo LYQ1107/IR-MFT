@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "state": "FROZEN",
+  "purpose": "Historical-test audit of public association methods",
+  "protocol": "configs/cfp/protocol_v2.json",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "selection_rule": "Use the Protocol-A dev-selected candidates without any historical-test selection",
+  "public_methods": {
+    "bytetrack": {
+      "implementation": "repository BYTETracker",
+      "parameters": {
+        "track_thresh": 0.58,
+        "track_buffer": 45,
+        "match_thresh": 0.97,
+        "min_box_area": 100
+      }
+    },
+    "bot_sort": {
+      "implementation": "pinned BoT-SORT reference with fish RGB feature adapter",
+      "candidate": 0,
+      "dev_selection": "configs/cfp/baseline_selection_post_neck_v1.json"
+    },
+    "hybrid_sort": {
+      "implementation": "pinned HybridSORT reference with fish RGB feature adapter",
+      "candidate": 2,
+      "dev_selection": "configs/cfp/baseline_selection_post_neck_v1.json"
+    }
+  },
+  "caveat": "The historical_test partition was tuned previously and is reported as a frozen audit, not a new blind benchmark.",
+  "feature_scope": "One frozen seed-0 RGB fish ReID encoder, post-neck 512-D features, shared unchanged detections",
+  "native_reid_claim": false
+}
