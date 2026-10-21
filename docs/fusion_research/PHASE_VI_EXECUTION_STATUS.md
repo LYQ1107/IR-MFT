@@ -29,8 +29,9 @@ Completed and checked:
   Dynamic Quality, Quality+Spatial, Quality+Spatial+Redundancy, and Temporal
   candidates. Their load reports record copied keys and the only new keys.
 
-In progress at the time of this record are the external causal cache, the
-sequence-sharded Dev baseline, and the subsequent fixed-budget candidate
-training/evaluation. Large checkpoints, WebP causal cache frames, prediction
-files, and TrackEval artifacts are intentionally outside Git.
-
+The Train causal cache is stored as a single-channel response JPEG and
+re-colourized at load time; it covers all 27,251 Train frames and is checked
+against selected online-generated frames by `tools/validate_causal_cache.py`.
+Large checkpoints, causal cache frames, prediction files, and TrackEval
+artifacts are intentionally outside Git. Candidate training/evaluation remains
+an external running job and its status is recorded in the asset directory.
