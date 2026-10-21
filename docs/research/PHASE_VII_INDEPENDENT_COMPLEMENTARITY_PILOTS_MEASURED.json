@@ -1,0 +1,128 @@
+{
+  "status": "COMPLETE_INDEPENDENT_COMPLEMENTARITY_PILOTS_GATE_FAILED",
+  "as_of": "2026-10-21",
+  "goal_status": "IN_PROGRESS_UNACHIEVED",
+  "source_commit_before_code": "e8b96472952c4ff21b611381647703ae4089bdc2",
+  "experiment_ids": [
+    "VII_NATIVE_RAW_DESCRIPTOR_COMPLEMENTARITY_PILOT_V1",
+    "VII_NATIVE_LEGACY_RGB_COMPLEMENTARITY_PILOT_V1"
+  ],
+  "configs": {
+    "configs/cfp/phase_vii_native_raw_descriptor_pilot_v1.json": "a1b03c018899cef2742330aad37ee89b29476d2c4487c4385b28982d5fc89c96",
+    "configs/cfp/phase_vii_native_legacy_rgb_complementarity_pilot_v1.json": "e186312db518a1f26b76d38dbe9cf7257f2a92d71d670bb8198d9bc69abd9eaa"
+  },
+  "dual_gpu_extraction": {
+    "policy": "Only idle physical GPU 0/1 were used, one video per process; GPUs 4-9 were left untouched.",
+    "descriptor": "Fixed no-learned-weight RGB/luminance/dx/dy 8x8 pooled descriptor, 384 dimensions.",
+    "BT-001": {
+      "physical_gpu": "0",
+      "frames": 3000,
+      "proposals": 38018,
+      "elapsed_seconds": 143.47829767595977,
+      "manifest": "/var/tmp/IR-MFT_phase7_raw_descriptor_pilot_v1/native_raw_descriptor_BT-001_v1/manifest.json",
+      "descriptor_sha256": "fd0c590eefc3f6b669a39141ab23c2ef12284ec33a5d34f406e1d78d3fe5e54b"
+    },
+    "SN-015": {
+      "physical_gpu": "1",
+      "frames": 6570,
+      "proposals": 69190,
+      "elapsed_seconds": 299.9548765300424,
+      "manifest": "/var/tmp/IR-MFT_phase7_raw_descriptor_pilot_v1/native_raw_descriptor_SN-015_v1/manifest.json",
+      "descriptor_sha256": "1fa5214452463a61274c9ac9b01bbaaf1bdd24c635e7d3095a4e78bca14a6ff5"
+    }
+  },
+  "raw_descriptor_pilot": {
+    "status": "COMPLETE_RAW_DESCRIPTOR_COMPLEMENTARITY_AUDIT",
+    "config": "configs/cfp/phase_vii_native_raw_descriptor_pilot_v1.json",
+    "external_manifest": "/var/tmp/IR-MFT_phase7_raw_descriptor_complementarity_pilot_v1_retry2/manifest.json",
+    "external_manifest_sha256": "45b42ee6052e5bc35de291fd4b065f830d516a68136f370bd267a022327d2248",
+    "coverage": {
+      "videos": ["BT-001", "SN-015"],
+      "seeds": [0],
+      "frames": {"BT-001": 3000, "SN-015": 6570},
+      "candidate_rows": 71385,
+      "candidate_missing_rows": 2794,
+      "prediction_hashes_locked": true,
+      "prediction_byte_equal": {"BT-001": true, "SN-015": true},
+      "online_GT_teacher_future_used": false,
+      "labels_opened_during_replay": false
+    },
+    "aggregate_counts": {
+      "embedding_top1": 71359,
+      "raw_top1": 71358,
+      "raw_correction": 0,
+      "raw_harm": 1,
+      "raw_disagreement": 1,
+      "margin_activation": 501,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "margin_changed_top": 0
+    },
+    "per_video": {
+      "BT-001": {"rows": 17331, "raw_correction": 0, "raw_harm": 1, "margin_activation": 10, "margin_correction": 0, "margin_harm": 0},
+      "SN-015": {"rows": 54054, "raw_correction": 0, "raw_harm": 0, "margin_activation": 491, "margin_correction": 0, "margin_harm": 0}
+    },
+    "promotion_gate": "Every pilot video must have raw correction > harm and fixed-margin correction > harm with an activation.",
+    "decision": "DO_NOT_EXPAND_RAW_DESCRIPTOR_OR_RUN_COMBINATION"
+  },
+  "legacy_rgb_pilot": {
+    "status": "COMPLETE_RAW_DESCRIPTOR_COMPLEMENTARITY_AUDIT",
+    "config": "configs/cfp/phase_vii_native_legacy_rgb_complementarity_pilot_v1.json",
+    "descriptor_source": "Existing causal fish-trained RGB post-neck 512-D bank; retrospective only and exposed to all six train videos.",
+    "external_manifest": "/var/tmp/IR-MFT_phase7_legacy_rgb_complementarity_pilot_v1_retry2/manifest.json",
+    "external_manifest_sha256": "b75309292c0403d30c5b87efff06871ecce7e908e5a6d8979a7688bbd551e981",
+    "coverage": {
+      "videos": ["BT-001", "SN-015"],
+      "seeds": [0],
+      "frames": {"BT-001": 3000, "SN-015": 6570},
+      "candidate_rows": 71385,
+      "candidate_missing_rows": 2794,
+      "prediction_hashes_locked": true,
+      "prediction_byte_equal": {"BT-001": true, "SN-015": true},
+      "online_GT_teacher_future_used": false,
+      "labels_opened_during_replay": false
+    },
+    "aggregate_counts": {
+      "embedding_top1": 71359,
+      "legacy_rgb_top1": 71363,
+      "legacy_rgb_correction": 4,
+      "legacy_rgb_harm": 0,
+      "legacy_rgb_disagreement": 4,
+      "margin_activation": 31555,
+      "margin_correction": 4,
+      "margin_harm": 0,
+      "margin_changed_top": 4
+    },
+    "per_video": {
+      "BT-001": {"rows": 17331, "legacy_rgb_correction": 4, "legacy_rgb_harm": 0, "margin_activation": 5068, "margin_correction": 4, "margin_harm": 0},
+      "SN-015": {"rows": 54054, "legacy_rgb_correction": 0, "legacy_rgb_harm": 0, "margin_activation": 26487, "margin_correction": 0, "margin_harm": 0}
+    },
+    "promotion_gate": "Every pilot video must have legacy-RGB correction > harm and fixed-margin correction > harm with an activation.",
+    "decision": "DO_NOT_EXPAND_LEGACY_RGB_OR_RUN_COMBINATION",
+    "interpretation": "BT-001 supplies four conditional corrections, but SN-015 is neutral; the strict every-video gate fails. Historical six-video exposure also prevents an unseen-video generalization claim."
+  },
+  "online_guard_summary": {
+    "current_proposal_crop_only_for_raw_descriptor": true,
+    "strictly_past_accepted_history_only": true,
+    "no_GT_or_physical_identity_online": true,
+    "no_future_or_teacher_online": true,
+    "no_IR_or_external_payload_online": true,
+    "baseline_prediction_byte_parity_verified_before_reducer_labels": true,
+    "raw_outputs_outside_git": true
+  },
+  "storage": {
+    "reserve_mount": "/data3/liuyeqiang",
+    "free_bytes_at_finalization": 45034061824,
+    "free_gib_at_finalization": 41.94123840332031,
+    "large_descriptor_and_trace_files_outside_git": true
+  },
+  "validation": {
+    "focused_tests": "tests/test_raw_identity_descriptor.py tests/test_native_local4_complementarity.py",
+    "focused_result": "6 passed",
+    "full_scope": "tests --ignore=tests/test_rgbt_pairing.py",
+    "full_result": "313 passed, 2 skipped",
+    "environment": "Existing replay venv plus temporary /var/tmp compatibility bridge; no package installation or bridge files committed."
+  },
+  "decision": "PRESERVE_BOTH_INDEPENDENT_NEGATIVE_OR_MIXED_BOUNDARIES; DO_NOT_RUN_A_COMBINATION_REPLAY_WITHOUT_A_NEW_GENUINELY_INDEPENDENT_SIGNAL",
+  "next_action": "Keep the Phase VII goal IN_PROGRESS_UNACHIEVED, retain these measured boundaries, and require a newly justified same-input signal before any further expansion."
+}

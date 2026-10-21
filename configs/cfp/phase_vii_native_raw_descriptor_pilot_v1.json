@@ -1,0 +1,33 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_RAW_DESCRIPTOR_COMPLEMENTARITY_PILOT_V1",
+  "videos": ["BT-001", "SN-015"],
+  "seeds": [0],
+  "descriptor": "RGB/luminance/dx/dy adaptive-mean-pool 8x8; 384 dimensions; no learned weights",
+  "candidate_feature_field": "raw_descriptor",
+  "matched_control_field": "source_matched_global_embedding",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "memory": "fifo",
+  "selection": "Two registered videos and seed 0 are fixed before labels; no video, threshold, memory mode or outer metric selection.",
+  "hypothesis": "A fixed raw crop color/texture/shape cue may correct source-matched DINO embedding top-1 decisions on the same causal candidate graph.",
+  "predeclared_margin_gate": "Use raw descriptor only when its appearance-cost top-two margin is strictly greater than the source-matched embedding margin; otherwise retain the embedding. No fitted threshold.",
+  "promotion_gate": "Expand to all six videos and three source-matched seeds only if both pilot videos have raw corrections greater than harms and positive fixed-margin correction-minus-harm; otherwise record a negative independent-signal boundary and do not run a combination.",
+  "scope": "Read-only same-input candidate-edge complementarity pilot. Existing source-matched DINO FIFO predictions must be byte-identical; raw pixels are read only from the current proposal crop and strictly past accepted proposal rows. No GT, physical ID, future frame, teacher, external payload or cached inference feature enters online replay; labels are retrospective reducer inputs only.",
+  "guards": {
+    "gpu_feature_extraction": "Use only idle physical GPU 0/1, one video per process; no other GPU processes touched.",
+    "cpu_reducer": true,
+    "minimum_free_bytes": 42949672960,
+    "reserve_mount": "/data3/liuyeqiang",
+    "immutable_outputs": true,
+    "online_gt_teacher_future_used": false,
+    "raw_fps": "not measured; candidate-edge complementarity only"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "state": "FROZEN",
+  "experiment_id": "VII_NATIVE_LEGACY_RGB_COMPLEMENTARITY_PILOT_V1",
+  "videos": ["BT-001", "SN-015"],
+  "seeds": [0],
+  "descriptor_source": "legacy_rgb_postneck_seed0",
+  "candidate_feature_field": "legacy_rgb_postneck_512",
+  "matched_control_field": "source_matched_global_dino_embedding_384",
+  "track_thresh": 0.58,
+  "track_buffer": 45,
+  "match_thresh": 0.97,
+  "frame_rate": 25,
+  "mot20": false,
+  "appearance_weight": 0.3,
+  "proximity_iou": 0.1,
+  "history_length": 4,
+  "maximum_history_age_frames": 1500,
+  "memory": "fifo",
+  "selection": "Two registered videos and seed 0 are fixed before labels; no video, threshold, memory mode or outer metric selection.",
+  "hypothesis": "The independent six-video-exposed fish-trained RGB post-neck coordinate may correct source-matched DINO embedding decisions on the same causal graph, despite its historical exposure.",
+  "predeclared_margin_gate": "Use legacy RGB only when its appearance-cost top-two margin is strictly greater than the DINO embedding margin; otherwise retain DINO embedding. No fitted threshold.",
+  "promotion_gate": "Expand to all six videos and three corresponding legacy seeds only if both pilot videos have legacy-RGB corrections greater than harms and positive fixed-margin correction-minus-harm; otherwise preserve a negative or mixed boundary and run no combination.",
+  "scope": "Read-only same-input candidate-edge complementarity pilot. DINO FIFO predictions must remain byte-identical; legacy RGB is a retrospective alternative coordinate over the unchanged proposal graph. The legacy encoder was trained with all six train videos, so any positive result is conditional and cannot establish unseen-video generalization.",
+  "guards": {
+    "gpu_feature_extraction": "No new feature extraction; existing causal post-neck RGB bank is reused by exact manifest/hash.",
+    "cpu_reducer": true,
+    "minimum_free_bytes": 42949672960,
+    "reserve_mount": "/data3/liuyeqiang",
+    "immutable_outputs": true,
+    "online_gt_teacher_future_used": false,
+    "raw_fps": "not measured; candidate-edge complementarity only"
+  }
+}

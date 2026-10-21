@@ -1276,7 +1276,9 @@
     "Six-video causal native cue-disagreement audit completed with byte-equal FIFO parity; fixed margin gate rejected and no replay launched",
     "Six-video candidate-set/unknown/NULL boundary audit completed from accepted native traces; no post-hoc set replay launched",
     "Six-video fixed unknown-preserving NULL replay with byte-identical matched no-rule control completed; aggregate HOTA/AssA/IDF1 fell and IDSW rose, so rule rejected",
-    "Pre-registered source-matched patch-attention same-graph complementarity audit completed; one BT-001 correction, zero harms, five neutral videos; every-video gate fails and no combination replay launched."
+    "Pre-registered source-matched patch-attention same-graph complementarity audit completed; one BT-001 correction, zero harms, five neutral videos; every-video gate fails and no combination replay launched.",
+    "Two-card raw RGB descriptor extraction completed on GPU0/GPU1 for BT-001/SN-015; same-input complementarity pilot has zero corrections and one harm; gate failed.",
+    "Existing causal legacy RGB post-neck complementarity pilot completed with four BT-001 corrections, zero harms and neutral SN-015; strict every-video gate failed; no combination replay launched."
   ],
   "pending": [
     "Preserve measured mixed/negative all-fold native and strict-raw boundaries and rejected local4, raw-history, visibility-quality and margin-gate probes.",
@@ -1286,11 +1288,12 @@
     "Preserve the matched negative unknown-preserving NULL replay; do not tune another NULL threshold without an independent signal.",
     "Preserve the all-fold source-matched raw_cls versus fitted-embedding control as mixed/negative; do not tune a raw/head blend or video-specific fallback.",
     "Preserve the source-matched raw-CLS same-graph complementarity gate failure; do not run margin stacking or a video-specific fallback without a new independent signal.",
-    "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal."
+    "Preserve the source-matched local4 same-graph complementarity gate failure; do not run local4 margin stacking or a video-specific fallback without a new independent signal.",
+    "Preserve the raw-crop and legacy-RGB independent complementarity pilot failures; do not expand or combine either coordinate without a new independent signal."
   ],
   "reference_inventory_sha256": "53ee1141cd32c7c02334ab52ac1ed82a27954cedec4b050425a8b1ec1c8b6536",
   "measured_a0_sha256": "bc1e783d823aa872912b97b5639bc32f376a8ee1d2eccce9d4beca45b25659da",
-  "storage_free_gib": 40.13754653930664,
+  "storage_free_gib": 41.94123840332031,
   "source_audit_complete": 30,
   "active_jobs": [],
   "history_support_output_sha256": "2179f7226f6915049821ab88a2ad75c8c6a9c88044d92cff04196cb4e3e8f573",
@@ -1303,16 +1306,17 @@
     "Keep the source-matched raw-CLS control as a paired diagnostic; its aggregate HOTA/AssA/IDF1 deltas are negative and no combination is justified.",
     "Keep the source-matched local4 complementarity boundary closed; no local4 stack or fallback is justified without a new independent signal.",
     "Preserve the all-fold learned local-attention native gate failure; do not promote it to strict raw or tune memory/thresholds without a new independent signal.",
-    "Preserve the patch-attention same-graph gate failure; do not run patch stacking, blending or fallback without a new independent signal."
+    "Preserve the patch-attention same-graph gate failure; do not run patch stacking, blending or fallback without a new independent signal.",
+    "Preserve both independent complementarity pilot gates; no all-six expansion or final combination without a new genuinely independent same-input signal."
   ],
   "validation": {
-    "project_tests": 309,
+    "project_tests": 313,
     "warnings": 24,
     "log": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase7/project_tests_geometry_target_raw_delivery_v1.log",
     "log_sha256": "14e719079c94c4de831e8bae8a1820aa11c0ee5e8c3388fda33f8f2d032da191",
-    "scope": "PYTHONPATH=. venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 309 passed, 24 warnings; local4 complementarity audit tests included. External fixture/dependency limits remain explicit.",
+    "scope": "CUDA_VISIBLE_DEVICES= PYTHONPATH=/var/tmp/ir_mft_stubs:. replay-venv pytest -q tests --ignore=tests/test_rgbt_pairing.py: 313 passed, 2 skipped; local4 and raw-descriptor tests included. The original cfp-fishmot/agristl environment lacks loguru/lap, so the temporary compatibility bridge remains outside Git.",
     "report_sha256": "6b06a5bda82343ba9ebd86031d3e28497ac112225bab3bf0456da43ce3e4f642",
-    "phase_vii_passed": 309
+    "phase_vii_passed": 313
   },
   "joint_query_manifest_sha256": "f38da3ed2181ec6fc089e07a414e0fbd28c56cb5c8d8f586f6906820a179ecc9",
   "original_producer_diagnosis_sha256": "34e752052c73fe4b620be75b5d85d690afdb311d825d5cf249154b34163b1178",
@@ -1685,21 +1689,22 @@
   "native_unknown_null_report_sha256": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
   "authoritative_hashes": {
     "native_unknown_null": "b555b242cda5be4b7b87fc2b3f1b77c2c64732f9697f0b639e8f64feb3aa30ba",
-    "hypothesis_ledger": "8e3748c67f698f6750c78a40cb355f2d197df6df71102afb187766f3930c3b32",
+    "hypothesis_ledger": "dc914f9b24a170233720d961aa98ee0b57f32fbc040a387b0b393db6627d6ea9",
     "final_research_report": "5dd3446bff580a9c96c9ad2a819234a13bd37b0fc6a1b9d89a5a20ba1fe74f36",
     "test_validation": "9d14af72f5cbc0224f86b15b4e35d9e23940a0a579f842f5ee9870750326bdfb",
-    "goal": "460f4ecebc3549bb40477b3e3bdfa566095d85d7d3bde06ce68bb13fbee246fe",
+    "goal": "66cf20b45526923029d7d3b91d80f821f35fb930ac25a35e70d7deea971c0254",
     "native_raw_cls_control": "285f4db0301a58caa3befa59624cbe457014b36591a0511e716546f8425f8467",
     "task_book_audit": "b4ac3697e7310c8fa5ea5dd887ee1adfe3ab990957594b2030615a52f457128e",
     "final_20_audit": "f8c8f66b331070751ec167526fb2c61328d1db71377f68d76437537b33033df1",
-    "registry": "5be07ee779ceda258f9d09c409c14c713eba8c5b75f296fcbcc9352e08752a79",
+    "registry": "bf8b1fb370931a4c66e4f885554fc4e59a78b4ff77cb079c1ef342c0f42a4638",
     "terminal_consistency": "49055541987e667bea7a556bc195d1523df74d4735ae0fd0102c8c9e524281da",
     "native_raw_cls_complementarity": "34199872614b8b27795eaa229fcfaf6e9e1ce28e104a00526efec7c73d451157",
     "native_local4_complementarity": "c824cf50ee994566a61ab7e8d8a68038420a252d7b750da8cce6129af0d096ca",
     "final_combination_gate": "f03f8d930f7daa4403e3fa725908e62f52cd219c281881d16fabe0ba7bafd7fc",
     "native_local_attention_allfold": "a33930a8930da7dff5af6c32913670281775308318aa7e92c5fb87cfaa03ae51",
     "native_local_contrastive_allfold": "b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b",
-    "native_patch_attention_complementarity": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248"
+    "native_patch_attention_complementarity": "d66429162b7bb643f60e1e037d38952711b4d8f9aef26ce623d546cc227f9248",
+    "independent_complementarity_pilots": "225dcc99ee12700bcd95237a130e0be8a27bcb1b98ef06410500e69bab9cd2e8"
   },
   "native_raw_cls_control": {
     "experiment_id": "VII_NATIVE_SOURCE_MATCHED_RAW_CLS_FIFO_V1",
@@ -2010,6 +2015,51 @@
       "pass_": false
     },
     "decision": "DO_NOT_RUN_PATCH_ATTENTION_COMBINATION_REPLAY",
+    "goal_status": "IN_PROGRESS_UNACHIEVED"
+  },
+  "independent_complementarity_pilots": {
+    "experiment_id": "VII_NATIVE_INDEPENDENT_COMPLEMENTARITY_PILOTS_V1",
+    "status": "COMPLETE_INDEPENDENT_COMPLEMENTARITY_PILOTS_GATE_FAILED",
+    "report": "docs/research/PHASE_VII_INDEPENDENT_COMPLEMENTARITY_PILOTS_MEASURED.json",
+    "report_sha256": "225dcc99ee12700bcd95237a130e0be8a27bcb1b98ef06410500e69bab9cd2e8",
+    "config": [
+      "configs/cfp/phase_vii_native_raw_descriptor_pilot_v1.json",
+      "configs/cfp/phase_vii_native_legacy_rgb_complementarity_pilot_v1.json"
+    ],
+    "external_manifests": [
+      "/var/tmp/IR-MFT_phase7_raw_descriptor_complementarity_pilot_v1_retry2/manifest.json",
+      "/var/tmp/IR-MFT_phase7_legacy_rgb_complementarity_pilot_v1_retry2/manifest.json"
+    ],
+    "coverage": {
+      "videos": ["BT-001", "SN-015"],
+      "seeds": [0],
+      "clean_candidate_rows": 71385,
+      "prediction_hashes_locked": true,
+      "online_guards_clean": true,
+      "physical_labels_opened_after_hashes": true
+    },
+    "dual_gpu": {
+      "GPU0": {"video": "BT-001", "frames": 3000, "proposals": 38018},
+      "GPU1": {"video": "SN-015", "frames": 6570, "proposals": 69190},
+      "GPUs4_9_untouched": true
+    },
+    "raw_descriptor": {
+      "correction": 0,
+      "harm": 1,
+      "margin_activation": 501,
+      "margin_correction": 0,
+      "margin_harm": 0,
+      "decision": "DO_NOT_EXPAND_RAW_DESCRIPTOR_OR_RUN_COMBINATION"
+    },
+    "legacy_rgb": {
+      "correction": 4,
+      "harm": 0,
+      "margin_activation": 31555,
+      "margin_correction": 4,
+      "margin_harm": 0,
+      "decision": "DO_NOT_EXPAND_LEGACY_RGB_OR_RUN_COMBINATION",
+      "historical_exposure": "All six internal train videos; conditional diagnostic only."
+    },
     "goal_status": "IN_PROGRESS_UNACHIEVED"
   }
 }

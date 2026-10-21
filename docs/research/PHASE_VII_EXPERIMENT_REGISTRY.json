@@ -6318,6 +6318,58 @@
       "next_experiment": "Do not run patch-attention margin stacking, a patch/global blend or a video-specific fallback; require a new independently measured signal.",
       "scope": "Six registered internal videos x seeds0/1/2; same-input retrospective diagnostic with labels opened only after all control hashes; no online GT/future/teacher/cached inference, raw FPS or final-method claim.",
       "goal_status": "IN_PROGRESS_UNACHIEVED"
+    },
+    {
+      "experiment_id": "VII_NATIVE_INDEPENDENT_COMPLEMENTARITY_PILOTS_V1",
+      "status": "COMPLETE_INDEPENDENT_COMPLEMENTARITY_PILOTS_GATE_FAILED",
+      "hypothesis": "A genuinely independent same-input visual coordinate can correct rare source-matched DINO/FIFO candidate-edge decisions without changing proposals, lifecycle or online supervision.",
+      "change": "Two fixed coordinates were audited retrospectively on the same causal graph: a no-learned-weight raw crop descriptor and an existing causal fish-trained RGB post-neck coordinate.",
+      "architecture": "No online tracker or proposal change; candidate-edge complementarity only.",
+      "inputs": "BT-001 and SN-015, seed 0, exact causal V3 proposals, source-matched DINO384 FIFO histories and current proposal crops.",
+      "outputs": "Two byte-parity-locked pilot audits; no all-six expansion and no combination replay.",
+      "loss": "None; no fitting or threshold search.",
+      "videos": ["BT-001", "SN-015"],
+      "seeds": [0],
+      "memory": "fifo",
+      "commands": [
+        "CUDA_VISIBLE_DEVICES=0 ... tools/cfp_extract_native_raw_descriptor.py --video BT-001 ...",
+        "CUDA_VISIBLE_DEVICES=1 ... tools/cfp_extract_native_raw_descriptor.py --video SN-015 ...",
+        "CUDA_VISIBLE_DEVICES= PYTHONPATH=/var/tmp/ir_mft_stubs:. ... tools/cfp_audit_native_raw_descriptor_complementarity.py --config configs/cfp/phase_vii_native_raw_descriptor_pilot_v1.json ...",
+        "CUDA_VISIBLE_DEVICES= PYTHONPATH=/var/tmp/ir_mft_stubs:. ... tools/cfp_audit_native_raw_descriptor_complementarity.py --config configs/cfp/phase_vii_native_legacy_rgb_complementarity_pilot_v1.json ..."
+      ],
+      "source_commit_at_stage_collection": "e8b96472952c4ff21b611381647703ae4089bdc2",
+      "configs": {
+        "raw_descriptor": "configs/cfp/phase_vii_native_raw_descriptor_pilot_v1.json",
+        "legacy_rgb": "configs/cfp/phase_vii_native_legacy_rgb_complementarity_pilot_v1.json"
+      },
+      "report": "docs/research/PHASE_VII_INDEPENDENT_COMPLEMENTARITY_PILOTS_MEASURED.json",
+      "report_sha256": "225dcc99ee12700bcd95237a130e0be8a27bcb1b98ef06410500e69bab9cd2e8",
+      "external_manifests": {
+        "raw_descriptor": "/var/tmp/IR-MFT_phase7_raw_descriptor_complementarity_pilot_v1_retry2/manifest.json",
+        "legacy_rgb": "/var/tmp/IR-MFT_phase7_legacy_rgb_complementarity_pilot_v1_retry2/manifest.json"
+      },
+      "dual_gpu_extraction": {
+        "GPU0": {"video": "BT-001", "frames": 3000, "proposals": 38018, "elapsed_seconds": 143.47829767595977},
+        "GPU1": {"video": "SN-015", "frames": 6570, "proposals": 69190, "elapsed_seconds": 299.9548765300424},
+        "GPUs4_9_untouched": true
+      },
+      "aggregate_counts": {
+        "raw_descriptor": {"rows": 71385, "candidate_missing_rows": 2794, "correction": 0, "harm": 1, "margin_activation": 501, "margin_correction": 0, "margin_harm": 0},
+        "legacy_rgb": {"rows": 71385, "candidate_missing_rows": 2794, "correction": 4, "harm": 0, "margin_activation": 31555, "margin_correction": 4, "margin_harm": 0}
+      },
+      "per_video_gate": {
+        "raw_descriptor": {"BT-001": {"correction": 0, "harm": 1}, "SN-015": {"correction": 0, "harm": 0}},
+        "legacy_rgb": {"BT-001": {"correction": 4, "harm": 0}, "SN-015": {"correction": 0, "harm": 0}}
+      },
+      "prediction_hashes_locked": true,
+      "physical_labels_opened_after_prediction_hashes": true,
+      "online_guards_clean": true,
+      "promotion_gate": "Every registered pilot video must have correction > harm and fixed-margin correction > harm with an activation.",
+      "decision": "DO_NOT_EXPAND_INDEPENDENT_PILOTS_OR_RUN_COMBINATION",
+      "failure_type": "Raw descriptor has one harm and no correction; legacy RGB has four conditional BT-001 corrections but is neutral on SN-015 and has historical six-video exposure.",
+      "next_experiment": "Require a newly justified genuinely independent same-input signal before any further expansion.",
+      "scope": "Internal pilot boundary only; no unseen-video generalization or final contribution claim.",
+      "goal_status": "IN_PROGRESS_UNACHIEVED"
     }
   ],
   "source_http_followup": {

@@ -200,6 +200,14 @@ Decision: `DO_NOT_PROMOTE_LOCAL_ATTENTION_TO_STRICT_RAW`. This is a measured dir
 
 **Decision.** `DO_NOT_PROMOTE_LOCAL_CONTRASTIVE_TO_STRICT_RAW`. No final stack, memory tuning or threshold search is justified. The full record is `docs/research/PHASE_VII_NATIVE_LOCAL_CONTRASTIVE_ALLFOLD_MEASURED.json` (SHA-256 `b7c5be0f406da2222eaaa5d155d9fb09aad4f10789c05702a929db20519e902b`).
 
+## H18 — independent same-input complementarity pilots (2026-10-21)
+
+Two genuinely different visual coordinates were registered before reduction on the unchanged source-matched DINO/FIFO candidate graph. The first was a fixed 384-D raw RGB/luminance/dx/dy crop descriptor extracted from current proposal crops on physical GPU 0 for BT-001 and GPU 1 for SN-015. It produced 0 corrections/1 harm on BT-001 and 0/0 on SN-015 over 71,385 clean candidate rows; the fixed margin gate produced 0 corrections and 0 harms. The baseline predictions were byte-identical and the every-video gate failed, so no raw-descriptor expansion or combination replay was run.
+
+The second pilot reused the existing causal fish-trained 512-D RGB post-neck bank as a retrospective alternative coordinate. It produced 4 corrections/0 harms on BT-001 and 0/0 on SN-015; the fixed margin gate changed the same four BT-001 choices and none on SN-015. This is a conditional diagnostic because that encoder was trained with all six internal train videos. The strict every-video gate therefore failed, and no legacy-RGB expansion, blend, fallback or combination replay is justified.
+
+**Decision.** `DO_NOT_EXPAND_INDEPENDENT_PILOTS_OR_RUN_COMBINATION`. These results close two specific independent-signal questions while preserving the Phase VII goal as `IN_PROGRESS_UNACHIEVED`; a further replay requires a new, genuinely independent same-input signal. Measured provenance and storage guards are in `PHASE_VII_INDEPENDENT_COMPLEMENTARITY_PILOTS_MEASURED.json`.
+
 ## H17 — source-matched patch-attention complementarity boundary (2026-10-16)
 
 **Hypothesis.** A supervised DINO patch-attention embedding may preserve rare fine-grained identity evidence removed by the fitted global embedding, while keeping the causal proposal graph and FIFO lifecycle fixed.
