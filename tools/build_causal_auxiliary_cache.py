@@ -70,6 +70,8 @@ def main():
         start_frame, end_frame = 1, None
     os.makedirs(args.output, exist_ok=True)
 
+    frame_root = "test" if args.split == "historical_test" else "train"
+
     generators = {sequence: CausalAuxiliaryGenerator(alpha=args.alpha) for sequence in sequences}
     counts = {sequence: 0 for sequence in sequences}
     total_bytes = 0
@@ -77,7 +79,7 @@ def main():
     output_index = 0
     for index, image in enumerate(images, start=1):
         sequence = videos[int(image["video_id"])]
-        visible_path = os.path.join(args.data_root, "train", image["vi_file_name"])
+        visible_path = os.path.join(args.data_root, frame_root, image["vi_file_name"])
         visible = cv2.imread(visible_path, cv2.IMREAD_COLOR)
         if visible is None:
             raise FileNotFoundError(visible_path)

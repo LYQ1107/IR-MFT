@@ -38,6 +38,8 @@ def main():
     protocol = json.load(open(args.protocol, "r", encoding="utf-8"))
     annotation = args.annotation or ("test.json" if args.split == "historical_test" else "train.json")
     payload = json.load(open(os.path.join(args.data_root, "annotations", annotation), "r", encoding="utf-8"))
+    frame_root = "test" if args.split == "historical_test" else "train"
+    cache_name = "test" if args.split == "historical_test" else args.split
     videos = {int(video["id"]): video["file_name"] for video in payload["videos"]}
     rows = []
     for sequence in protocol[args.split]:
@@ -60,7 +62,7 @@ def main():
         generator = CausalAuxiliaryGenerator(alpha=0.01)
         for image in images:
             frame_id = int(image["frame_id"])
-            visible_path = os.path.join(args.data_root, "train", image["vi_file_name"])
+            visible_path = os.path.join(args.data_root, frame_root, image["vi_file_name"])
             visible = cv2.imread(visible_path, cv2.IMREAD_COLOR)
             if visible is None:
                 raise FileNotFoundError(visible_path)
@@ -69,7 +71,7 @@ def main():
                 if frame_id >= max_sample:
                     break
                 continue
-            stem = os.path.join(args.cache_root, args.split, image["vi_file_name"])
+            stem = os.path.join(args.cache_root, cache_name, image["vi_file_name"])
             stem = stem.rsplit(".", 1)[0]
             cache_path = stem + ".jpg" if os.path.isfile(stem + ".jpg") else stem + ".webp"
             cached = cv2.imread(cache_path, cv2.IMREAD_UNCHANGED)
