@@ -21,6 +21,7 @@ sys.path.insert(0, REPO_ROOT)
 
 import motmetrics as mm
 import numpy as np
+import pandas as pd
 import torch
 
 # The pinned local motmetrics fork predates NumPy 1.24 aliases.
@@ -131,8 +132,10 @@ def write_sequence_results(path, rows):
 
 def load_mot_file(path):
     if not os.path.isfile(path) or os.path.getsize(path) == 0:
-        accumulator = mm.MOTAccumulator(auto_id=True)
-        return accumulator
+        index = pd.MultiIndex.from_arrays([[], []], names=["FrameId", "Id"])
+        return pd.DataFrame(
+            columns=["X", "Y", "Width", "Height"], index=index
+        )
     return mm.io.loadtxt(path, fmt="mot15-2D", min_confidence=-1)
 
 
@@ -304,9 +307,17 @@ def main():
         ),
         data_name=data_name,
     )
+    # ``train.json`` contains both Train and Dev videos.  The dataset has
+    # already applied the protocol sequence filter, so derive the available
+    # sequence list from its filtered annotations rather than the raw COCO
+    # video table.
     all_sequences = []
-    for video in dataset.coco.dataset.get("videos", []):
-        all_sequences.append(video["file_name"])
+    seen_sequences = set()
+    for annotation_row in dataset.annotations:
+        sequence = annotation_row[2].split("/", 1)[0]
+        if sequence not in seen_sequences:
+            all_sequences.append(sequence)
+            seen_sequences.add(sequence)
     if not all_sequences:
         raise RuntimeError("No test sequences were found in the annotation JSON")
 
