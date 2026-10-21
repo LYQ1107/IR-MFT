@@ -25,9 +25,12 @@ class YOLOX(nn.Module):
         self.backbone = backbone
         self.head = head
 
-    def forward(self, x, targets=None):
+    def forward(self, x, targets=None, return_aux=False):
         # fpn output content features of [dark3, dark4, dark5]
-        fpn_outs = self.backbone(x)
+        if return_aux:
+            fpn_outs, fusion_aux = self.backbone(x, return_aux=True)
+        else:
+            fpn_outs = self.backbone(x)
 
         if self.training:
             assert targets is not None
@@ -45,4 +48,13 @@ class YOLOX(nn.Module):
         else:
             outputs = self.head(fpn_outs)
 
+        if return_aux:
+            return outputs, fusion_aux
         return outputs
+
+    def reset_fusion_state(self):
+        """Reset causal fusion state when a new video starts."""
+
+        reset = getattr(self.backbone, "reset_fusion_state", None)
+        if reset is not None:
+            reset()

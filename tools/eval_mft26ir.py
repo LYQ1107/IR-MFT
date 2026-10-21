@@ -7,20 +7,37 @@ import os
 import random
 import shutil
 import sys
+import time
 from collections import OrderedDict
 from types import SimpleNamespace
+
+# Running this file directly puts ``tools/`` ahead of the repository root.
+# Pin the local YOLOX package before optional external reference packages
+# (some of which ship a package with the same top-level name).
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if REPO_ROOT in sys.path:
+    sys.path.remove(REPO_ROOT)
+sys.path.insert(0, REPO_ROOT)
 
 import motmetrics as mm
 import numpy as np
 import torch
+
+# The pinned local motmetrics fork predates NumPy 1.24 aliases.
+if not hasattr(np, "float"):
+    np.float = float
+if not hasattr(np, "int"):
+    np.int = int
+if not hasattr(np, "bool"):
+    np.bool = bool
 
 from yolox.exp import get_exp
 from yolox.tracker.byte_tracker import BYTETracker
 from yolox.utils import postprocess
 
 
-DEFAULT_ROOT = "/data1/LWR/vranlee/CELL/PFTrack/data/mft26-ir"
-DEFAULT_TRACKEVAL_ROOT = "/data1/LWR/vranlee/CELL/VUP-PFTrack"
+DEFAULT_ROOT = "/data3/liuyeqiang/datasets/mft26-ir"
+DEFAULT_TRACKEVAL_ROOT = "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack"
 
 
 def make_parser():
@@ -28,6 +45,41 @@ def make_parser():
     parser.add_argument("--exp_file", default="exps/yolox_mft26ir_rgbt_v1.py")
     parser.add_argument("--ckpt", required=True)
     parser.add_argument("--output", default="results/v1_avg")
+    parser.add_argument(
+        "--split",
+        default="test",
+        choices=("dev", "test"),
+        help="evaluation split; dev uses train.json and train/*/gt, test uses test.json",
+    )
+    parser.add_argument(
+        "--fusion-mode",
+        default=None,
+        choices=(
+            "avg",
+            "gated_residual",
+            "dynamic_quality",
+            "spatial_complementarity",
+            "quality_spatial",
+            "quality_spatial_redundancy",
+            "temporal_complementarity",
+        ),
+        help="override the fusion mode declared by the experiment",
+    )
+    parser.add_argument(
+        "--auxiliary-mode",
+        default=None,
+        choices=("legacy", "causal", "causal_cache", "zero", "shuffle", "repeat_rgb", "grayscale_rgb"),
+        help="auxiliary input intervention; causal mode forces sequential loading",
+    )
+    parser.add_argument(
+        "--tracker-type",
+        default="bytetrack",
+        choices=("bytetrack",),
+        help="tracker implementation; the baseline tracker remains BYTETracker",
+    )
+    parser.add_argument("--collect-fusion-stats", action="store_true")
+    parser.add_argument("--profile-runtime", action="store_true")
+    parser.add_argument("--manifest-output", default=None)
     parser.add_argument(
         "--sequences",
         default=None,
@@ -78,11 +130,11 @@ def load_mot_file(path):
     return mm.io.loadtxt(path, fmt="mot15-2D", min_confidence=-1)
 
 
-def compute_motmetrics(result_dir, gt_root, sequences):
+def compute_motmetrics(result_dir, gt_root, sequences, data_split="test"):
     gts = OrderedDict()
     tracks = OrderedDict()
     for sequence in sequences:
-        gt_path = os.path.join(gt_root, "test", sequence, "gt", "gt.txt")
+        gt_path = os.path.join(gt_root, data_split, sequence, "gt", "gt.txt")
         result_path = os.path.join(result_dir, f"{sequence}.txt")
         gts[sequence] = mm.io.loadtxt(gt_path, fmt="mot15-2D", min_confidence=1)
         tracks[sequence] = load_mot_file(result_path)
@@ -135,7 +187,7 @@ def keep_batch(batch):
     return batch
 
 
-def run_trackeval(result_dir, gt_root, output_dir, sequences, trackeval_root):
+def run_trackeval(result_dir, gt_root, output_dir, sequences, trackeval_root, data_split="test"):
     """Run the repository's already-used TrackEval fork for HOTA/DetA/AssA."""
     # The historical fork is customized for this MOT-RGBT layout and still
     # uses NumPy aliases removed in NumPy 1.24. Keep the compatibility local to
@@ -165,7 +217,7 @@ def run_trackeval(result_dir, gt_root, output_dir, sequences, trackeval_root):
     config = {
         "TRACKERS_FOLDER": trackeval_dir,
         "TRACKERS_TO_EVAL": ["QRTM_V1"],
-        "GT_FOLDER": os.path.join(gt_root, "test"),
+        "GT_FOLDER": os.path.join(gt_root, data_split),
         "OUTPUT_FOLDER": trackeval_output,
         "BENCHMARK": "MFT26IR",
         "CLASSES_TO_EVAL": ["pedestrian"],
@@ -214,6 +266,10 @@ def main():
 
     device = torch.device(args.device)
     exp = get_exp(args.exp_file, None)
+    if args.fusion_mode is not None:
+        exp.fusion_mode = args.fusion_mode
+    if args.auxiliary_mode is not None:
+        exp.auxiliary_mode = args.auxiliary_mode
     exp.data_dir = args.data_root
     exp.test_conf = args.conf
     exp.nmsthre = args.nms
@@ -228,15 +284,19 @@ def main():
     rgb_std = getattr(exp, "rgb_std", (0.229, 0.224, 0.225))
     ir_means = getattr(exp, "ir_means", rgb_means)
     ir_std = getattr(exp, "ir_std", rgb_std)
+    eval_split = args.split
+    annotation = exp.val_ann if eval_split == "test" else exp.train_ann
+    data_name = "test" if eval_split == "test" else "train"
     dataset = exp._dataset(
-        "test",
-        exp.val_ann,
+        eval_split,
+        annotation,
         __import__("yolox.data", fromlist=["RGBTValTransform"]).RGBTValTransform(
             rgb_means=rgb_means,
             std=rgb_std,
             ir_means=ir_means,
             ir_std=ir_std,
         ),
+        data_name=data_name,
     )
     all_sequences = []
     for video in dataset.coco.dataset.get("videos", []):
@@ -283,27 +343,41 @@ def main():
     detections_by_sequence = {sequence: [] for sequence in sequences}
 
     eval_dataset = torch.utils.data.Subset(dataset, selected_indices)
+    eval_workers = 0 if exp.auxiliary_mode == "causal" else args.workers
     eval_loader = torch.utils.data.DataLoader(
         eval_dataset,
         batch_size=max(1, args.batch_size),
         shuffle=False,
-        num_workers=max(0, args.workers),
+        num_workers=max(0, eval_workers),
         pin_memory=True,
         collate_fn=keep_batch,
-        persistent_workers=args.workers > 0,
+        persistent_workers=eval_workers > 0,
     )
 
+    fusion_level_stats = []
+    runtime_start = time.perf_counter()
+    model_sequence = None
     with torch.no_grad():
         for batch_items in eval_loader:
             infos = [item[2] for item in batch_items]
+            batch_sequence = infos[0][4].split("/")[0]
+            if batch_sequence != model_sequence:
+                reset = getattr(model, "reset_fusion_state", None)
+                if reset is not None:
+                    reset()
+                model_sequence = batch_sequence
             input_tensor = torch.from_numpy(
                 np.stack([item[0] for item in batch_items], axis=0)
             ).to(device, non_blocking=True)
             if args.fp16:
                 input_tensor = input_tensor.half()
-            outputs = postprocess(
-                model(input_tensor), 1, args.conf, args.nms
-            )
+            model_output = model(input_tensor, return_aux=args.collect_fusion_stats)
+            if args.collect_fusion_stats:
+                raw_output, fusion_aux = model_output
+            else:
+                raw_output = model_output
+                fusion_aux = None
+            outputs = postprocess(raw_output, 1, args.conf, args.nms)
             for info, output in zip(infos, outputs):
                 sequence = info[4].split("/")[0]
                 if sequence != current_sequence:
@@ -311,6 +385,23 @@ def main():
                         raise RuntimeError(f"Unexpected sequence in data: {sequence}")
                     tracker = BYTETracker(tracker_args, frame_rate=25)
                     current_sequence = sequence
+
+                if fusion_aux is not None:
+                    levels = fusion_aux.get("levels", [])
+                    if levels and not fusion_level_stats:
+                        fusion_level_stats = [
+                            {"effective_weight": [], "redundancy": [], "gate_range": []}
+                            for _ in levels
+                        ]
+                    for level_index, level_info in enumerate(levels):
+                        if level_index >= len(fusion_level_stats):
+                            continue
+                        for key in ("effective_weight", "redundancy", "gate_range"):
+                            value = level_info.get(key)
+                            if torch.is_tensor(value):
+                                fusion_level_stats[level_index][key].append(
+                                    float(value.detach().float().mean().cpu())
+                                )
 
                 if args.detections_output is not None:
                     if output is None or len(output) == 0:
@@ -371,7 +462,11 @@ def main():
                 scores=scores,
             )
 
-    metrics = {"motmetrics": compute_motmetrics(args.output + "/track_results", args.data_root, sequences)}
+    metrics = {
+        "motmetrics": compute_motmetrics(
+            args.output + "/track_results", args.data_root, sequences, data_split=data_name
+        )
+    }
     if not args.skip_trackeval:
         metrics["trackeval"] = run_trackeval(
             result_dir,
@@ -379,6 +474,7 @@ def main():
             args.output,
             sequences,
             args.trackeval_root,
+            data_split=data_name,
         )
     metrics["protocol"] = {
         "sequences": sequences,
@@ -390,10 +486,43 @@ def main():
         "track_buffer": args.track_buffer,
         "match_thresh": args.match_thresh,
         "min_box_area": args.min_box_area,
+        "fusion_mode": getattr(exp, "fusion_mode", None),
+        "auxiliary_mode": getattr(exp, "auxiliary_mode", "legacy"),
+        "tracker_type": args.tracker_type,
+        "workers": eval_workers,
+        "split": eval_split,
+        "data_name": data_name,
     }
+    if args.profile_runtime:
+        elapsed = max(time.perf_counter() - runtime_start, 1e-9)
+        metrics["runtime"] = {
+            "elapsed_seconds": elapsed,
+            "frames_per_second": float(total_frames / elapsed),
+            "frames": total_frames,
+        }
+    if fusion_level_stats:
+        stats = []
+        for level in fusion_level_stats:
+            stats.append(
+                {
+                    key: {
+                        "mean": float(np.mean(values)) if values else None,
+                        "std": float(np.std(values)) if values else None,
+                        "min": float(np.min(values)) if values else None,
+                        "max": float(np.max(values)) if values else None,
+                        "count": len(values),
+                    }
+                    for key, values in level.items()
+                }
+            )
+        metrics["fusion_stats"] = {"levels": stats}
     metrics_path = os.path.join(args.output, "metrics.json")
     with open(metrics_path, "w", encoding="utf-8") as handle:
         json.dump(metrics, handle, indent=2, ensure_ascii=False)
+    if args.manifest_output:
+        os.makedirs(os.path.dirname(os.path.abspath(args.manifest_output)), exist_ok=True)
+        with open(args.manifest_output, "w", encoding="utf-8") as handle:
+            json.dump(metrics, handle, indent=2, ensure_ascii=False)
     print(json.dumps(metrics, indent=2, ensure_ascii=False))
     print("saved:", os.path.abspath(metrics_path))
 

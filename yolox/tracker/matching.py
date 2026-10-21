@@ -1,10 +1,40 @@
 import cv2
 import numpy as np
 import scipy
-import lap
 from scipy.spatial.distance import cdist
+from scipy.optimize import linear_sum_assignment
 
-from cython_bbox import bbox_overlaps as bbox_ious
+try:
+    import lap
+except ImportError:  # pragma: no cover - optional acceleration dependency
+    lap = None
+
+try:
+    from cython_bbox import bbox_overlaps as bbox_ious
+except ImportError:  # pragma: no cover - pure NumPy fallback for clean environments
+    def bbox_ious(a, b):
+        """Compute pairwise IoU for ``tlbr`` boxes without cython_bbox."""
+        a = np.asarray(a, dtype=np.float64)
+        b = np.asarray(b, dtype=np.float64)
+        if a.size == 0 or b.size == 0:
+            return np.zeros((len(a), len(b)), dtype=np.float64)
+        top_left = np.maximum(a[:, None, :2], b[None, :, :2])
+        bottom_right = np.minimum(a[:, None, 2:], b[None, :, 2:])
+        wh = np.clip(bottom_right - top_left, 0.0, None)
+        intersection = wh[..., 0] * wh[..., 1]
+        area_a = np.clip(a[:, 2] - a[:, 0], 0.0, None) * np.clip(
+            a[:, 3] - a[:, 1], 0.0, None
+        )
+        area_b = np.clip(b[:, 2] - b[:, 0], 0.0, None) * np.clip(
+            b[:, 3] - b[:, 1], 0.0, None
+        )
+        union = area_a[:, None] + area_b[None, :] - intersection
+        return np.divide(
+            intersection,
+            union,
+            out=np.zeros_like(intersection),
+            where=union > 0,
+        )
 from yolox.tracker import kalman_filter
 import time
 
@@ -39,14 +69,45 @@ def _indices_to_matches(cost_matrix, indices, thresh):
 def linear_assignment(cost_matrix, thresh):
     if cost_matrix.size == 0:
         return np.empty((0, 2), dtype=int), tuple(range(cost_matrix.shape[0])), tuple(range(cost_matrix.shape[1]))
-    matches, unmatched_a, unmatched_b = [], [], []
-    cost, x, y = lap.lapjv(cost_matrix, extend_cost=True, cost_limit=thresh)
-    for ix, mx in enumerate(x):
-        if mx >= 0:
-            matches.append([ix, mx])
-    unmatched_a = np.where(x < 0)[0]
-    unmatched_b = np.where(y < 0)[0]
-    matches = np.asarray(matches)
+    if lap is not None:
+        matches, unmatched_a, unmatched_b = [], [], []
+        cost, x, y = lap.lapjv(cost_matrix, extend_cost=True, cost_limit=thresh)
+        for ix, mx in enumerate(x):
+            if mx >= 0:
+                matches.append([ix, mx])
+        unmatched_a = np.where(x < 0)[0]
+        unmatched_b = np.where(y < 0)[0]
+        matches = np.asarray(matches, dtype=int).reshape(-1, 2)
+        return matches, unmatched_a, unmatched_b
+
+    # scipy's solver has no cost-limit parameter. Solve after replacing
+    # invalid/over-threshold entries with a large finite sentinel, then keep
+    # only assignments that satisfy the original threshold.
+    cost_matrix = np.asarray(cost_matrix, dtype=np.float64)
+    finite = np.isfinite(cost_matrix)
+    finite_values = cost_matrix[finite]
+    scale = max(float(np.max(np.abs(finite_values))) if finite_values.size else 1.0,
+                abs(float(thresh)) if np.isfinite(thresh) else 1.0,
+                1.0)
+    sentinel = scale * 1e6
+    safe_cost = np.where(finite, cost_matrix, sentinel)
+    row_ind, col_ind = linear_sum_assignment(safe_cost)
+    accepted = [
+        (int(row), int(col))
+        for row, col in zip(row_ind, col_ind)
+        if finite[row, col] and cost_matrix[row, col] <= thresh
+    ]
+    matches = np.asarray(accepted, dtype=int).reshape(-1, 2)
+    matched_a = {row for row, _ in accepted}
+    matched_b = {col for _, col in accepted}
+    unmatched_a = np.asarray(
+        [row for row in range(cost_matrix.shape[0]) if row not in matched_a],
+        dtype=int,
+    )
+    unmatched_b = np.asarray(
+        [col for col in range(cost_matrix.shape[1]) if col not in matched_b],
+        dtype=int,
+    )
     return matches, unmatched_a, unmatched_b
 
 

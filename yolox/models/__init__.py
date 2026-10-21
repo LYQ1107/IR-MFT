@@ -8,4 +8,11 @@ from .yolo_fpn import YOLOFPN
 from .yolo_head import YOLOXHead
 from .yolo_pafpn import YOLOPAFPN
 from .yolo_pafpn_rgbt import YOLOPAFPNRGBT
+from .qra_fusion import (
+    DynamicQualityFusion,
+    QualitySpatialFusion,
+    RedundancyEstimator,
+    SpatialComplementarityFusion,
+    TemporalComplementarityFusion,
+)
 from .yolox import YOLOX

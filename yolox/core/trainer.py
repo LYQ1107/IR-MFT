@@ -7,7 +7,20 @@ from loguru import logger
 import torch
 
 from torch.nn.parallel import DistributedDataParallel as DDP
-from torch.utils.tensorboard import SummaryWriter
+try:
+    from torch.utils.tensorboard import SummaryWriter
+except Exception:  # pragma: no cover - optional logging dependency
+    class SummaryWriter:  # pylint: disable=too-few-public-methods
+        """No-op TensorBoard writer for minimal research environments."""
+
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def add_scalar(self, *args, **kwargs):
+            pass
+
+        def close(self):
+            pass
 
 from yolox.data import DataPrefetcher
 from yolox.utils import (

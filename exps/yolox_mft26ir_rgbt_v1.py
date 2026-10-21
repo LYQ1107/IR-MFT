@@ -1,6 +1,7 @@
 # encoding: utf-8
 """V1: independent RGB/IR YOLOPAFPN branches with average fusion."""
 
+import json
 import os
 
 import torch
@@ -15,7 +16,6 @@ from yolox.data import (
     RGBTValTransform,
     YoloBatchSampler,
 )
-from yolox.evaluators import COCOEvaluator
 from yolox.exp import Exp as MyExp
 
 
@@ -30,7 +30,7 @@ class Exp(MyExp):
         self.output_dir = "./results"
         self.data_dir = os.environ.get(
             "MFT26IR_ROOT",
-            "/data1/LWR/vranlee/CELL/PFTrack/data/mft26-ir",
+            "/data3/liuyeqiang/datasets/mft26-ir",
         )
         self.train_ann = "train.json"
         self.val_ann = "test.json"
@@ -54,6 +54,18 @@ class Exp(MyExp):
         # is safe and keeps the GPUs fed during the two-card run.
         self.data_num_workers = 4
 
+        protocol_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "configs",
+            "cfp",
+            "protocol_v2.json",
+        )
+        with open(protocol_path, "r", encoding="utf-8") as handle:
+            self.protocol = json.load(handle)
+        self.protocol_train_sequences = tuple(self.protocol["train"])
+        self.protocol_dev_sequences = tuple(self.protocol["dev"])
+        self.protocol_test_sequences = tuple(self.protocol["historical_test"])
+
         self.test_conf = 0.1
         self.nmsthre = 0.7
         self.basic_lr_per_img = 0.001 / 64.0
@@ -65,6 +77,19 @@ class Exp(MyExp):
         self.ir_means = self.rgb_means
         self.ir_std = self.rgb_std
         self.fusion_mode = "avg"
+        # ``legacy`` reads the archived RGB-derived auxiliary folders.  Strict
+        # causal generation is selected by the evaluation wrapper with
+        # workers=0; random training batches must use a precomputed causal
+        # cache or the clip loader before they are labelled causal.
+        self.auxiliary_mode = os.environ.get("MFT26IR_AUXILIARY_MODE", "legacy")
+        self.train_auxiliary_mode = os.environ.get(
+            "MFT26IR_TRAIN_AUXILIARY_MODE", self.auxiliary_mode
+        )
+        self.causal_alpha = 0.01
+        self.causal_cache_root = os.environ.get(
+            "MFT26IR_CAUSAL_CACHE_ROOT",
+            "/data3/liuyeqiang/IR-MFT_assets/causal_aux_cache",
+        )
 
     def get_model(self):
         from yolox.models import YOLOPAFPNRGBT, YOLOX, YOLOXHead
@@ -94,13 +119,29 @@ class Exp(MyExp):
         self.model.head.initialize_biases(1e-2)
         return self.model
 
-    def _dataset(self, split, annotation, transform):
+    def _dataset(self, split, annotation, transform, data_name=None):
+        if data_name is None:
+            data_name = "train" if split in {"train", "dev"} else "test"
+        if split == "train":
+            sequence_filter = self.protocol_train_sequences
+        elif split == "dev":
+            sequence_filter = self.protocol_dev_sequences
+        elif split == "test":
+            sequence_filter = self.protocol_test_sequences
+        else:
+            sequence_filter = None
         return MOTDatasetRGBT(
             data_dir=self.data_dir,
             json_file=annotation,
-            name=split,
+            name=data_name,
             img_size=self.input_size if split == "train" else self.test_size,
             preproc=transform,
+            auxiliary_mode=(
+                self.train_auxiliary_mode if split == "train" else self.auxiliary_mode
+            ),
+            causal_alpha=self.causal_alpha,
+            causal_cache_root=self.causal_cache_root,
+            sequence_filter=sequence_filter,
         )
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
@@ -157,15 +198,18 @@ class Exp(MyExp):
             )
         else:
             sampler = torch.utils.data.SequentialSampler(dataset)
+        eval_workers = 0 if self.auxiliary_mode == "causal" else self.data_num_workers
         return torch.utils.data.DataLoader(
             dataset,
             batch_size=batch_size,
             sampler=sampler,
-            num_workers=self.data_num_workers,
+            num_workers=eval_workers,
             pin_memory=True,
         )
 
     def get_evaluator(self, batch_size, is_distributed, testdev=False):
+        from yolox.evaluators import COCOEvaluator
+
         return COCOEvaluator(
             dataloader=self.get_eval_loader(batch_size, is_distributed, testdev),
             img_size=self.test_size,

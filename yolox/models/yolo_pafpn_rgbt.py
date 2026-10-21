@@ -6,6 +6,12 @@ import torch
 import torch.nn as nn
 
 from .yolo_pafpn import YOLOPAFPN
+from .qra_fusion import (
+    DynamicQualityFusion,
+    QualitySpatialFusion,
+    SpatialComplementarityFusion,
+    TemporalComplementarityFusion,
+)
 
 
 class YOLOPAFPNRGBT(nn.Module):
@@ -42,7 +48,17 @@ class YOLOPAFPNRGBT(nn.Module):
         )
         self.fusion_mode = fusion_mode
         self.freeze_rgb = freeze_rgb
-        if fusion_mode == "gated_residual":
+        qra_modes = {
+            "dynamic_quality",
+            "spatial_complementarity",
+            "temporal_complementarity",
+            "quality_spatial",
+            "quality_spatial_redundancy",
+        }
+        if fusion_mode in {
+            "gated_residual",
+            *qra_modes,
+        }:
             # A small initial IR contribution keeps the source visible model
             # dominant while giving the IR branch a useful training gradient.
             # The sigmoid keeps the fusion convex and prevents an early IR
@@ -53,10 +69,23 @@ class YOLOPAFPNRGBT(nn.Module):
                 initial_logit.repeat(len(in_channels)).float()
             )
         elif fusion_mode != "avg":
-            raise ValueError(
-                "fusion_mode must be 'avg' or 'gated_residual', "
-                f"got {fusion_mode!r}"
-            )
+            raise ValueError("unsupported fusion mode: %r" % (fusion_mode,))
+
+        self.fusion_modules = nn.ModuleList()
+        if fusion_mode in qra_modes:
+            channels = [int(channel * width) for channel in in_channels]
+            for channel in channels:
+                if fusion_mode == "dynamic_quality":
+                    module = DynamicQualityFusion(channel)
+                elif fusion_mode == "spatial_complementarity":
+                    module = SpatialComplementarityFusion(channel)
+                elif fusion_mode == "temporal_complementarity":
+                    module = TemporalComplementarityFusion(channel)
+                elif fusion_mode == "quality_spatial":
+                    module = QualitySpatialFusion(channel)
+                else:  # quality_spatial_redundancy
+                    module = QualitySpatialFusion(channel, use_redundancy=True)
+                self.fusion_modules.append(module)
 
         if self.freeze_rgb:
             for parameter in self.rgb_branch.parameters():
@@ -68,7 +97,17 @@ class YOLOPAFPNRGBT(nn.Module):
         # the IR branch is adapted to its own modality distribution.
         if mode and self.freeze_rgb:
             self.rgb_branch.eval()
+        for module in self.fusion_modules:
+            if isinstance(module, TemporalComplementarityFusion):
+                module.set_stateful(not mode)
         return self
+
+    def reset_fusion_state(self):
+        """Reset all causal temporal modules at a video boundary."""
+
+        for module in self.fusion_modules:
+            if isinstance(module, TemporalComplementarityFusion):
+                module.reset_state()
 
     def forward(self, x, fusion_mode=None, return_aux=False):
         if x.ndim != 4 or x.shape[1] != 6:
@@ -79,10 +118,27 @@ class YOLOPAFPNRGBT(nn.Module):
         mode = self.fusion_mode if fusion_mode is None else fusion_mode
         rgb_features = self.rgb_branch(x[:, :3])
         ir_features = self.ir_branch(x[:, 3:6])
+        fusion_info = {
+            "mode": mode,
+            "levels": [],
+            "rgb_features": rgb_features,
+            "aux_features": ir_features,
+            # Keep the historical key for downstream analysis scripts.
+            "ir_features": ir_features,
+        }
         if mode == "avg":
             fused_features = tuple(
                 0.5 * (rgb_feature + ir_feature)
                 for rgb_feature, ir_feature in zip(rgb_features, ir_features)
+            )
+            fusion_info["fusion_gates"] = tuple(
+                torch.full(
+                    (rgb_feature.shape[0], 1, 1, 1),
+                    0.5,
+                    device=rgb_feature.device,
+                    dtype=rgb_feature.dtype,
+                )
+                for rgb_feature in rgb_features
             )
         elif mode == "gated_residual":
             gates = torch.sigmoid(self.fusion_logits)
@@ -92,17 +148,35 @@ class YOLOPAFPNRGBT(nn.Module):
                     zip(rgb_features, ir_features)
                 )
             )
+            fusion_info["fusion_gates"] = gates
+        elif mode in {
+            "dynamic_quality",
+            "spatial_complementarity",
+            "temporal_complementarity",
+            "quality_spatial",
+            "quality_spatial_redundancy",
+        }:
+            fused = []
+            gate_values = []
+            for index, (rgb_feature, ir_feature, module) in enumerate(
+                zip(rgb_features, ir_features, self.fusion_modules)
+            ):
+                if mode == "quality_spatial":
+                    fused_feature, info = module(
+                        rgb_feature, ir_feature, self.fusion_logits[index]
+                    )
+                else:
+                    fused_feature, info = module(
+                        rgb_feature, ir_feature, self.fusion_logits[index]
+                    )
+                fused.append(fused_feature)
+                gate_values.append(info["effective_weight"])
+                fusion_info["levels"].append(info)
+            fused_features = tuple(fused)
+            fusion_info["fusion_gates"] = tuple(gate_values)
         else:
             raise ValueError(f"Unsupported fusion mode {mode!r}")
 
         if return_aux:
-            return fused_features, {
-                "rgb_features": rgb_features,
-                "ir_features": ir_features,
-                "fusion_gates": (
-                    torch.sigmoid(self.fusion_logits)
-                    if hasattr(self, "fusion_logits")
-                    else None
-                ),
-            }
+            return fused_features, fusion_info
         return fused_features
