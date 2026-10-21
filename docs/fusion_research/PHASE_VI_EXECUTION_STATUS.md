@@ -34,4 +34,6 @@ re-colourized at load time; it covers all 27,251 Train frames and is checked
 against selected online-generated frames by `tools/validate_causal_cache.py`.
 Large checkpoints, causal cache frames, prediction files, and TrackEval
 artifacts are intentionally outside Git. Candidate training/evaluation remains
-an external running job and its status is recorded in the asset directory.
+an external running job (Stage 1 uses 320x576 training crops for the short
+screening budget; formal tracking evaluation stays at the fixed 800x1440 test
+size) and its status is recorded in the asset directory.
