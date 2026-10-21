@@ -51,6 +51,7 @@ protocol. Their checkpoints and per-frame outputs are external to Git under
 | F2a quality + spatial | Dev | 4,834 | 14.742 | 33.616 | 6.5436 | 11.860 | -12.206 | 867 | negative, but better than F1 Dev |
 | F2a quality + spatial | Test | 15,985 | 16.501 | 28.268 | 9.7849 | 12.983 | -40.636 | 2,224 | negative, no HOTA gain over F1 |
 | F2b quality + spatial | Dev | 4,834 | 14.332 | 31.188 | 6.6399 | 10.656 | -25.589 | 1,035 | negative / gate collapse |
+| F2b quality + spatial | Test | 15,985 | 15.679 | 27.131 | 9.2641 | 12.002 | -47.678 | 2,430 | negative / gate collapse |
 
 The fixed V3 static-fusion reference is HOTA 46.086 on Dev (4,834 frames) and
 the historical Test reference is HOTA 31.091 on 15,985 frames. Therefore F1
@@ -68,8 +69,9 @@ the fixed protocol resolution and all seven Test sequences. No other GPU is
 used, and no checkpoint, cache frame, prediction file, or TrackEval artifact is
 tracked in Git.
 
-F2b Dev used the final three-epoch checkpoint and all 4,834 Dev frames. Its
+F2b used the final three-epoch checkpoint. On all 4,834 Dev frames its
 TrackEval summary is HOTA 14.332, DetA 31.188, AssA 6.6399, IDF1 10.656,
-MOTA -25.589, and IDSW 1,035 at 6.21 FPS. This is below both the V3 reference
-and F2a Dev HOTA, so it remains a negative result pending the required full
-Test evaluation.
+MOTA -25.589, and IDSW 1,035 at 6.21 FPS. On all 15,985 Test frames it is
+HOTA 15.679, DetA 27.131, AssA 9.2641, IDF1 12.002, MOTA -47.678, and
+IDSW 2,430 at 6.68 FPS. Both splits remain negative against the fixed V3
+reference and F2a; the Test result also declines from F1/F2a HOTA.
