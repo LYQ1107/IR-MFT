@@ -122,6 +122,11 @@ class Exp(MyExp):
     def _dataset(self, split, annotation, transform, data_name=None):
         if data_name is None:
             data_name = "train" if split in {"train", "dev"} else "test"
+        # The paired RGB/IR frames for the Dev split live under ``train`` in
+        # the source dataset, while its protocol-specific causal cache must
+        # remain separate from the training cache.  Keep the dataset name and
+        # cache namespace independent for this reason.
+        cache_name = "train" if split == "train" else split
         if split == "train":
             sequence_filter = self.protocol_train_sequences
         elif split == "dev":
@@ -140,7 +145,7 @@ class Exp(MyExp):
                 self.train_auxiliary_mode if split == "train" else self.auxiliary_mode
             ),
             causal_alpha=self.causal_alpha,
-            causal_cache_root=os.path.join(self.causal_cache_root, data_name),
+            causal_cache_root=os.path.join(self.causal_cache_root, cache_name),
             sequence_filter=sequence_filter,
         )
 
