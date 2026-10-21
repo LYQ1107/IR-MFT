@@ -28,7 +28,14 @@ def main():
     parser.add_argument("--protocol", default="configs/cfp/protocol_v2.json")
     parser.add_argument("--split", default="train", choices=("train", "dev", "historical_test"))
     parser.add_argument("--alpha", type=float, default=0.01)
-    parser.add_argument("--quality", type=int, default=100, help="WebP quality; 100 keeps the cache near-lossless")
+    parser.add_argument("--encoding", choices=("jpg", "webp"), default="jpg")
+    parser.add_argument(
+        "--representation",
+        choices=("response", "color"),
+        default="response",
+        help="store the one-channel causal response (recommended) or its color map",
+    )
+    parser.add_argument("--quality", type=int, default=100, help="lossy-cache quality (higher preserves the generated response)")
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--sequence", default=None, help="build only one protocol sequence")
     parser.add_argument("--start-frame", type=int, default=1)
@@ -79,15 +86,26 @@ def main():
             continue
         relative = image["vi_file_name"]
         target_dir = os.path.join(args.output, os.path.dirname(relative))
-        target = os.path.join(target_dir, os.path.basename(relative).rsplit(".", 1)[0] + ".webp")
+        extension = ".jpg" if args.encoding == "jpg" else ".webp"
+        target = os.path.join(target_dir, os.path.basename(relative).rsplit(".", 1)[0] + extension)
         if os.path.exists(target) and not args.overwrite:
             total_bytes += os.path.getsize(target)
         else:
             os.makedirs(target_dir, exist_ok=True)
-            fd, temporary = tempfile.mkstemp(prefix=".causal-", suffix=".webp", dir=target_dir)
+            fd, temporary = tempfile.mkstemp(prefix=".causal-", suffix=extension, dir=target_dir)
             os.close(fd)
             try:
-                if not cv2.imwrite(temporary, auxiliary, [cv2.IMWRITE_WEBP_QUALITY, args.quality]):
+                quality_flag = (
+                    cv2.IMWRITE_JPEG_QUALITY
+                    if args.encoding == "jpg"
+                    else cv2.IMWRITE_WEBP_QUALITY
+                )
+                cache_image = (
+                    generators[sequence].last_response
+                    if args.representation == "response"
+                    else auxiliary
+                )
+                if not cv2.imwrite(temporary, cache_image, [quality_flag, args.quality]):
                     raise RuntimeError(f"OpenCV failed to write {temporary}")
                 os.replace(temporary, target)
             finally:
@@ -110,7 +128,8 @@ def main():
         "frames_by_sequence": counts,
         "alpha": args.alpha,
         "response_scale": 4.0,
-        "encoding": "webp",
+        "encoding": args.encoding,
+        "representation": args.representation,
         "quality": args.quality,
         "bytes": total_bytes,
         "cache_root": os.path.abspath(args.output),

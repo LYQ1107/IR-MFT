@@ -25,12 +25,14 @@ class CausalAuxiliaryGenerator:
         self.alpha = float(alpha)
         self.response_scale = float(response_scale)
         self.background: Optional[np.ndarray] = None
+        self.last_response: Optional[np.ndarray] = None
         self.frames_seen = 0
         self.sequence_id = None
         self.last_frame_id = None
 
     def reset(self, sequence_id=None) -> None:
         self.background = None
+        self.last_response = None
         self.frames_seen = 0
         self.sequence_id = sequence_id
         self.last_frame_id = None
@@ -55,6 +57,7 @@ class CausalAuxiliaryGenerator:
         background_u8 = np.clip(self.background, 0.0, 255.0).astype(np.uint8)
         response = cv2.absdiff(gray, background_u8).astype(np.float32)
         response = np.clip(response * self.response_scale, 0.0, 255.0).astype(np.uint8)
+        self.last_response = response.copy()
         # A fixed colormap preserves a three-channel interface without claiming
         # physical thermal measurements.
         auxiliary = cv2.applyColorMap(response, cv2.COLORMAP_INFERNO)
@@ -69,4 +72,3 @@ def grayscale_three_channel(frame_bgr: np.ndarray) -> np.ndarray:
 
     gray = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2GRAY)
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
-

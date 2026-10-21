@@ -115,12 +115,18 @@ class MOTDatasetRGBT(MOTDataset):
         elif self.auxiliary_mode == "causal_cache":
             if not self.causal_cache_root:
                 raise ValueError("causal_cache mode requires causal_cache_root")
-            cache_path = os.path.join(
+            cache_stem = os.path.join(
                 self.causal_cache_root,
                 vi_file_name.rsplit("/", 1)[0],
-                os.path.basename(vi_file_name).rsplit(".", 1)[0] + ".webp",
+                os.path.basename(vi_file_name).rsplit(".", 1)[0],
             )
-            infrared = cv2.imread(cache_path, cv2.IMREAD_COLOR)
+            cache_path = next(
+                (candidate for candidate in (cache_stem + ".jpg", cache_stem + ".webp") if os.path.isfile(candidate)),
+                cache_stem + ".jpg",
+            )
+            infrared = cv2.imread(cache_path, cv2.IMREAD_UNCHANGED)
+            if infrared is not None and infrared.ndim == 2:
+                infrared = cv2.applyColorMap(infrared, cv2.COLORMAP_INFERNO)
             if infrared is None:
                 raise FileNotFoundError(
                     f"Unable to read causal cache image: {cache_path}"
