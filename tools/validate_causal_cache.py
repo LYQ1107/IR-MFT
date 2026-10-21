@@ -16,6 +16,17 @@ def main():
     parser.add_argument("--data-root", default=os.environ.get("MFT26IR_ROOT", "/data3/liuyeqiang/datasets/mft26-ir"))
     parser.add_argument("--cache-root", default=os.environ.get("MFT26IR_CAUSAL_CACHE_ROOT", "/data3/liuyeqiang/IR-MFT_assets/causal_aux_cache"))
     parser.add_argument("--protocol", default="configs/cfp/protocol_v2.json")
+    parser.add_argument(
+        "--split",
+        default="train",
+        choices=("train", "dev", "historical_test"),
+        help="protocol split and cache subdirectory to validate",
+    )
+    parser.add_argument(
+        "--annotation",
+        default=None,
+        help="annotation filename; defaults to train.json for train/dev and test.json for historical_test",
+    )
     parser.add_argument("--output", default=None)
     parser.add_argument(
         "--sample-frames",
@@ -25,10 +36,11 @@ def main():
     args = parser.parse_args()
 
     protocol = json.load(open(args.protocol, "r", encoding="utf-8"))
-    payload = json.load(open(os.path.join(args.data_root, "annotations", "train.json"), "r", encoding="utf-8"))
+    annotation = args.annotation or ("test.json" if args.split == "historical_test" else "train.json")
+    payload = json.load(open(os.path.join(args.data_root, "annotations", annotation), "r", encoding="utf-8"))
     videos = {int(video["id"]): video["file_name"] for video in payload["videos"]}
     rows = []
-    for sequence in protocol["train"]:
+    for sequence in protocol[args.split]:
         images = sorted(
             [image for image in payload["images"] if videos[int(image["video_id"])] == sequence],
             key=lambda image: int(image["frame_id"]),
@@ -57,7 +69,7 @@ def main():
                 if frame_id >= max_sample:
                     break
                 continue
-            stem = os.path.join(args.cache_root, "train", image["vi_file_name"])
+            stem = os.path.join(args.cache_root, args.split, image["vi_file_name"])
             stem = stem.rsplit(".", 1)[0]
             cache_path = stem + ".jpg" if os.path.isfile(stem + ".jpg") else stem + ".webp"
             cached = cv2.imread(cache_path, cv2.IMREAD_UNCHANGED)
