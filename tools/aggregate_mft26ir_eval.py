@@ -21,6 +21,7 @@ def main():
     parser.add_argument("--sequences", required=True)
     parser.add_argument("--split", choices=("dev", "test"), default="test")
     parser.add_argument("--data-root", default=os.environ.get("MFT26IR_ROOT", "/data3/liuyeqiang/datasets/mft26-ir"))
+    parser.add_argument("--gt-root", default=os.environ.get("MFT26IR_GT_ROOT", "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt"))
     parser.add_argument("--trackeval-root", default="/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack")
     parser.add_argument("--output", required=True)
     parser.add_argument("--checkpoint", default=None)
@@ -51,7 +52,7 @@ def main():
     metrics = {
         "motmetrics": compute_motmetrics(
             os.path.join(args.output, "track_results"),
-            args.data_root,
+            args.gt_root,
             sequences,
             data_split=data_split,
         ),
@@ -68,7 +69,7 @@ def main():
     if not args.skip_trackeval:
         metrics["trackeval"] = run_trackeval(
             os.path.join(args.output, "track_results"),
-            args.data_root,
+            args.gt_root,
             args.output,
             sequences,
             args.trackeval_root,

@@ -37,6 +37,7 @@ from yolox.utils import postprocess
 
 
 DEFAULT_ROOT = "/data3/liuyeqiang/datasets/mft26-ir"
+DEFAULT_GT_ROOT = "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt"
 DEFAULT_TRACKEVAL_ROOT = "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack"
 
 
@@ -86,6 +87,11 @@ def make_parser():
         help="comma-separated test sequences to evaluate in this worker",
     )
     parser.add_argument("--data-root", default=os.environ.get("MFT26IR_ROOT", DEFAULT_ROOT))
+    parser.add_argument(
+        "--gt-root",
+        default=os.environ.get("MFT26IR_GT_ROOT", DEFAULT_GT_ROOT),
+        help="protocol-derived MOT GT root; duplicate-ID corrections are applied there",
+    )
     parser.add_argument("--trackeval-root", default=DEFAULT_TRACKEVAL_ROOT)
     parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument(
@@ -464,13 +470,13 @@ def main():
 
     metrics = {
         "motmetrics": compute_motmetrics(
-            args.output + "/track_results", args.data_root, sequences, data_split=data_name
+            args.output + "/track_results", args.gt_root, sequences, data_split=data_name
         )
     }
     if not args.skip_trackeval:
         metrics["trackeval"] = run_trackeval(
             result_dir,
-            args.data_root,
+            args.gt_root,
             args.output,
             sequences,
             args.trackeval_root,
@@ -480,6 +486,7 @@ def main():
         "sequences": sequences,
         "frames": total_frames,
         "checkpoint": os.path.abspath(args.ckpt),
+        "gt_root": os.path.abspath(args.gt_root),
         "conf": args.conf,
         "nms": args.nms,
         "track_thresh": args.track_thresh,
