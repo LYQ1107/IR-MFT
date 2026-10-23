@@ -6,3 +6,4 @@ from .datasets_wrapper import ConcatDataset, Dataset, MixConcatDataset
 from .mosaicdetection import MosaicDetection
 from .mot import MOTDataset
 from .mot_rgbt import MOTDatasetRGBT
+from .mot_rgbt_clip import MOTDatasetRGBTClip, clip_collate

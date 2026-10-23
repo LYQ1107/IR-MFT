@@ -74,6 +74,16 @@ def make_parser():
         help="auxiliary input intervention; causal mode forces sequential loading",
     )
     parser.add_argument(
+        "--temporal-state",
+        default="auto",
+        choices=("auto", "stateful", "disabled", "reset_each_frame"),
+        help=(
+            "temporal fusion state policy: auto/stateful keeps causal state "
+            "within each sequence, disabled removes the state contribution, "
+            "and reset_each_frame removes history while keeping the module"
+        ),
+    )
+    parser.add_argument(
         "--tracker-type",
         default="bytetrack",
         choices=("bytetrack",),
@@ -288,6 +298,14 @@ def main():
     if args.fp16:
         model.half()
     model.eval()
+    if args.temporal_state == "disabled":
+        configure_state = getattr(model, "set_fusion_stateful", None)
+        if configure_state is not None:
+            configure_state(False)
+    elif args.temporal_state in {"stateful", "reset_each_frame"}:
+        configure_state = getattr(model, "set_fusion_stateful", None)
+        if configure_state is not None:
+            configure_state(True, detach_state=True)
 
     rgb_means = getattr(exp, "rgb_means", (0.485, 0.456, 0.406))
     rgb_std = getattr(exp, "rgb_std", (0.229, 0.224, 0.225))
@@ -383,6 +401,10 @@ def main():
                 if reset is not None:
                     reset()
                 model_sequence = batch_sequence
+            if args.temporal_state == "reset_each_frame":
+                reset = getattr(model, "reset_fusion_state", None)
+                if reset is not None:
+                    reset()
             input_tensor = torch.from_numpy(
                 np.stack([item[0] for item in batch_items], axis=0)
             ).to(device, non_blocking=True)
@@ -506,6 +528,7 @@ def main():
         "min_box_area": args.min_box_area,
         "fusion_mode": getattr(exp, "fusion_mode", None),
         "auxiliary_mode": getattr(exp, "auxiliary_mode", "legacy"),
+        "temporal_state": args.temporal_state,
         "tracker_type": args.tracker_type,
         "workers": eval_workers,
         "split": eval_split,

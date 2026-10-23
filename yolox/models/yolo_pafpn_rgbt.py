@@ -109,6 +109,13 @@ class YOLOPAFPNRGBT(nn.Module):
             if isinstance(module, TemporalComplementarityFusion):
                 module.reset_state()
 
+    def set_fusion_stateful(self, stateful=True, detach_state=True):
+        """Configure temporal state updates for evaluation or clip training."""
+
+        for module in self.fusion_modules:
+            if isinstance(module, TemporalComplementarityFusion):
+                module.set_stateful(stateful, detach_state=detach_state)
+
     def forward(self, x, fusion_mode=None, return_aux=False):
         if x.ndim != 4 or x.shape[1] != 6:
             raise ValueError(

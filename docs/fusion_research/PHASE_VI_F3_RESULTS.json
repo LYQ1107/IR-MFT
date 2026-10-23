@@ -1,0 +1,112 @@
+{
+  "experiment": "F3_temporal_complementarity_clip_training",
+  "branch": "research/causal-multimodal-fusion-v1",
+  "fusion_mode": "temporal_complementarity",
+  "initialization": "V3_static_fusion",
+  "auxiliary_mode": "causal_cache",
+  "training": {
+    "split": "train",
+    "sequences": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+    "frames": 27251,
+    "clips": 6814,
+    "clip_len": 4,
+    "stride": 4,
+    "batch_size": 64,
+    "epochs": 3,
+    "stateful_within_clip": true,
+    "detach_between_clips": true,
+    "checkpoint_external": "/data3/liuyeqiang/IR-MFT_assets/training_results/qra_f3_temporal/latest_ckpt.pth.tar",
+    "checkpoint_sha256": "17ad5f815407cd0941da2028a0c5e32cb9bccc67d58fee6eeedf499b409f0ff7"
+  },
+  "references": {
+    "v3_dev": {"HOTA": 46.086, "DetA": 71.164, "AssA": 29.869, "IDF1": 52.886, "MOTA": 92.538, "IDSW": 96, "frames": 4834},
+    "v3_test_historical": {"HOTA": 31.091, "DetA": 49.575, "AssA": 19.619, "IDF1": 35.044, "MOTA": 52.325, "IDSW": 560, "frames": 15985}
+  },
+  "evaluations": [
+    {
+      "state": "stateful",
+      "split": "dev",
+      "sequences": ["BT-005", "SN-013"],
+      "frames": 4834,
+      "HOTA": 46.889,
+      "DetA": 71.395,
+      "AssA": 30.818,
+      "IDF1": 52.558,
+      "MOTA": 92.501,
+      "IDSW": 101,
+      "FPS": 6.2146,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_dev_f3_temporal_stateful/metrics.json"
+    },
+    {
+      "state": "disabled",
+      "split": "dev",
+      "sequences": ["BT-005", "SN-013"],
+      "frames": 4834,
+      "HOTA": 46.888,
+      "DetA": 71.387,
+      "AssA": 30.820,
+      "IDF1": 52.551,
+      "MOTA": 92.478,
+      "IDSW": 101,
+      "FPS": 6.1669,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_dev_f3_temporal_disabled/metrics.json"
+    },
+    {
+      "state": "reset_each_frame",
+      "split": "dev",
+      "sequences": ["BT-005", "SN-013"],
+      "frames": 4834,
+      "HOTA": 46.888,
+      "DetA": 71.387,
+      "AssA": 30.820,
+      "IDF1": 52.551,
+      "MOTA": 92.478,
+      "IDSW": 101,
+      "FPS": 6.1945,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_dev_f3_temporal_reset/metrics.json"
+    },
+    {
+      "state": "stateful",
+      "split": "test",
+      "sequences": ["BT-002", "BT-004", "MSK-003", "PF-002", "SN-009", "SN-011", "SN-014"],
+      "frames": 15985,
+      "HOTA": 30.087,
+      "DetA": 47.972,
+      "AssA": 18.977,
+      "IDF1": 32.706,
+      "MOTA": 50.960,
+      "IDSW": 517,
+      "FPS": 5.9976,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_test_f3_temporal_stateful/metrics.json"
+    },
+    {
+      "state": "disabled",
+      "split": "test",
+      "sequences": ["BT-002", "BT-004", "MSK-003", "PF-002", "SN-009", "SN-011", "SN-014"],
+      "frames": 15985,
+      "HOTA": 30.306,
+      "DetA": 48.029,
+      "AssA": 19.243,
+      "IDF1": 33.315,
+      "MOTA": 50.883,
+      "IDSW": 514,
+      "FPS": 6.1914,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_test_f3_temporal_disabled/metrics.json"
+    },
+    {
+      "state": "reset_each_frame",
+      "split": "test",
+      "sequences": ["BT-002", "BT-004", "MSK-003", "PF-002", "SN-009", "SN-011", "SN-014"],
+      "frames": 15985,
+      "HOTA": 30.306,
+      "DetA": 48.029,
+      "AssA": 19.243,
+      "IDF1": 33.315,
+      "MOTA": 50.883,
+      "IDSW": 514,
+      "FPS": 6.6559,
+      "metrics_external": "/data3/liuyeqiang/IR-MFT_assets/results/phase6_test_f3_temporal_reset/metrics.json"
+    }
+  ],
+  "conclusion": "F3 has a small Dev HOTA gain over V3 but no Test gain. Disabling or resetting recurrent history is slightly better than stateful on Test; the current-frame temporal residual remains below V3."
+}

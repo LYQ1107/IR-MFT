@@ -298,10 +298,21 @@ class TemporalComplementarityFusion(nn.Module):
         nn.init.zeros_(self.delta_mlp[-1].weight)
         nn.init.zeros_(self.delta_mlp[-1].bias)
         self.stateful = False
+        self.detach_state = True
         self._hidden: Optional[torch.Tensor] = None
 
-    def set_stateful(self, stateful: bool) -> None:
+    def set_stateful(self, stateful: bool, detach_state: bool = True) -> None:
+        """Enable state updates and choose whether to truncate BPTT.
+
+        Evaluation keeps the default detached state so a long video does not
+        retain its complete autograd graph.  Clip training sets
+        ``detach_state=False`` and resets the module after every clip, which
+        provides a real causal length-``T`` training signal without allowing
+        state to leak across videos.
+        """
+
         self.stateful = bool(stateful)
+        self.detach_state = bool(detach_state)
         if not self.stateful:
             self.reset_state()
 
@@ -332,7 +343,7 @@ class TemporalComplementarityFusion(nn.Module):
             hidden = z.new_zeros((z.shape[0], self.state_dim))
         hidden = self.gru(z, hidden)
         if self.stateful:
-            self._hidden = hidden.detach()
+            self._hidden = hidden.detach() if self.detach_state else hidden
         delta = self.delta_mlp(hidden)[:, :, None, None]
         gate = torch.sigmoid(_as_logit(static_logit, rgb_feature) + 3.0 * torch.tanh(delta))
         fused = rgb_feature + gate * (aux_feature - rgb_feature)

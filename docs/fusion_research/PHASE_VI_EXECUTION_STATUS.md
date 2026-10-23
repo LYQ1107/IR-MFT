@@ -91,3 +91,52 @@ V3/historical Test references.
 
 All large checkpoints, caches, prediction files, and TrackEval artifacts remain
 under `/data3/liuyeqiang/IR-MFT_assets` and are excluded from Git.
+
+## F3 temporal clip training and state controls
+
+F3 is the first true temporal-clips experiment. `MOTDatasetRGBTClip` groups
+frames by sequence and returns contiguous, fixed-length clips; windows never
+cross a sequence boundary. The temporal trainer used the six Train sequences
+(27,251 frames), clip length 4, stride 4, batch size 64, three epochs, and the
+strict causal-cache auxiliary mode. It covered all 27,251 Train frames in
+6,814 clips; the fixed-window tail policy processed 27,256 frame positions
+per epoch because five tail positions are intentionally repeated to retain
+tail coverage. Temporal hidden state was carried within each clip and reset
+between clips. The final external checkpoint has SHA256
+`17ad5f815407cd0941da2028a0c5e32cb9bccc67d58fee6eeedf499b409f0ff7` and is
+not tracked in Git.
+
+F3 uses `TemporalComplementarityFusion` initialized from the V3 static fusion
+checkpoint. It is an isolated temporal contribution experiment rather than a
+claim that the temporal module has already been composed with every earlier
+candidate. The evaluation now exposes three explicit state policies: stateful
+within a sequence, `disabled` (current-frame temporal correction with history
+disabled), and `reset_each_frame` (history reset before every frame).
+
+| candidate / state | split | frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | FPS | result |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| F3 temporal / stateful | Dev | 4,834 | 46.889 | 71.395 | 30.818 | 52.558 | 92.501 | 101 | 6.215 | +0.803 HOTA vs V3 Dev, but IDF1 -0.328 and IDSW +5 |
+| F3 temporal / disabled | Dev | 4,834 | 46.888 | 71.387 | 30.820 | 52.551 | 92.478 | 101 | 6.167 | same as stateful within rounding |
+| F3 temporal / reset each frame | Dev | 4,834 | 46.888 | 71.387 | 30.820 | 52.551 | 92.478 | 101 | 6.194 | exactly matches disabled |
+| F3 temporal / stateful | Test | 15,985 | 30.087 | 47.972 | 18.977 | 32.706 | 50.960 | 517 | 5.998 | below V3 historical Test HOTA by 1.004 |
+| F3 temporal / disabled | Test | 15,985 | 30.306 | 48.029 | 19.243 | 33.315 | 50.883 | 514 | 6.191 | best F3 Test state policy, still below V3 by 0.785 HOTA |
+| F3 temporal / reset each frame | Test | 15,985 | 30.306 | 48.029 | 19.243 | 33.315 | 50.883 | 514 | 6.656 | exactly matches disabled |
+
+The complete Test result is therefore a reproducible negative result against
+the historical V3 reference (HOTA 31.091, DetA 49.575, AssA 19.619, IDF1
+35.044, MOTA 52.325, IDSW 560). Disabling or resetting state improves F3 over
+stateful by 0.219 HOTA and 0.609 IDF1, but neither policy reaches V3. The
+state ablation isolates the failure: the learned current-frame correction is
+responsible for the small Dev gain, while the recurrent history adds no Dev
+gain and slightly hurts Test. Across all F3 Test policies, redundancy is zero;
+the effective gate means for stateful are 0.08927, 0.00336, and 0.00278 on
+P3/P4/P5, while disabled/reset are 0.10258, 0.00473, and 0.00282. These
+small, highly imbalanced weights are consistent with a weak temporal residual
+and do not support a claim of robust multimodal complementarity.
+
+F3 training and all six Dev/Test state-control evaluations ran on physical
+GPU3 only because physical GPU2 was occupied by an unrelated job; this stays
+within the requested physical GPU2/3 cap. Only lightweight code, test files,
+and this documentation are committed. Checkpoints, causal-cache frames,
+per-sequence predictions, and TrackEval outputs remain external under
+`/data3/liuyeqiang/IR-MFT_assets`.

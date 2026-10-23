@@ -58,3 +58,10 @@ class YOLOX(nn.Module):
         reset = getattr(self.backbone, "reset_fusion_state", None)
         if reset is not None:
             reset()
+
+    def set_fusion_stateful(self, stateful=True, detach_state=True):
+        """Configure temporal state updates for sequential clip workflows."""
+
+        configure = getattr(self.backbone, "set_fusion_stateful", None)
+        if configure is not None:
+            configure(stateful, detach_state=detach_state)

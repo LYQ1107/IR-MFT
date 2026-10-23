@@ -7,6 +7,7 @@ from yolox.models.qra_fusion import (
     TemporalComplementarityFusion,
 )
 from yolox.models.yolo_pafpn_rgbt import YOLOPAFPNRGBT
+from yolox.data.datasets.mot_rgbt_clip import _make_clip_starts
 
 
 def _check_module(module):
@@ -72,6 +73,31 @@ def test_temporal_state_is_causal_and_resettable():
     # allowed to change the current output.  After reset, the two streams
     # therefore differ only at this current frame, never through a future read.
     assert not torch.allclose(prefix_a, prefix_b)
+
+
+def test_temporal_clip_state_keeps_graph_within_clip():
+    torch.manual_seed(19)
+    module = TemporalComplementarityFusion(8)
+    module.set_stateful(True, detach_state=False)
+    rgb = torch.randn(1, 8, 4, 4, requires_grad=True)
+    aux = torch.randn(1, 8, 4, 4, requires_grad=True)
+    first, _ = module(rgb, aux, torch.tensor(-2.944439))
+    second, _ = module(rgb * 0.9, aux * 1.1, torch.tensor(-2.944439))
+    assert module._hidden is not None
+    assert module._hidden.grad_fn is not None
+    (first.mean() + second.mean()).backward()
+    assert module.delta_mlp[-1].weight.grad is not None
+    module.reset_state()
+    assert module._hidden is None
+
+
+def test_clip_starts_cover_tail_without_crossing_sequences():
+    starts = _make_clip_starts(length=11, clip_len=4, stride=4)
+    assert starts == [0, 4, 7]
+    covered = set()
+    for start in starts:
+        covered.update(range(start, start + 4))
+    assert covered == set(range(11))
 
 
 def test_dynamic_initialization_is_v3_equivalent_on_fixed_input():
