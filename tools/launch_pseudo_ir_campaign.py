@@ -96,14 +96,16 @@ def main():
             "--batch-size", "8", "--accumulate", "1", "--workers", "4", "--ir-stats", str(stats)])
         inference(args, "old_legacy", "legacy", args.result_root / "train_old_legacy_s0/latest_ckpt.pth.tar",
                   ["--ir-stats", str(stats)])
+        # Train the RGB control while the NAS-backed new-input worker runs on
+        # GPU3. This changes only scheduling, not the shared training budget.
+        run_job(args, "train_rgb_matched_s0", ["train", "--variant", "rgb", "--ckpt", VISIBLE,
+            "--batch-size", "8", "--accumulate", "1", "--workers", "4", "--calibration-epochs", "0"])
+        inference(args, "rgb_matched", "rgb", args.result_root / "train_rgb_matched_s0/latest_ckpt.pth.tar")
     else:
         wait_json(args.result_root / "train_new_diffv2ir_s0/completion.json",
                   lambda d:d.get("status") == "COMPLETE" and d.get("epochs") == 6,
                   "manual new DiffV2IR V3 training", state)
         inference(args, "new_diffv2ir", "diffv2ir", args.result_root / "train_new_diffv2ir_s0/latest_ckpt.pth.tar")
-        run_job(args, "train_rgb_matched_s0", ["train", "--variant", "rgb", "--ckpt", VISIBLE,
-            "--batch-size", "8", "--accumulate", "1", "--workers", "4", "--calibration-epochs", "0"])
-        inference(args, "rgb_matched", "rgb", args.result_root / "train_rgb_matched_s0/latest_ckpt.pth.tar")
     write(state, dict(status="COMPLETE", physical_gpu=args.gpu, updated_unix=time.time()))
 
 
