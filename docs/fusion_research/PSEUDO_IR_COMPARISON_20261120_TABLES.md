@@ -3,6 +3,8 @@
 | Original RGB ByteTrack | dev | 4834 | 43.936 | 70.257 | 27.514 | 50.402 | 91.472 | 83.000 |
 | Original RGB ByteTrack | test | 15985 | 29.191 | 43.866 | 19.570 | 30.932 | 47.207 | 390.000 |
 | V3 + old legacy IR | dev | 4834 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89.000 |
+| V3 + old legacy IR | test | 15985 | 29.738 | 46.595 | 19.068 | 33.736 | 51.667 | 455.000 |
+| V3 + new DiffV2IR | dev | 4834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108.000 |
 
 Individual sequences (TrackEval percentages; IDSW is a count):
 
@@ -19,3 +21,12 @@ Individual sequences (TrackEval percentages; IDSW is a count):
 | Original RGB ByteTrack | test | SN-014 | 40.424 | 60.233 | 27.222 | 47.165 | 76.565 | 73.000 |
 | V3 + old legacy IR | dev | BT-005 | 55.924 | 69.355 | 45.118 | 70.586 | 92.585 | 21.000 |
 | V3 + old legacy IR | dev | SN-013 | 37.765 | 66.889 | 21.379 | 40.087 | 88.884 | 68.000 |
+| V3 + old legacy IR | test | BT-002 | 37.238 | 45.172 | 30.753 | 49.880 | 30.487 | 18.000 |
+| V3 + old legacy IR | test | BT-004 | 48.058 | 59.670 | 38.748 | 63.873 | 81.363 | 14.000 |
+| V3 + old legacy IR | test | MSK-003 | 24.062 | 24.592 | 23.749 | 31.681 | 16.096 | 52.000 |
+| V3 + old legacy IR | test | PF-002 | 54.210 | 63.898 | 46.043 | 70.199 | 84.433 | 2.000 |
+| V3 + old legacy IR | test | SN-009 | 28.044 | 56.871 | 13.899 | 30.119 | 72.145 | 138.000 |
+| V3 + old legacy IR | test | SN-011 | 21.030 | 41.703 | 10.738 | 23.607 | 34.328 | 147.000 |
+| V3 + old legacy IR | test | SN-014 | 33.611 | 58.056 | 19.540 | 35.122 | 73.979 | 84.000 |
+| V3 + new DiffV2IR | dev | BT-005 | 53.934 | 69.992 | 41.591 | 67.515 | 92.459 | 27.000 |
+| V3 + new DiffV2IR | dev | SN-013 | 40.477 | 67.974 | 24.171 | 43.678 | 88.766 | 81.000 |

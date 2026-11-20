@@ -7,18 +7,30 @@ new experiment using the actual November fixed-caption DiffV2IR PNGs. Earlier
 HOTA 49.297/53.591 identity experiments and F1–F3 background-difference
 experiments are historical evidence and are not substituted for these runs.
 
-## Completed original baseline
+## Completed short-budget results
 
 The preserved single-branch visible detector has now been evaluated on both
 complete splits with the common ByteTrack settings below. These are reference
-results only. Both auxiliary training runs have completed their six epochs;
-remaining inference and the RGB training control are still running.
-No auxiliary improvement can be inferred from the original-baseline table.
+results. Both auxiliary training runs completed three calibration plus three
+joint epochs. The new-input Test replay and RGB training control are still
+running. The old-input Test and both paired Dev evaluations are complete.
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Original RGB ByteTrack | Dev | 4,834 | 43.936 | 70.257 | 27.514 | 50.402 | 91.472 | 83 |
 | Original RGB ByteTrack | Test | 15,985 | 29.191 | 43.866 | 19.570 | 30.932 | 47.207 | 390 |
+| V3 + old legacy IR | Dev | 4,834 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89 |
+| V3 + old legacy IR | Test | 15,985 | 29.738 | 46.595 | 19.068 | 33.736 | 51.667 | 455 |
+| V3 + new DiffV2IR | Dev | 4,834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
+
+At this short budget, new-minus-old Dev HOTA is+0.472 percentage points,
+IDF1+0.940, MOTA-0.121 and IDSW+19. The changes are mixed. Both joint training
+losses were still decreasing at the final epoch; three calibration plus three
+joint epochs are an initial adaptation comparison, not evidence of convergence.
+The user requested a training-adequacy check, so a separate Dev-driven plan
+extends all three adapted arms to at least12 and at most24 joint epochs:
+[`PSEUDO_IR_BUDGET_EXTENSION_20261121.md`](PSEUDO_IR_BUDGET_EXTENSION_20261121.md).
+These short-budget results and checkpoints remain intact.
 
 The machine-readable
 [`PSEUDO_IR_COMPARISON_20261120_RESULTS.json`](PSEUDO_IR_COMPARISON_20261120_RESULTS.json)
