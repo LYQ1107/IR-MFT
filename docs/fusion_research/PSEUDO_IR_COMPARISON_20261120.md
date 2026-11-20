@@ -12,8 +12,9 @@ experiments are historical evidence and are not substituted for these runs.
 The preserved single-branch visible detector has now been evaluated on both
 complete splits with the common ByteTrack settings below. These are reference
 results. Both auxiliary training runs completed three calibration plus three
-joint epochs. The new-input Test replay and RGB training control are still
-running. The old-input Test and both paired Dev evaluations are complete.
+joint epochs. The RGB control also completed its three joint epochs and Dev
+evaluation. The new-input and RGB-control Test replays are still running.
+The old-input Test and all four Dev evaluations are complete.
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -22,10 +23,17 @@ running. The old-input Test and both paired Dev evaluations are complete.
 | V3 + old legacy IR | Dev | 4,834 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89 |
 | V3 + old legacy IR | Test | 15,985 | 29.738 | 46.595 | 19.068 | 33.736 | 51.667 | 455 |
 | V3 + new DiffV2IR | Dev | 4,834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
+| RGB matched fine-tune + ByteTrack | Dev | 4,834 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94 |
 
 At this short budget, new-minus-old Dev HOTA is+0.472 percentage points,
-IDF1+0.940, MOTA-0.121 and IDSW+19. The changes are mixed. Both joint training
-losses were still decreasing at the final epoch; three calibration plus three
+IDF1+0.940, MOTA-0.121 and IDSW+19. The changes are mixed. Both paired arms
+are below the equally fine-tuned RGB control on Dev: new-minus-matched-RGB
+HOTA-1.343pp, AssA-1.771pp, IDF1-2.746pp, MOTA+0.024pp and IDSW+14. Thus the
+improvement over the original unadapted RGB checkpoint cannot be attributed
+to the auxiliary images alone. These negative controls are retained.
+
+Both paired joint training losses were still decreasing at the final epoch;
+three calibration plus three
 joint epochs are an initial adaptation comparison, not evidence of convergence.
 The user requested a training-adequacy check, so a separate Dev-driven plan
 extends all three adapted arms to at least12 and at most24 joint epochs:

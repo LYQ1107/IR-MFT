@@ -1,6 +1,6 @@
 # Dev-driven extension of the pseudo-IR training budget
 
-Status: **QUEUED — waiting for short-budget replays and cache preparation.**
+Status: **QUEUED — waiting for the remaining short-budget Test/reference replays.**
 
 The first paired comparison contains three auxiliary calibration epochs and
 only three joint detector epochs. It starts from an existing visible detector,
@@ -8,6 +8,10 @@ so these are adaptation epochs rather than training from scratch. The final
 joint training losses still decreased: old IR 3.1141 to 3.0611 and new IR
 3.1400 to 3.0874. These observations do not establish convergence. The short
 comparison remains available in `PSEUDO_IR_COMPARISON_20261120_RESULTS.json`.
+The subsequently completed RGB control reaches Dev HOTA47.579, above the
+new-input46.236 and old-input45.764. This negative auxiliary-input control is
+retained; a gain over the original unadapted RGB checkpoint alone does not
+isolate the effect of adding pseudo IR.
 
 The user requested a check of whether six epochs suffice. The extension plan
 was frozen and pushed in commit `daced61` before extended training and before
@@ -49,6 +53,9 @@ snapshot series or durable image dataset copy is made. Expected additional
 checkpoint storage is about6 GiB, with at least40 GiB local free space kept.
 A separate Train-only tmpfs cache is limited to10 GiB and byte-verified;
 evaluation reads the original NAS, and the cache is removed after completion.
+Cache preparation completed:27,251 PNGs /7,748,699,851 bytes, all source
+hashes identical to the short comparison's recorded Train bytes. It occupies
+7.22 GiB of tmpfs and makes no durable dataset copy.
 
 Validation so far:19 local tests passed, including protection against silent
 epoch, LR, seed, batch and prefix-coverage changes. A GPU3 one-batch resume
