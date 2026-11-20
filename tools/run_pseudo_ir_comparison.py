@@ -35,7 +35,7 @@ from yolox.tracker.byte_tracker import BYTETracker
 from yolox.utils import ModelEMA, postprocess
 from tools.eval_mft26ir import compute_motmetrics, run_trackeval, write_sequence_results
 from tools.init_rgbt_from_byte_checkpoint import build_mapping
-from tools.pseudo_ir_continuation import check_resume, joint_lr, load_plan
+from tools.pseudo_ir_continuation import checkpoint_training_budget, check_resume, joint_lr, load_plan
 
 
 def sha256(path):
@@ -140,8 +140,9 @@ def model_from_checkpoint(exp, args):
         state = source
         mapping = "strict_direct"
     model.load_state_dict(state, strict=True)
+    training_budget = checkpoint_training_budget(checkpoint)
     del checkpoint, source, state
-    return model.cuda(), mapping
+    return model.cuda(), mapping, training_budget
 
 
 def train_mode(model, variant, calibration):
@@ -312,7 +313,7 @@ def train(args, exp, model, mapping):
                 continuation_plan_sha256=plan_sha))
 
 
-def infer(args, exp, model, mapping):
+def infer(args, exp, model, mapping, training_budget):
     dataset = make_dataset(exp, args, args.split, False)
     loader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False,
                         num_workers=args.workers, pin_memory=True,
@@ -367,6 +368,10 @@ def infer(args, exp, model, mapping):
                     physical_gpu=os.environ["CUDA_VISIBLE_DEVICES"], ir_means=exp.ir_means,
                     ir_std=exp.ir_std, input_size=list(exp.test_size), source_sha256=sha256(args.ckpt),
                     generated_ir_root=exp.generated_ir_root if args.variant == "diffv2ir" else None)
+    protocol["source_training"] = training_budget
+    if training_budget:
+        protocol["calibration_epochs"] = training_budget["calibration_epochs"]
+        protocol["finetune_epochs"] = training_budget["joint_epochs"]
     elapsed = time.perf_counter() - start
     report = dict(protocol=protocol, runtime=dict(seconds=elapsed, fps=total / elapsed))
     if not args.skip_evaluation and not args.max_frames:
@@ -416,8 +421,11 @@ def main():
     args = parser.parse_args()
     os.environ["MFT26IR_COMPARISON_INPUT"] = "repeat_rgb" if args.variant == "rgb" else args.variant
     exp = setup(args)
-    model, mapping = model_from_checkpoint(exp, args)
-    (train if args.action == "train" else infer)(args, exp, model, mapping)
+    model, mapping, training_budget = model_from_checkpoint(exp, args)
+    if args.action == "train":
+        train(args, exp, model, mapping)
+    else:
+        infer(args, exp, model, mapping, training_budget)
 
 
 if __name__ == "__main__":

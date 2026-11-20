@@ -50,7 +50,7 @@ checkpoint storage is about6 GiB, with at least40 GiB local free space kept.
 A separate Train-only tmpfs cache is limited to10 GiB and byte-verified;
 evaluation reads the original NAS, and the cache is removed after completion.
 
-Validation so far:18 local tests passed, including protection against silent
+Validation so far:19 local tests passed, including protection against silent
 epoch, LR, seed, batch and prefix-coverage changes. A GPU3 one-batch resume
 from the old-input full checkpoint completed joint epoch4's smoke step with
 finite loss2.694551, effective LR0.000025, zero skipped AMP updates and
@@ -68,6 +68,8 @@ The final export uses `tools/summarize_pseudo_ir_extension.py` to audit the
 common budgets, preserved short prefixes, piecewise LR histories, every Dev
 selection and stopping decision, final checkpoint hashes, normalization,
 tracker settings and contiguous frame coverage. The export includes joint
+epoch counts read from each actual source checkpoint rather than the unused
+training defaults on the inference command line. It also includes
 loss/Dev HOTA/Dev IDF1 curves, all selected metrics, all seven Test sequences
 and new-minus-old/RGB differences. The original pretraining, historical
 Dev/Test exposure and single-seed limitations in the short report still apply.

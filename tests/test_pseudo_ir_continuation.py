@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from tools.pseudo_ir_continuation import check_resume, joint_lr, load_plan, plateau_decision
+from tools.pseudo_ir_continuation import checkpoint_training_budget, check_resume, joint_lr, load_plan, plateau_decision
 
 
 def example():
@@ -79,3 +79,17 @@ def test_resume_rejects_changed_normalization_even_when_stats_path_is_unchanged(
     current["ir_means"] = [0.3,0.3,0.3]
     with pytest.raises(ValueError, match="ir_means"):
         check_resume(prior, current, checkpoint, plan, sha)
+
+
+def test_evaluation_reports_completed_budget_instead_of_inference_defaults():
+    _, _, _, manifest, _ = example()
+    full = dict(manifest=manifest, completed_epochs=12, history=[{}]*12)
+    info = checkpoint_training_budget(full)
+    assert info["joint_epochs"] == 12 and info["configured_maximum_joint_epochs"] == 24
+    assert info["calibration_epochs"] == 0
+    manifest = dict(manifest, variant="legacy", calibration_epochs=3)
+    compact = dict(manifest=manifest, selection={"joint_epochs":6, "continuation_plan_sha256":"frozen"})
+    info = checkpoint_training_budget(compact)
+    assert info["joint_epochs"] == 6 and info["completed_adaptation_epochs"] == 9
+    assert info["continuation_plan_sha256"] == "frozen"
+    assert checkpoint_training_budget({"model":{}}) is None

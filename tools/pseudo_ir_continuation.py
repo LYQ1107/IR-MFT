@@ -37,6 +37,34 @@ def joint_lr(plan, joint_index, effective_batch):
     raise ValueError(f"Joint epoch outside the continuation schedule: {joint_index}")
 
 
+def checkpoint_training_budget(checkpoint):
+    """Read completed adaptation epochs, rather than inference CLI defaults."""
+    manifest = checkpoint.get("manifest")
+    required = {"variant", "calibration_epochs", "finetune_epochs", "source_sha256"}
+    if not isinstance(manifest, dict) or not required.issubset(manifest):
+        return None
+    calibration = 0 if manifest["variant"] == "rgb" else manifest["calibration_epochs"]
+    selection = checkpoint.get("selection", {})
+    if "completed_epochs" in checkpoint:
+        completed = checkpoint["completed_epochs"]
+        joint = completed - calibration
+        if len(checkpoint["history"]) != completed:
+            raise ValueError("Checkpoint epoch counter disagrees with its training history")
+    elif "joint_epochs" in selection:
+        joint = selection["joint_epochs"]
+        completed = calibration + joint
+    else:
+        return None
+    if joint < 0:
+        raise ValueError("Checkpoint has fewer epochs than its calibration prefix")
+    return dict(calibration_epochs=calibration, joint_epochs=joint,
+                completed_adaptation_epochs=completed,
+                configured_maximum_joint_epochs=manifest["finetune_epochs"],
+                initial_visible_sha256=manifest["source_sha256"],
+                continuation_plan_sha256=manifest.get("continuation", {}).get(
+                    "plan_sha256", selection.get("continuation_plan_sha256")))
+
+
 def check_resume(prior, current, checkpoint, plan=None, plan_sha=None):
     """Only an explicit frozen continuation may change the joint epoch budget."""
     for key in RESUME_KEYS:

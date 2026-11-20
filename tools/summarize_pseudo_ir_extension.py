@@ -108,6 +108,12 @@ def main():
             if digest(path) != entry["metrics_sha256"]:
                 raise ValueError(f"Dev evidence changed: {path}")
             result = evaluation(path, arm, "dev", config["variant"], entry["source_sha256"], manifest, short_plan)
+            source_budget = result["protocol"].get("source_training")
+            if entry["joint_epochs"] > 3 or source_budget is not None:
+                if (not source_budget or source_budget["joint_epochs"] != entry["joint_epochs"]
+                        or source_budget["calibration_epochs"] != config["calibration_epochs"]
+                        or source_budget["initial_visible_sha256"] != plan["initial_visible_sha256"]):
+                    raise ValueError(f"Dev source reports a different completed training budget: {path}")
             if result["metrics"]["HOTA"] != entry["HOTA"]:
                 raise ValueError("Dev selection score disagrees with its source")
             result["joint_epochs"] = entry["joint_epochs"]
@@ -123,6 +129,11 @@ def main():
         if digest(test["path"]) != test["sha256"] or digest(record["best"]["checkpoint"]) != record["best"]["sha256"]:
             raise ValueError(f"Selected model or Test evidence changed: {arm}")
         result = evaluation(Path(test["path"]), arm, "test", config["variant"], record["best"]["sha256"], manifest, short_plan)
+        source_budget = result["protocol"].get("source_training")
+        if (not source_budget or source_budget["joint_epochs"] != record["best"]["joint_epochs"]
+                or source_budget["calibration_epochs"] != config["calibration_epochs"]
+                or source_budget["initial_visible_sha256"] != plan["initial_visible_sha256"]):
+            raise ValueError(f"Selected Test source reports a different completed training budget: {arm}")
         result["selected_joint_epochs"] = record["best"]["joint_epochs"]
         output["selected_test"].append(result)
     for split in ["dev","test"]:
