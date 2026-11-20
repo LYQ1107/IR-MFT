@@ -133,21 +133,25 @@ def main():
     p.add_argument("--output-json", required=True)
     p.add_argument("--output-markdown", required=True)
     p.add_argument("--require-complete", action="store_true")
+    p.add_argument("--require-historical-reference", action="store_true")
     args = p.parse_args()
     repo = Path(__file__).resolve().parents[1]
     protocol = json.loads((repo / "configs/pseudo_ir_comparison_20261120.json").read_text())
     root = Path(args.result_root)
     training, missing = audit_training(root, protocol)
     result = dict(status="COMPLETE", protocol=protocol, training=training,
-                  evaluations=[], deltas={}, per_sequence_deltas={}, missing=missing)
+                  evaluations=[], secondary_references=[], deltas={}, per_sequence_deltas={}, missing=missing)
     table = ["| Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |",
              "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
     lookup = {}
-    for arm, title in ARMS.items():
+    arms = dict(ARMS, frozen_v3="Historical frozen V3 (different training budget)")
+    for arm, title in arms.items():
         for split in ["dev", "test"]:
-            path = root / ("eval_" + arm + "_" + split) / "metrics.json"
+            secondary = arm == "frozen_v3"
+            path = root / (("reference_" if secondary else "eval_") + arm + "_" + split) / "metrics.json"
             if not path.is_file():
-                result["missing"].append(str(path))
+                if not secondary or args.require_historical_reference:
+                    result["missing"].append(str(path))
                 continue
             raw = path.read_bytes()
             d = json.loads(raw)
@@ -159,13 +163,20 @@ def main():
             for key in ["conf", "nms", "track_thresh", "track_buffer", "match_thresh"]:
                 if actual[key] != protocol["evaluation"][key]:
                     raise ValueError(f"Evaluation configuration mismatch: {key}, {path}")
-            expected_variant = "rgb" if arm == "rgb_original" else TRAINING_ARMS[arm][1]
+            expected_variant = "legacy" if secondary else ("rgb" if arm == "rgb_original" else TRAINING_ARMS[arm][1])
             if actual["variant"] != expected_variant or actual["max_frames"] or actual["skip_evaluation"]:
                 raise ValueError(f"Evaluation arm mismatch: {path}")
             if actual["input_size"] != protocol["evaluation"]["size_hw"]:
                 raise ValueError(f"Evaluation image size mismatch: {path}")
             if str(actual["physical_gpu"]) not in {"2", "3"}:
                 raise ValueError(f"Unapproved evaluation GPU: {path}")
+            if secondary:
+                reference = json.loads((root / "historical_v3_checkpoint_manifest.json").read_text())
+                if actual["source_sha256"] != reference["sha256"]:
+                    raise ValueError(f"Historical reference checkpoint changed: {path}")
+                for key in ["ir_means", "ir_std"]:
+                    if actual[key] != reference[key]:
+                        raise ValueError(f"Historical reference normalization changed: {path}, {key}")
             if arm == "rgb_original" and split == "test" and ("rgb_original", "dev") in lookup:
                 if actual["source_sha256"] != lookup[("rgb_original", "dev")]["protocol"]["source_sha256"]:
                     raise ValueError(f"Original RGB baseline checkpoint changed between splits: {path}")
@@ -187,8 +198,13 @@ def main():
                           per_sequence=per_sequence, detection_coverage=coverage,
                           runtime=d["runtime"], protocol=actual,
                           metrics_path=str(path), metrics_sha256=hashlib.sha256(raw).hexdigest())
-            result["evaluations"].append(record)
-            lookup[(arm, split)] = record
+            result["secondary_references" if secondary else "evaluations"].append(record)
+            if not secondary:
+                lookup[(arm, split)] = record
+            if secondary and split == "dev":
+                table += ["", "Secondary reference; its training history and budget differ from the matched arms:", "",
+                          "| Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |",
+                          "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
             table.append("| " + " | ".join([title, split, str(actual["frames"])] +
                          [f"{metrics[key]:.3f}" for key in METRICS]) + " |")
     for split in ["dev", "test"]:
@@ -206,7 +222,7 @@ def main():
     table += ["", "Individual sequences (TrackEval percentages; IDSW is a count):", "",
               "| Method | Split | Sequence | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |",
               "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
-    for row in result["evaluations"]:
+    for row in result["evaluations"] + result["secondary_references"]:
         for seq, metrics in row["per_sequence"].items():
             table.append("| " + " | ".join([row["method"], row["split"], seq] +
                          [f"{metrics[key]:.3f}" for key in METRICS]) + " |")
@@ -218,6 +234,7 @@ def main():
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(value)
     print(json.dumps(dict(status=result["status"], completed=len(result["evaluations"]),
+                         secondary_references=len(result["secondary_references"]),
                          missing=len(result["missing"]), deltas=result["deltas"]), indent=2))
     if args.require_complete and result["missing"]:
         raise RuntimeError("Required comparison arms are incomplete")

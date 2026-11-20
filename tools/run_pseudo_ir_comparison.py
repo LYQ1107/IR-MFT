@@ -16,6 +16,7 @@ import os
 from pathlib import Path
 import random
 import shutil
+import subprocess
 import sys
 import time
 from types import SimpleNamespace
@@ -34,6 +35,7 @@ from yolox.tracker.byte_tracker import BYTETracker
 from yolox.utils import ModelEMA, postprocess
 from tools.eval_mft26ir import compute_motmetrics, run_trackeval, write_sequence_results
 from tools.init_rgbt_from_byte_checkpoint import build_mapping
+from tools.pseudo_ir_continuation import check_resume, joint_lr, load_plan
 
 
 def sha256(path):
@@ -171,9 +173,18 @@ def train(args, exp, model, mapping):
     start_epoch = 0
     calibration_epochs = 0 if args.variant == "rgb" else args.calibration_epochs
     epochs = calibration_epochs + args.finetune_epochs
+    continuation, plan_sha = load_plan(args.continuation_plan) if args.continuation_plan else (None, None)
+    if continuation:
+        if not args.resume or not args.stop_after_joint_epochs:
+            raise ValueError("Continuation requires --resume and an explicit joint-epoch stage boundary")
+        if not args.no_checkpoint and (args.max_steps or args.max_frames or args.sequences):
+            raise ValueError("A formal continuation must include every Train frame and update")
+        if not (3 < args.stop_after_joint_epochs <= args.finetune_epochs):
+            raise ValueError("Continuation stage boundary is outside the planned budget")
+        epochs = calibration_epochs + args.stop_after_joint_epochs
     manifest = dict(vars(args), physical_gpu=os.environ["CUDA_VISIBLE_DEVICES"],
                     initialization=mapping, source_sha256=sha256(args.ckpt),
-                    git_commit=os.popen("git rev-parse HEAD").read().strip(),
+                    git_commit=subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
                     train_frames=len(dataset), train_sequences=list(exp.protocol_train_sequences),
                     test_size=list(exp.test_size), ir_means=exp.ir_means, ir_std=exp.ir_std,
                     rgb_means=exp.rgb_means, rgb_std=exp.rgb_std,
@@ -184,22 +195,33 @@ def train(args, exp, model, mapping):
     if args.resume:
         checkpoint = torch.load(args.ckpt, map_location="cpu", weights_only=False)
         prior = checkpoint["manifest"]
-        for key in ["variant", "seed", "train_size", "batch_size", "accumulate",
-                    "calibration_epochs", "finetune_epochs", "lr", "calibration_lr", "ir_stats"]:
-            if prior[key] != manifest[key]:
-                raise ValueError(f"Resume configuration changed: {key}")
+        check_resume(prior, manifest, checkpoint, continuation, plan_sha)
         optimizer.load_state_dict(checkpoint["optimizer"])
         scaler.load_state_dict(checkpoint["scaler"])
         ema.ema.load_state_dict(checkpoint["model"], strict=True)
         ema.updates = checkpoint["ema_updates"]
         history = checkpoint["history"]
         start_epoch = checkpoint["completed_epochs"]
+        if start_epoch > epochs:
+            raise ValueError("Resume checkpoint is later than this requested stage boundary")
         torch.set_rng_state(checkpoint["torch_rng"])
         torch.cuda.set_rng_state_all(checkpoint["cuda_rng"])
         np.random.set_state(checkpoint["numpy_rng"])
         random.setstate(checkpoint["python_rng"])
         g.set_state(checkpoint["loader_rng"])
-        manifest = prior
+        if continuation:
+            event = dict(source=str(args.ckpt), source_sha256=manifest["source_sha256"],
+                         completed_epochs=start_epoch, target_joint_epochs=args.stop_after_joint_epochs,
+                         physical_gpu=os.environ["CUDA_VISIBLE_DEVICES"], git_commit=manifest["git_commit"],
+                         runner_sha256=sha256(__file__), started_unix=time.time())
+            manifest = dict(prior, output=args.output, finetune_epochs=args.finetune_epochs,
+                            max_steps=args.max_steps, no_checkpoint=args.no_checkpoint,
+                            physical_gpu=os.environ["CUDA_VISIBLE_DEVICES"],
+                            checkpoint_selection="best_Dev_HOTA_across_fixed_three_joint_epoch_checks",
+                            continuation=dict(plan=str(Path(args.continuation_plan).resolve()), plan_sha256=plan_sha),
+                            execution_events=prior.get("execution_events", []) + [event])
+        else:
+            manifest = prior
         dump(Path(args.output) / "train_manifest.json", manifest)
         dump(Path(args.output) / "resume_event.json", dict(completed_epochs=start_epoch,
               source=str(args.ckpt), source_sha256=sha256(args.ckpt)))
@@ -212,8 +234,9 @@ def train(args, exp, model, mapping):
         # Original V2/V3 rates are specified at reference batch64.
         reference_lr = args.calibration_lr if calibration else args.lr
         effective_batch = args.batch_size * args.accumulate
-        lr = reference_lr * effective_batch / 64.0 * (0.2 + 0.8 * (
-            1 + math.cos(math.pi * phase_epoch / max(phase_epochs, 1))) / 2)
+        lr = (joint_lr(continuation, phase_epoch, effective_batch) if continuation and not calibration else
+              reference_lr * effective_batch / 64.0 * (0.2 + 0.8 * (
+                  1 + math.cos(math.pi * phase_epoch / max(phase_epochs, 1))) / 2))
         for group in optimizer.param_groups:
             group["lr"] = lr
         running = 0.0
@@ -281,9 +304,12 @@ def train(args, exp, model, mapping):
         os.replace(temporary, target)
         print("EPOCH_COMPLETE", json.dumps(record), flush=True)
     target = Path(args.output) / "latest_ckpt.pth.tar"
-    dump(Path(args.output) / "completion.json", dict(status="BENCHMARK" if args.no_checkpoint else "COMPLETE",
+    status = "BENCHMARK" if args.no_checkpoint else ("STAGE_COMPLETE" if continuation else "COMPLETE")
+    dump(Path(args.output) / "completion.json", dict(status=status,
                 epochs=len(history), checkpoint=None if args.no_checkpoint else str(target),
-                sha256=None if args.no_checkpoint else sha256(target)))
+                sha256=None if args.no_checkpoint else sha256(target),
+                joint_epochs=len(history) - calibration_epochs,
+                continuation_plan_sha256=plan_sha))
 
 
 def infer(args, exp, model, mapping):
@@ -368,6 +394,8 @@ def main():
     parser.add_argument("--ir-stats", help="optional three-channel train-only statistics JSON")
     parser.add_argument("--calibration-epochs", type=int, default=3)
     parser.add_argument("--finetune-epochs", type=int, default=3)
+    parser.add_argument("--continuation-plan", help="explicit frozen plan allowing a longer resumed joint budget")
+    parser.add_argument("--stop-after-joint-epochs", type=int, help="complete this continuation stage then return for Dev evaluation")
     parser.add_argument("--lr", type=float, default=0.0002)
     parser.add_argument("--calibration-lr", type=float, default=0.001)
     parser.add_argument("--memory-fraction", type=float, default=0.55)
