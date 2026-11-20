@@ -1,6 +1,34 @@
 # Dev-driven extension of the pseudo-IR training budget
 
-Status: **RUNNING — two paired continuation workers started on physical GPU2/GPU3.**
+Status: **RUNNING — first extended Dev evaluation complete; common final budget pending.**
+
+The first extended Dev checkpoint is a negative result. New DiffV2IR HOTA
+decreases from46.236 at joint3 to44.233 at joint6, although its full-Train
+loss falls from3.087354 to2.965817. Both Dev evaluations cover all4,834 frames
+with the same normalization, image size and tracking settings. The current
+best model for this arm therefore remains joint3. The minimum12-joint-epoch
+budget and shared stopping rule remain unchanged; one later checkpoint does
+not establish the shape of the complete learning curve.
+
+| New DiffV2IR | Train loss | Dev HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Joint3 | 3.087354 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
+| Joint6 | 2.965817 | 44.233 | 68.042 | 28.805 | 52.285 | 89.652 | 105 |
+| Joint6 minus joint3 | -0.121537 | -2.003 | -0.724 | -2.332 | -0.834 | -0.572 | -3 |
+
+Old IR has also completed joint6 with Train loss2.942829; its joint6 Dev
+replay is queued. The RGB matched control is continuing toward the same
+budget. Comparisons between different completed epoch counts are not used
+as evidence of an input benefit. No final selected-model Test has run yet.
+
+![Current training and Dev curves](PSEUDO_IR_BUDGET_EXTENSION_20261121_CURVES.png)
+
+The current
+[`RESULTS.json`](PSEUDO_IR_BUDGET_EXTENSION_20261121_RESULTS.json),
+[`tables`](PSEUDO_IR_BUDGET_EXTENSION_20261121_TABLES.md) and
+[`curve CSV`](PSEUDO_IR_BUDGET_EXTENSION_20261121_CURVES.csv)
+are explicitly `INCOMPLETE`. They contain completed training epochs and
+integrated Dev checkpoints only; pending Dev points are not fabricated.
 
 The first paired comparison contains three auxiliary calibration epochs and
 only three joint detector epochs. It starts from an existing visible detector,
