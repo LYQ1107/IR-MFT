@@ -26,6 +26,7 @@ All Dev checkpoints (no Test scores used for selection):
 | Method | Joint epoch | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | Selected |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | V3 + old legacy IR | 3 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89.000 | True |
+| V3 + old legacy IR | 6 | 42.613 | 67.488 | 26.943 | 48.364 | 89.615 | 99.000 | False |
 | V3 + new DiffV2IR | 3 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108.000 | True |
 | V3 + new DiffV2IR | 6 | 44.233 | 68.042 | 28.805 | 52.285 | 89.652 | 105.000 | False |
 | RGB matched fine-tune + ByteTrack | 3 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94.000 | True |

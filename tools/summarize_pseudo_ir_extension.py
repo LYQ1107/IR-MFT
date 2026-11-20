@@ -208,7 +208,8 @@ def main():
     args.output_markdown.write_text("\n".join(table)+"\n")
     if args.curve_csv:
         with args.curve_csv.open("w",newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=["arm","curve","joint_epochs","value","phase","lr"])
+            writer = csv.DictWriter(handle, fieldnames=["arm","curve","joint_epochs","value","phase","lr"],
+                                    lineterminator="\n")
             writer.writeheader()
             writer.writerows(curves)
     if args.curve_png and curves:

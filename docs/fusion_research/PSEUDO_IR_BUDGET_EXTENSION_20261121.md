@@ -1,8 +1,8 @@
 # Dev-driven extension of the pseudo-IR training budget
 
-Status: **RUNNING — first extended Dev evaluation complete; common final budget pending.**
+Status: **RUNNING — both paired joint6 Dev evaluations audited; common final budget pending.**
 
-The first extended Dev checkpoint is a negative result. New DiffV2IR HOTA
+The first extended Dev checkpoints decline in both paired arms. New DiffV2IR HOTA
 decreases from46.236 at joint3 to44.233 at joint6, although its full-Train
 loss falls from3.087354 to2.965817. Both Dev evaluations cover all4,834 frames
 with the same normalization, image size and tracking settings. The current
@@ -10,16 +10,22 @@ best model for this arm therefore remains joint3. The minimum12-joint-epoch
 budget and shared stopping rule remain unchanged; one later checkpoint does
 not establish the shape of the complete learning curve.
 
-| New DiffV2IR | Train loss | Dev HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
+| Input and completed joint epochs | Train loss | Dev HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Joint3 | 3.087354 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
-| Joint6 | 2.965817 | 44.233 | 68.042 | 28.805 | 52.285 | 89.652 | 105 |
-| Joint6 minus joint3 | -0.121537 | -2.003 | -0.724 | -2.332 | -0.834 | -0.572 | -3 |
+| Old IR, joint3 | 3.061076 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89 |
+| Old IR, joint6 | 2.942829 | 42.613 | 67.488 | 26.943 | 48.364 | 89.615 | 99 |
+| New DiffV2IR, joint3 | 3.087354 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
+| New DiffV2IR, joint6 | 2.965817 | 44.233 | 68.042 | 28.805 | 52.285 | 89.652 | 105 |
 
-Old IR has also completed joint6 with Train loss2.942829; its joint6 Dev
-replay is queued. The RGB matched control is continuing toward the same
-budget. Comparisons between different completed epoch counts are not used
-as evidence of an input benefit. No final selected-model Test has run yet.
+Old IR HOTA falls by3.151pp and new IR by2.003pp from joint3 to joint6;
+their current Dev-selected models both remain joint3. At the matched joint6
+budget, new-minus-old is HOTA+1.620pp, DetA+0.554pp, AssA+1.862pp,
+IDF1+3.921pp, MOTA+0.037pp and IDSW+6. This relative gap does not establish
+that longer training improved either arm's best model. The observation
+applies to the predeclared continuation with its explicit LR warm restart.
+The RGB matched control has completed joint6 training, but its Dev replay is
+still queued. Comparisons between different completed epoch counts are not
+used as evidence of an input benefit. No final selected-model Test has run yet.
 
 ![Current training and Dev curves](PSEUDO_IR_BUDGET_EXTENSION_20261121_CURVES.png)
 

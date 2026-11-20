@@ -140,6 +140,21 @@
             "source_sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040",
             "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev/metrics.json",
             "metrics_sha256": "fa1fd348a8c7dbdc9b1d5d4baa36dc7468900c6e781655ee5ab137f378b6aa20"
+          },
+          {
+            "joint_epochs": 6,
+            "HOTA": 42.613,
+            "metrics": {
+              "HOTA": 42.613,
+              "DetA": 67.488,
+              "AssA": 26.943,
+              "IDF1": 48.364,
+              "MOTA": 89.615,
+              "IDSW": 99.0
+            },
+            "source_sha256": "d848c4208fd9ebd0a2582f468130604a10c10a3fda93dfa1b518a50bda359b9e",
+            "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/dev_old_legacy_joint06/metrics.json",
+            "metrics_sha256": "2f2318ab13e06f30fab65de6e6174dfb0baba2dd6899e435c88e6e46f54e6290"
           }
         ],
         "best": {
@@ -385,7 +400,7 @@
         }
       },
       "rgb_matched": {
-        "trained_joint": 3,
+        "trained_joint": 6,
         "dev_history": [
           {
             "joint_epochs": 3,
@@ -415,7 +430,7 @@
           "sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
           "bytes": 198488722
         },
-        "resume_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+        "resume_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/latest_ckpt.pth.tar",
         "prefix_completion": {
           "status": "COMPLETE",
           "epochs": 3,
@@ -497,49 +512,18 @@
           "torch": "2.6.0+cu118",
           "checkpoint_selection": "fixed_final_epoch_not_Test",
           "storage_free_gib": 77.4041976928711
+        },
+        "latest_completion": {
+          "status": "STAGE_COMPLETE",
+          "epochs": 6,
+          "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/latest_ckpt.pth.tar",
+          "sha256": "7a669088a2b3bd8a51b2b5d406e33dbed9aac26ecce131a179803ea3c3556ed4",
+          "joint_epochs": 6,
+          "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
         }
       }
     },
     "active_jobs": {
-      "2": {
-        "arm": "rgb_matched",
-        "kind": "train",
-        "joint_epochs": 6,
-        "pid": 1455073,
-        "physical_gpu": 2,
-        "folder": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched",
-        "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/joint06.process.log",
-        "command": [
-          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
-          "-u",
-          "/data3/liuyeqiang/IR-MFT/tools/run_pseudo_ir_comparison.py",
-          "train",
-          "--ckpt",
-          "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
-          "--resume",
-          "--batch-size",
-          "8",
-          "--accumulate",
-          "1",
-          "--workers",
-          "4",
-          "--calibration-epochs",
-          "0",
-          "--finetune-epochs",
-          "24",
-          "--continuation-plan",
-          "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
-          "--stop-after-joint-epochs",
-          "6",
-          "--variant",
-          "rgb",
-          "--reserve-gib",
-          "40",
-          "--output",
-          "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched"
-        ],
-        "started_unix": 1795201351.008749
-      },
       "3": {
         "arm": "new_diffv2ir",
         "kind": "train",
@@ -578,10 +562,51 @@
           "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir"
         ],
         "started_unix": 1795202178.862928
+      },
+      "2": {
+        "arm": "old_legacy",
+        "kind": "train",
+        "joint_epochs": 9,
+        "pid": 1476259,
+        "physical_gpu": 2,
+        "folder": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy",
+        "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/joint09.process.log",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "/data3/liuyeqiang/IR-MFT/tools/run_pseudo_ir_comparison.py",
+          "train",
+          "--ckpt",
+          "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+          "--resume",
+          "--batch-size",
+          "8",
+          "--accumulate",
+          "1",
+          "--workers",
+          "4",
+          "--calibration-epochs",
+          "3",
+          "--finetune-epochs",
+          "24",
+          "--continuation-plan",
+          "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+          "--stop-after-joint-epochs",
+          "9",
+          "--variant",
+          "legacy",
+          "--reserve-gib",
+          "40",
+          "--ir-stats",
+          "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json",
+          "--output",
+          "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy"
+        ],
+        "started_unix": 1795204675.185773
       }
     },
     "started_unix": 1795193065.9602876,
-    "updated_unix": 1795202178.8629344
+    "updated_unix": 1795204675.1857781
   },
   "training": {
     "old_legacy": {
@@ -619,7 +644,7 @@
         "skip_evaluation": false,
         "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
         "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
-        "physical_gpu": "3",
+        "physical_gpu": "2",
         "initialization": "duplicate_RGB_into_both_branches",
         "source_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
         "git_commit": "b07087a8fe5baac91661a8cce35f59e3046b4daf",
@@ -674,6 +699,16 @@
             "git_commit": "0e2d1b76538c6892a71bb7f91bee28c820ca6a51",
             "runner_sha256": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
             "started_unix": 1795197238.1260257
+          },
+          {
+            "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+            "source_sha256": "d848c4208fd9ebd0a2582f468130604a10c10a3fda93dfa1b518a50bda359b9e",
+            "completed_epochs": 9,
+            "target_joint_epochs": 9,
+            "physical_gpu": "2",
+            "git_commit": "e29bc5f32c0e12bd0f9903879b1f8d2044293cf1",
+            "runner_sha256": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+            "started_unix": 1795204696.1237104
           }
         ]
       },
@@ -1049,9 +1084,23 @@
             0.052231401205062866,
             0.05149158462882042
           ]
+        },
+        {
+          "epoch": 10,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 2.925444744953775,
+          "seconds": 1489.9555551910307,
+          "lr": 2e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": [
+            0.05300087109208107,
+            0.05229182541370392,
+            0.051546718925237656
+          ]
         }
       ],
-      "completed_joint_epochs": 6,
+      "completed_joint_epochs": 7,
       "selected_joint_epochs": 3,
       "best_checkpoint": {
         "joint_epochs": 3,
@@ -1072,7 +1121,7 @@
         "variant": "rgb",
         "ckpt": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/bytetrack_visible_last_epoch_ckpt.pth.tar",
         "resume": false,
-        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0",
+        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched",
         "seed": 0,
         "batch_size": 8,
         "accumulate": 1,
@@ -1083,7 +1132,7 @@
         "workers": 4,
         "ir_stats": null,
         "calibration_epochs": 0,
-        "finetune_epochs": 3,
+        "finetune_epochs": 24,
         "lr": 0.0002,
         "calibration_lr": 0.001,
         "memory_fraction": 0.55,
@@ -1140,8 +1189,24 @@
         ],
         "bn_policy": "frozen_all_running_statistics",
         "torch": "2.6.0+cu118",
-        "checkpoint_selection": "fixed_final_epoch_not_Test",
-        "storage_free_gib": 77.4041976928711
+        "checkpoint_selection": "best_Dev_HOTA_across_fixed_three_joint_epoch_checks",
+        "storage_free_gib": 77.4041976928711,
+        "continuation": {
+          "plan": "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+          "plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        },
+        "execution_events": [
+          {
+            "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+            "source_sha256": "e9f5de7fa48ce71ecc4b96e43da5d16baa6423216230d62a5b63b25773439065",
+            "completed_epochs": 3,
+            "target_joint_epochs": 6,
+            "physical_gpu": "2",
+            "git_commit": "493ab62898681dfc37e7a40ab169fe44a19fc73a",
+            "runner_sha256": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+            "started_unix": 1795201370.5457046
+          }
+        ]
       },
       "history": [
         {
@@ -1173,9 +1238,39 @@
           "lr": 1.0000000000000004e-05,
           "skipped_amp_updates": 0,
           "fusion_gates": null
+        },
+        {
+          "epoch": 4,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.0837911378962923,
+          "seconds": 901.0453638109611,
+          "lr": 2.5e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": null
+        },
+        {
+          "epoch": 5,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.030805157572425,
+          "seconds": 908.5051277789753,
+          "lr": 2.4396926207859088e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": null
+        },
+        {
+          "epoch": 6,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 2.9768650404057055,
+          "seconds": 978.9846180669847,
+          "lr": 2.266044443118978e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": null
         }
       ],
-      "completed_joint_epochs": 3,
+      "completed_joint_epochs": 6,
       "selected_joint_epochs": 3,
       "best_checkpoint": {
         "joint_epochs": 3,
@@ -1382,6 +1477,207 @@
       },
       "joint_epochs": 3,
       "selected": true
+    },
+    {
+      "arm": "old_legacy",
+      "method": "V3 + old legacy IR",
+      "split": "dev",
+      "metrics": {
+        "HOTA": 42.613,
+        "DetA": 67.488,
+        "AssA": 26.943,
+        "IDF1": 48.364,
+        "MOTA": 89.615,
+        "IDSW": 99.0
+      },
+      "per_sequence": {
+        "BT-005": {
+          "HOTA": 48.16081253062548,
+          "DetA": 68.29838381716857,
+          "AssA": 33.98468204443372,
+          "DetRe": 73.01899787637032,
+          "DetPr": 74.68453633665895,
+          "LocA": 78.55664157156174,
+          "IDF1": 60.85302307628684,
+          "IDR": 60.17448200654307,
+          "IDP": 61.547041436618144,
+          "MOTA": 91.25954198473283,
+          "CLR_Re": 94.58015267175573,
+          "CLR_Pr": 96.73749372594948,
+          "IDSW": 24,
+          "CLR_TP": 17346,
+          "CLR_FN": 994,
+          "CLR_FP": 585,
+          "Frag": 155,
+          "IDTP": 11036,
+          "IDFN": 7304,
+          "IDFP": 6895,
+          "Dets": 17931,
+          "GT_Dets": 18340,
+          "IDs": 20,
+          "GT_IDs": 10,
+          "CLR_Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 38.576094128946586,
+          "DetA": 66.98011437689058,
+          "AssA": 22.274543680844307,
+          "DetRe": 72.41170206195407,
+          "DetPr": 74.67689136292395,
+          "LocA": 79.2748610866754,
+          "IDF1": 40.18487425301053,
+          "IDR": 39.575406280004266,
+          "IDP": 40.813407657327275,
+          "MOTA": 88.54237047046692,
+          "CLR_Re": 92.88787738700616,
+          "CLR_Pr": 95.79360422473229,
+          "IDSW": 75,
+          "CLR_TP": 26121,
+          "CLR_FN": 2000,
+          "CLR_FP": 1147,
+          "Frag": 267,
+          "IDTP": 11129,
+          "IDFN": 16992,
+          "IDFP": 16139,
+          "Dets": 27268,
+          "GT_Dets": 28121,
+          "IDs": 58,
+          "GT_IDs": 11,
+          "CLR_Frames": 3000
+        }
+      },
+      "detection_coverage": {
+        "BT-005": {
+          "frames": 1834,
+          "detections": 22634,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "b8258462c148b2b8d8a8b36dfb4afde4e288705e4bb9f76bdb54deb7115c5833",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/dev_old_legacy_joint06/detections/BT-005.npz"
+        },
+        "SN-013": {
+          "frames": 3000,
+          "detections": 32513,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "12ddf033c1ad334934bdf75ac7c5399eff979fe82cbc917c1878cd6819186381",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/dev_old_legacy_joint06/detections/SN-013.npz"
+        }
+      },
+      "trackeval_all_metrics": {
+        "HOTA": 42.613,
+        "DetA": 67.488,
+        "AssA": 26.943,
+        "DetRe": 72.651,
+        "DetPr": 74.68,
+        "AssRe": 30.395,
+        "AssPr": 60.025,
+        "LocA": 78.988,
+        "OWTA": 44.229,
+        "HOTA(0)": 59.566,
+        "LocA(0)": 73.83,
+        "HOTALocA(0)": 43.977,
+        "MOTA": 89.615,
+        "MOTP": 75.468,
+        "MODA": 89.828,
+        "CLR_Re": 93.556,
+        "CLR_Pr": 96.168,
+        "MTR": 95.238,
+        "PTR": 0.0,
+        "MLR": 4.7619,
+        "CLR_TP": 43467.0,
+        "CLR_FN": 2994.0,
+        "CLR_FP": 1732.0,
+        "IDSW": 99.0,
+        "MT": 20.0,
+        "PT": 0.0,
+        "ML": 1.0,
+        "Frag": 422.0,
+        "sMOTA": 66.664,
+        "IDF1": 48.364,
+        "IDR": 47.707,
+        "IDP": 49.039,
+        "IDTP": 22165.0,
+        "IDFN": 24296.0,
+        "IDFP": 23034.0,
+        "Dets": 45199.0,
+        "GT_Dets": 46461.0,
+        "IDs": 78.0,
+        "GT_IDs": 21.0
+      },
+      "protocol": {
+        "action": "infer",
+        "variant": "legacy",
+        "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+        "resume": false,
+        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/dev_old_legacy_joint06",
+        "seed": 0,
+        "batch_size": 4,
+        "accumulate": 2,
+        "train_size": [
+          480,
+          864
+        ],
+        "workers": 4,
+        "ir_stats": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json",
+        "calibration_epochs": 3,
+        "finetune_epochs": 6,
+        "continuation_plan": null,
+        "stop_after_joint_epochs": null,
+        "lr": 0.0002,
+        "calibration_lr": 0.001,
+        "memory_fraction": 0.55,
+        "reserve_gib": 40.0,
+        "max_steps": 0,
+        "no_checkpoint": false,
+        "max_frames": 0,
+        "split": "dev",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "conf": 0.1,
+        "nms": 0.7,
+        "track_thresh": 0.6,
+        "track_buffer": 30,
+        "match_thresh": 0.9,
+        "skip_evaluation": false,
+        "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+        "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+        "initialization": "strict_direct",
+        "frames": 4834,
+        "physical_gpu": "2",
+        "ir_means": [
+          0.07301626087164649,
+          0.03020227263580627,
+          0.05919517621276643
+        ],
+        "ir_std": [
+          0.21281907207233852,
+          0.11548947582450884,
+          0.11228541704390677
+        ],
+        "input_size": [
+          800,
+          1440
+        ],
+        "source_sha256": "d848c4208fd9ebd0a2582f468130604a10c10a3fda93dfa1b518a50bda359b9e",
+        "generated_ir_root": null,
+        "source_training": {
+          "calibration_epochs": 3,
+          "joint_epochs": 6,
+          "completed_adaptation_epochs": 9,
+          "configured_maximum_joint_epochs": 24,
+          "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+          "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        }
+      },
+      "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/dev_old_legacy_joint06/metrics.json",
+      "metrics_sha256": "2f2318ab13e06f30fab65de6e6174dfb0baba2dd6899e435c88e6e46f54e6290",
+      "runtime": {
+        "seconds": 430.1756703139981,
+        "fps": 11.237269640264682
+      },
+      "joint_epochs": 6,
+      "selected": false
     },
     {
       "arm": "new_diffv2ir",
