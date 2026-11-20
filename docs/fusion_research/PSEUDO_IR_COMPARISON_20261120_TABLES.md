@@ -8,6 +8,12 @@
 | V3 + new DiffV2IR | test | 15985 | 29.195 | 43.916 | 19.487 | 32.678 | 49.603 | 383.000 |
 | RGB matched fine-tune + ByteTrack | dev | 4834 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94.000 |
 
+Secondary reference; its training history and budget differ from the matched arms:
+
+| Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Historical frozen V3 (different training budget) | dev | 4834 | 46.091 | 70.212 | 30.276 | 52.621 | 92.011 | 106.000 |
+
 Supplementary official TrackEval components on the tracker outputs. DetRe/DetPr/LocA average
 the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw detector AP.
 
@@ -20,6 +26,7 @@ the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw de
 | V3 + new DiffV2IR | dev | 73.569 | 76.189 | 79.789 | 93.509 | 96.839 | 3016 | 1418 | 374 |
 | V3 + new DiffV2IR | test | 50.366 | 61.514 | 74.492 | 65.872 | 80.453 | 49455 | 23193 | 2069 |
 | RGB matched fine-tune + ByteTrack | dev | 73.813 | 75.977 | 79.729 | 93.778 | 96.526 | 2891 | 1568 | 375 |
+| Historical frozen V3 (different training budget) | dev | 75.437 | 77.232 | 80.780 | 94.957 | 97.217 | 2343 | 1263 | 341 |
 
 Individual sequences (TrackEval percentages; IDSW is a count):
 
@@ -54,3 +61,5 @@ Individual sequences (TrackEval percentages; IDSW is a count):
 | V3 + new DiffV2IR | test | SN-014 | 32.591 | 57.263 | 18.628 | 38.882 | 73.301 | 79.000 |
 | RGB matched fine-tune + ByteTrack | dev | BT-005 | 55.174 | 69.658 | 43.722 | 71.457 | 92.268 | 23.000 |
 | RGB matched fine-tune + ByteTrack | dev | SN-013 | 41.901 | 68.358 | 25.744 | 45.644 | 88.852 | 71.000 |
+| Historical frozen V3 (different training budget) | dev | BT-005 | 52.663 | 70.670 | 39.256 | 65.864 | 93.135 | 33.000 |
+| Historical frozen V3 (different training budget) | dev | SN-013 | 41.174 | 69.957 | 24.277 | 43.897 | 91.277 | 73.000 |

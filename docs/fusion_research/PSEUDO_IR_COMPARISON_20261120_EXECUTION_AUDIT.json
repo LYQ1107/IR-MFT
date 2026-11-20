@@ -1,0 +1,102 @@
+{
+  "status": "INCOMPLETE_INFERENCE_REPLAYS_RESTARTED",
+  "interruption_audit": {
+    "time": "2026-11-21 01:27:21",
+    "terminal_session": 16782,
+    "terminal_returncode": 143,
+    "interrupted_job": {
+      "status": "RUNNING",
+      "job": "eval_rgb_matched_test",
+      "pid": 1409163,
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "/data3/liuyeqiang/IR-MFT/tools/run_pseudo_ir_comparison.py",
+        "infer",
+        "--variant",
+        "rgb",
+        "--ckpt",
+        "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+        "--split",
+        "test",
+        "--batch-size",
+        "4",
+        "--workers",
+        "4",
+        "--output",
+        "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_matched_test"
+      ],
+      "physical_gpu": 2,
+      "started_unix": 1795194352.1744084
+    },
+    "last_progress": {
+      "frames": 14592,
+      "expected": 15985,
+      "seconds": 1152.3971428779769
+    },
+    "worker_observed_absent": true,
+    "complete_metrics_absent": true,
+    "cause": "Supervising terminal ended; worker later absent. The individual worker exit status is unavailable.",
+    "action": "Replay only the incomplete RGB Test with the same source checkpoint and frozen settings in a separate OS session; preserve earlier training and completed evaluations.",
+    "reference_interruption": {
+      "time": "2026-11-21 01:28:34",
+      "terminal_session": 39288,
+      "terminal_returncode": 143,
+      "worker_pid": 1416494,
+      "worker_observed_absent": true,
+      "last_progress": {
+        "frames": 1024,
+        "expected": 15985,
+        "seconds": 86.7856595700141
+      },
+      "cause": "The remaining process group disappeared after the ended legacy terminal handle was closed; preserve completed Dev and replay incomplete Test only."
+    }
+  },
+  "detached_launches": [
+    {
+      "role": "short_gpu2",
+      "pid": 1416949,
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/launch_pseudo_ir_campaign.py",
+        "--gpu",
+        "2"
+      ],
+      "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/gpu2_detached_queue.log",
+      "start_new_session": true,
+      "started_unix": 1795195641.2077389,
+      "previous_idle_extension_pid": null
+    },
+    {
+      "role": "extension",
+      "pid": 1416951,
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/launch_pseudo_ir_extension.py",
+        "--plan",
+        "configs/pseudo_ir_budget_extension_20261121.json",
+        "--cache-manifest",
+        "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_byte_cache_manifest.json"
+      ],
+      "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/launcher.log",
+      "start_new_session": true,
+      "started_unix": 1795195641.3091455,
+      "previous_idle_extension_pid": 1399629
+    },
+    {
+      "role": "historical_reference",
+      "pid": 1417787,
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/launch_pseudo_ir_reference.py"
+      ],
+      "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/historical_v3_reference_detached_queue.log",
+      "start_new_session": true,
+      "started_unix": 1795195714.6614096
+    }
+  ],
+  "recovery_policy": "Only absent workers without complete metrics were replayed; retain full model training and all completed metric artifacts. Live workers and independent sessions are now inspected through /proc and file logs, without closing their legacy terminal handles."
+}

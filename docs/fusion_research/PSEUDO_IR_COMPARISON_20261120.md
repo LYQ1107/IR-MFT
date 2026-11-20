@@ -64,6 +64,11 @@ records completion status, source hashes and all official TrackEval metrics.
 [`PSEUDO_IR_COMPARISON_20261120_TABLES.md`](PSEUDO_IR_COMPARISON_20261120_TABLES.md)
 includes individual sequence results. Its `INCOMPLETE` status remains until
 all four arms have complete Dev/Test evaluations.
+The secondary historical V3 Dev replay is now also complete: HOTA46.091,
+DetA70.212, AssA30.276, IDF152.621, MOTA92.011 and IDSW106. It uses its
+preserved checkpoint and original normalization, with a different training
+history from the matched arms. Its fresh replay is reported separately;
+earlier historical numbers are not substituted for current measurements.
 
 ## Inputs and method
 
@@ -163,6 +168,15 @@ A disposable 2.1 GiB smoke checkpoint was removed after the training check.
 `tools/launch_pseudo_ir_campaign.py` runs dependent jobs per GPU and retains
 commands, PIDs, logs and failure states. Resume uses the saved full epoch
 boundary; no incomplete run is silently counted as a completed experiment.
+During terminal cleanup, the first RGB-control Test worker ended after14,592
+of15,985 frames without saving complete metrics; a reference-model Test
+attempt also ended after1,024 frames. Those attempts are excluded and their
+logs retained. Only these two incomplete Test replays were restarted from
+frame1 with the same weights and settings. The queues now run in independent
+OS sessions with file logging and no terminal stdin. The still-idle extension
+controller was moved the same way before starting any additional training.
+[`PSEUDO_IR_COMPARISON_20261120_EXECUTION_AUDIT.json`](PSEUDO_IR_COMPARISON_20261120_EXECUTION_AUDIT.json)
+records the observed process absence, progress and recovery commands.
 `tools/summarize_pseudo_ir_comparison.py --require-complete` verifies frame
 and sequence coverage and common tracker thresholds before final reporting.
 
