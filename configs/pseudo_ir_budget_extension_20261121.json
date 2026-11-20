@@ -1,0 +1,116 @@
+{
+  "status": "FROZEN_BEFORE_EXTENSION_TRAINING",
+  "created_at": "2026-11-21T00:37:43.165142+08:00",
+  "reason": "User challenged adequacy of three calibration plus three joint epochs; extend all adapted arms together using Dev only.",
+  "short_plan": "configs/pseudo_ir_comparison_20261120.json",
+  "short_result_root": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120",
+  "result_root": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121",
+  "allowed_physical_gpus": [
+    2,
+    3
+  ],
+  "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+  "arms": {
+    "old_legacy": {
+      "variant": "legacy",
+      "calibration_epochs": 3,
+      "prefix_directory": "train_old_legacy_s0",
+      "ir_stats": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json"
+    },
+    "new_diffv2ir": {
+      "variant": "diffv2ir",
+      "calibration_epochs": 3,
+      "prefix_directory": "train_new_diffv2ir_s0",
+      "ir_stats": null
+    },
+    "rgb_matched": {
+      "variant": "rgb",
+      "calibration_epochs": 0,
+      "prefix_directory": "train_rgb_matched_s0",
+      "ir_stats": null
+    }
+  },
+  "training": {
+    "prefix_joint_epochs": 3,
+    "minimum_joint_epochs": 12,
+    "maximum_joint_epochs": 24,
+    "dev_interval_joint_epochs": 3,
+    "decision_joint_epochs": [
+      12,
+      18,
+      24
+    ],
+    "extension_step_joint_epochs": 6,
+    "seed": 0,
+    "train_size": [
+      480,
+      864
+    ],
+    "batch_size": 8,
+    "accumulate": 1,
+    "workers": 4,
+    "train_frames_per_epoch": 27251,
+    "lr_segments": [
+      {
+        "start_joint_index": 0,
+        "end_joint_index_exclusive": 3,
+        "reference_lr_batch64": 0.0002,
+        "role": "preserved original three-epoch prefix"
+      },
+      {
+        "start_joint_index": 3,
+        "end_joint_index_exclusive": 12,
+        "reference_lr_batch64": 0.0002,
+        "role": "warm restart for nine additional epochs"
+      },
+      {
+        "start_joint_index": 12,
+        "end_joint_index_exclusive": 18,
+        "reference_lr_batch64": 8e-05,
+        "role": "conditional six-epoch extension"
+      },
+      {
+        "start_joint_index": 18,
+        "end_joint_index_exclusive": 24,
+        "reference_lr_batch64": 4e-05,
+        "role": "conditional final six-epoch extension"
+      }
+    ],
+    "schedule": "Within each segment: reference_lr * effective_batch/64 * (0.2+0.8*(1+cos(pi*index/length))/2). Prefix is retained, not relabeled a from-scratch 12-epoch schedule.",
+    "unchanged": "Full raw model, EMA, SGD momentum, scaler and all epoch-boundary RNG states resumed; same augmentations, fixed BN statistics, normalization, data and tracker as short plan."
+  },
+  "stopping": {
+    "metric": "Dev HOTA percentage points",
+    "epsilon_pp": 0.2,
+    "lookback_joint_epochs": 6,
+    "rule": "At joint12 or18, compute each arm best Dev HOTA through current budget minus its best through budget-6. Stop all arms together if all gains <=0.2pp; otherwise extend all arms by6. Always stop at24 and report a cap if the plateau rule is not met.",
+    "selection": "Highest Dev HOTA at joint3,6,9,... up to common stopped budget, ties choose earlier; final Test once per selected arm. Test is excluded from scheduling, stopping and checkpoint selection."
+  },
+  "storage": {
+    "local_reserve_gib": 40,
+    "full_resumable_latest_per_arm": 1,
+    "fp16_best_ema_per_arm": 1,
+    "epoch_snapshot_series": false,
+    "estimated_extra_checkpoint_gib": 6,
+    "push_large_artifacts": false,
+    "train_tmpfs_cache": "Optional task-specific /dev/shm <=10GiB, SHA256-verified original Train bytes; host MemAvailable reserve40GiB; remove after all new-input training. Evaluation uses original NAS."
+  },
+  "known_exposures_at_plan_freeze": {
+    "completed_short_evaluations": [
+      "rgb_original/dev",
+      "rgb_original/test",
+      "old_legacy/dev",
+      "old_legacy/test",
+      "new_diffv2ir/dev"
+    ],
+    "pending_short_evaluations": [
+      "new_diffv2ir/test",
+      "rgb_matched/dev",
+      "rgb_matched/test"
+    ],
+    "short_dev_new_minus_old_HOTA_pp": 0.472,
+    "blindness": "Short outcomes already observed, historical Test and Dev exposure acknowledged in short plan; extension has no new blind-test claim."
+  },
+  "prerequisites": "Complete all eight short main Dev/Test replays and two historical V3 reference replays before acquiring GPUs for extension.",
+  "reporting": "Preserve every short result and loss curve; show all Dev checkpoints, common final budget, selected epoch, final Test all seven sequences, deltas against original RGB and equally extended old-IR/RGB controls. Single-seed diagnostic limits remain."
+}
