@@ -6,6 +6,17 @@
 | V3 + old legacy IR | test | 15985 | 29.738 | 46.595 | 19.068 | 33.736 | 51.667 | 455.000 |
 | V3 + new DiffV2IR | dev | 4834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108.000 |
 
+Supplementary official TrackEval components on the tracker outputs. DetRe/DetPr/LocA average
+the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw detector AP.
+
+| Method | Split | DetRe | DetPr | LocA | CLR_Re | CLR_Pr | CLR_FN | CLR_FP | Frag |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original RGB ByteTrack | dev | 74.719 | 78.279 | 81.051 | 93.552 | 98.009 | 2996 | 883 | 299 |
+| Original RGB ByteTrack | test | 49.786 | 63.380 | 75.358 | 63.014 | 80.219 | 53597 | 22517 | 1884 |
+| V3 + old legacy IR | dev | 72.905 | 75.323 | 79.392 | 93.664 | 96.769 | 2944 | 1453 | 379 |
+| V3 + old legacy IR | test | 53.851 | 61.083 | 74.078 | 70.071 | 79.481 | 43371 | 26214 | 2221 |
+| V3 + new DiffV2IR | dev | 73.569 | 76.189 | 79.789 | 93.509 | 96.839 | 3016 | 1418 | 374 |
+
 Individual sequences (TrackEval percentages; IDSW is a count):
 
 | Method | Split | Sequence | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |

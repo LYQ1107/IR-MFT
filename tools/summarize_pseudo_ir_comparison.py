@@ -219,6 +219,16 @@ def main():
                 result["per_sequence_deltas"][split + "_new_minus_" + old] = {
                     seq: {key: new["per_sequence"][seq][key] - control["per_sequence"][seq][key]
                           for key in METRICS} for seq in protocol[split + "_sequences"]}
+    supplementary = ["DetRe", "DetPr", "LocA", "CLR_Re", "CLR_Pr", "CLR_FN", "CLR_FP", "Frag"]
+    table += ["", "Supplementary official TrackEval components on the tracker outputs. DetRe/DetPr/LocA average",
+              "the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw detector AP.", "",
+              "| Method | Split | " + " | ".join(supplementary) + " |",
+              "| --- | --- | " + " | ".join(["---:"]*len(supplementary)) + " |"]
+    for row in result["evaluations"] + result["secondary_references"]:
+        values = row["trackeval_all_metrics"]
+        table.append("| " + " | ".join([row["method"], row["split"]] +
+            [f"{values[key]:.3f}" if index < 5 else str(int(values[key]))
+             for index, key in enumerate(supplementary)]) + " |")
     table += ["", "Individual sequences (TrackEval percentages; IDSW is a count):", "",
               "| Method | Split | Sequence | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |",
               "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]

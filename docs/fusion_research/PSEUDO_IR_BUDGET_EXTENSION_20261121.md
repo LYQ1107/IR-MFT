@@ -1,6 +1,6 @@
 # Dev-driven extension of the pseudo-IR training budget
 
-Status: **PREPARED — extended training results are not available yet.**
+Status: **QUEUED — waiting for short-budget replays and cache preparation.**
 
 The first paired comparison contains three auxiliary calibration epochs and
 only three joint detector epochs. It starts from an existing visible detector,
@@ -58,6 +58,11 @@ finite loss2.694551, effective LR0.000025, zero skipped AMP updates and
 model checkpoint. CPU scheduling simulations covered both a plateau at12
 and continued improvement through the24-epoch cap. These checks validate the
 continuation machinery; they do not count as experimental training results.
+The compact best-EMA retention also passed a four-frame GPU3 replay check:
+the saved frame IDs, offsets,47 boxes and47 scores matched the original
+full-checkpoint batch exactly. Its temporary0.35 GiB checkpoint was removed.
+The bounded checks and scope are recorded in
+[`PSEUDO_IR_BUDGET_EXTENSION_20261121_VALIDATION.json`](PSEUDO_IR_BUDGET_EXTENSION_20261121_VALIDATION.json).
 
 The final export uses `tools/summarize_pseudo_ir_extension.py` to audit the
 common budgets, preserved short prefixes, piecewise LR histories, every Dev

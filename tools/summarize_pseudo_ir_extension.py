@@ -170,6 +170,16 @@ def main():
     for row in rows:
         table.append("| " + " | ".join([row["method"],row["split"],str(row.get("selected_joint_epochs",row.get("joint_epochs",0)))] +
             [f"{row['metrics'][key]:.3f}" for key in METRICS]) + " |")
+    supplementary = ["DetRe", "DetPr", "LocA", "CLR_Re", "CLR_Pr", "CLR_FN", "CLR_FP", "Frag"]
+    table += ["", "Supplementary official TrackEval components on the tracker outputs. HOTA detection ratios",
+              "average IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw detector AP.", "",
+              "| Method | Split | " + " | ".join(supplementary) + " |",
+              "| --- | --- | " + " | ".join(["---:"]*len(supplementary)) + " |"]
+    for row in rows:
+        values = row["trackeval_all_metrics"]
+        table.append("| " + " | ".join([row["method"], row["split"]] +
+            [f"{values[key]:.3f}" if index < 5 else str(int(values[key]))
+             for index, key in enumerate(supplementary)]) + " |")
     table += ["", "All Dev checkpoints (no Test scores used for selection):", "",
               "| Method | Joint epoch | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | Selected |",
               "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |"]

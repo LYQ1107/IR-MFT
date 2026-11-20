@@ -1,0 +1,77 @@
+{
+  "status": "PRE_EXECUTION_CHECKS_PASSED",
+  "unit_suite": {
+    "command": "CUDA_VISIBLE_DEVICES= MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir python -m pytest -q tests",
+    "passed": 17
+  },
+  "gpu_resume_smoke": {
+    "status": "BENCHMARK",
+    "epochs": 7,
+    "checkpoint": null,
+    "sha256": null,
+    "joint_epochs": 4,
+    "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+  },
+  "gpu_resume_last_record": {
+    "epoch": 7,
+    "phase": "V3_finetune",
+    "frames": 8,
+    "loss": 2.6945512294769287,
+    "seconds": 2.222432168025989,
+    "lr": 2.5e-05,
+    "skipped_amp_updates": 0,
+    "fusion_gates": [
+      0.05236172303557396,
+      0.051930058747529984,
+      0.051450684666633606
+    ]
+  },
+  "fp16_inference_equivalence": {
+    "status": "PASS",
+    "frames": 4,
+    "sequence": "BT-005",
+    "inference_batch_size": 4,
+    "physical_gpu": 3,
+    "source_full_checkpoint_sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040",
+    "compact_checkpoint_sha256": "c98ff96341df22bf7ce40e4216928572fd1d681bc806542160442d472123a443",
+    "compact_checkpoint_bytes": 373356767,
+    "arrays": {
+      "frame_ids": {
+        "shape": [
+          4
+        ],
+        "exactly_equal": true,
+        "sha256": "73e200e2b048c86d4e8c86b86bf62bbda84c7384e34e250b01aa30ab29d234a4"
+      },
+      "offsets": {
+        "shape": [
+          5
+        ],
+        "exactly_equal": true,
+        "sha256": "2d879fddb7c0d9a7559823f7b63fa7142bd78947d68ede36a2ad230a2addb12d"
+      },
+      "boxes": {
+        "shape": [
+          47,
+          4
+        ],
+        "exactly_equal": true,
+        "sha256": "a53496832a324f9655b51b51e74f758f19916dd2f5b8947763d8a5ab2a2dc223"
+      },
+      "scores": {
+        "shape": [
+          47
+        ],
+        "exactly_equal": true,
+        "sha256": "52b4bc3202f84e6223d07365edff336fbe4e58999377aaedbc9bb821380e73a8"
+      }
+    },
+    "temporary_checkpoint_removed": true,
+    "scope": "Four-frame old-input batch produces bit-identical post-NMS boxes/scores after FP16-only EMA retention; not a new accuracy evaluation."
+  },
+  "scheduling_simulations": {
+    "plateau_all_arms": "shared budget12, eighteen training/evaluation stage jobs",
+    "one_arm_improving": "shared budget24 cap, forty-two training/evaluation stage jobs"
+  },
+  "note": "Smoke jobs are not formal experiment results. Full training/Dev/Test remains pending."
+}
