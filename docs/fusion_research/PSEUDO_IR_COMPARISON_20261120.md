@@ -186,6 +186,20 @@ Only compressed post-NMS boxes,
 text tracks and small reports are exported. The local reserve is 40 GiB.
 A disposable 2.1 GiB smoke checkpoint was removed after the training check.
 
+After all ten short-run evaluations completed, the three immutable full
+checkpoints were archived under
+`/data3/liuyeqiang/nas/A100/IR-MFT/pseudo_ir_checkpoint_archive_20261121`.
+`tools/archive_pseudo_ir_prefix_checkpoints.py` first verified each local
+source, copied it, flushed it and independently read the NAS file back for a
+complete SHA256 check, then atomically replaced the local file with a symlink.
+The original paths, full states and hashes remain available. This released
+5,664,713,777 bytes /5.276 GiB locally; the short output folder now occupies
+about115 MiB locally. All eight main plus two reference audits still pass,
+and their entire exported JSON is identical to the pre-archive export.
+[`PSEUDO_IR_CHECKPOINT_ARCHIVE_20261121.json`](PSEUDO_IR_CHECKPOINT_ARCHIVE_20261121.json)
+records the targets and checksums. Active continuation checkpoints stay local;
+only lightweight code, reports and audit metadata are committed to GitHub.
+
 `tools/launch_pseudo_ir_campaign.py` runs dependent jobs per GPU and retains
 commands, PIDs, logs and failure states. Resume uses the saved full epoch
 boundary; no incomplete run is silently counted as a completed experiment.

@@ -95,6 +95,12 @@ arm stores one atomic full latest checkpoint and one best EMA checkpoint in
 FP16, which is the same conversion already used by inference. No epoch
 snapshot series or durable image dataset copy is made. Expected additional
 checkpoint storage is about6 GiB, with at least40 GiB local free space kept.
+The completed short-prefix full checkpoints were subsequently moved to a
+SHA256-verified NAS archive, with symlinks at their original paths. This
+released5.276 GiB and preserved the original source hashes; the active latest
+checkpoints and best EMA files stay local, totaling about6.2 GiB for all three
+arms. The archive and identical post-archive short-result audit are recorded
+in `PSEUDO_IR_CHECKPOINT_ARCHIVE_20261121.json`.
 A separate Train-only tmpfs cache is limited to10 GiB and byte-verified;
 evaluation reads the original NAS, and the cache is removed after completion.
 Cache preparation completed:27,251 PNGs /7,748,699,851 bytes, all source
