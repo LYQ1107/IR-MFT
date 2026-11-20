@@ -1,0 +1,88 @@
+{
+  "audit_date": "2026-11-20",
+  "scope": "Read-only inspection of preserved active generator sources and two representative metadata records; no image regeneration",
+  "source_snapshots": [
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/final_config.json",
+      "sha256": "babb492a1bc9e637614923917269f711cd6d30e61a0cd54c3cabd748662fa255"
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts/final_manager.py",
+      "sha256": "cc2ae67da37213a626e9445d2eec283cfbb291703da3a0c4e8da8fefc76b9ce8"
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts/final_aux_worker.py",
+      "sha256": "8a836323bb8b5530dbdb15100896e2193ba1e71344288d00e0e9526b299bdb4f"
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts/config_worker.py",
+      "sha256": "d5cd5dc0a4405b2cf112d2b5f1c7bd6fdaa0daa20817ebf23ae2e7faff019f2d"
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts/diff_worker.py",
+      "sha256": "6c56180f9cacfaa56b35000286c7f4fd56b26e4a0274133c915cc375f4597a72"
+    },
+    {
+      "path": "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts/final_plan.py",
+      "sha256": "d128ebfe5c566db95996ec5b3bb80fc37042ff0f8e5852fbbc074899a78a8246"
+    }
+  ],
+  "representative_metadata": [
+    {
+      "path": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation/_metadata/train/BT-001/sam_mask/000001.json",
+      "sha256": "195aa5d2184e9a7797544420b46f16200979f5c887b1ba42a3133897c4faf1d6",
+      "metadata": {
+        "rgb": "/data3/liuyeqiang/datasets/mft26-ir/train/BT-001/visible/000001.jpg",
+        "frame": 1,
+        "sam_settings": {
+          "backbone": "vit_b",
+          "points_per_side": 32,
+          "points_per_batch": 64,
+          "pred_iou_thresh": 0.88,
+          "stability_score_thresh": 0.95,
+          "crop_n_layers": 0,
+          "min_mask_region_area": 0,
+          "merge": "union of all masks, white foreground on black, reproducing process_masks.py; no GT inputs"
+        },
+        "caption_source": "fixed",
+        "caption": "there are goldfish swimming in the fish tank",
+        "mask_count": 15,
+        "mask_union_fraction": 0.09978443287037037
+      }
+    },
+    {
+      "path": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation/_metadata/test/BT-002/sam_mask/000001.json",
+      "sha256": "9e5a74a56f9c23318ff2ad6d01103cda98ea3af6f43ed23fc007fc2333b4811f",
+      "metadata": {
+        "rgb": "/data3/liuyeqiang/datasets/mft26-ir/test/BT-002/visible/000001.jpg",
+        "frame": 1,
+        "sam_settings": {
+          "backbone": "vit_b",
+          "points_per_side": 32,
+          "points_per_batch": 64,
+          "pred_iou_thresh": 0.88,
+          "stability_score_thresh": 0.95,
+          "crop_n_layers": 0,
+          "min_mask_region_area": 0,
+          "merge": "union of all masks, white foreground on black, reproducing process_masks.py; no GT inputs"
+        },
+        "caption_source": "fixed",
+        "caption": "there are goldfish swimming in the fish tank",
+        "mask_count": 20,
+        "mask_union_fraction": 0.10058497299382715
+      }
+    }
+  ],
+  "findings": [
+    "final_manager invokes final_aux_worker.py for SAM and config_worker.py for DiffV2IR.",
+    "SAM uses SamAutomaticMaskGenerator.generate(rgb) over the current full RGB frame; all predicted segmentations are unioned. No GT boxes or GT masks are passed as SAM prompts in the active implementation.",
+    "The production plan reads annotation tables for frame IDs, RGB paths and split membership; annotation boxes are not passed to image generation.",
+    "DiffV2IR conditioning uses the current RGB image, automatic SAM union and fixed caption; the output is grayscale PNG.",
+    "The fixed caption is there are goldfish swimming in the fish tank, with seed 20261101 and M3FD EMA weights."
+  ],
+  "limitations": [
+    "This code/metadata audit is not an independent rerun of all 48070 historical generation jobs.",
+    "Test-sequence generation probes and historical tracker tuning were used previously; downstream comparison is not a blind benchmark.",
+    "The old archived legacy IR has a separate provenance and is not relabelled as the audited causal cache or physical sensor data."
+  ]
+}

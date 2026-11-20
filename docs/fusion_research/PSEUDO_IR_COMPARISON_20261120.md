@@ -53,6 +53,16 @@ the original dataset's `train` folder. The reader repeats scalar intensity
 into three channels without an INFERNO colour map. Missing generated files
 raise an error; no other image source or split is substituted.
 
+A read-only audit of the preserved generation implementation confirmed that
+SAM calls `SamAutomaticMaskGenerator.generate(rgb)` and unions its automatic
+masks. GT boxes/masks are not supplied as SAM prompts in that implementation;
+the annotation table is used to enumerate frame IDs, paths and splits.
+DiffV2IR conditions on the current RGB, automatic SAM union and fixed caption.
+Six source hashes and two representative Train/Test metadata records are in
+[`PSEUDO_IR_GENERATION_PROVENANCE_20261120.json`](PSEUDO_IR_GENERATION_PROVENANCE_20261120.json).
+This source audit does not remove the historical Test-based configuration
+selection limitation or independently replay all generation jobs.
+
 ## Fixed training and evaluation
 
 Train consists of six complete videos / 27,251 frames; Dev consists of
