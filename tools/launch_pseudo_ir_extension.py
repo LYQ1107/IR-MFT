@@ -100,6 +100,10 @@ class Campaign:
         write(self.state_path, self.state)
 
     def prerequisites(self):
+        for gpu in [2, 3]:
+            state_path = self.short / f"queue_gpu{gpu}.state.json"
+            if state_path.exists() and read(state_path)["status"] == "FAILED":
+                raise RuntimeError(f"Short prerequisite failed: {read(state_path)}")
         expected = [self.short / f"eval_{arm}_{split}/metrics.json"
                     for arm in ["rgb_original", "old_legacy", "new_diffv2ir", "rgb_matched"]
                     for split in ["dev", "test"]]
@@ -119,9 +123,13 @@ class Campaign:
                 and cache["split"] == "train" and Path(cache["cache_root"]).is_dir()
                 and cache["bytes"] <= 10 * 2**30):
             raise RuntimeError("Invalid bounded Train byte cache")
+        previous_cache = read(self.short / "train_byte_cache_manifest.json")
+        if cache["source_root"] != previous_cache["source_root"] or cache["files"] != previous_cache["files"]:
+            raise RuntimeError("Generated Train bytes differ from the short comparison")
         self.cache_root = cache["cache_root"]
         compact = {key: value for key, value in cache.items() if key != "files"}
         compact["manifest_sha256"] = digest(self.args.cache_manifest)
+        compact["matches_short_campaign_train_bytes"] = True
         write(self.root / "train_byte_cache_summary.json", compact)
         return True
 
