@@ -7,6 +7,25 @@ new experiment using the actual November fixed-caption DiffV2IR PNGs. Earlier
 HOTA 49.297/53.591 identity experiments and F1–F3 background-difference
 experiments are historical evidence and are not substituted for these runs.
 
+## Completed original baseline
+
+The preserved single-branch visible detector has now been evaluated on both
+complete splits with the common ByteTrack settings below. These are reference
+results only; old/new auxiliary adaptation and the RGB training control are
+still running. No auxiliary improvement can be inferred from this table.
+
+| Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original RGB ByteTrack | Dev | 4,834 | 43.936 | 70.257 | 27.514 | 50.402 | 91.472 | 83 |
+| Original RGB ByteTrack | Test | 15,985 | 29.191 | 43.866 | 19.570 | 30.932 | 47.207 | 390 |
+
+The machine-readable
+[`PSEUDO_IR_COMPARISON_20261120_RESULTS.json`](PSEUDO_IR_COMPARISON_20261120_RESULTS.json)
+records completion status, source hashes and all official TrackEval metrics.
+[`PSEUDO_IR_COMPARISON_20261120_TABLES.md`](PSEUDO_IR_COMPARISON_20261120_TABLES.md)
+includes individual sequence results. Its `INCOMPLETE` status remains until
+all four arms have complete Dev/Test evaluations.
+
 ## Inputs and method
 
 The main method is the previous V3 gated-residual detector followed by the
