@@ -1,5 +1,5 @@
 {
-  "status": "INCOMPLETE_INFERENCE_REPLAYS_RESTARTED",
+  "status": "BOTH_INCOMPLETE_TEST_REPLAYS_COMPLETED_AND_AUDITED",
   "interruption_audit": {
     "time": "2026-11-21 01:27:21",
     "terminal_session": 16782,
@@ -98,5 +98,17 @@
       "started_unix": 1795195714.6614096
     }
   ],
-  "recovery_policy": "Only absent workers without complete metrics were replayed; retain full model training and all completed metric artifacts. Live workers and independent sessions are now inspected through /proc and file logs, without closing their legacy terminal handles."
+  "recovery_policy": "Only absent workers without complete metrics were replayed; retain full model training and all completed metric artifacts. Live workers and independent sessions are now inspected through /proc and file logs, without closing their legacy terminal handles.",
+  "rgb_replay_completion": {
+    "frames": 15985,
+    "checkpoint_sha256": "e9f5de7fa48ce71ecc4b96e43da5d16baa6423216230d62a5b63b25773439065",
+    "metrics_sha256": "acce36808835948402ba4dd91d7271c58939ba4e6b7b245a5235890c12fb4d71",
+    "all_sequence_frame_ids_verified_by_summary": true
+  },
+  "reference_replay_completion": {
+    "frames": 15985,
+    "checkpoint_sha256": "c448238beaa8540860d17f6a022d99b29b1407649823398a8553fa0890b6d786",
+    "metrics_sha256": "43daa36263edcc3718d2a565b9dda2eca85b00acad90182b579c116625e241a3",
+    "all_sequence_frame_ids_verified_by_summary": true
+  }
 }

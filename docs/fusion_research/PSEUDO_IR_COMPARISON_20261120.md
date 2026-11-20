@@ -1,6 +1,6 @@
 # Downstream comparison of the November DiffV2IR images
 
-Status: **RUNNING — no new-modality tracking improvement is claimed yet.**
+Status: **COMPLETE — eight main and two historical-reference evaluations audited.**
 
 The frozen plan is `configs/pseudo_ir_comparison_20261120.json`. This is a
 new experiment using the actual November fixed-caption DiffV2IR PNGs. Earlier
@@ -12,9 +12,8 @@ experiments are historical evidence and are not substituted for these runs.
 The preserved single-branch visible detector has now been evaluated on both
 complete splits with the common ByteTrack settings below. These are reference
 results. Both auxiliary training runs completed three calibration plus three
-joint epochs. The RGB control also completed its three joint epochs and Dev
-evaluation. The RGB-control Test replay is still running. The new-input and
-old-input Test evaluations and all four Dev evaluations are complete.
+joint epochs. The RGB control also completed its three joint epochs. All four
+arms now have complete Dev and Test evaluations with verified frame coverage.
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -25,6 +24,7 @@ old-input Test evaluations and all four Dev evaluations are complete.
 | V3 + new DiffV2IR | Dev | 4,834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
 | V3 + new DiffV2IR | Test | 15,985 | 29.195 | 43.916 | 19.487 | 32.678 | 49.603 | 383 |
 | RGB matched fine-tune + ByteTrack | Dev | 4,834 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94 |
+| RGB matched fine-tune + ByteTrack | Test | 15,985 | 29.529 | 46.187 | 18.968 | 33.072 | 50.898 | 450 |
 
 At this short budget, new-minus-old Dev HOTA is+0.472 percentage points,
 IDF1+0.940, MOTA-0.121 and IDSW+19. The changes are mixed. Both paired arms
@@ -37,7 +37,11 @@ The complete Test reverses the new-versus-old Dev direction: new-minus-old
 HOTA-0.543pp, DetA-2.679pp, AssA+0.419pp, IDF1-1.058pp, MOTA-2.064pp and
 IDSW-72. Against the original unadapted RGB checkpoint, new-input HOTA changes
 by only+0.004pp, while IDF1+1.746pp, MOTA+2.396pp and IDSW-7. This is not a
-clear HOTA improvement. The equally fine-tuned RGB Test control is pending.
+clear HOTA improvement. The equally fine-tuned RGB Test control reaches
+HOTA29.529. New-minus-matched-RGB Test HOTA is-0.334pp, DetA-2.271pp,
+AssA+0.519pp, IDF1-0.394pp, MOTA-1.295pp and IDSW-67. The short budget
+therefore does not establish a benefit from the new auxiliary input over
+either the matched RGB control or the old auxiliary input.
 
 The largest new-versus-old loss is the dense49-fish MSK-003 sequence:
 HOTA-8.503pp and DetA-13.883pp. BT-002/BT-004/PF-002 improve in HOTA, while
@@ -47,7 +51,7 @@ Across Test, old/new CLEAR false negatives are43,371/49,455 and false
 positives26,214/23,193; emitted track detections are127,755/118,650. The72
 fewer switches occur alongside6,084 more misses and9,105 fewer emitted
 detections, so switch counts alone do not establish better association.
-The observed failure is concentrated in detection recall on the dense scene;
+The observed downstream failure is concentrated in tracker-output recall on the dense scene;
 the generator's causal mechanism is not proven by these downstream scores.
 
 Both paired joint training losses were still decreasing at the final epoch;
@@ -58,17 +62,34 @@ extends all three adapted arms to at least12 and at most24 joint epochs:
 [`PSEUDO_IR_BUDGET_EXTENSION_20261121.md`](PSEUDO_IR_BUDGET_EXTENSION_20261121.md).
 These short-budget results and checkpoints remain intact.
 
+![Audited short-budget overview](PSEUDO_IR_COMPARISON_20261120_OVERVIEW.png)
+
+The overview shows both full-split HOTA tables, every Test sequence's
+new-minus-old HOTA and the still-decreasing joint losses. It is generated
+from the audited JSON by `tools/plot_pseudo_ir_comparison.py`; the185,768-byte
+PNG is a lightweight analysis artifact. Original RGB has no adaptation;
+the other three arms have three joint epochs and the paired arms also have
+their three calibration epochs.
+
 The machine-readable
 [`PSEUDO_IR_COMPARISON_20261120_RESULTS.json`](PSEUDO_IR_COMPARISON_20261120_RESULTS.json)
 records completion status, source hashes and all official TrackEval metrics.
 [`PSEUDO_IR_COMPARISON_20261120_TABLES.md`](PSEUDO_IR_COMPARISON_20261120_TABLES.md)
-includes individual sequence results. Its `INCOMPLETE` status remains until
-all four arms have complete Dev/Test evaluations.
-The secondary historical V3 Dev replay is now also complete: HOTA46.091,
-DetA70.212, AssA30.276, IDF152.621, MOTA92.011 and IDSW106. It uses its
-preserved checkpoint and original normalization, with a different training
-history from the matched arms. Its fresh replay is reported separately;
-earlier historical numbers are not substituted for current measurements.
+includes individual sequence results and supplementary detection components.
+The final export passed `--require-complete --require-historical-reference`:
+eight main and two secondary-reference evaluations, with zero missing items.
+The secondary historical V3 replay uses its preserved checkpoint and original
+normalization, with a different training history from the matched arms:
+
+| Historical reference | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Dev | 46.091 | 70.212 | 30.276 | 52.621 | 92.011 | 106 |
+| Test | 30.551 | 48.513 | 19.336 | 33.676 | 51.957 | 504 |
+
+This frozen reference is stronger on Test HOTA than all three short-budget
+adaptations. It is included as context, without treating its different
+training history as a matched-input ablation. Earlier historical Test31.091
+is not substituted for this fresh30.551 replay under the current protocol.
 
 ## Inputs and method
 

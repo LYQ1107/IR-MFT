@@ -7,12 +7,14 @@
 | V3 + new DiffV2IR | dev | 4834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108.000 |
 | V3 + new DiffV2IR | test | 15985 | 29.195 | 43.916 | 19.487 | 32.678 | 49.603 | 383.000 |
 | RGB matched fine-tune + ByteTrack | dev | 4834 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94.000 |
+| RGB matched fine-tune + ByteTrack | test | 15985 | 29.529 | 46.187 | 18.968 | 33.072 | 50.898 | 450.000 |
 
 Secondary reference; its training history and budget differ from the matched arms:
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Historical frozen V3 (different training budget) | dev | 4834 | 46.091 | 70.212 | 30.276 | 52.621 | 92.011 | 106.000 |
+| Historical frozen V3 (different training budget) | test | 15985 | 30.551 | 48.513 | 19.336 | 33.676 | 51.957 | 504.000 |
 
 Supplementary official TrackEval components on the tracker outputs. DetRe/DetPr/LocA average
 the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw detector AP.
@@ -26,7 +28,9 @@ the HOTA IoU thresholds; CLEAR recall/precision use IoU0.5. These are not raw de
 | V3 + new DiffV2IR | dev | 73.569 | 76.189 | 79.789 | 93.509 | 96.839 | 3016 | 1418 | 374 |
 | V3 + new DiffV2IR | test | 50.366 | 61.514 | 74.492 | 65.872 | 80.453 | 49455 | 23193 | 2069 |
 | RGB matched fine-tune + ByteTrack | dev | 73.813 | 75.977 | 79.729 | 93.778 | 96.526 | 2891 | 1568 | 375 |
+| RGB matched fine-tune + ByteTrack | test | 53.525 | 61.103 | 74.336 | 69.404 | 79.230 | 44338 | 26366 | 2272 |
 | Historical frozen V3 (different training budget) | dev | 75.437 | 77.232 | 80.780 | 94.957 | 97.217 | 2343 | 1263 | 341 |
+| Historical frozen V3 (different training budget) | test | 56.414 | 61.440 | 74.370 | 72.062 | 78.482 | 40485 | 28631 | 2394 |
 
 Individual sequences (TrackEval percentages; IDSW is a count):
 
@@ -61,5 +65,19 @@ Individual sequences (TrackEval percentages; IDSW is a count):
 | V3 + new DiffV2IR | test | SN-014 | 32.591 | 57.263 | 18.628 | 38.882 | 73.301 | 79.000 |
 | RGB matched fine-tune + ByteTrack | dev | BT-005 | 55.174 | 69.658 | 43.722 | 71.457 | 92.268 | 23.000 |
 | RGB matched fine-tune + ByteTrack | dev | SN-013 | 41.901 | 68.358 | 25.744 | 45.644 | 88.852 | 71.000 |
+| RGB matched fine-tune + ByteTrack | test | BT-002 | 40.641 | 43.789 | 37.853 | 53.296 | 29.513 | 14.000 |
+| RGB matched fine-tune + ByteTrack | test | BT-004 | 46.118 | 61.090 | 34.887 | 58.791 | 82.163 | 13.000 |
+| RGB matched fine-tune + ByteTrack | test | MSK-003 | 23.484 | 22.214 | 25.251 | 29.390 | 15.032 | 48.000 |
+| RGB matched fine-tune + ByteTrack | test | PF-002 | 59.151 | 63.774 | 54.864 | 83.870 | 84.533 | 3.000 |
+| RGB matched fine-tune + ByteTrack | test | SN-009 | 26.135 | 57.327 | 11.980 | 26.737 | 71.956 | 136.000 |
+| RGB matched fine-tune + ByteTrack | test | SN-011 | 20.170 | 41.192 | 10.037 | 21.636 | 32.043 | 150.000 |
+| RGB matched fine-tune + ByteTrack | test | SN-014 | 34.639 | 58.225 | 20.698 | 40.439 | 74.063 | 86.000 |
 | Historical frozen V3 (different training budget) | dev | BT-005 | 52.663 | 70.670 | 39.256 | 65.864 | 93.135 | 33.000 |
 | Historical frozen V3 (different training budget) | dev | SN-013 | 41.174 | 69.957 | 24.277 | 43.897 | 91.277 | 73.000 |
+| Historical frozen V3 (different training budget) | test | BT-002 | 39.762 | 46.042 | 34.385 | 51.152 | 28.276 | 22.000 |
+| Historical frozen V3 (different training budget) | test | BT-004 | 49.578 | 60.617 | 40.593 | 67.026 | 81.429 | 11.000 |
+| Historical frozen V3 (different training budget) | test | MSK-003 | 29.248 | 32.983 | 26.292 | 36.973 | 20.172 | 73.000 |
+| Historical frozen V3 (different training budget) | test | PF-002 | 60.566 | 65.239 | 56.228 | 85.009 | 86.800 | 3.000 |
+| Historical frozen V3 (different training budget) | test | SN-009 | 25.617 | 58.050 | 11.374 | 25.476 | 71.961 | 150.000 |
+| Historical frozen V3 (different training budget) | test | SN-011 | 18.477 | 40.801 | 8.532 | 18.584 | 29.584 | 160.000 |
+| Historical frozen V3 (different training budget) | test | SN-014 | 34.833 | 59.770 | 20.383 | 40.404 | 77.742 | 85.000 |

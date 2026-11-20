@@ -1,6 +1,6 @@
 # Dev-driven extension of the pseudo-IR training budget
 
-Status: **QUEUED — waiting for the remaining short-budget Test/reference replays.**
+Status: **RUNNING — two paired continuation workers started on physical GPU2/GPU3.**
 
 The first paired comparison contains three auxiliary calibration epochs and
 only three joint detector epochs. It starts from an existing visible detector,
@@ -19,6 +19,14 @@ the short new-input Test evaluation completed:
 [`pseudo_ir_budget_extension_20261121.json`](../../configs/pseudo_ir_budget_extension_20261121.json).
 Previously observed short outcomes are listed in the plan; this is not a
 claim that all earlier Test results were unseen.
+All eight short main evaluations and two historical-reference replays passed
+the complete coverage/protocol audit before continuation began. The
+independent-session launcher started new-input training on GPU2 and old-input
+training on GPU3 at2026-11-21 01:53 CST. Both resume the full original
+three-calibration-plus-three-joint checkpoint; the first stage adds joint
+epochs4–6. The RGB control receives the same minimum/conditional joint budget
+as GPU slots become available. CLI maximum24 is the predeclared upper bound,
+not a claim that24 epochs have already completed.
 
 All three adapted arms resume their original full checkpoint: RGB only, V3
 with archived legacy IR, and V3 with the November DiffV2IR images. Each must

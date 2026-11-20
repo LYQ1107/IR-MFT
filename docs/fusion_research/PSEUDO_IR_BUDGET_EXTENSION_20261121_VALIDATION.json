@@ -90,5 +90,173 @@
     "seconds": 1569.8559020130197,
     "matches_short_campaign_train_bytes": true,
     "manifest_sha256": "69a91c0b618326af904605b92121125eaca875c518cec808dc7d91d53d16b25f"
+  },
+  "formal_continuation_start": {
+    "status": "PAIRED_CONTINUATION_WORKERS_LIVE",
+    "checked_at": "2026-11-21 01:54:59",
+    "common_target_joint_budget": 12,
+    "workers": [
+      {
+        "job": {
+          "arm": "new_diffv2ir",
+          "kind": "train",
+          "joint_epochs": 6,
+          "pid": 1427733,
+          "physical_gpu": 2,
+          "folder": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir",
+          "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/joint06.process.log",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "/data3/liuyeqiang/IR-MFT/tools/run_pseudo_ir_comparison.py",
+            "train",
+            "--ckpt",
+            "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+            "--resume",
+            "--batch-size",
+            "8",
+            "--accumulate",
+            "1",
+            "--workers",
+            "4",
+            "--calibration-epochs",
+            "3",
+            "--finetune-epochs",
+            "24",
+            "--continuation-plan",
+            "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+            "--stop-after-joint-epochs",
+            "6",
+            "--variant",
+            "diffv2ir",
+            "--reserve-gib",
+            "40",
+            "--output",
+            "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir"
+          ],
+          "started_unix": 1795197218.6327722
+        },
+        "selected_initial_environment": {
+          "CUDA_VISIBLE_DEVICES": "2",
+          "MFT26IR_GENERATED_IR_ROOT": "/dev/shm/ir_mft_diffv2ir_train_long_20261121"
+        },
+        "resume": {
+          "completed_epochs": 6,
+          "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+          "source_sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940"
+        },
+        "continuation": {
+          "plan": "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+          "plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        },
+        "execution_event": {
+          "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+          "source_sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940",
+          "completed_epochs": 6,
+          "target_joint_epochs": 6,
+          "physical_gpu": "2",
+          "git_commit": "0e2d1b76538c6892a71bb7f91bee28c820ca6a51",
+          "runner_sha256": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+          "started_unix": 1795197237.70671
+        },
+        "first_100_update_progress": {
+          "epoch": 7,
+          "phase": "V3_finetune",
+          "step": 100,
+          "steps": 3407,
+          "frames": 800,
+          "mean_loss": 3.038236827850342,
+          "seconds": 42.38001802796498,
+          "fps": 18.87682066279703,
+          "lr": 2.5e-05,
+          "gpu_peak_gib": 14.497847080230713,
+          "skipped_amp_updates": 0
+        }
+      },
+      {
+        "job": {
+          "arm": "old_legacy",
+          "kind": "train",
+          "joint_epochs": 6,
+          "pid": 1427734,
+          "physical_gpu": 3,
+          "folder": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy",
+          "log": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/joint06.process.log",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "/data3/liuyeqiang/IR-MFT/tools/run_pseudo_ir_comparison.py",
+            "train",
+            "--ckpt",
+            "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/latest_ckpt.pth.tar",
+            "--resume",
+            "--batch-size",
+            "8",
+            "--accumulate",
+            "1",
+            "--workers",
+            "4",
+            "--calibration-epochs",
+            "3",
+            "--finetune-epochs",
+            "24",
+            "--continuation-plan",
+            "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+            "--stop-after-joint-epochs",
+            "6",
+            "--variant",
+            "legacy",
+            "--reserve-gib",
+            "40",
+            "--ir-stats",
+            "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json",
+            "--output",
+            "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy"
+          ],
+          "started_unix": 1795197218.6343431
+        },
+        "selected_initial_environment": {
+          "CUDA_VISIBLE_DEVICES": "3"
+        },
+        "resume": {
+          "completed_epochs": 6,
+          "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/latest_ckpt.pth.tar",
+          "source_sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040"
+        },
+        "continuation": {
+          "plan": "/data3/liuyeqiang/IR-MFT/configs/pseudo_ir_budget_extension_20261121.json",
+          "plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        },
+        "execution_event": {
+          "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/latest_ckpt.pth.tar",
+          "source_sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040",
+          "completed_epochs": 6,
+          "target_joint_epochs": 6,
+          "physical_gpu": "3",
+          "git_commit": "0e2d1b76538c6892a71bb7f91bee28c820ca6a51",
+          "runner_sha256": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+          "started_unix": 1795197238.1260257
+        },
+        "first_100_update_progress": {
+          "epoch": 7,
+          "phase": "V3_finetune",
+          "step": 100,
+          "steps": 3407,
+          "frames": 800,
+          "mean_loss": 3.0175847780704497,
+          "seconds": 41.86844624095829,
+          "fps": 19.10746807741317,
+          "lr": 2.5e-05,
+          "gpu_peak_gib": 14.497847080230713,
+          "skipped_amp_updates": 0
+        }
+      }
+    ]
+  },
+  "continuation_summary_preflight": {
+    "status": "INCOMPLETE_EXPECTED",
+    "audited_prefix_Dev_checkpoints": 3,
+    "selected_final_Test_evaluations": 0,
+    "scope": "Actual initialized campaign passes prefix, normalization, LR and Dev-selection audits; extended checkpoints and final selected Test remain outstanding."
   }
 }
