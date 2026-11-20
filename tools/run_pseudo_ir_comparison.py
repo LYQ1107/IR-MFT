@@ -185,7 +185,7 @@ def train(args, exp, model, mapping):
         checkpoint = torch.load(args.ckpt, map_location="cpu", weights_only=False)
         prior = checkpoint["manifest"]
         for key in ["variant", "seed", "train_size", "batch_size", "accumulate",
-                    "calibration_epochs", "finetune_epochs", "lr", "ir_stats"]:
+                    "calibration_epochs", "finetune_epochs", "lr", "calibration_lr", "ir_stats"]:
             if prior[key] != manifest[key]:
                 raise ValueError(f"Resume configuration changed: {key}")
         optimizer.load_state_dict(checkpoint["optimizer"])
@@ -209,7 +209,11 @@ def train(args, exp, model, mapping):
         train_mode(model, args.variant, calibration)
         phase_epoch = epoch if calibration else epoch - calibration_epochs
         phase_epochs = calibration_epochs if calibration else args.finetune_epochs
-        lr = args.lr * (0.2 + 0.8 * (1 + math.cos(math.pi * phase_epoch / max(phase_epochs, 1))) / 2)
+        # Original V2/V3 rates are specified at reference batch64.
+        reference_lr = args.calibration_lr if calibration else args.lr
+        effective_batch = args.batch_size * args.accumulate
+        lr = reference_lr * effective_batch / 64.0 * (0.2 + 0.8 * (
+            1 + math.cos(math.pi * phase_epoch / max(phase_epochs, 1))) / 2)
         for group in optimizer.param_groups:
             group["lr"] = lr
         running = 0.0
@@ -365,6 +369,7 @@ def main():
     parser.add_argument("--calibration-epochs", type=int, default=3)
     parser.add_argument("--finetune-epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=0.0002)
+    parser.add_argument("--calibration-lr", type=float, default=0.001)
     parser.add_argument("--memory-fraction", type=float, default=0.55)
     parser.add_argument("--reserve-gib", type=float, default=40.0)
     parser.add_argument("--max-steps", type=int, default=0)

@@ -40,7 +40,11 @@ Train consists of six complete videos / 27,251 frames; Dev consists of
 BT-005 and SN-013 / 4,834 frames; historical Test consists of seven complete
 videos / 15,985 frames. New adaptation excludes Dev. Both paired arms use
 seed0, 480x864 training, effective batch8, SGD with momentum0.9, Nesterov,
-weight decay0.0005, initial LR0.0002 and the same phase-wise cosine schedule.
+weight decay0.0005 and the same phase-wise cosine schedule. Original V2/V3
+rates are scaled from the reference batch64: effective batch8 starts at
+LR0.000125 for IR calibration and LR0.000025 for V3 joint fine-tuning.
+The per-image LR semantics were corrected before any paired-arm evaluation;
+the incomplete earlier prototype is preserved separately and excluded.
 The synchronized horizontal flip is the only random image augmentation.
 BatchNorm running statistics remain fixed for the small training batch in
 all arms. EMA weights from the fixed final epoch are evaluated.
