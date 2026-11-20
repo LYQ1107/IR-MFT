@@ -1,0 +1,95 @@
+# Downstream comparison of the November DiffV2IR images
+
+Status: **RUNNING — no new-modality tracking improvement is claimed yet.**
+
+The frozen plan is `configs/pseudo_ir_comparison_20261120.json`. This is a
+new experiment using the actual November fixed-caption DiffV2IR PNGs. Earlier
+HOTA 49.297/53.591 identity experiments and F1–F3 background-difference
+experiments are historical evidence and are not substituted for these runs.
+
+## Inputs and method
+
+The main method is the previous V3 gated-residual detector followed by the
+unchanged ByteTrack association. It isolates the auxiliary image treatment.
+The A/B/C identity modules are not part of this campaign and are not credited
+with any gain in this comparison.
+
+| Arm | Detector initialization | Auxiliary data | Adaptation |
+| --- | --- | --- | --- |
+| Original RGB ByteTrack | preserved visible checkpoint | none | none |
+| V3 + old IR | same visible checkpoint copied into both branches | original dataset `infrared/*.jpg` | 3 IR-only calibration epochs + 3 V3 joint epochs |
+| V3 + new IR | same visible checkpoint copied into both branches | November DiffV2IR grayscale PNGs | identical old-IR budget |
+| RGB training control | same visible checkpoint | none | same 3 RGB/head fine-tuning epochs as the paired arms |
+
+At the new execution audit, the old causal-cache frame directories were
+empty although their metadata remained. The paired old-IR arm therefore uses
+the physically present archived `infrared` JPEGs, explicitly recorded in the
+frozen-plan amendment before paired training. It is not labelled as a causal
+background-difference run.
+
+DiffV2IR files are read in place from
+`/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation`.
+Dev has its own auxiliary directory even though the Dev RGB frames remain in
+the original dataset's `train` folder. The reader repeats scalar intensity
+into three channels without an INFERNO colour map. Missing generated files
+raise an error; no other image source or split is substituted.
+
+## Fixed training and evaluation
+
+Train consists of six complete videos / 27,251 frames; Dev consists of
+BT-005 and SN-013 / 4,834 frames; historical Test consists of seven complete
+videos / 15,985 frames. New adaptation excludes Dev. Both paired arms use
+seed0, 480x864 training, effective batch8, SGD with momentum0.9, Nesterov,
+weight decay0.0005, initial LR0.0002 and the same phase-wise cosine schedule.
+The synchronized horizontal flip is the only random image augmentation.
+BatchNorm running statistics remain fixed for the small training batch in
+all arms. EMA weights from the fixed final epoch are evaluated.
+
+The new input uses exact full-Train scalar normalization mean0.3187656968 /
+std0.1145435886, replicated across channels. The old input uses an exact
+RGB-order histogram over all original Train IR pixels; no Dev/Test pixels
+are used to calculate normalization.
+
+All tracking evaluations use 800x1440, confidence0.1, NMS0.7,
+track-threshold0.6, buffer30, match-threshold0.9, frame-rate25 and
+minimum box area100 with the same protocol-derived GT and TrackEval.
+The final table must include HOTA, DetA, AssA, IDF1, MOTA and IDSW, with
+new-minus-old and new-minus-RGB differences. It must not subtract the earlier
+six-video identity experiment from the two-video Dev experiment.
+
+Only physical GPU2/GPU3 are used. Jobs on other GPUs and unrelated jobs on
+these cards are not modified. Concurrent load makes recorded throughput a
+shared-host observation, not a controlled speed benchmark. Inference batches
+independent frames and then runs ByteTrack sequentially; reported replay FPS
+is not raw single-frame end-to-end online throughput.
+
+## Storage and recovery
+
+Experiment outputs are external under
+`/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120`.
+Each training arm retains one atomic checkpoint with training model, EMA,
+optimizer, scaler and epoch-boundary RNG states; no epoch-snapshot series is
+created. Generated images are not copied. Only compressed post-NMS boxes,
+text tracks and small reports are exported. The local reserve is 40 GiB.
+A disposable 2.1 GiB smoke checkpoint was removed after the training check.
+
+`tools/launch_pseudo_ir_campaign.py` runs dependent jobs per GPU and retains
+commands, PIDs, logs and failure states. Resume uses the saved full epoch
+boundary; no incomplete run is silently counted as a completed experiment.
+`tools/summarize_pseudo_ir_comparison.py --require-complete` verifies frame
+and sequence coverage and common tracker thresholds before final reporting.
+
+The reader tests verify Dev namespace isolation, scalar replication and
+failure on missing generated frames. The full local suite passed 9 tests
+with the actual dataset root set; GPU smoke training had finite loss and no
+skipped updates after standard AMP scale handling was corrected.
+
+## Scientific limits
+
+The visible initialization historically saw all eight original Train videos,
+including the current Dev videos. The historical Test videos participated in
+past tracking tuning and DiffV2IR configuration probes. This comparison is
+therefore a frozen downstream diagnostic, not a new blind benchmark. The
+initial comparison uses one training seed. Any positive result must be
+reported with these limits and cannot establish independent-sensor thermal
+information or seed-independent improvement.

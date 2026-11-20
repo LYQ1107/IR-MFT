@@ -70,7 +70,7 @@ def make_parser():
     parser.add_argument(
         "--auxiliary-mode",
         default=None,
-        choices=("legacy", "causal", "causal_cache", "zero", "shuffle", "repeat_rgb", "grayscale_rgb"),
+        choices=("legacy", "causal", "causal_cache", "diffv2ir", "zero", "shuffle", "repeat_rgb", "grayscale_rgb"),
         help="auxiliary input intervention; causal mode forces sequential loading",
     )
     parser.add_argument(

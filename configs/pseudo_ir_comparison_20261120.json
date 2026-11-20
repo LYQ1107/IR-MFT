@@ -1,0 +1,59 @@
+{
+  "status": "FROZEN_BEFORE_OUTCOMES",
+  "purpose": "Measure downstream tracking benefit of the November fixed-caption DiffV2IR dataset against RGB and prior pseudo IR",
+  "allowed_physical_gpus": [2, 3],
+  "train_sequences": ["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+  "dev_sequences": ["BT-005", "SN-013"],
+  "test_sequences": ["BT-002", "BT-004", "MSK-003", "PF-002", "SN-009", "SN-011", "SN-014"],
+  "frames": {"train": 27251, "dev": 4834, "test": 15985},
+  "initialization": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/bytetrack_visible_last_epoch_ckpt.pth.tar",
+  "initialization_policy": "Same visible checkpoint and head; paired branches independently receive the same visible backbone; initial sigmoid fusion weight 0.05",
+  "main_arms": {
+    "rgb_original": "Original single-branch visible detector plus unchanged ByteTrack; no adaptation",
+    "old_legacy_v3": "V3 gated-residual structure; original archived infrared JPEG auxiliary",
+    "new_diffv2ir_v3": "Same V3 structure and training budget; November fixed-caption generated grayscale PNG repeated to three channels",
+    "rgb_matched_finetune": "Same visible initialization, same three RGB/head fine-tuning epochs as paired arms; no auxiliary branch"
+  },
+  "secondary_reference": "Frozen historical V3 with archived legacy auxiliary input; historical results never treated as the matched old/new retraining control",
+  "input_amendment_before_paired_training": "Previous causal-cache directories contain metadata but no frame files at the new execution audit. The physically present original infrared folders are explicitly the old-IR arm; no missing cache silently substituted.",
+  "training": {
+    "seed": 0,
+    "size_hw": [480, 864],
+    "batch_size_per_worker": 8,
+    "gradient_accumulation": 1,
+    "batch_memory_audit": "480x864, batch8 full backward measured 14.46 GiB peak; microbatch increased from4 to8 before formal training, effective batch remains8",
+    "auxiliary_calibration_epochs": 3,
+    "RGB_head_finetune_epochs": 3,
+    "calibration_scope": "IR backbone and sigmoid gates; RGB and head parameters fixed",
+    "finetune_scope": "All model parameters; pretrained BatchNorm running statistics fixed in every arm",
+    "optimizer": "SGD momentum0.9 Nesterov weight_decay0.0005",
+    "initial_lr": 0.0002,
+    "lr_schedule": "Cosine within each phase, floor0.2; identical for old/new",
+    "augmentations": "Shared horizontal flip p0.5 and resize/pad; no mosaic, mixup, random crop or test-driven tuning",
+    "normalization": "RGB ImageNet; each auxiliary uses only Train data statistics; new scalar statistics are exact full-Train values",
+    "EMA": true,
+    "selection": "Fixed final checkpoint; no Test-based selection or threshold tuning"
+  },
+  "evaluation": {
+    "size_hw": [800, 1440],
+    "batch_size": 4,
+    "conf": 0.1,
+    "nms": 0.7,
+    "track_thresh": 0.6,
+    "track_buffer": 30,
+    "match_thresh": 0.9,
+    "frame_rate": 25,
+    "min_box_area": 100,
+    "GT": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+    "metrics": ["HOTA", "DetA", "AssA", "IDF1", "MOTA", "IDSW"],
+    "runtime_scope": "Batched detector plus sequential ByteTrack replay; not single-frame end-to-end online FPS"
+  },
+  "generated_dataset": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+  "storage": {"local_reserve_gib": 40, "image_copy": false, "per_arm_checkpoint_files": 1, "commit_large_artifacts": false},
+  "limits": [
+    "Initial visible checkpoint historically saw all eight original Train videos including Dev; the new adaptation excludes Dev, but this is not whole-system unseen-scene validation",
+    "Historical Test sequences were used in past tracker tuning and in DiffV2IR generation configuration probes; they remain a frozen diagnostic evaluation, not a new blind benchmark",
+    "This campaign isolates pseudo-IR with the prior V3 fusion and ByteTrack. A/B/C identity modules are not silently credited with any measured gain",
+    "Single training seed is an initial downstream comparison and does not establish seed-independent superiority"
+  ]
+}

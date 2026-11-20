@@ -146,6 +146,8 @@ class Exp(MyExp):
             ),
             causal_alpha=self.causal_alpha,
             causal_cache_root=os.path.join(self.causal_cache_root, cache_name),
+            generated_ir_root=getattr(self, "generated_ir_root", None),
+            generated_ir_split=split,
             sequence_filter=sequence_filter,
         )
 

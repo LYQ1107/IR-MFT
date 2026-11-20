@@ -23,6 +23,7 @@ class MOTDatasetRGBT(MOTDataset):
         "repeat_rgb",
         "grayscale_rgb",
         "causal_cache",
+        "diffv2ir",
     }
 
     def __init__(
@@ -41,6 +42,8 @@ class MOTDatasetRGBT(MOTDataset):
         self.auxiliary_mode = auxiliary_mode
         self.causal_alpha = float(causal_alpha)
         self.causal_cache_root = kwargs.pop("causal_cache_root", None)
+        self.generated_ir_root = kwargs.pop("generated_ir_root", None)
+        self.generated_ir_split = kwargs.pop("generated_ir_split", None)
         self.sequence_filter = (
             set(sequence_filter) if sequence_filter is not None else None
         )
@@ -131,6 +134,25 @@ class MOTDatasetRGBT(MOTDataset):
                 raise FileNotFoundError(
                     f"Unable to read causal cache image: {cache_path}"
                 )
+        elif self.auxiliary_mode == "diffv2ir":
+            if not self.generated_ir_root or self.generated_ir_split not in {
+                "train", "dev", "test"
+            }:
+                raise ValueError("diffv2ir requires generated_ir_root and an explicit train/dev/test split")
+            sequence = vi_file_name.split("/", 1)[0]
+            stem = os.path.splitext(os.path.basename(vi_file_name))[0]
+            generated_path = os.path.join(
+                self.generated_ir_root, self.generated_ir_split, sequence,
+                "infrared_diffv2ir", stem + ".png",
+            )
+            scalar_ir = cv2.imread(generated_path, cv2.IMREAD_UNCHANGED)
+            if scalar_ir is None:
+                raise FileNotFoundError(f"Unable to read DiffV2IR image: {generated_path}")
+            if scalar_ir.ndim != 2 or scalar_ir.dtype != np.uint8:
+                raise ValueError(f"Expected uint8 single-channel DiffV2IR PNG: {generated_path}")
+            # The generated values are grayscale intensities, not INFERNO
+            # indices. Replicate without applying a colour map.
+            infrared = np.repeat(scalar_ir[:, :, None], 3, axis=2)
         elif self.auxiliary_mode == "zero":
             infrared = np.zeros_like(visible)
         elif self.auxiliary_mode == "repeat_rgb":
