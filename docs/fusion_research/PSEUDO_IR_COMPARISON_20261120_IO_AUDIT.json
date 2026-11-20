@@ -1,0 +1,82 @@
+{
+  "status": "ACTIVE_TEMPORARY_CACHE",
+  "cache": {
+    "complete": true,
+    "split": "train",
+    "frames": 27251,
+    "bytes": 7748699851,
+    "source_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+    "cache_root": "/dev/shm/ir_mft_diffv2ir_train_20261120",
+    "storage": "volatile_tmpfs_no_local_disk_copy",
+    "byte_identical": true,
+    "max_gib": 10.0,
+    "reserve_memory_gib": 40.0,
+    "seconds": 1193.0290393049945,
+    "manifest_sha256": "49d8376421f2d2b0bf31493ad7f117b4103955109dae388029d9dc4ba97dcc6f",
+    "train_only_namespace_verified": true
+  },
+  "switch": {
+    "time": "2026-11-20 22:20:12",
+    "old_pid": 1303620,
+    "stopped_data_worker_pids": [
+      1338130,
+      1338132,
+      1338134,
+      1338136
+    ],
+    "ignored_already_terminated_shell_children": [
+      1303873
+    ],
+    "completed_epochs": 1,
+    "volatile_root": "/dev/shm/ir_mft_diffv2ir_train_20261120",
+    "source_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+    "verified_files": 27251,
+    "verified_bytes": 7748699851,
+    "byte_cache_manifest_sha256": "49d8376421f2d2b0bf31493ad7f117b4103955109dae388029d9dc4ba97dcc6f",
+    "training_protocol_unchanged": true,
+    "restore_full_checkpoint_rng": true,
+    "prior_switch_safely_aborted": "An already terminated sh child had an empty cmdline; no training process was stopped by the earlier attempts",
+    "resumed_pid": 1339902,
+    "verified_environment": {
+      "CUDA_VISIBLE_DEVICES": "3",
+      "MFT26IR_GENERATED_IR_ROOT": "/dev/shm/ir_mft_diffv2ir_train_20261120"
+    }
+  },
+  "prefix_equivalence": {
+    "expected": {
+      "source": "NAS-backed epoch2 step100 progress observed before cache switch",
+      "epoch": 2,
+      "step": 100,
+      "frames": 800,
+      "mean_loss": 3.2701871585845947,
+      "lr": 0.0001
+    },
+    "actual": {
+      "epoch": 2,
+      "phase": "calibration",
+      "step": 100,
+      "steps": 3407,
+      "frames": 800,
+      "mean_loss": 3.2701871585845947,
+      "seconds": 43.31039821298327,
+      "fps": 18.471314811420548,
+      "lr": 0.0001,
+      "gpu_peak_gib": 8.369159698486328,
+      "skipped_amp_updates": 0
+    },
+    "absolute_mean_loss_difference": 0.0,
+    "within_1e_minus5": true,
+    "source_checkpoint": {
+      "completed_epochs": 1,
+      "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+      "source_sha256": "42ef0048a855349cdd489cc40b52049fa9d11fa0e4101a1cc902c824bf24636c"
+    },
+    "cache_root": "/dev/shm/ir_mft_diffv2ir_train_20261120",
+    "interpretation": "The first100-update mean loss repeats exactly after restoring the complete epoch checkpoint and changing only the byte-verified input root; this checks the observed scalar prefix, not bitwise equality of every parameter."
+  },
+  "actual_training_runner_sha256": "9ad2fcfa8991b36d4c652d4e7e22fca0b00ad0c836150002f075b19bbd9bbac5",
+  "preserved_original_NAS_stdout_sha256": "dcb7f8ec73cc59d27d9de0d2dfada6ff4913f233e94444f31230cce236220f14",
+  "evaluation_input_root": "Original NAS dataset; evaluation does not use this Train-only cache",
+  "cleanup": "Pending completion of new-input training; remove only the task-owned tmpfs directory",
+  "throughput_caveat": "Shared-host observation of this training prefix, not a controlled model-speed benchmark"
+}

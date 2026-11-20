@@ -108,6 +108,13 @@ Every cached PNG is checked against its source SHA256, no image transform is
 performed, and host available memory keeps a40 GiB reserve. Switching roots
 uses an exact saved epoch boundary and RNG state. The temporary cache is
 removed after training. Evaluation continues to use the original NAS root.
+The prepared cache contains all27,251 Train PNGs /7,748,699,851 bytes
+(7.22 GiB), each byte-verified. Training resumed from the complete first-epoch
+checkpoint with its saved model, optimizer, EMA, scaler and RNG states. The
+first100 updates of epoch2 reproduce the NAS run's mean loss exactly
+(3.2701871585845947); this is a scalar-prefix recovery check, not a claim that
+all parameters were independently compared bit by bit. The compact record is
+[`PSEUDO_IR_COMPARISON_20261120_IO_AUDIT.json`](PSEUDO_IR_COMPARISON_20261120_IO_AUDIT.json).
 Only compressed post-NMS boxes,
 text tracks and small reports are exported. The local reserve is 40 GiB.
 A disposable 2.1 GiB smoke checkpoint was removed after the training check.
