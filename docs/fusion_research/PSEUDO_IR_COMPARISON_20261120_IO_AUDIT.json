@@ -1,5 +1,5 @@
 {
-  "status": "ACTIVE_TEMPORARY_CACHE",
+  "status": "TEMPORARY_CACHE_REMOVED",
   "cache": {
     "complete": true,
     "split": "train",
@@ -77,6 +77,17 @@
   "actual_training_runner_sha256": "9ad2fcfa8991b36d4c652d4e7e22fca0b00ad0c836150002f075b19bbd9bbac5",
   "preserved_original_NAS_stdout_sha256": "dcb7f8ec73cc59d27d9de0d2dfada6ff4913f233e94444f31230cce236220f14",
   "evaluation_input_root": "Original NAS dataset; evaluation does not use this Train-only cache",
-  "cleanup": "Pending completion of new-input training; remove only the task-owned tmpfs directory",
+  "cleanup": {
+    "status": "COMPLETE",
+    "removed_unix": 1795191302.716793,
+    "time": "2026-11-21 00:15:02",
+    "removed_path": "/dev/shm/ir_mft_diffv2ir_train_20261120",
+    "removed_png_files": 27251,
+    "removed_file_bytes": 7748699851,
+    "storage": "volatile_tmpfs_RAM",
+    "new_training_epochs": 6,
+    "new_final_checkpoint_sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940",
+    "original_NAS_files_untouched": true
+  },
   "throughput_caveat": "Shared-host observation of this training prefix, not a controlled model-speed benchmark"
 }

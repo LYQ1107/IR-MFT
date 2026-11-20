@@ -108,7 +108,348 @@
       "Single training seed is an initial downstream comparison and does not establish seed-independent superiority"
     ]
   },
-  "training": {},
+  "training": {
+    "old_legacy": {
+      "manifest": {
+        "action": "train",
+        "variant": "legacy",
+        "ckpt": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/bytetrack_visible_last_epoch_ckpt.pth.tar",
+        "resume": false,
+        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0",
+        "seed": 0,
+        "batch_size": 8,
+        "accumulate": 1,
+        "train_size": [
+          480,
+          864
+        ],
+        "workers": 4,
+        "ir_stats": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json",
+        "calibration_epochs": 3,
+        "finetune_epochs": 3,
+        "lr": 0.0002,
+        "calibration_lr": 0.001,
+        "memory_fraction": 0.55,
+        "reserve_gib": 40.0,
+        "max_steps": 0,
+        "no_checkpoint": false,
+        "max_frames": 0,
+        "split": "dev",
+        "sequences": null,
+        "conf": 0.1,
+        "nms": 0.7,
+        "track_thresh": 0.6,
+        "track_buffer": 30,
+        "match_thresh": 0.9,
+        "skip_evaluation": false,
+        "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+        "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+        "physical_gpu": "2",
+        "initialization": "duplicate_RGB_into_both_branches",
+        "source_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+        "git_commit": "b07087a8fe5baac91661a8cce35f59e3046b4daf",
+        "train_frames": 27251,
+        "train_sequences": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "test_size": [
+          800,
+          1440
+        ],
+        "ir_means": [
+          0.07301626087164649,
+          0.03020227263580627,
+          0.05919517621276643
+        ],
+        "ir_std": [
+          0.21281907207233852,
+          0.11548947582450884,
+          0.11228541704390677
+        ],
+        "rgb_means": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "rgb_std": [
+          0.229,
+          0.224,
+          0.225
+        ],
+        "bn_policy": "frozen_all_running_statistics",
+        "torch": "2.6.0+cu118",
+        "checkpoint_selection": "fixed_final_epoch_not_Test",
+        "storage_free_gib": 82.5315933227539
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.3109833917066362,
+          "seconds": 1228.1904781360063,
+          "lr": 0.000125,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.050978317856788635,
+            0.050708577036857605,
+            0.050562940537929535
+          ]
+        },
+        {
+          "epoch": 2,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.290327220079239,
+          "seconds": 1250.0290665799985,
+          "lr": 0.0001,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.05163741856813431,
+            0.05128900334239006,
+            0.05101541802287102
+          ]
+        },
+        {
+          "epoch": 3,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.266459854005333,
+          "seconds": 1271.5004987309803,
+          "lr": 5.0000000000000016e-05,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.05208688974380493,
+            0.05171622708439827,
+            0.05128477141261101
+          ]
+        },
+        {
+          "epoch": 4,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.1915066214576298,
+          "seconds": 1661.1945511639933,
+          "lr": 2.5e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": [
+            0.05221610888838768,
+            0.05182014778256416,
+            0.051361583173274994
+          ]
+        },
+        {
+          "epoch": 5,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.1140758190331375,
+          "seconds": 1436.5752008589916,
+          "lr": 2e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": [
+            0.052312713116407394,
+            0.05189398676156998,
+            0.051420778036117554
+          ]
+        },
+        {
+          "epoch": 6,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.061075650424526,
+          "seconds": 1329.7506987599772,
+          "lr": 1.0000000000000004e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": [
+            0.05236170440912247,
+            0.051930058747529984,
+            0.05145063251256943
+          ]
+        }
+      ],
+      "completion": {
+        "status": "COMPLETE",
+        "epochs": 6,
+        "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/latest_ckpt.pth.tar",
+        "sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040"
+      }
+    },
+    "new_diffv2ir": {
+      "manifest": {
+        "action": "train",
+        "variant": "diffv2ir",
+        "ckpt": "/data3/liuyeqiang/IR-MFT_assets/checkpoints/bytetrack_visible_last_epoch_ckpt.pth.tar",
+        "resume": false,
+        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0",
+        "seed": 0,
+        "batch_size": 8,
+        "accumulate": 1,
+        "train_size": [
+          480,
+          864
+        ],
+        "workers": 4,
+        "ir_stats": null,
+        "calibration_epochs": 3,
+        "finetune_epochs": 3,
+        "lr": 0.0002,
+        "calibration_lr": 0.001,
+        "memory_fraction": 0.55,
+        "reserve_gib": 40.0,
+        "max_steps": 0,
+        "no_checkpoint": false,
+        "max_frames": 0,
+        "split": "dev",
+        "sequences": null,
+        "conf": 0.1,
+        "nms": 0.7,
+        "track_thresh": 0.6,
+        "track_buffer": 30,
+        "match_thresh": 0.9,
+        "skip_evaluation": false,
+        "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+        "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+        "physical_gpu": "3",
+        "initialization": "duplicate_RGB_into_both_branches",
+        "source_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+        "git_commit": "d104f8562323b2d478e2a2730ff1ed76f9c8dd21",
+        "train_frames": 27251,
+        "train_sequences": [
+          "BT-001",
+          "BT-003",
+          "MSK-002",
+          "PF-001",
+          "SN-001",
+          "SN-015"
+        ],
+        "test_size": [
+          800,
+          1440
+        ],
+        "ir_means": [
+          0.318765696840321,
+          0.318765696840321,
+          0.318765696840321
+        ],
+        "ir_std": [
+          0.11454358863241268,
+          0.11454358863241268,
+          0.11454358863241268
+        ],
+        "rgb_means": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "rgb_std": [
+          0.229,
+          0.224,
+          0.225
+        ],
+        "bn_policy": "frozen_all_running_statistics",
+        "torch": "2.6.0+cu118",
+        "checkpoint_selection": "fixed_final_epoch_not_Test",
+        "storage_free_gib": 82.56199645996094
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.312732502656281,
+          "seconds": 3707.325257123972,
+          "lr": 0.000125,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.051371678709983826,
+            0.050843819975852966,
+            0.050492171198129654
+          ]
+        },
+        {
+          "epoch": 2,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.292131774440202,
+          "seconds": 1313.6487277599517,
+          "lr": 0.0001,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.052071329206228256,
+            0.0514339879155159,
+            0.05089990422129631
+          ]
+        },
+        {
+          "epoch": 3,
+          "phase": "calibration",
+          "frames": 27251,
+          "loss": 3.277511802802941,
+          "seconds": 1321.9637991850032,
+          "lr": 5.0000000000000016e-05,
+          "skipped_amp_updates": 0,
+          "fusion_gates": [
+            0.05249866470694542,
+            0.05180922895669937,
+            0.051129043102264404
+          ]
+        },
+        {
+          "epoch": 4,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.21588003163048,
+          "seconds": 1377.205090161995,
+          "lr": 2.5e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": [
+            0.052588608115911484,
+            0.05190075561404228,
+            0.05120408907532692
+          ]
+        },
+        {
+          "epoch": 5,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.139990831492127,
+          "seconds": 1371.743713459,
+          "lr": 2e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": [
+            0.05266249552369118,
+            0.051971592009067535,
+            0.05126228183507919
+          ]
+        },
+        {
+          "epoch": 6,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.0873539358211257,
+          "seconds": 1350.3245705729933,
+          "lr": 1.0000000000000004e-05,
+          "skipped_amp_updates": 1,
+          "fusion_gates": [
+            0.05269775912165642,
+            0.05200614780187607,
+            0.051291324198246
+          ]
+        }
+      ],
+      "completion": {
+        "status": "COMPLETE",
+        "epochs": 6,
+        "checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+        "sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940"
+      }
+    }
+  },
   "evaluations": [
     {
       "arm": "rgb_original",
@@ -218,6 +559,22 @@
           "IDs": 42,
           "GT_IDs": 11,
           "CLR_Frames": 3000
+        }
+      },
+      "detection_coverage": {
+        "BT-005": {
+          "frames": 1834,
+          "detections": 19436,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "b8258462c148b2b8d8a8b36dfb4afde4e288705e4bb9f76bdb54deb7115c5833",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_dev/detections/BT-005.npz"
+        },
+        "SN-013": {
+          "frames": 3000,
+          "detections": 31403,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "12ddf033c1ad334934bdf75ac7c5399eff979fe82cbc917c1878cd6819186381",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_dev/detections/SN-013.npz"
         }
       },
       "runtime": {
@@ -526,6 +883,57 @@
           "CLR_Frames": 2100
         }
       },
+      "detection_coverage": {
+        "BT-002": {
+          "frames": 493,
+          "detections": 5346,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "e4b1786dba02d84bdd2df7a629a0ed7ab0ccfa7d8c295c51bff259bf30273f43",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/BT-002.npz"
+        },
+        "BT-004": {
+          "frames": 763,
+          "detections": 8846,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "23ead4ac0f00ce4c95e38b934bbf365f3904fd9b015e067d0147f49e73ddcb9b",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/BT-004.npz"
+        },
+        "MSK-003": {
+          "frames": 629,
+          "detections": 32167,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "0d450d7487b84f2df6eaec23527a24d9bde373ca8692c064663c95dc8fad60f8",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/MSK-003.npz"
+        },
+        "PF-002": {
+          "frames": 3000,
+          "detections": 6092,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "12ddf033c1ad334934bdf75ac7c5399eff979fe82cbc917c1878cd6819186381",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/PF-002.npz"
+        },
+        "SN-009": {
+          "frames": 4500,
+          "detections": 49694,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "a89b2b4acefe23c7caeb88df9778f51aca9dc5e04a9d0aa85247fa777ece3b5f",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/SN-009.npz"
+        },
+        "SN-011": {
+          "frames": 4500,
+          "detections": 45384,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "a89b2b4acefe23c7caeb88df9778f51aca9dc5e04a9d0aa85247fa777ece3b5f",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/SN-011.npz"
+        },
+        "SN-014": {
+          "frames": 2100,
+          "detections": 23683,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "541a542781329c783da7cbc345c313bd569ceb5da59b9e52e3bc0359876931f9",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/detections/SN-014.npz"
+        }
+      },
       "runtime": {
         "seconds": 1384.1601818820345,
         "fps": 11.548518884761798
@@ -593,19 +1001,204 @@
       },
       "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_original_test/metrics.json",
       "metrics_sha256": "d3cd72fa0a62d7804c8a15cf1d00e10e7f57956ef0e3fd1eeef8f09b9ed36946"
+    },
+    {
+      "arm": "old_legacy",
+      "method": "V3 + old legacy IR",
+      "split": "dev",
+      "frames": 4834,
+      "metrics": {
+        "HOTA": 45.764,
+        "DetA": 67.849,
+        "AssA": 30.899,
+        "IDF1": 52.179,
+        "MOTA": 90.345,
+        "IDSW": 89.0
+      },
+      "trackeval_all_metrics": {
+        "HOTA": 45.764,
+        "DetA": 67.849,
+        "AssA": 30.899,
+        "DetRe": 72.905,
+        "DetPr": 75.323,
+        "AssRe": 34.388,
+        "AssPr": 62.899,
+        "LocA": 79.392,
+        "OWTA": 47.445,
+        "HOTA(0)": 63.377,
+        "LocA(0)": 74.369,
+        "HOTALocA(0)": 47.133,
+        "MOTA": 90.345,
+        "MOTP": 75.983,
+        "MODA": 90.536,
+        "CLR_Re": 93.664,
+        "CLR_Pr": 96.769,
+        "MTR": 95.238,
+        "PTR": 0.0,
+        "MLR": 4.7619,
+        "CLR_TP": 43517.0,
+        "CLR_FN": 2944.0,
+        "CLR_FP": 1453.0,
+        "IDSW": 89.0,
+        "MT": 20.0,
+        "PT": 0.0,
+        "ML": 1.0,
+        "Frag": 379.0,
+        "sMOTA": 67.849,
+        "IDF1": 52.179,
+        "IDR": 51.342,
+        "IDP": 53.044,
+        "IDTP": 23854.0,
+        "IDFN": 22607.0,
+        "IDFP": 21116.0,
+        "Dets": 44970.0,
+        "GT_Dets": 46461.0,
+        "IDs": 70.0,
+        "GT_IDs": 21.0
+      },
+      "per_sequence": {
+        "BT-005": {
+          "HOTA": 55.92356228037014,
+          "DetA": 69.35452972599634,
+          "AssA": 45.11832869432054,
+          "DetRe": 73.91120932101246,
+          "DetPr": 75.68151297791125,
+          "LocA": 79.13765749670064,
+          "IDF1": 70.58563901685471,
+          "IDR": 69.76008724100328,
+          "IDP": 71.4309642119368,
+          "MOTA": 92.58451472191929,
+          "CLR_Re": 95.17993456924755,
+          "CLR_Pr": 97.45966166043215,
+          "IDSW": 21,
+          "CLR_TP": 17456,
+          "CLR_FN": 884,
+          "CLR_FP": 455,
+          "Frag": 130,
+          "IDTP": 12794,
+          "IDFN": 5546,
+          "IDFP": 5117,
+          "Dets": 17911,
+          "GT_Dets": 18340,
+          "IDs": 21,
+          "GT_IDs": 10,
+          "CLR_Frames": 1834
+        },
+        "SN-013": {
+          "HOTA": 37.76467447821911,
+          "DetA": 66.88917240912909,
+          "AssA": 21.37943153105831,
+          "DetRe": 72.24943336970497,
+          "DetPr": 75.08504807234094,
+          "LocA": 79.56383941128759,
+          "IDF1": 40.086988039144615,
+          "IDR": 39.33003804985598,
+          "IDP": 40.87364647621863,
+          "MOTA": 88.8837523558906,
+          "CLR_Re": 92.67451370861633,
+          "CLR_Pr": 96.31176318415314,
+          "IDSW": 68,
+          "CLR_TP": 26061,
+          "CLR_FN": 2060,
+          "CLR_FP": 998,
+          "Frag": 249,
+          "IDTP": 11060,
+          "IDFN": 17061,
+          "IDFP": 15999,
+          "Dets": 27059,
+          "GT_Dets": 28121,
+          "IDs": 49,
+          "GT_IDs": 11,
+          "CLR_Frames": 3000
+        }
+      },
+      "detection_coverage": {
+        "BT-005": {
+          "frames": 1834,
+          "detections": 21650,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "b8258462c148b2b8d8a8b36dfb4afde4e288705e4bb9f76bdb54deb7115c5833",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev/detections/BT-005.npz"
+        },
+        "SN-013": {
+          "frames": 3000,
+          "detections": 31982,
+          "ordered_contiguous_frame_ids": true,
+          "frame_ids_sha256": "12ddf033c1ad334934bdf75ac7c5399eff979fe82cbc917c1878cd6819186381",
+          "cache_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev/detections/SN-013.npz"
+        }
+      },
+      "runtime": {
+        "seconds": 418.99988334899535,
+        "fps": 11.536996052033842
+      },
+      "protocol": {
+        "action": "infer",
+        "variant": "legacy",
+        "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/latest_ckpt.pth.tar",
+        "resume": false,
+        "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev",
+        "seed": 0,
+        "batch_size": 4,
+        "accumulate": 2,
+        "train_size": [
+          480,
+          864
+        ],
+        "workers": 4,
+        "ir_stats": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/old_legacy_train_stats.json",
+        "calibration_epochs": 3,
+        "finetune_epochs": 3,
+        "lr": 0.0002,
+        "calibration_lr": 0.001,
+        "memory_fraction": 0.55,
+        "reserve_gib": 40.0,
+        "max_steps": 0,
+        "no_checkpoint": false,
+        "max_frames": 0,
+        "split": "dev",
+        "sequences": [
+          "BT-005",
+          "SN-013"
+        ],
+        "conf": 0.1,
+        "nms": 0.7,
+        "track_thresh": 0.6,
+        "track_buffer": 30,
+        "match_thresh": 0.9,
+        "skip_evaluation": false,
+        "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+        "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+        "initialization": "strict_direct",
+        "frames": 4834,
+        "physical_gpu": "2",
+        "ir_means": [
+          0.07301626087164649,
+          0.03020227263580627,
+          0.05919517621276643
+        ],
+        "ir_std": [
+          0.21281907207233852,
+          0.11548947582450884,
+          0.11228541704390677
+        ],
+        "input_size": [
+          800,
+          1440
+        ],
+        "source_sha256": "4c1c3614b3a84d87af883bee665ace519525288e9bf398b7a6d18a46323ce040",
+        "generated_ir_root": null
+      },
+      "metrics_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev/metrics.json",
+      "metrics_sha256": "fa1fd348a8c7dbdc9b1d5d4baa36dc7468900c6e781655ee5ab137f378b6aa20"
     }
   ],
   "deltas": {},
   "per_sequence_deltas": {},
   "missing": [
-    "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/train_history.json",
-    "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_old_legacy_s0/completion.json",
-    "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/train_history.json",
-    "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/completion.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/train_manifest.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/train_history.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/completion.json",
-    "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_dev/metrics.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_old_legacy_test/metrics.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_new_diffv2ir_dev/metrics.json",
     "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_new_diffv2ir_test/metrics.json",

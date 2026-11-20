@@ -2,6 +2,7 @@
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Original RGB ByteTrack | dev | 4834 | 43.936 | 70.257 | 27.514 | 50.402 | 91.472 | 83.000 |
 | Original RGB ByteTrack | test | 15985 | 29.191 | 43.866 | 19.570 | 30.932 | 47.207 | 390.000 |
+| V3 + old legacy IR | dev | 4834 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89.000 |
 
 Individual sequences (TrackEval percentages; IDSW is a count):
 
@@ -16,3 +17,5 @@ Individual sequences (TrackEval percentages; IDSW is a count):
 | Original RGB ByteTrack | test | SN-009 | 27.966 | 58.920 | 13.342 | 27.619 | 73.286 | 118.000 |
 | Original RGB ByteTrack | test | SN-011 | 17.561 | 39.464 | 7.973 | 17.526 | 24.043 | 140.000 |
 | Original RGB ByteTrack | test | SN-014 | 40.424 | 60.233 | 27.222 | 47.165 | 76.565 | 73.000 |
+| V3 + old legacy IR | dev | BT-005 | 55.924 | 69.355 | 45.118 | 70.586 | 92.585 | 21.000 |
+| V3 + old legacy IR | dev | SN-013 | 37.765 | 66.889 | 21.379 | 40.087 | 88.884 | 68.000 |

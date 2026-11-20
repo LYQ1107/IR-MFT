@@ -11,8 +11,9 @@ experiments are historical evidence and are not substituted for these runs.
 
 The preserved single-branch visible detector has now been evaluated on both
 complete splits with the common ByteTrack settings below. These are reference
-results only; old/new auxiliary adaptation and the RGB training control are
-still running. No auxiliary improvement can be inferred from this table.
+results only. Both auxiliary training runs have completed their six epochs;
+remaining inference and the RGB training control are still running.
+No auxiliary improvement can be inferred from the original-baseline table.
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -108,6 +109,8 @@ Every cached PNG is checked against its source SHA256, no image transform is
 performed, and host available memory keeps a40 GiB reserve. Switching roots
 uses an exact saved epoch boundary and RNG state. The temporary cache is
 removed after training. Evaluation continues to use the original NAS root.
+The task-owned tmpfs directory was removed on2026-11-21 after the final
+new-input checkpoint completed; all original NAS images remain untouched.
 The prepared cache contains all27,251 Train PNGs /7,748,699,851 bytes
 (7.22 GiB), each byte-verified. Training resumed from the complete first-epoch
 checkpoint with its saved model, optimizer, EMA, scaler and RNG states. The
