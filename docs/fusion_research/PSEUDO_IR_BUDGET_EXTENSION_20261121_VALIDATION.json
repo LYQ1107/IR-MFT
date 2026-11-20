@@ -258,5 +258,122 @@
     "audited_prefix_Dev_checkpoints": 3,
     "selected_final_Test_evaluations": 0,
     "scope": "Actual initialized campaign passes prefix, normalization, LR and Dev-selection audits; extended checkpoints and final selected Test remain outstanding."
+  },
+  "first_extended_epoch_checkpoint_audit": {
+    "status": "PASS",
+    "observed_at": "2026-11-21 02:17:27",
+    "scope": "First full added joint epoch; no duplicate epoch snapshots retained. The latest file is intentionally replaced by later training epochs.",
+    "records": {
+      "old_legacy": {
+        "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+        "bytes": 2237560427,
+        "observed_epoch7_sha256": "1c2fbc1d9166225dce80221419b790c81857369f5b8b953af295335e03a5155c",
+        "training_budget": {
+          "calibration_epochs": 3,
+          "joint_epochs": 4,
+          "completed_adaptation_epochs": 7,
+          "configured_maximum_joint_epochs": 24,
+          "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+          "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        },
+        "preserved_six_epoch_prefix": true,
+        "last_epoch": {
+          "epoch": 7,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.0383502217657514,
+          "seconds": 1335.2109557609656,
+          "lr": 2.5e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": [
+            0.052469637244939804,
+            0.05201065167784691,
+            0.05152277648448944
+          ]
+        },
+        "ema_updates": 23843,
+        "expected_ema_updates": 23843,
+        "optimizer_momentum_states": 850,
+        "scaler": {
+          "scale": 4096.0,
+          "growth_factor": 2.0,
+          "backoff_factor": 0.5,
+          "growth_interval": 2000,
+          "_growth_tracker": 713
+        },
+        "rng_state_keys_present": [
+          "torch_rng",
+          "cuda_rng",
+          "numpy_rng",
+          "python_rng",
+          "loader_rng"
+        ],
+        "finite_weights": {
+          "model": {
+            "float_tensors": 1404,
+            "finite": true
+          },
+          "train_model": {
+            "float_tensors": 1404,
+            "finite": true
+          }
+        }
+      },
+      "new_diffv2ir": {
+        "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/latest_ckpt.pth.tar",
+        "bytes": 2237560427,
+        "observed_epoch7_sha256": "ea4270831166f65477bf8d3d843342f01306407166e275a1de99ea12940a654d",
+        "training_budget": {
+          "calibration_epochs": 3,
+          "joint_epochs": 4,
+          "completed_adaptation_epochs": 7,
+          "configured_maximum_joint_epochs": 24,
+          "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+          "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+        },
+        "preserved_six_epoch_prefix": true,
+        "last_epoch": {
+          "epoch": 7,
+          "phase": "V3_finetune",
+          "frames": 27251,
+          "loss": 3.0632557788131733,
+          "seconds": 1306.8116331209894,
+          "lr": 2.5e-05,
+          "skipped_amp_updates": 2,
+          "fusion_gates": [
+            0.05278171971440315,
+            0.05208445340394974,
+            0.05136167258024216
+          ]
+        },
+        "ema_updates": 23843,
+        "expected_ema_updates": 23843,
+        "optimizer_momentum_states": 850,
+        "scaler": {
+          "scale": 4096.0,
+          "growth_factor": 2.0,
+          "backoff_factor": 0.5,
+          "growth_interval": 2000,
+          "_growth_tracker": 713
+        },
+        "rng_state_keys_present": [
+          "torch_rng",
+          "cuda_rng",
+          "numpy_rng",
+          "python_rng",
+          "loader_rng"
+        ],
+        "finite_weights": {
+          "model": {
+            "float_tensors": 1404,
+            "finite": true
+          },
+          "train_model": {
+            "float_tensors": 1404,
+            "finite": true
+          }
+        }
+      }
+    }
   }
 }

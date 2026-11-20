@@ -27,6 +27,14 @@ three-calibration-plus-three-joint checkpoint; the first stage adds joint
 epochs4–6. The RGB control receives the same minimum/conditional joint budget
 as GPU slots become available. CLI maximum24 is the predeclared upper bound,
 not a claim that24 epochs have already completed.
+The first added joint epoch has now completed all27,251 Train frames in both
+paired arms. Old/new mean loss changes from3.061076/3.087354 at joint3 to
+3.038350/3.063256 at joint4. Both saved checkpoints report three calibration
+plus four joint epochs,23,843 successful EMA updates, the full optimizer and
+all five RNG state groups. The original six-epoch histories are preserved
+exactly. All1,404 floating tensors in each raw model and each EMA are finite.
+Each arm skipped two AMP updates in this added epoch. These are training and
+recovery checks; the next full Dev evaluation is scheduled at joint6.
 
 All three adapted arms resume their original full checkpoint: RGB only, V3
 with archived legacy IR, and V3 with the November DiffV2IR images. Each must
@@ -88,3 +96,7 @@ training defaults on the inference command line. It also includes
 loss/Dev HOTA/Dev IDF1 curves, all selected metrics, all seven Test sequences
 and new-minus-old/RGB differences. The original pretraining, historical
 Dev/Test exposure and single-seed limitations in the short report still apply.
+The old/new paired arms share their loader seed and phase counts. The RGB
+control matches RGB/head epochs and the augmentation policy, but has no
+auxiliary calibration passes, so its joint-phase minibatch ordering and EMA
+update history are not identical to the paired arms.
