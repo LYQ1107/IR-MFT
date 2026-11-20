@@ -27,7 +27,7 @@ the physically present archived `infrared` JPEGs, explicitly recorded in the
 frozen-plan amendment before paired training. It is not labelled as a causal
 background-difference run.
 
-DiffV2IR files are read in place from
+The original DiffV2IR files remain in place at
 `/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation`.
 Dev has its own auxiliary directory even though the Dev RGB frames remain in
 the original dataset's `train` folder. The reader repeats scalar intensity
@@ -73,7 +73,13 @@ Experiment outputs are external under
 `/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120`.
 Each training arm retains one atomic checkpoint with training model, EMA,
 optimizer, scaler and epoch-boundary RNG states; no epoch-snapshot series is
-created. Generated images are not copied. Only compressed post-NMS boxes,
+created. No durable image copy is made. A Train-only, at most10 GiB volatile
+`/dev/shm` byte cache is allowed to avoid repeated 0.1--0.4 second NAS reads.
+Every cached PNG is checked against its source SHA256, no image transform is
+performed, and host available memory keeps a40 GiB reserve. Switching roots
+uses an exact saved epoch boundary and RNG state. The temporary cache is
+removed after training. Evaluation continues to use the original NAS root.
+Only compressed post-NMS boxes,
 text tracks and small reports are exported. The local reserve is 40 GiB.
 A disposable 2.1 GiB smoke checkpoint was removed after the training check.
 

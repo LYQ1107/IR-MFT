@@ -53,7 +53,9 @@
     "runtime_scope": "Batched detector plus sequential ByteTrack replay; not single-frame end-to-end online FPS"
   },
   "generated_dataset": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
-  "storage": {"local_reserve_gib": 40, "image_copy": false, "per_arm_checkpoint_files": 1, "commit_large_artifacts": false},
+  "storage": {"local_reserve_gib": 40, "durable_image_copy": false, "per_arm_checkpoint_files": 1, "commit_large_artifacts": false,
+    "optional_Train_byte_cache": "At most10 GiB in task-specific /dev/shm, every PNG SHA256 verified against NAS, no resizing or pixel changes, host MemAvailable reserve40 GiB, remove after use",
+    "cache_switch": "Resume the exact full epoch checkpoint with saved RNG state; only the physical generated-input root changes, not image bytes or training settings"},
   "limits": [
     "Initial visible checkpoint historically saw all eight original Train videos including Dev; the new adaptation excludes Dev, but this is not whole-system unseen-scene validation",
     "Historical Test sequences were used in past tracker tuning and in DiffV2IR generation configuration probes; they remain a frozen diagnostic evaluation, not a new blind benchmark",
