@@ -13,8 +13,8 @@ The preserved single-branch visible detector has now been evaluated on both
 complete splits with the common ByteTrack settings below. These are reference
 results. Both auxiliary training runs completed three calibration plus three
 joint epochs. The RGB control also completed its three joint epochs and Dev
-evaluation. The new-input and RGB-control Test replays are still running.
-The old-input Test and all four Dev evaluations are complete.
+evaluation. The RGB-control Test replay is still running. The new-input and
+old-input Test evaluations and all four Dev evaluations are complete.
 
 | Method | Split | Frames | HOTA | DetA | AssA | IDF1 | MOTA | IDSW |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -23,6 +23,7 @@ The old-input Test and all four Dev evaluations are complete.
 | V3 + old legacy IR | Dev | 4,834 | 45.764 | 67.849 | 30.899 | 52.179 | 90.345 | 89 |
 | V3 + old legacy IR | Test | 15,985 | 29.738 | 46.595 | 19.068 | 33.736 | 51.667 | 455 |
 | V3 + new DiffV2IR | Dev | 4,834 | 46.236 | 68.766 | 31.137 | 53.119 | 90.224 | 108 |
+| V3 + new DiffV2IR | Test | 15,985 | 29.195 | 43.916 | 19.487 | 32.678 | 49.603 | 383 |
 | RGB matched fine-tune + ByteTrack | Dev | 4,834 | 47.579 | 68.864 | 32.908 | 55.865 | 90.200 | 94 |
 
 At this short budget, new-minus-old Dev HOTA is+0.472 percentage points,
@@ -31,6 +32,23 @@ are below the equally fine-tuned RGB control on Dev: new-minus-matched-RGB
 HOTA-1.343pp, AssA-1.771pp, IDF1-2.746pp, MOTA+0.024pp and IDSW+14. Thus the
 improvement over the original unadapted RGB checkpoint cannot be attributed
 to the auxiliary images alone. These negative controls are retained.
+
+The complete Test reverses the new-versus-old Dev direction: new-minus-old
+HOTA-0.543pp, DetA-2.679pp, AssA+0.419pp, IDF1-1.058pp, MOTA-2.064pp and
+IDSW-72. Against the original unadapted RGB checkpoint, new-input HOTA changes
+by only+0.004pp, while IDF1+1.746pp, MOTA+2.396pp and IDSW-7. This is not a
+clear HOTA improvement. The equally fine-tuned RGB Test control is pending.
+
+The largest new-versus-old loss is the dense49-fish MSK-003 sequence:
+HOTA-8.503pp and DetA-13.883pp. BT-002/BT-004/PF-002 improve in HOTA, while
+MSK-003/SN-009/SN-011/SN-014 decline. Official sequence combination, rather
+than an unweighted average of those seven changes, gives the aggregate above.
+Across Test, old/new CLEAR false negatives are43,371/49,455 and false
+positives26,214/23,193; emitted track detections are127,755/118,650. The72
+fewer switches occur alongside6,084 more misses and9,105 fewer emitted
+detections, so switch counts alone do not establish better association.
+The observed failure is concentrated in detection recall on the dense scene;
+the generator's causal mechanism is not proven by these downstream scores.
 
 Both paired joint training losses were still decreasing at the final epoch;
 three calibration plus three
