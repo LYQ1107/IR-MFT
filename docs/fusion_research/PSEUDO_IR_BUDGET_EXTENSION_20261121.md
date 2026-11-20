@@ -50,7 +50,7 @@ checkpoint storage is about6 GiB, with at least40 GiB local free space kept.
 A separate Train-only tmpfs cache is limited to10 GiB and byte-verified;
 evaluation reads the original NAS, and the cache is removed after completion.
 
-Validation so far:17 local tests passed, including protection against silent
+Validation so far:18 local tests passed, including protection against silent
 epoch, LR, seed, batch and prefix-coverage changes. A GPU3 one-batch resume
 from the old-input full checkpoint completed joint epoch4's smoke step with
 finite loss2.694551, effective LR0.000025, zero skipped AMP updates and

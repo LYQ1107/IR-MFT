@@ -10,7 +10,11 @@ def example():
     plan, sha = load_plan(Path(__file__).resolve().parents[1] / "configs/pseudo_ir_budget_extension_20261121.json")
     previous = dict(variant="rgb", seed=0, train_size=[480, 864], batch_size=8, accumulate=1,
                     calibration_epochs=0, finetune_epochs=3, lr=0.0002,
-                    calibration_lr=0.001, ir_stats=None, source_sha256=plan["initial_visible_sha256"])
+                    calibration_lr=0.001, ir_stats=None, source_sha256=plan["initial_visible_sha256"],
+                    train_frames=27251, train_sequences=["BT-001", "BT-003", "MSK-002", "PF-001", "SN-001", "SN-015"],
+                    ir_means=[0.0651,0.0262,0.0581], ir_std=[0.1916,0.1015,0.1084],
+                    rgb_means=[0.485,0.456,0.406], rgb_std=[0.229,0.224,0.225],
+                    bn_policy="frozen_all_running_statistics")
     current = dict(previous, finetune_epochs=24)
     checkpoint = dict(completed_epochs=3, history=[dict(epoch=i+1, frames=27251, phase="V3_finetune",
         lr=joint_lr(plan, i, 8)) for i in range(3)])
@@ -68,3 +72,10 @@ def test_maximum_budget_is_reported_separately_from_plateau():
     rows = {arm: [dict(joint_epochs=i, HOTA=30+i) for i in range(3,25,3)] for arm in plan["arms"]}
     decision = plateau_decision(plan, rows, 24)
     assert decision["stop"] and decision["capped"] and not decision["plateau_rule_met"]
+
+
+def test_resume_rejects_changed_normalization_even_when_stats_path_is_unchanged():
+    plan, sha, prior, current, checkpoint = example()
+    current["ir_means"] = [0.3,0.3,0.3]
+    with pytest.raises(ValueError, match="ir_means"):
+        check_resume(prior, current, checkpoint, plan, sha)

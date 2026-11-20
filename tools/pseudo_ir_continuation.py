@@ -6,7 +6,8 @@ from pathlib import Path
 
 
 RESUME_KEYS = ["variant", "seed", "train_size", "batch_size", "accumulate",
-               "calibration_epochs", "finetune_epochs", "lr", "calibration_lr", "ir_stats"]
+               "calibration_epochs", "finetune_epochs", "lr", "calibration_lr", "ir_stats",
+               "train_frames", "train_sequences", "ir_means", "ir_std", "rgb_means", "rgb_std", "bn_policy"]
 
 
 def load_plan(path):

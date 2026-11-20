@@ -2,7 +2,7 @@
   "status": "PRE_EXECUTION_CHECKS_PASSED",
   "unit_suite": {
     "command": "CUDA_VISIBLE_DEVICES= MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir python -m pytest -q tests",
-    "passed": 17
+    "passed": 18
   },
   "gpu_resume_smoke": {
     "status": "BENCHMARK",
@@ -73,5 +73,6 @@
     "plateau_all_arms": "shared budget12, eighteen training/evaluation stage jobs",
     "one_arm_improving": "shared budget24 cap, forty-two training/evaluation stage jobs"
   },
-  "note": "Smoke jobs are not formal experiment results. Full training/Dev/Test remains pending."
+  "note": "Smoke jobs are not formal experiment results. Full training/Dev/Test remains pending.",
+  "resume_controls": "Also reject normalization values, frame/sequence sets or frozen-BN policy changes even if a statistics path is unchanged; both complete paired prefixes passed this stricter CPU audit."
 }
