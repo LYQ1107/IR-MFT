@@ -7,6 +7,8 @@ import json
 import math
 from pathlib import Path
 
+import numpy as np
+
 
 ARMS = {
     "rgb_original": "Original RGB ByteTrack",
@@ -48,6 +50,31 @@ def detailed_metrics(path, sequences, headline):
                     raise ValueError(f"Combined TrackEval row disagrees with summary: {path}, {key}")
     if set(output) != set(sequences):
         raise ValueError(f"Detailed sequence coverage mismatch: {path}")
+    return output
+
+
+def audit_detection_coverage(folder, per_sequence):
+    """Prove each full sequence was inferred once, in its original order."""
+    output = {}
+    for seq, metrics in per_sequence.items():
+        path = folder / 'detections' / (seq + '.npz')
+        with np.load(path, allow_pickle=False) as cache:
+            frames, offsets = cache['frame_ids'], cache['offsets']
+            boxes, scores = cache['boxes'], cache['scores']
+        expected = metrics['CLR_Frames']
+        if (frames.ndim != 1 or not np.issubdtype(frames.dtype, np.integer)
+                or not np.array_equal(frames, np.arange(1, expected + 1))):
+            raise ValueError(f'Missing, repeated or reordered sequence frames: {path}')
+        if (offsets.shape != (expected + 1,) or offsets[0] != 0
+                or np.any(np.diff(offsets) < 0) or offsets[-1] != len(boxes)
+                or scores.shape != (len(boxes),) or boxes.shape != (len(boxes), 4)):
+            raise ValueError(f'Invalid detection-to-frame offsets: {path}')
+        if not np.isfinite(boxes).all() or not np.isfinite(scores).all():
+            raise ValueError(f'Nonfinite saved detections: {path}')
+        output[seq] = dict(frames=expected, detections=len(boxes),
+                           ordered_contiguous_frame_ids=True,
+                           frame_ids_sha256=hashlib.sha256(frames.astype('<i8').tobytes()).hexdigest(),
+                           cache_path=str(path))
     return output
 
 
@@ -152,9 +179,13 @@ def main():
             metrics = {key: d["trackeval"][key] for key in METRICS}
             per_sequence = detailed_metrics(path.parent / "trackeval_output/pedestrian_detailed.csv",
                                              actual["sequences"], metrics)
+            coverage = audit_detection_coverage(path.parent, per_sequence)
+            if sum(seq['frames'] for seq in coverage.values()) != actual['frames']:
+                raise ValueError(f'Per-frame and aggregate coverage disagree: {path}')
             record = dict(arm=arm, method=title, split=split, frames=actual["frames"],
                           metrics=metrics, trackeval_all_metrics=d["trackeval"],
-                          per_sequence=per_sequence, runtime=d["runtime"], protocol=actual,
+                          per_sequence=per_sequence, detection_coverage=coverage,
+                          runtime=d["runtime"], protocol=actual,
                           metrics_path=str(path), metrics_sha256=hashlib.sha256(raw).hexdigest())
             result["evaluations"].append(record)
             lookup[(arm, split)] = record
