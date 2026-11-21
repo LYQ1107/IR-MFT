@@ -57,8 +57,11 @@ the generator's causal mechanism is not proven by these downstream scores.
 Both paired joint training losses were still decreasing at the final epoch;
 three calibration plus three
 joint epochs are an initial adaptation comparison, not evidence of convergence.
-The user requested a training-adequacy check, so a separate Dev-driven plan
-extends all three adapted arms to at least12 and at most24 joint epochs:
+The requested training-adequacy check is now complete. All three adapted arms
+trained to 12 joint epochs, with Dev checks at joint 3/6/9/12. Their training
+losses decreased but none improved on its joint-3 Dev HOTA; the frozen common
+early-stop rule therefore ended training at 12. The Dev-selected final Test
+replays reproduce the short-budget scores exactly. Full curves and the audit are in
 [`PSEUDO_IR_BUDGET_EXTENSION_20261121.md`](PSEUDO_IR_BUDGET_EXTENSION_20261121.md).
 These short-budget results and checkpoints remain intact.
 

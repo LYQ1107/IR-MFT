@@ -1,0 +1,258 @@
+{
+  "status": "PASS",
+  "audited_at": "2026-11-21T15:26:01.754898+08:00",
+  "scope": "Final runtime and deliverables audit before GitHub publication; the push is verified separately against the remote branch after committing these artifacts.",
+  "plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a",
+  "numerical_source_commit": "8d3ab594e67d905ea2299e6ca778f0d79af7d3c1",
+  "requirements": {
+    "matched_joint_budget": {
+      "status": "PASS",
+      "arms": 3,
+      "joint_epochs_each": 12,
+      "calibration_epochs_old_new_rgb": [
+        3,
+        3,
+        0
+      ],
+      "frames_per_full_epoch": 27251
+    },
+    "Dev_only_selection_and_stopping": {
+      "status": "PASS",
+      "checkpoints": 12,
+      "checks_per_arm": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "selected_joint_epochs": {
+        "old_legacy": 3,
+        "new_diffv2ir": 3,
+        "rgb_matched": 3
+      },
+      "common_decision": {
+        "joint_budget": 12,
+        "gains_over_last_six_joint_epochs_pp": {
+          "old_legacy": 0.0,
+          "new_diffv2ir": 0.0,
+          "rgb_matched": 0.0
+        },
+        "plateau_rule_met": true,
+        "capped": false,
+        "stop": true,
+        "next_budget": null,
+        "reason": "Dev plateau"
+      }
+    },
+    "complete_final_Test": {
+      "status": "PASS",
+      "adapted_evaluations": 3,
+      "sequences_each": 7,
+      "frames_each": 15985,
+      "all_official_TrackEval_metrics_retained": true,
+      "all_sequence_results_retained": true
+    },
+    "fair_evaluation_controls": {
+      "status": "PASS",
+      "matched_tracker_and_detection_thresholds": true,
+      "same_split_frame_coverage": true,
+      "real_RGB_YOLOX_ByteTrack_baseline": true,
+      "legacy_IR_and_new_DiffV2IR_compared": true,
+      "source_RGB_checkpoint_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0"
+    },
+    "checkpoint_integrity_and_exact_prefix_resume": {
+      "status": "PASS",
+      "evidence": "PSEUDO_IR_FINAL_RUNTIME_AUDIT_20261121.json",
+      "full_model_and_EMA_finite": true,
+      "SGD_momentum_and_five_RNG_groups_audited": true,
+      "full_epoch_frames_and_AMP_EMA_counts_audited": true
+    },
+    "fresh_selected_Test_replay": {
+      "status": "PASS",
+      "evidence": "PSEUDO_IR_SELECTED_TEST_REPLAY_EQUIVALENCE_20261121.json",
+      "all_detection_arrays_bitwise_equal_to_selected_prefix": true,
+      "all_official_metrics_exactly_equal": true
+    },
+    "GPU_limit": {
+      "status": "PASS",
+      "allowed_physical_devices": [
+        2,
+        3
+      ],
+      "all_recorded_training_and_evaluation_devices_within_limit": true,
+      "workers_remaining": []
+    },
+    "storage": {
+      "status": "PASS",
+      "Train_tmpfs_cache_removed": true,
+      "original_NAS_images_preserved": true,
+      "short_checkpoints_SHA_verified_NAS_archive": "PSEUDO_IR_CHECKPOINT_ARCHIVE_20261121.json",
+      "local_gib_released_by_archive": 5.275675819,
+      "minimum_observed_free_gib": 58.07,
+      "reserve_gib": 40,
+      "one_atomic_full_latest_and_one_compact_best_per_arm": true
+    },
+    "validation": {
+      "status": "PASS",
+      "full_repo_tests_passed": 19,
+      "full_repo_tests_failed": 0,
+      "strict_complete_export_missing_items": 0,
+      "Markdown_links_resolve": true
+    },
+    "interpretation": {
+      "status": "PASS",
+      "negative_results_and_training_curves_retained": true,
+      "no_claim_of_positive_HOTA_gain_from_new_IR": true,
+      "pretraining_Dev_exposure_and_historical_Test_exposure_disclosed": true,
+      "single_seed_and_schedule_scope_disclosed": true,
+      "pseudo_IR_is_RGB_derived_disclosed": true
+    },
+    "small_Git_artifacts": {
+      "status": "PASS",
+      "all_final_artifacts_below_one_MiB": true,
+      "model_weights_images_tracks_and_detection_caches_excluded": true
+    }
+  },
+  "evaluation_frame_coverage": [
+    {
+      "arm": "old_legacy",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "old_legacy",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 6
+    },
+    {
+      "arm": "old_legacy",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 9
+    },
+    {
+      "arm": "old_legacy",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 12
+    },
+    {
+      "arm": "new_diffv2ir",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "new_diffv2ir",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 6
+    },
+    {
+      "arm": "new_diffv2ir",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 9
+    },
+    {
+      "arm": "new_diffv2ir",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 12
+    },
+    {
+      "arm": "rgb_matched",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "rgb_matched",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 6
+    },
+    {
+      "arm": "rgb_matched",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 9
+    },
+    {
+      "arm": "rgb_matched",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 12
+    },
+    {
+      "arm": "old_legacy",
+      "split": "test",
+      "frames": 15985,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "new_diffv2ir",
+      "split": "test",
+      "frames": 15985,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "rgb_matched",
+      "split": "test",
+      "frames": 15985,
+      "joint_epochs": 3
+    },
+    {
+      "arm": "rgb_original",
+      "split": "dev",
+      "frames": 4834,
+      "joint_epochs": 0
+    },
+    {
+      "arm": "rgb_original",
+      "split": "test",
+      "frames": 15985,
+      "joint_epochs": 0
+    }
+  ],
+  "artifacts": {
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121.md": {
+      "bytes": 11978,
+      "sha256": "3b10b5d94de87244b201cb8aa9237733eb47bf1893cfe588a91e13aefb01c18b"
+    },
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121_RESULTS.json": {
+      "bytes": 192454,
+      "sha256": "9ec6a03846359758d2dd2a8dffb631191f1e768ac5bc920a1f7bbc4a4e445893"
+    },
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121_TABLES.md": {
+      "bytes": 6151,
+      "sha256": "afed2353325fa7fb8645d299bf29068c61aa6e1cc834f559c785c3e4149b20e2"
+    },
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121_CURVES.csv": {
+      "bytes": 6239,
+      "sha256": "339de134d34411c20fe931f9bd8063953388a16cc32f715289d5f8c89ffe5d88"
+    },
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121_CURVES.png": {
+      "bytes": 161622,
+      "sha256": "faf7bf51bffa6f36cd5056243c827686ec6df6ee70eab2ffb8ece244ae729926"
+    },
+    "docs/fusion_research/PSEUDO_IR_BUDGET_EXTENSION_20261121_VALIDATION.json": {
+      "bytes": 15133,
+      "sha256": "4db579facf20d011d5cfd17a4fee5e48e7945fa9785e5a21fa8715c0485d2879"
+    },
+    "docs/fusion_research/PSEUDO_IR_FINAL_RUNTIME_AUDIT_20261121.json": {
+      "bytes": 5309,
+      "sha256": "2272ce33b920ff6bf0136cd928e5fbd8f0d804088315e0e19b2d3528c6ed7481"
+    },
+    "docs/fusion_research/PSEUDO_IR_SELECTED_TEST_REPLAY_EQUIVALENCE_20261121.json": {
+      "bytes": 12975,
+      "sha256": "d8308eeed22c6c6539cbe0faad978cf54d8ad44097645c995ccec3bb01a17c61"
+    },
+    "docs/fusion_research/PSEUDO_IR_COMPARISON_20261120.md": {
+      "bytes": 14674,
+      "sha256": "db2d7f9576da9fd258fe10b7b425f469ce995777f901ba6e3cc621a79bec0e2f"
+    }
+  }
+}

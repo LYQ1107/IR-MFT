@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "audited_at": "2026-11-21 15:17:30",
+  "plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a",
+  "raw_checkpoint_audits": {
+    "old_legacy": {
+      "raw_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+      "verified_checkpoint_sha256": "090471c4261b91a95852dfb223f5d575121dc9891bfd289ef8ffc06603af6f48",
+      "completed_budget": {
+        "calibration_epochs": 3,
+        "joint_epochs": 12,
+        "completed_adaptation_epochs": 15,
+        "configured_maximum_joint_epochs": 24,
+        "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+        "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+      },
+      "full_epoch_frames": [
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251
+      ],
+      "preserved_original_prefix": true,
+      "all_raw_and_EMA_float_tensors_finite": true,
+      "float_tensor_counts": {
+        "model": 1404,
+        "train_model": 1404
+      },
+      "ema_updates": 51086,
+      "expected_successful_updates": 51086,
+      "total_AMP_skipped_updates": 19,
+      "optimizer_momentum_states": 850,
+      "all_five_RNG_state_groups_present": true,
+      "training_physical_gpus": [
+        "2",
+        "3"
+      ]
+    },
+    "new_diffv2ir": {
+      "raw_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/latest_ckpt.pth.tar",
+      "verified_checkpoint_sha256": "bba6968b96622ee41f90bcf5c46a1e3b4d42c86eac71be748175100b158dc4ba",
+      "completed_budget": {
+        "calibration_epochs": 3,
+        "joint_epochs": 12,
+        "completed_adaptation_epochs": 15,
+        "configured_maximum_joint_epochs": 24,
+        "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+        "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+      },
+      "full_epoch_frames": [
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251
+      ],
+      "preserved_original_prefix": true,
+      "all_raw_and_EMA_float_tensors_finite": true,
+      "float_tensor_counts": {
+        "model": 1404,
+        "train_model": 1404
+      },
+      "ema_updates": 51087,
+      "expected_successful_updates": 51087,
+      "total_AMP_skipped_updates": 18,
+      "optimizer_momentum_states": 850,
+      "all_five_RNG_state_groups_present": true,
+      "training_physical_gpus": [
+        "2",
+        "3"
+      ]
+    },
+    "rgb_matched": {
+      "raw_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/latest_ckpt.pth.tar",
+      "verified_checkpoint_sha256": "1a6c4dceb62517e94cb9af29045a82874dab33ef60a61f51d049a2f7da03c9ca",
+      "completed_budget": {
+        "calibration_epochs": 0,
+        "joint_epochs": 12,
+        "completed_adaptation_epochs": 12,
+        "configured_maximum_joint_epochs": 24,
+        "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+        "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+      },
+      "full_epoch_frames": [
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251,
+        27251
+      ],
+      "preserved_original_prefix": true,
+      "all_raw_and_EMA_float_tensors_finite": true,
+      "float_tensor_counts": {
+        "model": 748,
+        "train_model": 748
+      },
+      "ema_updates": 40871,
+      "expected_successful_updates": 40871,
+      "total_AMP_skipped_updates": 13,
+      "optimizer_momentum_states": 456,
+      "all_five_RNG_state_groups_present": true,
+      "training_physical_gpus": [
+        "2",
+        "3"
+      ]
+    }
+  },
+  "common_joint_budget": 12,
+  "Dev_checkpoints": 12,
+  "final_Test_evaluations": 3,
+  "Dev_frames_per_evaluation": 4834,
+  "Test_frames_per_evaluation": 15985,
+  "selected_joint_epochs": {
+    "old_legacy": 3,
+    "new_diffv2ir": 3,
+    "rgb_matched": 3
+  },
+  "stopping_decision": {
+    "joint_budget": 12,
+    "gains_over_last_six_joint_epochs_pp": {
+      "old_legacy": 0.0,
+      "new_diffv2ir": 0.0,
+      "rgb_matched": 0.0
+    },
+    "plateau_rule_met": true,
+    "capped": false,
+    "stop": true,
+    "next_budget": null,
+    "reason": "Dev plateau"
+  },
+  "Train_tmpfs_cache_removed": true,
+  "local_free_gib": 59.55047607421875,
+  "tests": {
+    "passed": 19,
+    "failed": 0
+  },
+  "scope": "Runtime, data coverage, model selection, checkpoint integrity and cleanup audit; GitHub publication is verified separately after committing these artifacts.",
+  "selected_Test_bitwise_equivalence": true,
+  "final_worker_processes_present": false,
+  "local_free_gib_at_report": 57.34821701049805,
+  "cleanup_rechecked_at": "2026-11-21T15:26:01.754898+08:00"
+}

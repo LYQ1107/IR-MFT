@@ -1,5 +1,5 @@
 {
-  "status": "PRE_EXECUTION_CHECKS_PASSED",
+  "status": "CAMPAIGN_COMPLETE_AND_FINAL_AUDIT_PASSED",
   "unit_suite": {
     "command": "CUDA_VISIBLE_DEVICES= MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir python -m pytest -q tests",
     "passed": 19
@@ -73,7 +73,7 @@
     "plateau_all_arms": "shared budget12, eighteen training/evaluation stage jobs",
     "one_arm_improving": "shared budget24 cap, forty-two training/evaluation stage jobs"
   },
-  "note": "Smoke jobs are not formal experiment results. Full training/Dev/Test remains pending.",
+  "note": "All required training, Dev selection, final Test and cleanup checks are complete. Earlier smoke and recovery entries are retained as provenance, not additional accuracy experiments.",
   "resume_controls": "Also reject normalization values, frame/sequence sets or frozen-BN policy changes even if a statistics path is unchanged; both complete paired prefixes passed this stricter CPU audit.",
   "source_budget_metadata": "Completed adaptation epochs are extracted from full checkpoint history or compact EMA selection metadata; inference defaults cannot misreport a 12-epoch source as three epochs.",
   "train_byte_cache": {
@@ -375,5 +375,27 @@
         }
       }
     }
+  },
+  "final_export": {
+    "status": "COMPLETE",
+    "common_joint_epochs": 12,
+    "Dev_checkpoints": 12,
+    "final_Test_evaluations": 3,
+    "missing_items": 0
+  },
+  "final_runtime_audit": "PSEUDO_IR_FINAL_RUNTIME_AUDIT_20261121.json",
+  "cache_cleanup": {
+    "removed": true,
+    "cache_root": "/dev/shm/ir_mft_diffv2ir_train_long_20261121",
+    "original_source_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+    "original_images_untouched": true,
+    "unix": 1795221307.4141114,
+    "reason": "all generated-input extension training and evaluation complete"
+  },
+  "final_local_suite": {
+    "passed": 19,
+    "failed": 0,
+    "seconds": 59.54,
+    "scope": "Full current repository tests with dataset root set and CUDA disabled"
   }
 }
