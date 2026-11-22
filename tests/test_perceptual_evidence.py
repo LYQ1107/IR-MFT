@@ -105,6 +105,7 @@ def test_adapter_starts_at_RGB_identity_without_sample_context():
     torch.manual_seed(3)
     raw=torch.randn(4,512);evidence=torch.randn(4,1170)
     model=EvidenceAdapter().eval()
+    torch.testing.assert_close(model.unnormalized(raw,evidence),raw,rtol=0,atol=0)
     torch.testing.assert_close(model(raw,evidence),F.normalize(raw,dim=-1),rtol=0,atol=0)
     with torch.no_grad():model.net[-1].weight.normal_(std=.01)
     torch.testing.assert_close(model(raw,evidence)[0],model(raw[:1],evidence[:1])[0],rtol=1e-5,atol=1e-6)

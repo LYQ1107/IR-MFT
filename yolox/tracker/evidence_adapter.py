@@ -34,13 +34,16 @@ class EvidenceAdapter(nn.Module):
                                nn.Linear(hidden,512,bias=False))
         nn.init.zeros_(self.net[-1].weight)
 
-    def forward(self, raw, evidence):
+    def unnormalized(self, raw, evidence):
         raw=raw.float()
         x=((evidence.float()-self.mean)/self.std).clamp(-8,8)
         correction=self.net(x)
         correction=correction/(1+correction.norm(dim=-1,keepdim=True))
         scale=raw.norm(dim=-1,keepdim=True).clamp_min(1e-12)
-        return F.normalize(raw+self.amplitude*scale*correction,dim=-1)
+        return raw+self.amplitude*scale*correction
+
+    def forward(self, raw, evidence):
+        return F.normalize(self.unnormalized(raw,evidence),dim=-1)
 
 
 def apply_adapter(data, checkpoint_path):
@@ -51,7 +54,9 @@ def apply_adapter(data, checkpoint_path):
     projected=[]
     with torch.inference_mode():
         for lo in range(0,len(raw),512):
-            projected.append(model(torch.from_numpy(raw[lo:lo+512]),torch.from_numpy(evidence[lo:lo+512])).numpy())
+            # The tracker performs its original final normalization. Export
+            # the residual before that step so a zero adapter is a true no-op.
+            projected.append(model.unnormalized(torch.from_numpy(raw[lo:lo+512]),torch.from_numpy(evidence[lo:lo+512])).numpy())
     embedding=np.concatenate(projected,axis=0) if projected else np.empty((0,512),np.float32)
     result=dict(data,embedding=embedding,ir_mask_embedding=embedding,rgb_mask_embedding=embedding)
     return result,dict(cue=checkpoint['cue'],seed=checkpoint['seed'],epoch=checkpoint['epoch'],
