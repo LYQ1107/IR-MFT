@@ -403,3 +403,29 @@ source-only multiscale/prefetch additions. Work assets occupy about27GiB on the
 independent work filesystem, below64GiB, while the original data filesystem
 retains about5.8GiB free. Dataset/image copies and large Git artifacts remain
 excluded. Goal status stays IN_PROGRESS / NOT_MET.
+
+The complete30-epoch matched Dev tables are now retained for
+[robust queries](PERCEPTUAL_MFT_20261123_ROBUST30_DEV.md),
+[robust consensus](PERCEPTUAL_MFT_20261123_CONSENSUS30_DEV.md),
+[clean queries](PERCEPTUAL_MFT_20261123_ORDERED30_DEV.md), and
+[clean consensus](PERCEPTUAL_MFT_20261123_CONSENSUS_CLEAN30_DEV.md).
+The common lookback rule forces the final36-epoch cap for all24 clean/robust
+heads: RGB-global/IR-cue seed1 improves46.585 to46.962 at24 (+0.377pp),
+which exceeds its complete best through18 by>0.2pp. This is not a Test gain
+or evidence for a multimodal contribution. Strong point-only controls remain.
+
+A current-image visual diagnosis shows bright generated tank walls and
+reflections can dominate whole-image saliency. The original complete38-policy
+foveation experiment continues unchanged. A separately registered
+[working-region experiment](../../configs/perceptual_foveated_regions_20261123.json)
+applies the same current RGB scene-region constraint to both cue selectors
+and normalizes contrast inside that region. Another38 full Dev controls are
+running, with no new foveated Test yet. Exact lookup preprocessing accelerates
+CPU input preparation while preserving the original FP16 tensor bit for bit;
+it does not change inference weights or precision. Scene masking, zoom and
+ordinary box averaging alone receive no multimodal novelty credit.
+
+All111 maintained tests pass. Current work assets occupy26.42GiB on the
+independent work filesystem, below64GiB. No image copies, model weights,
+feature arrays or raw tracking outputs are included in Git. The original
+>=+5 Test HOTA and2-3 contribution objective remains NOT_MET.

@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 109,
+    "current_full_repository_passed": 111,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -47,7 +47,8 @@
     "ordered_identity_memory_tests_passed": 3,
     "consensus_identity_memory_tests_passed": 2,
     "reachability_identity_tests_passed": 2,
-    "foveated_observation_tests_passed": 4
+    "foveated_observation_tests_passed": 4,
+    "foveated_working_region_tests_passed": 2
   },
   "smoke": {
     "BT-005": {
@@ -559,5 +560,30 @@
     "original_RGB_direct_HOTA": 29.529,
     "goal_target_HOTA": 34.529,
     "scope": "All models selected only on complete Dev curves; macro Test accuracy inspected only after these controls were fixed. These are ordinary controls, not current-method successes; historical Test is exposed, not blind."
+  },
+  "foveated_region_stage": {
+    "status": "RUNNING_COMPLETE_DEV_PRODUCTION",
+    "plan": "configs/perceptual_foveated_regions_20261123.json",
+    "registered_Dev_rows": 38,
+    "reason": "Actual current image audit shows generated tank walls and reflection dominate whole-image saliency. Retain v1 and constrain both RGB/IR cues by the same current RGB working region.",
+    "exact_model_inputs": "Fast uint8 lookup normalization is bit-exact with original float64->float32->FP16 input on tested shapes and byte values. Detector unchanged.",
+    "Dev_accuracy_available": false,
+    "Test_started": false,
+    "goal_met": false
+  },
+  "native_query_final_budget": {
+    "status": "MATCHED36_SCHEDULED",
+    "decision": "PERCEPTUAL_MFT_20261123_NATIVE_COMMON30_DECISION.json",
+    "heads": 24,
+    "maximum_epochs": 36,
+    "clean_and_robust_equal_budget": true,
+    "Test_selection": false
+  },
+  "storage_current": {
+    "work_asset_GiB": 26.42,
+    "work_soft_cap_GiB": 64,
+    "original_filesystem_free_GiB": 5.8,
+    "dataset_copies": false,
+    "large_Git_artifacts": false
   }
 }

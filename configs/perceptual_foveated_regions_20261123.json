@@ -1,0 +1,59 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_REGION_CONSTRAINED_FORWARD_OR_ACCURACY",
+  "setting": "Keep actual November DiffV2IR pixels, frozen original detector weights, splits, normalization and original direct RGB baseline29.529. No image regeneration or Test fitting.",
+  "hypothesis": "Generated IR is unreliable for fine identity texture but can provide coarse figure-ground support. Use it to allocate high-resolution RGB detection crops, tolerating local cross-modal geometry distortions. Compare complete equal-budget RGB saliency and uniform crops; do not credit ordinary test-time augmentation alone.",
+  "primary_crop_detector": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+  "primary_crop_detector_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "network_size": [
+    800,
+    1440
+  ],
+  "crop_fraction": 0.5,
+  "crop_budgets": [
+    2,
+    4
+  ],
+  "saliency": "Current-frame robust distance from background median in scalar new IR or RGB Lab channels; normalize with robust channel MAD and the95th percentile. Add the same RGB weak/small-proposal density to both selectors. Subtract75% saliency inside already confident whole-image detections, leaving localization support. Greedy fixed-size integral-window mass coverage, suppress selected window mass before the next crop. No labels or future frames.",
+  "controls": [
+    "Zero extra crop: exact original detection cache",
+    "Uniform four half-width/half-height tiles",
+    "RGB-only adaptive crops, same RGB crop detector and count",
+    "Actual new-IR adaptive crops, same RGB crop detector and count",
+    "Both original RGB and frozen paired new-IR global detection streams"
+  ],
+  "fusion": "Two registered forms: same one-to-one cross-view clustering with confidence-weighted resolution^2 box refinement; and plain concatenation/NMS removal control. No within-view clustering of distinct predictions. Preserve original global confidence maxima; unmatched ROI detections require score>=0.6 and must be interior to non-image crop boundaries.",
+  "tracker": "First complete Dev screen uses unchanged original ByteTrack; promising fixed detector streams then receive the same stronger causal RGB/multimodal backend, with proper controls.",
+  "Dev_sequences": [
+    "BT-005",
+    "SN-013"
+  ],
+  "Test_policy": "No new Test inference until complete Dev selection and matched controls are frozen.",
+  "storage": "Numerical proposal caches only, no image dataset copies, no model upload; independent work disk64GiB soft cap and40GiB reserve.",
+  "allowed_physical_gpus": [
+    2,
+    3
+  ],
+  "goal_met": false,
+  "saliency_map_hw": [
+    180,
+    320
+  ],
+  "window_stride_cells": 4,
+  "attention_RGB_prior": "Use the common frozen RGB-global proposal stream for both cue selectors and both global detection frontends. The primary late-fusion RGB-global method has exact equal crop count/model/compute to its RGB-guided counterpart. The paired-V3-global variant additionally uses that shared RGB attention prior and must report its extra global detector cost.",
+  "empty_IR_policy": "If the current new-IR frame is spatially flat, fall back exactly to RGB attention; no synthetic evidence.",
+  "original_full_crop_detector": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+  "original_full_crop_detector_sha256": "e9f5de7fa48ce71ecc4b96e43da5d16baa6423216230d62a5b63b25773439065",
+  "weight_read_amendment": "Before any crop forward or accuracy result: prefer the existing compact FP16 EMA checkpoint selected at joint3, exactly the baseline Test inference checkpoint. Original full1.19GB cold-NAS checkpoint loading was canceled; no model/optimizer retraining or data/threshold change.",
+  "window_tie_break": "Before any crop forward: among equal maximal integral-mass windows, prefer minimal distance between window center and its evidence centroid, avoiding arbitrary border clipping. Empty attention falls back to uncovered uniform windows.",
+  "attention_scales": {
+    "half": 0.5,
+    "quarter": 0.25
+  },
+  "geometry_only_pilot_amendment": "Before any Dev accuracy result: first8-frame geometry-only pilot shows four half-image attention windows can equal the complete uniform cover, making the four-crop attention intervention uninformative. Register both half and quarter scales for both cue selectors, same crop counts/models and uniform-half control. Complete the previously registered weak/small RGB proposal prior: even confident boxes smaller than64 network pixels receive localization support. Bounded two-frame image prefetch is consumed strictly by current timestamp; no cross-frame model input.",
+  "current_forward_inputs": "Each detector eval forward sees only RGB crops from the current frame. Current IR determines only current attention. No future pixels enter a prediction.",
+  "source_attention_plan_sha256": "e2800797f45812dedcad008cf8fd8c637ddbf5ce3b95d2c96eff481517a5087e",
+  "reason": "Visual current-frame audit shows bright generated tank borders dominate whole-image attention. Preserve the complete existing38-control experiment. Add one matched RGB scene-region constraint to both cue selectors, normalize within that region, and retain known RGB observations.",
+  "working_region": "Current RGB Lab background distance using robust channel MAD floor5; threshold3,11x11 ellipse closing, fill the largest external contour. If its area<25% fall back to whole image. Union all existing RGB boxes with score>=0.6. No GT, future image or data-generation change.",
+  "exact_preprocessing": "Uint8 bilinear resize and byte lookup computed with original float64 normalization then float32->FP16; unit tests prove bit-exact model inputs. No change to model weights, RGB pixels, normalization, detector size or numerical inference precision.",
+  "comparison": "Same detector, crop counts, scales, fusion and tracker as v1. Assess support-mask gain within each cue and its interaction with the actual IR advantage. Generic scene masking and ordinary crop averaging alone are not new multimodal contributions."
+}

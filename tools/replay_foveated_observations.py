@@ -21,7 +21,7 @@ def main():
     config_path=Path(args.config);config=json.loads(config_path.read_text())
     plan_path=ROOT/'configs/perceptual_mft_20261122.json';plan=json.loads(plan_path.read_text());work=Path(plan['work_root'])
     protocol=json.loads((ROOT/plan['protocol']).read_text());sequences=protocol['dev' if args.split=='dev' else 'historical_test']
-    fovea_path=ROOT/'configs/perceptual_foveated_mft_20261123.json'
+    fovea_path=ROOT/config.get('fovea_plan','configs/perceptual_foveated_mft_20261123.json')
     if config['fovea_plan_sha256']!=sha256(fovea_path):raise ValueError('Registered foveated policy changed')
     output=Path(args.output)
     if (output/'metrics.json').exists():raise ValueError('Refuse to overwrite completed foveated accuracy')
@@ -32,7 +32,7 @@ def main():
             arm=key.removeprefix('baseline_');prefix='new_diffv2ir' if arm=='new' else 'rgb'
             path=Path(plan['frozen_detection_sources'][prefix+'_'+args.split])/'detections'/(sequence+'.npz')
         else:
-            folder=work/'foveated_proposals'/args.split/sequence
+            folder=work/config.get('producer_directory','foveated_proposals')/args.split/sequence
             producer=json.loads((folder/'complete.json').read_text());info=producer['outputs'][key];path=Path(info['path'])
             if (producer['status']!='COMPLETE_FOVEATED_CURRENT_OBSERVATIONS' or producer['GT_read'] or producer['future_frame_input']
                     or producer['config_sha256']!=config['fovea_plan_sha256'] or sha256(path)!=info['sha256']):
