@@ -33,6 +33,8 @@ def main():
                        byte_tracker=sha256(ROOT/'yolox/tracker/byte_tracker.py'),
                        evidence_tracker=sha256(ROOT/'yolox/tracker/evidence_byte_tracker.py'),
                        foreground_tracker=sha256(ROOT/'yolox/tracker/foreground_byte_tracker.py'),
+                       candidate_tracker=sha256(ROOT/'yolox/tracker/candidate_foreground_tracker.py'),
+                       residual_tracker=sha256(ROOT/'yolox/tracker/residual_foreground_tracker.py'),
                        evidence_adapter=sha256(ROOT/'yolox/tracker/evidence_adapter.py'),
                        replay=sha256(__file__))
     git_head_at_start=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -50,7 +52,7 @@ def main():
     adaptation={}
     arm=config.get('detection_arm','new')
     for sequence in sequences:
-        if config.get('backend') in {'byte','foreground_byte'}:
+        if config.get('backend') in {'byte','foreground_byte','residual_foreground'}:
             source_key=('new_diffv2ir' if arm=='new' else 'rgb')+'_'+args.split
             source=Path(plan['frozen_detection_sources'][source_key])/'detections'/f'{sequence}.npz'
         else:
@@ -60,7 +62,7 @@ def main():
             if sha256(source)!=manifest['outputs'][arm]['sha256']:raise ValueError('Feature digest mismatch')
         with np.load(source) as z:data={k:z[k] for k in z.files}
         transport_source=None
-        if config.get('backend')=='foreground_byte':
+        if config.get('backend') in {'foreground_byte','residual_foreground'}:
             directory=Path(plan['work_root'])/'transport'/args.split/sequence
             transport_source=directory/f'{arm}.npz'
             producer=json.loads((directory/'complete.json').read_text())
@@ -83,6 +85,9 @@ def main():
         elif config.get('backend')=='foreground_byte':
             from yolox.tracker.foreground_byte_tracker import ForegroundByteTracker
             tracker=ForegroundByteTracker(config)
+        elif config.get('backend')=='residual_foreground':
+            from yolox.tracker.residual_foreground_tracker import ResidualForegroundTracker
+            tracker=ResidualForegroundTracker(config)
         else:tracker=PerceptualTracker(config)
         rows=[]
         for frame in frames:
@@ -115,9 +120,12 @@ def main():
     if config.get('normalizer'):manifest['normalizer_sha256']=sha256(config['normalizer'])
     if config.get('backend')=='safe_byte':
         manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
-    if config.get('backend')=='foreground_byte':
+    if config.get('backend') in {'foreground_byte','residual_foreground'}:
         manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
         manifest['foreground_tracker_source_sha256']=source_hashes['foreground_tracker']
+    if config.get('backend')=='residual_foreground':
+        manifest['candidate_tracker_source_sha256']=source_hashes['candidate_tracker']
+        manifest['residual_tracker_source_sha256']=source_hashes['residual_tracker']
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

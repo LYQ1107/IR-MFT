@@ -24,7 +24,8 @@ def with_transport(boxes, scores, offsets, zero=False):
         for mode in ['bbox','rgb','ir','joint']:
             point[f'good_{lag}_{mode}']=np.full(previous.sum(),20,np.uint8)
             point[f'total_{lag}_{mode}']=np.full(previous.sum(),20,np.uint8)
-            point[f'vote_{lag}_{mode}_{mode}']=np.concatenate(matrices)
+            for target in ['bbox','rgb','ir','joint']:
+                point[f'vote_{lag}_{mode}_{target}']=np.concatenate(matrices)
     data['foreground_transport']=point
     return data
 
