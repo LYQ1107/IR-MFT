@@ -32,6 +32,7 @@ def main():
     source_hashes=dict(tracker=sha256(ROOT/'yolox/tracker/perceptual_tracker.py'),
                        byte_tracker=sha256(ROOT/'yolox/tracker/byte_tracker.py'),
                        evidence_tracker=sha256(ROOT/'yolox/tracker/evidence_byte_tracker.py'),
+                       foreground_tracker=sha256(ROOT/'yolox/tracker/foreground_byte_tracker.py'),
                        evidence_adapter=sha256(ROOT/'yolox/tracker/evidence_adapter.py'),
                        replay=sha256(__file__))
     git_head_at_start=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -49,7 +50,7 @@ def main():
     adaptation={}
     arm=config.get('detection_arm','new')
     for sequence in sequences:
-        if config.get('backend')=='byte':
+        if config.get('backend') in {'byte','foreground_byte'}:
             source_key=('new_diffv2ir' if arm=='new' else 'rgb')+'_'+args.split
             source=Path(plan['frozen_detection_sources'][source_key])/'detections'/f'{sequence}.npz'
         else:
@@ -58,6 +59,15 @@ def main():
             if manifest['status']!='COMPLETE':raise ValueError('Incomplete feature producer')
             if sha256(source)!=manifest['outputs'][arm]['sha256']:raise ValueError('Feature digest mismatch')
         with np.load(source) as z:data={k:z[k] for k in z.files}
+        transport_source=None
+        if config.get('backend')=='foreground_byte':
+            directory=Path(plan['work_root'])/'transport'/args.split/sequence
+            transport_source=directory/f'{arm}.npz'
+            producer=json.loads((directory/'complete.json').read_text())
+            if producer['status']!='COMPLETE' or sha256(transport_source)!=producer['outputs'][arm]['sha256']:raise ValueError('Incomplete/mismatched point producer')
+            with np.load(transport_source) as z:point_data={k:z[k] for k in z.files}
+            if not np.array_equal(point_data['detection_offsets'],data['offsets']) or not np.array_equal(point_data['frame_ids'],data['frame_ids']):raise ValueError('Point/proposal indexing mismatch')
+            data['foreground_transport']=point_data
         frames=data['frame_ids']
         if not np.array_equal(frames,np.arange(1,len(frames)+1)):raise ValueError('Missing/unordered frames')
         if data['offsets'][-1]!=len(data['boxes']):raise ValueError('Malformed detection indexing')
@@ -70,6 +80,9 @@ def main():
         elif config.get('backend')=='safe_byte':
             from yolox.tracker.evidence_byte_tracker import EvidenceByteTracker
             tracker=EvidenceByteTracker(config)
+        elif config.get('backend')=='foreground_byte':
+            from yolox.tracker.foreground_byte_tracker import ForegroundByteTracker
+            tracker=ForegroundByteTracker(config)
         else:tracker=PerceptualTracker(config)
         rows=[]
         for frame in frames:
@@ -80,6 +93,7 @@ def main():
             else:rows.extend(tracker.update(int(frame),data))
         write_sequence_results(str(output/'track_results'/f'{sequence}.txt'),rows)
         sources[sequence]=dict(path=str(source),sha256=sha256(source))
+        if transport_source is not None:sources[sequence]['foreground_transport']=dict(path=str(transport_source),sha256=sha256(transport_source))
         coverage[sequence]=dict(frames=len(frames),detections=len(data['boxes']),output_rows=len(rows),output_sha256=sha256(output/'track_results'/f'{sequence}.txt'))
         statistics[sequence]=getattr(tracker,'statistics',{})
         print(json.dumps(dict(sequence=sequence,**coverage[sequence])),flush=True)
@@ -101,6 +115,9 @@ def main():
     if config.get('normalizer'):manifest['normalizer_sha256']=sha256(config['normalizer'])
     if config.get('backend')=='safe_byte':
         manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
+    if config.get('backend')=='foreground_byte':
+        manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
+        manifest['foreground_tracker_source_sha256']=source_hashes['foreground_tracker']
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

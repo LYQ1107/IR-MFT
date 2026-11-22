@@ -52,6 +52,7 @@ def main():
     if a.resume:
         c=torch.load(output/'latest.pt',map_location='cpu',weights_only=False)
         if c['train_bank_sha256']!=metadata['feature_bank_sha256'] or c['cue']!=a.cue or c['seed']!=a.seed:raise ValueError('Resume provenance mismatch')
+        if c['config_sha256']!=sha256(config_path):raise ValueError('Registered fit configuration changed')
         model.load_state_dict(c['model']);optimizer.load_state_dict(c['optimizer']);sampler.bit_generator.state=c['sampler_state']
         torch.set_rng_state(c['torch_rng']);torch.cuda.set_rng_state_all(c['cuda_rng']);history=c['history'];start_epoch=c['epoch']
     if a.epochs>config['maximum_epochs'] or a.epochs<start_epoch:raise ValueError('Invalid registered epoch boundary')

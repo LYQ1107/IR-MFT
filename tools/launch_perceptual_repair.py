@@ -18,6 +18,8 @@ def main():
     p.add_argument('--label',default='repair1')
     p.add_argument('--config-dir',default='configs/perceptual_repair1_20261122')
     p.add_argument('--wait-state',default='screen_state.json')
+    p.add_argument('--split',choices=['dev','test'],default='dev')
+    p.add_argument('--wait-transport',action='store_true')
     args=p.parse_args()
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text())
     work=Path(plan['work_root']);lock=(work/(args.label+'.lock')).open('w')
@@ -25,7 +27,8 @@ def main():
     state_file=work/(args.label+'_state.json')
     if state_file.exists():raise RuntimeError('Existing repair state: inspect before restarting')
     jobs={p.stem:dict(status='PENDING',config=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted((ROOT/args.config_dir).glob('*.json'))}
-    state=dict(status='WAITING_FOR_INITIAL_SCREEN',jobs=jobs)
+    if not jobs:raise ValueError('No registered configurations')
+    state=dict(status='WAITING_FOR_INITIAL_SCREEN',split=args.split,jobs=jobs)
     def save():
         tmp=state_file.with_suffix('.tmp');tmp.write_text(json.dumps(state,indent=2)+'\n');os.replace(tmp,state_file)
     while True:
@@ -34,6 +37,19 @@ def main():
         if prior['status']=='FAILED':
             state['status']='DEPENDENCY_FAILED';save();return
         save();time.sleep(5)
+    if args.wait_transport:
+        protocol=json.loads((ROOT/plan['protocol']).read_text())
+        sequences=protocol['historical_test' if args.split=='test' else 'dev']
+        while True:
+            pending=[]
+            for sequence in sequences:
+                manifest=work/'transport'/args.split/sequence/'complete.json'
+                if not manifest.exists():pending.append(sequence);continue
+                producer=json.loads(manifest.read_text())
+                if producer['status']!='COMPLETE':raise ValueError('Transport producer is not formally complete')
+            state.update(status='WAITING_FOR_POINT_PRODUCERS',pending_sequences=pending);save()
+            if not pending:break
+            time.sleep(5)
     env=dict(os.environ,CUDA_VISIBLE_DEVICES='',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2',PYTHONUNBUFFERED='1')
     env['PYTHONPATH']=':'.join([str(ROOT),str(ROOT/'exps'),'/data3/liuyeqiang/.codex/pydeps','/data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages','/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT'])
     state['status']='RUNNING';active={}
@@ -48,7 +64,7 @@ def main():
             if job['status']!='PENDING':continue
             config=Path(job['config'])
             if hashlib.sha256(config.read_bytes()).hexdigest()!=job['sha256']:raise ValueError('Registered configuration changed')
-            command=[sys.executable,'-u','tools/replay_perceptual_mft.py','--config',str(config),'--split','dev','--output',str(work/args.label/name)]
+            command=[sys.executable,'-u','tools/replay_perceptual_mft.py','--config',str(config),'--split',args.split,'--output',str(work/args.label/name)]
             log=work/(name+'.process.log')
             with log.open('ab',buffering=0) as h:
                 proc=subprocess.Popen(command,cwd=ROOT,env=env,stdin=subprocess.DEVNULL,stdout=h,stderr=subprocess.STDOUT,start_new_session=True)
