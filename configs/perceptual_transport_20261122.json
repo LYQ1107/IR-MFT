@@ -1,0 +1,22 @@
+{
+  "status": "REGISTERED_BEFORE_PIXEL_CORRESPONDENCE_DEV_EVALUATION",
+  "motivation": "Track corresponding body points rather than assuming a translated bounding-box centre. RGB carries texture and dynamics; new pseudo-IR supplies optional foreground geometry.",
+  "input_version": "Existing November DiffV2IR; no regenerated or substituted auxiliary images",
+  "detector_controls": ["Fixed RGB fine-tune proposals", "Fixed new-DiffV2IR V3 proposals"],
+  "foreground_modes": ["bbox", "rgb", "ir", "joint"],
+  "rgb_foreground": "Local Lab colour contrast, not a deliberately weakened grayscale-only control",
+  "ir_foreground": "Polarity-independent scalar contrast in existing pseudo-IR; fallback to RGB foreground if local IR contrast quality <0.15",
+  "joint_foreground": "Geometric mean of valid RGB and IR foreground support; RGB fallback for unsupported auxiliary input",
+  "source_and_target_constraints": "Both ends of a point correspondence must belong to the declared foreground; soft exclusive ownership between overlapping candidate regions",
+  "image_size": [540, 960],
+  "points_per_observation": 20,
+  "foreground_threshold": 0.25,
+  "point_response": "Maximum Shi-Tomasi response across current RGB colour channels",
+  "LK": {"channels": "uint8 BGR", "window": 21, "levels": 3, "iterations": 20, "epsilon": 0.02, "FB_error_max": 1.5, "photometric_error_max": 40},
+  "lags": [1, 2, 4, 8],
+  "causality": "A target update at t uses source pixels and proposals at t-lag and current pixels/proposals at t, never a future frame.",
+  "candidate_mechanisms": ["Pseudo-IR-supported foreground ownership", "Body-point transport association instead of box translation", "Object-file multi-lag recovery and preservation of previously co-visible objects"],
+  "acceptance": "No innovation credit before complete Dev/Test removal and RGB-only controls. Overall original goal remains >=+5 Test HOTA over direct RGB fine-tune, with 2-3 supported contributions.",
+  "calibration_and_selection": "Train/Dev only, no Test scores for selection",
+  "storage": "Past-image deque limited to maximum lag plus current frame in RAM; save compact point-vote arrays, never duplicate whole input videos."
+}
