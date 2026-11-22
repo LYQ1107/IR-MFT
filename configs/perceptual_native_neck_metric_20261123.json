@@ -1,0 +1,84 @@
+{
+  "status": "REGISTERED_BEFORE_POST_NECK_REPAIR_FITTING",
+  "motivation": "Frozen RGB feature pooling on raw/IR foreground is negative even on optimistic Train identity AUC. The November pseudo-IR has not been given a newly trained native pixel encoder in this campaign; an old constructed-IR representation is not a substitute. Test whether explicit new-IR representation adaptation and paired RGB alignment supply useful association evidence.",
+  "setting": "Actual November DiffV2IR images only, original Protocol V2 and detector sources unchanged. Native scalar IR is replicated to three channels only for the preserved RGB architecture; it is not a physical thermal measurement.",
+  "observations": "Exactly11967 preserved Train observations,2551 unique frames,98 composite identities in Train6. Never use the legacy ir_file from the historical crop index. All current new-IR paths are recomputed from the frozen November root.",
+  "crop_cache": "One compact uint8 derived Train crop bank outside Git, not a full-image dataset copy.128x256,5%-margin letterbox; explicit valid rectangle restores zero padding after ImageNet normalization. Original frames and images are never copied. Expected raw RGB+IR pixels<1.6GiB; compressed bank and per-worker CPU tensors under the existing64GiB cap.",
+  "architecture": "Same ResNet50,2048-to512 projection,BN neck,98-class identity classifier as the preserved Train RGB encoder. One native new-IR branch and one extra native RGB control, same initialization, parameter count, batches, losses, augmentation and budget.",
+  "initial_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+  "initial_sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+  "teacher": "The preserved frozen RGB identity vectors from the exact Train bank, no gradient into the teacher. Reuse existing features instead of a second teacher forward.",
+  "loss": "Smoothed CE0.1 + same-video post-neck cosine batch-hard triplet margin0.3, positive time gap>=25 +0.5 paired frozen RGB teacher POST-neck cosine loss.",
+  "sampler": "8 distinct Train composite identities per batch,8 observations each from eight lifespan strata; same row draws and augmentation seed for the two matched cue arms.",
+  "steps_per_epoch": "ceil11967/64=187",
+  "epochs": 36,
+  "seed_plan": [
+    0,
+    1,
+    2
+  ],
+  "optimizer": {
+    "name": "AdamW",
+    "backbone_lr": 3e-05,
+    "head_lr": 0.0003,
+    "weight_decay": 0.0001,
+    "first_epoch_backbone_warmup": true,
+    "cosine_min_lr_fraction": 0.1,
+    "gradient_clip": 5,
+    "AMP": true
+  },
+  "augmentation": {
+    "horizontal_flip_probability": 0.5,
+    "erase_probability": 0.2,
+    "erase_area": [
+      0.05,
+      0.2
+    ],
+    "erase_fill": "zero in ImageNet-normalized space"
+  },
+  "checkpoint_policy": "Atomic resumable latest with optimizer/RNG; compact FP16 candidate weights every6 epochs. The initial native representation control uses fixed executed36-epoch weights, not a checkpoint chosen on Train or Test. Downstream association fitting and any representation repairs still require complete Dev curves and matched controls.",
+  "resources": "Only physical GPUs2/3, one native encoder fit per card beside at most one existing association fit. Require>=12GiB free, limit encoder memory fraction0.35. All crops/weights/features stay outside Git; total campaign soft cap64GiB and work filesystem reserve40GiB.",
+  "preflight": "Both allowed GPUs must pass a real Train RGB/new-IR crop/forward check. Source/label arrays must match the preserved Train bank exactly; no Dev/Test row may enter fitting.",
+  "required_controls": [
+    "Frozen original RGB representation",
+    "Equal-budget extra native RGB representation",
+    "Native November new-IR representation",
+    "No paired RGB distillation if a benefit survives",
+    "No native cue increment and mismatched native cue features",
+    "Final same-backend RGB/double-RGB controls, all three seeds and all7 Test videos"
+  ],
+  "interpretation": "Representation-conditioning and ordinary supervised distillation repair, not by itself an innovation. Complete same-backend RGB/IR Dev/Test evidence and module removals remain necessary.",
+  "reason": "Native IR discrimination is much weaker on unseen Dev identities than seen Train identities; raw normalized pre-neck features remain nearly parallel. Apply metric and paired distillation losses in the actual post-BN inference space, identically for RGB and new IR.",
+  "initial_checkpoints": {
+    "rgb_s0": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+      "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56"
+    },
+    "rgb_s1": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+      "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b"
+    },
+    "rgb_s2": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+      "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333"
+    },
+    "ir_s0": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+      "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687"
+    },
+    "ir_s1": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+      "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15"
+    },
+    "ir_s2": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+      "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7"
+    }
+  },
+  "initial_policy": "Resume weights only from each completed matched36-epoch native model; reset optimizer for the registered36-epoch representation repair. Total encoder adaptation72 epochs per arm, not36.",
+  "teacher_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_train_features/reference_s0/features.npz",
+  "teacher_sha256": "cd8524d87d40a6f3f9d69a01b020030dbc46cea32712a5ec11c14ab052e1adb5",
+  "feature_space": "Unit post-neck identity vectors, exactly the inference representation. BN float32 state retained in the final compact checkpoint.",
+  "snapshot_policy": "One atomic resumable latest per arm plus one compact exact FP32 endpoint at fixed36. No intermediate model snapshot series.",
+  "post_neck_repair": true
+}

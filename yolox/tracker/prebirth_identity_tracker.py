@@ -123,7 +123,7 @@ class PrebirthIdentityMixin:
                 self.statistics['prebirth_recoveries']+=1
                 self.statistics['prebirth_long_recoveries']+=int(gap>25)
                 self.statistics['prebirth_clear_recoveries']+=int(use_clear and entry.get('clear') is not None and entry['clear']['index']!=entry['latest']['index'])
-                self.statistics['prebirth_IR_increment_links']+=int(self.cue=='ir' and abs(increments[i,j])>1e-4)
+                self.statistics['prebirth_IR_increment_links']+=int(getattr(self,'native_cue',self.cue)=='ir' and abs(increments[i,j])>1e-4)
                 self.statistics['suppressed_unemitted_IDs']+=len(suppressed)
         self.emitted_identities.update(row[2] for row in rows)
         self.remember_current(frame,data)

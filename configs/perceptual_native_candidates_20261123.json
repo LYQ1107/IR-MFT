@@ -1,0 +1,12 @@
+{
+  "status": "REGISTERED_BEFORE_NATIVE_CANDIDATE_INDEX_CROPS_AND_ASSOCIATION_FITTING",
+  "purpose": "Conditioned post-neck identity evidence must be tested on realistic perturbed boxes and background candidates, not only clean GT crops. Reconstruct the exact existing local pair-bank proposal order without recomputing point transport.",
+  "source_local_plan": "configs/perceptual_pair_calibration_20261123.json",
+  "proposal_geometry": "Same128 source frames/video, source/target lags1/2/4/8, small/large0.03/0.08 box perturbations, target dropout0.05, two backgrounds, same per-video RNG20261123+Train-video-index and Train GT IoU0.5 Hungarian labels.",
+  "verification": "Reconstructed row query IDs, labels and lags must match each immutable local bank exactly. Recomputed six geometry fields must match the saved FP16 fields. Retain global proposal indices so native features align with the existing23 RGB/point features.",
+  "pixels": "Cache only derived native uint8 Train candidate crops128x256 and valid rectangles, using the registered native pixel function and actual November IR root. Group repeated frame reads. No original full-frame dataset copy; no Dev/Test pixel in training banks.",
+  "resources": "At most two CPU crop workers, each bounded by its exact proposal count and available RAM. Expected total uncompressed candidate pixels<20GiB; compressed files count against the existing64GiB work cap. Keep40GiB filesystem reserve. All arrays/crops outside Git.",
+  "native_features": "Use fixed36 encoders and original RGB teacher. FP32 parameters, BN buffers and inference; store post-neck-normalized vectors. Train-only optional orthogonal Procrustes maps are fit from the separate paired11967 GT observation bank, never from Dev/Test.",
+  "future_classifier": "A strong RGB query posterior retains the original frozen RGB pair logits and adds a Train-calibrated post-neck RGB cosine term, with an explicit no-correspondence alternative. Native cue correction compares shared-function cue versus RGB-reference evidence. Freeze architecture/loss/null prior/budgets before fitting; all paired RGB/new-IR controls and three seeds are mandatory.",
+  "scope": "Repair the same new-pseudo-IR MFT task. Proposal reconstruction, BN conditioning, native encoders and classical alignment alone are ordinary controls, not innovation credit. No current Test+5 or2-3 contribution claim is established."
+}

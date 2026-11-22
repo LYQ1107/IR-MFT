@@ -280,3 +280,67 @@ completed runs (about6.4MB), including the nine earlier fixed ordinary Test
 controls. Arrays, crop banks, model weights and raw track predictions are
 excluded. The>=+5 Test HOTA objective and2-3 independently supported modules
 remain unmet; supported multimodal innovation count is still zero.
+
+
+Native representation and explicit-null query update (2026-11-23): all six
+actual-pixel RGB/new-IR encoder fits completed36 epochs. All36 sampling digests
+match within each RGB/IR seed pair; AMP overflow skip counts are separately
+reported in [the budget audit](PERCEPTUAL_MFT_20261123_NATIVE_BUDGET_AUDIT.json).
+The [old feature-scale diagnosis](PERCEPTUAL_MFT_20261123_FEATURE_SCALE_DIAGNOSIS.json)
+shows why raw pre-neck cosine0.5 does not reject wrong identities. The repaired
+post-neck feature space is an ordinary control, not a new fusion contribution.
+
+Exact reconstruction of the original2,863,358 local association edges preserves
+every query, label, lag and geometry field. Native features use the actual
+perturbed proposal crops and their backgrounds, rather than substituting GT
+crop descriptors. The native [query-fitting policy](../../configs/perceptual_native_query_v2_20261123.json)
+forbids additional hidden local target deletion: deleted proposals must never
+remain in point competition or frozen RGB inputs. Long appearance-only masks
+recompute all affected query competition and RGB scores.
+
+All12 frontend/cue/seed native query heads completed the minimum18 epochs.
+The complete42-configuration Dev replay is running:36 matched6/12/18 snapshots
+plus six exact-zero controls, each covering both Dev videos. Runtime keeps the
+complete frozen fitted RGB scorer and real/null prior when the native increment
+is zero. It can consult a retained identity only before a new identity's first
+returned output. Current/future native observations cannot alter an emitted
+prefix. All90 maintained tests pass.
+
+All six earlier fitted-RGB residual heads also completed36 epochs. The complete
+[epoch24](PERCEPTUAL_MFT_20261123_STRONG_RGB24_DEV.md),
+[epoch30](PERCEPTUAL_MFT_20261123_STRONG_RGB30_DEV.md), and
+[epoch36](PERCEPTUAL_MFT_20261123_STRONG_RGB36_DEV.md) tables retain all seeds.
+[Guarded residuals](PERCEPTUAL_MFT_20261123_GUARDED_DEV.md) and
+[missing-point fallbacks](PERCEPTUAL_MFT_20261123_MISSING_POINT_DEV.md) do not
+establish a robust multimodal benefit. The [strong residual controls](PERCEPTUAL_MFT_20261123_STRONG_RGB_SELECTION.json)
+are frozen only from all72 completed Dev snapshots, preserving every matched
+frontend/cue/seed combination for formal Test.
+
+The work cache occupies about16GiB on the independent work filesystem, below
+the64GiB soft cap. No models, arrays, crops, dataset copies or raw predictions
+are committed. Only physical GPUs2/3 are used. Native Test processing currently
+extracts unlabeled current-frame representations; no Test result chooses this
+new family. The original Test baseline is29.529 and the requested target is
+at least34.529. Neither that target nor2-3 independent fusion contributions
+has yet been established.
+
+
+The initial native-query Dev family exposes harmful association overreach;
+it does not establish a new-IR identity advantage. The complete
+[Dev identity audit](PERCEPTUAL_MFT_20261123_NATIVE_DEV_IDENTITY_AUDIT.json)
+separately shows native IR is weaker than the equally trained RGB encoder on
+these held-out identities, especially at long intervals. Preserve this failure.
+A [counterfactual query repair](../../configs/perceptual_counterfactual_query_dev_20261123)
+keeps the strong RGB point match by default, requires>=0.05 posterior improvement
+from the added cue, and protects clear RGB body correspondence. Its first three
+[zero-cue parity controls](PERCEPTUAL_MFT_20261123_COUNTERFACTUAL_ZERO_PARITY.json)
+match the full RGB reference exactly on all39 official fields and both complete
+Dev track files. Its full matched Dev curve is still running.
+
+The registered [post-neck metric repair](../../configs/perceptual_native_neck_metric_20261123.json)
+trains metric and frozen paired-RGB distillation losses in the actual normalized
+post-neck inference space. Both RGB and actual November IR receive an extra36
+epochs after the earlier36, for72 cumulative encoder epochs, all Train-only.
+These fits are running; no improvement is claimed. Only one resumable latest
+and one compact exact-FP32 endpoint are retained for each repair arm. All95
+maintained tests pass, including gradient-space and counterfactual parity tests.

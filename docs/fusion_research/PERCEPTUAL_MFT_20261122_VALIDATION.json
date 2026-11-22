@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 79,
+    "current_full_repository_passed": 95,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -36,7 +36,13 @@
     "missing_point_repair_tests_passed": 3,
     "spatial_binding_tests_passed": 3,
     "residual_guard_tests_passed": 1,
-    "native_pixel_loss_tests_passed": 2
+    "native_pixel_loss_tests_passed": 2,
+    "native_query_feature_tests_passed": 3,
+    "native_query_mask_tests_passed": 2,
+    "native_query_prior_tests_passed": 1,
+    "native_query_tracker_tests_passed": 5,
+    "counterfactual_query_tests_passed": 4,
+    "native_post_neck_metric_test_passed": 1
   },
   "smoke": {
     "BT-005": {
@@ -485,5 +491,29 @@
     "bytes": 6359435,
     "unmodified_CSV": true,
     "no_weights_or_raw_tracks": true
+  },
+  "native_query_progress": {
+    "status": "ALL_12_MATCHED_HEADS_COMPLETE_MINIMUM18_DEV_REPLAY_RUNNING",
+    "encoder_epochs_each": 36,
+    "encoder_seed_pairs": 3,
+    "query_minimum_epochs_each": 18,
+    "query_heads": 12,
+    "Dev_registered_configurations": 42,
+    "training_sequences_only": true,
+    "original_Test_HOTA": 29.529,
+    "target_Test_HOTA": 34.529,
+    "goal_met": false,
+    "supported_multimodal_innovations": 0,
+    "cache_gib_approx": 16,
+    "counterfactual_zero_controls_verified": 3,
+    "counterfactual_zero_scope": "Exact all39 official fields and both Dev track files;4834 frames",
+    "post_neck_metric_repair": "Registered extra36 paired epochs after native36,72 cumulative; running, no outcome claim"
+  },
+  "official_tables": {
+    "status": "COMPLETE_FOR_CURRENT_FINISHED_RUNS",
+    "scope": "Unmodified TrackEval detailed CSV, all per-sequence and combined rows and every threshold-specific column. No model, feature bank, crop bank, image dataset or raw track prediction is published. Test metric values are archived without selecting later candidate parameters from them.",
+    "tables": 502,
+    "bytes": 8430024,
+    "rows_omitted_from_validation_for_size": true
   }
 }
