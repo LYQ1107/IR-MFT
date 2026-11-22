@@ -56,7 +56,7 @@ def main():
     sources,coverage,statistics={},{},{}
     adaptation={}
     arm=config.get('detection_arm','new')
-    raw_backends={'byte','foreground_byte','residual_foreground','cycle_foreground','recoverable_foreground'}
+    raw_backends={'byte','foreground_byte','candidate_foreground','residual_foreground','cycle_foreground','recoverable_foreground'}
     learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated'}
     point_backends=(raw_backends-{'byte'})|learned_backends
     for sequence in sequences:
@@ -95,6 +95,9 @@ def main():
         elif config.get('backend')=='foreground_byte':
             from yolox.tracker.foreground_byte_tracker import ForegroundByteTracker
             tracker=ForegroundByteTracker(config)
+        elif config.get('backend')=='candidate_foreground':
+            from yolox.tracker.candidate_foreground_tracker import CandidateForegroundTracker
+            tracker=CandidateForegroundTracker(config)
         elif config.get('backend')=='residual_foreground':
             from yolox.tracker.residual_foreground_tracker import ResidualForegroundTracker
             tracker=ResidualForegroundTracker(config)
