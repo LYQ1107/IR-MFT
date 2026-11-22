@@ -1,6 +1,14 @@
 """A bounded, signed cue contrast over fixed RGB point log-odds."""
+import numpy as np
 import torch
 from torch import nn
+
+
+def prepare_calibration_cue(values,cue):
+    result=np.asarray(values,np.float32).copy()
+    if cue=='rgb':result[...,16]+=.25
+    elif cue!='ir':raise ValueError('Unknown calibrated cue')
+    return result
 
 
 class AssociationCalibrator(nn.Module):
@@ -21,7 +29,10 @@ class AssociationCalibrator(nn.Module):
 
     @staticmethod
     def RGB_offset(base):
-        probability=(base[...,14]/.8).clamp(.01,.99)
+        probability=(base[...,14]/.8).clamp(.1,.98)
+        row_maximum=torch.maximum(base[...,14],base[...,14]-base[...,16])
+        present=(base[...,19]>=.25)&(base[...,20]>=.2)&(row_maximum>=.15)
+        probability=torch.where(present,probability,torch.full_like(probability,.5))
         return torch.logit(probability)
 
     def forward(self,base,cue,reference,available):

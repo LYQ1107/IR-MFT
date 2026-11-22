@@ -35,6 +35,11 @@ def main():
                        foreground_tracker=sha256(ROOT/'yolox/tracker/foreground_byte_tracker.py'),
                        candidate_tracker=sha256(ROOT/'yolox/tracker/candidate_foreground_tracker.py'),
                        residual_tracker=sha256(ROOT/'yolox/tracker/residual_foreground_tracker.py'),
+                       cycle_tracker=sha256(ROOT/'yolox/tracker/cycle_candidate_tracker.py'),
+                       weak_tracker=sha256(ROOT/'yolox/tracker/weak_recovery_tracker.py'),
+                       calibrated_tracker=sha256(ROOT/'yolox/tracker/calibrated_foreground_tracker.py'),
+                       association_model=sha256(ROOT/'yolox/tracker/association_calibrator.py'),
+                       association_features=sha256(ROOT/'yolox/tracker/association_features.py'),
                        evidence_adapter=sha256(ROOT/'yolox/tracker/evidence_adapter.py'),
                        replay=sha256(__file__))
     git_head_at_start=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
@@ -51,8 +56,11 @@ def main():
     sources,coverage,statistics={},{},{}
     adaptation={}
     arm=config.get('detection_arm','new')
+    raw_backends={'byte','foreground_byte','residual_foreground','cycle_foreground','recoverable_foreground'}
+    learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated'}
+    point_backends=(raw_backends-{'byte'})|learned_backends
     for sequence in sequences:
-        if config.get('backend') in {'byte','foreground_byte','residual_foreground'}:
+        if config.get('backend') in raw_backends:
             source_key=('new_diffv2ir' if arm=='new' else 'rgb')+'_'+args.split
             source=Path(plan['frozen_detection_sources'][source_key])/'detections'/f'{sequence}.npz'
         else:
@@ -62,7 +70,7 @@ def main():
             if sha256(source)!=manifest['outputs'][arm]['sha256']:raise ValueError('Feature digest mismatch')
         with np.load(source) as z:data={k:z[k] for k in z.files}
         transport_source=None
-        if config.get('backend') in {'foreground_byte','residual_foreground'}:
+        if config.get('backend') in point_backends:
             directory=Path(plan['work_root'])/'transport'/args.split/sequence
             transport_source=directory/f'{arm}.npz'
             producer=json.loads((directory/'complete.json').read_text())
@@ -88,6 +96,16 @@ def main():
         elif config.get('backend')=='residual_foreground':
             from yolox.tracker.residual_foreground_tracker import ResidualForegroundTracker
             tracker=ResidualForegroundTracker(config)
+        elif config.get('backend')=='cycle_foreground':
+            from yolox.tracker.cycle_candidate_tracker import CycleForegroundTracker
+            tracker=CycleForegroundTracker(config)
+        elif config.get('backend')=='recoverable_foreground':
+            from yolox.tracker.weak_recovery_tracker import RecoverableForegroundTracker
+            tracker=RecoverableForegroundTracker(config)
+        elif config.get('backend') in learned_backends:
+            from yolox.tracker.calibrated_foreground_tracker import CalibratedForegroundTracker,CalibratedCycleTracker,RecoverableCalibratedTracker
+            factory={'calibrated_foreground':CalibratedForegroundTracker,'calibrated_cycle':CalibratedCycleTracker,'recoverable_calibrated':RecoverableCalibratedTracker}[config['backend']]
+            tracker=factory(config)
         else:tracker=PerceptualTracker(config)
         rows=[]
         for frame in frames:
@@ -120,12 +138,22 @@ def main():
     if config.get('normalizer'):manifest['normalizer_sha256']=sha256(config['normalizer'])
     if config.get('backend')=='safe_byte':
         manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
-    if config.get('backend') in {'foreground_byte','residual_foreground'}:
+    if config.get('backend') in point_backends:
         manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
         manifest['foreground_tracker_source_sha256']=source_hashes['foreground_tracker']
-    if config.get('backend')=='residual_foreground':
+    if config.get('backend') in point_backends-{'foreground_byte'}:
         manifest['candidate_tracker_source_sha256']=source_hashes['candidate_tracker']
         manifest['residual_tracker_source_sha256']=source_hashes['residual_tracker']
+    if config.get('backend') in {'cycle_foreground','recoverable_foreground','calibrated_cycle','recoverable_calibrated'}:
+        manifest['cycle_tracker_source_sha256']=source_hashes['cycle_tracker']
+    if config.get('backend') in {'recoverable_foreground','recoverable_calibrated'}:
+        manifest['weak_tracker_source_sha256']=source_hashes['weak_tracker']
+    if config.get('backend') in learned_backends:
+        manifest['calibration']=tracker.calibration_metadata
+        manifest['association_checkpoint_sha256']=sha256(config['association_checkpoint'])
+        manifest['calibrated_tracker_source_sha256']=source_hashes['calibrated_tracker']
+        manifest['association_model_source_sha256']=source_hashes['association_model']
+        manifest['association_features_source_sha256']=source_hashes['association_features']
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

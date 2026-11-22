@@ -1,0 +1,15 @@
+{
+  "status": "REGISTERED_BEFORE_RECOVERABILITY_DIAGNOSIS_AND_DEV_EVALUATION",
+  "problem": "Original ByteTrack includes Lost tracks in high-score association, but its low-score stage includes only unmatched currently Tracked objects. A reappearing weak fish can remain structurally ineligible for its old identity even when current body correspondences support that identity.",
+  "scope": "Explicit evidence-based recovery route after original association and before creating a new identity; not a silent change to the original baseline graph",
+  "source": "Most recent valid object observation among causal lags1,2,4,8; co-visible identity protection may retain a genuinely distinct Lost object",
+  "target": "Actual current unclaimed proposals with score>=0.3, initially restricted to score<=0.6",
+  "evidence_controls": ["RGB point geometry", "RGB-source/joint-new-IR target ownership", "Matched learned RGB signed evidence", "Learned IR signed evidence"],
+  "minimum_evidence_grid": [0.6, 0.8, 0.9],
+  "constraints": "Valid surviving body points; distinct current candidate ownership; one-to-one assignment between Lost identities and unclaimed observations; preserve original25-frame maximum age",
+  "update": "Reactivate the original identity using the actual current observation; never synthesize a detection, revise an earlier output or assign a new ID to an already recoverable old object",
+  "ablations": ["No weak recovery", "No object history beyond latest observation", "No co-visible protection", "RGB-only evidence", "Ordinary global primary threshold0.3/birth0.4", "Weak births without old-identity recovery"],
+  "sequence": "Original update, credible old-identity recovery, then optional three-image cycle-confirmed birth",
+  "selection": "Full Dev only; no Test score selects any configuration",
+  "novelty_status": "Proposed recoverability mechanism, no contribution credit before complete removal/IR controls and all7 Test videos. Hungarian assignment and object memory are classical components, not novel alone."
+}

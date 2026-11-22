@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 import numpy as np
 import torch
 from torch.nn import functional as F
-from yolox.tracker.association_calibrator import AssociationCalibrator
+from yolox.tracker.association_calibrator import AssociationCalibrator,prepare_calibration_cue
 from tools.run_pseudo_ir_comparison import dump,sha256
 
 
@@ -23,6 +23,9 @@ def main():
     if physical not in {'2','3'}:raise RuntimeError('Only physical GPU2 or3')
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());protocol=json.loads((ROOT/plan['protocol']).read_text())
     config_path=ROOT/'configs/perceptual_pair_calibration_20261123.json';config=json.loads(config_path.read_text());w=Path(plan['work_root'])
+    prior_path=ROOT/'configs/perceptual_missing_evidence_prior_20261123.json'
+    prior_sha256=sha256(prior_path)
+    capacity_sha256=sha256(ROOT/'configs/perceptual_calibration_capacity_20261123.json')
     while True:
         ready=all((w/'association_train'/s/'complete.json').exists() for s in protocol['train'])
         if ready:break
@@ -44,6 +47,7 @@ def main():
             pieces['available'].append(z['IR_available'].copy() if a.cue=='ir' else np.ones(len(z['label']),np.uint8))
             pieces['video'].append(np.full(len(z['label']),video,np.uint8))
     data={k:np.concatenate(v) for k,v in pieces.items()};del pieces
+    data['cue']=prepare_calibration_cue(data['cue'],a.cue)
     if not len(data['label']) or len(np.unique(data['video']))!=6:raise ValueError('Incomplete pair bank')
     output=w/'association_metric'/f'{a.cue}_s{a.seed}';output.mkdir(parents=True,exist_ok=True)
     if (output/'complete.json').exists() and not a.resume:raise ValueError('Completed fit cannot be silently overwritten')
@@ -60,6 +64,8 @@ def main():
     if a.resume:
         c=torch.load(output/'latest.pt',map_location='cpu',weights_only=False)
         if c['sources']!=sources or c['config_sha256']!=sha256(config_path) or c['cue']!=a.cue or c['seed']!=a.seed:raise ValueError('Resume provenance mismatch')
+        if c['prior_plan_sha256']!=prior_sha256:raise ValueError('RGB missing-evidence policy changed')
+        if c['capacity_plan_sha256']!=capacity_sha256:raise ValueError('RGB capacity control changed')
         model.load_state_dict(c['model']);optimizer.load_state_dict(c['optimizer']);sampler.bit_generator.state=c['sampler_state']
         torch.set_rng_state(c['torch_rng']);torch.cuda.set_rng_state_all(c['cuda_rng']);history=c['history'];start_epoch=c['epoch']
     if a.epochs>36 or a.epochs<start_epoch:raise ValueError('Invalid registered epoch boundary')
@@ -79,11 +85,11 @@ def main():
             sums+=np.array([loss.item(),ce.item(),regularizer.item(),delta.detach().abs().mean().item(),((probability>.5)==y.bool()).float().mean().item()])
         record=dict(epoch=epoch+1,lr=lr,steps=steps,drawn_pair_rows=steps*config['batch_size'],losses=dict(zip(['total','BCE','increment_regularizer','absolute_increment','classification_accuracy'],(sums/steps).tolist())))
         history.append(record);print(json.dumps(record),flush=True)
-        common=dict(model={k:v.detach().cpu() for k,v in model.state_dict().items()},architecture=config['architecture'],cue=a.cue,seed=a.seed,epoch=epoch+1,sources=sources,fit_sequences=protocol['train'],Dev_fit_rows=0,Test_fit_rows=0,config_sha256=sha256(config_path))
+        common=dict(model={k:v.detach().cpu() for k,v in model.state_dict().items()},architecture=config['architecture'],cue=a.cue,seed=a.seed,epoch=epoch+1,sources=sources,fit_sequences=protocol['train'],Dev_fit_rows=0,Test_fit_rows=0,config_sha256=sha256(config_path),prior_plan_sha256=prior_sha256,capacity_plan_sha256=capacity_sha256)
         latest=dict(common,optimizer=optimizer.state_dict(),sampler_state=sampler.bit_generator.state,torch_rng=torch.get_rng_state(),cuda_rng=torch.cuda.get_rng_state_all(),history=history)
         torch.save(latest,output/'latest.tmp.pt');os.replace(output/'latest.tmp.pt',output/'latest.pt');dump(output/'history.json',history)
         if (epoch+1)%6==0:torch.save(common,output/f'epoch{epoch+1:02d}.pt')
-    dump(output/'complete.json',dict(status='COMPLETE_FIT_STAGE',cue=a.cue,seed=a.seed,epochs=a.epochs,pair_rows=rows,positive_rows=positives,physical_gpu=physical,Dev_fit_rows=0,Test_fit_rows=0,sources=sources,seconds=time.perf_counter()-started,source_sha256=sha256(__file__),model_source_sha256=sha256(ROOT/'yolox/tracker/association_calibrator.py'),history=history))
+    dump(output/'complete.json',dict(status='COMPLETE_FIT_STAGE',cue=a.cue,seed=a.seed,epochs=a.epochs,pair_rows=rows,positive_rows=positives,physical_gpu=physical,Dev_fit_rows=0,Test_fit_rows=0,sources=sources,prior_plan_sha256=prior_sha256,capacity_plan_sha256=capacity_sha256,seconds=time.perf_counter()-started,source_sha256=sha256(__file__),model_source_sha256=sha256(ROOT/'yolox/tracker/association_calibrator.py'),history=history))
 
 
 if __name__=='__main__':main()
