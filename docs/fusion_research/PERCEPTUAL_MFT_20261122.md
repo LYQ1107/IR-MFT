@@ -51,3 +51,52 @@ The historical Test has already been exposed, and original RGB pretraining
 included the current Dev videos. These limitations will remain explicit.
 Only current and past images may enter inference; no GT input, future frames,
 or revision of previously emitted outputs is allowed.
+
+The first two Dev replay controls exactly reproduce HOTA 47.579 (RGB) and
+46.236 (new DiffV2IR), each covering 4,834 frames. Both allowed GPUs passed
+eight-frame extraction smoke checks. Six new mechanism tests cover known
+translation, invalid flow, polarity-independent contrast, identity continuity,
+future-evidence prefix invariance and supported single-gap output. The current
+full repository suite passes 25 tests, including all six mechanism tests.
+See [validation](PERCEPTUAL_MFT_20261122_VALIDATION.json).
+
+The [Dev diagnosis](PERCEPTUAL_MFT_20261122_DEV_DIAGNOSIS.json) separates
+proposal recall, tracker output and identity discontinuities. At IoU 0.5,
+BT-005 new-input proposal recall is 98.44% at confidence 0.1, 93.72% at 0.6
+and 58.68% at 0.7; corresponding RGB values are 98.57/95.20/72.10%. The
+0.7 birth threshold can therefore suppress candidate initialization even
+when proposals exist. This does not by itself prove a new method: ordinary
+lower-threshold controls are registered alongside current-image transport
+support for a single missing observation. This support never updates identity
+memory as though a detection existed, and never rewrites an earlier output.
+
+Thirteen initial Dev configurations and seven diagnosis-driven repairs are
+registered in `configs/perceptual_screen_20261122` and
+`configs/perceptual_repair1_20261122`. Current features compare ordinary RGB
+appearance, pseudo-IR versus RGB figure-ground crop views, separate shape
+descriptors, RGB/IR adjacent-frame transport and protected-memory controls.
+The preserved RGB identity encoder was fitted on the six Train videos/98
+identities under the exact current protocol hash. Its ordinary appearance
+benefit cannot be credited as a new multimodal contribution.
+
+Human-vision motivation is limited to computational hypotheses: linking
+successive observations of an object is motivated by
+[object files](https://www.sciencedirect.com/science/article/pii/001002859290007O),
+and comparing coherent motion is motivated by
+[human motion-grouping evidence](https://pmc.ncbi.nlm.nih.gov/articles/PMC7533882/).
+This work does not claim to reproduce the biological implementation. Ordinary
+EMA, an appearance encoder, lower birth thresholds, or switching the tracker
+alone receive no multimodal innovation credit.
+
+Unlabeled Test feature preparation has started on GPUs 2/3 before any new
+Test accuracy evaluation. It computes the same fixed current-frame views and
+adjacent-frame motion as Dev, does not read GT, and does not select a model.
+A separate fit bank recomputes 11,967 paired observations from 2,551 Train
+frames/98 identities, with every Dev record explicitly excluded. It prepares
+the registered train-only metric-adaptation family; its eventual fitting and
+selection remain separate from Test feature computation.
+
+The double-RGB descriptor view is an ordinary representation-capacity control,
+not a retrained double-RGB detector. Same-proposal RGB backend controls retain
+the fixed new-IR detector, whereas the full RGB-only control uses the actual
+single-branch RGB detector. These scopes must remain distinct in conclusions.

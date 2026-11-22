@@ -80,3 +80,19 @@ def test_future_evidence_does_not_change_already_emitted_prefix():
             np.testing.assert_array_equal(ra[1],rb[1])
             assert ra[2:]==rb[2:]
     assert a.statistics==b.statistics
+
+
+def test_gap_output_requires_current_transport_without_mutating_observation():
+    data = crossing_data()
+    data={k:(v[:1].copy() if k!='offsets' else np.array([0,1,1])) for k,v in data.items()}
+    cfg=dict(flow='robust_consensus',supported_gap_output=True,gap_requires_aux=True)
+    tracker=PerceptualTracker(cfg)
+    assert len(tracker.update(1,data))==1
+    assert len(tracker.update(2,data))==1
+    assert tracker.tracks[0].last_frame==1
+    assert tracker.statistics['supported_gap_outputs']==1
+    invalid={k:v.copy() for k,v in data.items()}
+    invalid['flow_rgb'][:]=0;invalid['flow_ir'][:]=0
+    other=PerceptualTracker(cfg)
+    other.update(1,invalid)
+    assert not other.update(2,invalid)

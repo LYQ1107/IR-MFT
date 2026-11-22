@@ -54,7 +54,8 @@ class PerceptualTracker:
         self.frame = 0
         self.next_id = 1
         self.statistics = dict(matches=0, protected_updates=0, flow_predictions=0,
-                               ir_flow_accepted=0, reactivations=0, births=0)
+                               ir_flow_accepted=0, reactivations=0, births=0,
+                               supported_gap_outputs=0)
 
     def representations(self, data, indices):
         raw = data['embedding'][indices].astype(np.float32)
@@ -86,22 +87,50 @@ class PerceptualTracker:
         if mode == 'none' or track.last_frame != self.frame - 1:
             return predicted
         rgb = data['flow_rgb'][track.last_index].astype(np.float32)
-        if rgb[2] < self.config.get('flow_min_quality', .3):
-            return predicted
-        displacement = rgb[:2]
-        quality = float(rgb[2])
+        aux = data['flow_ir'][track.last_index].astype(np.float32)
+        minimum = self.config.get('flow_min_quality', .3)
+        used_aux = False
+        if mode == 'ir':
+            if aux[2] < minimum:
+                return predicted
+            displacement, quality = aux[:2], float(aux[2])
+            used_aux = True
+        elif mode == 'robust_consensus':
+            rgb_valid, aux_valid = rgb[2] >= minimum, aux[2] >= minimum
+            size = np.maximum(track.last_box[2:] - track.last_box[:2], 1)
+            disagreement = np.linalg.norm((aux[:2] - rgb[:2]) / size)
+            if rgb_valid and aux_valid:
+                if disagreement >= .15:
+                    return predicted
+                displacement = (rgb[:2]*rgb[2] + aux[:2]*aux[2])/(rgb[2]+aux[2])
+                quality = min(1., (rgb[2]+aux[2])/1.5)
+                used_aux = True
+            elif aux_valid and aux[3] < 3:
+                displacement, quality = aux[:2], float(aux[2])*.7
+                used_aux = True
+            elif rgb_valid:
+                displacement, quality = rgb[:2], float(rgb[2])*.7
+            else:
+                return predicted
+        else:
+            if rgb[2] < minimum:
+                return predicted
+            displacement, quality = rgb[:2], float(rgb[2])
         if mode == 'consensus':
-            aux = data['flow_ir'][track.last_index].astype(np.float32)
             size = np.maximum(track.last_box[2:] - track.last_box[:2], 1)
             disagreement = np.linalg.norm((aux[:2] - rgb[:2]) / size)
             if aux[2] >= .3 and disagreement < .15:
                 displacement = (rgb[:2] * rgb[2] + aux[:2] * aux[2]) / (rgb[2] + aux[2])
                 quality = min(1., (rgb[2] + aux[2]) / 1.5)
-                self.statistics['ir_flow_accepted'] += 1
+                used_aux = True
+        if used_aux:
+            self.statistics['ir_flow_accepted'] += 1
         transported = track.last_box + np.r_[displacement, displacement]
         weight = min(float(self.config.get('flow_weight', .9)), quality)
         self.statistics['flow_predictions'] += 1
-        return predicted * (1-weight) + transported * weight
+        result = predicted * (1-weight) + transported * weight
+        self.transport_support[track.track_id] = (result, quality, used_aux)
+        return result
 
     def costs(self, tracks, predictions, data, indices, low=False):
         if not len(tracks) or not len(indices):
@@ -170,6 +199,7 @@ class PerceptualTracker:
         if frame != self.frame + 1:
             raise ValueError('Frames must be processed once, sequentially')
         self.frame = int(frame)
+        self.transport_support = {}
         lo, hi = data['offsets'][frame-1:frame+1]
         indices = np.arange(lo, hi, dtype=int)
         self.current_indices = indices
@@ -219,4 +249,24 @@ class PerceptualTracker:
                 tlwh = np.r_[box[:2],box[2:]-box[:2]]
                 if tlwh[2]*tlwh[3] > 100:
                     output.append((frame,tlwh,track.track_id,track.score))
+        for track in self.tracks:
+            if (self.config.get('supported_gap_output', False) and track.confirmed
+                  and frame-track.last_frame == 1
+                  and track.track_id in self.transport_support):
+                # A current-image transport measurement supports a single gap.
+                # Do not update appearance, pretend a detector observation was
+                # present, or revise the previous frame after a later recovery.
+                box, quality, used_aux = self.transport_support[track.track_id]
+                if quality < self.config.get('gap_minimum_quality', .65):
+                    continue
+                if self.config.get('gap_requires_aux', False) and not used_aux:
+                    continue
+                other = np.array([np.r_[r[1][:2],r[1][:2]+r[1][2:]] for r in output])
+                high_boxes = data['boxes'][high]
+                if (len(other) and ious(box[None],other).max()>.4) or (len(high_boxes) and ious(box[None],high_boxes).max()>.4):
+                    continue
+                tlwh=np.r_[box[:2],box[2:]-box[:2]]
+                if tlwh[2]*tlwh[3]>100:
+                    output.append((frame,tlwh,track.track_id,track.score*quality))
+                    self.statistics['supported_gap_outputs'] += 1
         return output

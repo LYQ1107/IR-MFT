@@ -1,0 +1,84 @@
+{
+  "status": "ENGINEERING_CHECKS_PASSED_ACCURACY_PENDING",
+  "baseline_Dev_replay": {
+    "C00_rgb_ByteTrack": {
+      "HOTA": 47.579,
+      "frames": 4834,
+      "metrics_sha256": "8d3888c5ec2adc33f3d648ba66ae34c6e1d3f119a9904bdd16727b5b04df8ae4"
+    },
+    "C01_new_ByteTrack": {
+      "HOTA": 46.236,
+      "frames": 4834,
+      "metrics_sha256": "18795c17213ffc6a17d2e665473caed29a7edd2f8d5dbf32678cb677d5fad3be"
+    }
+  },
+  "tests": {
+    "current_perceptual_tests_passed": 6,
+    "full_repository_before_gap_extension_passed": 24,
+    "current_full_repository_passed": 25,
+    "current_full_repository_failed": 0
+  },
+  "smoke": {
+    "BT-005": {
+      "status": "SMOKE_COMPLETE",
+      "physical_gpu": "2",
+      "frames": 8,
+      "outputs": {
+        "new": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/dev/BT-005/smoke_8/new.npz",
+          "sha256": "a9460d48aba6011543b51de414a32c01fa032657a979992907206b37b12d1df3",
+          "bytes": 336285,
+          "frames": 8,
+          "detections": 95
+        },
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/dev/BT-005/smoke_8/rgb.npz",
+          "sha256": "de6897db8f05e58de1a8be23e23e87cf5750ce40fc79e963d84cecbd18800a07",
+          "bytes": 360867,
+          "frames": 8,
+          "detections": 102
+        }
+      },
+      "GT_read": false,
+      "flow_semantics": "flow_* at row for source observation t-1 may only be used while processing current frame t; never apply it to source frame output"
+    },
+    "SN-013": {
+      "status": "SMOKE_COMPLETE",
+      "physical_gpu": "3",
+      "frames": 8,
+      "outputs": {
+        "new": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/dev/SN-013/smoke_8/new.npz",
+          "sha256": "383fc2627bb50ac533ba00902525e180ced1a56df83af5fbc4b06badb088f88e",
+          "bytes": 415838,
+          "frames": 8,
+          "detections": 118
+        },
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/dev/SN-013/smoke_8/rgb.npz",
+          "sha256": "00d53f5ddee671132c12bbdd75ad0265cf523fb619ecc35c005600b61298a0c6",
+          "bytes": 360621,
+          "frames": 8,
+          "detections": 102
+        }
+      },
+      "GT_read": false,
+      "flow_semantics": "flow_* at row for source observation t-1 may only be used while processing current frame t; never apply it to source frame output"
+    }
+  },
+  "feature_source": {
+    "RGB_checkpoint_SHA256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+    "current_protocol_SHA256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "training_identities": 98,
+    "training_videos": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "pretrained_RGB_appearance_is_an_ordinary_control_not_an_innovation": true
+  },
+  "new_accuracy_results": []
+}
