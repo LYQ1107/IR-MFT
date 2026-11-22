@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Archive immutable, completed short-run checkpoints without changing their paths.
+"""Archive this campaign's completed detector checkpoints, keeping their paths.
 
 Copy and verify a full NAS file before atomically replacing its local file
 with a symlink. Active continuation checkpoints and images are not touched.
@@ -32,23 +32,31 @@ def dump(path, value):
 
 def main():
     parser = argparse.ArgumentParser(__doc__)
-    parser.add_argument("--short-root", type=Path, required=True)
+    parser.add_argument("--short-root", type=Path, required=True, help="Campaign root (legacy argument name)")
+    parser.add_argument("--campaign", choices=["prefix","extension"], default="prefix")
     parser.add_argument("--archive-root", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    expected_short = Path("/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120")
+    expected_short = Path("/data3/liuyeqiang/IR-MFT_assets" ) / (
+        "pseudo_ir_comparison_20261120" if args.campaign=="prefix" else "pseudo_ir_budget_extension_20261121")
+    arms=ARMS if args.campaign=="prefix" else ["train_old_legacy","train_new_diffv2ir","train_rgb_matched"]
+    expected_status="COMPLETE" if args.campaign=="prefix" else "STAGE_COMPLETE"
     allowed_nas = Path("/data3/liuyeqiang/nas/A100/IR-MFT")
     if args.short_root != expected_short or not args.archive_root.is_relative_to(allowed_nas):
-        raise ValueError("Only this campaign's completed prefix checkpoints may be archived")
+        raise ValueError("Only the explicitly selected completed campaign may be archived")
     records = []
-    for arm in ARMS:
-        complete = json.loads((args.short_root/arm/"completion.json").read_text())
+    for arm in arms:
+        completion_path=args.short_root/arm/"completion.json"
+        complete = json.loads(completion_path.read_text())
         source = args.short_root/arm/"latest_ckpt.pth.tar"
-        if complete["status"] != "COMPLETE" or complete["checkpoint"] != str(source):
+        if complete["status"] != expected_status or complete["checkpoint"] != str(source):
             raise ValueError(f"Incomplete or unexpected source: {arm}")
+        if args.campaign=="extension" and complete.get("joint_epochs")!=12:
+            raise ValueError("Only the completed common12 extension is eligible")
         records.append(dict(arm=arm,source=str(source),destination=str(args.archive_root/arm/source.name),
-                            bytes=source.stat().st_size,sha256=complete["sha256"],archived=False))
+                            bytes=source.stat().st_size,sha256=complete["sha256"],archived=False,
+                            completion_path=str(completion_path),completion_sha256=digest(completion_path)))
     report = dict(status="PLANNED",started_unix=time.time(),records=records,
                   policy="Keep complete bytes and SHA256 on NAS; original local path becomes a symlink; no model/image or GitHub payload changes")
     if args.dry_run:
@@ -83,6 +91,8 @@ def main():
             if destination.stat().st_size != record["bytes"] or digest(destination) != record["sha256"]:
                 raise RuntimeError(f"NAS byte verification failed: {destination}")
             current_stat = source.stat()
+            if digest(Path(record["completion_path"]))!=record["completion_sha256"]:
+                raise RuntimeError("Completion metadata changed during archival")
             if source.is_symlink() or any(getattr(original_stat,key) != getattr(current_stat,key)
                     for key in ["st_dev","st_ino","st_size","st_mtime_ns"]):
                 raise RuntimeError(f"Local source changed during archival: {source}")
