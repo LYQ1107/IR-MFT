@@ -1,0 +1,20 @@
+{
+  "status": "REGISTERED_BEFORE_NECK_REPAIR_FEATURE_EXTRACTION",
+  "diagnosis": "Preserved raw pre-neck unit vectors have same/different identity cosine medians both around0.99, differing by only0.002-0.006 across the six Train videos at gap128. The earlier0.5 recovery cosine gate is nearly vacuous and the pair-feature0.05 std floor attenuates this identity signal. Native raw cosine triplet stays near its0.3 margin while BN-neck classification learns.",
+  "repair": "Extract the actual normalized post-neck metric space after its matched supervised repair. Preserve all previous representations and results.",
+  "weights": "Original frozen RGB12 reference retained, and six native post-neck-repair endpoints at72 cumulative epochs. Endpoint checkpoint contains exact FP32 weights and BN state.",
+  "precision": "FP32 inference for these additional representations, TF32 disabled. Do not overwrite the earlier FP16 pre-neck feature bank or the original baseline.",
+  "data": "Exact cached11967 Train crops and metadata; no Dev/Test fitting. Extract teacher reference once and each cue/seed separately. Labels remain offline Train labels only.",
+  "alignment": "Optional Train-only equal-video orthogonal Procrustes from native post-neck vectors to frozen RGB post-neck vectors, fit on the actual paired crop indices. The orthogonal map preserves within-branch cosine; it is an ordinary alignment/control, never a novelty claim itself.",
+  "audit": "Compare identity discrimination and raw similarity scale on the same fixed Train pair draws, with both pre/post-neck forms and paired extra RGB/new IR. Such Train evidence is optimistic because these IDs were seen; no held-out HOTA claim.",
+  "required_controls": [
+    "Original pre-neck RGB reference retained exactly",
+    "Frozen original RGB post-neck reference",
+    "Equal-budget native RGB pre/post-neck",
+    "Native actual new-IR pre/post-neck",
+    "No Train-fitted Procrustes mapping if used",
+    "Zero and mismatched cue increments in the eventual association head"
+  ],
+  "goal_status": "No Test+5 or2-3 independent contribution claim established.",
+  "native_fit_plan": "configs/perceptual_native_neck_metric_20261123.json"
+}

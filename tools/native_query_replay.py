@@ -10,7 +10,12 @@ from tools.run_pseudo_ir_comparison import sha256
 def load_native_query_evidence(data, work, split, sequence, config):
     work = Path(work)
     arm, cue, seed = config['detection_arm'], config['native_cue'], int(config['native_seed'])
-    folder = work/'native_eval_features'/split/sequence
+    family=config.get('native_feature_family','native36')
+    if family not in {'native36','neck_metric72'}:
+        raise ValueError('Unknown native feature family')
+    eval_root,train_root,alignment_root=(('native_neck_eval_features','native_neck_train_features','native_neck_alignment')
+        if family=='neck_metric72' else ('native_eval_features','native_train_features','native_alignment'))
+    folder = work/eval_root/split/sequence
     metadata = {}
     def load(which, keys):
         manifest = json.loads((folder/which/'complete.json').read_text())
@@ -31,11 +36,11 @@ def load_native_query_evidence(data, work, split, sequence, config):
     if not config.get('disable_native_increment', False):
         key = f'native_s{seed}'
         native, manifest = load(cue, [key])
-        trained = json.loads((work/'native_train_features'/f'{cue}_s{seed}'/'complete.json').read_text())
+        trained = json.loads((work/train_root/f'{cue}_s{seed}'/'complete.json').read_text())
         if manifest['checkpoints'][key]['sha256'] != trained['checkpoint_sha256']:
             raise ValueError('Native training/evaluation encoder mismatch')
-        path = work/'native_alignment'/f'{cue}_s{seed}.npz'
-        alignment_manifest = work/'native_alignment/complete.json'
+        path = work/alignment_root/f'{cue}_s{seed}.npz'
+        alignment_manifest = work/alignment_root/'complete.json'
         alignment = json.loads(alignment_manifest.read_text())
         if (alignment['status'] != 'COMPLETE_TRAIN_ONLY_ORTHOGONAL_ALIGNMENT'
                 or alignment['Dev_rows'] or alignment['Test_rows']
@@ -50,4 +55,5 @@ def load_native_query_evidence(data, work, split, sequence, config):
         metadata['alignment'] = dict(path=str(path), sha256=sha256(alignment_manifest), rotation_sha256=sha256(path),
                                      applied=not config.get('disable_native_alignment', False))
     metadata['scope'] = 'Current/past crop encodings only; proposal frames preserved; no GT.'
+    metadata['feature_family']=family
     return metadata

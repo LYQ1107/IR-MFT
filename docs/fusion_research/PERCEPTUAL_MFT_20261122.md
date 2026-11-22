@@ -344,3 +344,62 @@ epochs after the earlier36, for72 cumulative encoder epochs, all Train-only.
 These fits are running; no improvement is claimed. Only one resumable latest
 and one compact exact-FP32 endpoint are retained for each repair arm. All95
 maintained tests pass, including gradient-space and counterfactual parity tests.
+
+
+Further complete Dev families retain the negative evidence:
+[native real/null queries](PERCEPTUAL_MFT_20261123_NATIVE_QUERY_DEV.md),
+[counterfactual corrections](PERCEPTUAL_MFT_20261123_COUNTERFACTUAL_QUERY_DEV.md),
+[route decomposition](PERCEPTUAL_MFT_20261123_COUNTERFACTUAL_ROUTES_DEV.md),
+[positive-only/short memory](PERCEPTUAL_MFT_20261123_POSITIVE_QUERY_DEV.md),
+[ordered RGB/native memory](PERCEPTUAL_MFT_20261123_ORDERED_QUERY_DEV.md),
+[mismatch calibration](PERCEPTUAL_MFT_20261123_ROBUST_QUERY_DEV.md),
+[two-observation consensus](PERCEPTUAL_MFT_20261123_CONSENSUS_QUERY_DEV.md),
+[clean-loss controls](PERCEPTUAL_MFT_20261123_CONSENSUS_CLEAN_DEV.md), and
+[Train-fitted reachability](PERCEPTUAL_MFT_20261123_REACHABLE_QUERY_DEV.md).
+A seed0 mismatch-calibrated result50.079 is insufficient: the other seeds often
+inherit harmful generic RGB memory links. Preserve the stronger point-only
+reference49.385/49.382/49.499 and the complete RGB memory controls.
+
+The same registered12-epoch lookback rule forces both12-head clean and robust
+cohorts through24 and30 epochs: the complete ordered RGB-cue seed0 result49.776
+at18 exceeds its6/12 best49.083 by0.693pp. Every earlier snapshot and stage
+history remains available; final stopping/selection still uses complete Dev.
+
+The native post-neck repair completed an extra36 encoder epochs per cue/seed,
+72 cumulative. Its [fixed-seed held-out diagnosis](PERCEPTUAL_MFT_20261123_NATIVE_NECK_S0_DEV_IDENTITY_AUDIT.json)
+still does not support a reliable IR identity advantage. Prepared neck-query
+loaders/fit plans are infrastructure only; those downstream candidate/head
+fits have NOT been executed. An approximate reconditioning audit of old spatial
+tokens is also diagnostic only: missing per-part raw norms prohibit calling it
+exact post-neck inference or a tracking result.
+
+All12 [ordinary pair controls](PERCEPTUAL_MFT_20261123_FIXED_PAIR_TEST.json) and
+all12 [earlier fitted-RGB residual controls](PERCEPTUAL_MFT_20261123_FIXED_STRONG_RGB_TEST.json)
+cover all7 Test sequences and15985 frames after Dev-only selection. For the
+ordinary pair controls, mean Test HOTA is30.610 with the RGB detector/RGB
+association,31.378 with the fixed new-IR paired detector/RGB association, and
+31.710 with that same paired detector/IR point association. These are control
+results, still below the requested34.529. They do not establish2-3 innovations.
+No current foveated-method Test has started, and no Test per-sequence outcome
+chooses its crop policy or thresholds. Historical Test exposure remains a limit.
+
+The [foveated observation pilot](../../configs/perceptual_foveated_mft_20261123.json)
+uses coarse actual new-IR structure to allocate RGB high-resolution crop
+observations, allowing spatially approximate cross-modal guidance instead of
+assuming reliable IR identity texture. Thirty-eight complete Dev controls are
+running: RGB/new paired global streams, equal RGB/IR attention crop counts,
+half/quarter crop scales, uniform tiling, and resolution-weighted refinement
+versus concatenation/NMS. Generic zoom/weighted-box averaging alone receives
+no multimodal novelty credit. The primary RGB-global/IR-attention method and
+its RGB-attention control share exact detector weights and crop counts; the
+paired-global variant has extra detector cost and is reported separately.
+Both real-image source checks passed on physical GPUs2/3. Cold loading of the
+old1.19GB optimizer checkpoint was canceled before any crop forward; the
+existing198MB compact EMA is proven to be exactly the same inference half()
+conversion by its archived joint3 source-selection metadata. No model changed.
+
+All109 maintained tests pass; focused foveation tests also pass after the
+source-only multiscale/prefetch additions. Work assets occupy about27GiB on the
+independent work filesystem, below64GiB, while the original data filesystem
+retains about5.8GiB free. Dataset/image copies and large Git artifacts remain
+excluded. Goal status stays IN_PROGRESS / NOT_MET.

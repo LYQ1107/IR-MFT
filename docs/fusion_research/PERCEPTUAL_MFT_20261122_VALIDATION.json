@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 95,
+    "current_full_repository_passed": 109,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -42,7 +42,12 @@
     "native_query_prior_tests_passed": 1,
     "native_query_tracker_tests_passed": 5,
     "counterfactual_query_tests_passed": 4,
-    "native_post_neck_metric_test_passed": 1
+    "native_post_neck_metric_test_passed": 1,
+    "native_cue_corruption_tests_passed": 3,
+    "ordered_identity_memory_tests_passed": 3,
+    "consensus_identity_memory_tests_passed": 2,
+    "reachability_identity_tests_passed": 2,
+    "foveated_observation_tests_passed": 4
   },
   "smoke": {
     "BT-005": {
@@ -507,13 +512,52 @@
     "cache_gib_approx": 16,
     "counterfactual_zero_controls_verified": 3,
     "counterfactual_zero_scope": "Exact all39 official fields and both Dev track files;4834 frames",
-    "post_neck_metric_repair": "Registered extra36 paired epochs after native36,72 cumulative; running, no outcome claim"
+    "post_neck_metric_repair": "All six matched extra36 fits completed:72 cumulative encoder epochs. Seed0 held-out descriptor diagnosis still weak for IR. Downstream neck-query code/plans prepared but fitting NOT executed.",
+    "current_status": "ALL24_CLEAN_AND_MISMATCH_HEADS_COMMON30_RUNNING_OR_COMPLETE_DEV_CURVES_RUNNING"
   },
   "official_tables": {
     "status": "COMPLETE_FOR_CURRENT_FINISHED_RUNS",
     "scope": "Unmodified TrackEval detailed CSV, all per-sequence and combined rows and every threshold-specific column. No model, feature bank, crop bank, image dataset or raw track prediction is published. Test metric values are archived without selecting later candidate parameters from them.",
-    "tables": 502,
-    "bytes": 8430024,
-    "rows_omitted_from_validation_for_size": true
+    "tables": 820,
+    "bytes": 13739904
+  },
+  "foveated_progress": {
+    "status": "FULL38_DEV_CONTROLS_RUNNING",
+    "crops": [
+      2,
+      4
+    ],
+    "fractions": [
+      0.5,
+      0.25
+    ],
+    "global_detection_sources": [
+      "rgb",
+      "new"
+    ],
+    "cue_controls": [
+      "rgb",
+      "actual_new_IR",
+      "uniform"
+    ],
+    "geometry_controls": [
+      "one_to_one_resolution_weighted_refinement",
+      "concatenation_NMS"
+    ],
+    "encoder_or_detector_refitting": false,
+    "Test_started": false,
+    "source_checkpoint": "Existing joint3 compact FP16 EMA, exact inference-equivalent source e9f5de7...",
+    "cache_gib_approx": 27
+  },
+  "fixed_pair_Test_ordinary_controls": {
+    "frames_each": 15985,
+    "sequences_each": 7,
+    "controls": 12,
+    "RGB_detector_RGB_point_HOTA_mean": 30.61,
+    "new_detector_RGB_point_HOTA_mean": 31.378333333333334,
+    "new_detector_IR_point_HOTA_mean": 31.71,
+    "original_RGB_direct_HOTA": 29.529,
+    "goal_target_HOTA": 34.529,
+    "scope": "All models selected only on complete Dev curves; macro Test accuracy inspected only after these controls were fixed. These are ordinary controls, not current-method successes; historical Test is exposed, not blind."
   }
 }

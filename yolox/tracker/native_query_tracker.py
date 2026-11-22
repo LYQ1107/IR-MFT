@@ -26,10 +26,11 @@ class NativeQueryTracker(PrebirthIdentityMixin, CalibratedForegroundTracker):
             root = Path(__file__).resolve().parents[2]
             protocol = json.loads((root / 'configs/cfp/protocol_v2.json').read_text())
             if (checkpoint['fit_sequences'] != protocol['train'] or checkpoint['Dev_fit_rows']
-                    or checkpoint['Test_fit_rows'] or checkpoint['feature_schema'] != 'native_query_v2_RGB26_cue9'):
+                    or checkpoint['Test_fit_rows'] or checkpoint['feature_schema'] != config.get('native_query_feature_schema','native_query_v2_RGB26_cue9')):
                 raise ValueError('Native query model violates the Train-only feature contract')
             from tools.run_pseudo_ir_comparison import sha256
-            if checkpoint['config_sha256'] != sha256(root / 'configs/perceptual_native_query_v2_20261123.json'):
+            fitting_plan=root / config.get('native_query_fitting_plan','configs/perceptual_native_query_v2_20261123.json')
+            if checkpoint['config_sha256'] != sha256(fitting_plan):
                 raise ValueError('Native query training plan changed')
             if (config['association_checkpoint'] != checkpoint['core']['checkpoint']
                     or sha256(config['association_checkpoint']) != checkpoint['core']['checkpoint_sha256']):
@@ -41,7 +42,7 @@ class NativeQueryTracker(PrebirthIdentityMixin, CalibratedForegroundTracker):
             prior = checkpoint['prior_parameters']
             self.native_cue = checkpoint['cue']
             self.native_metadata = {key: checkpoint[key] for key in [
-                'cue', 'seed', 'epoch', 'config_sha256', 'feature_plan_sha256', 'sources',
+                'cue', 'seed', 'epoch', 'feature_schema', 'config_sha256', 'feature_plan_sha256', 'sources',
                 'core', 'prior_path', 'prior_sha256', 'prior_parameters', 'alignment_sha256']}
         else:
             self.native_cue = config.get('native_cue', 'ir')
@@ -147,10 +148,13 @@ class NativeQueryTracker(PrebirthIdentityMixin, CalibratedForegroundTracker):
                         base, torch.from_numpy(packet['cue'].reshape(-1, 9)[part]),
                         torch.from_numpy(packet['reference'].reshape(-1, 9)[part]),
                         torch.from_numpy(packet['available'].reshape(-1)[part])).numpy()
-        real = self.prior['t'] * core.reshape(shape) + self.prior['a'] * packet['base'][..., 23] + delta.reshape(shape)
+        RGB_real = self.prior['t'] * core.reshape(shape) + self.prior['a'] * packet['base'][..., 23]
+        real = RGB_real + delta.reshape(shape)
         null = self.prior['b'] + self.prior['c'] * np.log1p(shape[1])
+        RGB_probability, RGB_null = posterior_with_null(RGB_real, null, self.config.get('query_null', True))
         probabilities, null_probability = posterior_with_null(real, null, self.config.get('query_null', True))
-        packet.update(probability=probabilities, null=null_probability, delta=delta.reshape(shape))
+        packet.update(probability=probabilities, null=null_probability, delta=delta.reshape(shape),
+                      RGB_probability=RGB_probability, RGB_null=RGB_null)
         self.native_cache[key] = packet
         return packet
 

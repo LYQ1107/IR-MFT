@@ -26,7 +26,8 @@ class CounterfactualQueryTracker(NativeQueryTracker):
 
     def recovery_scores(self, frame, context, data):
         a,b = map(int,data['offsets'][frame-1:frame+1])
-        if self.config.get('disable_native_increment', False):
+        maximum_lag = self.config.get('counterfactual_recovery_maximum_lag')
+        if self.config.get('disable_native_increment', False) or (maximum_lag is not None and frame-context['frame']>maximum_lag):
             return np.zeros(b-a,np.float64), np.zeros(b-a,np.float32)
         packet = self.query_posterior(frame,context)
         reference,_ = self.counterfactual_probabilities(packet)
@@ -52,6 +53,9 @@ class CounterfactualQueryTracker(NativeQueryTracker):
                 continue
             context = history[-1]
             lag = frame-context['frame']
+            maximum_lag = self.config.get('counterfactual_matching_maximum_lag')
+            if maximum_lag is not None and lag>maximum_lag:
+                continue
             if self.config.get('counterfactual_preserve_clear',True) and lag in self.config.get('lags',[1,2,4,8]):
                 start,old_p,_,vote,good,total = self.predict_pairs(frame,lag)
                 index = context['index']-start
@@ -69,7 +73,7 @@ class CounterfactualQueryTracker(NativeQueryTracker):
             maximum = float(all_p[best])
             second = float(np.partition(all_p,-2)[-2]) if len(all_p)>1 else 0.
             null = float(packet['null'][index])
-            if (self.config.get('query_null',True) and null>=.8 and null-reference_null[index]>=gain_required
+            if (self.config.get('counterfactual_allow_null_rejection',True) and self.config.get('query_null',True) and null>=.8 and null-reference_null[index]>=gain_required
                     and (packet['good'][index]<4 or packet['vote'][index].max(initial=0)<.15)):
                 result[row] = np.maximum(result[row],limit+1e-4)
                 self.statistics['counterfactual_null_rejections'] += 1

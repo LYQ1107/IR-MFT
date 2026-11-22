@@ -1,0 +1,129 @@
+{
+  "status": "COMPLETE_TRAIN_ONLY_REACHABILITY",
+  "fit_sequences": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "Dev_fit_rows": 0,
+  "Test_fit_rows": 0,
+  "rows": [
+    {
+      "sequence": "BT-001",
+      "GT_sha256": "88b18b21c0a8081d1481ad092d5633b6d3783ac6c90b4506ae6719df7f569537",
+      "speed_samples": 29990,
+      "acceleration_samples": 29980,
+      "speed_quantiles": {
+        "0.5": 0.01388687965459732,
+        "0.9": 0.04249723551719562,
+        "0.95": 0.07147383414113885,
+        "0.99": 0.20332413793207815
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.01649916082164339,
+        "0.9": 0.06613644238423014,
+        "0.95": 0.12338119599250502,
+        "0.99": 0.2872121969075871
+      }
+    },
+    {
+      "sequence": "BT-003",
+      "GT_sha256": "8dd19218384d88f248d79548315e6fbbdb126fed407daae45afc7bcd487ee660",
+      "speed_samples": 2420,
+      "acceleration_samples": 2410,
+      "speed_quantiles": {
+        "0.5": 0.018977997782264437,
+        "0.9": 0.05489276336130319,
+        "0.95": 0.0851413128520793,
+        "0.99": 0.2234453270696648
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.017539202221351934,
+        "0.9": 0.0730473785425213,
+        "0.95": 0.14031302277833965,
+        "0.99": 0.3546804428614424
+      }
+    },
+    {
+      "sequence": "MSK-002",
+      "GT_sha256": "0274259cb4e0def37563551c76bb140fe571f8e42fd7b9c75c86430957e38b3e",
+      "speed_samples": 85336,
+      "acceleration_samples": 85287,
+      "speed_quantiles": {
+        "0.5": 0.04155140595715835,
+        "0.9": 0.09838974596144753,
+        "0.95": 0.13137420405549355,
+        "0.99": 0.34756907114809926
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.036173995758251976,
+        "0.9": 0.09736272287960718,
+        "0.95": 0.15580496621515205,
+        "0.99": 0.6387728172886286
+      }
+    },
+    {
+      "sequence": "PF-001",
+      "GT_sha256": "85305e1d45b79c730dbd010ed2d807701411d1730ddc82fc0c5b63a25bd6aa5f",
+      "speed_samples": 29998,
+      "acceleration_samples": 29996,
+      "speed_quantiles": {
+        "0.5": 0.010684253631195881,
+        "0.9": 0.04413155364432945,
+        "0.95": 0.060829935822797956,
+        "0.99": 0.09707915937381555
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.01062642675587127,
+        "0.9": 0.06616439050189649,
+        "0.95": 0.09150859289211988,
+        "0.99": 0.14483241885435588
+      }
+    },
+    {
+      "sequence": "SN-001",
+      "GT_sha256": "ee9e1176399bd611aefa675fc3e4b9b2da71ddabae5e4656dd443de6ef2f294f",
+      "speed_samples": 6608,
+      "acceleration_samples": 6584,
+      "speed_quantiles": {
+        "0.5": 0.024251094003460337,
+        "0.9": 0.06809003220562719,
+        "0.95": 0.09067905987316487,
+        "0.99": 0.24645072866582263
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.015093389005078842,
+        "0.9": 0.05283297198892095,
+        "0.95": 0.1167914213710282,
+        "0.99": 0.41544466074637715
+      }
+    },
+    {
+      "sequence": "SN-015",
+      "GT_sha256": "8530124374f8e6c04f80c312ff816f93b5ee67253bd8ca6eb93d4de82b722cb0",
+      "speed_samples": 62677,
+      "acceleration_samples": 62601,
+      "speed_quantiles": {
+        "0.5": 0.0024887546859099887,
+        "0.9": 0.017302435521697905,
+        "0.95": 0.06205437216378343,
+        "0.99": 0.17773766989610473
+      },
+      "acceleration_quantiles": {
+        "0.5": 0.003120310868342947,
+        "0.9": 0.0600251744556612,
+        "0.95": 0.11443023554731231,
+        "0.99": 0.2320942943116679
+      }
+    }
+  ],
+  "speed_floor": 0.018640064285764386,
+  "unknown_speed_upper": 0.13137420405549355,
+  "acceleration_upper": 0.15580496621515205,
+  "position_slack_body_diagonals": 0.5,
+  "rule": "Scale by last actual RGB box diagonal. Radius=0.5+gap*max(recent median speed+2*1.4826*MAD,Train median speed)+0.5*Train conservative95% acceleration*gap^2. Fit max per-video acceleration bound to protect fast-video support. At least two actual past observations required. Mask only memory correspondence edges; do not remove visible input proposals or renormalize their probabilities.",
+  "source_sha256": "8da2c27a969d2769c01719b112f2217207f9ffd3093ebdf4530540185417db1e"
+}
