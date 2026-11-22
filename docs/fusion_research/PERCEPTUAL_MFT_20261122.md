@@ -54,10 +54,10 @@ or revision of previously emitted outputs is allowed.
 
 The first two Dev replay controls exactly reproduce HOTA 47.579 (RGB) and
 46.236 (new DiffV2IR), each covering 4,834 frames. Both allowed GPUs passed
-eight-frame extraction smoke checks. Six new mechanism tests cover known
+eight-frame extraction smoke checks. Nine mechanism tests cover known
 translation, invalid flow, polarity-independent contrast, identity continuity,
 future-evidence prefix invariance and supported single-gap output. The current
-full repository suite passes 25 tests, including all six mechanism tests.
+full repository suite passes 28 tests, including all nine mechanism tests.
 See [validation](PERCEPTUAL_MFT_20261122_VALIDATION.json).
 
 The [Dev diagnosis](PERCEPTUAL_MFT_20261122_DEV_DIAGNOSIS.json) separates
@@ -100,3 +100,14 @@ The double-RGB descriptor view is an ordinary representation-capacity control,
 not a retrained double-RGB detector. Same-proposal RGB backend controls retain
 the fixed new-IR detector, whereas the full RGB-only control uses the actual
 single-branch RGB detector. These scopes must remain distinct in conclusions.
+
+The [ordinary metric control](../../configs/perceptual_metric_20261122.json)
+is registered before fitting: matched RGB/IR inputs, seeds 0/1/2, at least
+18 and at most 36 feature-training epochs, with complete Dev checks every six.
+Its bounded residual starts at the preserved RGB representation and uses
+Train-only normalization and identity prototypes. The RGB cue consumes neither
+auxiliary views nor auxiliary quality. This family tests whether ordinary
+metric learning, rather than a proposed multimodal mechanism, explains a gain.
+The first full fit bank is complete: 11,967 observations, 2,551 frames, six
+Train videos and 98 identities, zero Dev/Test fitting rows; SHA256
+`803850d1a177a8528ffc166ffba4dbfa718e00254748b9565eb9ecc38bf9cc8f`.

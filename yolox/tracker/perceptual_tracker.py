@@ -87,7 +87,8 @@ class PerceptualTracker:
         if mode == 'none' or track.last_frame != self.frame - 1:
             return predicted
         rgb = data['flow_rgb'][track.last_index].astype(np.float32)
-        aux = data['flow_ir'][track.last_index].astype(np.float32)
+        aux = (data['flow_ir'][track.last_index].astype(np.float32)
+               if mode in {'ir','consensus','robust_consensus'} else np.zeros(4,np.float32))
         minimum = self.config.get('flow_min_quality', .3)
         used_aux = False
         if mode == 'ir':

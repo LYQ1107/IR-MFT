@@ -96,3 +96,36 @@ def test_gap_output_requires_current_transport_without_mutating_observation():
     other=PerceptualTracker(cfg)
     other.update(1,invalid)
     assert not other.update(2,invalid)
+
+
+def test_adapter_starts_at_RGB_identity_without_sample_context():
+    import torch
+    from torch.nn import functional as F
+    from yolox.tracker.evidence_adapter import EvidenceAdapter
+    torch.manual_seed(3)
+    raw=torch.randn(4,512);evidence=torch.randn(4,1170)
+    model=EvidenceAdapter().eval()
+    torch.testing.assert_close(model(raw,evidence),F.normalize(raw,dim=-1),rtol=0,atol=0)
+    with torch.no_grad():model.net[-1].weight.normal_(std=.01)
+    torch.testing.assert_close(model(raw,evidence)[0],model(raw[:1],evidence[:1])[0],rtol=1e-5,atol=1e-6)
+
+
+def test_RGB_metric_control_cannot_read_auxiliary_quality_or_views():
+    from yolox.tracker.evidence_adapter import pack_evidence
+    rng=np.random.default_rng(4)
+    data={k:rng.normal(size=(2,dim)).astype(np.float32) for k,dim in
+          [('embedding',512),('ir_mask_embedding',512),('rgb_mask_embedding',512),
+           ('ir_hog',144),('rgb_hog',144),('quality',2)]}
+    first=pack_evidence(data,'rgb')
+    data['ir_hog'][:]=1000;data['ir_mask_embedding'][:]=-1000;data['quality'][:,1]=1e8
+    second=pack_evidence(data,'rgb')
+    np.testing.assert_array_equal(first[0],second[0]);np.testing.assert_array_equal(first[1],second[1])
+
+
+def test_RGB_backend_runs_without_any_auxiliary_array():
+    data=crossing_data()
+    for key in ['ir_mask_embedding','ir_hog','flow_ir']:del data[key]
+    tracker=PerceptualTracker(dict(appearance_view='rgb_mask',shape='rgb',flow='rgb',
+                                   protected_memory=True))
+    assert len(tracker.update(1,data))==2
+    assert len(tracker.update(2,data))==2

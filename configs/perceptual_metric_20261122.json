@@ -1,0 +1,46 @@
+{
+  "status": "REGISTERED_BEFORE_FITTING",
+  "scope": "Ordinary supervised bounded metric-adapter family; no independent innovation credit without a concrete additional mechanism and its ablations.",
+  "cues": [
+    "rgb",
+    "ir"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "architecture": {
+    "hidden": 128,
+    "amplitude": 0.35
+  },
+  "input": "RGB appearance, cue-guided appearance minus RGB appearance, cue HOG, and local contrast qualities; RGB control repeats RGB quality and never reads IR quality",
+  "initialization": "Zero last layer; output exactly equals normalized preserved RGB embedding before fitting",
+  "normalization": "Train-only feature means and standard deviations, std floor 0.05",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.0001
+  },
+  "minimum_epochs": 18,
+  "maximum_epochs": 36,
+  "Dev_interval": 6,
+  "lr_schedule": "Cosine from 0.001 to 0.0001 over 36 epochs, unchanged if extended",
+  "batch_size": 64,
+  "identities_per_batch": 8,
+  "observations_per_identity": 8,
+  "sampling": "Uniform Train video, up to eight identities with replacement for small videos, temporally spread observations of each identity",
+  "steps_per_epoch": "ceil(Train observations/64)",
+  "loss": "Within-video fixed RGB identity-prototype cross entropy at temperature 0.1 + 0.5 temporal batch-hard triplet margin 0.2 + 0.05 squared deviation from frozen RGB embedding",
+  "positive_minimum_frame_gap": 25,
+  "noise_std": 0.005,
+  "gradient_clip": 5.0,
+  "fit_partitions": [
+    "train"
+  ],
+  "Dev_fitting_rows": 0,
+  "Test_fitting_rows": 0,
+  "selection": "Complete Dev HOTA only; keep all seeds and paired RGB cue controls; no Test selection",
+  "storage": "One atomic resumable latest per arm; small six-epoch inference candidates kept for Dev selection, total under 64 MiB for this family; no weights in Git",
+  "stopping": "At common epoch18 and later six-epoch checks, extend all six fits together if any best Dev HOTA improves by more than 0.2pp over the best through 12 epochs earlier; otherwise stop. Cap at36. All formal Test runs use Dev-selected weights."
+}

@@ -29,6 +29,9 @@ def main():
     p.add_argument('--split',choices=['dev','test'],required=True)
     p.add_argument('--output',required=True)
     args=p.parse_args()
+    source_hashes=dict(tracker=sha256(ROOT/'yolox/tracker/perceptual_tracker.py'),
+                       replay=sha256(__file__))
+    git_head_at_start=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     config_path=Path(args.config)
     config=json.loads(config_path.read_text())
     plan=json.loads(Path(args.plan).read_text())
@@ -40,6 +43,7 @@ def main():
     output.mkdir(parents=True,exist_ok=True)
     started=time.perf_counter()
     sources,coverage,statistics={},{},{}
+    adaptation={}
     arm=config.get('detection_arm','new')
     for sequence in sequences:
         if config.get('backend')=='byte':
@@ -54,6 +58,10 @@ def main():
         frames=data['frame_ids']
         if not np.array_equal(frames,np.arange(1,len(frames)+1)):raise ValueError('Missing/unordered frames')
         if data['offsets'][-1]!=len(data['boxes']):raise ValueError('Malformed detection indexing')
+        if config.get('evidence_adapter'):
+            from yolox.tracker.evidence_adapter import apply_adapter
+            data,adapter_metadata=apply_adapter(data,config['evidence_adapter'])
+            adaptation=dict(adapter_metadata,checkpoint_sha256=sha256(config['evidence_adapter']))
         if config.get('backend')=='byte':
             tracker=BYTETracker(SimpleNamespace(track_thresh=.6,track_buffer=30,match_thresh=.9,mot20=False),frame_rate=25)
         else:tracker=PerceptualTracker(config)
@@ -77,9 +85,10 @@ def main():
                   coverage=coverage,statistics=statistics,replay_seconds=runtime,
                   replay_FPS=sum(x['frames'] for x in coverage.values())/runtime,
                   GT_inference_input=False,future_frame_input=False,previous_outputs_rewritten=False,
-                  git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
-                  tracker_source_sha256=sha256(ROOT/'yolox/tracker/perceptual_tracker.py'),
-                  replay_source_sha256=sha256(__file__),CPU_threads=os.environ.get('OMP_NUM_THREADS'))
+                  git_commit=git_head_at_start,
+                  tracker_source_sha256=source_hashes['tracker'],
+                  replay_source_sha256=source_hashes['replay'],CPU_threads=os.environ.get('OMP_NUM_THREADS'))
+    if adaptation:manifest['evidence_adapter']=adaptation
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')
