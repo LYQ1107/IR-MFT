@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Frozen causal replay; inference completes before the evaluator reads GT."""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+from types import SimpleNamespace
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+import numpy as np
+
+from yolox.tracker.byte_tracker import BYTETracker
+from yolox.tracker.perceptual_tracker import PerceptualTracker
+from tools.eval_mft26ir import run_trackeval, write_sequence_results
+from tools.run_pseudo_ir_comparison import dump, sha256
+
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--plan',default='configs/perceptual_mft_20261122.json')
+    p.add_argument('--config',required=True)
+    p.add_argument('--split',choices=['dev','test'],required=True)
+    p.add_argument('--output',required=True)
+    args=p.parse_args()
+    config_path=Path(args.config)
+    config=json.loads(config_path.read_text())
+    plan=json.loads(Path(args.plan).read_text())
+    protocol=json.loads((ROOT/plan['protocol']).read_text())
+    sequences=protocol['historical_test' if args.split=='test' else 'dev']
+    output=Path(args.output)
+    if (output/'metrics.json').exists():
+        raise ValueError('Refusing to overwrite completed accuracy experiment')
+    output.mkdir(parents=True,exist_ok=True)
+    started=time.perf_counter()
+    sources,coverage,statistics={},{},{}
+    arm=config.get('detection_arm','new')
+    for sequence in sequences:
+        if config.get('backend')=='byte':
+            source_key=('new_diffv2ir' if arm=='new' else 'rgb')+'_'+args.split
+            source=Path(plan['frozen_detection_sources'][source_key])/'detections'/f'{sequence}.npz'
+        else:
+            source=Path(plan['work_root'])/'features'/args.split/sequence/f'{arm}.npz'
+            manifest=json.loads((source.parent/'complete.json').read_text())
+            if manifest['status']!='COMPLETE':raise ValueError('Incomplete feature producer')
+            if sha256(source)!=manifest['outputs'][arm]['sha256']:raise ValueError('Feature digest mismatch')
+        with np.load(source) as z:data={k:z[k] for k in z.files}
+        frames=data['frame_ids']
+        if not np.array_equal(frames,np.arange(1,len(frames)+1)):raise ValueError('Missing/unordered frames')
+        if data['offsets'][-1]!=len(data['boxes']):raise ValueError('Malformed detection indexing')
+        if config.get('backend')=='byte':
+            tracker=BYTETracker(SimpleNamespace(track_thresh=.6,track_buffer=30,match_thresh=.9,mot20=False),frame_rate=25)
+        else:tracker=PerceptualTracker(config)
+        rows=[]
+        for frame in frames:
+            if config.get('backend')=='byte':
+                a,b=data['offsets'][frame-1:frame+1]
+                det=np.column_stack([data['boxes'][a:b],data['scores'][a:b]]).astype(np.float32)
+                rows.extend((int(frame),t.tlwh.copy(),t.track_id,t.score) for t in tracker.update(det,(1,1),(1,1)) if t.tlwh[2]*t.tlwh[3]>100)
+            else:rows.extend(tracker.update(int(frame),data))
+        write_sequence_results(str(output/'track_results'/f'{sequence}.txt'),rows)
+        sources[sequence]=dict(path=str(source),sha256=sha256(source))
+        coverage[sequence]=dict(frames=len(frames),detections=len(data['boxes']),output_rows=len(rows),output_sha256=sha256(output/'track_results'/f'{sequence}.txt'))
+        statistics[sequence]=getattr(tracker,'statistics',{})
+        print(json.dumps(dict(sequence=sequence,**coverage[sequence])),flush=True)
+    runtime=time.perf_counter()-started
+    manifest=dict(status='INFERENCE_COMPLETE_BEFORE_GT_EVALUATION',config=config,
+                  config_path=str(config_path.resolve()),config_sha256=sha256(config_path),
+                  plan_sha256=sha256(args.plan),split=args.split,sequences=sequences,
+                  frames=sum(x['frames'] for x in coverage.values()),sources=sources,
+                  coverage=coverage,statistics=statistics,replay_seconds=runtime,
+                  replay_FPS=sum(x['frames'] for x in coverage.values())/runtime,
+                  GT_inference_input=False,future_frame_input=False,previous_outputs_rewritten=False,
+                  git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+                  tracker_source_sha256=sha256(ROOT/'yolox/tracker/perceptual_tracker.py'),
+                  replay_source_sha256=sha256(__file__),CPU_threads=os.environ.get('OMP_NUM_THREADS'))
+    dump(output/'inference_manifest.json',manifest)
+    metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
+                          plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')
+    dump(output/'metrics.json',dict(status='COMPLETE',trackeval=metrics,manifest=manifest))
+    print('REPLAY_COMPLETE',json.dumps(metrics),flush=True)
+
+
+if __name__=='__main__':main()
