@@ -1,0 +1,18 @@
+{
+  "status": "REGISTERED_BEFORE_MISSING_POINT_IMPLEMENTATION_AND_DEV_ACCURACY",
+  "diagnosis": "The strong-RGB residual family is trained on an explicit appearance-only long-gap regime, but its inherited local ranker skips tracks with fewer than4 valid points. Fixed point lags also leave gaps3/5/6/7 without a current transport query. Naive post-association128-frame identity recovery is harmful on Dev.",
+  "repair": "Use the latest actual observation within8 frames when body-point support is missing. Invoke the exact Train-long missing-motion feature regime and existing immutable fitted heads before assigning new IDs. This adds no new weights, image data or training budget.",
+  "point_failure": "Lag absent from1/2/4/8, fewer than4 valid RGB points, survival<0.25, or no current proposal owning at least0.15 of transported source points. Reliable point rows keep the parent method.",
+  "competition": "The learned identity score compares against every current proposal, including those excluded from the current ByteTrack stage. Require probability>=0.9 and margin>=0.1 over every competing current proposal; reject a column when retained identity candidates differ by<0.1. RGB cosine>=0.5 remains required.",
+  "motion_protection": "Conservative variants keep a unique original feasible motion match with cost margin>=0.12. An explicitly enabled opening may cross an originally rejected IoU edge only with probability>=0.98 and raw RGB cosine>=0.85. Openings are counted.",
+  "planned_variants": [
+    "Exact parent control",
+    "Ambiguous existing edges only, weight0.5, protect clear motion",
+    "Strict semantic opening plus ambiguous edges, weight0.5, protect clear motion",
+    "Strict semantic opening, weight0.8, protect clear motion",
+    "Diagnose motion-lock conflict: strict semantic opening, weight0.5, allow clear-motion reconsideration"
+  ],
+  "scope": "Seed0/common18-epoch diagnostic Dev screen first, both matched cue heads and detector frontends. All required three-seed confirmation, module removals and complete7-sequence Test remain required. Missing-point association, generic memory and appearance matching are not automatically multimodal innovations.",
+  "causality": "Only strictly past actual observation indices and current proposal features; no GT inference, future frame or prior-output rewriting.",
+  "goal": "Keep November new pseudo-IR MFT; Test HOTA>=34.529, exceed same-backend strong RGB, and2-3 independent positive removals. Not established."
+}

@@ -39,6 +39,9 @@ def main():
                        weak_tracker=sha256(ROOT/'yolox/tracker/weak_recovery_tracker.py'),
                        calibrated_tracker=sha256(ROOT/'yolox/tracker/calibrated_foreground_tracker.py'),
                        strong_RGB_tracker=sha256(ROOT/'yolox/tracker/strong_rgb_tracker.py'),
+                       prebirth_tracker=sha256(ROOT/'yolox/tracker/prebirth_identity_tracker.py'),
+                       missing_point_tracker=sha256(ROOT/'yolox/tracker/missing_point_tracker.py'),
+                       guarded_tracker=sha256(ROOT/'yolox/tracker/guarded_rgb_tracker.py'),
                        RGB_context=sha256(ROOT/'yolox/tracker/rgb_reference_context.py'),
                        association_model=sha256(ROOT/'yolox/tracker/association_calibrator.py'),
                        association_features=sha256(ROOT/'yolox/tracker/association_features.py'),
@@ -59,7 +62,7 @@ def main():
     adaptation={}
     arm=config.get('detection_arm','new')
     raw_backends={'byte','foreground_byte','candidate_foreground','residual_foreground','cycle_foreground','recoverable_foreground'}
-    learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated','strong_RGB_foreground'}
+    learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated','strong_RGB_foreground','prebirth_strong_RGB','missing_point_strong_RGB','guarded_strong_RGB'}
     point_backends=(raw_backends-{'byte'})|learned_backends
     for sequence in sequences:
         if config.get('backend') in raw_backends:
@@ -112,6 +115,15 @@ def main():
         elif config.get('backend')=='strong_RGB_foreground':
             from yolox.tracker.strong_rgb_tracker import StrongRGBForegroundTracker
             tracker=StrongRGBForegroundTracker(config)
+        elif config.get('backend')=='prebirth_strong_RGB':
+            from yolox.tracker.prebirth_identity_tracker import PrebirthStrongRGBTracker
+            tracker=PrebirthStrongRGBTracker(config)
+        elif config.get('backend')=='missing_point_strong_RGB':
+            from yolox.tracker.missing_point_tracker import MissingPointEvidenceTracker
+            tracker=MissingPointEvidenceTracker(config)
+        elif config.get('backend')=='guarded_strong_RGB':
+            from yolox.tracker.guarded_rgb_tracker import GuardedStrongRGBTracker
+            tracker=GuardedStrongRGBTracker(config)
         elif config.get('backend') in learned_backends:
             from yolox.tracker.calibrated_foreground_tracker import CalibratedForegroundTracker,CalibratedCycleTracker,RecoverableCalibratedTracker
             factory={'calibrated_foreground':CalibratedForegroundTracker,'calibrated_cycle':CalibratedCycleTracker,'recoverable_calibrated':RecoverableCalibratedTracker}[config['backend']]
@@ -165,10 +177,16 @@ def main():
         manifest['calibrated_tracker_source_sha256']=source_hashes['calibrated_tracker']
         manifest['association_model_source_sha256']=source_hashes['association_model']
         manifest['association_features_source_sha256']=source_hashes['association_features']
-        if config.get('backend')=='strong_RGB_foreground':
+        if config.get('backend') in {'strong_RGB_foreground','prebirth_strong_RGB','missing_point_strong_RGB','guarded_strong_RGB'}:
             manifest['strong_RGB_tracker_source_sha256']=source_hashes['strong_RGB_tracker']
             manifest['RGB_context_source_sha256']=source_hashes['RGB_context']
             manifest['calibration_intervention']['scope']='Only the newly added cue residual. The full frozen fitted RGB scorer and detector proposals are retained; shuffle rolls auxiliary candidate features within the same current source-query frame, never future frames.'
+        if config.get('backend') in {'prebirth_strong_RGB','missing_point_strong_RGB'}:
+            manifest['prebirth_tracker_source_sha256']=source_hashes['prebirth_tracker']
+        if config.get('backend')=='missing_point_strong_RGB':
+            manifest['missing_point_tracker_source_sha256']=source_hashes['missing_point_tracker']
+        if config.get('backend')=='guarded_strong_RGB':
+            manifest['guarded_tracker_source_sha256']=source_hashes['guarded_tracker']
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

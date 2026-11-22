@@ -229,3 +229,54 @@ Test improvement. Supported multimodal innovations remain zero; the>=+5 HOTA
 and2-3 independently supported contribution goal is unfinished. Only GPUs2/3
 are used, new assets occupy about3.7GiB on the separate work filesystem,
 and lightweight code, plans and analysis are pushed without arrays or weights.
+
+
+All79 maintained tests pass. All six ordinary pair-calibration heads actually
+completed36 epochs and all72 registered Dev snapshots finished. All12
+frontend/cue/seed controls are frozen using complete Dev HOTA with earliest
+checkpoint ties, then evaluated on all7 Test videos. Their Test outcomes are
+not consulted for subsequent research choices. See [selection](PERCEPTUAL_MFT_20261123_PAIR_SELECTION.json).
+
+The [complete36-row first18 fitted-RGB residual family](PERCEPTUAL_MFT_20261123_STRONG18_DEV.md)
+contains a new-front IR result50.933 in seed0 but substantial seed variation.
+That one result does not establish a robust modality benefit. Every residual
+head executed18 epochs and the registered stopping rule forces all six to24.
+[Matched shrinkage and current-RGB-uncertainty guards](../../configs/perceptual_residual_guard_20261123.json)
+repair the same hypothesis; they are not additional innovations.
+
+The [complete20-row prebirth diagnostic](PERCEPTUAL_MFT_20261123_PREBIRTH_DEV.md)
+shows that large archives cause incorrect identity links. The new-front IR
+parent50.933 exceeds its naive recovery variants. A separate
+[missing-point repair](../../configs/perceptual_missing_point_repair_20261123.json)
+addresses a specific unused-data path: the long appearance-only training regime
+was unavailable to the inherited main matcher whenever valid point count fell
+below4. Conservative existing-edge and explicitly counted opening controls are
+registered before replay. No previous identity output can be changed.
+
+[Actual paired crop views](PERCEPTUAL_MFT_20261123_CROP_DIAGNOSIS.png) show
+examples of distorted generated geometry despite near-saturated contrast
+quality. This is a visual diagnosis, not an estimate of dataset-wide frequency.
+Frozen unmasked RGB feature pooling avoids pixel-mask distribution changes,
+but its [six-video Train-only spatial audit](PERCEPTUAL_MFT_20261123_SPATIAL_TRAIN_AUDIT.json)
+still shows no useful raw/counterfactual identity-AUC gain at gap128. These
+Train identities were seen by the encoder, so even a positive result would
+not be held-out tracking evidence. Part pooling is established prior art,
+including [PCB/RPP](https://www.ecva.net/papers/eccv_2018/papers_ECCV/html/Yifan_Sun_Beyond_Part_Models_ECCV_2018_paper.php)
+and [part-aligned bilinear representations](https://openaccess.thecvf.com/content_ECCV_2018/html/Yumin_Suh_Part-Aligned_Bilinear_Representations_ECCV_2018_paper.html).
+
+The [native new-IR representation repair](../../configs/perceptual_native_cue_20261123.json)
+therefore registers a newly trained encoder on actual November IR pixels,
+with an identical extra-RGB encoder control. Both start from the preserved
+Train-only RGB weights and execute36 epochs with matching source draws,
+identity/triplet losses and paired frozen-RGB feature alignment. This is not
+an old constructed-IR checkpoint. Only compact derived Train crops are cached
+outside Git; full image datasets and detector inputs remain unchanged.
+Native encoders and ordinary distillation are controls/primitives, not
+validated contributions by themselves.
+
+[Official detailed metric tables](perceptual_20261122_official_tables/index.json)
+retain every per-sequence/combined row and threshold-specific column for388
+completed runs (about6.4MB), including the nine earlier fixed ordinary Test
+controls. Arrays, crop banks, model weights and raw track predictions are
+excluded. The>=+5 Test HOTA objective and2-3 independently supported modules
+remain unmet; supported multimodal innovation count is still zero.

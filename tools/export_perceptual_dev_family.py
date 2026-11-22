@@ -28,12 +28,14 @@ def main():
     report=dict(status='COMPLETE_DEV_FAMILY_GOAL_NOT_ESTABLISHED',scope='Full4834-frame Dev, not Test. All registered rows and failures retained. Cached replay speed excludes pixel/encoder preparation and is not end-to-end FPS.',note=a.note,rows=rows,supported_multimodal_innovations=0,Test_selection=False)
     docs=ROOT/'docs/fusion_research';stem='PERCEPTUAL_MFT_20261123_'+a.tag
     dump(docs/(stem+'.json'),report)
-    text=['# '+a.title,'',report['scope'],'',a.note,'',
-          '| Candidate | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | Old-ID weak recoveries | New candidate births |',
-          '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
+    extra=[(title,key) for title,key in [('Prebirth ID recoveries','prebirth_recoveries'),('Missing-point appearance rows','semantic_rows')]
+           if any(any(s.get(key,0) for s in row['statistics'].values()) for row in rows)]
+    header='| Candidate | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | Old-ID weak recoveries | New candidate births |'
+    text=['# '+a.title,'',report['scope'],'',a.note,'',header+''.join(' '+title+' |' for title,key in extra),
+          '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |'+''.join(' ---: |' for _ in extra)]
     for row in rows:
         m=row['metrics'];s=row['statistics'];recoveries=sum(x.get('weak_recoveries',0) for x in s.values());births=sum(x.get('candidate_births',0) for x in s.values())
-        text.append('| '+row['id']+' | '+' | '.join(f'{m[k]:.3f}' for k in ['HOTA','DetA','AssA','IDF1','MOTA'])+f" | {int(m['IDSW'])} | {recoveries} | {births} |")
+        text.append('| '+row['id']+' | '+' | '.join(f'{m[k]:.3f}' for k in ['HOTA','DetA','AssA','IDF1','MOTA'])+f" | {int(m['IDSW'])} | {recoveries} | {births} |"+''.join(' '+str(sum(s.get(key,0) for s in row['statistics'].values()))+' |' for title,key in extra))
     text+=['','No current Dev family establishes the original >=+5 Test HOTA and2-3 independent contribution objective. Full metric fields, per-sequence values, configuration hashes and exact runtime source versions are in the adjacent JSON.','',
            'Classical threshold changes, generic memory and ordinary supervised heads receive no multimodal novelty credit alone. Historical Test was exposed before this campaign; original RGB pretraining also included present Dev videos.']
     (docs/(stem+'.md')).write_text('\n'.join(text)+'\n')

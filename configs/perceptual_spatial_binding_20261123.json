@@ -1,0 +1,33 @@
+{
+  "status": "REGISTERED_BEFORE_SPATIAL_TOKEN_EXTRACTION_AND_ACCURACY",
+  "hypothesis": "Preserve the unmodified RGB encoder input and bind its local texture features to actual new pseudo-IR foreground regions. Pixel-masked RGB input changes the preserved encoder distribution; contrast-only quality saturates even when generated geometry is wrong.",
+  "setting": "Actual November DiffV2IR MFT, Protocol V2, original matched detector proposals and Train-only preserved RGB identity encoder. No physical thermal-sensor claim or new generated images.",
+  "prior_art": [
+    "https://www.ecva.net/papers/eccv_2018/papers_ECCV/html/Yifan_Sun_Beyond_Part_Models_ECCV_2018_paper.php",
+    "https://openaccess.thecvf.com/content_ECCV_2018/html/Yumin_Suh_Part-Aligned_Bilinear_Representations_ECCV_2018_paper.html"
+  ],
+  "novelty_scope": "Part pooling and appearance encoders are prior art. Only a validated task-specific role for new pseudo-IR spatial binding, with strict RGB/extra-RGB controls, modality interventions and independent removals, could receive contribution credit.",
+  "encoder": "Same Train6/98-ID RGB ResNet50, frozen12-epoch weights and512 projection. All BatchNorm layers in evaluation mode. Exactly the existing unmasked RGB 5%-margin128x256 letterbox, no IR pixels enter the RGB encoder.",
+  "maps": "Preserve original backbone strides. Pool last-layer2048x4x8 features, then apply the preserved512 projection and normalize. No map/image dumps.",
+  "modes": [
+    "uniform_box",
+    "RGB_Lab_foreground",
+    "actual_new_IR_foreground"
+  ],
+  "tokens": "Per mode: one global weighted texture token and two soft principal-axis half-body tokens. The orientation sign has no head/tail semantics; matching must compare both part permutations.",
+  "ownership": "Existing polarity-independent soft foreground contrast and Gaussian support; compute RGB mask from Lab distance to the border. Transform the mask into exactly the RGB crop letterbox coordinates. Pool feature weights with area downsampling; background/padding is not silently treated as foreground.",
+  "structural_quality": "Per mode record contrast quality, foreground occupancy, principal-axis coherence, normalized centroid, soft overlap with RGB foreground, principal-axis agreement with RGB, and each half-body mass. Uniform/RGB control outputs must be computable without any IR input.",
+  "RGB_inheritance": "Keep the earlier raw RGB feature bank and fitted reference scorer unchanged. New pooled features are additional evidence, never a replacement of the RGB reference.",
+  "Train_preflight": "Reuse the exact11967 Train-only observations and original chronological metadata. Extract compact tokens first on all6 Train videos and audit long-gap identity evidence against equal-size uniform/RGB tokens. Train identities are labels for offline analysis only; forward extraction uses images and boxes.",
+  "evaluation": "Training-preflight evidence is optimistic because the encoder saw these Train identities; it is not held-out accuracy or HOTA. Freeze subsequent learned-module architecture/loss/data/epoch rules before fitting and Dev scoring. Full7-Test coverage only after Dev model/configuration selection; no Test-guided repair.",
+  "resources": "Only physical GPUs2/3. Existing head workers may continue if free memory>=12GiB; spatial extraction uses at most8GiB per GPU and one encoder worker on each allowed card. No dataset copies, full images or dense maps retained; initial Train token budget<0.6GiB inside the existing64GiB cap.",
+  "required_controls": [
+    "Unmodified RGB global descriptor and fitted scorer",
+    "Uniform-box part pooling",
+    "RGB-Lab foreground part pooling",
+    "New-IR foreground part pooling",
+    "Zero and shuffled auxiliary spatial weights/features",
+    "No old-identity recovery and no past-clear memory"
+  ],
+  "status_of_goal": "No new multimodal contribution established; absolute Test HOTA target34.529 and2-3 independent contributions remain unchanged."
+}

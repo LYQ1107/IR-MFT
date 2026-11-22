@@ -32,7 +32,10 @@ def main():
     def save():
         tmp=state_file.with_suffix('.tmp');tmp.write_text(json.dumps(state,indent=2)+'\n');os.replace(tmp,state_file)
     while True:
-        prior=json.loads((work/args.wait_state).read_text())
+        dependency=work/args.wait_state
+        if not dependency.exists():
+            state['status']='WAITING_FOR_DEPENDENCY_FILE';save();time.sleep(5);continue
+        prior=json.loads(dependency.read_text())
         if prior['status']=='COMPLETE':break
         if prior['status']=='FAILED':
             state['status']='DEPENDENCY_FAILED';save();return

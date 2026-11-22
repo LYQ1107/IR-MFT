@@ -1,0 +1,35 @@
+{
+  "id": "K_rgb_ir_s1",
+  "backend": "calibrated_foreground",
+  "detection_arm": "rgb",
+  "calibration_cue": "ir",
+  "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/ir_s1/epoch18.pt",
+  "association_plan_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+  "source_mode": "rgb",
+  "target_mode": "rgb",
+  "lags": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "object_files": true,
+  "preserve_distinct_objects": true,
+  "global_birth_threshold": 0.6,
+  "appearance_penalty": 0,
+  "shape_penalty": 0,
+  "color_penalty": 0,
+  "association_weight": 0.8,
+  "minimum_probability": 0.8,
+  "probability_margin": 0.15,
+  "opening_probability": 0.95,
+  "preserve_clear_motion": false,
+  "point_stages": [
+    "primary",
+    "secondary"
+  ],
+  "candidate_birth": false,
+  "registration": "Ordinary-control weights frozen only after all six fits completed36 epochs and all72 Dev snapshots completed. Highest complete Dev HOTA, earliest checkpoint on ties. Every frontend/cue/seed control is retained for all7 Test videos; no Test selection.",
+  "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+  "association_capacity_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5"
+}

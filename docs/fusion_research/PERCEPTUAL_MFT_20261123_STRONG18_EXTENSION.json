@@ -1,0 +1,106 @@
+{
+  "status": "EXECUTED_COMMON_EXTENSION",
+  "from_epoch": 18,
+  "to_epoch": 24,
+  "lower_bound_gain_pp": 1.610999999999997,
+  "rule": "An already complete Dev witness establishes a monotone lower bound on best-through-current gain over all checkpoints through12 epochs earlier. No pending current Dev outcome can reverse this forced extension.",
+  "evidence": [
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/strong_rgb_dev/F_new_ir_s0_e18/metrics.json",
+      "sha256": "f936c6b2eb9e988e285822d37ce162388dace6da6e8b1e0d92fe06a5c59ee494",
+      "HOTA": 50.933,
+      "epoch": 18,
+      "config": {
+        "id": "F_new_ir_s0_e18",
+        "backend": "strong_RGB_foreground",
+        "detection_arm": "new",
+        "calibration_cue": "ir",
+        "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/strong_rgb_residual/ir_s0/epoch18.pt",
+        "association_plan_sha256": "ca79e4077b51741179ea8d7e27f33ac6d1dafa1703e06666fec5ac66264d4695",
+        "source_mode": "rgb",
+        "target_mode": "rgb",
+        "lags": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "object_files": true,
+        "preserve_distinct_objects": true,
+        "global_birth_threshold": 0.6,
+        "appearance_penalty": 0,
+        "shape_penalty": 0,
+        "color_penalty": 0,
+        "association_weight": 0.8,
+        "minimum_probability": 0.8,
+        "probability_margin": 0.15,
+        "opening_probability": 0.95,
+        "preserve_clear_motion": false,
+        "point_stages": [
+          "primary",
+          "secondary"
+        ],
+        "candidate_birth": false,
+        "registration": "Frozen before any new-residual Dev accuracy. Both matched cue heads, three seeds, all6/12/18 snapshots and both fixed detector frontends. RGB reference weights selected only from the complete initial18-epoch Dev family; strong reference remains exactly inherited when new increment is zero. Later ordinary RGB extensions remain separate controls. No Test selection.",
+        "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+        "association_capacity_sha256": "ca79e4077b51741179ea8d7e27f33ac6d1dafa1703e06666fec5ac66264d4695",
+        "RGB_base_selection_sha256": "054057651f5d90cc62a1903479935d7d4de5cea5deadc2bb3b99762ead38f71a"
+      }
+    },
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/strong_rgb_dev/F_new_ir_s0_e06/metrics.json",
+      "sha256": "a72cfc4199944da04943eb4e871173bd35c20cbb286b76712943b4515f7672f1",
+      "HOTA": 49.322,
+      "epoch": 6,
+      "config": {
+        "id": "F_new_ir_s0_e06",
+        "backend": "strong_RGB_foreground",
+        "detection_arm": "new",
+        "calibration_cue": "ir",
+        "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/strong_rgb_residual/ir_s0/epoch06.pt",
+        "association_plan_sha256": "ca79e4077b51741179ea8d7e27f33ac6d1dafa1703e06666fec5ac66264d4695",
+        "source_mode": "rgb",
+        "target_mode": "rgb",
+        "lags": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "object_files": true,
+        "preserve_distinct_objects": true,
+        "global_birth_threshold": 0.6,
+        "appearance_penalty": 0,
+        "shape_penalty": 0,
+        "color_penalty": 0,
+        "association_weight": 0.8,
+        "minimum_probability": 0.8,
+        "probability_margin": 0.15,
+        "opening_probability": 0.95,
+        "preserve_clear_motion": false,
+        "point_stages": [
+          "primary",
+          "secondary"
+        ],
+        "candidate_birth": false,
+        "registration": "Frozen before any new-residual Dev accuracy. Both matched cue heads, three seeds, all6/12/18 snapshots and both fixed detector frontends. RGB reference weights selected only from the complete initial18-epoch Dev family; strong reference remains exactly inherited when new increment is zero. Later ordinary RGB extensions remain separate controls. No Test selection.",
+        "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+        "association_capacity_sha256": "ca79e4077b51741179ea8d7e27f33ac6d1dafa1703e06666fec5ac66264d4695",
+        "RGB_base_selection_sha256": "054057651f5d90cc62a1903479935d7d4de5cea5deadc2bb3b99762ead38f71a"
+      }
+    }
+  ],
+  "Test_selection": false,
+  "pid": 2393109,
+  "command": [
+    "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+    "-u",
+    "tools/launch_strong_rgb_residual.py",
+    "--epochs",
+    "24",
+    "--resume",
+    "--stage",
+    "e24"
+  ],
+  "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/strong_rgb_fit_e24_controller.log"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "REGISTERED_BEFORE_GUARDED_RESIDUAL_ACCURACY",
+  "diagnosis": "The fitted-RGB reference is exactly inherited at zero new increment, yet the common18-epoch first seed and second seed have inconsistent Dev changes. Unrestricted corrections with average absolute logit size around1 can disturb confident RGB associations.",
+  "repair": "Keep existing immutable weights and apply matched inference guards to both new-IR and extra-RGB residuals. This is a repair of the same residual hypothesis, not a separate innovation or additional training budget.",
+  "variants": [
+    "Zero newly added increment: retain the entire fitted RGB scorer exactly",
+    "New increment multiplied by0.25",
+    "New increment multiplied by0.5",
+    "Full new increment only if the frozen RGB current-candidate row maximum<0.8 or its best/second-best probability margin<0.15"
+  ],
+  "weights": "Initial diagnostic uses immutable common18-epoch checkpoints of all three seeds, both cue heads and both detector frontends. Later final weights still follow the pre-existing complete-Dev/common-stopping rule.",
+  "competition": "Guard inputs are already available raw frozen-RGB probability and current-frame competition fields. No auxiliary quality is used to enable an RGB-only control. No GT, later frame or Test outcome selects the guard.",
+  "interpretation": "Zero or small corrections are mandatory capacity and safety controls. They do not establish a positive IR contribution; clear complete-Dev and complete7-Test removal gains and matched RGB comparison remain required."
+}
