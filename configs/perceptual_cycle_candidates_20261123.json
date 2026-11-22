@@ -1,0 +1,18 @@
+{
+  "status": "REGISTERED_BEFORE_IMPLEMENTATION_AND_DEV_ACCURACY",
+  "motivation": "Earlier supported births used only primary-score observations above0.6 and did not outperform simply lowering the0.7 birth threshold. Test repeated weak body evidence that the original high-score birth stage cannot use.",
+  "input": "Original frozen proposals down to0.1, actual new November pseudo-IR and RGB point ownership; no new detections fabricated",
+  "candidate_minimum_score": 0.3,
+  "minimum_observations": 3,
+  "promotion": "Consecutive unclaimed observations with unique mutual RGB-source point correspondence, plus direct two-frame correspondence consistent with the composed two adjacent links",
+  "foreground_controls": ["RGB source/target", "RGB source, joint RGB/new-IR target"],
+  "minimum_vote": 0.3,
+  "minimum_purity": 0.5,
+  "minimum_surviving_points": 4,
+  "minimum_survival_fraction": 0.6,
+  "overlap_with_existing_confirmed_object_max": 0.7,
+  "confirmed_state": "Assign a normal track identity only at the current confirmed observation; preserve original earlier outputs; later normal ByteTrack secondary association can use weak detections",
+  "ablations": ["No candidate births", "Two observations without direct-cycle verification", "Three observations without direct-cycle verification", "Full three-observation direct-cycle check", "Matched RGB-only geometry", "Ordinary ByteTrack primary threshold0.3 and birth0.4"],
+  "selection": "Complete Dev only; no Test score used",
+  "novelty_status": "Hypothesis only. Temporal confirmation and cycle consistency are classical; require measured conditional IR and removal benefits before claiming a multimodal contribution."
+}
