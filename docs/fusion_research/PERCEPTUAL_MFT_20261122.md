@@ -111,3 +111,21 @@ metric learning, rather than a proposed multimodal mechanism, explains a gain.
 The first full fit bank is complete: 11,967 observations, 2,551 frames, six
 Train videos and 98 identities, zero Dev/Test fitting rows; SHA256
 `803850d1a177a8528ffc166ffba4dbfa718e00254748b9565eb9ecc38bf9cc8f`.
+
+The complete [first 20-row Dev screen](PERCEPTUAL_MFT_20261122_DEV_SCREEN.md)
+is negative; no candidate exceeds direct RGB. The cost audit records 36
+accepted zero-IoU pairs, including 17 proposal-level local identity changes
+under the diagnostic GT mapping. These are diagnostic events, not TrackEval
+IDSW. The custom backend also used a 30-frame age limit while original
+ByteTrack scales its buffer to 25 at frame-rate 25. See the
+[cost diagnosis](PERCEPTUAL_MFT_20261122_COST_DIAGNOSIS.json).
+
+The next family preserves the original ByteTrack lifecycle and feasible
+association graph and only ranks ambiguous existing edges with evidence.
+Ordinary Train-only centering, PCA and Fisher controls test feature calibration.
+The zero-cue wrapper and the unmodified-cue baselines exactly reproduce all
+official Dev fields, not merely HOTA, on 4,834 frames. Thirty repository tests
+pass. This is an engineering correction, not a claimed innovation. Twenty
+concrete configurations were registered before their evaluations in
+`configs/perceptual_safe_20261122`. Paired RGB/IR metric fits have separately
+completed 18 epochs for each seed 0/1/2; their Dev selection remains pending.

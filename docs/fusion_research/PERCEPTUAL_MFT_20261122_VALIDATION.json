@@ -13,9 +13,9 @@
     }
   },
   "tests": {
-    "current_perceptual_tests_passed": 9,
+    "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 28,
+    "current_full_repository_passed": 30,
     "current_full_repository_failed": 0
   },
   "smoke": {
@@ -81,5 +81,68 @@
     "pretrained_RGB_appearance_is_an_ordinary_control_not_an_innovation": true
   },
   "new_accuracy_results": [],
-  "adapter_engineering": "Zero-residual identity initialization is bit-exact; rowwise evaluation is independent of other samples; RGB control runs without auxiliary arrays or auxiliary quality. An initial double-normalization rounding discrepancy was corrected before fitting."
+  "adapter_engineering": "Zero-residual identity initialization is bit-exact; rowwise evaluation is independent of other samples; RGB control runs without auxiliary arrays or auxiliary quality. An initial double-normalization rounding discrepancy was corrected before fitting.",
+  "graph_preserving_baseline_parity": {
+    "rgb_plain": {
+      "frames": 4834,
+      "all_official_metrics_exactly_equal": true,
+      "HOTA": 47.579
+    },
+    "new_plain": {
+      "frames": 4834,
+      "all_official_metrics_exactly_equal": true,
+      "HOTA": 46.236
+    },
+    "new_zero_cue": {
+      "frames": 4834,
+      "all_official_metrics_exactly_equal": true,
+      "HOTA": 46.236
+    }
+  },
+  "first_Dev_screen": {
+    "complete": 20,
+    "supported_innovations": 0,
+    "goal_met": false,
+    "evidence": "PERCEPTUAL_MFT_20261122_DEV_SCREEN.json"
+  },
+  "normalizers": {
+    "status": "COMPLETE_TRAIN_ONLY_CLASSICAL_CONTROLS",
+    "source_sha256": "803850d1a177a8528ffc166ffba4dbfa718e00254748b9565eb9ecc38bf9cc8f",
+    "observations": 11967,
+    "identities": 98,
+    "Dev_rows": 0,
+    "Test_rows": 0,
+    "outputs": {
+      "center": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/normalizers/center.npz",
+        "sha256": "33c712298abc64264fabe3c4715e1dd22b0fbf4f1c0fd213ce8af270fd9d530e",
+        "bytes": 7202
+      },
+      "pca128": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/normalizers/pca128.npz",
+        "sha256": "051f3d8b7743396bef2cd367db5f6f0c71be8b89f9b07af1f003ec7de2696985",
+        "bytes": 736508
+      },
+      "fisher96": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/normalizers/fisher96.npz",
+        "sha256": "89d9a5127c88b417f47baece92d7d805f9403b5aa1f6673e35ed628ebd24d284",
+        "bytes": 554250
+      }
+    },
+    "scope": "Ordinary centering, PCA and shrinkage Fisher discriminants; not new multimodal innovations."
+  },
+  "paired_metric_fit": {
+    "cues": [
+      "rgb",
+      "ir"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "epochs_each": 18,
+    "status": "COMPLETE",
+    "Dev_selection": "pending"
+  }
 }

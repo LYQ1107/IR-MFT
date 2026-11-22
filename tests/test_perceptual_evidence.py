@@ -129,3 +129,48 @@ def test_RGB_backend_runs_without_any_auxiliary_array():
                                    protected_memory=True))
     assert len(tracker.update(1,data))==2
     assert len(tracker.update(2,data))==2
+
+
+def test_safe_byte_zero_cue_preserves_original_lifecycle_and_output():
+    from types import SimpleNamespace
+    from yolox.tracker.basetrack import BaseTrack
+    from yolox.tracker.byte_tracker import BYTETracker
+    from yolox.tracker.evidence_byte_tracker import EvidenceByteTracker
+    boxes=[];scores=[];offsets=[0]
+    for frame in range(1,66):
+        for identity in range(3):
+            if identity==1 and 15<=frame<=46:continue
+            if identity==2 and 20<=frame<=23:continue
+            x=20+identity*60+.3*frame
+            boxes.append([x,20,x+25,40]);scores.append(.4 if frame%7==0 else .95)
+        offsets.append(len(boxes))
+    n=len(boxes);features=np.tile(np.array([[1.,0.]],np.float32),(n,1))
+    data=dict(boxes=np.array(boxes,np.float32),scores=np.array(scores,np.float32),offsets=np.array(offsets),
+              embedding=features,rgb_hog=features,color=features)
+    BaseTrack._count=0
+    original=BYTETracker(SimpleNamespace(track_thresh=.6,track_buffer=30,match_thresh=.9,mot20=False),frame_rate=25)
+    expected=[]
+    for f in range(1,66):
+        a,b=data['offsets'][f-1:f+1];d=np.column_stack([data['boxes'][a:b],data['scores'][a:b]])
+        expected.append([(t.track_id,t.tlwh.copy(),t.score) for t in original.update(d.copy(),(1,1),(1,1))])
+    BaseTrack._count=0
+    revised=EvidenceByteTracker(dict(appearance_view='raw',shape='rgb'))
+    assert revised.inner.max_time_lost==25
+    for f in range(1,66):
+        actual=revised.update(f,data);reference=expected[f-1]
+        assert len(actual)==len(reference)
+        for row,ref in zip(actual,reference):
+            assert row[2]==ref[0] and row[3]==ref[2]
+            np.testing.assert_array_equal(row[1],ref[1])
+
+
+def test_evidence_ranking_never_opens_a_rejected_IoU_edge():
+    from types import SimpleNamespace
+    from yolox.tracker.evidence_byte_tracker import EvidenceByteTracker
+    owner=EvidenceByteTracker(dict(appearance_penalty=.5))
+    tracks=[SimpleNamespace(appearance=np.array([1.,0.])),SimpleNamespace(appearance=np.array([0.,1.]))]
+    observations=[SimpleNamespace(evidence=dict(index=i,appearance=v)) for i,v in enumerate([np.array([0.,1.]),np.array([1.,0.])])]
+    base=np.array([[.55,1.],[.54,.56]])
+    cost=owner.rank_cost(tracks,observations,base,1,'primary')
+    assert cost[0,1]==1.
+    assert not np.any((base>.9)&(cost<=.9))

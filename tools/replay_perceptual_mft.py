@@ -30,6 +30,8 @@ def main():
     p.add_argument('--output',required=True)
     args=p.parse_args()
     source_hashes=dict(tracker=sha256(ROOT/'yolox/tracker/perceptual_tracker.py'),
+                       byte_tracker=sha256(ROOT/'yolox/tracker/byte_tracker.py'),
+                       evidence_tracker=sha256(ROOT/'yolox/tracker/evidence_byte_tracker.py'),
                        replay=sha256(__file__))
     git_head_at_start=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     config_path=Path(args.config)
@@ -64,6 +66,9 @@ def main():
             adaptation=dict(adapter_metadata,checkpoint_sha256=sha256(config['evidence_adapter']))
         if config.get('backend')=='byte':
             tracker=BYTETracker(SimpleNamespace(track_thresh=.6,track_buffer=30,match_thresh=.9,mot20=False),frame_rate=25)
+        elif config.get('backend')=='safe_byte':
+            from yolox.tracker.evidence_byte_tracker import EvidenceByteTracker
+            tracker=EvidenceByteTracker(config)
         else:tracker=PerceptualTracker(config)
         rows=[]
         for frame in frames:
@@ -87,8 +92,12 @@ def main():
                   GT_inference_input=False,future_frame_input=False,previous_outputs_rewritten=False,
                   git_commit=git_head_at_start,
                   tracker_source_sha256=source_hashes['tracker'],
+                  byte_tracker_source_sha256=source_hashes['byte_tracker'],
                   replay_source_sha256=source_hashes['replay'],CPU_threads=os.environ.get('OMP_NUM_THREADS'))
     if adaptation:manifest['evidence_adapter']=adaptation
+    if config.get('normalizer'):manifest['normalizer_sha256']=sha256(config['normalizer'])
+    if config.get('backend')=='safe_byte':
+        manifest['evidence_tracker_source_sha256']=source_hashes['evidence_tracker']
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

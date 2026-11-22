@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay registered Dev repairs after the initial screen, at most two jobs."""
+import argparse
 import fcntl
 import hashlib
 import json
@@ -13,17 +14,22 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--label',default='repair1')
+    p.add_argument('--config-dir',default='configs/perceptual_repair1_20261122')
+    p.add_argument('--wait-state',default='screen_state.json')
+    args=p.parse_args()
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text())
-    work=Path(plan['work_root']);lock=(work/'repair1.lock').open('w')
+    work=Path(plan['work_root']);lock=(work/(args.label+'.lock')).open('w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-    state_file=work/'repair1_state.json'
+    state_file=work/(args.label+'_state.json')
     if state_file.exists():raise RuntimeError('Existing repair state: inspect before restarting')
-    jobs={p.stem:dict(status='PENDING',config=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted((ROOT/'configs/perceptual_repair1_20261122').glob('*.json'))}
+    jobs={p.stem:dict(status='PENDING',config=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted((ROOT/args.config_dir).glob('*.json'))}
     state=dict(status='WAITING_FOR_INITIAL_SCREEN',jobs=jobs)
     def save():
         tmp=state_file.with_suffix('.tmp');tmp.write_text(json.dumps(state,indent=2)+'\n');os.replace(tmp,state_file)
     while True:
-        prior=json.loads((work/'screen_state.json').read_text())
+        prior=json.loads((work/args.wait_state).read_text())
         if prior['status']=='COMPLETE':break
         if prior['status']=='FAILED':
             state['status']='DEPENDENCY_FAILED';save();return
@@ -42,7 +48,7 @@ def main():
             if job['status']!='PENDING':continue
             config=Path(job['config'])
             if hashlib.sha256(config.read_bytes()).hexdigest()!=job['sha256']:raise ValueError('Registered configuration changed')
-            command=[sys.executable,'-u','tools/replay_perceptual_mft.py','--config',str(config),'--split','dev','--output',str(work/'repair1'/name)]
+            command=[sys.executable,'-u','tools/replay_perceptual_mft.py','--config',str(config),'--split','dev','--output',str(work/args.label/name)]
             log=work/(name+'.process.log')
             with log.open('ab',buffering=0) as h:
                 proc=subprocess.Popen(command,cwd=ROOT,env=env,stdin=subprocess.DEVNULL,stdout=h,stderr=subprocess.STDOUT,start_new_session=True)
