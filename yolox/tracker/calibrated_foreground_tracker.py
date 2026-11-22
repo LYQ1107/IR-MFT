@@ -66,7 +66,8 @@ class CalibratedForegroundTracker(CandidateForegroundTracker):
         with torch.inference_mode():
             for lo in range(0,n,4096):
                 bs=torch.from_numpy(base.reshape(-1,23)[lo:lo+4096]);cs=torch.from_numpy(extra.reshape(-1,17)[lo:lo+4096]);rs=torch.from_numpy(reference.reshape(-1,17)[lo:lo+4096]);valid=torch.from_numpy(available.ravel()[lo:lo+4096])
-                delta=self.model.increment(bs,cs,rs,valid)
+                if self.config.get('shuffle_cue',False):cs=torch.roll(cs,shifts=1,dims=0)
+                delta=torch.zeros(len(bs)) if self.config.get('disable_learned_increment',False) else self.model.increment(bs,cs,rs,valid)
                 probability[lo:lo+len(bs)]=(self.model.RGB_offset(bs)+delta).sigmoid().numpy()
                 increments[lo:lo+len(bs)]=delta.numpy()
         value=(c,probability.reshape(d-c,b-a),increments.reshape(d-c,b-a),matrices[('rgb','rgb')],good['rgb'],total['rgb'])

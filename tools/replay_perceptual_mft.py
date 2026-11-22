@@ -71,7 +71,9 @@ def main():
         with np.load(source) as z:data={k:z[k] for k in z.files}
         transport_source=None
         if config.get('backend') in point_backends:
-            directory=Path(plan['work_root'])/'transport'/args.split/sequence
+            variant=config.get('transport_variant','raw')
+            if variant not in {'raw','registered'}:raise ValueError('Unknown transport producer variant')
+            directory=Path(plan['work_root'])/('transport_registered' if variant=='registered' else 'transport')/args.split/sequence
             transport_source=directory/f'{arm}.npz'
             producer=json.loads((directory/'complete.json').read_text())
             if producer['status']!='COMPLETE' or sha256(transport_source)!=producer['outputs'][arm]['sha256']:raise ValueError('Incomplete/mismatched point producer')
@@ -150,6 +152,7 @@ def main():
         manifest['weak_tracker_source_sha256']=source_hashes['weak_tracker']
     if config.get('backend') in learned_backends:
         manifest['calibration']=tracker.calibration_metadata
+        manifest['calibration_intervention']=dict(disable_learned_increment=config.get('disable_learned_increment',False),shuffle_cue=config.get('shuffle_cue',False),scope='Backend paired cue features only; detector proposals and RGB-reference features held fixed. Within-current-frame candidate shuffle, never future frames.')
         manifest['association_checkpoint_sha256']=sha256(config['association_checkpoint'])
         manifest['calibrated_tracker_source_sha256']=source_hashes['calibrated_tracker']
         manifest['association_model_source_sha256']=source_hashes['association_model']

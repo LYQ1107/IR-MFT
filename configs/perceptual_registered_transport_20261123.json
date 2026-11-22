@@ -1,0 +1,14 @@
+{
+  "status": "REGISTERED_BEFORE_REGISTERED_GEOMETRY_DEV_ACCURACY",
+  "input_version": "Same actual November new pseudo-IR pixels; never regenerate or overwrite images",
+  "diagnosis": "Unlabeled Dev gradient audit: reliable-ROI median shift is about3.3/3.4% of box width/height in BT and1.1/1.9% in SN;12-19% of reliable ROIs exceed10% in one direction. This suggests a local registration hypothesis, not a HOTA result.",
+  "points_per_observation": 20,
+  "lags": [1, 2, 4, 8],
+  "alignment": {"minimum_response": 0.15, "minimum_correlation_gain": 0.02, "maximum_box_shift": 0.2, "minimum_box_shift": 0.01},
+  "estimation": "Current RGB/new-IR gradient-magnitude phase correlation on a1.3x proposal ROI at96x64; sign validated with known synthetic translation",
+  "application": "Sample existing IR pixels at the estimated offset before local foreground ownership; reject unsupported, excessive or non-improving warps. RGB source images and proposal boxes/scores stay fixed.",
+  "RGB_preservation": "Copy original RGB/bounding-box-only point matrices, counts and RGB quality bit-for-bit into the registered cache; only IR-involving cue fields change",
+  "controls": ["Raw IR geometry", "Registered IR geometry", "Source-only IR", "Target-only IR", "RGB geometry", "Conditional RGB-preserving IR increment"],
+  "causality": "Each registration uses the same current RGB/IR pair, with earlier registered observations only for declared causal lags. No GT, future pixels or earlier-output rewriting.",
+  "novelty_status": "Phase correlation is classical prior art. Only a measured cross-modal geometry/body-association mechanism with required removal/IR controls could count toward the original goal."
+}
