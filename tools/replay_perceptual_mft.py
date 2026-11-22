@@ -38,6 +38,8 @@ def main():
                        cycle_tracker=sha256(ROOT/'yolox/tracker/cycle_candidate_tracker.py'),
                        weak_tracker=sha256(ROOT/'yolox/tracker/weak_recovery_tracker.py'),
                        calibrated_tracker=sha256(ROOT/'yolox/tracker/calibrated_foreground_tracker.py'),
+                       strong_RGB_tracker=sha256(ROOT/'yolox/tracker/strong_rgb_tracker.py'),
+                       RGB_context=sha256(ROOT/'yolox/tracker/rgb_reference_context.py'),
                        association_model=sha256(ROOT/'yolox/tracker/association_calibrator.py'),
                        association_features=sha256(ROOT/'yolox/tracker/association_features.py'),
                        evidence_adapter=sha256(ROOT/'yolox/tracker/evidence_adapter.py'),
@@ -57,7 +59,7 @@ def main():
     adaptation={}
     arm=config.get('detection_arm','new')
     raw_backends={'byte','foreground_byte','candidate_foreground','residual_foreground','cycle_foreground','recoverable_foreground'}
-    learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated'}
+    learned_backends={'calibrated_foreground','calibrated_cycle','recoverable_calibrated','strong_RGB_foreground'}
     point_backends=(raw_backends-{'byte'})|learned_backends
     for sequence in sequences:
         if config.get('backend') in raw_backends:
@@ -107,6 +109,9 @@ def main():
         elif config.get('backend')=='recoverable_foreground':
             from yolox.tracker.weak_recovery_tracker import RecoverableForegroundTracker
             tracker=RecoverableForegroundTracker(config)
+        elif config.get('backend')=='strong_RGB_foreground':
+            from yolox.tracker.strong_rgb_tracker import StrongRGBForegroundTracker
+            tracker=StrongRGBForegroundTracker(config)
         elif config.get('backend') in learned_backends:
             from yolox.tracker.calibrated_foreground_tracker import CalibratedForegroundTracker,CalibratedCycleTracker,RecoverableCalibratedTracker
             factory={'calibrated_foreground':CalibratedForegroundTracker,'calibrated_cycle':CalibratedCycleTracker,'recoverable_calibrated':RecoverableCalibratedTracker}[config['backend']]
@@ -160,6 +165,10 @@ def main():
         manifest['calibrated_tracker_source_sha256']=source_hashes['calibrated_tracker']
         manifest['association_model_source_sha256']=source_hashes['association_model']
         manifest['association_features_source_sha256']=source_hashes['association_features']
+        if config.get('backend')=='strong_RGB_foreground':
+            manifest['strong_RGB_tracker_source_sha256']=source_hashes['strong_RGB_tracker']
+            manifest['RGB_context_source_sha256']=source_hashes['RGB_context']
+            manifest['calibration_intervention']['scope']='Only the newly added cue residual. The full frozen fitted RGB scorer and detector proposals are retained; shuffle rolls auxiliary candidate features within the same current source-query frame, never future frames.'
     dump(output/'inference_manifest.json',manifest)
     metrics=run_trackeval(str(output/'track_results'),plan['evaluation']['GT_root'],str(output),sequences,
                           plan['evaluation']['TrackEval_root'],data_split='test' if args.split=='test' else 'train')

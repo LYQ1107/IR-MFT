@@ -1,0 +1,30 @@
+{
+  "status": "REGISTERED_BEFORE_PREBIRTH_IMPLEMENTATION_AND_DEV_ACCURACY",
+  "hypothesis": "Object permanence requires consulting retained identities before committing a new identity, including high-score reappearances. Weak-only recovery with at most8-frame point evidence misses most long-gap identity discontinuities.",
+  "setting": "Keep the actual November DiffV2IR input and fixed matched detector frontends. The frozen fitted RGB reference plus its matched extra-RGB or IR residual scores identity evidence; no new data generation or detector adaptation.",
+  "current_observation": "Only real current detector observations with score>=0.3; retained IDs are eligible only if emitted in a strictly earlier frame. Existing identities already emitted earlier may never be reassigned. A newly created or newly confirmed ID may be suppressed only before its first output is returned.",
+  "memory": "Retain actual past observation indices and objects. Compare ordinary25-frame retention with an explicit128-frame archive, and latest-observation with a past-only clear-observation anchor. Never read a later feature row or rewrite earlier outputs.",
+  "clear_anchor": "Update the clear anchor only when the actual current object box has IoU<=0.3 with every other current score>0.6 proposal and its RGB contrast>=0.15. The rule is identical for both cue controls. Otherwise keep the previous clear observation, falling back to the latest actual observation if none exists.",
+  "appearance_only": "When point transport is unavailable or when an old anchor is outside lags1/2/4/8, use the exact registered Train-long-bank feature masking: absent ownership votes and point survival are zero, unknown spatial IoU/centre displacement and motion-quality channels are zero, retained RGB/cue descriptors and contrast are real past/current values, lag feature is capped at8. Do not fabricate motion evidence.",
+  "competition": "Score an old identity against every current candidate, including observations owned by active identities. Require its best current observation to remain eligible, raw RGB cosine>=0.5, calibrated probability>=0.9, and a0.1 margin over all other current observations and competing retained identities. Use one-to-one assignment and abstain on ties. An ambiguous appearance match does not justify old-ID reuse.",
+  "motion_reset": "On an accepted semantic recovery initialize the Kalman state at the actual current observation before reactivation with the old ID; a stale long-gap predicted location must not distort the returned box.",
+  "archive_bound": "Expire references128 frames after their most recent actual observation; at most the identities actually emitted in this bounded interval. No full image memory or dataset copies.",
+  "planned_Dev_pairs": [
+    "No prebirth recovery with exact fitted-reference inheritance",
+    "Latest-observation prebirth recovery with original25-frame retention",
+    "Latest-observation prebirth recovery with explicit128-frame archive",
+    "Clear-observation prebirth recovery with explicit128-frame archive",
+    "Conservative0.95 probability with explicit128-frame archive and clear anchor"
+  ],
+  "controls": "All three seeds and both identically trained cue heads. A same-code extra-RGB control is mandatory. Generic archive, Kalman reset and RGB descriptors alone receive no multimodal innovation credit.",
+  "selection": "Fix all candidate configurations before accuracy. Select checkpoints only by complete Dev under each learned family's registered common stopping rule; preserve all failures. Test cannot select retention, probability, anchor or model weights.",
+  "required_tests": [
+    "A never-emitted fresh ID may be replaced by an eligible old ID using only the current real observation",
+    "A previously emitted identity is immutable even when another archived ID scores higher",
+    "No ambiguous old-ID reuse; one observation cannot reactivate two IDs",
+    "Retained old-ID recovery beyond25 frames only when the explicit archive is enabled",
+    "Disabled recovery reproduces the exact parent outputs and lifecycle",
+    "Future descriptors cannot change any emitted prefix"
+  ],
+  "goal": "At least+5 complete-Test HOTA over direct RGB fine-tune29.529 and2-3 independently supported modality-specific contributions; not established by this registration."
+}

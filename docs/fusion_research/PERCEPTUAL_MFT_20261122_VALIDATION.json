@@ -15,19 +15,23 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 49,
+    "current_full_repository_passed": 64,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
     "command_environment": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir; CUDA_VISIBLE_DEVICES=empty; existing scientific PYTHONPATH dependencies",
     "setup_failures_resolved": [
       "First new-test call omitted external dependency PYTHONPATH, loguru unavailable; corrected environment without changing test logic.",
-      "First broad call omitted MFT26IR_ROOT and used obsolete default /data1 path; rerun with actual dataset root passed37."
+      "First broad call omitted MFT26IR_ROOT and used obsolete default /data1 path; rerun with actual dataset root passed37.",
+      "A bare pytest invocation traversed pre-existing untracked third-party runtime caches and was interrupted during collection; the maintained tests directory was explicitly selected and all64 tests passed. No external package tests are claimed as repository validation."
     ],
     "association_feature_tests_passed": 3,
-    "association_calibrator_tests_passed": 2,
+    "association_calibrator_tests_passed": 3,
     "candidate_birth_tests_passed": 3,
-    "residual_geometry_tests_passed": 4
+    "residual_geometry_tests_passed": 4,
+    "registered_geometry_tests_passed": 2,
+    "fitted_RGB_inheritance_and_causality_tests_passed": 3,
+    "RGB_current_candidate_context_tests_passed": 1
   },
   "smoke": {
     "BT-005": {
@@ -416,5 +420,35 @@
     "completed_unix": 1795365980.2267048,
     "local_free_gib": 6.378604888916016,
     "current_data3_free_gib": 6.377788543701172
-  }
+  },
+  "completed_Dev_families_20261123": {
+    "residual_dev": "COMPLETE",
+    "recoverability_dev": "COMPLETE",
+    "registered_dev": "COMPLETE",
+    "calibrated_dev": "COMPLETE",
+    "calibrated24_dev": "COMPLETE"
+  },
+  "registered_RGB_exact_preservation": {
+    "new": {
+      "parsed_headline_fields": 39,
+      "detailed_CSV_fields": 276,
+      "every_detailed_row_equal": true,
+      "every_track_file_equal": true
+    },
+    "rgb": {
+      "parsed_headline_fields": 39,
+      "detailed_CSV_fields": 276,
+      "every_detailed_row_equal": true,
+      "every_track_file_equal": true
+    }
+  },
+  "ordinary_metric_fixed_Test": {
+    "status": "COMPLETE",
+    "configurations": 9,
+    "sequences_per_configuration": 7,
+    "frames_each": 15985,
+    "evidence": "PERCEPTUAL_MFT_20261123_FIXED_METRIC_TEST.json",
+    "accuracy_not_used_for_later_selection": true
+  },
+  "supported_multimodal_innovations": 0
 }

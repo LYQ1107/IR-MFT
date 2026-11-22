@@ -183,3 +183,49 @@ locally by symlinks, reclaiming5.27568464GiB. A bulk-copy I/O pause prioritized
 the last Dev image producer, then resumed automatically; archival is complete.
 The data3 filesystem now has about6.4GiB free. All new research arrays and
 weights remain on the separate local work filesystem and outside Git.
+
+
+The complete [56-row conditional-residual screen](PERCEPTUAL_MFT_20261123_RESIDUAL_DEV.md),
+[48-row weak-recovery/cycle screen](PERCEPTUAL_MFT_20261123_RECOVERABILITY_DEV.md),
+and [32-row ROI-registration screen](PERCEPTUAL_MFT_20261123_REGISTERED_DEV.md)
+remain negative for a meaningful modality-specific gain. Registration improves
+some IR-heavy variants, but not beyond matched strong RGB. Both RGB-only raw/
+registered pairs have exactly equal output files, all39 parsed headline fields
+and every276-column detailed CSV row. No tiny rounded HOTA difference is
+counted as a contribution. Earlier shorthand references to40 official fields
+should be read as all parsed official fields; the exact audit above reports
+actual field counts.
+
+The Train-only association bank is complete:2,863,358 candidate pairs,
+87,121 positives from six Train videos. The [complete36-row first18-epoch
+pair-calibration Dev family](PERCEPTUAL_MFT_20261123_PAIR18_DEV.md) shows
+ordinary RGB-head improvement on the new-IR detector frontend (best49.499),
+but unstable IR increments over raw point odds. Every head executed24 epochs;
+the frozen lookback rule requires extending all six to30. This is a separate
+ordinary control, with three head seeds and fixed detector/encoder weights.
+
+The [fitted-RGB residual plan](../../configs/perceptual_strong_rgb_residual_v2_20261123.json)
+keeps a Dev-selected fitted RGB scorer immutable and adds an error-focused cue
+correction, paired against an equal-capacity extra-RGB correction. Its initial
+RGB reference selection used all36 first18-epoch Dev rows and no Test values;
+the selected new-IR frontend has mean48.961 across its three fixed RGB heads.
+Later ordinary-head epochs remain separately reported controls. The new
+Train-only appearance bank contains347,782 chronological candidate pairs and
+10,590 positives; these sets are not simultaneous detector observations.
+Absent point/spatial evidence is explicitly masked. No new image dataset is
+created. All six residual heads must execute at least18 epochs.
+
+All64 maintained repository tests pass, including exact preservation of the
+entire fitted RGB scorer when the new residual is zero, disabled or unavailable,
+strictly current-frame competition, and future-feature prefix invariance.
+The [prebirth identity plan](../../configs/perceptual_prebirth_identity_20261123.json)
+registers retained-ID consultation before any new ID is first returned.
+An already emitted identity remains immutable. This is still a hypothesis.
+
+All nine previously selected ordinary metric controls have complete7-sequence,
+15,985-frame Test exports. Their accuracy values do not choose the later
+families. New point and learned association families have not yet established
+Test improvement. Supported multimodal innovations remain zero; the>=+5 HOTA
+and2-3 independently supported contribution goal is unfinished. Only GPUs2/3
+are used, new assets occupy about3.7GiB on the separate work filesystem,
+and lightweight code, plans and analysis are pushed without arrays or weights.
