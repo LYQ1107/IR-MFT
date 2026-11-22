@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 37,
+    "current_full_repository_passed": 49,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -23,7 +23,11 @@
     "setup_failures_resolved": [
       "First new-test call omitted external dependency PYTHONPATH, loguru unavailable; corrected environment without changing test logic.",
       "First broad call omitted MFT26IR_ROOT and used obsolete default /data1 path; rerun with actual dataset root passed37."
-    ]
+    ],
+    "association_feature_tests_passed": 3,
+    "association_calibrator_tests_passed": 2,
+    "candidate_birth_tests_passed": 3,
+    "residual_geometry_tests_passed": 4
   },
   "smoke": {
     "BT-005": {
@@ -358,5 +362,59 @@
       "trained_heads": 6,
       "formal_Test_pending": true
     }
+  },
+  "point_Dev_screen": {
+    "complete": 30,
+    "supported_multimodal_innovations": 0,
+    "evidence": "PERCEPTUAL_MFT_20261122_POINT_SCREEN.json",
+    "best_RGB_HOTA": 48.486,
+    "best_new_frontend_HOTA": 47.608
+  },
+  "storage_archive": {
+    "status": "COMPLETE",
+    "started_unix": 1795364622.359891,
+    "records": [
+      {
+        "arm": "train_old_legacy",
+        "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/latest_ckpt.pth.tar",
+        "destination": "/data3/liuyeqiang/nas/A100/IR-MFT/pseudo_ir_budget_extension_20261121/checkpoints/train_old_legacy/latest_ckpt.pth.tar",
+        "bytes": 2237562667,
+        "sha256": "090471c4261b91a95852dfb223f5d575121dc9891bfd289ef8ffc06603af6f48",
+        "archived": true,
+        "completion_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_old_legacy/completion.json",
+        "completion_sha256": "980ae8f2a451abb2c469d835ecfda3aa7ae4c1943fb854e0637aa015eb1ddded",
+        "local_path_is_symlink": true,
+        "completed_unix": 1795365258.0607119
+      },
+      {
+        "arm": "train_new_diffv2ir",
+        "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/latest_ckpt.pth.tar",
+        "destination": "/data3/liuyeqiang/nas/A100/IR-MFT/pseudo_ir_budget_extension_20261121/checkpoints/train_new_diffv2ir/latest_ckpt.pth.tar",
+        "bytes": 2237562731,
+        "sha256": "bba6968b96622ee41f90bcf5c46a1e3b4d42c86eac71be748175100b158dc4ba",
+        "archived": true,
+        "completion_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/completion.json",
+        "completion_sha256": "fae0b6965f6479ae804917ff08986d2402150490859e4964eceab92844e57924",
+        "local_path_is_symlink": true,
+        "completed_unix": 1795365733.0209877
+      },
+      {
+        "arm": "train_rgb_matched",
+        "source": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/latest_ckpt.pth.tar",
+        "destination": "/data3/liuyeqiang/nas/A100/IR-MFT/pseudo_ir_budget_extension_20261121/checkpoints/train_rgb_matched/latest_ckpt.pth.tar",
+        "bytes": 1189597851,
+        "sha256": "1a6c4dceb62517e94cb9af29045a82874dab33ef60a61f51d049a2f7da03c9ca",
+        "archived": true,
+        "completion_path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/completion.json",
+        "completion_sha256": "99f13d195832851d125d943af9f381a6dea05e9c77580d855d43f0fb490670d4",
+        "local_path_is_symlink": true,
+        "completed_unix": 1795365980.2254672
+      }
+    ],
+    "policy": "Keep complete bytes and SHA256 on NAS; original local path becomes a symlink; no model/image or GitHub payload changes",
+    "reclaimed_bytes": 5664723249,
+    "completed_unix": 1795365980.2267048,
+    "local_free_gib": 6.378604888916016,
+    "current_data3_free_gib": 6.377788543701172
   }
 }

@@ -158,3 +158,28 @@ future-cache prefix invariance, and preservation of two previously co-visible
 objects under the original overlap duplicate rule. These are engineering
 checks, not evidence of real-data HOTA improvement. Full Dev point extraction
 uses only a bounded past-image buffer and compact vote arrays outside Git.
+
+
+The [complete30-row point screen](PERCEPTUAL_MFT_20261122_POINT_SCREEN.md)
+shows a generic RGB point/co-visible-memory Dev gain to48.486, but hard
+pseudo-IR masks remain harmful. RGB-preserving conditional IR ownership and
+supported candidate births are registered in56 paired Dev configurations.
+The new residual zero-cue control must reproduce the original RGB point
+tracker exactly; a tiny0.004-point change is not established contribution.
+
+A separately registered [counterfactual pair-evidence family](../../configs/perceptual_pair_calibration_20261123.json)
+addresses raw-vote miscalibration. A small shared function compares actual cue
+evidence with its RGB-reference evidence, yielding a bounded signed log-odds
+increment; cue-independent offsets cancel. The matched RGB capacity control
+uses a second ordinary RGB ownership/crop view. Training uses only128 sampled
+source frames in each of the six Train videos, four causal source/target lags,
+and two levels of box perturbation. No Dev/Test label fits this model. Two
+actual-new-IR Train extraction smoke checks passed on physical GPUs2/3.
+This is a proposed mechanism, with no claimed tracking improvement yet.
+
+Forty-nine repository tests now pass. Three inactive completed common12-epoch
+detector continuation checkpoints have been SHA-verified on NAS and replaced
+locally by symlinks, reclaiming5.27568464GiB. A bulk-copy I/O pause prioritized
+the last Dev image producer, then resumed automatically; archival is complete.
+The data3 filesystem now has about6.4GiB free. All new research arrays and
+weights remain on the separate local work filesystem and outside Git.
