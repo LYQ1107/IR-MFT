@@ -1,5 +1,5 @@
 {
-  "status": "ENGINEERING_CHECKS_PASSED_ACCURACY_PENDING",
+  "status": "ENGINEERING_PASSED_DEV_RESEARCH_CONTINUES_GOAL_NOT_MET",
   "baseline_Dev_replay": {
     "C00_rgb_ByteTrack": {
       "HOTA": 47.579,
@@ -15,8 +15,15 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 30,
-    "current_full_repository_failed": 0
+    "current_full_repository_passed": 37,
+    "current_full_repository_failed": 0,
+    "foreground_function_tests_passed": 3,
+    "foreground_tracker_tests_passed": 4,
+    "command_environment": "MFT26IR_ROOT=/data3/liuyeqiang/datasets/mft26-ir; CUDA_VISIBLE_DEVICES=empty; existing scientific PYTHONPATH dependencies",
+    "setup_failures_resolved": [
+      "First new-test call omitted external dependency PYTHONPATH, loguru unavailable; corrected environment without changing test logic.",
+      "First broad call omitted MFT26IR_ROOT and used obsolete default /data1 path; rerun with actual dataset root passed37."
+    ]
   },
   "smoke": {
     "BT-005": {
@@ -80,7 +87,11 @@
     ],
     "pretrained_RGB_appearance_is_an_ordinary_control_not_an_innovation": true
   },
-  "new_accuracy_results": [],
+  "new_accuracy_results": [
+    "First20 negative Dev controls",
+    "20 complete graph-preserving calibration controls",
+    "36 complete metric Dev snapshots"
+  ],
   "adapter_engineering": "Zero-residual identity initialization is bit-exact; rowwise evaluation is independent of other samples; RGB control runs without auxiliary arrays or auxiliary quality. An initial double-normalization rounding discrepancy was corrected before fitting.",
   "graph_preserving_baseline_parity": {
     "rgb_plain": {
@@ -141,8 +152,211 @@
       1,
       2
     ],
-    "epochs_each": 18,
+    "epochs_each": 24,
     "status": "COMPLETE",
-    "Dev_selection": "pending"
+    "Dev_selection": "Frozen using common stopping rule; RGB selected18/24/18, IR6/6/6; all trained24",
+    "formal_Test": "pending",
+    "stopping_decision": {
+      "status": "COMMON_STOP_AT_24",
+      "rule": "Best Dev through24 minus best Dev through12 <=0.2pp for every paired fit; earliest checkpoint wins ties",
+      "executed_epochs": 24,
+      "rows": [
+        {
+          "cue": "rgb",
+          "seed": 0,
+          "gain_pp": 0.0030000000000001137,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 47.577,
+              "IDF1": 55.864,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s0_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 47.577,
+              "IDF1": 55.864,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s0_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 47.58,
+              "IDF1": 55.865,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s0_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 47.579,
+              "IDF1": 55.865,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_rgb_rgb_s0_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 18
+        },
+        {
+          "cue": "rgb",
+          "seed": 1,
+          "gain_pp": 0.001999999999995339,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 47.182,
+              "IDF1": 55.335,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s1_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 47.575,
+              "IDF1": 55.861,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s1_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 47.575,
+              "IDF1": 55.861,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s1_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 47.577,
+              "IDF1": 55.862,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_rgb_rgb_s1_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 24
+        },
+        {
+          "cue": "rgb",
+          "seed": 2,
+          "gain_pp": 0.0020000000000024443,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 47.181,
+              "IDF1": 55.338,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s2_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 47.577,
+              "IDF1": 55.864,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s2_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 47.579,
+              "IDF1": 55.865,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_rgb_rgb_s2_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 47.579,
+              "IDF1": 55.865,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_rgb_rgb_s2_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 18
+        },
+        {
+          "cue": "ir",
+          "seed": 0,
+          "gain_pp": 0.0,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s0_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s0_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s0_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_new_ir_s0_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 6
+        },
+        {
+          "cue": "ir",
+          "seed": 1,
+          "gain_pp": 0.0,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s1_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s1_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s1_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_new_ir_s1_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 6
+        },
+        {
+          "cue": "ir",
+          "seed": 2,
+          "gain_pp": 0.0,
+          "points": [
+            {
+              "epoch": 6,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s2_e06/metrics.json"
+            },
+            {
+              "epoch": 12,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s2_e12/metrics.json"
+            },
+            {
+              "epoch": 18,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric_dev/M_new_ir_s2_e18/metrics.json"
+            },
+            {
+              "epoch": 24,
+              "HOTA": 46.236,
+              "IDF1": 53.119,
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/metric24_dev/M_new_ir_s2_e24/metrics.json"
+            }
+          ],
+          "selected_epoch": 6
+        }
+      ],
+      "Test_selection": false,
+      "trained_heads": 6,
+      "formal_Test_pending": true
+    }
   }
 }

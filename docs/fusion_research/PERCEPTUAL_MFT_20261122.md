@@ -128,4 +128,33 @@ official Dev fields, not merely HOTA, on 4,834 frames. Thirty repository tests
 pass. This is an engineering correction, not a claimed innovation. Twenty
 concrete configurations were registered before their evaluations in
 `configs/perceptual_safe_20261122`. Paired RGB/IR metric fits have separately
-completed 18 epochs for each seed 0/1/2; their Dev selection remains pending.
+completed 24 epochs for each seed 0/1/2; the registered common stopping rule
+now stops all six heads together. See the complete
+[56 calibration and metric Dev controls](PERCEPTUAL_MFT_20261122_CALIBRATION_METRIC.md).
+No new-input gain or multimodal innovation has been established.
+
+
+The [foreground point family](../../configs/perceptual_transport_20261122.json)
+replaces box-centre translation with direct correspondences between textured
+body points. Lucas–Kanade operates on RGB colour; actual new pseudo-IR supplies
+optional source/target foreground constraints. A local Lab-colour RGB mask is
+a strong matched control. The detector frontend is fixed separately to RGB or
+new-IR V3: RGB proposals plus new-IR geometric association still form a two-input
+late-fusion MFT system. Original V3 remains a reported reference; switching its
+frontend is not credited as a multimodal contribution.
+
+Thirty point-based Dev configurations were registered before their first
+accuracy evaluation. They separate box/RGB/IR/joint point ownership, both
+source/target removals, one-lag versus multi-lag object observations, preservation
+of previously co-visible objects, and matched 0.5/0.8/1.0 point weights. Rejected
+IoU edges can be opened only by explicit confident current-image correspondence,
+with those openings counted. This differs deliberately from the earlier safe
+appearance ranker. No future image, GT or revised prior output enters inference.
+
+Thirty-seven repository tests pass, including seven point geometry/tracker
+checks. New checks establish exact original lifecycle with disabled or absent
+point evidence, identity-correct synthetic crossing without box overlap,
+future-cache prefix invariance, and preservation of two previously co-visible
+objects under the original overlap duplicate rule. These are engineering
+checks, not evidence of real-data HOTA improvement. Full Dev point extraction
+uses only a bounded past-image buffer and compact vote arrays outside Git.
