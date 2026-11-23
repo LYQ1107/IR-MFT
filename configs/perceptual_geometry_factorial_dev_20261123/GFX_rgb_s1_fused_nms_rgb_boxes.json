@@ -1,0 +1,32 @@
+{
+  "id": "GFX_rgb_s1_fused_nms_rgb_boxes",
+  "cue": "rgb",
+  "variant": "full",
+  "seed": 1,
+  "epoch": 18,
+  "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/rgb_full_s1/epoch18.pt",
+  "head_roles": [
+    "full",
+    "rgb_boxes",
+    "rgb_scores",
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "evaluate_roles": [
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "stage": "main_factorial",
+  "reference": {
+    "directory": "correlation_geometry_predictions",
+    "prefix": "CG3_rgb_full_s1_e18",
+    "full_role_name": ""
+  },
+  "proposal_key": "GFX_rgb_s1_fused_nms_rgb_boxes",
+  "head_role": "fused_nms_rgb_boxes",
+  "output_policy": "priority",
+  "producer_directory": "geometry_factorial_predictions",
+  "fusion_plan_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "specification_sha256": "5328e251a94edb217dcf926109eee679885f8fb364f6f0d2848d2a0520cf0c11",
+  "registration": "Fixed five geometry/score roles; all3cues/3seeds at the prior fixed epochs, original3removals/all4snapshots unchanged. Source66anchor streams exact before any accuracy. No Test or novelty presumption."
+}

@@ -1,0 +1,15 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_TWO_SCORE_REPLAY_OR_ACCURACY",
+  "created_utc": "2026-11-23T05:52:44.247302+00:00",
+  "motivation": "Seed0 IRconfidence/RGBgeometry50.515 gains onBT but loses2.544HOTA onSN versusordinaryIRfusion. Train-calibrated RGBtemperature44.186 andPlatt33.043 versus47.579 show strong confidence/association coupling. Test separate fish-presence confidence from physical RGB association confidence.",
+  "references": "Completed36 temporal/headrole and3 scalar RGBcalibration cases only; no Test. This is a targeted integration mechanism, not a first claim for generic score separation.",
+  "rule": "For each current frame, one-to-one IoU Hungarian match current proposals to original high-confidence RGB NMS proposals(score>=0.6). RequireIoU>=0.7, inherited original NMS threshold. Matched current geometry receives that RGBproposal score for primary/pending IoU-score association; unmatched proposals keep their own score. Detection high/low thresholds, birth thresholds, output confidences, geometry, Kalman and lifecycle retain current semantic score and original ByteTrack settings. Secondary stage remains unweightedIoU. No knobs searched onDev.",
+  "scope": "Reference is geometry-matched currentRGB NMS score, not a claimed exact dense-anchor score. Matching can reopen or close semantic-score edges according to the original RGB physical evidence; record both. No GT or future input.",
+  "cases": "Nine frozen seed0 TC raw frontends=3cues xfull/RGBboxes/RGBscores, plus originalRGB/temperature/Platt fixedcontrols. Each disabled/enabled=24completeDev cases. All12 disabled controls must match all39 oldmetrics, both fulltrackfiles anddetailedCSV before any enabled accuracy. All24 retained.",
+  "selection": "PrimaryIR RGBboxes raw; compare same mechanism acrossRGB/gray and ordinary scalar controls, not only against the old direct baseline. Adapterseed0 only at this diagnosis. Three-seed replica pending, all84 unchanged.",
+  "storage": "CPU only, reuse canonicalRGB and completeTC proposals; no newpixels, encoder, weights, features or imagecopies.",
+  "novelty": "Classical Hungarian matching and score separation alone are not innovations; credit only supported task-specific generated-modality mechanism after all controls/seeds/completeTest. No target presumed.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
