@@ -82,6 +82,18 @@ no-memory outputs match the earlier trained predictions exactly, and all
 original24 temporal controls survive the diagnostic extension exactly.
 All137 maintained tests pass. No full temporal/head-role accuracy exists yet.
 
+Exact parent adapter seeds1/2 are now registered for all3 cues, six additional
+matched24E fits using the existing feature bank. Seed0 IR has better IDF1 and
+fewer ID switches than gray but slightly lower HOTA; this is a stability
+question, not an established HOTA contribution. All48 new full-Dev policies
+retain all checkpoints. Six trained seed0 anchor streams must match exactly
+on both full videos before new accuracy; fresh RGB retains only the already
+quantified4 tail-batch numerical deviations, exact counts and unchanged
+0.6/0.7 memberships. Common checkpoint/policy selection uses mean3-seed Dev.
+A separately registered24-frame Train-only photometric compatibility probe
+diagnoses polarity/histogram mismatch without changing source images or
+creating another full feature bank. No new Test is authorized by these probes.
+
 The [existing-descriptor overlap-risk diagnosis](PERCEPTUAL_MFT_20261123_OVERLAP_RISK_DEV_AUDIT.md)
 is negative: actual-IR identity descriptors do not beat strong RGB on either
 Dev video. No risk tracker is deployed from this probe. A small Train-only

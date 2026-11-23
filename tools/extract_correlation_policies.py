@@ -33,6 +33,7 @@ def main():
     p.add_argument('--split',choices=['dev','test'],default='dev');p.add_argument('--specification')
     p.add_argument('--source-check',type=int,default=0);p.add_argument('--batch-size',type=int,default=4)
     p.add_argument('--ir-intervention',choices=['none','zero','spatial_roll'],default='none')
+    p.add_argument('--producer-name',choices=['correlation_policy_predictions','correlation_replication_predictions'],default='correlation_policy_predictions')
     a=p.parse_args()
     if a.batch_size!=4:raise ValueError('Keep the original independent-sample baseline batch shape4')
     physical=os.environ.get('CUDA_VISIBLE_DEVICES')
@@ -81,7 +82,7 @@ def main():
     source=Path(plan['frozen_detection_sources']['rgb_'+a.split])/'detections'/(a.sequence+'.npz')
     with np.load(source)as z:reference={key:z[key]for key in ['frame_ids','offsets','boxes','scores']}
     limit=min(len(reference['frame_ids']),a.source_check or len(reference['frame_ids']))
-    producer_name='correlation_policy_predictions'if a.ir_intervention=='none'else'correlation_policy_predictions_'+a.ir_intervention
+    producer_name=a.producer_name if a.ir_intervention=='none'else a.producer_name+'_'+a.ir_intervention
     out=work/producer_name/a.split/a.sequence
     if a.source_check:out=out/f'source_check_{a.source_check}'
     out.mkdir(parents=True,exist_ok=True)
