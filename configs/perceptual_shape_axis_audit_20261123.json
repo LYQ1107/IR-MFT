@@ -1,0 +1,17 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_MOMENT_AXIS_EXTRACTION_OR_SCORING",
+  "question": "Can actual newIR foreground central-moment orientation predict fish displacement better than RGB foreground and bbox axes? Prior HOG-axis diagnostic was not stronger than bbox.",
+  "sampling": "Current original frozen RGB/newglobal proposal boxes on bothDev videos, every32frames starting1. NoNNfit/Test or deployedtracker. ActualRGB/NovemberIR imagepairs only.",
+  "shape": "Existing64x32 localforeground mask; weight=max(mask-0.35,0), covariance in ORIGINAL crop aspect, principal eigenvector unsigned. Concentration=(largest-smallest)/(largest+smallest); fallback whenquality<0.15 orconcentration<0.15.",
+  "controls": [
+    "bboxmajoraxis",
+    "RGBmomentaxis+fallback",
+    "IRmomentaxis+RGBfallback",
+    "higherquality_times_concentration_RGB_IR"
+  ],
+  "evaluation": "Produce everycurrent-image pose first and serialize before readingDevGT. Posthoc IoU0.5 one-to-one matching; comparefutureGTdisplacementlags1/4/8, ignoremotion<max(2px,0.02boxdiagonal). Unsignedangleonly, nottrueheadtail/poseGT. Reportallfixedcontrols; no thresholdsearch.",
+  "activation": "Do not deploy unlessIRbeatsstrongRGBmoment/bboxbaselines acrossbothDevvideos; otherwise retainnegative.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

@@ -1,0 +1,33 @@
+{
+  "status": "REGISTERED_CONDITIONAL_HYPOTHESIS_NO_CODE_OR_EXECUTION",
+  "basis": "Completed parent25Dev curves have near-constantDetA and strongly varyingAssA/HOTA. Current3CGRfitscomplete24E; current full25Dev not yet read. New idea addresses generated-domain temporal correction stability, not IR identity or IR optical flow.",
+  "activation": "Only after COMPLETE current25Dev. If IR is clearly promising, prioritize seeds/removals/specificity controls. If weak advantage or association instability remains, consider one frozen post-training temporal comparison before further backbone complexity. No Test-driven choice.",
+  "hypothesis": "Transport only bounded normalized auxiliary corrections using physical RGB motion, and apply them only through current-frame learned trust. Human-inspired continuity/object permanence; classical motion verifies propagation. Does not assume IR is a physical sensor.",
+  "retained_setting": "Actual NovemberIR unchanged, same frozenRGBencoder/head and alreadyfitted adapters. Only physical2/3, no future frame, no image/regenerateddata caches or largeweights.",
+  "method": {
+    "history_frames": 1,
+    "blend": 0.5,
+    "motion": "Farneback forward/backward on exact padded RGB uint8 inference canvas, downsample1/4 to200x360. Parameters pyr_scale0.5,levels3,winsize15,iterations3,poly_n5,poly_sigma1.2,flags0. FB tolerance1.5 flow pixels.",
+    "coordinate_rule": "Compute flow on the same800x1440 padded canvas as detector before downsampling; respect right padding, resize vectors to each FPN grid. Backward current-to-previous flow warps previous normalized residual, no future input.",
+    "normalization": "Current residual=(repaired_FP16-RGB_FP16); normalize by current bound*RGB_RMS*learned_trust, bounded normalized support. Cache only previous normalized correction and validity.",
+    "current_trust": "Recover existing gate logits through a nonmutating hook; current learned trust includes(1-p_RGB)*(p_RGB<0.6). Any temporal output must pass current trust and bound. Flow-inconsistent/cosine-disagreeing history is rejected.",
+    "fallback": "No history or lambda0 returns original repaired tensor exactly. Unavailable/flatIR clears history and returns unchanged currentRGB; stale memory cannot restore missingauxiliary. Invalidmotion returns original repaired tensor at that pixel.",
+    "batching": "Encoder and teacher/head remain independent-sample batch4. Compute recurrent correction sequentially withinbatch, then stack for original headbatch4; no crosssample statistics or future information."
+  },
+  "controls": [
+    "lambda0 exact-parity with chosen frozen predictions",
+    "Same blend without motion(identitywarp)",
+    "PhysicalRGBflow+FB+currenttrust",
+    "Transport without current-trust clamp, retainingglobalresidualbound andavailabilityfallback",
+    "Same policies/parameters for RGB-repeat, gray and actualIR",
+    "If promising: actualIR zero/spatial_roll intervention"
+  ],
+  "validation": "Synthetic translation/invalid-flow/sequence-prefix/noauxiliary invariance, then actual32frame baseline parity bothDev. Select one frozen bestDev checkpoint per fullcue from all25main cases, no weight refit. Every policy gets full4834Dev and originalTrackEval. Do not publish cached replay as end-to-endFPS.",
+  "prior_art": {
+    "FGFA": "https://openaccess.thecvf.com/content_iccv_2017/html/Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.html",
+    "boundary": "Flow-guided feature aggregation, EMA, recurrent memory and opticalflow are priorart. Credit only problem-specific generated-correction safety mechanisms with independent gains beyond RGB/gray/ordinaryEMA controls."
+  },
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

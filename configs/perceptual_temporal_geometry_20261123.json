@@ -1,0 +1,111 @@
+{
+  "status": "REGISTERED_HEAD_ROLE_DIAGNOSTIC_BEFORE_ANY_FULL_TEMPORAL_INFERENCE_OR_ACCURACY",
+  "parent_conditional_sha256": "21335dd98c91b10c109445d6172279ae6944dee2190f4c41ce597d84c9233dfe",
+  "config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "models": [
+    {
+      "id": "TC_rgb",
+      "cue": "rgb",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 18,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/rgb_full_s0/epoch18.pt",
+      "checkpoint_sha256": "0d630413b1131910c5978ae63c45808710cff049e52b09eb9374870224c6d4a6",
+      "training_config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+      "reference_producer": "correlation_policy_predictions",
+      "reference_model_id": "CGA_rgb_full_s0_e18",
+      "selected_Dev_HOTA": 49.957,
+      "selected_metrics_sha256": "420976f6aa7297233c62221425c9fd8b190078cf8d5cdb714ee4b8ddf1c185d7",
+      "selection_family": "correlation_pilot_policies_dev"
+    },
+    {
+      "id": "TC_gray",
+      "cue": "gray",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 18,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/gray_full_s0/epoch18.pt",
+      "checkpoint_sha256": "6789734ba7c4042fd7e0cc4591829fb09848b311eb7f7d431d95706611dffba4",
+      "training_config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+      "reference_producer": "correlation_policy_predictions",
+      "reference_model_id": "CGA_gray_full_s0_e18",
+      "selected_Dev_HOTA": 49.965,
+      "selected_metrics_sha256": "735b9f2837beb998a0192cd8a2236ebf0cec256d3a6087dabd536b7c7fb7cf8d",
+      "selection_family": "correlation_pilot_policies_dev"
+    },
+    {
+      "id": "TC_ir",
+      "cue": "ir",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_full_s0/epoch24.pt",
+      "checkpoint_sha256": "667bf0f89d99dd9b6b074992dc7ee4f84cd00281a5fbecb9fdebe3483d7df005",
+      "training_config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+      "reference_producer": "correlation_policy_predictions",
+      "reference_model_id": "CGA_ir_full_s0_e24",
+      "selected_Dev_HOTA": 49.771,
+      "selected_metrics_sha256": "86ee7667bcb089f5760af16020274cc339dda39e3d87b146aec5f2570b4c4667",
+      "selection_family": "correlation_pilot_policies_dev"
+    }
+  ],
+  "selection_pool": [
+    "All25 complete parentCGA Dev",
+    "All25 complete recoveryCGR Dev"
+  ],
+  "selection_amendment": "Before any temporal image forward or accuracy: use equal opportunities across BOTH completed full-cue families, instead of starting from the weaker recovery-only family. All3 winners are parentCGA. No removal-only or Test outcome selects these weights.",
+  "policies": [
+    "none",
+    "identity",
+    "flow",
+    "without_current_evidence"
+  ],
+  "output_policies": [
+    "priority",
+    "raw"
+  ],
+  "strength": 0.5,
+  "bound": 0.5,
+  "epsilon": 1e-06,
+  "history_frames": 1,
+  "normalization_refinement": "Normalize actual already-trusted FP16 correction by current RGB_RMS. Transport both correction and its old trust; scale historical contribution by min(1,current_trust/(warped_old_trust+eps)), then enforce current0.5*trust bound. This preserves historical amplitude and avoids amplifying a low-trust correction by dividing it by trust.",
+  "current_evidence": "Main flow/identity require nonzero current correction, positive channel-vector agreement, valid old correction and current trust. No-current-evidence control removes these current-read limits but retains actual historical amplitude, nominal0.5RMS bound, availability reset and causal state.",
+  "motion": {
+    "input_canvas": [
+      800,
+      1440
+    ],
+    "view": [
+      200,
+      360
+    ],
+    "detector_padding_preserved": true,
+    "source": "RGB only, previous/current",
+    "estimator": "Farneback",
+    "parameters": [
+      0.5,
+      3,
+      15,
+      3,
+      5,
+      1.2,
+      0
+    ],
+    "FB_tolerance": 1.5,
+    "coordinate": "Backward current-to-previous flow. Per-level rescale and align-corners grid sampling."
+  },
+  "safety": "First frame/lambda0/invalidmotion preserve current repaired tensors. Unavailableauxiliary clears history before past/repaired access and returns RGB. No future inputs or rewrite. Original independent-sample headbatch4 retained.",
+  "prerequisite": "All3 selected pretrained no-memory raw/priority prediction arrays exact for32realDevframes on BOTHvideos before fullDev. Synthetic8tests passed; maintainedsuite135 before added2motiontests.",
+  "budget": "No fitting or new encoder; original217619params. Only2/3, all arraysoutsideGit, reserve40GiB/workcap64. FullDev24cases with identical policies for3cues, none/raw parity baseline retained. No method FPS inferred from shared production.",
+  "prior_art": "FGFA/EMA/opticalflow are priorart; only task-specific bounded generated-correction mechanisms with positive controls can earn credit.",
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "parent_temporal_sha256": "1fc37a813105d1f8b767ddadd3f95af3a3f17d39935ab7b531fc5408e7b9ea62",
+  "extra_no_memory_emissions": [
+    "rgb_boxes",
+    "rgb_scores"
+  ],
+  "head_role_diagnostic": "Same fixed prediction anchors and network weights: RGBboxes+fusedobjectness/class isolates semanticconfidence; fusedboxes+RGBobjectness/class isolates geometry. Standard fullfused remains. All3cue models get both controls and raw/priority. This is an inference diagnosis, not evidence or a trained semantic-only model.",
+  "amendment": "Before any full temporal forward/accuracy while old24jobcontroller waits: add12 symmetric head-role controls to the existing24 temporal cases,36total. Same weights/temporalparameters/pixels; share neural forward. Preserve and verify alloriginal24controls against real32frame source outputs."
+}

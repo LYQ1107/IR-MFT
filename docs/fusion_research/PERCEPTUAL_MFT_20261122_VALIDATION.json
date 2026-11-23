@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 129,
+    "current_full_repository_passed": 137,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -55,10 +55,12 @@
     "local_correlation_repair_tests_passed": 4,
     "frozen_head_repair_tests_passed": 3,
     "recoverable_curriculum_tests_passed": 3,
-    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_recoverability_20261123.log",
-    "latest_log_sha256": "a38efeac3ac7845795a778e65b71a35c7a123e672121f9c5e9893ae79badf79f",
+    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_temporal_final_20261123.log",
+    "latest_log_sha256": "585b7a622621215e1e6090f5284db0f47deb955486ddfa161e0725cb31caf600",
     "ROI_confirmed_full_Dev_primary_parities": 8,
-    "ROI_parity_scope": "All39 official metrics and both full track files exact; no synthetic unit test claimed for the experiment-only tracker."
+    "ROI_parity_scope": "All39 official metrics and both full track files exact; no synthetic unit test claimed for the experiment-only tracker.",
+    "temporal_correction_safety_tests_passed": 6,
+    "physical_RGB_motion_tests_passed": 2
   },
   "smoke": {
     "BT-005": {
@@ -503,8 +505,8 @@
   },
   "official_metric_tables": {
     "directory": "perceptual_20261122_official_tables",
-    "tables": 388,
-    "bytes": 6359435,
+    "tables": 1198,
+    "bytes": 19753325,
     "unmodified_CSV": true,
     "no_weights_or_raw_tracks": true
   },
@@ -529,8 +531,8 @@
   "official_tables": {
     "status": "COMPLETE_FOR_CURRENT_FINISHED_RUNS",
     "scope": "Unmodified TrackEval detailed CSV, all per-sequence and combined rows and every threshold-specific column. No model, feature bank, crop bank, image dataset or raw track prediction is published. Test metric values are archived without selecting later candidate parameters from them.",
-    "tables": 820,
-    "bytes": 13739904
+    "tables": 1198,
+    "bytes": 19753325
   },
   "foveated_progress": {
     "status": "FULL38_DEV_CONTROLS_RUNNING",
@@ -592,9 +594,9 @@
     "goal_met": false
   },
   "storage_current": {
-    "work_asset_GiB": 50.94174312893301,
+    "work_asset_GiB": 52.72312427777797,
     "work_soft_cap_GiB": 64,
-    "original_filesystem_free_GiB": 5.8,
+    "original_filesystem_free_GiB": 4.9,
     "dataset_copies": false,
     "large_Git_artifacts": false
   },
@@ -641,5 +643,21 @@
     "original_descriptors_bit_exact": true,
     "capacity_limit": "Paired global detector has extra branch/crop compute; no modality novelty is credited alone.",
     "Test_started": false
+  },
+  "current_research_20261123": {
+    "status": "IN_PROGRESS_GOAL_NOT_MET",
+    "full_dev_correlation_cases": 25,
+    "full_dev_recoverability_cases": 25,
+    "aligned_removal_cases": 8,
+    "no_curriculum_removal_cases": 8,
+    "fixed_backend_cases": 18,
+    "no_curriculum_best_HOTA": 49.186,
+    "aligned_best_HOTA": 48.31,
+    "complete_recovery_best_HOTA": 47.628,
+    "strong_gray_best_HOTA": 49.965,
+    "guarded_backend_registered_cases": 36,
+    "temporal_geometry_registered_cases": 36,
+    "new_Test_started": false,
+    "supported_multimodal_innovations": 0
   }
 }

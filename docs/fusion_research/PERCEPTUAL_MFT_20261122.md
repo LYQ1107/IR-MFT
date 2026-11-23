@@ -1,6 +1,6 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
-## Current verified state: conditional recovery fitting, goal not met
+## Current verified state: recovery and naive composition negative, targeted controls running
 
 The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
 the requested threshold is34.529. The prior matched three-seed new-IR point
@@ -53,20 +53,41 @@ already covers local attention and dominant-modality modulation; using these
 techniques alone does not establish novelty.
 
 All3 conditional fits completed all24 epochs and6912 updates; the24 sample,
-curriculum and perturbed-object-count records match across all cues. Full
-Dev observation production is running. The3 registered removals separately remove local
+curriculum and perturbed-object-count records match across all cues. All25
+full-Dev cases are complete: best IR47.628, gray46.740, RGB45.617, versus
+original47.579 and prior strong gray49.965/RGB49.957/IR49.771. The repair
+does not advance the best result. The3 registered removals separately remove local
 offset tolerance, recovery curriculum, and counterfactual validity, keeping
 the same24-epoch budget. A separate18-case factorial sends each parent
 Dev-selected RGB/gray/IR observation stream through the exact same6 frozen
-RGB-frontend-selected F0 association heads. These are pending Dev controls,
-not new Test claims or supported contributions.
+RGB-frontend-selected F0 association heads. All18 are now complete and all6
+association-seed group means fall below their corresponding NN+ByteTrack
+parents. There is no supported composition gain. A new36-case registered
+mechanical repair restores original birth0.7, then separately protects clear
+motion matches, identically across all cues/seeds, without refitting. These
+ordinary guards alone receive no multimodal novelty credit. The radius0 removal finished
+all24 epochs and8 full-Dev cases; its best48.310 exceeds full recovery47.628,
+so local offset search is not a supported positive contribution in this repair.
+The no-curriculum removal also finished all8 Dev cases, best49.186 versus
+full recovery47.628; regional weakening has no supported positive contribution.
+The last blanket-counterfactual removal continues; scheduling evaluates each unchanged24E
+variant when complete, retaining all4 checkpoints and both output policies.
+
+New post-training controls retain the strongest full-cue checkpoints from
+both completed families. They compare no memory, identity averaging, physical
+RGB-motion transport, and removal of current-evidence protection, plus
+RGB-box/fused-confidence and fused-box/RGB-confidence diagnostics. All3 cues
+get the same36 total full-Dev cases. On32 real frames of both videos, the
+no-memory outputs match the earlier trained predictions exactly, and all
+original24 temporal controls survive the diagnostic extension exactly.
+All137 maintained tests pass. No full temporal/head-role accuracy exists yet.
 
 The [existing-descriptor overlap-risk diagnosis](PERCEPTUAL_MFT_20261123_OVERLAP_RISK_DEV_AUDIT.md)
 is negative: actual-IR identity descriptors do not beat strong RGB on either
 Dev video. No risk tracker is deployed from this probe. A small Train-only
 readout audit finds positive current-versus-wrong-frame IR cosine contrast,
 but this is neither heldout correspondence nor tracking accuracy evidence.
-Current work assets occupy about51.7GiB of the independent-disk64GiB cap.
+Current work assets occupy about52.72GiB of the independent-disk64GiB cap.
 No models, feature arrays, image copies or raw track files are published.
 
 The original RGB checkpoint includes earlier Dev pretraining, and historical
