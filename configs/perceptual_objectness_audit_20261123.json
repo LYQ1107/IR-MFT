@@ -1,0 +1,14 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_OBJECTNESS_FIT_OR_DEV_AUC",
+  "hypothesis": "Weak held-out IR identity does not imply useless foreground evidence. Diagnose fish-versus-background discrimination before spending on another association head.",
+  "sources": "Existing actual November IR and matched RGB native36 candidate embeddings; exact original candidate index and frozen RGB reference. All fits use Train6 only.",
+  "labels": "Original Train candidate label>=0 is fish, label=-1 is the original physically sampled background. No relabeling from Dev/Test.",
+  "models": "Ordinary L2 logistic controls: frozen RGB reference alone, reference plus native RGB, reference plus actual native IR. Joint input capacity is equal; all three matched backbone seeds.",
+  "C": 0.01,
+  "max_iter": 200,
+  "tolerance": 0.0001,
+  "weights": "Equal video and equal positive/negative mass within each video. Train-only coordinate standardization, std floor0.001.",
+  "Dev": "All4834 frames, both original RGB and paired-new detector streams. IoU>=0.5 to a class1 GT box is a foreground example, IoU<=0.2 to all positive/ignored boxes is background. Ambiguous/ignored rows excluded. This is a posthoc diagnostic, never an inference GT input.",
+  "Test": "No Test read or fitting; no tracking improvement or innovation is established by AUC alone.",
+  "goal_met": false
+}

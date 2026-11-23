@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 111,
+    "current_full_repository_passed": 116,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -48,7 +48,9 @@
     "consensus_identity_memory_tests_passed": 2,
     "reachability_identity_tests_passed": 2,
     "foveated_observation_tests_passed": 4,
-    "foveated_working_region_tests_passed": 2
+    "foveated_working_region_tests_passed": 2,
+    "causal_attention_tests_passed": 3,
+    "semantic_contour_transport_tests_passed": 2
   },
   "smoke": {
     "BT-005": {
@@ -572,12 +574,14 @@
     "goal_met": false
   },
   "native_query_final_budget": {
-    "status": "MATCHED36_SCHEDULED",
-    "decision": "PERCEPTUAL_MFT_20261123_NATIVE_COMMON30_DECISION.json",
+    "status": "ALL24_MATCHED_FITS_COMPLETE_AT36_AND48_FINAL_DEV_RUNS_COMPLETE",
+    "decision": "PERCEPTUAL_MFT_20261123_NATIVE_COMMON36_DECISION.json",
     "heads": 24,
     "maximum_epochs": 36,
     "clean_and_robust_equal_budget": true,
-    "Test_selection": false
+    "Test_selection": false,
+    "stopped_at_cap": true,
+    "goal_met": false
   },
   "storage_current": {
     "work_asset_GiB": 26.42,
@@ -585,5 +589,32 @@
     "original_filesystem_free_GiB": 5.8,
     "dataset_copies": false,
     "large_Git_artifacts": false
+  },
+  "foveated_causal_stage": {
+    "status": "SCHEDULED_PER_GPU_AFTER_PREVIOUS_PRODUCER",
+    "plan": "configs/perceptual_foveated_causal_20261123.json",
+    "registered_Dev_rows": 70,
+    "real_image_checks": "Both physical GPUs2/3 passed4 current frames and68 proposal streams, no GT.",
+    "causality": "Future-image perturbation leaves earlier heat maps exactly unchanged; timestamp reuse rejected; reset restores first result; flat IR exactly falls back to RGB attention.",
+    "counterfactuals": "Independent IR novelty, RGB scene novelty and their consensus, equal crop counts and detector weights.",
+    "Test_started": false,
+    "goal_met": false
+  },
+  "objectness_probe": {
+    "status": "COMPLETE_TRAIN_ONLY_7_LOGISTIC_FITS_AND_COMPLETE_DEV_DIAGNOSTIC",
+    "Train_rows": 125830,
+    "Dev_fit_rows": 0,
+    "Test_read": false,
+    "report": "PERCEPTUAL_MFT_20261123_OBJECTNESS_DEV_AUDIT.json",
+    "result": "IR gives small foreground-AUC gains on SN-013, but consistently loses to extra RGB on BT-005. No reliable overall foreground advantage or tracking gain established; probe not deployed."
+  },
+  "semantic_transport_probe": {
+    "status": "RUNNING_UNLABELED_SPARSE_DEV_PRODUCTION",
+    "plan": "configs/perceptual_semantic_transport_20261123.json",
+    "GT_read": false,
+    "Test_read": false,
+    "purpose": "Original point control only samples RGB corners even in the IR ownership packet. Test actual IR silhouette corners and RGB-first/native-IR fallback with equal20-point budget.",
+    "synthetic_test": "Controlled textureless RGB with translated IR shape gains valid transport; flat IR preserves original packets and votes exactly.",
+    "tracking_gain_established": false
   }
 }

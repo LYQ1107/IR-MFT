@@ -1,0 +1,22 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_REAL_DEV_SEMANTIC_POINT_RESULT",
+  "reason": "Original IR point mode only filters RGB corners by an IR mask. A textureless RGB fish can therefore have no semantic contour anchors even when actual generated IR has a useful boundary.",
+  "data": "Unchanged actual November DiffV2IR, RGB pixels, frozen original two detector streams and Dev split. No image regeneration, GT-driven proposal or encoder training.",
+  "source_frame_step": 32,
+  "lags": [1, 2, 4, 8],
+  "maximum_points_per_body": 20,
+  "native_corners": "For the additional joint-body packet, use native IR corner response under the original RGB/IR joint ownership mask when original IR quality>=0.15. Otherwise retain the original RGB point packet. Same corner suppression, spacing and point budget. Original bbox/RGB/IR/joint packets are retained unchanged as controls.",
+  "variants": {
+    "rgb": "Original RGB-body corners and original RGB flow",
+    "bbox": "Original unmasked RGB corners and original RGB flow",
+    "original_joint": "Original RGB corners selected under joint masks, original RGB flow",
+    "semantic_rgb": "Actual IR contour corners, original RGB flow",
+    "semantic_safe": "Same actual IR contour corners, preserve every valid RGB point flow; use FB-checked IR flow only where RGB flow fails",
+    "semantic_ir": "Same actual IR contour corners, native IR flow as a removal/diagnostic control"
+  },
+  "consistency": "Same original forward/backward threshold1.5 pixels, photometric error40, per-body robust movement check and conserved target ownership with background mass0.25. No new threshold fitting.",
+  "diagnostic": "Sample the declared source grid across both full Dev videos, retain all original candidate hypotheses, finish both unlabeled producers before reading any Dev annotation. Report per-lag edge AUC, top1 recall, missing-target false acceptance and low-RGB-support behavior. This sparse mechanism diagnosis is not full tracking HOTA.",
+  "RGB_control": "Same point budget and original source proposals. Original RGB packets and base/reference features remain unchanged. Extra RGB capacity and mask-only controls remain mandatory before any claimed improvement.",
+  "Test_policy": "No Test is read or fitted in this diagnosis. A positive diagnosis must still receive Train-only fitting and full Dev/Test tracking validation.",
+  "goal_met": false
+}

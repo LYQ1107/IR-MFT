@@ -429,3 +429,56 @@ All111 maintained tests pass. Current work assets occupy26.42GiB on the
 independent work filesystem, below64GiB. No image copies, model weights,
 feature arrays or raw tracking outputs are included in Git. The original
 >=+5 Test HOTA and2-3 contribution objective remains NOT_MET.
+
+All24 matched native query fits completed36 epochs, and all48 registered
+final-stage Dev runs completed. The [complete robust/consensus lookback
+audit](PERCEPTUAL_MFT_20261123_NATIVE_COMMON36_DECISION.json) stops at the
+registered36 cap. The full final tables are retained for
+[robust queries](PERCEPTUAL_MFT_20261123_ROBUST36_DEV.md),
+[robust consensus](PERCEPTUAL_MFT_20261123_CONSENSUS36_DEV.md),
+[clean queries](PERCEPTUAL_MFT_20261123_ORDERED36_DEV.md), and
+[clean consensus](PERCEPTUAL_MFT_20261123_CONSENSUS_CLEAN36_DEV.md).
+Full six-checkpoint Dev curves in the lookback audit cover robust/robust-consensus;
+the clean runtime variants have only their actually executed stage evaluations,
+not an invented complete six-stage tracking curve. Every fit snapshot remains.
+These memory variants fail to beat the stronger original RGB point-only mean
+reliably. No new Test is spent on a failed identity-memory claim.
+
+The [foreground audit](PERCEPTUAL_MFT_20261123_OBJECTNESS_DEV_AUDIT.json)
+fits seven ordinary logistic probes on125830 original Train candidate crops,
+all before reading any Dev annotations. Actual IR improves binary foreground
+AUC slightly on SN-013, but loses clearly to equal-capacity extra RGB on BT-005.
+Binary objectness excludes ambiguous localization and duplicate-count errors;
+it is not HOTA. The probe is not deployed or credited as a contribution.
+
+An unlabeled causal background audit shows fixed structure can be suppressed
+while retaining moving fish; generated IR still contains changing reflections.
+The [causal cross-modal attention experiment](../../configs/perceptual_foveated_causal_20261123.json)
+registers70 complete Dev controls before accuracy: IR contrast with independent
+IR novelty, common RGB scene novelty, or their geometric-mean consensus,
+against RGB contrast/RGB novelty. Both global frontends, half/quarter scales,
+two/four equal-cost crops, both fusion rules, uniform controls and exact original
+baselines remain. Previous38+38 controls continue unchanged. Source checks
+passed on both allowed GPUs. The controller releases each GPU after its previous
+sequence producer finishes. All114 maintained tests pass, including temporal
+prefix invariance and exact flat-IR fallback. No foveated Test has started;
+classical MOG2 alone receives no novelty credit. The goal remains NOT_MET.
+
+Isolated backend-plan tooling is prepared to extract new evidence for selected
+proposal boxes with the exact unchanged original appearance extractor and point
+algorithm, then evaluate the full IR/RGB attention x IR/RGB point-cue factorial
+for all three seeds. This tooling has NOT yet been executed; full observation
+Dev coverage and selection come first. Explicit role metadata prevents mistaking
+input aliases for the underlying global detector modality.
+
+The [semantic-contour mechanism diagnosis](../../configs/perceptual_semantic_transport_20261123.json)
+addresses a distinct limitation: the original IR ownership packet still selects
+its corners from RGB, so an otherwise useful IR contour cannot supply points
+when RGB texture is absent. Preserve all original point packets and add actual
+IR corners under the same body mask/20-point budget. Compare RGB transport,
+RGB-first/IR-failure fallback, and native IR transport. A controlled synthetic
+case recovers displacement with textureless RGB; flat IR exactly preserves old
+packets/votes. Both fixed-grid unlabeled Dev producers are running. This sparse
+mechanism probe is NOT tracking HOTA and establishes no contribution yet.
+All116 maintained tests pass. No original producer/helper or frozen main plan
+was changed.
