@@ -32,6 +32,7 @@ def main():
         per=detailed_metrics(folder/'trackeval_output/pedestrian_detailed.csv',protocol['dev'],v['trackeval'])
         assert sum(x['CLR_Frames'] for x in per.values())==4834
         hashes={k:value for k,value in m.items() if k.endswith('_source_sha256') or k.endswith('_checkpoint_sha256')}
+        hashes.update(m.get('source_versions',{}))
         rows.append(dict(id=cfg.stem,config=m['config'],metrics=v['trackeval'],per_sequence=per,statistics=m['statistics'],source_hashes=hashes,calibration=m.get('calibration'),config_sha256=sha256(cfg),metrics_sha256=sha256(path),cached_replay_FPS=m['replay_FPS']))
     assert rows
     if selected is not None:assert {row['id']for row in rows}==selected

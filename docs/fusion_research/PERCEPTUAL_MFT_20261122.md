@@ -70,7 +70,9 @@ all24 epochs and8 full-Dev cases; its best48.310 exceeds full recovery47.628,
 so local offset search is not a supported positive contribution in this repair.
 The no-curriculum removal also finished all8 Dev cases, best49.186 versus
 full recovery47.628; regional weakening has no supported positive contribution.
-The last blanket-counterfactual removal continues; scheduling evaluates each unchanged24E
+The last blanket-counterfactual removal also completed all8 Dev cases, best48.487.
+All3 full-minus-best-removal deltas are negative(-0.682,-1.558,-0.859); none
+supports the proposed recovery components. Scheduling evaluated each unchanged24E
 variant when complete, retaining all4 checkpoints and both output policies.
 
 New post-training controls retain the strongest full-cue checkpoints from
@@ -80,7 +82,8 @@ RGB-box/fused-confidence and fused-box/RGB-confidence diagnostics. All3 cues
 get the same36 total full-Dev cases. On32 real frames of both videos, the
 no-memory outputs match the earlier trained predictions exactly, and all
 original24 temporal controls survive the diagnostic extension exactly.
-All137 maintained tests pass. No full temporal/head-role accuracy exists yet.
+All142 maintained tests pass. Both full videos now pass exact trained
+no-memory parity; the complete36-case metric family remains in replay.
 
 Exact parent adapter seeds1/2 are now registered for all3 cues, six additional
 matched24E fits using the existing feature bank. Seed0 IR has better IDF1 and
@@ -92,7 +95,13 @@ quantified4 tail-batch numerical deviations, exact counts and unchanged
 0.6/0.7 memberships. Common checkpoint/policy selection uses mean3-seed Dev.
 A separately registered24-frame Train-only photometric compatibility probe
 diagnoses polarity/histogram mismatch without changing source images or
-creating another full feature bank. No new Test is authorized by these probes.
+creating another full feature bank. The photometric condition failed: only2/6 recall and1/6 cosine wins, so no
+mapped-image training or feature cache is added. All36 mechanical guard
+repairs also completed with no group-mean gain over corresponding NN+ByteTrack
+parents. A registered multi-anchor/mutual competition integration repair runs
+six full zero controls before18 full cases, on unchanged cached evidence/heads.
+These classical primitives alone receive no novelty credit. No new Test is
+authorized by these probes.
 
 The [existing-descriptor overlap-risk diagnosis](PERCEPTUAL_MFT_20261123_OVERLAP_RISK_DEV_AUDIT.md)
 is negative: actual-IR identity descriptors do not beat strong RGB on either

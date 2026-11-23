@@ -1,0 +1,17 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_TRAJECTORY_CONSENSUS_REPLAY_OR_ACCURACY",
+  "created_utc": "2026-11-23T04:43:01.764109+00:00",
+  "data_plan": "configs/perceptual_correlation_backend_fixed_20261123.json",
+  "data_plan_sha256": "8fcda54b4e994547859da3eb6b16e5552cfc47c6b7e968f0bd0db3e1b356cfa0",
+  "guard_plan_sha256": "1fb42a4cc283286e0cd6d26b441f1efdb23765aac50eed99cb5fc33773bfd681",
+  "hypothesis": "Legacy learnedF0 rank_cost reads only the nearest object-file anchor despite retaining32 observations. Test robust consistency across existing1/2/4/8lag physical correspondences before modifying an ambiguous match.",
+  "mechanism": "Per-track median current-candidate probabilities over anchors with>=4 good physical RGB points. Require>=2 anchors,>=2/3 agreeing best candidate and each agreeing anchor vote>=0.15. Same existing0.8 probability,0.15 margin,0.8 mixture,0.95 opening thresholds. Mutual track-column margin0.15 prevents competing confident object files claiming the same observation. Keep existing clear-motion guard and birth0.7. No fit/newpixels/newpoints.",
+  "controls": "Same three selected CGA observation streams and exact six frozen association heads.18 full cases=3observationcues x2associationcues x3associationseeds. First6 zero-module controls, one per observation/cue with associationseed0, must match all39 parent birth07_clear metrics and both track files exactly.18-case accuracy read only after all complete.",
+  "novelty": "Classical multi-anchor voting/median/mutual matching alone are not innovations. This is a targeted integration repair. Only positive IR-specific increments beyond the strongest ByteTrack/RGB/gray controls could justify further causal contribution experiments.",
+  "followup": "Only if full mean actualIR exceeds paired IR+ByteTrack49.771, strongest matched RGB/gray49.965, and same-backend RGB/gray controls, register history-consensus removal, mutual-competition removal, disabled-IR increment and current-frame IR shuffle. Otherwise retain negative result without a new Test.",
+  "source_limits": "Detector adapter fixed seed0; three seeds here are only association-head seeds. All full4834-frame Dev, no Test.",
+  "dependency": "All36 guarded backend cases COMPLETE before controls; do not alter legacy replay source while it runs.",
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
