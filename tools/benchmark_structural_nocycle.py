@@ -145,13 +145,14 @@ def main():
     parser.add_argument('--memory-inputs-and-components', action='store_true')
     args = parser.parse_args()
     physical = os.environ.get('CUDA_VISIBLE_DEVICES')
-    assert physical == '2'
+    from tools.perceptual_gpu_handoff import POLICY_PATH, future_gpus, previous_gpu_work_complete
+    assert physical == future_gpus()[0]
     plan = json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text())
     work = Path(plan['work_root'])
     fits = json.loads((work/'structural_nocycle_fit_state.json').read_text())
     dev = json.loads((work/'structural_nocycle_dev_state.json').read_text())
     assert fits['status'] == 'COMPLETE'
-    assert dev['producers']['BT-005']['status'] == 'COMPLETE'
+    assert previous_gpu_work_complete(dev, fits)
     next_stage = json.loads((work/'structural_nocycle_next_stage_state.json').read_text())
     assert next_stage['status'] == 'WAITING_FOR_COMPLETE36DEV_AND_ANALYSIS'
     config_path = ROOT/'configs/perceptual_structural_relative_20261123.json'
@@ -220,7 +221,9 @@ def main():
             print(json.dumps(records[-1]),flush=True)
             del adapter; gc.collect(); torch.cuda.empty_cache()
     dump(output,dict(status='COMPLETE_SINGLE_METHOD_STRUCTURAL_B4_THROUGHPUT',rows=records,
-        physical_gpu=physical,fixed_fitted_seed=0,additional_seed_work=False,
+        physical_gpu=physical,gpu_handoff_policy_sha256=sha256(POLICY_PATH),
+        gpu_handoff_helper_sha256=sha256(ROOT/'tools/perceptual_gpu_handoff.py'),
+        fixed_fitted_seed=0,additional_seed_work=False,
         raw_images_preloaded_in_RAM=args.memory_inputs_and_components,preload_seconds_excluded=preload_seconds,
         raw_image_RAM_GiB=0. if image_cache is None else sum(v.nbytes for v in image_cache.values())/2**30,
         unique_Dev_frames=64,frame_method_comparisons=320,

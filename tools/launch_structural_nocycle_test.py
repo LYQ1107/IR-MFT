@@ -15,6 +15,7 @@ import numpy as np
 from tools.correlation_geometry_checks import compare_packets
 from tools.recover_correlation_formal_test import aligned_source_audit
 from tools.run_pseudo_ir_comparison import dump, sha256
+from tools.perceptual_gpu_handoff import POLICY_PATH, future_gpus, previous_gpu_work_complete
 
 
 def read_packet(path):
@@ -25,6 +26,12 @@ def read_packet(path):
 def main():
     plan = json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text())
     work = Path(plan['work_root'])
+    physical_gpus = future_gpus()
+    assert previous_gpu_work_complete(
+        json.loads((work/'structural_nocycle_dev_state.json').read_text()),
+        json.loads((work/'structural_nocycle_fit_state.json').read_text()))
+    assert json.loads((work/'structural_nocycle_runtime_schedule.json').read_text())['status'] == \
+        'COMPLETE_BOTH_RUNTIME_CONDITIONS_NO_GPU_CONFLICT'
     protocol = json.loads((ROOT/plan['protocol']).read_text())
     spec_path = ROOT/'configs/perceptual_structural_nocycle_test_20261123.json'
     spec = json.loads(spec_path.read_text())
@@ -43,7 +50,8 @@ def main():
         'yolox/tracker/priority_observations.py', 'yolox/tracker/foveated_regions.py',
         'tools/replay_structural_nocycle_test.py', 'yolox/tracker/byte_tracker.py',
         'tools/recover_correlation_formal_test.py', 'tools/correlation_geometry_checks.py',
-        'tools/structural_gate_observer.py',
+        'tools/structural_gate_observer.py', 'tools/perceptual_gpu_handoff.py',
+        'configs/perceptual_gpu_handoff_20261123.json',
         'tools/launch_structural_nocycle_test.py']
     sources = {name: sha256(ROOT/name) for name in names}
     jobs = {}
@@ -55,6 +63,7 @@ def main():
     state = dict(status='PRODUCING_FROZEN_TEST_WITHOUT_GT', controller_pid=os.getpid(),
         jobs=jobs, producers=producers, sources=sources, specification_sha256=sha256(spec_path),
         primary=spec['primary_case'], fixed_seed=0, Test_accuracy_read=False,
+        physical_gpus=list(physical_gpus), gpu_handoff_policy_sha256=sha256(POLICY_PATH),
         goal_met=False, supported_innovations=0)
     dump(path, state)
     try:
@@ -100,7 +109,7 @@ def main():
                             assert len(z['boxes']) == len(z['anchor_indices']) == len(z['rgb_reference_scores'])
                             assert ((z['anchor_indices'] >= 0) & (z['anchor_indices'] < 23625)).all()
                     row.update(status='COMPLETE', source_proof=proof, complete_sha256=sha256(base/'complete.json'))
-            for physical in ['2', '3']:
+            for physical in physical_gpus:
                 if physical in active:
                     continue
                 pending = [(seq, producers[seq]) for seq in order

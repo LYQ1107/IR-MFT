@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Use GPU2 after its Dev worker exits, while GPU3 finishes the longer video."""
+"""Wait for both current workers, then benchmark on the authorized GPU4."""
 import fcntl
 import json
 import os
@@ -11,6 +11,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.run_pseudo_ir_comparison import dump, sha256
+from tools.perceptual_gpu_handoff import POLICY_PATH, future_gpus, previous_gpu_work_complete
 
 
 def main():
@@ -20,8 +21,11 @@ def main():
     lock = path.with_suffix('.lock').open('w')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     assert not path.exists()
-    state = dict(status='WAITING_FOR_OWN_BT_DEV_PRODUCER_TO_RELEASE_GPU2',controller_pid=os.getpid(),
-        benchmark_physical_gpu='2',fixed_seed=0,additional_seed_work=False,
+    physical = future_gpus()[0]
+    state = dict(status='WAITING_FOR_BOTH_GPU23_WORKERS_BEFORE_GPU4',controller_pid=os.getpid(),
+        benchmark_physical_gpu=physical,fixed_seed=0,additional_seed_work=False,
+        gpu_handoff_policy_sha256=sha256(POLICY_PATH),
+        gpu_handoff_helper_sha256=sha256(ROOT/'tools/perceptual_gpu_handoff.py'),
         benchmark_source_sha256=sha256(ROOT/'tools/benchmark_structural_nocycle.py'),
         source_sha256=sha256(__file__),goal_met=False,supported_innovations=0)
     dump(path,state)
@@ -30,11 +34,14 @@ def main():
             dev = json.loads((work/'structural_nocycle_dev_state.json').read_text())
             if 'FAIL' in dev['status']:
                 raise RuntimeError('Retain Dev failure; no new benchmark GPU work')
-            if dev.get('producers',{}).get('BT-005',{}).get('status') == 'COMPLETE':
+            fits = json.loads((work/'structural_nocycle_fit_state.json').read_text())
+            if previous_gpu_work_complete(dev, fits):
                 break
             time.sleep(5)
         assert sha256(ROOT/'tools/benchmark_structural_nocycle.py') == state['benchmark_source_sha256']
-        env = dict(os.environ,CUDA_VISIBLE_DEVICES='2',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2')
+        assert sha256(POLICY_PATH) == state['gpu_handoff_policy_sha256']
+        assert sha256(ROOT/'tools/perceptual_gpu_handoff.py') == state['gpu_handoff_helper_sha256']
+        env = dict(os.environ,CUDA_VISIBLE_DEVICES=physical,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='2',MKL_NUM_THREADS='2')
         for mode in ['live_file','memory_inputs']:
             command = [sys.executable,'-u','tools/benchmark_structural_nocycle.py']
             if mode == 'memory_inputs':

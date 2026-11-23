@@ -13,6 +13,7 @@ import torch
 
 from tools.extract_structural_relative import produce
 from tools.run_pseudo_ir_comparison import dump, sha256
+from tools.perceptual_gpu_handoff import POLICY_PATH, future_gpus, previous_gpu_work_complete
 from tools.structural_gate_observer import StructuralGateObserver, SCOPE as GATE_SCOPE
 from yolox.exp import get_exp
 from yolox.models.structural_nocycle_refinement import NoCycleRefinement, VARIANTS
@@ -28,7 +29,7 @@ def main():
     p.add_argument('--limit-frames', type=int, default=0)
     args = p.parse_args()
     physical = os.environ.get('CUDA_VISIBLE_DEVICES')
-    assert physical in ['2', '3']
+    assert physical in future_gpus()
     plan = json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text())
     phase_path = ROOT/'configs/perceptual_structural_nocycle_20261123.json'
     phase = json.loads(phase_path.read_text())
@@ -43,6 +44,9 @@ def main():
     parent = json.loads(parent_path.read_text())
     assert sha256(parent_path) == config['parent_plan_sha256']
     work = Path(plan['work_root'])
+    assert previous_gpu_work_complete(
+        json.loads((work/'structural_nocycle_dev_state.json').read_text()),
+        json.loads((work/'structural_nocycle_fit_state.json').read_text()))
     protocol = json.loads((ROOT/plan['protocol']).read_text())
     assert args.sequence in protocol['dev' if args.split == 'dev' else 'historical_test']
     assert args.source_check >= 0 and args.limit_frames >= 0
@@ -140,7 +144,8 @@ def main():
         out = out/f'prefix_check_{args.limit_frames}'
     meta = json.loads((out/'complete.json').read_text())
     for name in ['tools/extract_structural_nocycle_test.py', 'yolox/models/structural_nocycle_refinement.py',
-                 'tools/structural_gate_observer.py']:
+                 'tools/structural_gate_observer.py', 'tools/perceptual_gpu_handoff.py',
+                 'configs/perceptual_gpu_handoff_20261123.json']:
         meta['source_hashes'][name] = sha256(ROOT/name)
     for name in loaded:
         statistics = observer.summary(name)

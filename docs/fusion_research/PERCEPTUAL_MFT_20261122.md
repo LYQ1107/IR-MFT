@@ -15,7 +15,7 @@ no-cycle RGB/gray controls and clean IR centering/risk-placement removals.
 Each has145600parameters,24passes over1152 cached Trainframes and6912updates.
 36 new evaluations plus17 completed references are registered; no new
 mainIR fit or seed replication. Source8/prefix32/full39 provenance precedes
-accuracy. Current maintained tests:168passed. Work assets:55.51GiB/64GiB.
+accuracy. Current maintained tests:172passed. Work assets remain capped at64GiB.
 
 All7 frozen CGA Test producers finished before the14 official CPU replays.
 The exact-count RGB source audit failed at MSK-003 frame629 (61vs62 NMS
@@ -45,7 +45,13 @@ replication clauses below. Single-seed results will not claim seed robustness.
 The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
 the requested threshold is34.529. The prior matched three-seed new-IR point
 control averages31.710. There are still0 established multimodal innovations.
-Actual November DiffV2IR remains the auxiliary data, with only physical GPUs2/3.
+Actual November DiffV2IR remains the auxiliary data. The user now requests a
+handoff: finish the current Dev producers on physicalGPUs2/3, then use only
+physicalGPUs4/5 for subsequent GPU work. At most two physicalGPUs may run
+this campaign at once. The future GPU4 runtime check waits both old workers;
+formal Test onGPU4/5 waits that runtime check, preserving the model/selection.
+See `configs/perceptual_gpu_handoff_20261123.json`; earlier GPU2/3 references
+below describe the historical execution, not the current future allocation.
 
 Latest complete Dev diagnosis: IR confidence with RGB geometry reaches50.515,
 versus strongest matched control50.044 in that family. This is a single-seed signal with BT
@@ -236,7 +242,8 @@ or calling generic identity memory a multimodal contribution. Historical
 results using another pseudo-IR version are context, not substitutes for new
 experiments on the November images.
 
-Only physical GPU 2 and GPU 3 are permitted. The data3 workspace has about
+The initial physical GPU2/3 allocation is superseded by the handoff above.
+The data3 workspace had about
 1.5 GiB free at startup, so new assets go to the separately mounted local
 filesystem at `/var/tmp/liuyeqiang_ir_mft_perceptual_20261122` (about 3.2 TiB
 free), with a NAS archive. Existing images and detection caches are reused;

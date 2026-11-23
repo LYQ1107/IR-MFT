@@ -23,7 +23,8 @@ def main():
     names = ['tools/register_structural_nocycle_test.py', 'tools/extract_structural_nocycle_test.py',
              'tools/replay_structural_nocycle_test.py', 'tools/launch_structural_nocycle_test.py',
              'tools/export_structural_nocycle_test.py', 'tools/advance_structural_nocycle_test.py',
-             'tools/structural_gate_observer.py',
+             'tools/structural_gate_observer.py', 'tools/perceptual_gpu_handoff.py',
+             'configs/perceptual_gpu_handoff_20261123.json',
              'configs/perceptual_structural_nocycle_test_gate_20261123.json']
     sources = {name: sha256(ROOT/name) for name in names}
     state = dict(status='WAITING_FOR_COMPLETE36DEV_AND_ANALYSIS', controller_pid=os.getpid(),
@@ -36,7 +37,12 @@ def main():
             dev = json.loads((work/'structural_nocycle_dev_state.json').read_text())
             if 'FAIL' in dev['status']:
                 raise RuntimeError('Retain Dev failure; do not start Test')
-            if dev['status'] == 'COMPLETE' and report_path.exists():
+            runtime_path = work/'structural_nocycle_runtime_schedule.json'
+            runtime = json.loads(runtime_path.read_text()) if runtime_path.exists() else {}
+            if 'FAIL' in runtime.get('status', ''):
+                raise RuntimeError('Preserve failed GPU4 benchmark; resolve before Test scheduling')
+            if (dev['status'] == 'COMPLETE' and report_path.exists() and
+                    runtime.get('status') == 'COMPLETE_BOTH_RUNTIME_CONDITIONS_NO_GPU_CONFLICT'):
                 break
             time.sleep(5)
         assert all(sha256(ROOT/name) == digest for name,digest in sources.items())

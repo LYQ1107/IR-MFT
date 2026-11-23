@@ -1,0 +1,17 @@
+{
+  "status": "USER_AUTHORIZED_GPU_HANDOFF_BEFORE_NEW36DEV_ACCURACY",
+  "human_instruction": "等2和3号卡跑完之后你去用4和5号卡",
+  "current_physical_gpus": ["2", "3"],
+  "future_physical_gpus": ["4", "5"],
+  "future_gpu_uuids": {
+    "4": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+    "5": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81"
+  },
+  "maximum_concurrent_physical_gpus": 2,
+  "release_condition": "All four existing fits COMPLETE and both existing BT-005/SN-013 Dev producers COMPLETE. Do not interrupt current GPU2/3 work.",
+  "schedule": "After release, benchmark on physicalGPU4. Wait for both benchmark conditions to finish before starting full formal Test on physicalGPU4/5.",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "changes_model_or_Dev_selection": false,
+  "preserved_idle_scheduler_attempt": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/gpu45_handoff_before_new36Dev_accuracy"
+}

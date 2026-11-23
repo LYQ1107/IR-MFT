@@ -8,6 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.run_pseudo_ir_comparison import dump, sha256
+from tools.perceptual_gpu_handoff import POLICY_PATH, future_gpus
 
 
 def main():
@@ -100,6 +101,7 @@ def main():
     spec = dict(status='FROZEN_FROM_COMPLETE_DEV_BEFORE_ANY_THIS_FAMILY_TEST_ACCURACY',
         created_UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),
         config_sha256=phase['base_config_sha256'], refinement_plan_sha256=sha256(phase_path),
+        physical_gpus=list(future_gpus()), gpu_handoff_policy_sha256=sha256(POLICY_PATH),
         single_seed_user_policy_sha256=phase['single_seed_policy_sha256'], fixed_seed=0,
         models=list(models.values()), cases=list(cases.values()), roles=aliases, removals=removal_roles,
         primary_case=primary_id, complete_Dev_analysis_sha256=sha256(report_path),
