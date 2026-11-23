@@ -36,9 +36,11 @@ SN. The additional exact-dense-anchor RGB association-score6 controls leave
 IR50.515 unchanged. These are diagnoses, not new positive contributions.
 The new structural-relative hypothesis has two provisional mechanisms,
 matched RGB/gray controls and3 removals, all fixed seed0. Its1152-frame scalar
-structure cache is complete(~0.24GiB); RGB/gray fits completed24E, while IR/full
-and IR/no_structure fit on2/3 after both source producers passed. All6 fits stay seed0, with59 Dev cases preregistered
-before fitting. No new accuracy is presumed. Current-versus-distorted response
+structure cache is complete(~0.24GiB); all6 fits completed24E/6912 with matching
+sample digests, all fixed seed0. Both8source checks and both32trained-prefix59stream
+checks passed; full Dev production is running on2/3. All59 cases were registered
+before fitting. Unlabeled score/roll sensitivity confirms numerical influence,
+not performance. No new accuracy is presumed. Current-versus-distorted response
 subtraction has prior art and is not claimed as a new subtraction operation.
 No new Test or supported innovation is asserted.
 
