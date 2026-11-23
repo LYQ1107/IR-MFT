@@ -11,6 +11,14 @@ Preserving original high-confidence observations in the final union does not
 guarantee preserved track identities: promoted weak candidates can change
 the matching graph. The raw and priority results are therefore both retained.
 
+The separate posthoc IoU0.5 identity-event audit finds89/114 baseline
+identity changes after a missed match. BT has31 changes,30 near another GT
+box with IoU>=0.1; SN has83 changes, including31 after gaps longer than25
+frames. These diagnostic events are not official IDSW and box overlap is
+only an occlusion proxy. The actual-IR selected output has133 such events,
+so its higher HOTA must not be described as fewer diagnostic identity changes.
+The accompanying audit retains every GT identity's fragmentation statistics.
+
 | Candidate | HOTA | DetA | AssA | IDF1 | MOTA | IDSW | Old-ID weak recoveries | New candidate births |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | CGA_gray_full_s0_e06 | 47.785 | 68.863 | 33.191 | 56.132 | 90.256 | 93 | 0 | 0 |

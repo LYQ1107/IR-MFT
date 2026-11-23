@@ -1,0 +1,25 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_REMOVAL_FIT_OR_ACCURACY",
+  "parent": "configs/perceptual_correlation_recoverability_20261123.json",
+  "parent_sha256": "23689be1d7e5e1b9584be2c97368421c041180e7c6a9baee5d4c8591985f8e58",
+  "cue": "ir",
+  "seed": 0,
+  "epochs": 24,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "variants": [
+    "aligned",
+    "no_curriculum",
+    "blanket_counterfactual"
+  ],
+  "purpose": "Necessary mechanism/removal diagnosis regardless of whether the full pilot succeeds: radius0 removes offset tolerance; no_curriculum removes recoverable RGB weakening while retaining validity; blanket_counterfactual removes semantic validity while retaining curriculum. No new architecture/loss/optimizer settings.",
+  "GPU": "Only physical2; share its mostly CPU-bound appearance worker, while matched RGB pilot uses3. Suspend this auxiliary fitter with SIGSTOP while either primary full-Dev producer is running, resume unchanged afterward. Preserve pause durations; optimizer schedule depends on updates, not wall time.",
+  "controls": "Full IR plus matched RGB/gray pilots already registered24E, and all selected checkpoints/raw-priority policies. No innovation claim without corresponding positive full-Dev and eventual all-seed/Test controls.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

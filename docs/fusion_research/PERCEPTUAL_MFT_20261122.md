@@ -51,6 +51,20 @@ RGB/gray controls receive identical eligibility and perturbation draws.
 Existing [related work](PERCEPTUAL_MFT_20261123_CORRELATION_PRIOR_ART.md)
 already covers local attention and dominant-modality modulation; using these
 techniques alone does not establish novelty.
+
+IR and gray conditional fits completed all24 epochs and6912 updates; the
+matched RGB fit continues. The3 registered removals separately remove local
+offset tolerance, recovery curriculum, and counterfactual validity, keeping
+the same24-epoch budget. A separate18-case factorial sends each parent
+Dev-selected RGB/gray/IR observation stream through the exact same6 frozen
+RGB-frontend-selected F0 association heads. These are pending Dev controls,
+not new Test claims or supported contributions.
+
+The [existing-descriptor overlap-risk diagnosis](PERCEPTUAL_MFT_20261123_OVERLAP_RISK_DEV_AUDIT.md)
+is negative: actual-IR identity descriptors do not beat strong RGB on either
+Dev video. No risk tracker is deployed from this probe. A small Train-only
+readout audit finds positive current-versus-wrong-frame IR cosine contrast,
+but this is neither heldout correspondence nor tracking accuracy evidence.
 Current work assets occupy about51.7GiB of the independent-disk64GiB cap.
 No models, feature arrays, image copies or raw track files are published.
 

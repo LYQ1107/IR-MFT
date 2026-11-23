@@ -1,0 +1,17 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_RISK_PROBE_FIT_OR_DEV_LABELS",
+  "motivation": "Posthoc baseline Dev diagnostic89/114 identity changes follow a missed-match gap; many co-occur with box overlap. This is not proof of occlusion causality.",
+  "target": "For an IoU>=0.5 matched class1 fish, positive if its GT box intersection/minimum-area with any other class1 GT box is>=0.35. This is only a box-overlap risk proxy, not actual visibility or segmentation.",
+  "threshold": 0.35,
+  "foreground_IoU": 0.5,
+  "features": "Frozen existing512D RGB reference plus own-box logwidth/logheight/logarea/aspect. Compare equal-capacity additional512D RGB or actual newIR native encoder features, seeds0/1/2. No new encoder training, images or feature caches.",
+  "classifier": "Ordinary Train-only logistic regression, C0.01, lbfgs, max_iter2000,tol1e-6. Train-only weighted mean/std floor0.001; equal video and within-video present classes. All7 fits serialized before any Dev labels.",
+  "C": 0.01,
+  "max_iter": 2000,
+  "tolerance": 1e-06,
+  "Dev": "Complete2 videos x2 existing global proposal fronts, all eligible foreground proposals. AUC/AP only; no HOTA/deployment/Test claim.",
+  "activation": "A future tracker change requires an IR advantage over strongest RGB/reference across both videos; otherwise retain negative diagnostic and do not deploy.",
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
