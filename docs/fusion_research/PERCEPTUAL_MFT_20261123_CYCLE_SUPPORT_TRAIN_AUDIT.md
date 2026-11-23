@@ -1,0 +1,80 @@
+# Train-only support suppressed by hard inverse consistency
+
+Descriptive24Trainframe support audit after complete59Dev. No fitting, threshold selection or new Test predictions/accuracy. A GT box is not a true fish-pixel or correspondence label.
+
+This measures how much of the actual structural confidence the hard inverse check suppresses. Higher confidence or bbox support is not correctness, recall, alignment truth or HOTA. No claim that rejected matches are true correspondences. Cycle harm itself is established only by the completed Dev removals, not by this descriptive grid audit.
+
+| Video | Level | View | Region | Supported cells | Rejected fraction | Removed confidence |
+| --- | --- | --- | --- | ---: | ---: | ---: |
+| BT-001 | P3 | RGB_self | GT_bbox | 1461 | 0.0000 | 0.0000 |
+| BT-001 | P3 | RGB_self | outside_GT_bbox | 22882 | 0.0000 | 0.0000 |
+| BT-001 | P3 | actual_IR | GT_bbox | 1461 | 0.4168 | 0.3393 |
+| BT-001 | P3 | actual_IR | outside_GT_bbox | 22882 | 0.5494 | 0.4563 |
+| BT-001 | P4 | RGB_self | GT_bbox | 343 | 0.0000 | 0.0000 |
+| BT-001 | P4 | RGB_self | outside_GT_bbox | 6006 | 0.0000 | 0.0000 |
+| BT-001 | P4 | actual_IR | GT_bbox | 343 | 0.3615 | 0.3084 |
+| BT-001 | P4 | actual_IR | outside_GT_bbox | 6006 | 0.5599 | 0.4941 |
+| BT-001 | P5 | RGB_self | GT_bbox | 97 | 0.0000 | 0.0000 |
+| BT-001 | P5 | RGB_self | outside_GT_bbox | 1515 | 0.0000 | 0.0000 |
+| BT-001 | P5 | actual_IR | GT_bbox | 97 | 0.4021 | 0.3570 |
+| BT-001 | P5 | actual_IR | outside_GT_bbox | 1515 | 0.5406 | 0.4886 |
+| BT-003 | P3 | RGB_self | GT_bbox | 1825 | 0.0000 | 0.0000 |
+| BT-003 | P3 | RGB_self | outside_GT_bbox | 22497 | 0.0000 | 0.0000 |
+| BT-003 | P3 | actual_IR | GT_bbox | 1825 | 0.4016 | 0.3212 |
+| BT-003 | P3 | actual_IR | outside_GT_bbox | 22497 | 0.5328 | 0.4458 |
+| BT-003 | P4 | RGB_self | GT_bbox | 480 | 0.0000 | 0.0000 |
+| BT-003 | P4 | RGB_self | outside_GT_bbox | 5867 | 0.0000 | 0.0000 |
+| BT-003 | P4 | actual_IR | GT_bbox | 480 | 0.3771 | 0.3308 |
+| BT-003 | P4 | actual_IR | outside_GT_bbox | 5867 | 0.5563 | 0.4924 |
+| BT-003 | P5 | RGB_self | GT_bbox | 118 | 0.0000 | 0.0000 |
+| BT-003 | P5 | RGB_self | outside_GT_bbox | 1494 | 0.0000 | 0.0000 |
+| BT-003 | P5 | actual_IR | GT_bbox | 118 | 0.4237 | 0.3814 |
+| BT-003 | P5 | actual_IR | outside_GT_bbox | 1494 | 0.5556 | 0.5049 |
+| MSK-002 | P3 | RGB_self | GT_bbox | 1269 | 0.0000 | 0.0000 |
+| MSK-002 | P3 | RGB_self | outside_GT_bbox | 22958 | 0.0000 | 0.0000 |
+| MSK-002 | P3 | actual_IR | GT_bbox | 1269 | 0.2467 | 0.1845 |
+| MSK-002 | P3 | actual_IR | outside_GT_bbox | 22958 | 0.5007 | 0.4164 |
+| MSK-002 | P4 | RGB_self | GT_bbox | 323 | 0.0000 | 0.0000 |
+| MSK-002 | P4 | RGB_self | outside_GT_bbox | 5992 | 0.0000 | 0.0000 |
+| MSK-002 | P4 | actual_IR | GT_bbox | 323 | 0.2601 | 0.1999 |
+| MSK-002 | P4 | actual_IR | outside_GT_bbox | 5992 | 0.5112 | 0.4495 |
+| MSK-002 | P5 | RGB_self | GT_bbox | 79 | 0.0000 | 0.0000 |
+| MSK-002 | P5 | RGB_self | outside_GT_bbox | 1521 | 0.0000 | 0.0000 |
+| MSK-002 | P5 | actual_IR | GT_bbox | 79 | 0.2658 | 0.2309 |
+| MSK-002 | P5 | actual_IR | outside_GT_bbox | 1521 | 0.4721 | 0.4281 |
+| PF-001 | P3 | RGB_self | GT_bbox | 4238 | 0.0000 | 0.0000 |
+| PF-001 | P3 | RGB_self | outside_GT_bbox | 19988 | 0.0002 | 0.0002 |
+| PF-001 | P3 | actual_IR | GT_bbox | 4238 | 0.5186 | 0.4412 |
+| PF-001 | P3 | actual_IR | outside_GT_bbox | 19988 | 0.5950 | 0.4777 |
+| PF-001 | P4 | RGB_self | GT_bbox | 1079 | 0.0000 | 0.0000 |
+| PF-001 | P4 | RGB_self | outside_GT_bbox | 5261 | 0.0000 | 0.0000 |
+| PF-001 | P4 | actual_IR | GT_bbox | 1079 | 0.5042 | 0.4508 |
+| PF-001 | P4 | actual_IR | outside_GT_bbox | 5261 | 0.5898 | 0.4854 |
+| PF-001 | P5 | RGB_self | GT_bbox | 270 | 0.0000 | 0.0000 |
+| PF-001 | P5 | RGB_self | outside_GT_bbox | 1341 | 0.0000 | 0.0000 |
+| PF-001 | P5 | actual_IR | GT_bbox | 270 | 0.4630 | 0.4229 |
+| PF-001 | P5 | actual_IR | outside_GT_bbox | 1341 | 0.5772 | 0.4863 |
+| SN-001 | P3 | RGB_self | GT_bbox | 2147 | 0.0000 | 0.0000 |
+| SN-001 | P3 | RGB_self | outside_GT_bbox | 21403 | 0.0000 | 0.0000 |
+| SN-001 | P3 | actual_IR | GT_bbox | 2147 | 0.4252 | 0.3501 |
+| SN-001 | P3 | actual_IR | outside_GT_bbox | 21403 | 0.4634 | 0.3890 |
+| SN-001 | P4 | RGB_self | GT_bbox | 520 | 0.0000 | 0.0000 |
+| SN-001 | P4 | RGB_self | outside_GT_bbox | 5662 | 0.0000 | 0.0000 |
+| SN-001 | P4 | actual_IR | GT_bbox | 520 | 0.3962 | 0.3549 |
+| SN-001 | P4 | actual_IR | outside_GT_bbox | 5662 | 0.4755 | 0.4115 |
+| SN-001 | P5 | RGB_self | GT_bbox | 148 | 0.0000 | 0.0000 |
+| SN-001 | P5 | RGB_self | outside_GT_bbox | 1417 | 0.0000 | 0.0000 |
+| SN-001 | P5 | actual_IR | GT_bbox | 148 | 0.3784 | 0.3481 |
+| SN-001 | P5 | actual_IR | outside_GT_bbox | 1417 | 0.4390 | 0.3914 |
+| SN-015 | P3 | RGB_self | GT_bbox | 4521 | 0.0000 | 0.0000 |
+| SN-015 | P3 | RGB_self | outside_GT_bbox | 19752 | 0.0002 | 0.0002 |
+| SN-015 | P3 | actual_IR | GT_bbox | 4521 | 0.4455 | 0.3748 |
+| SN-015 | P3 | actual_IR | outside_GT_bbox | 19752 | 0.4826 | 0.3994 |
+| SN-015 | P4 | RGB_self | GT_bbox | 1148 | 0.0000 | 0.0000 |
+| SN-015 | P4 | RGB_self | outside_GT_bbox | 5196 | 0.0000 | 0.0000 |
+| SN-015 | P4 | actual_IR | GT_bbox | 1148 | 0.4216 | 0.3729 |
+| SN-015 | P4 | actual_IR | outside_GT_bbox | 5196 | 0.4800 | 0.4111 |
+| SN-015 | P5 | RGB_self | GT_bbox | 275 | 0.0000 | 0.0000 |
+| SN-015 | P5 | RGB_self | outside_GT_bbox | 1335 | 0.0000 | 0.0000 |
+| SN-015 | P5 | actual_IR | GT_bbox | 275 | 0.3927 | 0.3564 |
+| SN-015 | P5 | actual_IR | outside_GT_bbox | 1335 | 0.4764 | 0.4205 |

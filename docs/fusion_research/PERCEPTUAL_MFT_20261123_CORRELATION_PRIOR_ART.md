@@ -110,6 +110,34 @@ object hallucinations without training. These are different tasks, but they
 establish that counterfactual subtraction and original-versus-distorted output
 contrasts are existing ideas.
 
+## Direct multimodal MOT references checked on2026-11-23
+
+[PFTrack / VT-MOT](https://arxiv.org/abs/2408.00969) already performs progressive
+temporal and cross-modal fusion for multiple-object tracking. Its temporal
+attention does not assume strict adjacent-frame spatial alignment. Generic
+temporal attention plus complementary fusion is therefore established prior art.
+
+[MCTrack publisher abstract](https://ieeexplore.ieee.org/abstract/document/11175188/)
+describes temporal salient interaction, bidirectional cross-modality interaction
+and complementary masking. The [official repository](https://github.com/ydhcg-BoBo/MCTrack)
+identifies the released implementation and its dependence on PFTrack. The older
+RGB-T-MOT repository link redirects there. Only the publisher's indexed abstract
+and the official README were verified here; a full-paper fetch was unavailable.
+
+[DM3T, CVPR2026 Findings](https://openaccess.thecvf.com/content/CVPR2026F/html/Li_DM3T_Harmonizing_Modalities_via_Diffusion_for_Multi-Object_Tracking_CVPRF_2026_paper.html)
+already uses diffusion-inspired iterative cross-modal feature harmonization,
+a feature refiner and hierarchical confidence handling. Its
+[author preprint](https://arxiv.org/abs/2511.22896) is another primary source.
+It addresses visible/thermal MOT; merely applying diffusion or confidence-based
+hierarchy cannot be claimed as a new multimodal tracking contribution here.
+
+These are relevant algorithmic comparisons, not MFT reproduction results.
+Published VT-MOT HOTA cannot be copied into the current seven-sequence fish table.
+No checkpoint, image dataset or new training environment was downloaded during
+this literature check. The present experiment continues with actual November
+RGB-derived pseudo-IR, matched RGB/gray controls and fixed seed0. It tests
+representation-level benefit, not an independent physical thermal sensor.
+
 The structural-relative model's current-versus-shifted auxiliary logit difference
 therefore receives no novelty credit by itself. The provisional task-specific
 question is whether structural correspondence validation and a bounded semantic

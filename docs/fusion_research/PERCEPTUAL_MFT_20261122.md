@@ -24,7 +24,15 @@ registered before any14Test accuracy, retaining original matched2px/.005
 bounds and0.6/0.7memberships, while separately exposing at most one weak
 unmatched candidate in the final batch. Producer/checkpoints/frozen cases
 are unchanged. Both canonical RGB29.529 and fresh RGB remain controls;
-weak-NMS tracking equivalence is not assumed. Full14 results remain pending.
+weak-NMS tracking equivalence is not assumed. All14Test results are now complete: the
+frozen primary IR29.431 is0.098 below both RGB baselines and0.381 below matched RGB29.812.
+IDF1 is32.394 vs33.072; IDSW476vs450. No Test checkpoint/readout reselection is allowed.
+The source difference changes8small counting metrics but not HOTA. Unavailable IR
+reproduces fresh RGB tracks, all39metrics and detailedCSV exactly. Goal remains NOT_MET.
+The independent no-cycle primary6/raw was fixed before that Test result; four matched
+fits continue unchanged. Its conditional Test gate was registered before any new36Dev
+accuracy: beat strongest RGB/gray, at least2paired/bestcurve positive mechanism groups
+and degraded actual-image roll. Duplicate comparison roles reuse one evaluation.
 
 The user's latest directive fixes all future work to seed0: no further seed
 fitting or inference. Completed historical replication stays archived. The old
