@@ -37,6 +37,7 @@ def main():
             manifest=manifest, metrics_sha256=sha256(path), official_detailed_csv_sha256=sha256(csv_path))
     roles = spec['roles']
     primary = rows[spec['primary_case']]
+    restored = rows[roles['cycle_restored_Dev_selected']]
     canonical, fresh = rows[roles['source_RGB_canonical']], rows[roles['source_RGB_fresh']]
     off, roll = rows[roles['IR_unavailable']], rows[roles['IR_image_roll']]
     assert abs(canonical['metrics']['HOTA']-plan['reference']['rgb_test_HOTA']) < .0005
@@ -58,6 +59,8 @@ def main():
     report = dict(status='COMPLETE_FROZEN_SEED0_STRUCTURAL_NOCYCLE_ALL7_TEST',
         rows=list(rows.values()), roles=roles, counts=spec['counts'], primary=primary['id'],
         primary_HOTA=primary['metrics']['HOTA'], primary_minus_canonical_RGB_HOTA=delta,
+        initial_full_cycle_IR_HOTA=restored['metrics']['HOTA'],
+        primary_minus_initial_full_cycle_IR_HOTA=primary['metrics']['HOTA']-restored['metrics']['HOTA'],
         primary_minus_fresh_RGB_HOTA=fresh_delta,
         primary_minus_strongest_matched_RGBgray_HOTA=primary['metrics']['HOTA']-strongest['metrics']['HOTA'],
         image_roll_HOTA_change_from_correct=roll['metrics']['HOTA']-primary['metrics']['HOTA'],

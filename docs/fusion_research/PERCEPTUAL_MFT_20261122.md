@@ -30,9 +30,11 @@ IDF1 is32.394 vs33.072; IDSW476vs450. No Test checkpoint/readout reselection is 
 The source difference changes8small counting metrics but not HOTA. Unavailable IR
 reproduces fresh RGB tracks, all39metrics and detailedCSV exactly. Goal remains NOT_MET.
 The independent no-cycle primary6/raw was fixed before that Test result; four matched
-fits continue unchanged. Its conditional Test gate was registered before any new36Dev
-accuracy: beat strongest RGB/gray, at least2paired/bestcurve positive mechanism groups
-and degraded actual-image roll. Duplicate comparison roles reuse one evaluation.
+fits continue unchanged. Before any new36Dev accuracy, the Test registration was
+corrected to honor the original user task: every engineering-passed formal candidate
+runs all7Test, including both full-cycle and no-cycle structural IR. Dev contribution
+conditions cannot filter formal candidates. The14comparison roles reuse identical
+configurations rather than repeating evaluations.
 
 The user's latest directive fixes all future work to seed0: no further seed
 fitting or inference. Completed historical replication stays archived. The old

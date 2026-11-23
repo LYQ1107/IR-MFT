@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Freeze a conditional Test only after complete matched Dev evidence."""
+"""Freeze all required formal-candidate Test cases after complete matched Dev."""
 import datetime
 import json
 from pathlib import Path
@@ -32,21 +32,20 @@ def main():
                        if min(r['primary_minus_paired_HOTA'], r['primary_minus_best_removal_HOTA']) > 0]
     eligible = (report['primary_minus_strongest_matched_control_HOTA'] > 0
                 and len(positive_groups) >= 2 and rolled['HOTA_change_from_correct_IR'] < 0)
-    decision = dict(status='DEV_SUPPORTS_FROZEN_TEST' if eligible else 'DEV_INSUFFICIENT_DO_NOT_SPEND_TEST',
+    decision = dict(status='DEV_COMPLETE_RUN_REQUIRED_FORMAL_TEST',
+        Dev_supports_contribution_hypothesis=eligible, formal_Test_required=True,
         complete_Dev_analysis_sha256=sha256(report_path), complete_Dev_state_sha256=sha256(state_path),
         gate_registration_sha256=sha256(gate_path),
         fixed_seed=0, positive_best_curve_mechanism_groups=positive_groups,
         primary_minus_strongest_matched_control_HOTA=report['primary_minus_strongest_matched_control_HOTA'],
         wrong_image_IR_HOTA_change=rolled['HOTA_change_from_correct_IR'],
-        eligibility='Primary IR must beat strongest matched RGB/gray, at least2groups must survive same6/raw '
-                    'and best4curve removals, and actual-image roll must hurt primary IR. These are Dev gates, not novelty proof.',
+        eligibility='These Dev criteria assess contribution support, not Test eligibility. The user requires '
+                    'every trained formal candidate passing engineering checks to run all7Test sequences. '
+                    'All formal candidates are evaluated irrespective of their Dev gains.',
         primary_unchanged_from_pre_CGA14_Test_plan=True, goal_met=False, supported_innovations=0)
     decision_path = docs/'PERCEPTUAL_MFT_20261123_STRUCTURAL_NOCYCLE_TEST_DECISION.json'
     assert not decision_path.exists()
     dump(decision_path, decision)
-    if not eligible:
-        print(json.dumps(decision))
-        return
     spec_path = ROOT/'configs/perceptual_structural_nocycle_test_20261123.json'
     folder = ROOT/'configs/perceptual_structural_nocycle_test_20261123'
     frozen_path = work/'structural_nocycle_test_selection_frozen.json'
@@ -79,6 +78,10 @@ def main():
         return seen[identity]
 
     primary_id = add('primary_IR', report['primary'])
+    original_path = docs/'PERCEPTUAL_MFT_20261123_STRUCTURAL_RELATIVE_ANALYSIS.json'
+    assert sha256(original_path) == phase['source_Dev_analysis_sha256']
+    original = json.loads(original_path.read_text())
+    add('cycle_restored_Dev_selected', original['best_by_cue']['ir'])
     for cue in ['rgb', 'gray']:
         add('matched_'+cue, report['best_matched_controls'][cue])
     removal_roles = []
@@ -102,17 +105,19 @@ def main():
         primary_case=primary_id, complete_Dev_analysis_sha256=sha256(report_path),
         gate_registration_sha256=sha256(gate_path),
         complete_Dev_state_sha256=sha256(state_path),
-        counts=dict(comparison_roles=13, unique_accuracy_replays=len(cases), models=len(models),
+        counts=dict(comparison_roles=14, unique_accuracy_replays=len(cases), models=len(models),
                     produced_streams=2*(len(models)-1)+1),
         coverage=dict(sequences=7, frames=15985),
         primary_IR='No-cycle IR epoch6/raw, frozen before earlierCGA14Test. No bestTest checkpoint or readout.',
+        formal_candidates='Both the initial full-cycle structural IR and the refined no-cycle IR are tested, '
+                          'selected from complete Dev. Contribution gates cannot remove a formal candidate from Test.',
         numerical_source_protocol='Use the source-only tail audit registered in CGA recovery: matched2px/.005 '
             'bounds, exact matched0.6/0.7memberships, at most1unmatched score<.6 in final4frames. '
             'Separate fresh and canonical RGB controls, unavailable tracks/all39metrics/CSV exact to fresh.',
         previous_Test_exposure='EarlierCGA14Test was negative29.431 vs29.529; this primary was already frozen '
             'before that result. HistoricalTest remains exposed; this is exploratory research, not a fresh blind test.',
         attribution=report['attribution'], goal_met=False, supported_innovations=0)
-    assert len(aliases) == 13 and 10 <= len(cases) <= 13
+    assert len(aliases) == 14 and 11 <= len(cases) <= 14
     dump(spec_path, spec)
     folder.mkdir()
     for c in cases.values():
@@ -125,7 +130,7 @@ def main():
         complete_Dev_before_Test=True, complete_Dev_analysis_sha256=sha256(report_path),
         complete_Dev_state_sha256=sha256(state_path), specification_sha256=sha256(spec_path),
         refinement_plan_sha256=sha256(phase_path), primary_case=primary_id, roles=aliases))
-    print(json.dumps(dict(status=spec['status'], unique_Test_cases=len(cases), comparison_roles=13, fixed_seed=0)))
+    print(json.dumps(dict(status=spec['status'], unique_Test_cases=len(cases), comparison_roles=14, fixed_seed=0)))
 
 
 if __name__ == '__main__':

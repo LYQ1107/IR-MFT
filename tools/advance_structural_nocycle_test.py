@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""After whole-family Dev reports, apply the registered gate and frozen Test workflow."""
+"""After whole-family Dev, evaluate every formal candidate on the complete Test."""
 import fcntl
 import json
 import os
@@ -23,6 +23,7 @@ def main():
     names = ['tools/register_structural_nocycle_test.py', 'tools/extract_structural_nocycle_test.py',
              'tools/replay_structural_nocycle_test.py', 'tools/launch_structural_nocycle_test.py',
              'tools/export_structural_nocycle_test.py', 'tools/advance_structural_nocycle_test.py',
+             'tools/structural_gate_observer.py',
              'configs/perceptual_structural_nocycle_test_gate_20261123.json']
     sources = {name: sha256(ROOT/name) for name in names}
     state = dict(status='WAITING_FOR_COMPLETE36DEV_AND_ANALYSIS', controller_pid=os.getpid(),
@@ -43,10 +44,7 @@ def main():
         decision_path = ROOT/'docs/fusion_research/PERCEPTUAL_MFT_20261123_STRUCTURAL_NOCYCLE_TEST_DECISION.json'
         decision = json.loads(decision_path.read_text())
         state.update(decision_sha256=sha256(decision_path), decision=decision['status'])
-        if decision['status'] != 'DEV_SUPPORTS_FROZEN_TEST':
-            state['status'] = 'DEV_INSUFFICIENT_RETURN_TO_RESEARCH'
-            dump(path, state)
-            return
+        assert decision['formal_Test_required'] and decision['status'] == 'DEV_COMPLETE_RUN_REQUIRED_FORMAL_TEST'
         state['status'] = 'RUNNING_FROZEN_ALL7_TEST'
         log = work/'launch_structural_nocycle_test.log'
         with log.open('ab', buffering=0) as handle:

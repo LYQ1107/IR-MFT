@@ -15,12 +15,22 @@
     "Dev_HOTA": 51.329,
     "selection": "Frozen before earlierCGA14Test accuracy"
   },
-  "comparison_roles": 13,
-  "unique_accuracy_replays": "10to13; identical paired/best cases reused",
-  "source_audit": "Both source8/all13zerooutputs then complete7seq/15985source evidence before any GT; original RGBgeometry and unavailable exactfresh fallback checked.",
-  "interpretation": "Gate only saves uninformative Test work. It establishes neither originality nor >=+5Test gain. HistoricalTest already exposed.",
-  "gate_source_sha256": "30be1680aa16c28846a7cc7d881df619cee60b44dcb0d53094e92afda5caa93a",
+  "comparison_roles": 14,
+  "unique_accuracy_replays": "11to14; identical paired/best cases reused",
+  "source_audit": "Source8/all15zerooutputs, then complete7seq/15985 source evidence before any GT; originalRGBgeometry and unavailable exactfresh fallback checked.",
+  "interpretation": "All formal candidates are evaluated after engineering checks, irrespective of Dev gains. Dev conditions establish neither originality nor >=+5Test gain. HistoricalTest exposed.",
+  "gate_source_sha256": "320cf6334d1455f2a5a95e8b13193280c9477523e125ce58598d5be23f08dc75",
   "goal_met": false,
   "supported_innovations": 0,
-  "provenance_checks_added_before_any_accuracy": true
+  "provenance_checks_added_before_any_accuracy": true,
+  "formal_Test_required_after_engineering_checks": true,
+  "Dev_conditions_apply_only_to_contribution_support": true,
+  "amendment_before_any_new36Dev_accuracy": {
+    "UTC": "2026-11-23T11:29:26.975932+00:00",
+    "reason": "Original user task requires every trained formal candidate passing engineering checks to evaluate all7Test. Dev conditions judge contribution evidence only and may not filter formal candidates.",
+    "exact_user_requirement": "每个完成训练且通过工程检查的正式候选，都在 MFT26-IR 全部 7 个 Test 序列、15,985 帧上评估。",
+    "task_attachment_sha256": "5f5161ecc0095c68704b8eef53edd7a9d7e78c6dbacd7b00e68a0aa10efaa9f4",
+    "old_gate_archive": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/nocycle_Test_gate_attempt01_before_Dev_accuracy",
+    "primary_checkpoint_unchanged": true
+  }
 }

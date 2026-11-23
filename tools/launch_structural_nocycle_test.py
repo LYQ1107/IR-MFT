@@ -43,6 +43,7 @@ def main():
         'yolox/tracker/priority_observations.py', 'yolox/tracker/foveated_regions.py',
         'tools/replay_structural_nocycle_test.py', 'yolox/tracker/byte_tracker.py',
         'tools/recover_correlation_formal_test.py', 'tools/correlation_geometry_checks.py',
+        'tools/structural_gate_observer.py',
         'tools/launch_structural_nocycle_test.py']
     sources = {name: sha256(ROOT/name) for name in names}
     jobs = {}
@@ -78,7 +79,7 @@ def main():
                 base = work/'nocycle_formal_test/structural_relative_predictions/test'/seq
                 if phase == 'source':
                     meta = json.loads((base/'source_check_8/complete.json').read_text())
-                    assert len(meta['outputs']) == 13 and all(x['array_exact'] for x in meta['fresh_RGB_parity'])
+                    assert len(meta['outputs']) == 15 and all(x['array_exact'] for x in meta['fresh_RGB_parity'])
                     row['status'] = 'SOURCE_PASSED'
                 else:
                     meta = json.loads((base/'complete.json').read_text())

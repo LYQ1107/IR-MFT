@@ -13,6 +13,7 @@ import torch
 
 from tools.extract_structural_relative import produce
 from tools.run_pseudo_ir_comparison import dump, sha256
+from tools.structural_gate_observer import StructuralGateObserver, SCOPE as GATE_SCOPE
 from yolox.exp import get_exp
 from yolox.models.structural_nocycle_refinement import NoCycleRefinement, VARIANTS
 from yolox.models.structural_relative_repair import StructuralRepair
@@ -56,7 +57,8 @@ def main():
     if args.source_check:
         spec = dict(models=[dict(id='CG3_source_RGB', cue='rgb', baseline=True)])
         for cue, variant in [('rgb', 'no_cycle'), ('gray', 'no_cycle'), ('ir', 'no_cycle'),
-                             ('ir', 'no_cycle_no_centering'), ('ir', 'no_cycle_no_risk'), ('ir', 'no_structure')]:
+                             ('ir', 'no_cycle_no_centering'), ('ir', 'no_cycle_no_risk'),
+                             ('ir', 'no_structure'), ('ir', 'full')]:
             spec['models'].append(dict(id=f'NC_zero_{cue}_{variant}', cue=cue,
                 fit_variant=variant, variant='no_centering' if variant.endswith('no_centering') else 'no_cycle',
                 zero_adapter=True, seed=0))
@@ -91,11 +93,12 @@ def main():
             loaded[name], model_info[name] = None, dict(row)
             continue
         variant = row['fit_variant']
-        flags = dict(centered=True, disable_feature_risk=False, use_structure=False) if variant == 'no_structure' else VARIANTS[variant]
+        flags = (dict(centered=True, disable_feature_risk=False, use_structure=variant != 'no_structure', cycle=variant == 'full')
+                 if variant in ['no_structure', 'full'] else VARIANTS[variant])
         expected_head = 'no_cycle' if flags['centered'] else 'no_centering'
         assert row['variant'] == expected_head
-        constructor = StructuralRepair if variant == 'no_structure' else NoCycleRefinement
-        extra = dict(variant='no_structure') if variant == 'no_structure' else dict(refinement=variant)
+        constructor = StructuralRepair if variant in ['no_structure', 'full'] else NoCycleRefinement
+        extra = dict(variant=variant) if variant in ['no_structure', 'full'] else dict(refinement=variant)
         adapter = constructor(latent=a['latent_channels'], radius=a['local_radius'],
             temperature=a['structural_temperature'], bound=a['feature_residual_bound_RMS_fraction'],
             risk_threshold=a['teacher_risk_threshold'], **extra,
@@ -110,7 +113,7 @@ def main():
             assert meta['source_RGB_sha256'] == parent['source_RGB_sha256']
             assert meta['single_seed_user_policy_sha256'] == sha256(policy_path)
             if row.get('checkpoint_origin') == 'initial_structural_relative':
-                assert cue == 'ir' and variant in ['no_cycle', 'no_structure']
+                assert cue == 'ir' and variant in ['no_cycle', 'no_structure', 'full']
                 if variant == 'no_cycle':
                     assert row['epoch'] == 6 and path == Path(phase['primary_IR']['checkpoint'])
             else:
@@ -121,16 +124,29 @@ def main():
         loaded[name] = adapter.cuda().float().eval().requires_grad_(False)
         model_info[name] = info
     nested_work = work/'nocycle_formal_test'
-    produce(args, physical, plan, config, config_path, policy_path, spec, spec_sha256,
-            calibration, calibration_path, nested_work, model, loaded, model_info, needed)
+    observer = StructuralGateObserver()
+    for name, adapter in loaded.items():
+        if adapter is not None and model_info[name]['fit_variant'] in ['no_cycle', 'full']:
+            observer.attach(name, adapter)
+    try:
+        produce(args, physical, plan, config, config_path, policy_path, spec, spec_sha256,
+                calibration, calibration_path, nested_work, model, loaded, model_info, needed)
+    finally:
+        observer.close()
     out = nested_work/'structural_relative_predictions'/args.split/args.sequence
     if args.source_check:
         out = out/f'source_check_{args.source_check}'
     elif args.limit_frames:
         out = out/f'prefix_check_{args.limit_frames}'
     meta = json.loads((out/'complete.json').read_text())
-    for name in ['tools/extract_structural_nocycle_test.py', 'yolox/models/structural_nocycle_refinement.py']:
+    for name in ['tools/extract_structural_nocycle_test.py', 'yolox/models/structural_nocycle_refinement.py',
+                 'tools/structural_gate_observer.py']:
         meta['source_hashes'][name] = sha256(ROOT/name)
+    for name in loaded:
+        statistics = observer.summary(name)
+        if statistics:
+            meta['models'][name]['gate_statistics'] = statistics
+    meta['gate_statistics_scope'] = GATE_SCOPE
     meta.update(refinement_plan_sha256=sha256(phase_path), loader_source_sha256=sha256(__file__))
     dump(out/'complete.json', meta)
 
