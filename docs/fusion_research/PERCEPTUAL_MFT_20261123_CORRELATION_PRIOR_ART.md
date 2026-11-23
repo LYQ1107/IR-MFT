@@ -23,3 +23,21 @@ protection of a strong RGB observation graph, and class-valid counterfactual
 training when two frames both contain foreground. Each remains provisional.
 The pseudo-IR is generated from RGB: any improvement is evidence about an
 additional representation, not evidence of independent physical sensing.
+
+[ViPT, CVPR2023](https://openaccess.thecvf.com/content/CVPR2023/html/Zhu_Visual_Prompt_Multi-Modal_Tracking_CVPR_2023_paper.html)
+already adapts a frozen RGB foundation tracker through a small number of
+modality-relevant prompt parameters. Freezing the RGB model and training
+only a small multimodal adapter is therefore not an independent novelty claim.
+
+[SDSTrack, CVPR2024](https://openaccess.thecvf.com/content/CVPR2024/html/Hou_SDSTrack_Self-Distillation_Symmetric_Adapter_Learning_for_Multi-Modal_Visual_Object_Tracking_CVPR_2024_paper.html)
+uses symmetric multimodal adaptation and complementary masked-patch
+self-distillation to address RGB dominance and degraded or missing inputs.
+Ordinary masking plus teacher preservation is already related work. The
+current hypothesis instead tests generated-IR recoverability-conditioned
+target placement and class-validity of mismatched foreground; their value
+must be demonstrated beyond matched-count ordinary weakening and explicit
+removals. This distinction remains a hypothesis, not an assertion of originality.
+
+These visual-object-tracking studies use their own datasets and metrics;
+their reported numbers are not substitutes for HOTA on this fish MOT protocol.
+The searches are a focused prior-art check, not an exhaustive novelty proof.

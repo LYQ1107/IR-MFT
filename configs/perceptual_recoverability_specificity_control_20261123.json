@@ -1,0 +1,10 @@
+{
+  "status": "REGISTERED_CONDITIONAL_CONTROL_NO_FIT",
+  "motivation": "Ordinary dominant-modality weakening is prior art. A positive full-versus-no-curriculum removal alone cannot establish a new recoverability-selection contribution.",
+  "control": "Uniformly choose GT instances within each identical Train frame, matching the exact number selected by the full IR-informed curriculum. Match frames, sample order, corrupted-object count, strength0.75, original auxiliary pixels,24E/6912updates and all other losses. The control receives privileged IR-conditioned counts but not target placement.",
+  "implementation": "Use independent fixed RNG seeded from seed/epoch/step/constant, sample without replacement among valid GT objects; never modify currently running trainer/helper/config files. Implement a separate versioned trainer only after activation.",
+  "activation": "If complete current full Dev plus removals support a promising IR route, fit this control before crediting IR-specific recovery selection. No automatic new fit is launched by this registration.",
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

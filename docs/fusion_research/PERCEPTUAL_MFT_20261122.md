@@ -52,8 +52,9 @@ Existing [related work](PERCEPTUAL_MFT_20261123_CORRELATION_PRIOR_ART.md)
 already covers local attention and dominant-modality modulation; using these
 techniques alone does not establish novelty.
 
-IR and gray conditional fits completed all24 epochs and6912 updates; the
-matched RGB fit continues. The3 registered removals separately remove local
+All3 conditional fits completed all24 epochs and6912 updates; the24 sample,
+curriculum and perturbed-object-count records match across all cues. Full
+Dev observation production is running. The3 registered removals separately remove local
 offset tolerance, recovery curriculum, and counterfactual validity, keeping
 the same24-epoch budget. A separate18-case factorial sends each parent
 Dev-selected RGB/gray/IR observation stream through the exact same6 frozen
