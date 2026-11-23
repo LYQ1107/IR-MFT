@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 116,
+    "current_full_repository_passed": 126,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -50,7 +50,9 @@
     "foveated_observation_tests_passed": 4,
     "foveated_working_region_tests_passed": 2,
     "causal_attention_tests_passed": 3,
-    "semantic_contour_transport_tests_passed": 2
+    "semantic_contour_transport_tests_passed": 2,
+    "local_correlation_repair_tests_passed": 4,
+    "frozen_head_repair_tests_passed": 3
   },
   "smoke": {
     "BT-005": {
@@ -564,12 +566,12 @@
     "scope": "All models selected only on complete Dev curves; macro Test accuracy inspected only after these controls were fixed. These are ordinary controls, not current-method successes; historical Test is exposed, not blind."
   },
   "foveated_region_stage": {
-    "status": "RUNNING_COMPLETE_DEV_PRODUCTION",
+    "status": "COMPLETE38_FULL_DEV_ROWS",
     "plan": "configs/perceptual_foveated_regions_20261123.json",
     "registered_Dev_rows": 38,
     "reason": "Actual current image audit shows generated tank walls and reflection dominate whole-image saliency. Retain v1 and constrain both RGB/IR cues by the same current RGB working region.",
     "exact_model_inputs": "Fast uint8 lookup normalization is bit-exact with original float64->float32->FP16 input on tested shapes and byte values. Detector unchanged.",
-    "Dev_accuracy_available": false,
+    "Dev_accuracy_available": true,
     "Test_started": false,
     "goal_met": false
   },
@@ -584,7 +586,7 @@
     "goal_met": false
   },
   "storage_current": {
-    "work_asset_GiB": 26.42,
+    "work_asset_GiB": 50.94174312893301,
     "work_soft_cap_GiB": 64,
     "original_filesystem_free_GiB": 5.8,
     "dataset_copies": false,
@@ -609,12 +611,29 @@
     "result": "IR gives small foreground-AUC gains on SN-013, but consistently loses to extra RGB on BT-005. No reliable overall foreground advantage or tracking gain established; probe not deployed."
   },
   "semantic_transport_probe": {
-    "status": "RUNNING_UNLABELED_SPARSE_DEV_PRODUCTION",
+    "status": "COMPLETE_SPARSE_DEV_DIAGNOSTIC_NOT_HOTA",
     "plan": "configs/perceptual_semantic_transport_20261123.json",
     "GT_read": false,
     "Test_read": false,
     "purpose": "Original point control only samples RGB corners even in the IR ownership packet. Test actual IR silhouette corners and RGB-first/native-IR fallback with equal20-point budget.",
     "synthetic_test": "Controlled textureless RGB with translated IR shape gains valid transport; flat IR preserves original packets and votes exactly.",
-    "tracking_gain_established": false
+    "tracking_gain_established": false,
+    "report": "PERCEPTUAL_MFT_20261123_SEMANTIC_POINT_AUDIT.json",
+    "finding": "Native IR corners/flow lose to original RGB on both Dev videos; no new point fitting or Test launched."
+  },
+  "correlation_repair_setup": {
+    "report": "PERCEPTUAL_MFT_20261123_CORRELATION_SETUP.json",
+    "status": "SETUP_VALIDATED_MATCHED_PILOT_FITS_RUNNING_GOAL_NOT_MET",
+    "Test_started": false
+  },
+  "priority_pipeline_backend": {
+    "status": "RUNNING12_THREE_SEED_RGB_IR_POINT_CONTROLS",
+    "Dev_selected_primary_HOTA": 48.461,
+    "control_HOTA": 47.579,
+    "added_boxes": 3,
+    "recomputed_point_pairs": 23,
+    "original_descriptors_bit_exact": true,
+    "capacity_limit": "Paired global detector has extra branch/crop compute; no modality novelty is credited alone.",
+    "Test_started": false
   }
 }

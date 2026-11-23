@@ -1,0 +1,67 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_CORRELATION_CACHE_FORWARD_OR_FIT",
+  "goal": "Actual November DiffV2IR MFT, physical GPUs2/3 only,>=34.529 full Test HOTA versus direct RGB29.529,2-3 independently positive contributions; no result is presumed.",
+  "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "original_main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "source_policy": "Use exactly the same frozen original RGB backbone and head for all methods. Apply that shared backbone to actual IR or matched RGB/gray controls; no separately pretrained IR encoder or hidden encoder-budget advantage.",
+  "Train_frames_per_video": 192,
+  "Train_selection": "Deterministic uniformly spaced original Train6 frame IDs, including endpoints; all boxes/labels remain Train only.",
+  "training_input_hw": [
+    480,
+    864
+  ],
+  "inference_input_hw": [
+    800,
+    1440
+  ],
+  "normalization": "Original RGB input preprocessing remains bit-exact. Additional scalar IR/gray branches use separate Train-only mean/std measured on the same192-frame/video selection; constant padding maps to normalized zero. RGB-repeat auxiliary features equal the original RGB features.",
+  "cache": "FP16 frozen FPN arrays on independent work disk, no image copies. Three streams RGB/gray/actualIR. Expected about24GiB plus current about28GiB,64GiB soft cap; refuse if actual planned budget exceeds it. Never upload arrays/checkpoints.",
+  "architecture": {
+    "latent_channels": 32,
+    "local_radius": 2,
+    "temperature": 0.1,
+    "maximum_residual_RMS_fraction": 0.5,
+    "initial_projection": "zero; baseline features exact",
+    "A": "Offset-tolerant local normalized-correlation retrieval over actual IR features, within a5x5 neighborhood. Same frozen feature encoder for all modalities.",
+    "B": "Learned agreement/uncertainty gate, bounded RGB-relative residual and final priority integration that preserves all strong original global observations.",
+    "C": "Within-video wrong-IR counterfactual consistency plus reliable-RGB distillation; no Test labels or virtual identity hypotheses.",
+    "gate_initial_bias": -3.0,
+    "normalization_epsilon": 1e-06,
+    "query_key_projection_shared": true,
+    "final_observation_policy": "B enabled: all original high-confidence global observations and coordinates retained; promote weak original or add nonduplicate adapter candidates using the registered priority_union. B removed: ordinary postprocess of fused detector output."
+  },
+  "fitting": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "batch_size": 4,
+    "epochs": 24,
+    "snapshots": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "sampler": "Two Train videos x two frame samples per batch; full equal-video epoch, deterministic matched draw sequence. Wrong IR swaps only the two same-video samples.",
+    "frozen_parameters": "Every original RGB backbone/head parameter; head BN remains eval. Gradients traverse the frozen head into adapter parameters only.",
+    "precision": "FP16 cached features; stable FP32 frozen-head fitting; exact original FP16 detector inference. Export only small adapter state.",
+    "loss": "Original YOLOX supervised losses; full model adds counterfactual probability/bbox consistency, with no extra optimizer steps or outside images.",
+    "lambda_reliable_RGB": 0.1,
+    "lambda_wrong_auxiliary": 1.0,
+    "learning_rate_schedule": "Linear warmup1 epoch; cosine decay to3% of initial at24.",
+    "gradient_clip_norm": 10.0
+  },
+  "controls": [
+    "Exact original RGB detector + ByteTrack",
+    "Same adapter/capacity with repeated RGB auxiliary features",
+    "Same adapter/capacity with normalized grayscale RGB auxiliary features",
+    "Actual IR, aligned-location readout(radius0), same parameter capacity",
+    "Actual IR local readout, remove RGB-priority risk gate",
+    "Actual IR local readout+RGB-priority, remove counterfactual loss",
+    "Full actual IR model"
+  ],
+  "formal_policy": "Pilot seed0 first with complete registered budgets and all snapshots for actualIR/RGB/gray. Expand promising route to seeds0/1/2 and every removal/control. Freeze choices only after full two-video Dev; do not read new Test until then. Historical Test exposure is acknowledged.",
+  "supported_multimodal_innovations": 0,
+  "goal_met": false
+}

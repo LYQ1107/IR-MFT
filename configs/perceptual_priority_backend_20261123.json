@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "status": "REGISTERED_BEFORE_NEW_DEV_EXPERIMENTS",
+  "created_at": "2026-11-22T21:59:50.977335+08:00",
+  "objective": "Retain November DiffV2IR MFT, obtain at least +5 HOTA points over direct RGB fine-tuning, with 2-3 independently supported mechanisms inspired by visual continuity and classical algorithms.",
+  "allowed_physical_gpus": [
+    2,
+    3
+  ],
+  "protocol": "configs/cfp/protocol_v2.json",
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "generated_ir_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+  "generated_ir_semantics": "Existing uint8 scalar current-RGB-derived DiffV2IR PNG; no regeneration, no physical thermal-sensor claim.",
+  "work_root": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/priority_backend_bestnew",
+  "archive_root": "/data3/liuyeqiang/nas/A100/IR-MFT/perceptual_mft_20261122",
+  "frozen_detection_sources": {
+    "new_diffv2ir_dev": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/priority_backend_bestnew/inputs/new/dev",
+    "new_diffv2ir_test": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/priority_backend_bestnew/inputs/new/test",
+    "rgb_dev": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/priority_backend_bestnew/inputs/rgb/dev",
+    "rgb_test": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/priority_backend_bestnew/inputs/rgb/test"
+  },
+  "reference": {
+    "detector": "Single-branch YOLOX-X, fish class, same original visible initialization",
+    "tracker": "ByteTrack",
+    "rgb_adaptation_joint_epochs_executed": 12,
+    "selected_joint_epochs": 3,
+    "rgb_dev_HOTA": 47.579,
+    "rgb_test_HOTA": 29.529,
+    "minimum_target_test_HOTA": 34.529,
+    "test_required_improvement_pp": 5.0,
+    "new_detector_test_HOTA_before_new_modules": 29.195
+  },
+  "hypotheses": {
+    "shape": "Figure-ground shape in new pseudo IR can stabilize object descriptors when RGB texture changes; spatially structured RGB/IR evidence must beat equally sized RGB-only descriptors.",
+    "motion": "Transporting evidence with robust, forward-backward-checked local optical flow can preserve correspondence during nonlinear motion; pseudo-IR support must be checked rather than trusted.",
+    "permanence": "Occlusion-aware competitive association and separately protected appearance/shape memories can preserve identities through crossings without blindly propagating false detections."
+  },
+  "candidate_families": [
+    "Classical local RGB/IR shape and color descriptors with cross-modal spatial agreement",
+    "Separate pretrained RGB appearance and pseudo-IR shape with reliability-aware matching",
+    "Flow-transported RGB/IR evidence with uncertainty and identity-memory protection",
+    "Train-only metric adaptation of the best supported spatial-temporal representation"
+  ],
+  "iteration_policy": {
+    "minimum_targeted_repair_rounds_per_rejected_core_hypothesis": 3,
+    "design_and_selection": "Train and Dev only; register each concrete configuration before its replay; retain every failure and engineering diagnosis.",
+    "formal_Test": "All seven sequences and 15985 ordered frames for each frozen formal candidate and required ablation. No Test-driven parameter or checkpoint selection.",
+    "stop_on_first_failure": false,
+    "training_epochs": "Selected by complete Dev curves, with resumable checkpoints; no arbitrary claim that six epochs suffice."
+  },
+  "required_controls": [
+    "Original direct RGB fine-tune + ByteTrack",
+    "New DiffV2IR V3 + unchanged ByteTrack",
+    "Same proposed backend and appearance capacity with RGB only",
+    "Same proposed backend with double-RGB capacity control",
+    "Full proposed RGB + new DiffV2IR",
+    "Each single mechanism and cumulative combination",
+    "Full minus each claimed mechanism",
+    "Zero and spatially mismatched pseudo-IR interventions"
+  ],
+  "acceptance": {
+    "full_test_HOTA_delta_vs_RGB_direct_pp": 5.0,
+    "full_must_exceed_same_backend_RGB_control": true,
+    "number_of_supported_mechanisms": [
+      2,
+      3
+    ],
+    "individual_contribution": "Positive complete-Dev and complete-Test removal delta; report all other metrics and whether support survives seeds. Negative or neutral mechanisms receive no innovation credit.",
+    "trained_models": "Seeds 0,1,2 for final supported components and matched controls; deterministic classical modules are reported as deterministic, not fictitious seed repeats.",
+    "metrics": [
+      "HOTA",
+      "DetA",
+      "AssA",
+      "IDF1",
+      "MOTA",
+      "IDSW"
+    ],
+    "report_all_official_fields": true,
+    "per_sequence_results": true,
+    "runtime_and_memory": true
+  },
+  "causality": "Only current and past input images; no Test GT during inference, no future-frame access, no rewriting already emitted tracks, and reset all sequence state.",
+  "evaluation": {
+    "GT_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+    "TrackEval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+    "detector_confidence": 0.1,
+    "detector_NMS": 0.7,
+    "detector_size": [
+      800,
+      1440
+    ],
+    "original_tracker_threshold": 0.6,
+    "original_tracker_buffer": 30,
+    "original_tracker_match_threshold": 0.9,
+    "frame_rate": 25,
+    "minimum_box_area": 100,
+    "aggregation": "Official TrackEval combine_sequences; no frame or difficult-sequence exclusion."
+  },
+  "storage": {
+    "work_filesystem_reserve_gib": 40,
+    "new_asset_soft_cap_gib": 64,
+    "dataset_copies": 0,
+    "use_existing_detection_caches": true,
+    "full_frame_cache": "Optional bounded tmpfs only, delete after consumers finish",
+    "checkpoint_policy": "One atomic resumable latest and one compact best per active learned arm; hash-verified NAS archive after completion.",
+    "Git": "Only lightweight code, configs, reports and scientific figures; no model, crop bank, feature bank or raw predictions."
+  },
+  "limitations": [
+    "Historical Test has been exposed in prior research and is an exploratory comparison, not a new blind test.",
+    "Original visible pretraining included the current Dev videos; only new parameter fitting excludes Dev.",
+    "Existing mean/std are fitted only on the complete Train split and retained unchanged for detector reuse.",
+    "A +5-point target is an experimental acceptance criterion, never a pre-established result."
+  ],
+  "priority_backend_registration": {
+    "status": "REGISTERED_AFTER_ALL20_COMPLETE_DEV_ROWS_BEFORE_ANY_NEW_BACKEND_ACCURACY",
+    "primary": {
+      "id": "V_regions_new_rgb_half_k4_priority",
+      "proposal_key": "new_rgb_half_k4_priority",
+      "HOTA": 48.461,
+      "metrics_sha256": "143176b7a336be70a69cea29f2a75d9fac50f7959836841e8a12f900adaa9600"
+    },
+    "control": {
+      "id": "V_regions_baseline_rgb",
+      "proposal_key": "baseline_rgb",
+      "HOTA": 47.579,
+      "metrics_sha256": "23136be6c8b1de3d819941a24258cf7e39c25f3a82eac210501ca6cd67d29e44"
+    },
+    "all_Dev_choices": [
+      {
+        "id": "V_regions_rgb_rgb_half_k2_priority",
+        "proposal_key": "rgb_rgb_half_k2_priority",
+        "HOTA": 42.685,
+        "metrics_sha256": "92d52acf05622af6626b30b88689ea9c78921739c3ad1b50f894c569fd93b8e6"
+      },
+      {
+        "id": "V_regions_rgb_rgb_half_k4_priority",
+        "proposal_key": "rgb_rgb_half_k4_priority",
+        "HOTA": 42.902,
+        "metrics_sha256": "f1958a49d56de87eb33314113815cbd11f045a4fcd66e1f1df6ea54d72a78a9b"
+      },
+      {
+        "id": "V_regions_rgb_rgb_quarter_k2_priority",
+        "proposal_key": "rgb_rgb_quarter_k2_priority",
+        "HOTA": 47.482,
+        "metrics_sha256": "74fad1343c7c8a2091bd4a134492ced818c5b5d6dfb3207ab2600eb88908653d"
+      },
+      {
+        "id": "V_regions_rgb_rgb_quarter_k4_priority",
+        "proposal_key": "rgb_rgb_quarter_k4_priority",
+        "HOTA": 47.479,
+        "metrics_sha256": "e3f07a3aa70e7bea07a396fe40c7209da5cdcdba88d18fee857aa009f1c7a063"
+      },
+      {
+        "id": "V_regions_rgb_ir_half_k2_priority",
+        "proposal_key": "rgb_ir_half_k2_priority",
+        "HOTA": 40.656,
+        "metrics_sha256": "05e21de9c5697c76e5bab90511686aad92e47caaa8962490920fd8d1a1eb8e90"
+      },
+      {
+        "id": "V_regions_rgb_ir_half_k4_priority",
+        "proposal_key": "rgb_ir_half_k4_priority",
+        "HOTA": 40.453,
+        "metrics_sha256": "b9c6408cc1bb379d68c57ebe3a00d27f56800ecd43301825a27c97bbdf234fe6"
+      },
+      {
+        "id": "V_regions_rgb_ir_quarter_k2_priority",
+        "proposal_key": "rgb_ir_quarter_k2_priority",
+        "HOTA": 47.484,
+        "metrics_sha256": "516579f132d81dbb728e755467c57683c444dfdd321111a1baf48323d187606a"
+      },
+      {
+        "id": "V_regions_rgb_ir_quarter_k4_priority",
+        "proposal_key": "rgb_ir_quarter_k4_priority",
+        "HOTA": 47.483,
+        "metrics_sha256": "6ca9cab596f20fb025c64ee3400fc7ec5c461bcac00881ab4c3dc81f7df19c05"
+      },
+      {
+        "id": "V_regions_new_rgb_half_k2_priority",
+        "proposal_key": "new_rgb_half_k2_priority",
+        "HOTA": 46.166,
+        "metrics_sha256": "b839659f7d4b001c76e68607ac0164ddc0d4630f2c839b849f39c5fc60cffa49"
+      },
+      {
+        "id": "V_regions_new_rgb_half_k4_priority",
+        "proposal_key": "new_rgb_half_k4_priority",
+        "HOTA": 48.461,
+        "metrics_sha256": "143176b7a336be70a69cea29f2a75d9fac50f7959836841e8a12f900adaa9600"
+      },
+      {
+        "id": "V_regions_new_rgb_quarter_k2_priority",
+        "proposal_key": "new_rgb_quarter_k2_priority",
+        "HOTA": 45.523,
+        "metrics_sha256": "049abc109692a164af5eda563c482741121bed3e438b6fe1b1020e41665783ff"
+      },
+      {
+        "id": "V_regions_new_rgb_quarter_k4_priority",
+        "proposal_key": "new_rgb_quarter_k4_priority",
+        "HOTA": 45.521,
+        "metrics_sha256": "303a15c606b62c4e172f2006ec8b10775b2b19a16ddf0ee34f38e548b35f4424"
+      },
+      {
+        "id": "V_regions_new_ir_half_k2_priority",
+        "proposal_key": "new_ir_half_k2_priority",
+        "HOTA": 43.742,
+        "metrics_sha256": "e2de672ac7a13df4a1596a7ac0537333851fd83bbc86fb14987af9b4c5ca1b82"
+      },
+      {
+        "id": "V_regions_new_ir_half_k4_priority",
+        "proposal_key": "new_ir_half_k4_priority",
+        "HOTA": 43.144,
+        "metrics_sha256": "48b32104fa2f6ce62108bf3518532dd4ee15f930fbaed7fcbe2a5a932528407c"
+      },
+      {
+        "id": "V_regions_new_ir_quarter_k2_priority",
+        "proposal_key": "new_ir_quarter_k2_priority",
+        "HOTA": 46.137,
+        "metrics_sha256": "3cdd66a09289a4e0db0a1ffad270c691bf73c8ed9ff1155c91071095de510896"
+      },
+      {
+        "id": "V_regions_new_ir_quarter_k4_priority",
+        "proposal_key": "new_ir_quarter_k4_priority",
+        "HOTA": 46.115,
+        "metrics_sha256": "24cb19f05a9c071bc96439dd77fc2af0d54aead4a794cba2332115f45c550ea1"
+      },
+      {
+        "id": "V_regions_rgb_uniform_k4_priority",
+        "proposal_key": "rgb_uniform_k4_priority",
+        "HOTA": 41.628,
+        "metrics_sha256": "91b2e27e5d7184d3231464775ff0af466f75c2e14bc14dc7545da0cfbd1c5888"
+      },
+      {
+        "id": "V_regions_new_uniform_k4_priority",
+        "proposal_key": "new_uniform_k4_priority",
+        "HOTA": 43.856,
+        "metrics_sha256": "7dc5f6f3e11648193a14a4469aafe8e3b7d7cc26cf4cdfa748d5778df6b23e81"
+      },
+      {
+        "id": "V_regions_baseline_rgb",
+        "proposal_key": "baseline_rgb",
+        "HOTA": 47.579,
+        "metrics_sha256": "23136be6c8b1de3d819941a24258cf7e39c25f3a82eac210501ca6cd67d29e44"
+      },
+      {
+        "id": "V_regions_baseline_new",
+        "proposal_key": "baseline_new",
+        "HOTA": 46.236,
+        "metrics_sha256": "7ad0200b5a84624b502734d5e17043b299d7730c432e56e3ab3e3ea79e14f0df"
+      }
+    ],
+    "original_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+    "policy": "Highest complete Dev priority HOTA for the new paired global frontend, versus strongest RGB-global control including zero extra crops. Original Train-fitted RGB/IR point heads, all3 seeds, no refitting or Test selection.",
+    "primary_role": "Paired actual new-IR global detector with RGB-guided half crops, global confidence priority. This is NOT an IR-attention gain.",
+    "control_role": "Exact original single-RGB global detector; source evidence can be reused unchanged.",
+    "capacity_limit": "Paired global detector has two FPN branches, and uses additional RGB crop observations. This route is a pipeline control; it cannot establish modality novelty or equal-parameter superiority without the strict shared-encoder RGB/gray controls in the correlation campaign.",
+    "evidence_reuse": "All original box rows are kept bit-exactly. Reuse their frozen descriptors, recompute descriptors only for new boxes and point graph only for pairs touching added boxes. No GT inference input.",
+    "Test_started": false,
+    "goal_met": false
+  }
+}

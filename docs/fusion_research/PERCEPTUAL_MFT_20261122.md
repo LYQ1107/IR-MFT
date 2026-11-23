@@ -1,5 +1,47 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
+## Current verified state: correlation pilot running, goal not met
+
+The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
+the requested threshold is34.529. The prior matched three-seed new-IR point
+control averages31.710. There are still0 established multimodal innovations.
+Actual November DiffV2IR remains the auxiliary data, with only physical GPUs2/3.
+
+The [new validated correlation setup](PERCEPTUAL_MFT_20261123_CORRELATION_SETUP.md)
+uses the exact shared frozen RGB encoder/head for RGB-repeat, gray and actual
+IR controls, fitting only217619 adapter parameters. It proposes local
+correlation retrieval, a RGB-priority risk gate, and wrong-auxiliary
+counterfactual consistency. These are hypotheses pending all removal tests.
+All126 maintained tests pass; on both Dev videos all first8 fresh RGB proposal
+arrays and all zero-adapter controls match the original baseline exactly.
+Three matched24-epoch seed0 fits and all12 snapshot+baseline full-Dev replays
+are scheduled. No new correlation/foveated method Test has started.
+
+All [original foveation38](PERCEPTUAL_MFT_20261123_FOVEATED_DEV.md),
+[working-region38](PERCEPTUAL_MFT_20261123_FOVEATED_REGIONS_DEV.md), and
+[priority-integration20](PERCEPTUAL_MFT_20261123_FOVEATED_PRIORITY_REGIONS_DEV.md)
+Dev controls are complete. The best priority pipeline reaches48.461, versus
+its paired-global parent46.236 and direct RGB47.579. It uses RGB-guided crops;
+this is not an IR-attention contribution or equal-parameter comparison. Its
+all-three-seed RGB/IR point backend factorial is running. Only3 added boxes
+required new descriptors; all original descriptor rows are bit-exact and only
+23 affected point pairs were recomputed. Strong original RGB controls are
+reused exactly. Priority preserves original box coordinates/confidences, not
+a guarantee that downstream track identities cannot change.
+
+The [sparse semantic-point diagnosis](PERCEPTUAL_MFT_20261123_SEMANTIC_POINT_AUDIT.json)
+is negative on both Dev videos: native IR point flow is weaker than RGB.
+It is not full tracking HOTA and is not deployed. The70-control causal
+background/IR attention experiment continues with all earlier evidence kept.
+Current work assets occupy about50.9GiB of the independent-disk64GiB cap.
+No models, feature arrays, image copies or raw track files are published.
+
+The original RGB checkpoint includes earlier Dev pretraining, and historical
+Test was exposed before this campaign. This is exploratory research, not a
+fresh blind evaluation. All new design/selection remains Dev-driven.
+
+---
+
 Status: IN_PROGRESS. The target is at least +5 Test HOTA points over the direct
 RGB fine-tune control, with two or three independently supported contributions.
 No new accuracy result is established at registration.

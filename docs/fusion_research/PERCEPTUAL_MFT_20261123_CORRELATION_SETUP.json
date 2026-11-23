@@ -1,0 +1,103 @@
+{
+  "status": "SETUP_VALIDATED_MATCHED_PILOT_FITS_RUNNING_GOAL_NOT_MET",
+  "actual_IR": "November DiffV2IR full_generation, unchanged original files; no legacy replacement or regeneration.",
+  "baseline_model": "Original directly RGB-fine-tuned YOLOX-X + ByteTrack, joint3 selected by Dev from complete budget extension.",
+  "baseline_Test_HOTA": 29.529,
+  "required_Test_HOTA": 34.529,
+  "last_confirmed_three_seed_new_IR_point_control_Test_HOTA_mean": 31.71,
+  "supported_multimodal_innovations": 0,
+  "goal_met": false,
+  "normalization": {
+    "status": "COMPLETE_TRAIN_ONLY_CALIBRATION",
+    "config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+    "statistics": {
+      "gray": {
+        "mean": 0.4525055733228782,
+        "std": 0.19778387062890299,
+        "pixels": 2388787200
+      },
+      "ir": {
+        "mean": 0.3122705558555848,
+        "std": 0.13327254188933252,
+        "pixels": 2388787200
+      }
+    },
+    "sequences": [
+      "BT-001",
+      "BT-003",
+      "MSK-002",
+      "PF-001",
+      "SN-001",
+      "SN-015"
+    ],
+    "source_statistics_sha256": {
+      "BT-001": "ee7e5a60ce9f3da7e0da3c15e83ed75380821ede01cba1e5f83e3bf458becbdd",
+      "BT-003": "d4fc7bf44dd8524aa64c9b92a72e7a5eec9f5c9cd38574cd0ec72e4f83450fb0",
+      "MSK-002": "f66154529d4ff6c49331e0575d7a106abd2f0e89b289027ea7e0729f2203e25d",
+      "PF-001": "16e9b32aba64c1960723150b0da90a6cc4390c37a293a03dedc7976eec9aceb5",
+      "SN-001": "abdcd4278734f664f1b873d1d65b32bd85993e9e0dba2b6f3f5c5bdb9146f1f6",
+      "SN-015": "c42ff156cd1c7d74a6c8c9e8145f75b653e54b347698900a35c7e8cbb3b5ec4e"
+    },
+    "Dev_rows": 0,
+    "Test_rows": 0
+  },
+  "real_image_source_checks": {
+    "BT-005": {
+      "frames": 8,
+      "all_fresh_RGB_arrays_exact": true,
+      "zero_RGB_gray_IR_repair_exact": true,
+      "source_sha256": "16f9d8fc126b40cc8299a8aa6c9b2f19a5c181604b5af13ecd26d349eeb4b2e3",
+      "physical_gpu": "2"
+    },
+    "SN-013": {
+      "frames": 8,
+      "all_fresh_RGB_arrays_exact": true,
+      "zero_RGB_gray_IR_repair_exact": true,
+      "source_sha256": "16f9d8fc126b40cc8299a8aa6c9b2f19a5c181604b5af13ecd26d349eeb4b2e3",
+      "physical_gpu": "3"
+    }
+  },
+  "matched_four_step_gradient_checks": {
+    "rgb": {
+      "steps": 4,
+      "trainable_parameters": 217619,
+      "sample_digest": "55193ab4ee13868695329a55ac7f5e97dac9b856af187714dd49bb932b2f0b07",
+      "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46"
+    },
+    "gray": {
+      "steps": 4,
+      "trainable_parameters": 217619,
+      "sample_digest": "55193ab4ee13868695329a55ac7f5e97dac9b856af187714dd49bb932b2f0b07",
+      "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46"
+    },
+    "ir": {
+      "steps": 4,
+      "trainable_parameters": 217619,
+      "sample_digest": "55193ab4ee13868695329a55ac7f5e97dac9b856af187714dd49bb932b2f0b07",
+      "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46"
+    }
+  },
+  "Train_frames": 1152,
+  "Train_videos": 6,
+  "cache_total_work_GiB": 50.94174312893301,
+  "work_soft_cap_GiB": 64,
+  "formal_pilot": {
+    "cues": [
+      "rgb",
+      "gray",
+      "ir"
+    ],
+    "seed": 0,
+    "epochs": 24,
+    "snapshots": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "all_12_snapshot_Dev_plus_original_baseline_scheduled": true,
+    "Test_started": false
+  },
+  "tests_passed": 126,
+  "scope": "Three mechanisms are hypotheses, not established contributions. Same frozen encoder/head across auxiliary modalities,217619 trainable adapter parameters; no extra IR pretraining. RGB-repeat and grayscale RGB controls retained. Full seed/ablation expansion depends on complete Dev evidence; no new Test yet."
+}
