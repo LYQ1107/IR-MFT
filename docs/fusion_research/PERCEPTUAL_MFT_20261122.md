@@ -2,6 +2,15 @@
 
 ## Current verified state: completed59Dev and fixed-seed no-cycle refinement
 
+The complete36newDev controls/removals are now read together: fixed IR51.329,
+matched RGB47.918,gray49.132; +3.750vsoriginalRGB and+2.197vsmatchedgray.
+Three removal groups remain positive even against their best curves:
++0.391structure,+3.358centering,+2.700feature risk. Actual-image roll reduces
+the fixed raw readout by3.953. These are Dev signals, not Test/novelty proof.
+All14frozen Test cases now run on physical4/5. Before any of their accuracy,
+four missing S/C/R combinations were registered to complete the component
+study; they wait all7Test NN producers. Main IR6/raw is unchanged.
+
 The complete initial structural-relative59Dev family has finished. Full IR
 HOTA49.599 exceeds matched RGB49.455 by only0.144; gray is47.679.
 Removing hard cycle consistency reaches51.329 at6/raw, versus original
@@ -15,7 +24,7 @@ no-cycle RGB/gray controls and clean IR centering/risk-placement removals.
 Each has145600parameters,24passes over1152 cached Trainframes and6912updates.
 36 new evaluations plus17 completed references are registered; no new
 mainIR fit or seed replication. Source8/prefix32/full39 provenance precedes
-accuracy. Current maintained tests:172passed. Work assets remain capped at64GiB.
+accuracy. Current maintained tests:177passed. Work assets remain capped at64GiB.
 
 All7 frozen CGA Test producers finished before the14 official CPU replays.
 The exact-count RGB source audit failed at MSK-003 frame629 (61vs62 NMS

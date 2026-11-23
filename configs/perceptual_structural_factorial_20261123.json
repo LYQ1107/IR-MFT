@@ -1,0 +1,67 @@
+{
+  "status": "REGISTERED_FROM_COMPLETE36DEV_BEFORE_PARENT14TEST_ACCURACY",
+  "created_UTC": "2026-11-23T12:47:56.642613+00:00",
+  "source_Dev_analysis_sha256": "786be3f0bf3bc1f9119d6f2f12155429452491e0ea68aa0cdd3e9f259507ea6b",
+  "base_configuration": "configs/perceptual_structural_relative_20261123.json",
+  "base_config_sha256": "909eb6fae97ce7eb64c79a31ee93e76d713003c51cc7d9c13dbd276cf49519fd",
+  "single_seed_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "epochs": 24,
+  "updates": 6912,
+  "Train_cache_frames": 1152,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "trainable_parameters": 145600,
+  "primary_unchanged": "Existing IR no_cycle epoch6/raw, HOTA51.329 onDev. Do not select a Test winner.",
+  "components": {
+    "S": "Structural weights, validity and cost confidence",
+    "C": "Relative semantic centering",
+    "R": "Teacher feature risk placement; bounds retained in every condition"
+  },
+  "fits": [
+    {
+      "cue": "ir",
+      "variant": "000",
+      "seed": 0,
+      "physical_gpu": "4"
+    },
+    {
+      "cue": "ir",
+      "variant": "010",
+      "seed": 0,
+      "physical_gpu": "4"
+    },
+    {
+      "cue": "ir",
+      "variant": "100",
+      "seed": 0,
+      "physical_gpu": "5"
+    },
+    {
+      "cue": "ir",
+      "variant": "001",
+      "seed": 0,
+      "physical_gpu": "5"
+    }
+  ],
+  "reuse": {
+    "components111": "SR_ir_no_cycle_s0_e06_raw and all8curve rows",
+    "components011": "Original IR no_structure8curve rows",
+    "components101": "New IR no_cycle_no_centering8curve rows",
+    "components110": "New IR no_cycle_no_risk8curve rows"
+  },
+  "motivation": "All3removal groups are positive on completeDev and actual-image roll lowers fixed primary. Complete the missing single-component/static cases to assess interactions instead of adding the three removal deltas.",
+  "budget": "Four distinct missing component combinations, seed0 only; no new fullIR fit, no new modality-control fit, no image/FPN copies. Same original cached1152frames and all24sampledigests. This study is separate from the prepared14897-frame coverage schedule.",
+  "scheduling": "Wait all7current no-cycleTest NN producers COMPLETE before any fit on physical4/5. At most two GPUs; preserve upstream failure.",
+  "required_Dev": "All4snapshots and raw/priority for each of4newfits (32newmetrics), retain all32existing IRcomponent rows and17RGB/gray/baseline rows. Fixed6/raw component table plus best curves. No Test-based model change.",
+  "required_Test": "Every new engineering-passed formal component configuration: all7Test sequences/15985frames, same6/raw and completeDev-selected best4 as distinct roles when needed. Existing complete family reused without repeated inference. Register exact selections after completeDev and before this newfamilyTest.",
+  "attribution": "S/C/R are provisional task-specific mechanism groups. The zero-bit condition is a trained uniform local/static residual with bounds and original losses, not the untrained RGB identity. Classical primitives are prior art. Do not add removal deltas or count this factorial design/training coverage as new innovations.",
+  "parent_Test_accuracy_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

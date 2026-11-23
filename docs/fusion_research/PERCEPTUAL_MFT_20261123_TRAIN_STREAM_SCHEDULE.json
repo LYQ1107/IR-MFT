@@ -1,0 +1,110 @@
+{
+  "status": "PREPARED_TRAIN_ADDRESS_SCHEDULE_NO_TRAINING_ACTIVATED",
+  "rows": [
+    {
+      "sequence": "BT-001",
+      "full_frames": 3000,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 3000,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    },
+    {
+      "sequence": "BT-003",
+      "full_frames": 243,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 243,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    },
+    {
+      "sequence": "MSK-002",
+      "full_frames": 1754,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 1754,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    },
+    {
+      "sequence": "PF-001",
+      "full_frames": 15000,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 4608,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    },
+    {
+      "sequence": "SN-001",
+      "full_frames": 684,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 684,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    },
+    {
+      "sequence": "SN-015",
+      "full_frames": 6570,
+      "passes": 24,
+      "frames_per_pass": 192,
+      "sample_exposures": 4608,
+      "unique_frames": 4608,
+      "first_pass_exact_to_existing_cache": true,
+      "all_passes_have_distinct_frames": true
+    }
+  ],
+  "source_sha256": "707352b5a49f4322526b01eaa2fcf81d2073b2693a0393d41e53f1ea666f551b",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "sources": {
+    "BT-001": {
+      "cache_manifest_sha256": "cf765a7179fd9017e6905a19f3b6ec31e654582963ccb8f2fe98d9c256b601ac",
+      "seqinfo_sha256": "ac627857f5315c2984648b75db4bf84eaed41019e90c0589e4182628362577e8"
+    },
+    "BT-003": {
+      "cache_manifest_sha256": "bed6895afb2ba9708745eead267f8159f1daadf427033cfc5f513cf51bf8f096",
+      "seqinfo_sha256": "c905752df90d7c57b64b56dc219723fce71e69994a9bd48c7cb9162b0400de61"
+    },
+    "MSK-002": {
+      "cache_manifest_sha256": "54d19cb4bbdf5c30f1f329d8416d2228ce88f8dec287608de9104ba42c050d0e",
+      "seqinfo_sha256": "acff9a6f32b93031835324f95104cce7c72760dc6b752276441307b7ff067fa5"
+    },
+    "PF-001": {
+      "cache_manifest_sha256": "d24a313a0919ba0a356b3d42c9b70c7298e979d6fb8a2845da9974c3f3042f4c",
+      "seqinfo_sha256": "9f19f955b2024ee11c78998cce287acee4cbdcd4dc2eb290f2216345b4bc0211"
+    },
+    "SN-001": {
+      "cache_manifest_sha256": "72b0523b068c45d8c1c4b165beaf516e8f39a7b5f654b9cf37ec47e293c65e63",
+      "seqinfo_sha256": "57791910c483dc59a6b707f32450a51e68a3a7edac1659a47994db19a052e70a"
+    },
+    "SN-015": {
+      "cache_manifest_sha256": "e54ee541f9c157e3c4ca71e5de0293b3708b8501dff02e0aefce8b08dae1afc7",
+      "seqinfo_sha256": "faac569893de90ec7825479f8599c63555bb4b75350edd2d196c23f5bee2a9d5"
+    }
+  },
+  "frame_addresses": {
+    "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_stream_schedule/frame_addresses.npz",
+    "bytes": 36007,
+    "sha256": "3fa857fc09a2b1199f95ce91893f51773bd2519fcf4f2a27fff2be01685a65cf"
+  },
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "old_unique_frames": 1152,
+  "new_unique_frames": 14897,
+  "sample_exposures": 27648,
+  "updates_at_batch4": 6912,
+  "fixed_elements": "Same six Train videos,192slots/video/pass,24passes and two-video/two-frame batch layout. First pass exactly matches existing cached-frame addresses. All cue/control runs must share these addresses.",
+  "scope": "Only frame-count metadata and old Train-cache manifests were read. No GT label rows, Dev/Test rows, images, features, GPU work or fits. This schedule alone is not a trained candidate.",
+  "requirements_before_fitting": "Prove live B1 frozen-encoder, descriptors, targets and initialization parity on existing cached frames; register matched cue controls and all formal Test cases. No full-image/FPN cache may be created by this schedule.",
+  "inference": "Additional unique observations could help; no accuracy improvement is claimed or assumed.",
+  "goal_met": false,
+  "supported_innovations": 0
+}
