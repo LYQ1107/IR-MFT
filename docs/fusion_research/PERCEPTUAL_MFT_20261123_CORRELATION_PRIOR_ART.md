@@ -41,3 +41,41 @@ removals. This distinction remains a hypothesis, not an assertion of originality
 These visual-object-tracking studies use their own datasets and metrics;
 their reported numbers are not substitutes for HOTA on this fish MOT protocol.
 The searches are a focused prior-art check, not an exhaustive novelty proof.
+
+## Additional verified boundaries for the semantic/geometry diagnosis
+
+The static choice to use RGB localization and fused classification has prior
+art outside tracking. [Learning Rich Features for Image Manipulation Detection,
+CVPR2018](https://openaccess.thecvf.com/content_cvpr_2018/papers/Zhou_Learning_Rich_Features_CVPR_2018_paper.pdf)
+fuses RGB/noise evidence for classification and uses RGB for box regression.
+Copying RGB coordinates alone therefore earns no standalone novelty credit.
+
+[Efficient RGB-T Tracking via Cross-Modality Distillation, CVPR2023](https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_Efficient_RGB-T_Tracking_via_Cross-Modality_Distillation_CVPR_2023_paper.pdf)
+already transfers multimodal features and response supervision. Ordinary
+freezing, distillation or separating classification/regression is insufficient.
+
+[PMATrack, CVPR2026](https://openaccess.thecvf.com/content/CVPR2026/html/Jin_Progressive_Multi-cue_Alignment_for_Unaligned_RGBT_Tracking_CVPR_2026_paper.html)
+progressively estimates unaligned RGB/TIR geometry and selects alignment cues.
+Local offset handling cannot be called new merely because this data is synthetic.
+
+[Cross-Modal Ranking with Soft Consistency and Noisy Labels, ECCV2018](https://openaccess.thecvf.com/content_ECCV_2018/html/Chenglong_Li_Cross-Modal_Ranking_with_ECCV_2018_paper.html)
+already treats imperfect cross-modal consistency and noisy foreground queries.
+Generic background suppression or consistency weighting is prior art.
+
+[ESMTrack, arXiv2026](https://arxiv.org/abs/2609.37162)
+uses unimodal/fused branches, reliability estimates and training-time modality
+decoupling; [Self-Supervised RGB-T Tracking with Cross-Input Consistency,
+2023](https://arxiv.org/abs/2301.11274) already studies reweighted consistency.
+Dominant-modality mitigation alone is not a new contribution.
+
+[Synthetic RGB-T tracking, ICCVW2019](https://openaccess.thecvf.com/content_ICCVW_2019/html/VOT/Zhang_Multi-Modal_Fusion_for_End-to-End_RGB-T_Tracking_ICCVW_2019_paper.html)
+uses translated paired TIR data. Synthetic auxiliary data itself is not a first.
+These papers address other tasks/protocols; their published single-object scores
+are not interchangeable with HOTA on the current seven MFT Test sequences.
+
+The current50.515 seed0 Dev result is an empirical candidate, with mixed
+per-video effects, not an established original algorithm. Required evidence
+remains actual-versus-unavailable/misaligned IR, strongest matched RGB/gray and
+ordinary confidence-calibration controls, original-parent module removals,
+three adapter seeds and the complete frozen Test. This is a targeted related
+work check, not an exhaustive proof that any future mechanism is original.

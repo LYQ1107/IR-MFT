@@ -33,8 +33,12 @@ def main():
     p.add_argument('--split',choices=['dev','test'],default='dev');p.add_argument('--specification')
     p.add_argument('--source-check',type=int,default=0);p.add_argument('--batch-size',type=int,default=4)
     p.add_argument('--ir-intervention',choices=['none','zero','spatial_roll'],default='none')
-    p.add_argument('--producer-name',choices=['correlation_policy_predictions','correlation_replication_predictions'],default='correlation_policy_predictions')
+    p.add_argument('--producer-name',choices=['correlation_policy_predictions','correlation_replication_predictions','correlation_geometry_predictions'],default='correlation_policy_predictions')
+    p.add_argument('--head-roles',nargs='+',choices=['full','rgb_boxes','rgb_scores'],default=['full'])
+    p.add_argument('--limit-frames',type=int,default=0,help='Unlabeled Dev prefix proof before complete inference')
     a=p.parse_args()
+    if 'full'not in a.head_roles or len(set(a.head_roles))!=len(a.head_roles):raise ValueError('Retain full output and unique readout roles')
+    if a.limit_frames<0 or(a.limit_frames and a.split!='dev'):raise ValueError('Prefix proof is Dev-only')
     if a.batch_size!=4:raise ValueError('Keep the original independent-sample baseline batch shape4')
     physical=os.environ.get('CUDA_VISIBLE_DEVICES')
     if physical not in {'2','3'}:raise ValueError('Only physical GPU2/3')
@@ -82,16 +86,24 @@ def main():
     source=Path(plan['frozen_detection_sources']['rgb_'+a.split])/'detections'/(a.sequence+'.npz')
     with np.load(source)as z:reference={key:z[key]for key in ['frame_ids','offsets','boxes','scores']}
     limit=min(len(reference['frame_ids']),a.source_check or len(reference['frame_ids']))
+    if a.limit_frames:limit=min(limit,a.limit_frames)
     producer_name=a.producer_name if a.ir_intervention=='none'else a.producer_name+'_'+a.ir_intervention
     out=work/producer_name/a.split/a.sequence
     if a.source_check:out=out/f'source_check_{a.source_check}'
+    elif a.limit_frames:out=out/f'prefix_check_{a.limit_frames}'
     out.mkdir(parents=True,exist_ok=True)
     if(out/'complete.json').exists():raise ValueError('Completed correlation predictions exist')
     buffers={name:[]for name in loaded}
     for row in specification['models']:
         if not row.get('baseline'):
-            buffers[row['id']+'_raw']=[]
-            model_info[row['id']+'_raw']=dict(model_info[row['id']],output_policy='Original fused NMS, remove final-priority integration only; trained feature gate unchanged')
+            roles=row.get('head_roles',a.head_roles)
+            if 'full'not in roles or len(set(roles))!=len(roles)or not set(roles)<={'full','rgb_boxes','rgb_scores'}:
+                raise ValueError('Keep full output and registered unique per-model roles')
+            for role in roles:
+                key=row['id']+(''if role=='full'else'_'+role)
+                buffers[key]=[];buffers[key+'_raw']=[]
+                model_info[key]=dict(model_info[row['id']],head_role=role)
+                model_info[key+'_raw']=dict(model_info[key],output_policy='NMS without final-priority integration; trained feature gate unchanged')
     parity=[];started=time.perf_counter()
     with torch.inference_mode():
         for first in range(1,limit+1,4):
@@ -131,18 +143,30 @@ def main():
                 name=row['id'];cue=row['cue'];adapter=loaded[name]
                 if adapter is None:
                     values=fresh
+                    buffers[name].extend(values)
                 else:
-                    valid=torch.tensor(available[cue],device='cuda')
-                    repaired=adapter(features['rgb'],features[cue],teacher_scores,valid)
+                    row_available=available[cue];auxiliary=features[cue]
+                    intervention=row.get('feature_intervention','none')
+                    if intervention not in{'none','unavailable','spatial_roll'}or(intervention!='none'and cue!='ir'):
+                        raise ValueError('Registered IR feature intervention required')
+                    if intervention=='unavailable':row_available=[False]*len(frames)
+                    elif intervention=='spatial_roll':
+                        auxiliary=tuple(torch.roll(value,(value.shape[-2]//4,value.shape[-1]//4),(-2,-1))for value in auxiliary)
+                    valid=torch.tensor(row_available,device='cuda')
+                    repaired=adapter(features['rgb'],auxiliary,teacher_scores,valid)
                     prediction=model.head(repaired)
-                    values=[detections(value,ratio)for value,ratio in zip(postprocess(prediction,1,.1,.7),ratios)]
-                    if row.get('zero_adapter'):
-                        for current,baseline in zip(values,fresh):np.testing.assert_array_equal(current,baseline)
-                    buffers[name+'_raw'].extend([value.copy()for value in values])
-                    if row.get('variant','full')!='no_gate':
-                        values=[original.copy()if not ok or row.get('zero_adapter')else priority_union(original,[(current,1.)])[0]
-                                for original,current,ok in zip(originals,values,available[cue])]
-                buffers[name].extend(values)
+                    for role in row.get('head_roles',a.head_roles):
+                        key=name+(''if role=='full'else'_'+role);readout=prediction.clone()
+                        if role=='rgb_boxes':readout[:,:,:4]=teacher[:,:,:4]
+                        elif role=='rgb_scores':readout[:,:,4:]=teacher[:,:,4:]
+                        values=[detections(value,ratio)for value,ratio in zip(postprocess(readout,1,.1,.7),ratios)]
+                        if row.get('zero_adapter')or intervention=='unavailable':
+                            for current,baseline in zip(values,fresh):np.testing.assert_array_equal(current,baseline)
+                        buffers[key+'_raw'].extend([value.copy()for value in values])
+                        if row.get('variant','full')!='no_gate':
+                            values=[original.copy()if not ok or row.get('zero_adapter')else priority_union(original,[(current,1.)])[0]
+                                    for original,current,ok in zip(originals,values,row_available)]
+                        buffers[key].extend(values)
             if frames[-1]%100<4 or frames[-1]==limit:
                 progress=dict(frame=frames[-1],frames=limit,snapshots=len(loaded),physical_gpu=physical,seconds=time.perf_counter()-started)
                 dump(out/'progress.json',progress);print(json.dumps(progress),flush=True)
@@ -152,8 +176,8 @@ def main():
         np.savez_compressed(temporary,frame_ids=np.arange(1,limit+1),offsets=np.r_[0,np.cumsum([len(v)for v in values])],
                             boxes=merged[:,:4],scores=merged[:,4]);os.replace(temporary,path)
         outputs[key]=dict(path=str(path),sha256=sha256(path),frames=limit,detections=len(merged),bytes=path.stat().st_size)
-    dump(out/'complete.json',dict(status='SMOKE_COMPLETE'if a.source_check else'COMPLETE_CORRELATION_OBSERVATIONS',
-        sequence=a.sequence,split=a.split,frames=limit,IR_intervention=a.ir_intervention,outputs=outputs,models=model_info,config_sha256=sha256(config_path),
+    dump(out/'complete.json',dict(status='SMOKE_COMPLETE'if a.source_check or a.limit_frames else'COMPLETE_CORRELATION_OBSERVATIONS',
+        sequence=a.sequence,split=a.split,frames=limit,IR_intervention=a.ir_intervention,head_roles=a.head_roles,outputs=outputs,models=model_info,config_sha256=sha256(config_path),
         specification_sha256=spec_sha256,calibration_sha256=sha256(calibration_path),source_RGB_sha256=config['source_RGB_sha256'],
         global_reference=dict(path=str(source),sha256=sha256(source)),fresh_RGB_parity=parity if a.source_check else
         dict(frames=len(parity),count_equal=sum(x['count_equal']for x in parity),exact=sum(x['array_exact']for x in parity)),

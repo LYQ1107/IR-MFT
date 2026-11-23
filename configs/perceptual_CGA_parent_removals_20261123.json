@@ -1,0 +1,39 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_PARENT_CGA_REMOVAL_FIT",
+  "created_utc": "2026-11-23T05:28:50.607723+00:00",
+  "parent_plan": "configs/perceptual_correlation_repair_20261123.json",
+  "parent_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "reason": "Complete seed0 head-role Dev supports a tentative IRconfidence/RGBgeometry readout. Required parentCGA mechanism removals must use the original parentloss/cache, not the negative CGR curriculum family. Do not transfer negative CGR removal conclusions to parentCGA.",
+  "cue": "ir",
+  "seed": 0,
+  "variants": {
+    "aligned": "Radius0 instead of2, otherwise same original parent training.",
+    "no_gate": "Remove feature risk gate/bound; original implementation also omits final priority merge for this variant. Raw readout remains the primary comparison. Gate339 parameters exist but receive no gradient.",
+    "no_counterfactual": "Original implementation removes BOTH wrongauxiliary consistency and reliableRGB distillation; this is a regularization-bundle removal, not wrongauxiliary-only."
+  },
+  "epochs": 24,
+  "updates": 6912,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "source_fitter": "Exact unchanged tools/train_correlation_repair.py; all matched Train samples/budget and sourcecheckpoint remain frozen.",
+  "schedule": {
+    "2": [
+      "aligned",
+      "no_counterfactual"
+    ],
+    "3": [
+      "no_gate"
+    ]
+  },
+  "dependency": "Per-card complete full correlation_geometry producer frees that card. Never overlap it with the active geometry neural forward. No data/sourcefile changes.",
+  "evaluation": "All3 removals x4snapshots xfull/RGBboxes/RGBscores xraw/priority=72 completeDev cases, after frozen exact source/parent IR anchors. Primary semantic/geometry method remains fixed IRfull epoch24 RGBboxes raw50.515. Report strict fixed-epoch removals and best-grid removed controls; no claim from a favorable checkpoint alone. No full Test selection from this registration.",
+  "important": "Three matched seed replication and IRfeature-intervention family remains unchanged. Parent removals are exploratory seed0; expand any supported components to seeds1/2 before final claims.",
+  "resources": "Only physical2/3; reuse same frozenFPN cache; compact additional checkpoints below0.1GiB; no new fullframe cache.",
+  "Test_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

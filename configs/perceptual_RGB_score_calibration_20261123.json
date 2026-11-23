@@ -1,0 +1,21 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_SCORE_CALIBRATION_FIT_OR_DEV_REPLAY",
+  "created_utc": "2026-11-23T05:22:45.870355+00:00",
+  "parent_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "purpose": "Ordinary strongRGB confidence calibration control for the seed0 IRsemantic/RGBgeometry50.515 signal. No IR pixels/features or learned fusion are inputs. No novelty credit.",
+  "source": "Exact existing joint3 RGB checkpoint; existing RGBFPN cache on1152 fixed Train images, no encoder/newimage cache. Frozen source head FP32 CPU inference, same fitting precision as parentadapter. Actual Dev applies maps to canonical original RGB score packets.",
+  "Train": "All6Train x192cachedframes. Complete all1152 source predictions before reading Train labels. Class1 maxIoU>=0.5 positives, <=0.2 negatives only outside class8 IoU>0.2; middle/ignored neutral. Targets from original hash-frozen GT. Equal video total weight with natural within-video class proportions.",
+  "models": [
+    "identity",
+    "temperature",
+    "platt"
+  ],
+  "temperature": "Fit positive temperature by weighted Train binary logloss, logT bounded[-4,4], one scalar; no Dev search.",
+  "platt": "LogisticRegression C1, intercept, max_iter1000, tol1e-8, logit(originalscore) as only input, fixedrandom0. Require positive slope to preserve NMS ordering; do not deploy a negative-slope fit.",
+  "evaluation": "Freeze both fitted scalar maps before any new Dev. Identity map first must exactly reproduce all39 originalRGB baseline metrics and both full track files. Both scalar maps then complete4834-frame Dev. Cached original NMS candidate set/confidence>=0.1 retained, so this does not test newly admitted lower-score anchors. Report that limitation.",
+  "scope": "Ordinary calibrated baseline only; no change to new-IR model, detector, ByteTrack parameters, Test or current six matched fits. No full Test authorized.",
+  "storage": "CPU only, small coefficient/proposal arrays outsideGit, no wholeimages or fullfeature bank.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

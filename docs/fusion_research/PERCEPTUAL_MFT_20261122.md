@@ -1,11 +1,17 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
-## Current verified state: recovery and naive composition negative, targeted controls running
+## Current verified state: tentative semantic/geometry signal, matched replication running
 
 The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
 the requested threshold is34.529. The prior matched three-seed new-IR point
 control averages31.710. There are still0 established multimodal innovations.
 Actual November DiffV2IR remains the auxiliary data, with only physical GPUs2/3.
+
+Latest complete Dev diagnosis: IR confidence with RGB geometry reaches50.515,
+versus strongest matched control50.044. This is a single-seed signal with BT
+improvement and SN degradation. The registered84-case cross-seed/intervention
+family, ordinary RGB calibration and original-parent removals remain pending.
+No new Test or supported innovation is asserted.
 
 The [new validated correlation setup](PERCEPTUAL_MFT_20261123_CORRELATION_SETUP.md)
 uses the exact shared frozen RGB encoder/head for RGB-repeat, gray and actual
@@ -82,17 +88,24 @@ RGB-box/fused-confidence and fused-box/RGB-confidence diagnostics. All3 cues
 get the same36 total full-Dev cases. On32 real frames of both videos, the
 no-memory outputs match the earlier trained predictions exactly, and all
 original24 temporal controls survive the diagnostic extension exactly.
-All142 maintained tests pass. Both full videos now pass exact trained
-no-memory parity; the complete36-case metric family remains in replay.
+All142 maintained tests pass. Both full videos pass exact trained no-memory
+parity; all36 metric cases are complete. Temporal averaging and physical-flow
+transport do not improve best IR. RGB geometry with fused IR confidence reaches
+50.515 versus strongest matched RGB/gray50.044, but BT improves4.490 and SN
+loses2.544 relative to ordinary IR fusion. This is seed0 Dev evidence only.
+Copying pre-NMS decoded coordinates does not preserve every final proposal/ID.
 
 Exact parent adapter seeds1/2 are now registered for all3 cues, six additional
 matched24E fits using the existing feature bank. Seed0 IR has better IDF1 and
 fewer ID switches than gray but slightly lower HOTA; this is a stability
-question, not an established HOTA contribution. All48 new full-Dev policies
-retain all checkpoints. Six trained seed0 anchor streams must match exactly
-on both full videos before new accuracy; fresh RGB retains only the already
-quantified4 tail-batch numerical deviations, exact counts and unchanged
-0.6/0.7 memberships. Common checkpoint/policy selection uses mean3-seed Dev.
+question, not an established HOTA contribution. The original48 new full-fusion Dev policies retain all checkpoints. Before any
+new-seed Dev forward/accuracy, the old schedule was superseded to add24
+fixed-epoch role controls and12 IRfeature interventions,84 new cases total.
+Extra roles fix RGB18/gray18/IR24 for every seed, from the prior seed0 full-cue
+selection, without a new per-seed epoch search. All18 seed0 role streams must
+match exactly on both full videos before new accuracy; fresh RGB retains only
+previously quantified4 tail-batch differences, exact counts and unchanged
+0.6/0.7 memberships. All six matched24E fits continue unchanged.
 A separately registered24-frame Train-only photometric compatibility probe
 diagnoses polarity/histogram mismatch without changing source images or
 creating another full feature bank. The photometric condition failed: only2/6 recall and1/6 cosine wins, so no
@@ -100,6 +113,12 @@ mapped-image training or feature cache is added. All36 mechanical guard
 repairs also completed with no group-mean gain over corresponding NN+ByteTrack
 parents. A registered multi-anchor/mutual competition integration repair runs
 six full zero controls before18 full cases, on unchanged cached evidence/heads.
+All24 are complete: IRobservation+RGBpoint mean50.314 exceeds parent49.771,
+while IRpoint mean49.885 is worse than same-backend RGBpoints. This is a
+generic integration repair with a fixed seed0 detector, not an IRpoint
+contribution. Original-parent CGA removals are registered for the next freed
+cards, and a Train-only RGB scalar calibration is prepared as an ordinary
+strong control. No new large feature bank is created.
 These classical primitives alone receive no novelty credit. No new Test is
 authorized by these probes.
 
