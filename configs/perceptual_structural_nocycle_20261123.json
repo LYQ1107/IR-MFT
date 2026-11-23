@@ -1,0 +1,65 @@
+{
+  "status": "REGISTERED_AFTER_COMPLETE59DEV_BEFORE_CGA14_TEST_ACCURACY",
+  "created_UTC": "2026-11-23T10:30:45.474692+00:00",
+  "base_configuration": "configs/perceptual_structural_relative_20261123.json",
+  "base_config_sha256": "909eb6fae97ce7eb64c79a31ee93e76d713003c51cc7d9c13dbd276cf49519fd",
+  "single_seed_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "source_59Dev_state_sha256": "1f79f6271a1188e3fd5e48d1477210500cc5a1a2ec9a9a37a136c430cf6c9d1e",
+  "source_Dev_analysis_sha256": "97a6deb36b7be752f99864255163445a1842a2eac83a25c569148e807c68a101",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "primary_IR": {
+    "variant": "no_cycle",
+    "epoch": 6,
+    "output_policy": "raw",
+    "Dev_HOTA": 51.329,
+    "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_relative_fit/ir_no_cycle_s0/epoch06.pt"
+  },
+  "fits": [
+    {
+      "cue": "rgb",
+      "variant": "no_cycle",
+      "seed": 0,
+      "physical_gpu": "2"
+    },
+    {
+      "cue": "gray",
+      "variant": "no_cycle",
+      "seed": 0,
+      "physical_gpu": "3"
+    },
+    {
+      "cue": "ir",
+      "variant": "no_cycle_no_centering",
+      "seed": 0,
+      "physical_gpu": "2"
+    },
+    {
+      "cue": "ir",
+      "variant": "no_cycle_no_risk",
+      "seed": 0,
+      "physical_gpu": "3"
+    }
+  ],
+  "epochs": 24,
+  "updates": 6912,
+  "Train_cache_frames": 1152,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "trainable_parameters": 145600,
+  "scheduling": "Onlyphysical2/3; wait ALL7CGA unlabeled Test producers COMPLETE before fits. Four different controls/removals, one seed0 each. Reuse old frozen encoder/FPN/structure caches; no image or complete-FPN duplication.",
+  "definitions": {
+    "no_cycle": "Keep structural weights/validity/cost confidence, feature teacher-risk placement, bounded residual and relative semantic centering; remove inverse consistency.",
+    "no_cycle_no_centering": "Same no_cycle feature operator; relative semantic readout uses teacher instead of spatial-null reference. Compute null heads anyway to retain nominal training forward budget.",
+    "no_cycle_no_risk": "Same no_cycle and centered readout; give feature operator zero teacher risk scores, removing only (1-p)*(p<.6). Keep structural confidence, .5RMS tanh bound, final2logit bound and original RGB geometry."
+  },
+  "required_evaluation": "Strongest matched RGB/gray each4snapshots/raw+priority; both newIR removals at same6/raw and their best4snapshot curves. Existing IR no_cycle/no_structure curves retained. Selected no_cycle IR gets actual-image roll and unavailable controls; both source8/prefix32/full provenance before metrics. No new main-method choice fromTest.",
+  "attribution": "Inverse consistency was harmful and receives no contribution credit. Structure, centering and feature-risk placement are provisional; do not claim2-3positive contributions before proper controls.",
+  "Test_accuracy_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

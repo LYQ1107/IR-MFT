@@ -1,6 +1,30 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
-## Current verified state: single-seed mechanism repair after completed replication
+## Current verified state: completed59Dev and fixed-seed no-cycle refinement
+
+The complete initial structural-relative59Dev family has finished. Full IR
+HOTA49.599 exceeds matched RGB49.455 by only0.144; gray is47.679.
+Removing hard cycle consistency reaches51.329 at6/raw, versus original
+RGB Dev47.579 and prior CGA50.515. The cycle constraint is harmful, not a
+contribution. The all-structure removal also reaches50.938. All24passes
+were run; later training does not improve the complete model. These are
+Dev results, not a Test gain or three established innovations.
+
+The primary IR6/raw choice is frozen before four new seed0 fits: matched
+no-cycle RGB/gray controls and clean IR centering/risk-placement removals.
+Each has145600parameters,24passes over1152 cached Trainframes and6912updates.
+36 new evaluations plus17 completed references are registered; no new
+mainIR fit or seed replication. Source8/prefix32/full39 provenance precedes
+accuracy. Current maintained tests:168passed. Work assets:55.51GiB/64GiB.
+
+All7 frozen CGA Test producers finished before the14 official CPU replays.
+The exact-count RGB source audit failed at MSK-003 frame629 (61vs62 NMS
+candidates). Failure originals were archived; a source-only amendment was
+registered before any14Test accuracy, retaining original matched2px/.005
+bounds and0.6/0.7memberships, while separately exposing at most one weak
+unmatched candidate in the final batch. Producer/checkpoints/frozen cases
+are unchanged. Both canonical RGB29.529 and fresh RGB remain controls;
+weak-NMS tracking equivalence is not assumed. Full14 results remain pending.
 
 The user's latest directive fixes all future work to seed0: no further seed
 fitting or inference. Completed historical replication stays archived. The old
@@ -38,9 +62,9 @@ The new structural-relative hypothesis has two provisional mechanisms,
 matched RGB/gray controls and3 removals, all fixed seed0. Its1152-frame scalar
 structure cache is complete(~0.24GiB); all6 fits completed24E/6912 with matching
 sample digests, all fixed seed0. Both8source checks and both32trained-prefix59stream
-checks passed; full Dev production is running on2/3. All59 cases were registered
+checks passed; full Dev production and all59 metrics are complete. All59 cases were registered
 before fitting. Unlabeled score/roll sensitivity confirms numerical influence,
-not performance. No new accuracy is presumed. Current-versus-distorted response
+not correctness. Full results are stated above. Current-versus-distorted response
 subtraction has prior art and is not claimed as a new subtraction operation.
 No new Test or supported innovation is asserted.
 

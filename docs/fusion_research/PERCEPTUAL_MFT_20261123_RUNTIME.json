@@ -170,5 +170,55 @@
     "cap_GiB": 64,
     "only_physical2_3": true,
     "other_project_processes_excluded": true
+  },
+  "no_cycle_refinement_latest": {
+    "checked_UTC": "2026-11-23T10:57:29.764487+00:00",
+    "own_gpu_processes": [
+      {
+        "state": "structural_nocycle_fit_state.json",
+        "job": "rgb_no_cycle_s0",
+        "physical_gpu": "2",
+        "pid": 2884367,
+        "uuid": "GPU-a4095968-9191-50eb-d56c-ed633b31e2c0",
+        "allocated_context_MiB": "416",
+        "mapping_verified": true
+      },
+      {
+        "state": "structural_nocycle_fit_state.json",
+        "job": "gray_no_cycle_s0",
+        "physical_gpu": "3",
+        "pid": 2884368,
+        "uuid": "GPU-f931e51b-55b2-c2c2-6506-b6f986864d54",
+        "allocated_context_MiB": "416",
+        "mapping_verified": true
+      }
+    ],
+    "only_allowed_physical_cards": true,
+    "other_projects_filtered": true,
+    "fixed_seed": 0,
+    "work_physical_GiB": 55.5088045168668,
+    "cap_GiB": 64,
+    "current_states": {
+      "CGA_formal_test_state.json": {
+        "status": "RUNNING_FROZEN_ALL7_TEST_REPLAYS",
+        "jobs": {
+          "RUNNING": 2,
+          "PENDING": 12
+        }
+      },
+      "structural_nocycle_fit_state.json": {
+        "status": "FITTING_FOUR_SINGLE_SEED_CONTROLS",
+        "jobs": {
+          "SMOKE_RUNNING": 2,
+          "PENDING": 2
+        }
+      },
+      "structural_nocycle_dev_state.json": {
+        "status": "WAITING_FOR_FOUR_SEED0_CONTROL_FITS",
+        "jobs": {
+          "PENDING": 36
+        }
+      }
+    }
   }
 }

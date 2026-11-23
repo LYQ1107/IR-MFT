@@ -59,6 +59,16 @@ def main():
         numerical_5point_target_met=min(delta, fresh_delta) >= plan['reference']['test_required_improvement_pp'],
         fixed_seed=0, additional_seed_work=False, specification_sha256=sha256(spec_path),
         completed_state_sha256=sha256(state_path),
+        source_audit_recovery=dict(
+            plan_sha256=state.get('recovery_plan_sha256'),
+            source_sha256=state.get('recovery_source_sha256'),
+            original_failure_archive=state.get('original_source_failure_archive'),
+            per_sequence={k: v.get('recovered_source_audit', v.get('source_audit'))
+                          for k, v in state['producers'].items()},
+            limitation='The original exact-count source audit failed on one weak NMS candidate at the MSK-003 tail. '
+                       'Failure retained and tolerance amendment recorded before any14Test accuracy. '
+                       'Matched numeric bounds and high/birth memberships were preserved. '
+                       'Fresh and canonical RGB are separate controls; low-confidence tracking equivalence is not assumed.'),
         scope='Full7 historical Test sequences,15985 frames, official combined TrackEval. '
               'All14 cases were frozen from complete Dev. No Test-based checkpoint/readout selection. '
               'Historic Test was previously exposed; this remains exploratory research.',
@@ -80,7 +90,7 @@ def main():
               '| --- | ---: | ---: |']
     for row in removals:
         lines.append(f"| {row['variant']} | {row['primary_minus_paired24_HOTA']:+.3f} | {row['primary_minus_Dev_selected_best4_HOTA']:+.3f} |")
-    lines += ['', report['attribution'], '', report['timing'], '',
+    lines += ['', report['attribution'], '', report['timing'], '', report['source_audit_recovery']['limitation'], '',
               'Reaching a numeric threshold alone does not establish2–3 original multimodal contributions. '
               'Module support, strongest controls and prior-art boundaries require explicit interpretation.']
     stem.with_suffix('.md').write_text('\n'.join(lines)+'\n')
