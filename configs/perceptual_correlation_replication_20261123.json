@@ -1,0 +1,94 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_SEED1_OR_SEED2_CORRELATION_FIT",
+  "created_utc": "2026-11-23T04:31:33.792974+00:00",
+  "parent_plan": "configs/perceptual_correlation_repair_20261123.json",
+  "parent_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "reason": "Seed0 parent actualIR HOTA49.771 is0.194 below strongest matchedgray49.965, but IDF159.972 exceeds gray58.417 and IDSW88 versus113. Single NN-adapter seed is insufficient to determine stability. Replicate the exact parent, retain all failures, no Test-driven choice. This is replication/strong-control construction, not a newly established mechanism.",
+  "source_seed0": "Existing completed24E parentCGA fits and25 fullDev; never replace them by a new run.",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "new_fits": [
+    {
+      "cue": "rgb",
+      "variant": "full",
+      "seed": 1
+    },
+    {
+      "cue": "gray",
+      "variant": "full",
+      "seed": 1
+    },
+    {
+      "cue": "ir",
+      "variant": "full",
+      "seed": 1
+    },
+    {
+      "cue": "rgb",
+      "variant": "full",
+      "seed": 2
+    },
+    {
+      "cue": "gray",
+      "variant": "full",
+      "seed": 2
+    },
+    {
+      "cue": "ir",
+      "variant": "full",
+      "seed": 2
+    }
+  ],
+  "epochs": 24,
+  "updates": 6912,
+  "Train_frames": 1152,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "fitting": "Exact unchanged tools/train_correlation_repair.py, same source/cache/head/adapter/loss/learning schedule. All three cues per seed share sample draws. No extra images or feature bank.",
+  "schedule": {
+    "2": [
+      {
+        "cue": "gray",
+        "seed": 1
+      },
+      {
+        "cue": "rgb",
+        "seed": 2
+      },
+      {
+        "cue": "ir",
+        "seed": 2
+      }
+    ],
+    "3": [
+      {
+        "cue": "rgb",
+        "seed": 1
+      },
+      {
+        "cue": "ir",
+        "seed": 1
+      },
+      {
+        "cue": "gray",
+        "seed": 2
+      }
+    ]
+  },
+  "dependencies": {
+    "2": "Both temporal geometry NN producers COMPLETE, full no-memory parity passed; CPU replays may continue.",
+    "3": "All staged removals COMPLETE and the queued24-frame Train photometric diagnostic COMPLETE; no overlapping GPU3 worker."
+  },
+  "evaluation": "All four checkpoints and raw/priority for every new fit, complete4834-frame Dev,48 new cases. Combine with existing seed0 curves. Report both per-seed best-grid outcomes and common epoch/policy selected by mean Dev across all3seeds for each cue; never pick the best Test seed. No new Test is authorized by replication alone.",
+  "safety": "Only physical GPUs2/3, one fitting worker per allowed card, all new weights outsideGit. Reuse unchanged existing FP16FPN arrays; expected additional small adapter checkpoints below0.1GiB.",
+  "supported_multimodal_innovations": 0,
+  "Test_read": false,
+  "goal_met": false
+}
