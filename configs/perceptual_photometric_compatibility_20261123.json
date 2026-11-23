@@ -1,0 +1,36 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_PHOTOMETRIC_FORWARD_OR_ACCURACY",
+  "created_utc": "2026-11-23T04:21:16.684891+00:00",
+  "main_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "parent_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "Train_cached_indices": [
+    0,
+    48,
+    96,
+    144
+  ],
+  "Train_videos": 6,
+  "frames": 24,
+  "input_hw": [
+    480,
+    864
+  ],
+  "source": "Exact frozen joint3 RGB detector, unchanged original head and actual November pseudo-IR files.",
+  "views": [
+    "rgb",
+    "gray",
+    "ir_raw",
+    "ir_gray_norm",
+    "ir_cdf",
+    "ir_polarity_cdf"
+  ],
+  "rule": "Current RGB teacher boxes with scores>=0.7; central half-box median versus 1.25x ring excluding all current boxes. Vote contrast-polarity product only when both abs contrasts>=8 levels and each region has>=16 pixels; score-weighted negative total vote inverts IR before CDF. No GT/previous/future input. No valid votes means no inversion.",
+  "histogram": "256-level monotone current-IR to current-gray inverse-CDF with only positive-count histogram bins. Round uint8 LUT. Gray self-CDF must be byte-exact. Use existing Train gray mean/std for mapped/gray-normalized streams, original IR mean/std only for ir_raw.",
+  "outputs": "All24 predicted proposal arrays and contrast diagnostics frozen/hash serialized before any GT scoring; no new image/FPN cache. Train-only per-video proposal recall/precision at IoU0.5 and scores0.1,0.6,0.7. No HOTA claim.",
+  "activation": "Diagnostic only. Consider further mapped-IR fitting only if polarity-CDF improves recall@0.6 over raw IR on>=4/6 Train videos and paired cosine current-versus-wrong-frame contrast improves over raw IR on>=4/6 videos. Otherwise retain negative evidence without a new cache. Any future fit requires a separate frozen plan, same adapter/loss/budget and strongest existing RGB/gray controls.",
+  "resources": "Queue only physical GPU3 after all staged removal producers complete. Physical GPU2 remains assigned to temporal controls. No additional whole-frame dataset or full feature bank.",
+  "novelty": "Classical photometric matching is not a standalone innovation; this diagnoses compatibility of generated contrast with the frozen RGB encoder.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
