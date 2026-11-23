@@ -321,5 +321,54 @@
     "maintained_tests": 180,
     "goal_met": false,
     "supported_innovations": 0
+  },
+  "current_allowed_physical_GPUs": [
+    "4",
+    "5"
+  ],
+  "latest_complete_nocycle_Test_and_stream_preparation": {
+    "UTC": "2026-11-23T14:28:07.494756+00:00",
+    "states": {
+      "structural_nocycle_test_state.json": "COMPLETE",
+      "structural_factorial_fit_state.json": "FITTING_FOUR_MISSING_COMPONENT_CASES",
+      "structural_factorial_dev_state.json": "WAITING_FOR_FOUR_SEED0_COMPONENT_FITS",
+      "structural_factorial_runtime_schedule.json": "WAITING_FOR_FACTORIAL_BT_DEV_WORKER_BEFORE_GPU4",
+      "structural_factorial_next_stage_state.json": "WAITING_FOR_COMPLETE32DEV_AND_ANALYSIS_AND_RUNTIME",
+      "structural_stream_optimizer_GPU_schedule.json": "WAITING_FOR_ALL_FACTORIAL_TEST_NN_PRODUCERS"
+    },
+    "own_GPU_processes": [
+      {
+        "job": "ir_000_s0",
+        "pid": 3042083,
+        "physical_gpu": "4",
+        "uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "context_MiB": 5504,
+        "mapping_verified": true
+      },
+      {
+        "job": "ir_100_s0",
+        "pid": 3042085,
+        "physical_gpu": "5",
+        "uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "context_MiB": 5504,
+        "mapping_verified": true
+      }
+    ],
+    "other_projects_filtered": true,
+    "work_physical_GiB": 56.28011703491211,
+    "work_cap_GiB": 64,
+    "full_Test_cases": 14,
+    "full_Test_frames_each": 15985,
+    "Test_primary_HOTA": 29.142,
+    "RGB_HOTA": 29.529,
+    "primary_minus_RGB": -0.387,
+    "all14_read_after_complete": true,
+    "CPU_optimizer_parity_steps": 2,
+    "real_RAM_reader_comparisons": 48,
+    "live_GPU_optimizer_parity": "QUEUED_NOT_EXECUTED",
+    "additional_seed_work": false,
+    "maintained_tests": 190,
+    "goal_met": false,
+    "supported_innovations": 0
   }
 }

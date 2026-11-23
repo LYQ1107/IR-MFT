@@ -1,5 +1,5 @@
 {
-  "status": "ENGINEERING_PASSED_DEV_RESEARCH_CONTINUES_GOAL_NOT_MET",
+  "status": "ENGINEERING_PASSED_COMPLETE_TEST_NEGATIVE_RESEARCH_CONTINUES_GOAL_NOT_MET",
   "baseline_Dev_replay": {
     "C00_rgb_ByteTrack": {
       "HOTA": 47.579,
@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 180,
+    "current_full_repository_passed": 190,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -55,8 +55,8 @@
     "local_correlation_repair_tests_passed": 4,
     "frozen_head_repair_tests_passed": 3,
     "recoverable_curriculum_tests_passed": 3,
-    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_factorial_pipeline_full_20261123.log",
-    "latest_log_sha256": "eaaf46d47ef356e26dd54ca1afc15d796151c7e5a3ec904a3ac28216fb373163",
+    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_stream_gpu_schedule_full_20261123.log",
+    "latest_log_sha256": "7d2dd7c38773eaa1ed63942a4e5883d8fd74838ca98300eeb0322bb9cfae78b5",
     "ROI_confirmed_full_Dev_primary_parities": 8,
     "ROI_parity_scope": "All39 official metrics and both full track files exact; no synthetic unit test claimed for the experiment-only tracker.",
     "temporal_correction_safety_tests_passed": 6,
@@ -71,14 +71,18 @@
     "decoded_relative_response_tests_passed": 1,
     "structural_nocycle_refinement_tests_passed": 2,
     "correlation_source_recovery_tests_passed": 3,
-    "latest_result": "180passed,8warnings,14.61s. Includes old-component operator equivalence, all8missing-input fallback, complete nonadditive interaction accounting and mandatory negative-formal-candidate Test roles. Twelve pipeline files compile and extraction/runtime/replayCLIhelp pass; newGPUfits/source37/runtime6/Test6-10cases remain queued, not executed.",
+    "latest_result": "190passed,8warnings,14.25s. Ten new input, private-loop binding, boundedRAM reader and GPU scheduling guards; CPU2step optimizer proof and real12frame48decode proof complete. GPU2step diagnostic is queued, not executed; broaderTrain fitting has not started.",
     "structural_gate_observer_tests_passed": 1,
     "perceptual_gpu_handoff_tests_passed": 3,
     "additional_targeted_train_schedule_tests_passed": 3,
     "additional_targeted_train_schedule_scope": "Included in177maintained tests: first-pass cache-address equality, distinct frames/full-cycle coverage, cue/order stability, seed0 and invalid-address guards.",
     "structural_factorial_operator_tests_passed": 2,
     "structural_factorial_interaction_tests_passed": 2,
-    "formal_component_Test_retention_test_passed": 1
+    "formal_component_Test_retention_test_passed": 1,
+    "structural_stream_input_contract_tests_passed": 3,
+    "structural_stream_loop_contract_tests_passed": 3,
+    "structural_stream_RAM_reader_tests_passed": 2,
+    "structural_stream_GPU_schedule_tests_passed": 2
   },
   "smoke": {
     "BT-005": {
@@ -612,7 +616,7 @@
     "goal_met": false
   },
   "storage_current": {
-    "work_asset_GiB": 53.13897719886154,
+    "work_asset_GiB": 56.28011703491211,
     "work_soft_cap_GiB": 64,
     "original_filesystem_free_GiB": 4.9,
     "dataset_copies": false,
@@ -758,5 +762,34 @@
     "frames": 15985,
     "GT_read": false,
     "new_Test_accuracy_read": false
+  },
+  "latest_structural_nocycle_all7_Test": {
+    "status": "COMPLETE",
+    "cases": 14,
+    "frames_each": 15985,
+    "all_read_after_complete": true,
+    "primary_HOTA": 29.142,
+    "primary_IDF1": 32.057,
+    "canonical_RGB_HOTA": 29.529,
+    "fresh_RGB_HOTA": 29.529,
+    "delta_HOTA": -0.387,
+    "positive_paired_and_bestcurve_removals": 0,
+    "IR_image_roll_HOTA_change": 0.381,
+    "off_tracks_full39metrics_CSV_exact_to_fresh": true,
+    "report_sha256": "af59cec3b63d99ea2b611a353fc52213e7560b48f1a983d756ec276ff8953db3",
+    "activation_report_sha256": "357797b06b87df6be9de5482923ec324aba13b07135551b5f814020923c7b5e6",
+    "primary_not_reselected": true,
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "latest_stream_preparation": {
+    "status": "CPU_OPTIMIZER_AND_RAM_READER_PROOFS_COMPLETE_GPU_PROBE_QUEUED",
+    "CPU_optimizer_proof_sha256": "623e0623b3163032d00943e190b960fc61d0bf66248cf1f6957218b9f0218036",
+    "RAM_reader_proof_sha256": "2026963579c440fb42cf57e15ea2a58d878f2bd544ddf2f45282a53e66e87f40",
+    "registered_unique_Train_frames": 14897,
+    "full_Train_frames": 27251,
+    "full_Train_claimed": false,
+    "formal_fit_started": false,
+    "diagnostic_GPU_scheduler_pid": 3052708
   }
 }

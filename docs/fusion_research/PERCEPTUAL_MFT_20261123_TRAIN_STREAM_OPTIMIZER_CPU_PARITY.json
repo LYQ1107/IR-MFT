@@ -1,0 +1,101 @@
+{
+  "status": "COMPLETE_TWO_STEP_CPU_OPTIMIZER_PARITY",
+  "source_sha256": "1e5c6fa2bcdf9d87af03fb44747a15d1ae2dd855d71a947dd99ceef3c6c49c74",
+  "live_helper_sha256": "3622e61ee4adbd560e82d7206c03c3ef9f52536fd6e8ee49bb648a1f0f1a2fe3",
+  "legacy_source_sha256": "d7cbebe577bc0f1b628cc0cb364f6dc36d56d70f100ee4449135d4e7b4227279",
+  "fixed_seed": 0,
+  "engineering_steps_per_path": 2,
+  "no_formal_training": true,
+  "Test_read": false,
+  "seconds": 120.0622633160092,
+  "actual_frames": [
+    [
+      [
+        "BT-001",
+        1
+      ],
+      [
+        "BT-001",
+        1508
+      ],
+      [
+        "SN-015",
+        1
+      ],
+      [
+        "SN-015",
+        3302
+      ]
+    ],
+    [
+      [
+        "BT-003",
+        1
+      ],
+      [
+        "BT-003",
+        122
+      ],
+      [
+        "MSK-002",
+        1
+      ],
+      [
+        "MSK-002",
+        882
+      ]
+    ]
+  ],
+  "input_fields_exact": true,
+  "original9adapter_tensors_initial_and_updated_exact": true,
+  "frozen_head_tensors_exact": true,
+  "frozen_backbone_construction_preserved_CPU_RNG": true,
+  "initialization_threads": 2,
+  "CPU_step_threads": 4,
+  "loss_components_and_clipped_gradient_norm_exact": true,
+  "AdamW_moments_steps_groups_exact": true,
+  "mean_loss_and_gradient": [
+    1.2027819752693176,
+    1.2027819752693176,
+    0.0,
+    4.7571346167840645e-11,
+    0.01858720276504755
+  ],
+  "frame_draw_sha256": "1a5b715b51d6f2d7dd1c40e0217fcb74ddca177f30720dd4f8dd4fc361eb523c",
+  "legacy_function_sha256": "549dbfbfa9379900183b801f1d5ff4069e01c02863fe8dc98326b1d018569c87",
+  "CPU_function_sha256": "09b13a04e22836f2ae361d0e31568e7ed99220a5c19ce6d01323c9b21d54ffb3",
+  "prior_actual_GPU12frame_B1_parity_sha256": "53f439c1fa5f99fe0e52eac28bb2a3e6e8db2f736504ef84cdd59179adab7a10",
+  "cache_sources": {
+    "BT-001": {
+      "cache_manifest_sha256": "cf765a7179fd9017e6905a19f3b6ec31e654582963ccb8f2fe98d9c256b601ac",
+      "structure_manifest_sha256": "c7c465abe70dcac205f2cf4ea63a35f039b3cc7c5d1497f8c0c57dfd6e6829cc"
+    },
+    "BT-003": {
+      "cache_manifest_sha256": "bed6895afb2ba9708745eead267f8159f1daadf427033cfc5f513cf51bf8f096",
+      "structure_manifest_sha256": "f3e306c3efb0b0303ae93fe50d3410cab212a84e188a89bcf462220df5bbf5c7"
+    },
+    "MSK-002": {
+      "cache_manifest_sha256": "54d19cb4bbdf5c30f1f329d8416d2228ce88f8dec287608de9104ba42c050d0e",
+      "structure_manifest_sha256": "55ac5f1a4af5fbd8edadee09bfb04db35738d2ea8d2a7ae9502f5ddf9045eb8e"
+    },
+    "PF-001": {
+      "cache_manifest_sha256": "d24a313a0919ba0a356b3d42c9b70c7298e979d6fb8a2845da9974c3f3042f4c",
+      "structure_manifest_sha256": "23cb4e8f2b5fbb19ac107536a9d7e5e10a8117296138fbbae9dfe6bc03387a78"
+    },
+    "SN-001": {
+      "cache_manifest_sha256": "72b0523b068c45d8c1c4b165beaf516e8f39a7b5f654b9cf37ec47e293c65e63",
+      "structure_manifest_sha256": "afe807d81934fe6b680fa22ea07f8a3b6ee621c7f528fd23651fd3c68cd586dc"
+    },
+    "SN-015": {
+      "cache_manifest_sha256": "e54ee541f9c157e3c4ca71e5de0293b3708b8501dff02e0aefce8b08dae1afc7",
+      "structure_manifest_sha256": "5302b9551fcb45a0725343e35ca3a73acb1535e7493ac2fc7bc0e6ee0c7eb75c"
+    }
+  },
+  "CUDA_context_initialized": false,
+  "Dev_read": false,
+  "no_image_or_FPN_copy": true,
+  "scope": "TwoCPU diagnostic steps/path on8realcachedTrainframes/fourTrainvideos. The newinput path reads actualRGB/IR and GT/descriptors, but encoder callback replays B1cache slices already verified in the earlier12frame actualGPUprobe. This is not new liveGPU encoding or GPUgradient parity, and does not train a formal24pass candidate or measure HOTA.",
+  "pending": "Full streaming24pass loop and GPU optimizer parity; matched coverage-study registration and allformalTest.",
+  "goal_met": false,
+  "supported_innovations": 0
+}
