@@ -1,0 +1,30 @@
+{
+  "id": "GFXM_ir_aligned_s0_e12_rgb_nms_fused_boxes_raw",
+  "cue": "ir",
+  "variant": "aligned",
+  "seed": 0,
+  "epoch": 12,
+  "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_aligned_s0/epoch12.pt",
+  "head_roles": [
+    "full",
+    "rgb_boxes",
+    "rgb_scores",
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "evaluate_roles": [
+    "full",
+    "rgb_boxes",
+    "rgb_scores",
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "stage": "parent_removals",
+  "proposal_key": "GFXM_ir_aligned_s0_e12_rgb_nms_fused_boxes_raw",
+  "head_role": "rgb_nms_fused_boxes",
+  "output_policy": "raw",
+  "producer_directory": "single_seed_geometry_predictions",
+  "fusion_plan_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "specification_sha256": "af683e3da25b3dcd9a881d07767cac93371ecf3f41eb009ceae36f8399252da7",
+  "registration": "Fixed five geometry/score roles; all3cues/seed0only at the prior fixed epochs, original3removals/all4snapshots unchanged. Source30anchor streams exact before any accuracy. No Test or novelty presumption."
+}

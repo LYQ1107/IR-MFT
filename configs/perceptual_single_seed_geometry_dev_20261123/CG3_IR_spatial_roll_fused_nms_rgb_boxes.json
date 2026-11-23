@@ -1,0 +1,33 @@
+{
+  "id": "CG3_IR_spatial_roll_fused_nms_rgb_boxes",
+  "cue": "ir",
+  "variant": "full",
+  "seed": 0,
+  "epoch": 24,
+  "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_full_s0/epoch24.pt",
+  "feature_intervention": "spatial_roll",
+  "head_roles": [
+    "full",
+    "rgb_boxes",
+    "rgb_scores",
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "evaluate_roles": [
+    "fused_nms_rgb_boxes",
+    "rgb_nms_fused_boxes"
+  ],
+  "stage": "main_factorial",
+  "reference": {
+    "directory": "correlation_geometry_predictions",
+    "prefix": "CG3_IR_spatial_roll",
+    "full_role_name": ""
+  },
+  "proposal_key": "CG3_IR_spatial_roll_fused_nms_rgb_boxes",
+  "head_role": "fused_nms_rgb_boxes",
+  "output_policy": "priority",
+  "producer_directory": "single_seed_geometry_predictions",
+  "fusion_plan_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "specification_sha256": "af683e3da25b3dcd9a881d07767cac93371ecf3f41eb009ceae36f8399252da7",
+  "registration": "Fixed five geometry/score roles; all3cues/seed0only at the prior fixed epochs, original3removals/all4snapshots unchanged. Source30anchor streams exact before any accuracy. No Test or novelty presumption."
+}

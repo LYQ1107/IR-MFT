@@ -1,0 +1,114 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_STRUCTURAL_CACHE_OR_NEW_FIT",
+  "created_utc": "2026-11-23T07:02:36.475363+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "parent_plan_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "reason": "Complete84-case three-seed replication fails strongest matchedcontrol: best fixed-role IRmean48.607 versusgray49.006. ActualIR correct-vs-wrong8-neighbor self-similarity has lowercost and highercycle agreement in all6Trainvideos; known gray shifts pass6/6. Test remains unread. Test a structural correspondence prior plus relative semantic evidence, rather than another unconstrained full-feature repair.",
+  "hypotheses": {
+    "A": "Classical same-image self-similarity provides modality-robust local weights; inverse-consistency rejects ambiguous/generated geometry before auxiliary values can modify RGB.",
+    "B": "Current-minus-quarter-rolled auxiliary head logits cancel auxiliary marginal/style corrections; the frozenRGB geometry is retained and supervision trains semantic evidence rather than generated-IR regression."
+  },
+  "novelty": "MIND, local attention, inverse consistency, counterfactuals and RGBregression/fusedclassification all have priorart. These are2provisional task-specific mechanisms, not2established innovations. Require samecapacityRGB/gray, module removals, full-sequence metrics and repeatedseeds.",
+  "cues": [
+    "rgb",
+    "gray",
+    "ir"
+  ],
+  "Train_frames": 1152,
+  "epochs": 24,
+  "updates": 6912,
+  "snapshots": [
+    6,
+    12,
+    18,
+    24
+  ],
+  "training_input_hw": [
+    480,
+    864
+  ],
+  "inference_input_hw": [
+    800,
+    1440
+  ],
+  "cache": {
+    "directory": "structural_cache",
+    "pixel_descriptor_hw": [
+      240,
+      432
+    ],
+    "stored_grid_hw": [
+      60,
+      108
+    ],
+    "channels": 8,
+    "view_arrays": [
+      "rgb_descriptor",
+      "ir_descriptor",
+      "rgb_valid",
+      "ir_valid"
+    ],
+    "GT_read": false,
+    "expected_GiB": 0.25,
+    "source": "Exact existing1152Trainframe IDs, read actualRGB and NovemberIR; no copies/replacement/synthesis. Letterbox on half-detector canvas, patchSSD3x3 MINDinspired8neighbors, areaaverage toP3; validity excludespadding and lowlocalvariance. Grayscale and RGBrepeat share the scalarRGB descriptor."
+  },
+  "architecture": {
+    "latent_channels": 32,
+    "local_radius": 2,
+    "structural_temperature": 0.1,
+    "feature_residual_bound_RMS_fraction": 0.5,
+    "teacher_risk_threshold": 0.6,
+    "semantic_logit_bound": 2.0,
+    "null_feature_roll_fraction": 0.25,
+    "forward_backward_tolerance_cells": 1.0,
+    "teacher_geometry": true,
+    "trainable_query_key": false
+  },
+  "fit": {
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 10,
+    "lambda_reliable_RGB": 0.1,
+    "lambda_wrong_auxiliary": 1.0,
+    "counterfactual": "Semantic KL only; exclude both-frame class1 foreground from wrong-frame penalty, never claim shared foreground validates regression. No recovery curriculum.",
+    "batch": "Exact same original two-video/two-frame draws and cosine24E schedule. Same headpasses and sampledraws across cues/variants."
+  },
+  "initial_fits": [
+    {
+      "cue": "rgb",
+      "variant": "full",
+      "seed": 0
+    },
+    {
+      "cue": "gray",
+      "variant": "full",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "variant": "full",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "variant": "no_structure",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "variant": "no_cycle",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "variant": "no_centering",
+      "seed": 0
+    }
+  ],
+  "evaluation": "Retain all4snapshots/raw outputs for every initialfit. Samecap RGBrepeat and gray receive samechance, full4834Dev. Module removal uses sameepochs and sampledraws. Replicate all3cues seeds1/2 if candidate warrants continuation; no bestseed Test choice. Extraordinary5pointtarget remains34.529 Test, not aDevvalue.",
+  "scheduling": "CPUonly descriptorcache may run now after positive Train diagnostic. NewGPU fitting waits until corresponding existing231-stream producer has completed, onlyphysical2/3; do not edit pinned parent sources or interrupt existing jobs.",
+  "storage": "Work cap64GiB and independentdiskreserve40GiB; newscalar-descriptorcache~.25GiB, no newFPN/imagecopy. No arrays/weights/rawtracks inGit.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

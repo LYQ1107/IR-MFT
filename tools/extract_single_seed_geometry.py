@@ -1,0 +1,217 @@
+#!/usr/bin/env python3
+"""Cross NMS geometry and emitted geometry without changing the frozen model."""
+import argparse
+import json
+import os
+from pathlib import Path
+import sys
+import time
+
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+import cv2
+import numpy as np
+import torch
+
+from tools.build_correlation_cache import auxiliary_input
+from tools.run_pseudo_ir_comparison import dump,sha256
+from yolox.exp import get_exp
+from yolox.models.local_correlation_repair import CorrelationRepair
+from yolox.tracker.foveated_regions import exact_half_preproc
+from yolox.tracker.priority_observations import priority_union
+from yolox.utils import postprocess
+from tools.indexed_postprocess import indexed_postprocess,corner_boxes
+
+
+def detections(output,ratio):
+    if output is None:return np.empty((0,5),np.float32)
+    value=output.float().cpu().numpy()
+    return np.c_[value[:,:4]/ratio,value[:,4]*value[:,5]].astype(np.float32)
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--sequence',required=True)
+    p.add_argument('--split',choices=['dev','test'],default='dev');p.add_argument('--specification')
+    p.add_argument('--source-check',type=int,default=0);p.add_argument('--batch-size',type=int,default=4)
+    p.add_argument('--ir-intervention',choices=['none','zero','spatial_roll'],default='none')
+    p.add_argument('--producer-name',choices=['single_seed_geometry_predictions'],default='single_seed_geometry_predictions')
+    p.add_argument('--head-roles',nargs='+',choices=['full','rgb_boxes','rgb_scores','fused_nms_rgb_boxes','rgb_nms_fused_boxes'],default=['full'])
+    p.add_argument('--limit-frames',type=int,default=0,help='Unlabeled Dev prefix proof before complete inference')
+    a=p.parse_args()
+    if 'full'not in a.head_roles or len(set(a.head_roles))!=len(a.head_roles):raise ValueError('Retain full output and unique readout roles')
+    if a.limit_frames<0 or(a.limit_frames and a.split!='dev'):raise ValueError('Prefix proof is Dev-only')
+    if a.batch_size!=4:raise ValueError('Keep the original independent-sample baseline batch shape4')
+    physical=os.environ.get('CUDA_VISIBLE_DEVICES')
+    if physical not in {'2','3'}:raise ValueError('Only physical GPU2/3')
+    plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());work=Path(plan['work_root'])
+    config_path=ROOT/'configs/perceptual_correlation_repair_20261123.json';config=json.loads(config_path.read_text())
+    protocol=json.loads((ROOT/plan['protocol']).read_text())
+    if a.sequence not in protocol['dev'if a.split=='dev'else'historical_test']:raise ValueError('Outside frozen split')
+    if a.split=='test'and not(work/'correlation_selection_frozen.json').exists():raise ValueError('Freeze complete Dev choices before Test')
+    calibration_path=work/'correlation_cache/calibration.json';calibration=json.loads(calibration_path.read_text())
+    if calibration['config_sha256']!=sha256(config_path):raise ValueError('Training normalization changed')
+    if a.source_check:
+        specification=dict(models=[dict(id='source_RGB',cue='rgb',baseline=True)]+
+            [dict(id='zero_'+cue,cue=cue,zero_adapter=True)for cue in ['rgb','gray','ir']],
+            status='UNLABELED_SOURCE_CHECK',config_sha256=sha256(config_path))
+        spec_sha256=None
+    else:
+        specification=json.loads(Path(a.specification).read_text());spec_sha256=sha256(a.specification)
+        if specification['config_sha256']!=sha256(config_path):raise ValueError('Registered evaluation changed')
+    torch.set_num_threads(2);cv2.setNumThreads(1);torch.backends.cudnn.benchmark=False
+    torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
+    torch.cuda.set_per_process_memory_fraction(.45,0)
+    checkpoint=Path(config['source_RGB_checkpoint'])
+    if sha256(checkpoint)!=config['source_RGB_sha256']:raise ValueError('Frozen source RGB checkpoint changed')
+    model=get_exp(str(ROOT/'exps/yolox_mft26ir_visible.py'),None).get_model()
+    saved=torch.load(checkpoint,map_location='cpu',weights_only=False);model.load_state_dict(saved['model'],strict=True);del saved
+    model=model.cuda().half().eval().requires_grad_(False)
+    loaded={};model_info={};needed={'rgb'}
+    for row in specification['models']:
+        name=row['id'];cue=row['cue'];needed.add(cue)
+        if name in loaded:raise ValueError('Duplicate snapshot name')
+        if row.get('baseline'):loaded[name]=None;model_info[name]=dict(row);continue
+        variant=row.get('variant','full');architecture=config['architecture']
+        adapter=CorrelationRepair(latent=architecture['latent_channels'],radius=0 if variant=='aligned'else architecture['local_radius'],
+            temperature=architecture['temperature'],risk_gate=variant!='no_gate',bound=architecture['maximum_residual_RMS_fraction'])
+        if not row.get('zero_adapter'):
+            path=Path(row['checkpoint']);saved=torch.load(path,map_location='cpu',weights_only=False)
+            if (saved['config_sha256']!=sha256(config_path)or saved['metadata']['cue']!=cue
+                    or saved['completed_epochs']!=row['epoch']or saved['metadata']['variant']!=variant
+                    or saved['metadata']['seed']!=row['seed']or saved['metadata']['source_RGB_sha256']!=config['source_RGB_sha256']):
+                raise ValueError('Frozen trained adapter provenance mismatch')
+            adapter.load_state_dict(saved['adapter'],strict=True)
+            model_info[name]=dict(row,checkpoint_sha256=sha256(path),metadata=saved['metadata'])
+        else:model_info[name]=dict(row)
+        loaded[name]=adapter.cuda().float().eval().requires_grad_(False)
+    source=Path(plan['frozen_detection_sources']['rgb_'+a.split])/'detections'/(a.sequence+'.npz')
+    with np.load(source)as z:reference={key:z[key]for key in ['frame_ids','offsets','boxes','scores']}
+    limit=min(len(reference['frame_ids']),a.source_check or len(reference['frame_ids']))
+    if a.limit_frames:limit=min(limit,a.limit_frames)
+    producer_name=a.producer_name if a.ir_intervention=='none'else a.producer_name+'_'+a.ir_intervention
+    out=work/producer_name/a.split/a.sequence
+    if a.source_check:out=out/f'source_check_{a.source_check}'
+    elif a.limit_frames:out=out/f'prefix_check_{a.limit_frames}'
+    out.mkdir(parents=True,exist_ok=True)
+    if(out/'complete.json').exists():raise ValueError('Completed correlation predictions exist')
+    buffers={name:[]for name in loaded};reference_buffers={};anchor_buffers={}
+    for row in specification['models']:
+        if not row.get('baseline'):
+            roles=row.get('head_roles',a.head_roles)
+            if 'full'not in roles or len(set(roles))!=len(roles)or not set(roles)<={'full','rgb_boxes','rgb_scores','fused_nms_rgb_boxes','rgb_nms_fused_boxes'}:
+                raise ValueError('Keep full output and registered unique per-model roles')
+            for role in roles:
+                key=row['id']+(''if role=='full'else'_'+role)
+                buffers[key]=[];buffers[key+'_raw']=[]
+                reference_buffers[key+'_raw']=[];anchor_buffers[key+'_raw']=[]
+                model_info[key]=dict(model_info[row['id']],head_role=role)
+                model_info[key+'_raw']=dict(model_info[key],output_policy='NMS without final-priority integration; trained feature gate unchanged')
+    parity=[];started=time.perf_counter()
+    with torch.inference_mode():
+        for first in range(1,limit+1,4):
+            frames=list(range(first,min(first+4,limit+1)));inputs={cue:[]for cue in needed};ratios=[]
+            available={cue:[]for cue in needed}
+            for frame in frames:
+                rgb_path=Path(plan['data_root'])/('train'if a.split=='dev'else'test')/a.sequence/'visible'/f'{frame:06d}.jpg'
+                ir_path=Path(plan['generated_ir_root'])/a.split/a.sequence/'infrared_diffv2ir'/f'{frame:06d}.png'
+                rgb=cv2.imread(str(rgb_path));ir=cv2.imread(str(ir_path),-1)if'ir'in needed else None
+                if rgb is None or ('ir'in needed and (ir is None or ir.ndim!=2 or ir.dtype!=np.uint8 or ir.shape!=rgb.shape[:2])):
+                    raise ValueError('Actual current RGB/newIR pair missing')
+                if ir is not None and a.ir_intervention=='zero':ir=np.zeros_like(ir)
+                elif ir is not None and a.ir_intervention=='spatial_roll':ir=np.roll(ir,(ir.shape[0]//4,ir.shape[1]//4),(0,1))
+                value,ratio=exact_half_preproc(rgb,config['inference_input_hw'],(.485,.456,.406),(.229,.224,.225))
+                inputs['rgb'].append(value);ratios.append(ratio);available['rgb'].append(True)
+                for cue in needed-{'rgb'}:
+                    image=ir if cue=='ir'else cv2.cvtColor(rgb,cv2.COLOR_BGR2GRAY)
+                    norm=calibration['statistics'][cue];value,_=auxiliary_input(image,config['inference_input_hw'],norm['mean'],norm['std'])
+                    inputs[cue].append(value);available[cue].append(bool(image.max()!=image.min()))
+            # Eval-only convolution/BN and all attention reductions preserve the
+            # sample dimension. A prediction never reads a neighboring sample's
+            # pixels or statistics, even when independent images share a batch.
+            features={cue:model.backbone(torch.from_numpy(np.stack(values)).cuda())for cue,values in inputs.items()}
+            teacher=model.head(features['rgb']);teacher_scores=[];offset=0
+            teacher_corners=corner_boxes(teacher)
+            for value in features['rgb']:
+                count=value.shape[-2]*value.shape[-1]
+                score=teacher[:,offset:offset+count,4]*teacher[:,offset:offset+count,5]
+                teacher_scores.append(score.reshape(len(frames),1,*value.shape[-2:]));offset+=count
+            fresh=[detections(value,ratio)for value,ratio in zip(postprocess(teacher.clone(),1,.1,.7),ratios)]
+            originals=[]
+            for frame,current in zip(frames,fresh):
+                lo,hi=reference['offsets'][frame-1:frame+1];original=np.c_[reference['boxes'][lo:hi],reference['scores'][lo:hi]]
+                originals.append(original)
+                parity.append(dict(frame=frame,count_equal=len(original)==len(current),array_exact=bool(np.array_equal(current,original)),
+                                   maximum_difference=float(np.max(np.abs(current-original)))if current.shape==original.shape and current.size else None))
+            for row in specification['models']:
+                name=row['id'];cue=row['cue'];adapter=loaded[name]
+                if adapter is None:
+                    values=fresh
+                    buffers[name].extend(values)
+                else:
+                    row_available=available[cue];auxiliary=features[cue]
+                    intervention=row.get('feature_intervention','none')
+                    if intervention not in{'none','unavailable','spatial_roll'}or(intervention!='none'and cue!='ir'):
+                        raise ValueError('Registered IR feature intervention required')
+                    if intervention=='unavailable':row_available=[False]*len(frames)
+                    elif intervention=='spatial_roll':
+                        auxiliary=tuple(torch.roll(value,(value.shape[-2]//4,value.shape[-1]//4),(-2,-1))for value in auxiliary)
+                    valid=torch.tensor(row_available,device='cuda')
+                    repaired=adapter(features['rgb'],auxiliary,teacher_scores,valid)
+                    prediction=model.head(repaired)
+                    fused_corners=corner_boxes(prediction);nms_cache={}
+                    for role in row.get('head_roles',a.head_roles):
+                        key=name+(''if role=='full'else'_'+role)
+                        nms_role={'fused_nms_rgb_boxes':'full','rgb_nms_fused_boxes':'rgb_boxes'}.get(role,role)
+                        if nms_role not in nms_cache:
+                            readout=prediction.clone()
+                            if nms_role=='rgb_boxes':readout[:,:,:4]=teacher[:,:,:4]
+                            elif nms_role=='rgb_scores':readout[:,:,4:]=teacher[:,:,4:]
+                            nms_cache[nms_role]=indexed_postprocess(readout,1,.1,.7)
+                        selected,indices=nms_cache[nms_role];emitted=[];refs=[];ids=[]
+                        for batch,(value,index)in enumerate(zip(selected,indices)):
+                            if value is None:
+                                emitted.append(None);refs.append(np.empty(0,np.float32));ids.append(np.empty(0,np.int32));continue
+                            value=value.clone()
+                            if role=='fused_nms_rgb_boxes':value[:,:4]=teacher_corners[batch,index]
+                            elif role=='rgb_nms_fused_boxes':value[:,:4]=fused_corners[batch,index]
+                            emitted.append(value)
+                            refs.append((teacher[batch,index,4].float()*teacher[batch,index,5].float()).cpu().numpy())
+                            ids.append(index.cpu().numpy().astype(np.int32))
+                        values=[detections(value,ratio)for value,ratio in zip(emitted,ratios)]
+                        if role=='rgb_scores'or intervention=='unavailable'or row.get('zero_adapter'):
+                            for value,reference_score in zip(values,refs):np.testing.assert_array_equal(value[:,4],reference_score)
+                        if row.get('zero_adapter')or intervention=='unavailable':
+                            for current,baseline in zip(values,fresh):np.testing.assert_array_equal(current,baseline)
+                        buffers[key+'_raw'].extend([value.copy()for value in values])
+                        reference_buffers[key+'_raw'].extend(refs);anchor_buffers[key+'_raw'].extend(ids)
+                        if row.get('variant','full')!='no_gate':
+                            values=[original.copy()if not ok or row.get('zero_adapter')else priority_union(original,[(current,1.)])[0]
+                                    for original,current,ok in zip(originals,values,row_available)]
+                        buffers[key].extend(values)
+            if frames[-1]%100<4 or frames[-1]==limit:
+                progress=dict(frame=frames[-1],frames=limit,snapshots=len(loaded),physical_gpu=physical,seconds=time.perf_counter()-started)
+                dump(out/'progress.json',progress);print(json.dumps(progress),flush=True)
+    outputs={}
+    for key,values in buffers.items():
+        merged=np.concatenate(values).reshape(-1,5);path=out/(key+'.npz');temporary=out/(key+'.tmp.npz')
+        extra={}
+        if key in reference_buffers:
+            extra=dict(rgb_reference_scores=np.concatenate(reference_buffers[key]),anchor_indices=np.concatenate(anchor_buffers[key]))
+            assert len(extra['rgb_reference_scores'])==len(merged)==len(extra['anchor_indices'])
+        np.savez_compressed(temporary,frame_ids=np.arange(1,limit+1),offsets=np.r_[0,np.cumsum([len(v)for v in values])],
+                            boxes=merged[:,:4],scores=merged[:,4],**extra);os.replace(temporary,path)
+        outputs[key]=dict(path=str(path),sha256=sha256(path),frames=limit,detections=len(merged),bytes=path.stat().st_size)
+    dump(out/'complete.json',dict(status='SMOKE_COMPLETE'if a.source_check or a.limit_frames else'COMPLETE_CORRELATION_OBSERVATIONS',
+        sequence=a.sequence,split=a.split,frames=limit,IR_intervention=a.ir_intervention,head_roles=a.head_roles,outputs=outputs,models=model_info,config_sha256=sha256(config_path),
+        specification_sha256=spec_sha256,calibration_sha256=sha256(calibration_path),source_RGB_sha256=config['source_RGB_sha256'],
+        global_reference=dict(path=str(source),sha256=sha256(source)),fresh_RGB_parity=parity if a.source_check else
+        dict(frames=len(parity),count_equal=sum(x['count_equal']for x in parity),exact=sum(x['array_exact']for x in parity)),
+        GT_read=False,future_frame_input=False,previous_outputs_rewritten=False,independent_sample_batch_size=4,
+        indexed_postprocess_source_sha256=sha256(ROOT/'tools/indexed_postprocess.py'),
+        provenance='Raw streams include original selected dense-anchor indices and exact same-anchor RGB objectness*class probability. Priority merged streams omit these fields. Original three head-role arrays must match frozen references before accuracy.',
+        source_sha256=sha256(__file__),adapter_source_sha256=sha256(ROOT/'yolox/models/local_correlation_repair.py'),
+        physical_gpu=physical,seconds=time.perf_counter()-started,peak_gpu_GiB=torch.cuda.max_memory_allocated()/2**30,
+        runtime_scope='Shared current-image production of all declared snapshots, not per-method end-to-end FPS. Eval BN fixed; attention never reduces across samples.'))
+
+
+if __name__=='__main__':main()

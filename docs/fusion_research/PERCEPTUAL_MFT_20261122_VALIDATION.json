@@ -15,7 +15,7 @@
   "tests": {
     "current_perceptual_tests_passed": 11,
     "full_repository_before_gap_extension_passed": 24,
-    "current_full_repository_passed": 148,
+    "current_full_repository_passed": 160,
     "current_full_repository_failed": 0,
     "foreground_function_tests_passed": 3,
     "foreground_tracker_tests_passed": 4,
@@ -55,15 +55,20 @@
     "local_correlation_repair_tests_passed": 4,
     "frozen_head_repair_tests_passed": 3,
     "recoverable_curriculum_tests_passed": 3,
-    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_geometry_factorial_full_20261123.log",
-    "latest_log_sha256": "c4119dcfc799c716c7104b47e24deb99ca09df5db5b81353695e147f0262e7f9",
+    "latest_log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pytest_structural_inference_full_20261123.log",
+    "latest_log_sha256": "b694f33e9682d3d110bccbaebb81a13627ad879f78cf461f13ad57c8edf2b244",
     "ROI_confirmed_full_Dev_primary_parities": 8,
     "ROI_parity_scope": "All39 official metrics and both full track files exact; no synthetic unit test claimed for the experiment-only tracker.",
     "temporal_correction_safety_tests_passed": 6,
     "physical_RGB_motion_tests_passed": 2,
     "trajectory_consensus_tests_passed": 5,
     "semantic_physical_score_tests_passed": 4,
-    "indexed_postprocess_tests_passed": 2
+    "indexed_postprocess_tests_passed": 2,
+    "structural_correspondence_tests_passed": 3,
+    "structural_grid_tests_passed": 1,
+    "structural_relative_repair_tests_passed": 5,
+    "semantic_only_preservation_tests_passed": 2,
+    "decoded_relative_response_tests_passed": 1
   },
   "smoke": {
     "BT-005": {
@@ -699,5 +704,28 @@
     "samples_each": 1152,
     "all24_sample_digests_match_per_seed": true,
     "report": "PERCEPTUAL_MFT_20261123_CORRELATION_TRAINING_LEDGER.json"
+  },
+  "explicit_single_seed_user_directive": {
+    "fixed_future_seed": 0,
+    "no_further_seed_fitting_or_inference": true,
+    "policy": "configs/perceptual_single_seed_policy_20261123.json",
+    "prior_completed_results_retained": true
+  },
+  "three_seed_Dev_research_complete": {
+    "cases": 84,
+    "strongest_fixed_role_IR_mean_HOTA": 48.60733333333334,
+    "strongest_gray_mean_HOTA": 49.00566666666666,
+    "supported_innovations": 0,
+    "report": "PERCEPTUAL_MFT_20261123_CORRELATION_REPLICATION_ANALYSIS.json"
+  },
+  "structural_Train_diagnostic": {
+    "frames": 24,
+    "videos": 6,
+    "current_vs_wrong_cost_wins": 6,
+    "current_vs_wrong_cycle_wins": 6,
+    "synthetic_gray_translation_passes": 6,
+    "full_structure_cache_frames": 1152,
+    "GT_input": false,
+    "tracking_accuracy_claim": false
   }
 }

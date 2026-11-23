@@ -1,6 +1,12 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
-## Current verified state: tentative semantic/geometry signal, matched replication running
+## Current verified state: single-seed mechanism repair after completed replication
+
+The user's latest directive fixes all future work to seed0: no further seed
+fitting or inference. Completed historical replication stays archived. The old
+partial231-stream three-seed factorial was stopped before any new metrics and
+replaced by171 streams/140 single-seed cases. This supersedes conditional seed
+replication clauses below. Single-seed results will not claim seed robustness.
 
 The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
 the requested threshold is34.529. The prior matched three-seed new-IR point
@@ -10,11 +16,16 @@ Actual November DiffV2IR remains the auxiliary data, with only physical GPUs2/3.
 Latest complete Dev diagnosis: IR confidence with RGB geometry reaches50.515,
 versus strongest matched control50.044 in that family. This is a single-seed signal with BT
 improvement and SN degradation. The registered84-case cross-seed/intervention
-family is running after both full source proofs; all9 matched24E fits are complete.
+family and all9 matched24E fits are complete. IR RGB-box/raw mean48.567 does not
+beat strongest gray role mean49.006; best IR role/policy mean48.607 also falls short.
 Train-fitted ordinary RGB calibration is negative. A further24-case association-score
 separation family leaves mainIR50.515 unchanged and raises strongest gray50.117.
-Original-parent removals are fitting, with a new164-case NMS/emission-geometry
-factorial registered before any removal inference, preserving all prior cases.
+All3 original-parent removal fits completed24E. The replacement140-case
+single-seed NMS/emission-geometry factorial retains all removal cases.
+The new structural-relative hypothesis has two provisional mechanisms,
+matched RGB/gray controls and3 removals, all fixed seed0. Its1152-frame scalar
+structure cache is complete(~0.24GiB);6 fits wait for the current card producers,
+with59 Dev cases preregistered before fitting. No new accuracy is presumed.
 No new Test or supported innovation is asserted.
 
 The [new validated correlation setup](PERCEPTUAL_MFT_20261123_CORRELATION_SETUP.md)
@@ -92,7 +103,7 @@ RGB-box/fused-confidence and fused-box/RGB-confidence diagnostics. All3 cues
 get the same36 total full-Dev cases. On32 real frames of both videos, the
 no-memory outputs match the earlier trained predictions exactly, and all
 original24 temporal controls survive the diagnostic extension exactly.
-All148 maintained tests pass. Both full videos pass exact trained no-memory
+All160 maintained tests pass. Both full videos pass exact trained no-memory
 parity; all36 metric cases are complete. Temporal averaging and physical-flow
 transport do not improve best IR. RGB geometry with fused IR confidence reaches
 50.515 versus strongest matched RGB/gray50.044, but BT improves4.490 and SN
@@ -133,7 +144,7 @@ is negative: actual-IR identity descriptors do not beat strong RGB on either
 Dev video. No risk tracker is deployed from this probe. A small Train-only
 readout audit finds positive current-versus-wrong-frame IR cosine contrast,
 but this is neither heldout correspondence nor tracking accuracy evidence.
-Current work assets occupy about53.59GiB of the independent-disk64GiB cap.
+Current work assets occupy about54.17GiB of the independent-disk64GiB cap.
 No models, feature arrays, image copies or raw track files are published.
 
 The original RGB checkpoint includes earlier Dev pretraining, and historical

@@ -2,7 +2,9 @@
 
 No new mechanism in this campaign is an established contribution yet.
 Every claim still requires same-capacity RGB/gray controls, module removals,
-multiple seeds, and complete-sequence official metrics on the fixed setting.
+and complete-sequence official metrics on the fixed setting. The user's latest
+directive fixes future work to seed0 and cancels all further seed replication;
+already completed multi-seed evidence is retained, with no future seed-robustness claim.
 
 [OGM-GE, CVPR2022](https://openaccess.thecvf.com/content/CVPR2022/html/Peng_Balanced_Multimodal_Learning_via_On-the-Fly_Gradient_Modulation_CVPR_2022_paper.html)
 studies imbalanced multimodal optimization and modulates gradients to improve
@@ -79,3 +81,20 @@ remains actual-versus-unavailable/misaligned IR, strongest matched RGB/gray and
 ordinary confidence-calibration controls, original-parent module removals,
 three adapter seeds and the complete frozen Test. This is a targeted related
 work check, not an exhaustive proof that any future mechanism is original.
+
+## Classical structural correspondence diagnostic
+
+[MIND, Medical Image Analysis2012](https://pubmed.ncbi.nlm.nih.gov/22722056/)
+compares local same-image patch self-similarities to represent structure across
+modalities. [Self-similarity context, MICCAI2013](https://iacl.ece.jhu.edu/proceedings/miccai2013/papers/8149/81490187.pdf)
+instead compares neighboring patches without relying on the central patch and
+uses inverse-consistent multimodal registration. These are classical published
+methods, not new descriptors or tracking innovations from this campaign.
+
+The new small2D8-neighbor Train-only diagnostic borrows the patch-SSD/local
+variance idea. It does not reproduce the full published3D registration method.
+Known synthetic grayscale displacements test the implementation; current versus
+wrong actualIR tests structural discrimination. Bounding-box foreground labels
+do not supply true RGB/IR pixel correspondences, so even a positive diagnostic
+cannot establish corrected fish geometry or a HOTA contribution. All24 fields
+are frozen before GT is opened; no full cache or new fit is activated automatically.

@@ -1,0 +1,56 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_REAL_IMAGE_DESCRIPTOR_OR_GT_DIAGNOSIS",
+  "created_utc": "2026-11-23T06:49:36.308013+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "parent_plan_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "Train_cached_indices": [
+    0,
+    48,
+    96,
+    144
+  ],
+  "wrong_permutation": [
+    2,
+    3,
+    0,
+    1
+  ],
+  "input_hw": [
+    240,
+    432
+  ],
+  "uniform_sample_stride": 4,
+  "local_search_radius": 4,
+  "known_gray_translation_yx": [
+    3,
+    -2
+  ],
+  "descriptor": "2D8-neighbor self-similarity: patchSSD3x3, cardinal variance, minimum-subtracted/max-normalized exponential; MIND-inspired diagnostic, not exact published3Dregistration.",
+  "views": [
+    "gray_translated",
+    "IR_current",
+    "IR_wrong_frame",
+    "IR_spatial_roll"
+  ],
+  "prior_art": [
+    {
+      "title": "MIND2012",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22722056/"
+    },
+    {
+      "title": "Self-similarity context2013",
+      "url": "https://iacl.ece.jhu.edu/proceedings/miccai2013/papers/8149/81490187.pdf"
+    }
+  ],
+  "evaluation": "All24 full-image fields serialized on a fixed uniform grid before opening GT. Only then evaluate current-frame class1 bbox support, excluding wrong-frame class1 boxes for current-vs-wrong comparisons. Bounding boxes are not true pixel correspondences. Gray synthetic translations are the only known displacement truth.",
+  "prerequisite": "Known translated gray exact recovery>=0.8 on textured foreground in EACH6Trainvideos; actualIR current-vs-wrong mean bestcost lower and inverse-consistent fraction higher in at least4/6videos. A passing diagnostic only motivates further registration, never authorizes a HOTA/novelty claim or new full cache automatically.",
+  "storage": "CPUonly, noCUDA, no fullimages/encoders/weights; only downsampled uniform-grid diagnostics expected<0.03GiB. ExistingTrainRGB and actualNovemberIR read-only.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "common_comparison_mask": "All3IR views use the intersection of their textured source-grid masks, current foreground minus wrong foreground. Same pixel denominator for all3. Gray positive control has its own valid textured mask.",
+  "amendment_before_any_GT_or_accuracy": {
+    "utc": "2026-11-23T06:50:20.979067+00:00",
+    "reason": "Align all IR comparison denominators before labels are opened; first partial producer stopped with no frozen24-field/GT report, retained privately. No prediction values inspected."
+  }
+}
