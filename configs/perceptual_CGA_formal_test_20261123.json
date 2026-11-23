@@ -1,0 +1,369 @@
+{
+  "status": "FROZEN_FROM_COMPLETE_DEV_BEFORE_NEW_TEST",
+  "created_utc": "2026-11-23T08:24:29.293063+00:00",
+  "config_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "models": [
+    {
+      "id": "GFX_rgb_s0",
+      "cue": "rgb",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 18,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/rgb_full_s0/epoch18.pt",
+      "head_roles": [
+        "full"
+      ],
+      "stage": "main_factorial",
+      "reference": {
+        "directory": "temporal_geometry_predictions",
+        "prefix": "TC_rgb",
+        "full_role_name": "none"
+      }
+    },
+    {
+      "id": "GFX_gray_s0",
+      "cue": "gray",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 18,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/gray_full_s0/epoch18.pt",
+      "head_roles": [
+        "full",
+        "rgb_scores"
+      ],
+      "stage": "main_factorial",
+      "reference": {
+        "directory": "temporal_geometry_predictions",
+        "prefix": "TC_gray",
+        "full_role_name": "none"
+      }
+    },
+    {
+      "id": "GFX_ir_s0",
+      "cue": "ir",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_full_s0/epoch24.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "main_factorial",
+      "reference": {
+        "directory": "temporal_geometry_predictions",
+        "prefix": "TC_ir",
+        "full_role_name": "none"
+      }
+    },
+    {
+      "id": "GFXM_ir_aligned_s0_e24",
+      "cue": "ir",
+      "variant": "aligned",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_aligned_s0/epoch24.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "GFXM_ir_aligned_s0_e06",
+      "cue": "ir",
+      "variant": "aligned",
+      "seed": 0,
+      "epoch": 6,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_aligned_s0/epoch06.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "GFXM_ir_no_gate_s0_e24",
+      "cue": "ir",
+      "variant": "no_gate",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_no_gate_s0/epoch24.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "GFXM_ir_no_gate_s0_e06",
+      "cue": "ir",
+      "variant": "no_gate",
+      "seed": 0,
+      "epoch": 6,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_no_gate_s0/epoch06.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "GFXM_ir_no_counterfactual_s0_e24",
+      "cue": "ir",
+      "variant": "no_counterfactual",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_no_counterfactual_s0/epoch24.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "GFXM_ir_no_counterfactual_s0_e06",
+      "cue": "ir",
+      "variant": "no_counterfactual",
+      "seed": 0,
+      "epoch": 6,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_no_counterfactual_s0/epoch06.pt",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "parent_removals"
+    },
+    {
+      "id": "CG3_IR_unavailable",
+      "cue": "ir",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_full_s0/epoch24.pt",
+      "feature_intervention": "unavailable",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "main_factorial",
+      "reference": {
+        "directory": "correlation_geometry_predictions",
+        "prefix": "CG3_IR_unavailable",
+        "full_role_name": ""
+      }
+    },
+    {
+      "id": "CG3_IR_spatial_roll",
+      "cue": "ir",
+      "variant": "full",
+      "seed": 0,
+      "epoch": 24,
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_fit/ir_full_s0/epoch24.pt",
+      "feature_intervention": "spatial_roll",
+      "head_roles": [
+        "full",
+        "rgb_boxes"
+      ],
+      "stage": "main_factorial",
+      "reference": {
+        "directory": "correlation_geometry_predictions",
+        "prefix": "CG3_IR_spatial_roll",
+        "full_role_name": ""
+      }
+    },
+    {
+      "id": "CG3_source_RGB",
+      "cue": "rgb",
+      "baseline": true,
+      "evaluate_roles": []
+    }
+  ],
+  "cases": [
+    {
+      "id": "CGA_rgb_Dev_selected",
+      "proposal_key": "GFX_rgb_s0_raw",
+      "model_id": "GFX_rgb_s0",
+      "head_role": "full",
+      "output_policy": "raw",
+      "cue": "rgb",
+      "seed": 0,
+      "group": "matched_full_controls"
+    },
+    {
+      "id": "CGA_gray_Dev_selected",
+      "proposal_key": "GFX_gray_s0_rgb_scores_raw",
+      "model_id": "GFX_gray_s0",
+      "head_role": "rgb_scores",
+      "output_policy": "raw",
+      "cue": "gray",
+      "seed": 0,
+      "group": "matched_full_controls"
+    },
+    {
+      "id": "CGA_ir_Dev_selected",
+      "proposal_key": "GFX_ir_s0_rgb_boxes_raw",
+      "model_id": "GFX_ir_s0",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "matched_full_controls"
+    },
+    {
+      "id": "CGA_IR_full_fused_readout",
+      "proposal_key": "GFX_ir_s0_raw",
+      "model_id": "GFX_ir_s0",
+      "head_role": "full",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "readout_diagnostic_not_Test_selection"
+    },
+    {
+      "id": "CGA_IR_aligned_paired24",
+      "proposal_key": "GFXM_ir_aligned_s0_e24_rgb_boxes_raw",
+      "model_id": "GFXM_ir_aligned_s0_e24",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_aligned_Dev_best4",
+      "proposal_key": "GFXM_ir_aligned_s0_e06_rgb_boxes_raw",
+      "model_id": "GFXM_ir_aligned_s0_e06",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_no_gate_paired24",
+      "proposal_key": "GFXM_ir_no_gate_s0_e24_rgb_boxes_raw",
+      "model_id": "GFXM_ir_no_gate_s0_e24",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_no_gate_Dev_best4",
+      "proposal_key": "GFXM_ir_no_gate_s0_e06_rgb_boxes_raw",
+      "model_id": "GFXM_ir_no_gate_s0_e06",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_no_counterfactual_paired24",
+      "proposal_key": "GFXM_ir_no_counterfactual_s0_e24_rgb_boxes_raw",
+      "model_id": "GFXM_ir_no_counterfactual_s0_e24",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_no_counterfactual_Dev_best4",
+      "proposal_key": "GFXM_ir_no_counterfactual_s0_e06_rgb_boxes_raw",
+      "model_id": "GFXM_ir_no_counterfactual_s0_e06",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "module_removals"
+    },
+    {
+      "id": "CGA_IR_unavailable",
+      "proposal_key": "CG3_IR_unavailable_rgb_boxes_raw",
+      "model_id": "CG3_IR_unavailable",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "IR_interventions"
+    },
+    {
+      "id": "CGA_IR_spatial_roll",
+      "proposal_key": "CG3_IR_spatial_roll_rgb_boxes_raw",
+      "model_id": "CG3_IR_spatial_roll",
+      "head_role": "rgb_boxes",
+      "output_policy": "raw",
+      "cue": "ir",
+      "seed": 0,
+      "group": "IR_interventions"
+    },
+    {
+      "id": "CGA_source_RGB_fresh",
+      "proposal_key": "CG3_source_RGB",
+      "baseline": false,
+      "cue": "rgb",
+      "group": "numerical_source_controls"
+    },
+    {
+      "id": "CGA_source_RGB_canonical",
+      "baseline": true,
+      "cue": "rgb",
+      "group": "numerical_source_controls"
+    }
+  ],
+  "source_Dev_analysis_sha256": "984684c53cf43338312d4c19e11218bcf5ae213aa7d174398c944358b05138b5",
+  "source_Dev_state_sha256": "6153fc008abb7a1ea498b2a85107b1ff76a95a6851529266d81ea4049d2ee3f7",
+  "source_Dev_specification_sha256": "af683e3da25b3dcd9a881d07767cac93371ecf3f41eb009ceae36f8399252da7",
+  "full_Dev_source_proofs": {
+    "BT-005": {
+      "complete_manifest_sha256": "9c0208e7168445c932f1980b6e14750f0f72e3ef4b6d214f10cb0d0a8f3b517f",
+      "selected_full_Dev_packets": {
+        "GFX_rgb_s0_raw": "66f5857c473f3ec957a7a23b3a3c3923fcf826b5fd9052ca718226e4853d416f",
+        "GFX_gray_s0_rgb_scores_raw": "c97fb2c8e0cc98678f25e5c251d758b155b8feafd634d88f0e8dbfdf1d910d01",
+        "GFX_ir_s0_rgb_boxes_raw": "b748099c784e3af3b8b8be21e7f70bf2c2dc6b8b5adc18a540deacdbafbdd3a4",
+        "GFX_ir_s0_raw": "70025aa3019766b44a9666a088a0aaa643e9813d19cc56b699ebb19ef18dc8b5",
+        "GFXM_ir_aligned_s0_e24_rgb_boxes_raw": "ffd9686edd735e3e9869575bc9962c7b0c97b9738cf6b49fe3955103ee8e47a9",
+        "GFXM_ir_aligned_s0_e06_rgb_boxes_raw": "019062d7817ce88809b3ab96ddb7059e8a10bd3844f31532df5c8e799340c7f9",
+        "GFXM_ir_no_gate_s0_e24_rgb_boxes_raw": "8a382ea34231c97327630c91c377a7c31be740ba8464fe9d92240fff3bba8139",
+        "GFXM_ir_no_gate_s0_e06_rgb_boxes_raw": "ca5789118a36e5bc580691d0a66e09689530338dda3e5ad0d184f58160e7039d",
+        "GFXM_ir_no_counterfactual_s0_e24_rgb_boxes_raw": "9bc718b59a7458d3a75932b23dcc2d8699435fb72ff7e2bf37e9c910e3d974c0",
+        "GFXM_ir_no_counterfactual_s0_e06_rgb_boxes_raw": "94b1b18b741b57ed357a96bca3d292fa7fdae2ad4c74ba4d910cecbe4a3af62b",
+        "CG3_IR_unavailable_rgb_boxes_raw": "1e49d6f658ebc447f7e001759b3957745a3b678903d4e66a7738ad6ab96bd0a9",
+        "CG3_IR_spatial_roll_rgb_boxes_raw": "1dc58567e7cd6d942d0eb7ac56f6df9d40dfd89fe25cfa7f77a5492504a0df70",
+        "CG3_source_RGB": "7b1c77443d522290c1ae81f5a07438a40c8709d0577326388cf3d84490449d22"
+      }
+    },
+    "SN-013": {
+      "complete_manifest_sha256": "e3bf8031f27ea66da3f4a44f621fc542cd5a9b6f57d18307dcbd483b3f46f214",
+      "selected_full_Dev_packets": {
+        "GFX_rgb_s0_raw": "922f9f20b8e3752147d95f0174fe7bcad0e3d9852ff2e9737b21e0d1d6ea17c1",
+        "GFX_gray_s0_rgb_scores_raw": "34929312f07db821bb92b3cd082ee762b6e9538478f9c4bc1de1c8f70933976e",
+        "GFX_ir_s0_rgb_boxes_raw": "bd822539bde54b8ab7aed58b6a1de7f0deebd5e7e7d60c83e5463dac3782a1fd",
+        "GFX_ir_s0_raw": "c8891941aed3ec1bbb96cf9aaba019b887d1e83b087f4ecde8e032593f7cb682",
+        "GFXM_ir_aligned_s0_e24_rgb_boxes_raw": "988b35bac52b06b68275049578cd844a6222e0898280795bb1a198bc5c17cdcf",
+        "GFXM_ir_aligned_s0_e06_rgb_boxes_raw": "c5cc90db9e40aa89db9595cc3a63eba3ea48958c01c08a73a19f10fea3b515ad",
+        "GFXM_ir_no_gate_s0_e24_rgb_boxes_raw": "1c66b9d3c117ecaa82f6003a17a6b18f3ecea11d401fd861fda53531c30b2003",
+        "GFXM_ir_no_gate_s0_e06_rgb_boxes_raw": "172496b799562d8b5a22a77c4cec85b5d5cafd5aa82a5b23775bda4fd89b7b3a",
+        "GFXM_ir_no_counterfactual_s0_e24_rgb_boxes_raw": "88ef65cf057c1bdcbf36fb694185e7da32ac5ad1c3c7d9933a8a23e1584888b4",
+        "GFXM_ir_no_counterfactual_s0_e06_rgb_boxes_raw": "42b3f70e03b7c1349a90f76aaed63d3a89e662986b2aaf8b3fa928adffca7c90",
+        "CG3_IR_unavailable_rgb_boxes_raw": "a709ece07615d15793909a2d9c0d8c0ebce49d8cf6a1f0652a2d02fdeffe0521",
+        "CG3_IR_spatial_roll_rgb_boxes_raw": "9687f1f099e110295bc122a61d6cd7a94ac17d925f0130924525375a49ab1a9e",
+        "CG3_source_RGB": "d8c265df85ac2e50523f03aa6e52c7026e9f2add9d97bcaef0abd8955ceeb132"
+      }
+    }
+  },
+  "primary_case": "CGA_ir_Dev_selected",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "selection": "RGB/gray/IR checkpoints were fixed18/18/24 before this factorial. Each cue readout is selected using complete Dev only. IR primary is RGB NMS/emission with fused confidence. Module removals include same epoch24/readout and strongest Dev6/12/18/24 at that same readout. All14 Test cases are diagnostics/comparisons; primary may not change after Test.",
+  "scheduling": "Existing unchanged producer on physical2/3 only, after each card finishes all structural-relative fits and its full Dev producer. Do not run Test accuracy until all59 structural-relative Dev cases COMPLETE.",
+  "coverage": "All7 historical_Test sequences,15985frames, original TrackEval/ByteTrack. Actual November DiffV2IR and original RGB files remain unchanged.",
+  "attribution": "Positive seed0 Dev removals do not establish original innovations or Test gains. no_counterfactual removes both reliableRGB and wrong-aux losses; no_gate removes feature risk/bound and priority, although raw readout excludes priority.",
+  "numerical": "Publish fresh and canonical RGB baselines separately. Full counts and 0.6/0.7 memberships must match; predeclared diagnostic bounds2pixels/.005score allow FP16 batch-size differences. Never call bounded difference bit-exact.",
+  "Test_read": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

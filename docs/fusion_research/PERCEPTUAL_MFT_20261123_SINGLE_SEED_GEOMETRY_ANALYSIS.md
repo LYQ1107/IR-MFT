@@ -35,6 +35,39 @@ Full4834frame Dev, fixed fitted seed0 by explicit user directive. RGB18/gray18/I
 | ir | rgb_nms_fused_boxes | priority | 48.888 | 68.726 | 34.807 | 56.544 | 57.312 | 42.519 |
 | ir | rgb_nms_fused_boxes | raw | 49.861 | 68.369 | 36.390 | 58.938 | 59.899 | 42.088 |
 
+| Removal | Role | Policy | Full − epoch24 removal HOTA | Full − best4epoch removal HOTA |
+| --- | --- | --- | ---: | ---: |
+| aligned | full | priority | +1.459 | -1.118 |
+| aligned | full | raw | +5.178 | +0.681 |
+| aligned | rgb_boxes | priority | +3.698 | +0.409 |
+| aligned | rgb_boxes | raw | +3.494 | +1.291 |
+| aligned | rgb_scores | priority | +0.678 | -0.003 |
+| aligned | rgb_scores | raw | -2.053 | -2.053 |
+| aligned | fused_nms_rgb_boxes | priority | +2.672 | -1.110 |
+| aligned | fused_nms_rgb_boxes | raw | +2.480 | -0.399 |
+| aligned | rgb_nms_fused_boxes | priority | +2.004 | +0.201 |
+| aligned | rgb_nms_fused_boxes | raw | +4.206 | +1.929 |
+| no_gate | full | priority | +5.578 | -0.447 |
+| no_gate | full | raw | +7.961 | +1.936 |
+| no_gate | rgb_boxes | priority | +4.541 | -0.156 |
+| no_gate | rgb_boxes | raw | +6.140 | +1.443 |
+| no_gate | rgb_scores | priority | +1.923 | +1.126 |
+| no_gate | rgb_scores | raw | +2.287 | +1.490 |
+| no_gate | fused_nms_rgb_boxes | priority | +3.132 | -2.989 |
+| no_gate | fused_nms_rgb_boxes | raw | +4.715 | -1.406 |
+| no_gate | rgb_nms_fused_boxes | priority | +4.859 | +3.398 |
+| no_gate | rgb_nms_fused_boxes | raw | +5.832 | +4.371 |
+| no_counterfactual | full | priority | +2.189 | -1.133 |
+| no_counterfactual | full | raw | +4.097 | +1.765 |
+| no_counterfactual | rgb_boxes | priority | +3.163 | +0.274 |
+| no_counterfactual | rgb_boxes | raw | +4.220 | +2.296 |
+| no_counterfactual | rgb_scores | priority | +0.262 | +0.262 |
+| no_counterfactual | rgb_scores | raw | +1.055 | -0.884 |
+| no_counterfactual | fused_nms_rgb_boxes | priority | +2.126 | -1.125 |
+| no_counterfactual | fused_nms_rgb_boxes | raw | +2.102 | +0.886 |
+| no_counterfactual | rgb_nms_fused_boxes | priority | +3.205 | +0.246 |
+| no_counterfactual | rgb_nms_fused_boxes | raw | +5.718 | +1.860 |
+
 Coordinate copying/NMS/classical scoring alone is not an original multimodal mechanism. no_counterfactual removes BOTH reliableRGBdistillation andwrong-auxiliary regularization. no_gate removes feature risk/bound andfinalpriority integration;339gateweights remainallocatedbutunused. Each removal has all4epochs; paired comparisons above hold the readout/epoch24/policy fixed.
 
 No new Test or >=+5 Test HOTA /2–3contribution claim. All intervention metrics, per-sequence values and exact2x2 differences are in the adjacent JSON.

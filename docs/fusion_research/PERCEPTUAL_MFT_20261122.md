@@ -22,15 +22,22 @@ Train-fitted ordinary RGB calibration is negative. A further24-case association-
 separation family leaves mainIR50.515 unchanged and raises strongest gray50.117.
 All3 original-parent removal fits completed24E. The replacement140-case
 single-seed NMS/emission-geometry factorial retains all removal cases. Its20 main
-cases are complete, and120 original-parent removal cases are running. The raw
+cases and120 original-parent removal cases are complete. At the fixed IR RGB-box/raw
+readout, full50.515 exceeds each removal's best4epoch result by1.291(local
+readout),1.443(risk/bound),2.296(both consistency losses). Some other readouts
+have negative deltas; these are not three established original innovations.
+All14 formal Test choices are frozen from Dev, including paired24 and
+Dev-best removals and fresh/canonical RGB controls. Unlabeled Test production
+waits for each card's structural Dev producer; Test accuracy waits all59 Dev.
+No Test-based reselection is allowed. The raw
 IR2x2 HOTA is49.771(fused/fused),50.515(RGB/RGB),48.979(fused NMS/RGB
 emission),49.861(RGB NMS/fused emission): NMS changes strongly help BT but hurt
 SN. The additional exact-dense-anchor RGB association-score6 controls leave
 IR50.515 unchanged. These are diagnoses, not new positive contributions.
 The new structural-relative hypothesis has two provisional mechanisms,
 matched RGB/gray controls and3 removals, all fixed seed0. Its1152-frame scalar
-structure cache is complete(~0.24GiB); RGB/gray fits are running on2/3 after both
-full source producers passed. All6 fits stay seed0, with59 Dev cases preregistered
+structure cache is complete(~0.24GiB); RGB/gray fits completed24E, while IR/full
+and IR/no_structure fit on2/3 after both source producers passed. All6 fits stay seed0, with59 Dev cases preregistered
 before fitting. No new accuracy is presumed. Current-versus-distorted response
 subtraction has prior art and is not claimed as a new subtraction operation.
 No new Test or supported innovation is asserted.
