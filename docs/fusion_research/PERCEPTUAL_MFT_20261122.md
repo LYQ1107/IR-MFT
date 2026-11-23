@@ -1,6 +1,6 @@
 # Visual continuity and classical algorithms for new DiffV2IR MFT
 
-## Current verified state: correlation pilot running, goal not met
+## Current verified state: conditional recovery fitting, goal not met
 
 The direct RGB-fine-tuned YOLOX-X + ByteTrack baseline is29.529 Test HOTA;
 the requested threshold is34.529. The prior matched three-seed new-IR point
@@ -16,7 +16,9 @@ The maintained tests and real source checks pass; on both Dev videos all first8 
 arrays and all zero-adapter controls match the original baseline exactly.
 All three matched24-epoch seed0 fits completed. All12 snapshots have both
 raw and priority policies registered, plus the baseline:25 full-Dev replays.
-Shared observation production is running. No new correlation/foveated method Test has started.
+All25 full-Dev cases are complete. Best IR49.771 exceeds original RGB47.579,
+but falls below equal-capacity RGB49.957 and gray49.965. This does not establish
+an independent IR contribution. No new correlation/foveated method Test has started.
 
 All [original foveation38](PERCEPTUAL_MFT_20261123_FOVEATED_DEV.md),
 [working-region38](PERCEPTUAL_MFT_20261123_FOVEATED_REGIONS_DEV.md), and
@@ -42,14 +44,14 @@ auxiliary rescue gives no meaningful advantage. These negative results do
 not count as innovations and do not advance to Test.
 
 A [conditional Train-only recovery repair](../../configs/perceptual_correlation_recoverability_20261123.json)
-is registered before any fit. It targets recoverable weak RGB regions and
+was registered before any fit. It targets recoverable weak RGB regions and
 excludes semantically valid shared foreground from wrong-frame consistency.
-Its activation depends on complete parent correlation Dev results. The
+It is now activated by the complete parent correlation Dev results. The
 RGB/gray controls receive identical eligibility and perturbation draws.
 Existing [related work](PERCEPTUAL_MFT_20261123_CORRELATION_PRIOR_ART.md)
 already covers local attention and dominant-modality modulation; using these
 techniques alone does not establish novelty.
-Current work assets occupy about50.9GiB of the independent-disk64GiB cap.
+Current work assets occupy about51.7GiB of the independent-disk64GiB cap.
 No models, feature arrays, image copies or raw track files are published.
 
 The original RGB checkpoint includes earlier Dev pretraining, and historical

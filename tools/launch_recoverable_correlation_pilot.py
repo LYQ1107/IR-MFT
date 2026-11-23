@@ -46,7 +46,7 @@ def main():
                 if sha256(config_path)!=state['config_sha256']or any(sha256(ROOT/name)!=value for name,value in sources.items()):
                     raise ValueError('Registered fitting source changed')
                 cue=pending.pop(0);key=cue+('_smoke4'if smoke else'_full24')
-                command=[sys.executable,'-u','tools/train_recoverable_correlation.py','yolox/models/recoverable_curriculum.py','--cue',cue,'--seed','0']
+                command=[sys.executable,'-u','tools/train_recoverable_correlation.py','--cue',cue,'--seed','0']
                 if smoke:command+=['--smoke-steps','4']
                 log=work/(key+'.correlation_recoverability_pilot.log')
                 with log.open('ab',buffering=0)as handle:

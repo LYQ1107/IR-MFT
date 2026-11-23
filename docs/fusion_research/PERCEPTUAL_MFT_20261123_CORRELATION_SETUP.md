@@ -63,7 +63,10 @@ a contribution claim. Training loss alone is not evidence of HOTA improvement.
 
 All129 maintained tests pass, including3 Train-curriculum validity tests.
 The [conditional repair](../../configs/perceptual_correlation_recoverability_20261123.json)
-has all6 Train eligibility caches, but has not been activated or fitted.
+has all6 Train eligibility caches and is now activated from all25 parent
+Dev results: best IR49.771 versus original47.579, RGB49.957 and gray49.965.
+The IR advantage over the original baseline does not survive strong controls.
+The conditional fit keeps the same24-epoch budget and shared sample draws.
 Its17270 labeled instances contain16437 heuristic eligible instances; this
 does not prove that every generated IR object is correct. RGB and gray controls
 receive the exact same IR-conditioned Train eligibility and perturbations.

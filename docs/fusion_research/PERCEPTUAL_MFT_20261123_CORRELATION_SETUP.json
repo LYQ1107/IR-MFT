@@ -1,5 +1,5 @@
 {
-  "status": "MATCHED_PILOT_FITS_COMPLETE_FULL_DEV_METRICS_RUNNING_GOAL_NOT_MET",
+  "status": "MATCHED24_EPOCH_PILOT_AND25_FULL_DEV_COMPLETE_GOAL_NOT_MET",
   "actual_IR": "November DiffV2IR full_generation, unchanged original files; no legacy replacement or regeneration.",
   "baseline_model": "Original directly RGB-fine-tuned YOLOX-X + ByteTrack, joint3 selected by Dev from complete budget extension.",
   "baseline_Test_HOTA": 29.529,
@@ -79,7 +79,7 @@
   },
   "Train_frames": 1152,
   "Train_videos": 6,
-  "cache_total_work_GiB": 50.94174312893301,
+  "cache_total_work_GiB": 51.701,
   "work_soft_cap_GiB": 64,
   "formal_pilot": {
     "cues": [
@@ -1008,5 +1008,33 @@
       "exact": 2998
     }
   },
-  "numerical_parity_followup": "Complete independent4834-frame RGB audit: only last2 frames per sequence differ; maximum box difference0.6749878 pixels, maximum score difference0.00132275, identical counts and0.6/0.7 threshold membership. Consistent with different per-sequence versus concatenated tail batch shapes; no exact full-sequence claim. Baseline canonical proposals unchanged."
+  "numerical_parity_followup": "Complete independent4834-frame RGB audit: only last2 frames per sequence differ; maximum box difference0.6749878 pixels, maximum score difference0.00132275, identical counts and0.6/0.7 threshold membership. Consistent with different per-sequence versus concatenated tail batch shapes; no exact full-sequence claim. Baseline canonical proposals unchanged.",
+  "pilot_Dev_best": {
+    "rgb": {
+      "id": "CGA_rgb_full_s0_e18_raw",
+      "cue": "rgb",
+      "baseline": false,
+      "HOTA": 49.957,
+      "metrics_sha256": "420976f6aa7297233c62221425c9fd8b190078cf8d5cdb714ee4b8ddf1c185d7"
+    },
+    "gray": {
+      "id": "CGA_gray_full_s0_e18_raw",
+      "cue": "gray",
+      "baseline": false,
+      "HOTA": 49.965,
+      "metrics_sha256": "735b9f2837beb998a0192cd8a2236ebf0cec256d3a6087dabd536b7c7fb7cf8d"
+    },
+    "ir": {
+      "id": "CGA_ir_full_s0_e24_raw",
+      "cue": "ir",
+      "baseline": false,
+      "HOTA": 49.771,
+      "metrics_sha256": "86ee7667bcb089f5760af16020274cc339dda39e3d87b146aec5f2570b4c4667"
+    }
+  },
+  "strongest_control_Dev_HOTA": 49.965,
+  "IR_best_Dev_HOTA": 49.771,
+  "IR_minus_original_RGB_Dev_HOTA": 2.192,
+  "IR_minus_strongest_matched_control_Dev_HOTA": -0.194,
+  "followup": "Activate pre-registered Train recovery curriculum; no parent Test or supported modality claim."
 }
