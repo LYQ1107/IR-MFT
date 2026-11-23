@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Use exact frozen ROI observations; preserve global coordinates and IDs."""
+"""Use frozen ROI observations; preserve original coordinates and confidence."""
 import argparse
 import json
 import os

@@ -1,0 +1,13 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_ROI_CONFIRMED_RECOVERY_ACCURACY",
+  "reason": "The complete12-row priority+point backend shows that promoting weak scores into the primary pool harms the previously strong fitted RGB point matcher. Preserve the original confidence partition and full candidate graph; consume crop confirmation only after original association finishes.",
+  "primary": "Original proposal coordinates/confidences and frozen original evidence. Compare both ordinary ByteTrack association and the full Train-fitted RGB association, with the same original birth threshold for each.",
+  "added_evidence": "Exact saved matched RGB-guided half4 ROI confidence, not a new detector pass. Only old weak observations with ROI support>=0.7 are eligible. No new object birth or already-emitted output rewrite.",
+  "recovery": "Existing calibrated weak-recovery checks: physical RGB points, retained-ID row/column margin0.1, probability0.8, lags1/2/4/8, no appearance-only fallback. The source/current proposal competition remains the original graph.",
+  "added_head": "Keep the primary RGB scorer. An auxiliary scorer may replace a rescue probability only when it improves by>=0.05. Actual IR additionally needs both IR-quality values>=0.15 and nonzero learned IR evidence. Otherwise retain the complete RGB rescue reference.",
+  "capacity_control": "Both extra-RGB and actual-IR auxiliaries use an independent existing Train-fitted head from cyclic seed(s+1)%3, selected from its full36-epoch Dev curve before this route. Same architecture, Train data and fit budget; primary seed is held fixed.",
+  "coverage": "Both RGB and paired-new global frontends, both primary association types, RGB/IR auxiliary heads, all3 primary seeds. Zero-ROI controls must reproduce original full primary metrics and track files.",
+  "limitations": "Classical ROI confirmation/recovery is not credited as novelty by itself. Paired global detector has extra capacity and crop cost. Require full Dev, strict same-primary extra-RGB controls, and frozen full Test evidence before any gain claim.",
+  "Test_policy": "No new Test here; selection uses complete Dev only.",
+  "goal_met": false
+}

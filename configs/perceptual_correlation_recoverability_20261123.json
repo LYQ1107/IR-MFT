@@ -1,0 +1,42 @@
+{
+  "status": "REGISTERED_CONDITIONAL_REPAIR_BEFORE_ANY_NEW_CURRICULUM_FIT_OR_ACCURACY",
+  "parent_architecture_and_cache_plan": "configs/perceptual_correlation_repair_20261123.json",
+  "parent_sha256": "faf2b7b77a2700c90cf4c8233f65c14ef9d2dce47ce0dd00d45a5cb2d5a447fb",
+  "setting": "Keep actual November IR, frozen original RGB encoder/head, same1152 Train frames and stats, only physical GPU2/3. No Test data or image regeneration.",
+  "hypothesis": "A strong frozen RGB head can leave too little positive supervision for the added cue. Moreover, wrong-frame IR may still contain valid class1 foreground at a current object location; blanket preservation can penalize semantically valid extra evidence. These are hypotheses, not established failures or gains.",
+  "curriculum": {
+    "sample_probability": 0.5,
+    "eligible_instance_probability": 0.5,
+    "contrast_reduction": 0.75,
+    "background_pool_kernel": 9,
+    "scope": "Train-only weakening of RGB FPN contrast inside selected recoverable object boxes, keeping RGB/IR source pixels and all inference code unchanged. Auxiliary input stays the original current frame. Clean samples remain.",
+    "recoverability": "Original actual IR quality>=0.15 and tolerant RGB/IR body-support overlap>=0.25 within the original Train GT box. Fixed before extraction.",
+    "matched_control": "The exact same eligible instances, degradation draws and sample order are used for RGB-repeat, gray and IR controls. This gives RGB controls privileged Train-only recovery selection; do not call them purely RGB-trained."
+  },
+  "counterfactual_validity": {
+    "rule": "Within-video swapped auxiliary GT boxes provide only Train-time validity. Do not penalize a grid location where both current and swapped frames contain foreground. Continue reference preservation elsewhere; keep normalization by original teacher foreground mass.",
+    "scope": "Binary fish objectness is not fish identity; shared foreground can remain semantically valid after a frame swap. No GT reaches inference. This conservative mask does not guarantee that generated IR depicts every labeled fish."
+  },
+  "budget": {
+    "epochs": 24,
+    "snapshots": [
+      6,
+      12,
+      18,
+      24
+    ],
+    "same_optimizer_and_updates_as_parent": true,
+    "new_encoder_pretraining": false,
+    "new_feature_banks": false
+  },
+  "ablation_controls": [
+    "No recoverability curriculum, same validity mask",
+    "Curriculum with blanket wrong-auxiliary preservation",
+    "Full curriculum+validity, radius0 aligned readout",
+    "Full IR, equal-capacity RGB-repeat and gray, all3 seeds if promising"
+  ],
+  "activation": "Do not fit this repair before complete parent pilot Dev results. Use it only if parent IR fails to establish an advantage over the strongest matched RGB/gray control; otherwise prioritize formal seed/removal validation of the promising parent. Eligibility diagnostics may run beforehand without fitting.",
+  "novelty": "Dropping a dominant modality, local attention and ordinary consistency are prior art. Credit only problem-specific, independently measured contributions beyond strong matched controls.",
+  "Test_read": false,
+  "goal_met": false
+}

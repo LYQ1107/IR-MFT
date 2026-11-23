@@ -1,0 +1,82 @@
+{
+  "status": "COMPLETE_FULL_DEV_NUMERICAL_AUDIT",
+  "frames": 4834,
+  "exact_frames": 4830,
+  "rows": [
+    {
+      "status": "COMPLETE_FULL_DEV_RGB_NUMERICAL_AUDIT",
+      "sequence": "BT-005",
+      "frames": 1834,
+      "exact_frames": 1832,
+      "mismatches": [
+        {
+          "frame": 1833,
+          "current_count": 14,
+          "original_count": 14,
+          "batch_size": 2,
+          "max_box_difference": 0.0,
+          "max_score_difference": 0.0013227462768554688,
+          "high_threshold_changed": 0,
+          "birth_threshold_changed": 0
+        },
+        {
+          "frame": 1834,
+          "current_count": 14,
+          "original_count": 14,
+          "batch_size": 2,
+          "max_box_difference": 0.3375244140625,
+          "max_score_difference": 0.00128936767578125,
+          "high_threshold_changed": 0,
+          "birth_threshold_changed": 0
+        }
+      ],
+      "source_sha256": "783222882d4745bec12c9300a4754f0a4c7237a16cfa66bcc38925bda1074f23",
+      "checkpoint_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+      "reference_sha256": "806d079c560ecc261653e6ab9dba9f534f48694949561403bb8fbec9ac8c69e0",
+      "physical_gpu": "2",
+      "GT_read": false,
+      "Test_read": false,
+      "seconds": 81.69173285702709,
+      "audit_manifest_sha256": "3e4f0bf323814255f48d6768ec8b4d3111c8eaa5d9a91559e3e89a7510d64817"
+    },
+    {
+      "status": "COMPLETE_FULL_DEV_RGB_NUMERICAL_AUDIT",
+      "sequence": "SN-013",
+      "frames": 3000,
+      "exact_frames": 2998,
+      "mismatches": [
+        {
+          "frame": 2999,
+          "current_count": 14,
+          "original_count": 14,
+          "batch_size": 4,
+          "max_box_difference": 0.67498779296875,
+          "max_score_difference": 0.0006732940673828125,
+          "high_threshold_changed": 0,
+          "birth_threshold_changed": 0
+        },
+        {
+          "frame": 3000,
+          "current_count": 15,
+          "original_count": 15,
+          "batch_size": 4,
+          "max_box_difference": 0.3375244140625,
+          "max_score_difference": 0.0009622573852539062,
+          "high_threshold_changed": 0,
+          "birth_threshold_changed": 0
+        }
+      ],
+      "source_sha256": "783222882d4745bec12c9300a4754f0a4c7237a16cfa66bcc38925bda1074f23",
+      "checkpoint_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+      "reference_sha256": "b407b42ec3da95aedb76ae805e7feedf901960cdb9c71201b532c4d749a152e3",
+      "physical_gpu": "3",
+      "GT_read": false,
+      "Test_read": false,
+      "seconds": 123.63570113503374,
+      "audit_manifest_sha256": "92d2db4ed5ad15b48c4c0d0f3aecad8445cdefcf4804be47d035ad5d3b0c6224"
+    }
+  ],
+  "interpretation": "All4 differences are the final2 frames of each sequence, consistent with different tail batch shapes in per-sequence versus concatenated inference. Counts and0.6/0.7 threshold membership match. Exact full-sequence equality is not claimed. Canonical baseline proposals remain unchanged.",
+  "GT_read": false,
+  "Test_read": false
+}

@@ -41,14 +41,32 @@ frame intervals of latency, as in the original batch4 detector; any final
 end-to-end timing must include it. The training-only head helper
 has identical box decoding; applying sigmoid after concatenation can differ
 by one float32 ulp, tested with tolerance1e-7. Inference uses the unchanged
-original head and passes exact actual-image proposal parity.
+original head and passes exact first8-frame actual-image proposal parity.
+Full-production checks found4830/4834 bit-exact fresh RGB frames, with all
+4834 detection counts unchanged. A separate complete numerical audit finds
+the differences only in the final2 frames of each video: maximum box change
+0.675 pixels and score change0.001323, with identical0.6/0.7 threshold
+membership. This is consistent with different tail batch shapes in per-video
+versus concatenated inference. Full-sequence bit-exact parity is not claimed.
+The baseline tracking replay uses the unchanged canonical proposals.
 
 Seed0 RGB-repeat, gray and actual-IR pilots all receive24 epochs and the same
-epoch-by-epoch draws, preserving6/12/18/24 snapshots. Complete12-snapshot
-Dev production and13 official replays are registered before accuracy. A
+epoch-by-epoch draws, preserving6/12/18/24 snapshots. All3 fits completed24 epochs and6912 optimizer steps, with identical24-epoch
+sample digests. Before any full Dev inference/accuracy, the evaluation was
+extended symmetrically to retain both already computed raw and final-priority
+outputs for all12 snapshots, plus the exact baseline:25 official Dev replays.
+This requires no extra model forward. The earlier13-row registration remains
+archived as superseded before inference; it is not presented as an executed
+accuracy result. A
 promising method still requires all3 seeds and every module removal before
 a contribution claim. Training loss alone is not evidence of HOTA improvement.
 
-All126 maintained tests pass. Existing RGB pretraining included current Dev
+All129 maintained tests pass, including3 Train-curriculum validity tests.
+The [conditional repair](../../configs/perceptual_correlation_recoverability_20261123.json)
+has all6 Train eligibility caches, but has not been activated or fitted.
+Its17270 labeled instances contain16437 heuristic eligible instances; this
+does not prove that every generated IR object is correct. RGB and gray controls
+receive the exact same IR-conditioned Train eligibility and perturbations.
+Existing RGB pretraining included current Dev
 videos, and historical Test was previously exposed; this is exploratory
 research, not a fresh blind benchmark. No new Test chooses current parameters.
