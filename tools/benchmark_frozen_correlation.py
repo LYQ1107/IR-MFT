@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """One-method batch4 throughput, verified against frozen complete Dev packets."""
+import argparse
 import gc
 import json
 import os
@@ -89,7 +90,7 @@ def measure(model, adapter, plan, config, calibration, cue, role, source_key):
             values = predict(model,adapter,arrays,ratios,available,cue,role)
             for value in values:
                 tracks = tracker.update(value,(1,1),(1,1))
-                output_rows += sum(t.tlwh[2]*t.tlwh[3]>100 for t in tracks)
+                output_rows += sum(int(t.tlwh[2]*t.tlwh[3]>100) for t in tracks)
             torch.cuda.synchronize(); duration = time.perf_counter()-start
             if first > 8:
                 elapsed += duration; count += len(frames)
@@ -111,10 +112,23 @@ def measure(model, adapter, plan, config, calibration, cue, role, source_key):
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--idle-card-during-final-fit',action='store_true',
+                        help='Own GPU2 fits completed; waiting Dev controller is externally paused/resumed')
+    args=parser.parse_args()
     physical = os.environ.get('CUDA_VISIBLE_DEVICES'); assert physical in ['2','3']
     plan = json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());work = Path(plan['work_root'])
-    assert json.loads((work/'CGA_formal_test_state.json').read_text())['status'] == 'COMPLETE'
-    assert json.loads((work/'structural_relative_dev_state.json').read_text())['status'] == 'COMPLETE'
+    if args.idle_card_during_final_fit:
+        fits=json.loads((work/'structural_relative_fit_state.json').read_text())
+        dev=json.loads((work/'structural_relative_dev_state.json').read_text())
+        assert physical=='2' and all(j['status']=='COMPLETE'for j in fits['jobs'].values()if j['physical_gpu']=='2')
+        assert dev['status']=='WAITING_FOR_ALL6_SINGLE_SEED_FITS' and not dev['producers']
+        scheduling=json.loads((work/'idle_card_runtime_schedule.json').read_text())
+        assert scheduling['status']=='WAITING_DEV_CONTROLLER_PAUSED_FOR_OWN_GPU2_BENCHMARK'
+        assert scheduling['benchmark_physical_gpu']=='2'
+    else:
+        assert json.loads((work/'CGA_formal_test_state.json').read_text())['status'] == 'COMPLETE'
+        assert json.loads((work/'structural_relative_dev_state.json').read_text())['status'] == 'COMPLETE'
     spec_path = ROOT/'configs/perceptual_CGA_formal_test_20261123.json';spec = json.loads(spec_path.read_text())
     config_path = ROOT/'configs/perceptual_correlation_repair_20261123.json';config = json.loads(config_path.read_text())
     assert sha256(config_path) == spec['config_sha256']
@@ -158,6 +172,7 @@ def main():
             del adapter;gc.collect();torch.cuda.empty_cache()
     dump(output,dict(status='COMPLETE_SINGLE_METHOD_VERIFIED_B4_THROUGHPUT',rows=records,
         physical_gpu=physical,fixed_fitted_seed=0,additional_seed_work=False,
+        idle_card_during_final_fit=args.idle_card_during_final_fit,
         scope='Each method separately: current-image read/preprocess/transfer, required '
               'shared-weight encoder passes, one adapter, actual raw head role, NMS, CPU '
               'ByteTrack and device synchronization. B4 throughput, not B1 online latency. '
