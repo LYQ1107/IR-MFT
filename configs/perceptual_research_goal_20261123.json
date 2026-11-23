@@ -1,0 +1,49 @@
+{
+  "status": "ACTIVE_RESEARCH_GOAL_NOT_MET",
+  "created_beijing": "2026-11-23 20:17",
+  "fixed_setting": "Existing November DiffV2IR pseudo-IR MFT; preserve data and protocol. The generated image is an auxiliary representation, not independent thermal sensing.",
+  "inspiration": "Human visual correspondence, uncertainty handling and classical algorithms; algorithmic originality and measured contribution must both be assessed.",
+  "baseline": {
+    "method": "Direct RGB-finetuned YOLOX-X + ByteTrack",
+    "Test_HOTA": 29.529,
+    "Dev_HOTA": 47.579,
+    "Test_sequences": 7,
+    "Test_frames": 15985
+  },
+  "numerical_goal": {
+    "minimum_Test_HOTA_gain_absolute_points": 5.0,
+    "minimum_Test_HOTA": 34.529,
+    "supported_independent_module_contributions": [2, 3],
+    "report_all_official_metrics_including_IDF1": true,
+    "achieved": false
+  },
+  "resource_policy": {
+    "configuration": "configs/perceptual_gpu_handoff_20261123.json",
+    "current_GPU2_3_workers_finish_first": true,
+    "future_physical_GPUs": ["4", "5"],
+    "max_concurrent_GPUs": 2,
+    "fixed_seed": 0,
+    "additional_seed_replication": false,
+    "work_asset_cap_GiB": 64,
+    "independent_work_filesystem_reserve_GiB": 40,
+    "reuse_existing_images_checkpoints_and_caches": true
+  },
+  "completion_requirements": [
+    "Validate actual unchanged November IR and fixed split/protocol/checkpoint provenance.",
+    "Freeze the formal primary using Train/Dev only, before that family's Test accuracy. Never promote a Test winner retrospectively.",
+    "Primary HOTA must reach at least34.529 against canonical RGB29.529 and its fresh reproduced control on all7Test sequences/15985frames.",
+    "Show that the gain exceeds matched-budget RGB repeat and grayscale controls; numerical influence alone is insufficient.",
+    "Establish2-3 independently interpretable multimodal contributions with same-budget single-module, combination and removal comparisons. Retain paired-checkpoint and equally selected removal curves.",
+    "Evaluate actual, unavailable and mispaired auxiliary inputs. Missing-input behavior must reproduce the explicit RGB fallback.",
+    "Retain the original taskbook requirement: at least4distinct fusion architectures, and fullTest for every trained engineering-passed formal candidate. Dev performance cannot filter formal Test eligibility.",
+    "Report all official combined and per-sequence metrics, parameters, per-method inference FPS, own peakGPUmemory and measured gate behavior, with timing boundaries stated.",
+    "Keep the20repository source audit and assess differences from relevant prior art; ordinary adapters, local matching, response subtraction and confidence thresholds alone do not establish novelty.",
+    "Keep failed studies and source-check exceptions, state exposed-Test and current-Dev-pretraining limitations, and do not fabricate or pre-assume superiority.",
+    "Push lightweight code, configurations, complete result tables and analysis toGitHub, verify remote commit, exclude weights/images/arrays/rawtracks and large files."
+  ],
+  "current_frozen_primary": "IR no_cycle epoch6/raw; Dev51.329, frozen before earlierCGA14Test accuracy. New matched controls/removals and this primary's Test remain pending.",
+  "latest_complete_fusion_Test": "CGA primary29.431 vsRGB29.529, gain-0.098; negative evidence retained.",
+  "goal_met": false,
+  "supported_innovations": 0,
+  "continuation": "Finish the current complete family and its formal Test; diagnose evidence and continue systematic research if requirements remain unmet. Running jobs or a small number of failures are not completion."
+}
