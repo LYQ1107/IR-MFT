@@ -79,7 +79,8 @@ The current50.515 seed0 Dev result is an empirical candidate, with mixed
 per-video effects, not an established original algorithm. Required evidence
 remains actual-versus-unavailable/misaligned IR, strongest matched RGB/gray and
 ordinary confidence-calibration controls, original-parent module removals,
-three adapter seeds and the complete frozen Test. This is a targeted related
+the complete frozen Test. The user's later directive cancels further seed
+replication; future experiments stay at seed0. This is a targeted related
 work check, not an exhaustive proof that any future mechanism is original.
 
 ## Classical structural correspondence diagnostic
@@ -98,3 +99,20 @@ wrong actualIR tests structural discrimination. Bounding-box foreground labels
 do not supply true RGB/IR pixel correspondences, so even a positive diagnostic
 cannot establish corrected fish geometry or a HOTA contribution. All24 fields
 are frozen before GT is opened; no full cache or new fit is activated automatically.
+
+## Relative-response correction is a hypothesis, not a new subtraction rule
+
+[Counterfactual VQA, CVPR2021](https://arxiv.org/abs/2006.04315)
+already subtracts a direct language effect from the total effect to reduce
+language bias. [Visual Contrastive Decoding](https://arxiv.org/abs/2311.16922)
+contrasts output distributions under original and distorted images to reduce
+object hallucinations without training. These are different tasks, but they
+establish that counterfactual subtraction and original-versus-distorted output
+contrasts are existing ideas.
+
+The structural-relative model's current-versus-shifted auxiliary logit difference
+therefore receives no novelty credit by itself. The provisional task-specific
+question is whether structural correspondence validation and a bounded semantic
+correction at unchanged RGB geometry produce a measurable auxiliary-content
+benefit beyond matched RGB/gray and module removals. No positive answer or
+exhaustive originality claim is assumed. All new fits use the fixed seed0.

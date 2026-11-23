@@ -21,11 +21,18 @@ beat strongest gray role mean49.006; best IR role/policy mean48.607 also falls s
 Train-fitted ordinary RGB calibration is negative. A further24-case association-score
 separation family leaves mainIR50.515 unchanged and raises strongest gray50.117.
 All3 original-parent removal fits completed24E. The replacement140-case
-single-seed NMS/emission-geometry factorial retains all removal cases.
+single-seed NMS/emission-geometry factorial retains all removal cases. Its20 main
+cases are complete, and120 original-parent removal cases are running. The raw
+IR2x2 HOTA is49.771(fused/fused),50.515(RGB/RGB),48.979(fused NMS/RGB
+emission),49.861(RGB NMS/fused emission): NMS changes strongly help BT but hurt
+SN. The additional exact-dense-anchor RGB association-score6 controls leave
+IR50.515 unchanged. These are diagnoses, not new positive contributions.
 The new structural-relative hypothesis has two provisional mechanisms,
 matched RGB/gray controls and3 removals, all fixed seed0. Its1152-frame scalar
-structure cache is complete(~0.24GiB);6 fits wait for the current card producers,
-with59 Dev cases preregistered before fitting. No new accuracy is presumed.
+structure cache is complete(~0.24GiB); RGB/gray fits are running on2/3 after both
+full source producers passed. All6 fits stay seed0, with59 Dev cases preregistered
+before fitting. No new accuracy is presumed. Current-versus-distorted response
+subtraction has prior art and is not claimed as a new subtraction operation.
 No new Test or supported innovation is asserted.
 
 The [new validated correlation setup](PERCEPTUAL_MFT_20261123_CORRELATION_SETUP.md)

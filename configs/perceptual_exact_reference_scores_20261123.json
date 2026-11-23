@@ -1,0 +1,33 @@
+{
+  "status": "REGISTERED_BEFORE_ANY_EXACT_ANCHOR_SCORE_REPLAY",
+  "created_utc": "2026-11-23T07:39:02.767872+00:00",
+  "single_seed_user_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "producer_specification_sha256": "af683e3da25b3dcd9a881d07767cac93371ecf3f41eb009ceae36f8399252da7",
+  "cases": [
+    {
+      "cue": "rgb",
+      "source_id": "GFX_rgb_s0_rgb_boxes_raw",
+      "parent": "temporal_geometry_dev/TC_rgb_rgb_boxes_raw",
+      "seed": 0
+    },
+    {
+      "cue": "gray",
+      "source_id": "GFX_gray_s0_rgb_boxes_raw",
+      "parent": "temporal_geometry_dev/TC_gray_rgb_boxes_raw",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "source_id": "GFX_ir_s0_rgb_boxes_raw",
+      "parent": "temporal_geometry_dev/TC_ir_rgb_boxes_raw",
+      "seed": 0
+    }
+  ],
+  "threshold": 0.6,
+  "rule": "Only primary/pending IoU-confidence costs use SAME-original-dense-anchor RGBconfidence whereRGBconfidence>=.6, otherwise keep fusedconfidence. Detection confidence, membership, birth, geometry, outputconfidence andsecondaryIoU are unchanged. No nearestbox orhigh-IoUreference lookup.",
+  "reason": "Prior geometry-matched score repair leftIR50.515 unchanged. Newly available exactanchor sidebands isolate incorrect reference correspondence from the same fixed highRGBscore rule. This is a focused6case mechanical integration repair using cached evidence, not additionalseed work or a standalone multimodal novelty claim.",
+  "validation": "Both full source videos and30oldstream arrayproofs must pass first. Run3off fullDev and demand all39metrics, both tracks anddetailedCSV exact toexistingTCparents; onlythen3on fullDev. OneCPUworker, no newpixels/NN/fits/cache/Test.",
+  "supported_innovations": 0,
+  "goal_met": false,
+  "Test_read": false
+}
