@@ -1,0 +1,34 @@
+{
+  "status": "REGISTERED_ACTIVE_RESEARCH_GOAL",
+  "created_UTC": "2026-11-24 03:55:18 UTC",
+  "objective": "保持固定11月新版DiffV2IR伪红外图像、MFT Protocol V2划分和真实任务设定，以人类视觉及经典算法为启发持续开展研究与实现。以直接RGB微调YOLOX-X+ByteTrack完整7个历史Test序列15985帧HOTA29.529为固定基线，目标是按Train/Dev预先选择的正式方法完整Test HOTA至少34.529（至少+5个绝对点），并通过公平同预算RGB/灰度强对照、单模块/组合/去除消融、错位与缺失模态干预，验证2–3项机制清楚且可独立归因的多模态贡献；保留全部官方指标、逐序列值、成本、来源证明、失败结果及先验工作边界，不预设或捏造成功，不依据Test改选模型。固定seed0，不追加随机种子重复；物理GPU4/5且最多两卡，复用缓存，工作目录64GiB上限并保留40GiB磁盘空闲，不推送权重、图像或大文件。接续并完成正在运行的六组匹配完整Train（三遍全部27251帧）、50项Dev、冻结选择和运行成本及所有正式完整Test；完成已启动的native36两后端26项CPU完整Test和已排队的初版结构9项补测，逐项补齐其他工程检查通过的正式seed0候选与当前IR融合架构范围，公开历史Test暴露限制。持续根据Train/Dev证据改进，不以少量失败或后台运行本身结束；将轻量代码、配置、完整结果和科研分析推送GitHub。只有真实达到数值目标且2–3项贡献证据成立、必要评估与最终报告完成后才能标记完成。",
+  "setting": "Unchanged November DiffV2IR, fixed MFT Protocol V2",
+  "baseline": {
+    "method": "Direct RGB-finetuned YOLOX-X + ByteTrack",
+    "Test_HOTA": 29.529,
+    "sequences": 7,
+    "frames": 15985
+  },
+  "target": {
+    "minimum_Test_HOTA": 34.529,
+    "minimum_absolute_HOTA_gain": 5,
+    "independently_supported_multimodal_contributions": "2-3"
+  },
+  "constraints": {
+    "physical_GPUs": [
+      4,
+      5
+    ],
+    "maximum_simultaneous_GPUs": 2,
+    "fixed_seed": 0,
+    "additional_seed_replication": false,
+    "work_directory_limit_GiB": 64,
+    "minimum_free_disk_GiB": 40,
+    "no_weights_images_or_arrays_in_Git": true
+  },
+  "inherited_pipeline": "Existing fits and evaluations continue without restart or changed pinned source",
+  "completion_claim_permitted": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "scope": "Registration snapshot after the user cleared the previous goal. The platform goal manager is authoritative for current status; this is not a performance result."
+}
