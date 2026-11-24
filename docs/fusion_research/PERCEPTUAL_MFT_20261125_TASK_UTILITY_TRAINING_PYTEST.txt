@@ -1,0 +1,25 @@
+......                                                                   [100%]
+=============================== warnings summary ===============================
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12
+  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) < LooseVersion("1.0.0"):
+
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68
+  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) >= LooseVersion("1.1.0"):
+
+tests/test_task_utility_training.py::test_clip_supervision_reaches_heads_and_is_in_total_loss
+  /data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/torch/functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3637.)
+    return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+tests/test_task_utility_training.py::test_clip_supervision_reaches_heads_and_is_in_total_loss
+tests/test_task_utility_training.py::test_no_auxiliary_labels_preserves_capacity_but_zeroes_aux_gradients
+tests/test_task_utility_training.py::test_wholly_missing_clip_skips_AdamW_and_retains_existing_moments
+tests/test_task_utility_training.py::test_partial_missing_clip_masks_task_labels_and_geometry_removal_is_exact
+  /data3/liuyeqiang/IR-MFT/yolox/models/yolo_head.py:498: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+    with torch.cuda.amp.autocast(enabled=False):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+6 passed, 9 warnings in 6.38s

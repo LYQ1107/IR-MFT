@@ -1,0 +1,10 @@
+/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/torch/functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3637.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/data3/liuyeqiang/IR-MFT/yolox/models/yolo_head.py:498: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_task_utility_training.py", line 146, in <module>
+    if __name__=='__main__':main()
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_task_utility_training.py", line 100, in main
+    steps.append(dict(sequence=address.sequence,frames=list(address.frames),**result))
+TypeError: dict() got multiple values for keyword argument 'frames'

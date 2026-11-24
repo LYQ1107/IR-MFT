@@ -1,0 +1,144 @@
+{
+  "status": "PREREGISTERED_ACTUAL_T4_TASK_SUPERVISION_TRAINING_API_CPU_ONLY",
+  "UTC": "2026-11-24T23:09:32.936613+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "prototype": {
+    "path": "configs/perceptual_task_utility_prototype_20261125.json",
+    "sha256": "82c9b4365b61e42c67751471aeee14a8e01921d50ae6c972901f324a92bd4f56"
+  },
+  "prototype_proof": {
+    "path": "docs/fusion_research/PERCEPTUAL_MFT_20261125_TASK_UTILITY_CPU_ENGINEERING.json",
+    "sha256": "c5449af95a1773e8e85881d1bb3d014b269b01b2703dd667f3aa32f8888b2349"
+  },
+  "source_hashes": {
+    "tools/task_utility_fusion.py": "e30d8cf043bc5d95fd3ebe693f0aa74e6aeeb4b60df83b59ccf13c12e594a1da",
+    "tools/task_utility_objectives.py": "c431b4b1824293ae0f7b7187ca2b1d7825c319fc7817db912e9b249efcf72a42",
+    "tests/test_task_utility_fusion.py": "078780fc0bbf7b2e9219c51910b65cf006e9c6f0f8503e91979bed06457411ea",
+    "tools/probe_task_utility_cpu.py": "b5f40126d111f0ede36c3c2d4f3536444872087e4a8233fb2a1e1bb0e07aa1df",
+    "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
+    "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/fusion_memory_model_loading.py": "4e3cc7ca5841390a164d9f9a04a8d36547d40fb853c6c8aeff1026f19f1b013a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+    "yolox/models/yolo_head.py": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8",
+    "yolox/models/losses.py": "e4644f138ddb8658cc26a03e5d80bb0fcd4e91bb8b0085d695958aafd47a031e",
+    "tools/task_utility_fit.py": "023a8eaca73ed9a13b94a4a8f5b5d4f071ca539bcb7a1077eb4cf2e423154ffc",
+    "tools/task_utility_training_loop.py": "440c87569410054b1897bdb8e6bb2d80e5f9b4149aeb15f60c84a79c0c8b28f5",
+    "tools/probe_task_utility_training.py": "0dcabd17b684d5e81a0b81a41706153d1fd7333702bca0da63a2f469acc5692a",
+    "tests/test_task_utility_training.py": "fa1767b56afebd164b5cc4cdf25340b25d8f4fec375c7525e82448bb9e284ffa",
+    "tools/native_pyramid_content_guard.py": "dd5f3c4953f2e4198f6429616fff52a712959344ce7233a85bb32af8713c1ed0"
+  },
+  "production_budget_source": {
+    "path": "configs/perceptual_native_pyramid_study_20261124.json",
+    "sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589"
+  },
+  "parameters_each": 553705,
+  "training": {
+    "training_input_hw": [
+      480,
+      864
+    ],
+    "geometry_fixed": false,
+    "audit_supervision_gradients": true,
+    "task_supervision": {
+      "foreground": true,
+      "utility": true,
+      "lambda_foreground": 0.1,
+      "lambda_utility": 0.1,
+      "utility_temperature": 0.1
+    },
+    "fit": {
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "gradient_clip_norm": 5.0,
+      "lambda_reliable_RGB": 0.02,
+      "warmup_updates": 500,
+      "horizon_updates": 81768,
+      "minimum_lr_fraction": 0.03,
+      "optimizer": "AdamW, only native fusion parameters; frozen original RGB encoder/head in evaluation mode.",
+      "precision": "Frozen GPU RGB encoder FP16; auxiliary module, frozen train head and loss FP32. CPU engineering uses FP32 encoder. No CPU/GPU numerical parity claim.",
+      "determinism": "Seed0, deterministic algorithms/CuDNN, CuBLAS4096:8, TF32 disabled; past memory and optical flow detached before every frame. Actual GPU engineering must pass before fitting."
+    },
+    "Train_delivery": {
+      "lengths": {
+        "BT-001": 3000,
+        "BT-003": 243,
+        "MSK-002": 1754,
+        "PF-001": 15000,
+        "SN-001": 684,
+        "SN-015": 6570
+      },
+      "complete_frames_per_epoch": 27251,
+      "clips_per_epoch": 6814,
+      "maximum_frames_per_clip": 4,
+      "short_tails": {
+        "BT-003": 3,
+        "MSK-002": 2,
+        "SN-015": 2
+      },
+      "repeated_padding_frames": 0,
+      "address_schedule": "SeedSequence([0, one-based epoch]) shuffles sorted video order; frames remain chronological within each video. Short tails retained. No cross-video clips.",
+      "weighting": "Natural video duration, including the long PF-001 video, not balanced per-video sampling. Standard foreground-normalized YOLOX loss per clip, including short tails.",
+      "temporal_state": "Continues across adjacent clips and optimizer updates within each video; resets between videos/epochs and on unavailable cue. Stop gradient through every past state, no BPTT. Past training states may have been computed before a parameter update.",
+      "unavailable": "Flat scalar cue is unavailable. All-unavailable clips deliver frames but skip AdamW instead of fabricating a gradient update. Report delivered clips and actual updates separately.",
+      "proof": "Actual delivered per-epoch addresses/digests and unique frame coverage; original GT/calibration hashes. No Dev/Test labels are accessible to the fit."
+    }
+  },
+  "CPU": {
+    "clips_per_condition": 3,
+    "ordered_clips": [
+      {
+        "sequence": "BT-003",
+        "frames": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "sequence": "BT-003",
+        "frames": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "sequence": "BT-003",
+        "frames": [
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ],
+    "conditions": 12,
+    "optimizer_updates": 36,
+    "all_missing_clip_calls": 12,
+    "unique_Train_frames": 12,
+    "Train_domains": 1,
+    "maximum_process_RSS_GiB": 8,
+    "host_reserve_GiB": 40,
+    "encoded_image_RAM_MiB": 64,
+    "maximum_torch_threads": 2
+  },
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_T4_CPU_engineering_20261125",
+  "new_GPU_work": false,
+  "formal_launch_ready": false,
+  "new_formal_Train_Dev_Test": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "limitations": [
+    "One video and12frames are engineering samples,notcompleteTrain.",
+    "Six unit checks include artificial resume; actual T4 canary does not complete full production loop.",
+    "GPU qualification, formal controller, full Dev freeze, full7Test,47fields/raw276CSV, costs and interventions remain necessary.",
+    "OriginalCPU decode drift andF4 anomaly remain unexplained; no fallback or tolerance is used in first-step RGB equality.",
+    "This must not bypass existing registered jobs or release formalGPU fitting."
+  ]
+}
