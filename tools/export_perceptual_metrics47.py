@@ -115,7 +115,7 @@ def main():
     for stage, rows in groups.items():
         path = destination / (stage.replace('/', '__')+'.csv')
         buffer = io.StringIO(newline='')
-        writer = csv.DictWriter(buffer, fieldnames=['candidate', 'split', 'seq']+[s['metric'] for s in schema])
+        writer = csv.DictWriter(buffer, fieldnames=['candidate', 'split', 'seq']+[s['metric'] for s in schema], lineterminator='\n')
         writer.writeheader(); writer.writerows(rows)
         encoded = buffer.getvalue().encode()
         assert len(encoded) < 5*2**20
