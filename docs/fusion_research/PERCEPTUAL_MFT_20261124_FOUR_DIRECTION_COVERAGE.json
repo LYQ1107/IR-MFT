@@ -81,7 +81,15 @@
     "configs/perceptual_dev_track_concentration_20261125.json": "d29f094770739f33d4913f5a22026e06a41570ff6d244cea261661f884d6b915",
     "docs/fusion_research/PERCEPTUAL_MFT_20261125_STRUCTURAL_TRAIN_MECHANISM.json": "3a7b7867e74948c050f4e5fc92a2091ddee235cedd6f9e77a1c3c85acb5a294c",
     "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_DEV_DOMAINS.json": "cf4921e419f908f4eefc52fcec8ff703e9a54e699ebe64bc8e04d26d9cc20513",
-    "docs/fusion_research/PERCEPTUAL_MFT_20261125_DEV_TRACK_CONCENTRATION.json": "5708e6f2288f6e3bd66805e52d01a2aca0a6e87ce17c511d8d8b5744a282c9b6"
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_DEV_TRACK_CONCENTRATION.json": "5708e6f2288f6e3bd66805e52d01a2aca0a6e87ce17c511d8d8b5744a282c9b6",
+    "tools/probe_f4_real_rgb.py": "3e09ec87b0114ba2735c9707ffc11142c364c236f564605d0744c95b1bc1ce95",
+    "tools/fusion_memory_design.py": "833ef5abe30c9713e7b0d1148d897ca571323ec15f69a969ef9b7ad3f2cde903",
+    "tests/test_fusion_memory_design.py": "f61916f9eb440f144d1b22a75fc94d298a588a0e965db607e5a0b059939ab695",
+    "configs/perceptual_f4_real_rgb_engineering_20261125.json": "7ff072942e8a9fce060c91e432bb27f9df62677fda27eac381d42b84e1ed5676",
+    "configs/perceptual_fusion_memory_study_20261125.json": "fa5855dc0d97355b8bfcf6b7a25211b9b436798827439fb27a42191b57f381eb",
+    "configs/perceptual_fusion_memory_study_initial_20261125.json": "07ad00987e7302e377f38072830e265ffeb8992dc6885a795c4c2767071266dc",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_REAL_RGB_CPU_PROOF.json": "8369d3dc2f3446754e4b0d76b40ee0c8aaba757cc9f2058cd926297c1b178d52",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_FUSION_MEMORY_DESIGN_CPU_PROOF.json": "bf9d98431544590474950b7e2d0e5bbaca0ab799c685bbd0e829b33af325eca3"
   },
   "source_audit_sha256": "b31686c66b8be1d594093e61ae07aa9423ab28c2088ea7e9b492059e299f1533",
   "four_directions_completed_or_evidence_excluded": false,
@@ -163,5 +171,36 @@
     "both_sequences_positive_against_RGB_and_own_off": 0,
     "new_inference": false,
     "Test_accuracy_read": false
+  },
+  "latest_F4_real_RGB_and_design_UTC": "2026-11-24T17:42:13.111190+00:00",
+  "F4_real_RGB_component": {
+    "complete": true,
+    "Train_unique_frames": 20,
+    "independent_contiguous_clips": 5,
+    "actual_RGB_ROI_vectors": 268,
+    "nonzero_weights": [
+      0.05,
+      0.1
+    ],
+    "reliable_updates_each_nonzero_weight": 47,
+    "positive_penalty_edges_each_nonzero_weight": 34,
+    "all_nonzero_MOT_equal_baseline_on_short_clips": true,
+    "CPU_seconds": 25.21096494595986,
+    "peak_process_RSS_GiB": 0.96844482421875,
+    "actual_learned_fusion_features_transferred": false,
+    "new_accuracy": false
+  },
+  "F4_formal_design": {
+    "scientific_design_revision": 2,
+    "pure_policy_tests_passed": 25,
+    "all_tests_synthetic_records_only": true,
+    "maximum_normal_cases": 48,
+    "maximum_conditional_Test_cases": 78,
+    "new_NN_fits": 0,
+    "actual_parent_file_eligibility_verified": false,
+    "execution_pipeline_implemented": false,
+    "formal_launch_ready": false,
+    "actual_new_GPU_scheduled": false,
+    "independent_contribution_supported": false
   }
 }

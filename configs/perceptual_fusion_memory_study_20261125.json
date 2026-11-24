@@ -1,0 +1,133 @@
+{
+  "status": "PREREGISTERED_F4_FORMAL_SCIENTIFIC_DESIGN_PENDING_EXECUTION_PIPELINE",
+  "UTC": "2026-11-24T17:24:35.214383+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "parent_studies": {
+    "native": {
+      "path": "configs/perceptual_native_pyramid_study_20261124.json",
+      "sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+      "normal_arms": 6
+    },
+    "spatial": {
+      "path": "configs/perceptual_native_spatial_study_20261124.json",
+      "sha256": "c98cfbbe359eb9c93015ee7ea8ed8fe84aa934b6c998c1a4a94ade5eb6f21b06",
+      "normal_arms": 9
+    }
+  },
+  "existing_memory_prototype_sha256": "b3875d3fbb2651b2daa41429b51a1b0446c737f6f1c38448d0d6a6ecc18efc15",
+  "existing_capture_prototype_sha256": "82730284b9367fb061d5f56d1469c67494902297cfd04d85f2ef86035d3b8229",
+  "reason": "TaskbookF4stilllackscompleteformalparent/control/selectionworkflow. ReadonlyTrainmechanism/Devconcentrationdiagnoses motivate checkingfusion-memory against strongRGB and sustainedidentity controls, without extrapolating those diagnostics as efficacy.",
+  "parent_selection": {
+    "population": "Original frozen primary IR from each of native quality/temporal and spatial families; do not pick a new within-family primary or use Test scores.",
+    "require_both_families_complete_normal_Dev_and_interventions": true,
+    "normal_inputs": "All6native and9spatial original own-Dev-selected normalarm records; completeDev4834frames and fullprecisionHOTA/AssA/IDF1.",
+    "strict_eligibility": "PrimaryIRHOTA exceeds canonicalRGB,freshB1RGB,same-architectureRGB/gray,globalDevbestRGB/gray within its family,and its fixed-snapshot unavailable/actualIRroll controls.",
+    "cross_family_ties": "Higher original frozen-primary fullprecisionDevHOTA,AssA,IDF1,then native before spatial; never reselect fromTest.",
+    "if_none": "F4noteligible,preserveactualDevfailures; this is not proofF4itself has been evaluated or fourdirections completed.",
+    "ready_attestations": "Pure policy tests use explicitly synthetic records only. Actual source files/checkpoints/fullcoverage and prior actualprocess exits must be verified by future executors."
+  },
+  "normal_controls": {
+    "visual_models": [
+      "selected_original_IR_primary",
+      "same_architecture_RGB",
+      "same_architecture_gray",
+      "global_Dev_selected_RGB",
+      "global_Dev_selected_gray",
+      "fresh_B1_direct_RGB"
+    ],
+    "deduplication": "Only exact already frozen visual object IDs with identical metadata; never deduplicate just because metrics match.",
+    "profiles": [
+      "rgb_uniform",
+      "rgb_attention_proxy",
+      "fused_uniform",
+      "fused_attention_proxy"
+    ],
+    "weights": [
+      0.0,
+      0.05,
+      0.1
+    ],
+    "zero": "Single sharedByteTrack case pervisual model; weight0 no feature access. FreshdirectRGB onlyByteTrack/rgb_uniform .05/.1.",
+    "maximum_unique_normal_cases": 48,
+    "exact_lifecycle": "Current actualRGB/nativeAux/fusedP3, not descriptorcrop substitutions. MissingIR defaults tocurrentRGB/q1; no staleaux. Attention is a proxy, not calibratedreliability."
+  },
+  "selection": {
+    "primary_IR": "Best of all9normal configurations of eligible originalIRvisualparent; preferByteTrack then ordinaryRGB on exact ties. If RGBmemory wins, do not label its gain fusionmemory.",
+    "best_fused_memory": "Best ofByteTrack or4fused configurations; may legitimately selectweight0.",
+    "control_roles": "BestnormalF4 configuration independently pervisualRGB/gray/fresh source, plus samevisual same-q RGB and ordinaryRGBq1 at ownbest and primaryweight.",
+    "ties": "Higher fullprecisionDevHOTA,AssA,IDF1,then lowerweight,thenByteTrack,rgb_uniform,fused_uniform,rgb_attention_proxy,fused_attention_proxy.",
+    "all_normal_cases_still_require_full_Test": true
+  },
+  "acceptance_ablation": {
+    "trigger": "If nonzero bestfusedIR exceeds samevisualByteTrack and ownbestordinaryRGBq1 and same-qRGB on completeDev only.",
+    "policy": "Remove only reliability acceptance floor0.2->0; keep score>0.6,positive reliability,normalization,EMA,geometry,IoUedgeguard and cost unchanged. Do not call this removing allfreezing.",
+    "profiles": "Chosenfusedprofile plus samevisualRGBsame-q andRGBuniform, all3weights with weight0exactreuse; deduplicateidenticalRGBprofiles. AlsofreshB1RGBuniformfloor0at.05/.1.",
+    "comparison": "Samevisual/sameq/sameweightnormal-versus-floor0 for fusedandRGB; ownDevbest and pairedbestfusedweight. FreshRGBfloor0is anadditionalstrongcontrol,not anewNNfit."
+  },
+  "interventions": {
+    "IR_image_spatial_roll": "Actual currentIRquarter-image spatialroll throughvisual andfeaturememory paths; no futureframes.",
+    "IR_unavailable": "Actualvisualmissing path; for eachweight matchfreshB1RGBmemoryq1withtheSAMEreliabilityfloor. Never comparefloor0missingtofloor0.2fallback.",
+    "budget": "All9IRnormalconfigurations receive both fixedinterventions in completeDev after normalchoice freezes; nointervention-basedretuning. Same frozen configurations all7Test, includingnegativeDev.",
+    "floor_removal_interventions": "Chosenfusedqualityprofile atall3weights; weight0exactreuse; normalRGBfloor0 controls supportmatchingfallback."
+  },
+  "formal_evaluation": {
+    "Dev_sequences": [
+      "BT-005",
+      "SN-013"
+    ],
+    "Dev_frames": 4834,
+    "Test_sequences": [
+      "BT-002",
+      "BT-004",
+      "MSK-003",
+      "PF-002",
+      "SN-009",
+      "SN-011",
+      "SN-014"
+    ],
+    "Test_frames": 15985,
+    "all_normal_and_ablation_and_intervention_cases_full_Test": true,
+    "official_fields": 47,
+    "original_CSV_columns": 276,
+    "all_negative_results_retained": true,
+    "Test_selection": "Freeze allIDs,weights,profiles,parentchoices after completeDev and before anyTest accuracy read.",
+    "parameter_cost": "Report actualvisual NNparameters,nonparameter memory state and percase ROI/memory overhead; ordinaryRGB gain separately.",
+    "runtime": "Independent perunique frozenNN+memory computation on7sequencesx32frameprefix,8warmup24timed; sourcebytes/detectionpackets/zero/sourceMOTprefix exact before and duringtiming. IncludeimageIO/decode/hash,RGB/cue/flow,heads,NMS,ROIAlign,ByteTrack+memory. Excludeweightload/offlineDiffV2IR generation. No bundledFPS.",
+    "maximum_unique_frozen_Test_cases": 78
+  },
+  "execution": {
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_workers": 2,
+    "new_NN_fits": 0,
+    "release": "After all currently registered predecessors including native_spatial export and actualcontroller/child exits. No learnedfusionassociation before completeDevparenteligibility.",
+    "new_worker_RSS_bound_GiB": 8,
+    "host_reserve_GiB": 40,
+    "work_cap_GiB": 64,
+    "independent_disk_free_GiB": 40,
+    "new_image_or_FPN_or_ROI_disk_cache": false
+  },
+  "existing_data_limits": [
+    "HistoricalTestexposed",
+    "OriginalRGBpretrainingincludescurrentDev",
+    "AuxiliaryisRGBderived,notindependentthermalmeasurements"
+  ],
+  "current_pure_CPU_policy_proof_only": true,
+  "execution_pipeline_implemented": false,
+  "formal_launch_ready": false,
+  "actual_learned_fusion_transferred": false,
+  "new_GPU_work": false,
+  "new_accuracy": false,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "design_revision": 2,
+  "revision_UTC": "2026-11-24T17:29:37.446181+00:00",
+  "initial_design_file": "configs/perceptual_fusion_memory_study_initial_20261125.json",
+  "initial_design_sha256": "07ad00987e7302e377f38072830e265ffeb8992dc6885a795c4c2767071266dc",
+  "revision_reason": "BeforepolicytestsoractualparentDevread:missingIRmustmatchanordinaryRGBcontrolwiththeSAMEacceptancefloor. AddmatchingfreshRGBfloor0andwithinvisualRGBqualitycontrols; do not comparefloor0missingtofloor0.2baseline."
+}

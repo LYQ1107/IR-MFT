@@ -1,0 +1,130 @@
+{
+  "status": "PREREGISTERED_REAL_RGB_P3_MEMORY_CPU_ENGINEERING_NO_FUSION_TRANSFER",
+  "UTC": "2026-11-24T17:15:54.842979+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "F4_prototype_sha256": "b3875d3fbb2651b2daa41429b51a1b0446c737f6f1c38448d0d6a6ecc18efc15",
+  "capture_prototype_sha256": "82730284b9367fb061d5f56d1469c67494902297cfd04d85f2ef86035d3b8229",
+  "source_sequence": "BT-003",
+  "clips": [
+    {
+      "indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "frames": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "frames": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "indices": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "frames": [
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "indices": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "frames": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "indices": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "frames": [
+        25,
+        26,
+        27,
+        28
+      ]
+    }
+  ],
+  "frames": 20,
+  "selection": "First5nonoverlapping natural4-frame runs in existing immutable192-frameTraincache; no label, prediction or result selection. BT-003chosen only because cache has natural4-frame runs.",
+  "source_feature_manifest": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_cache/BT-003/features/complete.json",
+  "source_feature_manifest_sha256": "bed6895afb2ba9708745eead267f8159f1daadf427033cfc5f513cf51bf8f096",
+  "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "content_reference_manifest": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/full_train_complete.json",
+  "backend": {
+    "feature": "Actual learned frozen RGB backbone P3/P4/P5 from existing B1GPUproducedFP16Traincache; CPUFP32unchangedoriginalhead.",
+    "inference_hw": [
+      480,
+      864
+    ],
+    "no_new_image_encoding": true,
+    "new_CPU_GPU_parity": false,
+    "canonical800x1440_Dev_Test_equivalence": false
+  },
+  "pipeline": {
+    "decoded_head": "OriginalYOLOXHead.forward.eval; no alternate head logits",
+    "postprocess": "indexed_postprocess conf0.1,NMS0.7 versus originalpostprocess exact; originalcoords via recorded actualresize ratio.",
+    "P3": "Current actualstride8RGBP3,3x3alignedROIAlign via FusionFeatureCapture.capture_rgb_only; no cropencoder or modality feature substitution.",
+    "tracker": "Original BYTETracker and FusionMemoryTracker weights0,.05,.1; RGBsource, uniformq1, unchangedgeometry/thresholds.",
+    "sequence": "Each naturalTrainclip is explicitly independent; localframes1..4 map to consecutiveoriginalframes. No gap skipped inside a memory sequence.",
+    "checks": [
+      "Weight0neverreadsfeatures andeveryframeKF/ID/MOTstatesexact to originalByteTrack",
+      "NonzeroordinaryRGBmemory receives actualROIvectors; finite states and normalized storedvectors, count actualupdates and changededges",
+      "No detectionbox/scoremutation; outputpacketdetachedreferencesfreed",
+      "Sourcehead parameters/BN/gradients unchanged; all originalsource and cachehashes checked",
+      "OnlysourceRGBcheckpoint may load; GT,targets.npy andTestinputs forbidden"
+    ]
+  },
+  "execution": {
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "CUDA_VISIBLE_DEVICES": "",
+    "maximum_CPU_threads": 2,
+    "maximum_process_RSS_GiB": 2,
+    "host_reserve_GiB": 40,
+    "work_cap_GiB": 64,
+    "independent_disk_free_GiB": 40,
+    "new_GPU_work": false,
+    "saved_weights": false,
+    "new_image_or_FPN_disk_cache": false
+  },
+  "learned_fusion_features_transferred": false,
+  "new_formal_model_fit": false,
+  "new_official_accuracy": false,
+  "formal_F4_launch_ready": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
