@@ -4,6 +4,12 @@
 条件仍未满足，**已验证的独立多模态贡献为 0**。当前最高观测 Test
 31.504 不是新选出的主模型，也未达到原始 RGB 29.529 加 5 点的目标。
 
+后续已补充当前IR原生空间门控家族的CPU原型：三种组合×三个cue，
+六段Train各一帧，共54次工程更新、10项单元检查通过。新编码器与空间／
+冗余分支均有梯度，但空间变化很小，尚无正式拟合、Dev/Test或贡献证明。
+见[NATIVE_SPATIAL_ENGINEERING](PERCEPTUAL_MFT_20261124_NATIVE_SPATIAL_ENGINEERING.md)。
+下表中的“原空间gate＋冗余抑制完整当前IR验证”仍然未完成。
+
 | 方向 | 当前 November IR 证据 | 尚需完成 |
 | --- | --- | --- |
 | F1 动态质量 | `NativePyramidFusion(mode='quality')` 学习当前图像辅助金字塔，各 FPN 层预测质量 gate；匹配 RGB/gray/IR 和完整流程已登记、工程检查已做，正式拟合排在现有训练后 | 实际 GPU 门槛、完整 Train/Dev/Test、强对照、去质量等归因；尚无该模型的新 HOTA |

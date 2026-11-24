@@ -1,0 +1,134 @@
+{
+  "status": "PREREGISTERED_NATIVE_SPATIAL_CPU_ENGINEERING_NOT_FORMAL_LAUNCH_READY",
+  "UTC": "2026-11-24T14:38:02.484178+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "parent_native_study_sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+  "parent_source_sha256": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+  "hypothesis": "A cue quality scalar per FPN level cannot learn location-dependent auxiliary selection. Test a spatial gate with a newly learned current-November-cue pyramid rather than the historical causal_cache or a frozen RGB encoder applied to IR. Existing teacher-confidence spatial protection remains; this is not evidence that its absence caused old failures.",
+  "variants": [
+    {
+      "name": "spatial",
+      "use_quality": false,
+      "use_spatial": true,
+      "use_redundancy": false
+    },
+    {
+      "name": "quality_spatial",
+      "use_quality": true,
+      "use_spatial": true,
+      "use_redundancy": false
+    },
+    {
+      "name": "quality_spatial_redundancy",
+      "use_quality": true,
+      "use_spatial": true,
+      "use_redundancy": true
+    }
+  ],
+  "matched_cues": [
+    "rgb",
+    "gray",
+    "ir"
+  ],
+  "architecture": {
+    "channels": [
+      320,
+      640,
+      1280
+    ],
+    "context_channels": 32,
+    "spatial_hidden": 32,
+    "redundancy_hidden": 16,
+    "expected_parameters": 556681,
+    "comparison": "Separate trainable RGB/native1x1 projections, per-location channel RMS normalization; concatenate R,I,abs(R-I),R*I. This comparison is between learned projected spaces, not raw channelwise RGB and IR sensor equivalence.",
+    "spatial": "1x1 conv,SiLU,depthwise3x3,SiLU,1x1 scalar map; final weights/bias zero. logit(frame_quality)+spatial_delta, or zero global logit in spatial-only.",
+    "redundancy": "abs(R-I),R*I ->1x1 hidden16,SiLU,1x1,sigmoid; last weights0,bias-6. effective gate=gate*(1-rho). Near-disabled at addition, not exactly unchanged after loading a nonzero parent.",
+    "residual": "Same zero-initialized native output projection, bound0.5*RGB_RMS*tanh(projection), existing teacher-confidence protection and valid mask. No RGB/head/BN update.",
+    "missing": "Current cue absent returns RGB exactly without reading cue; no state or memory; malformed chronological state is rejected."
+  },
+  "CPU": {
+    "input_hw": [
+      480,
+      864
+    ],
+    "addresses": [
+      {
+        "sequence": "BT-001",
+        "frame": 1
+      },
+      {
+        "sequence": "MSK-002",
+        "frame": 1
+      },
+      {
+        "sequence": "SN-015",
+        "frame": 1
+      },
+      {
+        "sequence": "PF-001",
+        "frame": 1
+      },
+      {
+        "sequence": "BT-003",
+        "frame": 1
+      },
+      {
+        "sequence": "SN-001",
+        "frame": 1
+      }
+    ],
+    "actual_Train_frames": 6,
+    "updates_per_variant_cue": 6,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 5.0,
+    "lambda_reliable_RGB": 0.02,
+    "seed": 0,
+    "order": "Same six source addresses and initial weights for each of9variant/cue groups. Frozen RGB features may be shared only in RAM for this engineering check; no formal performance or budget claim.",
+    "inference": "After actual updates: full head zero-init and unavailable equality, partial availability, spatial-gate gradient/variation, and actual IR-image-roll observation. This check is Train-only and not a tracking accuracy test."
+  },
+  "formal_remaining": {
+    "launch_ready": false,
+    "all9_normal_fits_required_if_this_study_formally_started": true,
+    "stage_order": "Three matched spatial-only fits and complete normal Dev, then quality+spatial, then redundancy; no simultaneous introduction of all enabled mechanisms.",
+    "complete_Train_epochs": [
+      6,
+      9,
+      12
+    ],
+    "budget": "All nine normal fits execute the same total full-Train budget; stage extension after all required complete Dev curves, using fixed same native-study0.2 criterion. A stage is not a sparse cached pass.",
+    "selection": "Freeze complete Dev-only primary and all matched controls before Test. No Test-based replacement or triggering.",
+    "controls": [
+      "Direct and fresh B1 RGB",
+      "Same-capacity duplicateRGB and grayscale for each variant",
+      "No learned spatial delta, no frame quality, no redundancy; paired primary epoch and own Dev best",
+      "Actual November IR image roll and complete missing modality",
+      "All formal engineering-passed trained candidates full7Test15985 even negative Dev, all47fields/per-sequence/original276CSV and actual full-component cost"
+    ],
+    "additional_requirements": [
+      "Separate complete source-pinned training/Dev/Test/cost controller before formal launch",
+      "GPU engineering and B1 source proof before fitting",
+      "Future GPU work after all currently registered queues and actual process exits, including factorial extension"
+    ]
+  },
+  "execution": {
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "CPU_only_now": true,
+    "work_cap_GiB": 64,
+    "independent_disk_reserve_GiB": 40,
+    "host_reserve_GiB": 40,
+    "maximum_CPU_worker_GiB": 8,
+    "new_image_or_FPN_disk_copies": 0
+  },
+  "novelty": "Spatial attention, cross-feature products, redundancy gating and residual adapters have prior art, including the existing historical qra classes. This is a current-IR hypothesis and engineering implementation, not a new-algorithm or independent-contribution claim.",
+  "full_current_IR_four_direction_requirement_complete": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
