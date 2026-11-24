@@ -100,3 +100,8 @@ F4独立测速组件后续已实现，23项人工检查通过。实际Train RGB�
 精确匹配，修订后重跑发生摘要异常；后续零记忆逐帧诊断复现旧参照，但
 原因未解决，不能放行资格或据此增加方向完成数。GPU工程/调度/导出仍缺，
 无新GPU、学习融合转移或HOTA；见[F4_RUNTIME_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_RUNTIME_COMPONENTS.md)。
+
+F4真实GPU工程入口及独立比较器后续已实现，19项人工检查通过；两份
+原RGB CPU模型在固定Train八帧的检测/状态/当前ROI重放完全一致。此前CPU
+异常原因仍未知，尚无真实GPU或学习IR资格、完整Dev/Test或HOTA，不能
+增加方向完成数；完整调度/导出仍待实现。见[F4_GPU_ENGINEERING_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_GPU_ENGINEERING_COMPONENTS.md)。
