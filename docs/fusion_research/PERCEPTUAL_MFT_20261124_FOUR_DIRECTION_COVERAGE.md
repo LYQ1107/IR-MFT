@@ -117,3 +117,11 @@ GT读取或CUDA调用。实际GPU门槛、学习融合转移与正式Dev/Test仍
 CPU人工完整流程和子进程检查不能证明融合贡献，旧CPU摘要异常原因亦仍
 未知；四方向完成数、独立创新0和Goal未达结论不变。见
 [F4_FULL_WORKFLOW](PERCEPTUAL_MFT_20261125_F4_FULL_WORKFLOW.md)。
+
+剩余两组IR后续已核验48宏循环／两遍完整Train，仍继续第三遍，未新增
+Dev/Test。三个已完成模型的当前／过去输入诊断也完成66个Train帧：固定
+0.6支持为RGB680、当前IR671、过去IR682，IR在六域均无更高支持；0.1下
+当前IR对过去+2而对RGB为0，0.7对RGB−10。IR前景差值排序AUC0.493933，
+不能把特征／语义差异等同于任务互补。这是固定几何结构路线的Train样本
+证据，不替尚未完成的原生CNN、时序或空间门控判定成败，不增加方向完成数。
+详见[TRAIN_CUE_SPECIFICITY](PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.md)。

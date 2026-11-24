@@ -1,0 +1,243 @@
+{
+  "status": "COMPLETE_REAL_TRAIN_CUE_SPECIFICITY_AND_TWO_FULL_TRAIN_PROGRESS_NO_NEW_HOTA",
+  "UTC": "2026-11-24T21:55:24.586862+00:00",
+  "source_hashes": {
+    "tools/diagnose_structural_cue_specificity.py": "b75703d0f0fdb81688a5696754b9af8efc9c66dac5e0d4236838761b04ec1e02",
+    "tools/export_structural_cue_specificity.py": "a213ff090fc9e99125a20b2a507a8499b76d02c4c084476d6090b130a03d1495",
+    "tools/plot_structural_cue_specificity.py": "229ae9f42add533a63abf60bf8ca4eae7a7e70a29a74b240924ab0f81b3c6947",
+    "tests/test_structural_cue_specificity.py": "bacf3329dea7f44c17171365eeffe716b1487b55024ef974f04e298978bd0fba",
+    "configs/perceptual_train_cue_specificity_20261125.json": "ce010e3060e0bcb99f2b0118af32e63a5774ee0000ff2719e4fe0cf7a7d064a4"
+  },
+  "preregistration_commit": "99b1fd863281383fb7b132be1e76d591321527d1",
+  "actual_diagnosis_exit_code": 0,
+  "exact_specification_sha256": "ce010e3060e0bcb99f2b0118af32e63a5774ee0000ff2719e4fe0cf7a7d064a4",
+  "actual_CPU_seconds": 904.312273981981,
+  "peak_CPU_RSS_GiB": 1.1072616577148438,
+  "current_frames": 66,
+  "Train_domains": 6,
+  "all3cue_current_past_conditions_retained": true,
+  "raw_image_hashes_checked": 144,
+  "complete_scalar_rows": {
+    "per_frame_support": 198,
+    "anchor_statistics": 420,
+    "aggregated_support": 63,
+    "contrast_AUC": 21
+  },
+  "unit_checks": 9,
+  "unit_checks_receipt_sha256": "9d58a61772a187f7c57112e65c1e0fe381c0b46a5bf644ddf4560e67ea8ca709",
+  "result_sha256": "ca50bb8ec98d758bc12dc9352781b2be3ce0eb545612662dbdaf8161c19996e0",
+  "interpretation_document_sha256": "664a5863c2ee02699dc06a9b52642477b7e65a400d4a0f91f6a84c26d48a3530",
+  "producer_and_export_execution": {
+    "status": "CPU_DIAGNOSIS_EXITED",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/diagnose_structural_cue_specificity.py",
+      "--specification",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_train_cue_specificity_20261125.json"
+    ],
+    "identity": {
+      "pid": 498407,
+      "start_ticks": 82304813,
+      "command_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "UTC": "2026-11-24T21:34:36.850280+00:00",
+    "specification_sha256": "ce010e3060e0bcb99f2b0118af32e63a5774ee0000ff2719e4fe0cf7a7d064a4",
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_cue_specificity_20261125.log",
+    "new_GPU_work": false,
+    "exit_code": 0,
+    "seconds": 915.9534780000104,
+    "observed_peak_RSS_GiB": 1.1039810180664062,
+    "log_sha256": "c3004a4df3eddad696e4f407862c49ecb878c5f40ea8fe6c4f2b8e7217773b97"
+  },
+  "actual_post_start_process_identity": {
+    "pid": 498407,
+    "start_ticks": 82304813,
+    "command_sha256": "17dc02df48fb1bf52ced5f5d1cc4f34f92be0dd591553dcd58ac12087469cc9a",
+    "exact_command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/diagnose_structural_cue_specificity.py",
+      "--specification",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_train_cue_specificity_20261125.json"
+    ],
+    "initial_spawn_command_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "initial_commandline_sample_empty": true,
+    "actual_process_state": "R",
+    "scope": "Post-start real command-line and startticks verified; do not treat an initially empty exec-transition cmdline as a validated identity."
+  },
+  "existing_registrations": [
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_pipeline_registered.json",
+      "registration_sha256": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+      "source_count": 102,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_content_guard_recovery_registered.json",
+      "registration_sha256": "cc46a2be9588e88bc37d69d73ebf1be6de9d295e6057b6f2d04539c1b7f9f2ef",
+      "source_count": 4,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_pipeline_registered.json",
+      "registration_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+      "source_count": 102,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_correlation_recovery_workflow_20261124.json",
+      "registration_sha256": "207f89148ed0a3d1f38db898dd695f306258274e35f50466f5f51bdcd13da9a2",
+      "source_count": 87,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_worker_interfaces_registered.json",
+      "registration_sha256": "42826f40efa77d5f56722ad497faaedc417f0e9c56ac4a379945e7e069d33fb7",
+      "source_count": 30,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_registered.json",
+      "registration_sha256": "6c97818940ff48a23f54601173f0573c01494ac7fd598183c9417397e126e0bb",
+      "source_count": 94,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_fresh_runtime_registered.json",
+      "registration_sha256": "907fc7dec7e24f55450e81a150a14366d071144d489844443f75efdaffbc8aa6",
+      "source_count": 137,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_factorial_pipeline_registered.json",
+      "registration_sha256": "bc05f29d9b9c3d53d277ad46dd3f4f0d787911c8c7252723a8a3918985d923a1",
+      "source_count": 180,
+      "all_sources_and_artifacts_exact": true
+    },
+    {
+      "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/pipeline_registered.json",
+      "registration_sha256": "aed348fd24ef60cbef6f90bf9fa5319d2d3a539a7cacf41633d6daeb87a323b4",
+      "source_count": 323,
+      "all_sources_and_artifacts_exact": true
+    }
+  ],
+  "full_F4_registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468",
+  "full_F4_source_count": 384,
+  "spatial_source_count": 323,
+  "spatial_artifact_count": 11,
+  "runtime_dynamic_source_count": 137,
+  "all_old_and_F4_sources_artifacts_exact": true,
+  "prior_and_F4_CPU_process_identities": [
+    {
+      "pid": 158984,
+      "start_ticks": 80130725,
+      "command_sha256": "105fd65ce1b169c33e2cb63c6f2491d10e2838863f38dbd853c706b0a35f663a"
+    },
+    {
+      "pid": 159108,
+      "start_ticks": 80131767,
+      "command_sha256": "c9714e468e7617efb10a856be8c272d983f8afafbd15f2c0277ce907b060bd18"
+    },
+    {
+      "pid": 184707,
+      "start_ticks": 80301525,
+      "command_sha256": "6d78352ee397702c97a65a092e71ad87e4f4957b4b36aa930e1f339f4bffc696"
+    },
+    {
+      "pid": 488189,
+      "start_ticks": 82242612,
+      "command_sha256": "cb654835ab22b9a1078e053073ad5ebf46f467050d7708420a6cfc0133778423"
+    }
+  ],
+  "F4_state": "WAITING_FOR_COMPLETE_SPATIAL_EXPORT_AND_ACTUAL_EXITS",
+  "F4_actual_phase_count": 0,
+  "main_workers": [
+    {
+      "id": "ir_101_s0",
+      "pid": 158984,
+      "physical_gpu": "4",
+      "completed_macro_passes": 49,
+      "latest_log": {
+        "epoch": 50,
+        "step": 224,
+        "steps": 288,
+        "loss": [
+          0.9401080818580729,
+          0.9382310596161655,
+          0.000893781766990287,
+          0.0017876407418953022,
+          0.08133878426659587
+        ],
+        "physical_gpu": "4",
+        "seconds": 22953.857411338948,
+        "peak_gpu_GiB": 4.600374698638916
+      },
+      "registered_macro_budget": 72,
+      "verified_complete_Train_traversals": 2
+    },
+    {
+      "id": "ir_110_s0",
+      "pid": 159108,
+      "physical_gpu": "5",
+      "completed_macro_passes": 49,
+      "latest_log": {
+        "epoch": 50,
+        "step": 224,
+        "steps": 288,
+        "loss": [
+          0.9431964273431471,
+          0.9417107111907431,
+          0.0010293646304749668,
+          0.0013827814802555491,
+          0.08771441815354462
+        ],
+        "physical_gpu": "5",
+        "seconds": 22942.34560626198,
+        "peak_gpu_GiB": 3.7627992630004883
+      },
+      "registered_macro_budget": 72,
+      "verified_complete_Train_traversals": 2
+    }
+  ],
+  "matched_fit_states": {
+    "rgb_111_s0": "COMPLETE",
+    "gray_111_s0": "COMPLETE",
+    "ir_111_s0": "COMPLETE",
+    "ir_011_s0": "COMPLETE",
+    "ir_101_s0": "FIT_RUNNING",
+    "ir_110_s0": "FIT_RUNNING"
+  },
+  "storage_stats": {
+    "work_file_bytes": 62532837108,
+    "work_cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960,
+    "free_bytes": 2938700677120
+  },
+  "work_GiB": 58.238242853432894,
+  "independent_free_GiB": 2736.8782806396484,
+  "scientific_figures_local_only": [
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_cue_specificity_20261125/figures/PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.pdf",
+      "bytes": 16927,
+      "sha256": "024dc6d4e7933e94ee65229b229f0ac03bf57c9b228ab0479eb807ab21f6b633"
+    },
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_cue_specificity_20261125/figures/PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.png",
+      "bytes": 93822,
+      "sha256": "83fa6b2c21be450b1feb8e35f83497f74a49966b34d25748e83043cce1f9489f"
+    },
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_cue_specificity_20261125/figures/PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY_FIGURE.json",
+      "bytes": 695,
+      "sha256": "121ddb0ec50897b7d39a24710014cadbebd7a99bc0c116bd04fb037c874f6eb6"
+    }
+  ],
+  "scientific_figures_or_dataset_images_to_Git": false,
+  "no_existing_source_training_or_process_changed": true,
+  "new_GPU_work": false,
+  "new_NN_fits": false,
+  "new_Dev_Test_accuracy": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

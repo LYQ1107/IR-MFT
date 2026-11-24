@@ -1,0 +1,112 @@
+{
+  "status": "EXPORTED_COMPLETE_ALL3_CUES_ALL6_TRAIN_DOMAINS_NO_TRACKING_CLAIM",
+  "UTC": "2026-11-24T21:50:25.774480+00:00",
+  "full_result_sha256": "ca50bb8ec98d758bc12dc9352781b2be3ce0eb545612662dbdaf8161c19996e0",
+  "specification_sha256": "ce010e3060e0bcb99f2b0118af32e63a5774ee0000ff2719e4fe0cf7a7d064a4",
+  "source_hashes": {
+    "tools/diagnose_structural_cue_specificity.py": "b75703d0f0fdb81688a5696754b9af8efc9c66dac5e0d4236838761b04ec1e02",
+    "tests/test_structural_cue_specificity.py": "bacf3329dea7f44c17171365eeffe716b1487b55024ef974f04e298978bd0fba",
+    "tools/diagnose_structural_train_mechanism.py": "9f82f53118acedfa7981e052243d02ea1fa64be45f26d9b40030e9f67d77e06b",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/neck72_runtime.py": "9a5ed42a2fecb1a6bfa7f18830686b39d1b7584239952efce9bf22fd262b9ce7",
+    "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+    "yolox/models/structural_factorial_repair.py": "af99564db8ccebb9af50069f1779be562ffd6ee70648e1985a79a04eb207b849",
+    "yolox/models/structural_relative_repair.py": "d7e1d91c7cc159232a572459bb6deb5eca3f00eacb0215ac49e0b722224bb12c",
+    "yolox/models/yolo_head.py": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8"
+  },
+  "exporter_sha256": "a213ff090fc9e99125a20b2a507a8499b76d02c4c084476d6090b130a03d1495",
+  "actual_execution": {
+    "status": "CPU_DIAGNOSIS_EXITED",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/diagnose_structural_cue_specificity.py",
+      "--specification",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_train_cue_specificity_20261125.json"
+    ],
+    "identity": {
+      "pid": 498407,
+      "start_ticks": 82304813,
+      "command_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "UTC": "2026-11-24T21:34:36.850280+00:00",
+    "specification_sha256": "ce010e3060e0bcb99f2b0118af32e63a5774ee0000ff2719e4fe0cf7a7d064a4",
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_cue_specificity_20261125.log",
+    "new_GPU_work": false,
+    "exit_code": 0,
+    "seconds": 915.9534780000104,
+    "observed_peak_RSS_GiB": 1.1039810180664062,
+    "log_sha256": "c3004a4df3eddad696e4f407862c49ecb878c5f40ea8fe6c4f2b8e7217773b97"
+  },
+  "post_start_verified_identity": {
+    "pid": 498407,
+    "start_ticks": 82304813,
+    "command_sha256": "17dc02df48fb1bf52ced5f5d1cc4f34f92be0dd591553dcd58ac12087469cc9a",
+    "exact_command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/diagnose_structural_cue_specificity.py",
+      "--specification",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_train_cue_specificity_20261125.json"
+    ],
+    "initial_spawn_command_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "initial_commandline_sample_empty": true,
+    "actual_process_state": "R",
+    "scope": "Post-start real command-line and startticks verified; do not treat an initially empty exec-transition cmdline as a validated identity."
+  },
+  "actual_execution_sha256": "d3920e03d792a8178c9c6593f2e294e43a3e85568bff6cb7af4a2afd460a9eab",
+  "post_start_verified_identity_sha256": "9af50ab0adfaefc238d606dd57d2ad1368ca054be8ac7c748c9c985f8522f3a4",
+  "summary": [
+    {
+      "case": "rgb_111_e72",
+      "cue": "rgb",
+      "reference_support06": 680,
+      "current_support06": 671,
+      "past_support06": 681,
+      "current_minus_reference_support06": -9,
+      "current_minus_past_support06": -10,
+      "weak_foreground_mean_current_minus_past": 0.0006453571280765783,
+      "background_mean_current_minus_past": -6.110491920226395e-06,
+      "current_minus_past_foreground_ranking_AUC": 0.509339112194007,
+      "domains_positive_current_minus_past_support06": 2,
+      "domains_positive_weak_foreground_contrast": 4
+    },
+    {
+      "case": "gray_111_e72",
+      "cue": "gray",
+      "reference_support06": 680,
+      "current_support06": 675,
+      "past_support06": 680,
+      "current_minus_reference_support06": -5,
+      "current_minus_past_support06": -5,
+      "weak_foreground_mean_current_minus_past": 4.6842744138002604e-05,
+      "background_mean_current_minus_past": -9.392922668365152e-06,
+      "current_minus_past_foreground_ranking_AUC": 0.47323228112239446,
+      "domains_positive_current_minus_past_support06": 3,
+      "domains_positive_weak_foreground_contrast": 4
+    },
+    {
+      "case": "ir_111_e72",
+      "cue": "ir",
+      "reference_support06": 680,
+      "current_support06": 671,
+      "past_support06": 682,
+      "current_minus_reference_support06": -9,
+      "current_minus_past_support06": -11,
+      "weak_foreground_mean_current_minus_past": 0.00024265215821503362,
+      "background_mean_current_minus_past": -1.7232753660134103e-06,
+      "current_minus_past_foreground_ranking_AUC": 0.4939326126601579,
+      "domains_positive_current_minus_past_support06": 0,
+      "domains_positive_weak_foreground_contrast": 4
+    }
+  ],
+  "scope_checks": {
+    "IR_domains_contrast_AUC_above_both_capacity_controls": 2,
+    "no_threshold_model_or_Test_primary_selection": true,
+    "full_Train_or_heldout_tracking_efficacy": false,
+    "supported_innovations": 0,
+    "goal_met": false
+  },
+  "goal_met": false,
+  "supported_innovations": 0
+}
