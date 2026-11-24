@@ -97,7 +97,7 @@ def main():
                 if position==0:
                     assert result['initial_full_RGB_exact'] and result['initial_proposal_full_RGB_exact']
                     assert result['utility_label_mass']==result['utility_supervision_direct_gradient_L1']==0
-                steps.append(dict(sequence=address.sequence,frames=list(address.frames),**result))
+                steps.append(dict(sequence=address.sequence,frame_indices=list(address.frames),**result))
                 state['completed_optimizer_updates']+=1;save();guard()
                 print(json.dumps(dict(condition=variant['id']+'_'+cue,position=position,row=result)),flush=True)
             fg=sum(v['foreground_supervision_direct_gradient_L1'] for v in steps)
@@ -132,7 +132,7 @@ def main():
         pytest_receipt_sha256=sha(args.pytest_receipt),conditions=rows,common_initial_state_sha256=next(iter(initials)),
         source_RGB_state_sha256=frozen,Train_GT_hashes=gt_hashes,image_content_records=records,reader_statistics=reader.statistics(),
         parameters_each=spec['parameters_each'],optimizer_updates_total=36,missing_clip_optimizer_calls=12,
-        actual_unique_Train_frames=12,Train_domains=1,actual_Train_frame_visits=144,complete_Train_epochs=0,
+        actual_unique_Train_frames=12,Train_domains=1,actual_Train_frame_visits=144,all_missing_frame_rechecks=48,complete_Train_epochs=0,
         actual_device='cpu',new_GPU_work=False,formal_launch_ready=False,new_Dev_Test_accuracy=False,
         source_RGB_weights_BN_and_gradients_unchanged=True,saved_weights=False,new_image_FPN_disk_cache=False,
         seconds=time.monotonic()-started,peak_process_RSS_GiB=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024/2**30,

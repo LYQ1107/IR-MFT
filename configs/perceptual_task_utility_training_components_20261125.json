@@ -1,6 +1,6 @@
 {
-  "status": "PREREGISTERED_ACTUAL_T4_TASK_SUPERVISION_TRAINING_API_CPU_ONLY",
-  "UTC": "2026-11-24T23:09:32.936613+00:00",
+  "status": "PREREGISTERED_ACTUAL_T4_TASK_SUPERVISION_TRAINING_API_CPU_R2",
+  "UTC": "2026-11-24T23:11:22.702341+00:00",
   "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
   "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
   "prototype": {
@@ -27,7 +27,7 @@
     "yolox/models/losses.py": "e4644f138ddb8658cc26a03e5d80bb0fcd4e91bb8b0085d695958aafd47a031e",
     "tools/task_utility_fit.py": "023a8eaca73ed9a13b94a4a8f5b5d4f071ca539bcb7a1077eb4cf2e423154ffc",
     "tools/task_utility_training_loop.py": "440c87569410054b1897bdb8e6bb2d80e5f9b4149aeb15f60c84a79c0c8b28f5",
-    "tools/probe_task_utility_training.py": "0dcabd17b684d5e81a0b81a41706153d1fd7333702bca0da63a2f469acc5692a",
+    "tools/probe_task_utility_training.py": "0d53ec55bdadd193a09cbe15b7facee6573a89a9b1bea397e2f0ca66e2d7222c",
     "tests/test_task_utility_training.py": "fa1767b56afebd164b5cc4cdf25340b25d8f4fec375c7525e82448bb9e284ffa",
     "tools/native_pyramid_content_guard.py": "dd5f3c4953f2e4198f6429616fff52a712959344ce7233a85bb32af8713c1ed0"
   },
@@ -128,7 +128,7 @@
     "encoded_image_RAM_MiB": 64,
     "maximum_torch_threads": 2
   },
-  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_T4_CPU_engineering_20261125",
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_T4_CPU_engineering_R2_20261125",
   "new_GPU_work": false,
   "formal_launch_ready": false,
   "new_formal_Train_Dev_Test": false,
@@ -140,5 +140,13 @@
     "GPU qualification, formal controller, full Dev freeze, full7Test,47fields/raw276CSV, costs and interventions remain necessary.",
     "OriginalCPU decode drift andF4 anomaly remain unexplained; no fallback or tolerance is used in first-step RGB equality.",
     "This must not bypass existing registered jobs or release formalGPU fitting."
-  ]
+  ],
+  "previous_failure": {
+    "source_commit": "60e781f",
+    "specification": "configs/perceptual_task_utility_training_components_20261125_r1.json",
+    "specification_sha256": "f8f96c5e35e153f508632b473e3ef85026f5af258e1910d7c3dbb3224c6f3a31",
+    "actual_completed_optimizer_calls": 1,
+    "recorded_updates": 0,
+    "change": "Use frame_indices for address list; keep integer frames from optimizer row. No model/data/loss/LR/numerical assertion changes."
+  }
 }

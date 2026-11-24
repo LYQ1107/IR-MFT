@@ -9,13 +9,20 @@ RGB对照31.440，IR差值仅+0.064。这个最高观测不是按Test新选出�
 另一分支Test+1.022而Dev−1.800，尚不能作为稳定贡献。目标34.529及
 2–3项独立贡献均未达到；详见[NATIVE_REMAINING_ASSESSMENT](PERCEPTUAL_MFT_20261124_NATIVE_REMAINING_ASSESSMENT.md)。
 
-六组匹配全量Train已完成四组；IR101／110已核验48/72宏循环、各两遍
-完整27251帧Train，原PID158984／159108继续在物理4／5卡执行第三遍。
+六组匹配全量Train已完成四组；IR101／110日志各完成61/72宏循环、当前
+第62，原PID158984／159108继续在物理4／5卡执行第三遍。最近逐地址
+完整核验仍为48/72宏循环、各两遍完整27251帧Train。
 每组13824次更新、55296次输入访问，48份实际交付地址摘要全部匹配。
 24宏循环才是一遍，不能写成48轮完整数据。见
 [IR_REMAINING_SECOND_FULL_TRAIN_AUDIT](PERCEPTUAL_MFT_20261125_IR_REMAINING_SECOND_FULL_TRAIN_AUDIT.md)。
 本轮没有新的候选Dev/Test准确率。质量、空间、因果时序与轨迹记忆仍是
 待验证的机制；代码和工程检查不计作创新。
+
+任务效用监督的独立训练步及断点循环现已接通，六项人工检查通过；
+真实四帧接口检查正在执行，尚未完整完成。首次在优化返回后因日志字段
+冲突退出，源码及失败保留；修正记录字段后按相同预算重跑，不增加新
+GPU或正式指标。完整训练／Dev／Test控制器及资格仍待补齐，不能计为
+收益或创新。见[TASK_UTILITY_TRAINING_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_TRAINING_COMPONENTS.md)。
 
 任务相关空间监督原型已实现：同一553705参数推理结构，四种Train前景／
 效用监督组合×三种输入，12项核心检查及实际六帧／72次CPU工程更新
