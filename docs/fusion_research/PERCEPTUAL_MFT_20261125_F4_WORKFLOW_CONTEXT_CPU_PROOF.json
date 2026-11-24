@@ -1,0 +1,83 @@
+{
+  "status": "COMPLETE_ACTUAL_F4_CPU_MAIN_PREFLIGHT_NO_TENSORS_IMAGES_GT_OR_CUDA",
+  "missing_parent_markers": [
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_complete_Dev.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_normal_selection_frozen.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_Test_selection_frozen.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/complete_Dev.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/normal_selection_frozen.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/Test_selection_frozen.json"
+  ],
+  "parent_eligibility": null,
+  "predecessor_ready": false,
+  "spatial_controller_identity": {
+    "pid": 184707,
+    "start_ticks": 80301525,
+    "command_sha256": "6d78352ee397702c97a65a092e71ad87e4f4957b4b36aa930e1f339f4bffc696"
+  },
+  "spatial_controller_confirmed_live": true,
+  "missing_pipeline_entrypoints": [
+    "tools/probe_f4_gpu_engineering.py",
+    "tools/benchmark_fusion_memory.py",
+    "tools/launch_fusion_memory.py",
+    "tools/export_fusion_memory.py"
+  ],
+  "complete_registration_present": false,
+  "new_GPU_work": false,
+  "tensor_loads": 0,
+  "new_accuracy": false,
+  "formal_launch_ready": false,
+  "exit_code": 0,
+  "blocked_access_attempts": [],
+  "observed_file_paths": [
+    "/data3/liuyeqiang/IR-MFT/configs/cfp/protocol_v2.json",
+    "/data3/liuyeqiang/IR-MFT/configs/perceptual_f4_parent_io_20261125.json",
+    "/data3/liuyeqiang/IR-MFT/configs/perceptual_fusion_memory_study_20261125.json",
+    "/data3/liuyeqiang/IR-MFT/configs/perceptual_fusion_memory_workflow_20261125.json",
+    "/data3/liuyeqiang/IR-MFT/configs/perceptual_gpu_handoff_20261123.json",
+    "/data3/liuyeqiang/IR-MFT/configs/perceptual_mft_20261122.json",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_design.py",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_dev_freeze.py",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_evaluation.py",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_model_loading.py",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_observation.py",
+    "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_parent_io.py",
+    "/proc/184707/stat",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/controller_identity.json",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/state.json"
+  ],
+  "file_read_count": 26,
+  "protected_scope": "main preflight execution after ordinary CPU module imports",
+  "tensor_loader_and_CUDA_calls_forbidden": true,
+  "source_hashes": {
+    "tools/fusion_memory_workflow.py": "5a19e96c95c4f87413ab3d1b26bd1d5f37fc90f23cf2ebf63c89877dffbeab97",
+    "tools/observe_fusion_memory.py": "3755db1b8f3550ed39f8387386f9d060eacb3e843494a9916178a50cbc47ea81",
+    "tests/test_fusion_memory_workflow.py": "bd66799cf45472b7dd0f5a4e3d629068ccbe048f541566e630c5d69203e756c2",
+    "configs/perceptual_fusion_memory_workflow_20261125.json": "c3af1de22a95226f8b48d3a0e80e6b8f64e2244998559c85690b9dd2c9c638b2"
+  },
+  "instrumentation_history": [
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_workflow_preflight_initial_harness_failure.json",
+      "result": "Initial harness import failure, preserved"
+    },
+    {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_workflow_preflight_1795549112775341771.json",
+      "result": "CLI succeeded, but Path._accessor cached open bypassed builtin/io instrumentation; use current Path.open-intercepted proof"
+    }
+  ],
+  "new_Dev_or_Test_accuracy": false,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "pytest": {
+    "exit_code": 0,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_workflow_pytest_1795548635836108793.txt",
+    "log_sha256": "c81b94ab60e778f89fcd7fea6833db4d101aa1e14c00c458dc9d5b732ebea013",
+    "source_hashes": {
+      "tools/fusion_memory_workflow.py": "5a19e96c95c4f87413ab3d1b26bd1d5f37fc90f23cf2ebf63c89877dffbeab97",
+      "tools/observe_fusion_memory.py": "3755db1b8f3550ed39f8387386f9d060eacb3e843494a9916178a50cbc47ea81",
+      "tests/test_fusion_memory_workflow.py": "bd66799cf45472b7dd0f5a4e3d629068ccbe048f541566e630c5d69203e756c2"
+    }
+  },
+  "pytest_passed": 17,
+  "CPU_workflow_scope": "Partial context and producer only, not complete workflow integration"
+}
