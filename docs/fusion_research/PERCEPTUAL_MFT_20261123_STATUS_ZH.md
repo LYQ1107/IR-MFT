@@ -15,6 +15,12 @@
 20261124_NATIVE_WORKFLOW_QUEUE、REGISTRATION、CPU_TESTS与
 20261124_NATIVE_CANONICAL_DEV_ENGINEERING。
 
+新的只读实际地址核查确认：RGB对照已完成52个宏循环，其中前48个覆盖
+两遍完整Train；灰度完成43个宏循环、一遍完整Train。两者的实际提供器
+地址摘要逐批等于登记日程，源代码和配置未变。其余IR条件仍排队，不能
+将该训练进度当作六组完成或新的准确率。见
+20261124_RGB_SECOND_FULL_TRAVERSAL_AUDIT。
+
 原native36两后端的26项完整Test现已结束，八个原Dev选择均先精确复现。
 consensus/new/IR为31.442，相对直接RGB29.529高1.913，但同后端RGB为
 31.443；native增量关闭与候选编码置换的HOTA均为31.442。这里只是HOTA
