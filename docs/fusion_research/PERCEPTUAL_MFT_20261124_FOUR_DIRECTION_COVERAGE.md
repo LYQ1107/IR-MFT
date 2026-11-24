@@ -65,6 +65,13 @@ F4严格CPU张量加载与固定序列源图像交付组件后续已实现，20�
 仍未完整接通，无新HOTA或方向完成数；见
 [F4_LOADING_DELIVERY](PERCEPTUAL_MFT_20261125_F4_LOADING_DELIVERY.md)。
 
+F4官方47字段评估与Dev文件冻结后续已实现，10项人工文件检查通过；
+已有RGB完整Dev4834帧官方复核精确重现39摘要、47项逐段／汇总和276列
+原CSV。Dev47.579162属于已有基线，不是新F4/Test结果；尚无真实F4冻结
+或IR学习特征转移。IR101／110第一遍完整Train已核验，仍继续三遍预算。
+这些不增加独立贡献或四方向完成数；见
+[F4_OFFICIAL_EVALUATION](PERCEPTUAL_MFT_20261125_F4_OFFICIAL_EVALUATION.md)。
+
 F2 的直接证据见 [八组完整 Test 分析](PERCEPTUAL_MFT_20261124_FACTORIAL_ASSESSMENT.md)，
 F1/F3 的冻结方案见 [native study](../../configs/perceptual_native_pyramid_study_20261124.json)，
 F4 的边界和原始检查见 [工程报告](PERCEPTUAL_MFT_20261124_FUSION_MEMORY_ENGINEERING.md)。

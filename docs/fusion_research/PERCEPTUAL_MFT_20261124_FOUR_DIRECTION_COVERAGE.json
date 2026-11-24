@@ -110,7 +110,15 @@
     "tests/test_fusion_memory_observation.py": "27feb3eee2ec7274e75aef0fa5363b04d1c91cefd57cb2f0c065f6e383e29af2",
     "configs/perceptual_f4_sequence_delivery_20261125.json": "dc26a3219d8e0939b39e2f2dea217dd51630e5d7576e29bf90114cb06f17f2bc",
     "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_MODEL_LOADING_CPU_PROOF.json": "0db00f554dc3c62ac98460745478be1ba0c524e67f76c17c134cf39f2b025ccb",
-    "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_SEQUENCE_DELIVERY_CPU_PROOF.json": "bf124692a8836e06e8090de958c22e2123f4f9ae3eecf99e7020becdc4dca057"
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_SEQUENCE_DELIVERY_CPU_PROOF.json": "bf124692a8836e06e8090de958c22e2123f4f9ae3eecf99e7020becdc4dca057",
+    "tools/fusion_memory_evaluation.py": "e72af67781f003243c7c7e3e16793ad717103adc73b375ad49fcf6499ee050e4",
+    "tools/fusion_memory_dev_freeze.py": "a928b0ede636f2e446ec55a753347ea6758f927f73cf6670a714b102754cf256",
+    "tools/probe_f4_official_evaluation.py": "c024a0ed38aa5e60aba8591c137767174f1653df1ce9880efe16935d590ba45f",
+    "tests/test_fusion_memory_evaluation.py": "37faef8e5ee77a9f69d9800e7da94dd152bfc8821e4953a07d3a51151083aea3",
+    "configs/perceptual_f4_official_evaluation_20261125.json": "abdeea2748aa0098ec0df901e3e508fcd0c72f2c47b555044fca4642e726e65a",
+    "tools/audit_ir_pair_train_progress.py": "327aea8c88f6e3bd3c132d9952938634083e0cc0cff0a03116be9d6d93d3878d",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_OFFICIAL_EVALUATION_CPU_PROOF.json": "d65187b053f2d581e4f22f23fee6fbd07989ea2afb6cd43ec3d650bf958418cc",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_IR_REMAINING_FIRST_FULL_TRAIN_AUDIT.json": "a47a0769426f622ccf1a892be5b1f1781782fc83cb03e483ed3f87ad2316aab0"
   },
   "source_audit_sha256": "b31686c66b8be1d594093e61ae07aa9423ab28c2088ea7e9b492059e299f1533",
   "four_directions_completed_or_evidence_excluded": false,
@@ -299,5 +307,35 @@
     "new_accuracy": false,
     "goal_met": false,
     "independent_contribution_supported": false
+  },
+  "latest_F4_official_evaluation_UTC": "2026-11-24T19:14:29.203532+00:00",
+  "F4_official_evaluation_and_Dev_file_freeze": {
+    "components_implemented": true,
+    "synthetic_file_checks_passed": 10,
+    "actual_existing_RGB_Dev_frames_reproduced": 4834,
+    "official39_original276CSV_all47_per_sequence_combined_exact": true,
+    "existing_Dev_RGB_HOTA": 47.579162182711485,
+    "actual_new_official_evaluation": true,
+    "new_candidate_accuracy": false,
+    "actual_F4_Dev_choice_frozen": false,
+    "actual_learned_fusion_transferred": false,
+    "complete_GPU_production_runtime_scheduler_ready": false,
+    "independent_contribution_supported": false,
+    "goal_met": false
+  },
+  "remaining_IR_first_Train_delivery": {
+    "fits": [
+      "ir_101_s0",
+      "ir_110_s0"
+    ],
+    "each_full_Train_epochs_verified": 1,
+    "each_unique_frames": 27251,
+    "coherent_snapshots_completed_macro_passes": [
+      25,
+      25
+    ],
+    "all_actual_address_digests_exact": true,
+    "final_three_pass_fit_complete": false,
+    "new_HOTA": false
   }
 }
