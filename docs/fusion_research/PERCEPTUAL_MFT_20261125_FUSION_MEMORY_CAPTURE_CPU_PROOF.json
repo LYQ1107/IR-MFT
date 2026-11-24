@@ -1,0 +1,112 @@
+{
+  "status": "COMPLETE_SYNTHETIC_F4_ACTUAL_P3_CAPTURE_AND_MEMORY_BRIDGE_CPU_ONLY",
+  "source_hashes": {
+    "tools/fusion_memory_capture.py": "b41c7c95e352941f8f7e257c47fb26b255662a3b8c3549f74db510de9cc890db",
+    "tools/probe_fusion_memory_capture.py": "425876c230d54fc77dc589dd0876555efd80b457c31be501e86c982f4a75e584",
+    "tests/test_fusion_memory_capture.py": "b262d3333863b004dc6083be53c359444af2eb2c1aa2cf31735c76e1527fdf29",
+    "configs/perceptual_fusion_memory_capture_prototype_20261125.json": "82730284b9367fb061d5f56d1469c67494902297cfd04d85f2ef86035d3b8229",
+    "tools/fusion_memory_features.py": "0ce3b2d750ac429ab3fd9e644e70eef79edbddab38169725118ef00c38dbd586",
+    "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4",
+    "yolox/tracker/byte_tracker.py": "1a19bde221fc65bbca11d3c45cb2acbe571705510e3f94bfbaca95571d409f1a",
+    "yolox/tracker/basetrack.py": "c938afcf7c516bba4a77155c2499fcae6f926df7a2faa6f73a4be1b073f9bb2d",
+    "yolox/tracker/matching.py": "f18ada7b4da53d0142bbe581f9bc919248f02f548461d259ac754dbd35167890",
+    "yolox/tracker/kalman_filter.py": "9842d0dd9957c97e312d42e5789441add55082066d87cc051ac768143a46eb39",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33",
+    "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889"
+  },
+  "specification_sha256": "82730284b9367fb061d5f56d1469c67494902297cfd04d85f2ef86035d3b8229",
+  "tests_passed": 15,
+  "test_log_sha256": "aad3c77586c6a0da25f55ec127db2393407d974e4232aeb4683b38ada363f34d",
+  "records": [
+    {
+      "kind": "quality",
+      "synthetic_frames": 8,
+      "source_geometry": [
+        32,
+        48
+      ],
+      "input_geometry": [
+        64,
+        96
+      ],
+      "RGB_channels": 8,
+      "auxiliary_channels": 64,
+      "fused_channels": 8,
+      "actual_returned_auxiliary_source": "current_native_encoder",
+      "packet_trace_sha256": "03240f865c8d0e660d8ee626222da8632b585d3ba7cf905f60fadacc5167510c",
+      "invalid_ROI_detection_retained": true,
+      "current_feature_references_released_each_frame": true,
+      "module_parameters_and_gradients_unchanged": true,
+      "synthetic_enabled_memory_exercised": true
+    },
+    {
+      "kind": "temporal",
+      "synthetic_frames": 8,
+      "source_geometry": [
+        32,
+        48
+      ],
+      "input_geometry": [
+        64,
+        96
+      ],
+      "RGB_channels": 8,
+      "auxiliary_channels": 64,
+      "fused_channels": 8,
+      "actual_returned_auxiliary_source": "current_filtered_native_state",
+      "packet_trace_sha256": "bc1152b9da7c2be71708a19e0b176e35a0bbc1064d1a6c47839ea515f601968c",
+      "invalid_ROI_detection_retained": true,
+      "current_feature_references_released_each_frame": true,
+      "module_parameters_and_gradients_unchanged": true,
+      "synthetic_enabled_memory_exercised": true
+    },
+    {
+      "kind": "spatial",
+      "synthetic_frames": 8,
+      "source_geometry": [
+        32,
+        48
+      ],
+      "input_geometry": [
+        64,
+        96
+      ],
+      "RGB_channels": 8,
+      "auxiliary_channels": 64,
+      "fused_channels": 8,
+      "actual_returned_auxiliary_source": "current_native_encoder",
+      "packet_trace_sha256": "0e2a5724cdccf25b36cd9d9d98fc917458e2f393732ee460441aa1ea2bab3460",
+      "invalid_ROI_detection_retained": true,
+      "current_feature_references_released_each_frame": true,
+      "module_parameters_and_gradients_unchanged": true,
+      "synthetic_enabled_memory_exercised": true
+    }
+  ],
+  "guarded_attempt_counters": {
+    "checkpoint_loads": 0,
+    "image_reads": 0,
+    "image_decodes": 0
+  },
+  "physical_GPU_work": false,
+  "learned_checkpoint_loads": 0,
+  "actual_Train_Dev_Test_image_reads": 0,
+  "actual_GT_read": false,
+  "learned_fusion_features_transferred": false,
+  "new_accuracy": false,
+  "new_formal_fits": false,
+  "formal_F4_launch_ready": false,
+  "full_four_direction_validation": false,
+  "existing323_sources_unchanged": true,
+  "parent_spatial_registration_sha256": "aed348fd24ef60cbef6f90bf9fa5319d2d3a539a7cacf41633d6daeb87a323b4",
+  "image_or_FPN_disk_cache": false,
+  "saved_weights": false,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "peak_process_RSS_GiB": 0.5878410339355469,
+  "seconds": 2.5930838800268248,
+  "scope": "Known synthetic inputs and untrained modules with one explicit bias constant;24syntheticframes. Direct returned/filtered P3 vectors, causal capture and packet-to-memory interface only. No learned visual parent, new HOTA, real modality efficacy, GPU parity or final innovation.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

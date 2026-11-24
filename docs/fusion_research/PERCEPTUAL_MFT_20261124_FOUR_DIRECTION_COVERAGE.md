@@ -23,6 +23,13 @@
 | F3 因果特征时序 | `NativePyramidFusion(mode='temporal')` 在 F1 基础上加入 RGB 当前到过去光流和正方差递归滤波，连续 T≤4 片段、跨片段状态且过去状态 detach；匹配流程已登记 | 正式拟合、完整 Dev/Test、去历史／去运动等对照，证明收益超过单帧和同容量 RGB。旧描述向量 GRU 不能代替此特征融合实验 |
 | F4 融合特征轨迹记忆 | 本轮新增指定 tracker、三路记忆及 P3 ROIAlign；11 项 CPU 检查通过，完整 4834 帧零权重输出及内部数值状态与原 BYTETracker 严格一致 | 先通过当前 IR 视觉资格，再接入实际已学 P3/q、登记并运行完整正式比较和成本。现阶段只是工程原型，不能作为已验证方向或创新 |
 
+F4后续已补齐当前RGB／辅助／实际融合P3到ROI与记忆的捕获接口，
+15项新增检查及三类未训练模块共24帧合成输入检查通过；时序辅助取当前
+滤波状态，逐帧释放引用。注意力只是显式代理，未来仍须相同权重RGB与
+固定权重1的强对照。当前没有读取学习权重或真实图像，没有新准确率，
+仍不能计为当前IR学习特征已转移或F4正式验证。见
+[FUSION_MEMORY_CAPTURE](PERCEPTUAL_MFT_20261125_FUSION_MEMORY_CAPTURE.md)。
+
 F2 的直接证据见 [八组完整 Test 分析](PERCEPTUAL_MFT_20261124_FACTORIAL_ASSESSMENT.md)，
 F1/F3 的冻结方案见 [native study](../../configs/perceptual_native_pyramid_study_20261124.json)，
 F4 的边界和原始检查见 [工程报告](PERCEPTUAL_MFT_20261124_FUSION_MEMORY_ENGINEERING.md)。

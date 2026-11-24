@@ -1,0 +1,75 @@
+{
+  "status": "PREREGISTERED_SYNTHETIC_F4_FEATURE_CAPTURE_NOT_FORMAL_LAUNCH_READY",
+  "UTC": "2026-11-24T16:19:38.073544+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "F4_memory_prototype_sha256": "b3875d3fbb2651b2daa41429b51a1b0446c737f6f1c38448d0d6a6ecc18efc15",
+  "purpose": "Close the missing actual-RGB/native-auxiliary/fusedP3 to current-candidate ROI interface, without transferring a learned visual model before complete-Dev eligibility.",
+  "source_contract": {
+    "allowed_visual_families": [
+      "NativePyramidFusion quality",
+      "NativePyramidFusion temporal",
+      "SpatialNativeFusion"
+    ],
+    "read_only_hooks": true,
+    "one_forward_per_explicit_video_frame": true,
+    "clear_all_current_features_after_packet_or_abort": true,
+    "no_past_feature_bank": true,
+    "temporal_auxiliary": "Use returned current filtered state.latentP3 when present, not the unfiltered encoder output; reject mismatched state video/frame.",
+    "no_extra_crop_encoder": true,
+    "maximum_batch": 1,
+    "ROI": "Existing proven pool_p3: original boxes -> explicit aspect-preserving resize -> actualstride8,3x3alignedROIAlign sampling2. No detector box mutation or filtering."
+  },
+  "controls": {
+    "feature_sources": [
+      "rgb",
+      "fused"
+    ],
+    "quality_policy_must_be_explicit": [
+      "uniform",
+      "attention_proxy"
+    ],
+    "attention_proxy_semantics": "The raw effective fusion attention weight is only a bounded proxy, not calibrated fused-feature reliability or physical uncertainty. Do not silently equate it with reliability. Future formal study must separately validate q=1 and same-q RGB controls.",
+    "rgb_uniform": "Do not read auxiliary embeddings, fused outputs or any quality diagnostics for this memory control.",
+    "rgb_attention": "Read current quality only; never pool auxiliary/fused embedding arrays.",
+    "availability": "Current image availability and ROI geometry, not descriptor norm. A zero embedding freezes that stream through existing unit(None) behavior; it does not drop a detection. This keeps same-q RGB/fused availability identical.",
+    "missing": "No auxiliary/fused/attention reads if visual output says missing. Current RGB-only packet; supplied quality defaults1 and no stale IR."
+  },
+  "current_CPU_scope": {
+    "inputs": "Known syntheticfeature planes and untrained native/spatial modules with synthetic cues only",
+    "learned_checkpoint_loads": 0,
+    "actual_Train_Dev_Test_image_reads": 0,
+    "new_GPU_work": false,
+    "new_accuracy": false,
+    "model_fit": false,
+    "synthetic_enabled_memory_checks_allowed": true
+  },
+  "future_formal_requirements": [
+    "Complete current-IR visual Dev eligibility and freeze its primary before learned visual features enter association",
+    "Separate complete F4 parent selection,Dev/Test/cost protocol before formal use; this capture does not choose a parent",
+    "Same detections/same-q RGB versus fused and strong ordinaryRGB q1, plus true missing/wrong IR through both paths",
+    "Original ByteTrack unchanged; weight0 exact; all required full7Test/all47fields/source/cost retained"
+  ],
+  "execution": {
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "current_CPU_only": true,
+    "work_cap_GiB": 64,
+    "independent_disk_free_reserve_GiB": 40
+  },
+  "frozen_dependencies": {
+    "tools/fusion_memory_features.py": "0ce3b2d750ac429ab3fd9e644e70eef79edbddab38169725118ef00c38dbd586",
+    "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33"
+  },
+  "formal_F4_launch_ready": false,
+  "learned_fusion_features_transferred": false,
+  "full_four_direction_completion": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
