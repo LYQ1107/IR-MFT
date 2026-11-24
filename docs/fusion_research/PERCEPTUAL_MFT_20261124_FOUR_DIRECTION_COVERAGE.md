@@ -39,10 +39,16 @@ F4后续已补齐当前RGB／辅助／实际融合P3到ROI与记忆的捕获接�
 F4普通RGB组件后续使用真实缓存P3跑通五段连续Train片段／20帧、268个ROI
 向量。两种非零权重均实际更新记忆并添加正外观惩罚，但短片段MOT仍与
 ByteTrack相同；没有学习融合特征转移、GPU或新指标。另有完整F4科学
-设计与纯选择规则的25项合成记录检查，实际文件验证与执行器仍未完成，
+设计与纯选择规则的25项合成记录检查，真实完整Dev与执行器仍未完成，
 不能计为本方向验证完成。见
 [F4_REAL_RGB](PERCEPTUAL_MFT_20261125_F4_REAL_RGB_ENGINEERING.md)与
 [F4_DESIGN](PERCEPTUAL_MFT_20261125_FUSION_MEMORY_DESIGN.md)。
+
+F4实际文件核验代码后续已实现，22项人工文件检查与25项纯规则共47项
+通过；真实目录检查为两家族六个完成／冻结标记待生成，资格仍未知。
+没有读取实际父模型Dev表或checkpoint，没有学习融合特征转移、GPU、
+新HOTA或完整执行器。不能增加本方向完成数或独立创新数；见
+[F4_PARENT_IO](PERCEPTUAL_MFT_20261125_F4_PARENT_IO.md)。
 
 F2 的直接证据见 [八组完整 Test 分析](PERCEPTUAL_MFT_20261124_FACTORIAL_ASSESSMENT.md)，
 F1/F3 的冻结方案见 [native study](../../configs/perceptual_native_pyramid_study_20261124.json)，
