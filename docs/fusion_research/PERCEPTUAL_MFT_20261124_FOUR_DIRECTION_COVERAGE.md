@@ -105,3 +105,7 @@ F4真实GPU工程入口及独立比较器后续已实现，19项人工检查通�
 原RGB CPU模型在固定Train八帧的检测/状态/当前ROI重放完全一致。此前CPU
 异常原因仍未知，尚无真实GPU或学习IR资格、完整Dev/Test或HOTA，不能
 增加方向完成数；完整调度/导出仍待实现。见[F4_GPU_ENGINEERING_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_GPU_ENGINEERING_COMPONENTS.md)。
+
+F4完整逐配置出版/Dev固定分析组件后续已实现，25项人工文件检查通过；
+实际preflight仍缺六个父模型标记和调度器，没有完整登记、真实F4结果、
+GPU或新HOTA，不增加方向完成数或创新数。见[F4_RESULT_EXPORT_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_RESULT_EXPORT_COMPONENTS.md)。
