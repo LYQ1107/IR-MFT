@@ -13,23 +13,26 @@ import numpy as np
 import torch
 from torch.nn import functional as F
 from tools.native_neck_io import load_native_encoder
+from tools.neck72_runtime import require_gpu, require_storage
 from tools.run_pseudo_ir_comparison import dump,sha256
 from yolox.tracker.native_cue import native_input
 
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--sequence',required=True);p.add_argument('--cue',choices=['rgb','ir'],required=True);a=p.parse_args()
-    physical=os.environ.get('CUDA_VISIBLE_DEVICES')
-    if physical not in {'2','3'}:raise ValueError('Only GPUs2/3')
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());protocol=json.loads((ROOT/plan['protocol']).read_text());w=Path(plan['work_root'])
+    physical,gpu_uuid=require_gpu(w,0)
     if a.sequence not in protocol['train']:raise ValueError('Train-only candidate features')
     path=w/'native_candidate_crops'/a.sequence/'crops.npz';meta=json.loads((path.parent/'complete.json').read_text())
     if meta['status']!='COMPLETE_EXACT_TRAIN_CANDIDATE_CROPS' or meta['Dev_rows'] or meta['Test_rows'] or sha256(path)!=meta['crop_sha256']:raise ValueError('Candidate crop provenance')
+    require_storage(w,meta['observations']*512*4*(2 if a.cue=='rgb' else 1)+2**20)
+    host_bound=meta['observations']*(128*256*(3 if a.cue=='rgb' else 1)+512*4*(2 if a.cue=='rgb' else 1))+2**30
+    if host_bound>8*2**30:raise RuntimeError('Decoded Train crop bank exceeds the8GiB producer RAM bound')
     free=int(subprocess.check_output(['nvidia-smi','-i',physical,'--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).strip())
     if free<12*1024:raise RuntimeError('Keep inference memory headroom')
     torch.set_num_threads(2);torch.cuda.set_per_process_memory_fraction(.25,0);torch.backends.cudnn.benchmark=False;torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     models={};checkpoints={}
-    for seed in [0,1,2]:
+    for seed in [0]:
         key=f'native_s{seed}';model,metadata=load_native_encoder(a.cue,seed,w,protocol);models[key]=model.cuda().eval();checkpoints[key]=metadata
     reference_source=None
     if a.cue=='rgb':
@@ -57,6 +60,9 @@ def main():
         with np.load(reference_source) as reference:arrays['reference_post']=reference['reference_post'].copy()
     output=directory/'features.npz';temporary=directory/'features.tmp.npz';np.savez_compressed(temporary,**arrays);os.replace(temporary,output)
     dump(directory/'complete.json',dict(status='COMPLETE_EXACT_TRAIN_NATIVE_FEATURES',sequence=a.sequence,cue=a.cue,observations=count,feature_sha256=sha256(output),bytes=output.stat().st_size,crop_sha256=sha256(path),index_sha256=meta['index_sha256'],checkpoints=checkpoints,reference_reused_sha256=sha256(reference_source) if reference_source is not None else None,config_sha256=sha256(ROOT/'configs/perceptual_native_candidates_20261123.json'),source_sha256=sha256(__file__),pixel_source_sha256=sha256(ROOT/'yolox/tracker/native_cue.py'),model_io_source_sha256=sha256(ROOT/'tools/native_neck_io.py'),physical_gpu=physical,Dev_rows=0,Test_rows=0,labels_used_in_forward=False,precision='FP32 parameters, BN buffers and inference; no TF32',seconds=time.perf_counter()-started,peak_gpu_gib=torch.cuda.max_memory_allocated()/2**30))
+    complete=json.loads((directory/'complete.json').read_text())
+    complete.update(selected_encoder_seeds=[0],GPU_uuid=gpu_uuid,single_seed_user_policy_sha256=sha256(ROOT/'configs/perceptual_single_seed_policy_20261123.json'),runtime_guard_source_sha256=sha256(ROOT/'tools/neck72_runtime.py'))
+    dump(directory/'complete.json',complete);require_storage(w)
 
 
 if __name__=='__main__':main()

@@ -16,17 +16,17 @@ from tools.native_query_data import frozen_RGB_model
 from tools.native_neck_robust_query_data import load_robust_query_group as load_query_group
 from yolox.tracker.native_cue_corruption import visible_mismatch,preserve_RGB_posterior
 from tools.run_pseudo_ir_comparison import dump,sha256
+from tools.neck72_runtime import require_gpu, require_storage, REGISTRY
 from yolox.tracker.association_calibrator import AssociationCalibrator
 from yolox.tracker.native_query_mask import remask_appearance_queries
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--frontend',choices=['new','rgb'],required=True);p.add_argument('--cue',choices=['rgb','ir'],required=True);p.add_argument('--seed',type=int,required=True)
+    p=argparse.ArgumentParser();p.add_argument('--frontend',choices=['new','rgb'],required=True);p.add_argument('--cue',choices=['rgb','ir'],required=True);p.add_argument('--seed',type=int,choices=[0],required=True)
     p.add_argument('--epochs',type=int,default=18);p.add_argument('--resume',action='store_true');a=p.parse_args()
-    physical=os.environ.get('CUDA_VISIBLE_DEVICES')
-    if physical not in {'2','3'}:raise ValueError('Only GPUs2/3')
     config_path=ROOT/'configs/perceptual_native_neck_robust_query_20261123.json';config=json.loads(config_path.read_text())
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());protocol=json.loads((ROOT/plan['protocol']).read_text());w=Path(plan['work_root'])
+    physical,gpu_uuid=require_gpu(w,a.seed,role='fit')
     if a.epochs>36 or a.epochs<18:raise ValueError('Registered common18..36 epochs only')
     prior_path=w/'native_RGB_prior'/f'{a.frontend}_s{a.seed}'/'complete.json';prior=json.loads(prior_path.read_text())
     if prior['status']!='COMPLETE_TRAIN_ONLY_CONVEX_RGB_PRIOR' or prior['config_sha256']!=config['reference_prior_plan_sha256'] or prior['Dev_fit_rows'] or prior['Test_fit_rows']:raise ValueError('RGB/null prior provenance')
@@ -108,6 +108,8 @@ def main():
         common=dict(model={k:v.detach().cpu() for k,v in model.state_dict().items()},architecture=config['architecture'],feature_schema=config['feature_schema'],frontend=a.frontend,cue=a.cue,seed=a.seed,epoch=epoch+1,
                     config_sha256=sha256(config_path),feature_plan_sha256=config['source_feature_plan_sha256'],sources=sources,core=core,prior_path=str(prior_path),prior_sha256=sha256(prior_path),prior_parameters=coefficients,
                     fit_sequences=protocol['train'],Dev_fit_rows=0,Test_fit_rows=0,alignment_sha256=sha256(w/'native_neck_alignment/complete.json'))
+        common.update(GPU_uuid=gpu_uuid,worker_interface_registration_sha256=sha256(w/REGISTRY),single_seed_user_policy_sha256=sha256(ROOT/'configs/perceptual_single_seed_policy_20261123.json'))
+        require_storage(w,2**20)
         latest=dict(common,optimizer=optimizer.state_dict(),sampler_state=sampler.bit_generator.state,torch_rng=torch.get_rng_state(),cuda_rng=torch.cuda.get_rng_state_all(),history=history)
         temporary=output/'latest.tmp.pt';torch.save(latest,temporary);os.replace(temporary,output/'latest.pt');dump(output/'history.json',history)
         if (epoch+1)%6==0:

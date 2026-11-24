@@ -15,15 +15,15 @@ import numpy as np
 import torch
 from torch.nn import functional as F
 from tools.native_neck_io import load_native_encoder
+from tools.neck72_runtime import require_gpu, require_storage
 from tools.run_pseudo_ir_comparison import dump,sha256
 from yolox.tracker.native_cue import native_crop,native_input
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--cue',choices=['rgb','ir'],required=True);p.add_argument('--split',choices=['dev','test'],required=True);p.add_argument('--sequence',required=True);p.add_argument('--max-frames',type=int,default=0);p.add_argument('--seed-only',type=int,choices=[0,1,2]);a=p.parse_args()
-    physical=os.environ.get('CUDA_VISIBLE_DEVICES')
-    if physical not in {'2','3'}:raise ValueError('Only GPUs2/3')
+    p=argparse.ArgumentParser();p.add_argument('--cue',choices=['rgb','ir'],required=True);p.add_argument('--split',choices=['dev','test'],required=True);p.add_argument('--sequence',required=True);p.add_argument('--max-frames',type=int,default=0);p.add_argument('--seed-only',type=int,choices=[0],default=0);p.add_argument('--output-family',choices=['native_neck_eval_features','native_neck_seed0_eval_features'],default='native_neck_eval_features');a=p.parse_args()
     plan_path=ROOT/'configs/perceptual_mft_20261122.json';plan=json.loads(plan_path.read_text());protocol=json.loads((ROOT/plan['protocol']).read_text());w=Path(plan['work_root'])
+    physical,gpu_uuid=require_gpu(w,a.seed_only)
     if a.sequence not in protocol['dev' if a.split=='dev' else 'historical_test']:raise ValueError('Sequence outside frozen partition')
     if a.seed_only is None and json.loads((w/'native_neck_train_features_state.json').read_text())['status']!='COMPLETE':raise ValueError('All native36 models and FP32 states required')
     free=int(subprocess.check_output(['nvidia-smi','-i',physical,'--query-gpu=memory.free','--format=csv,noheader,nounits'],text=True).strip())
@@ -31,7 +31,7 @@ def main():
     torch.set_num_threads(2);cv2.setNumThreads(1);torch.cuda.set_per_process_memory_fraction(.25,0);torch.backends.cudnn.benchmark=False
     torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     models={};checkpoints={}
-    for seed in ([a.seed_only] if a.seed_only is not None else [0,1,2]):
+    for seed in [0]:
         key=f'native_s{seed}';model,metadata=load_native_encoder(a.cue,seed,w,protocol);models[key]=model.cuda().eval();checkpoints[key]=metadata
     reference_sources={}
     if a.cue=='rgb':
@@ -39,7 +39,7 @@ def main():
         reference_metadata=json.loads((reference_directory/'complete.json').read_text())
         if reference_metadata['status']!='COMPLETE_NATIVE_CURRENT_FEATURES' or reference_metadata['GT_read']:raise ValueError('Preserved RGB reference missing')
         checkpoints['reference_post']=reference_metadata['checkpoints']['reference_post']
-    directory=w/'native_neck_eval_features'/a.split/a.sequence/a.cue
+    directory=w/a.output_family/a.split/a.sequence/a.cue
     if a.seed_only is not None:directory=directory/f'seed_{a.seed_only}'
     if a.max_frames:directory=directory/f'smoke_{a.max_frames}'
     directory.mkdir(parents=True,exist_ok=True)
@@ -62,6 +62,7 @@ def main():
             reference_sources[arm]=dict(path=str(reference_path),sha256=info['sha256'])
         arrays[arm]=data;sources[arm]=dict(path=str(path),sha256=sha256(path))
     limit=min(len(expected),a.max_frames or len(expected));started=time.perf_counter()
+    require_storage(w,sum(int(data['offsets'][limit]) for data in arrays.values())*512*4*(2 if a.cue=='rgb' else 1)+2**20)
     with torch.inference_mode():
         for frame in range(1,limit+1):
             if a.cue=='rgb':image_path=Path(plan['data_root'])/('train' if a.split=='dev' else 'test')/a.sequence/'visible'/f'{frame:06d}.jpg';image=cv2.imread(str(image_path))
@@ -88,7 +89,8 @@ def main():
             if not np.isfinite(data[key]).all() or np.max(abs(np.linalg.norm(data[key],axis=1)-1),initial=0)>1e-4:raise ValueError('Invalid native identity feature')
         path=directory/(arm+'.npz');temporary=directory/(arm+'.tmp.npz');np.savez_compressed(temporary,**data);os.replace(temporary,path)
         outputs[arm]=dict(path=str(path),sha256=sha256(path),frames=len(data['frame_ids']),detections=len(data['boxes']),bytes=path.stat().st_size)
-    dump(directory/'complete.json',dict(status='SMOKE_COMPLETE' if a.max_frames else 'COMPLETE_NATIVE_CURRENT_FEATURES',split=a.split,sequence=a.sequence,cue=a.cue,physical_gpu=physical,frames=limit,outputs=outputs,proposal_sources=sources,checkpoints=checkpoints,reference_reused_sources=reference_sources,selected_encoder_seeds=[a.seed_only] if a.seed_only is not None else [0,1,2],plan_sha256=sha256(plan_path),feature_space_plan_sha256=sha256(ROOT/'configs/perceptual_native_neck_feature_space_20261123.json'),source_sha256=sha256(__file__),model_io_source_sha256=sha256(ROOT/'tools/native_neck_io.py'),pixel_source_sha256=sha256(ROOT/'yolox/tracker/native_cue.py'),GT_read=False,future_frame_input=False,precision='FP32 including BN state, TF32 disabled',RGB_control_reads_IR_images=False,seconds=time.perf_counter()-started,peak_gpu_gib=torch.cuda.max_memory_allocated()/2**30))
+    dump(directory/'complete.json',dict(status='SMOKE_COMPLETE' if a.max_frames else 'COMPLETE_NATIVE_CURRENT_FEATURES',split=a.split,sequence=a.sequence,cue=a.cue,physical_gpu=physical,GPU_uuid=gpu_uuid,frames=limit,outputs=outputs,proposal_sources=sources,checkpoints=checkpoints,reference_reused_sources=reference_sources,selected_encoder_seeds=[0],single_seed_user_policy_sha256=sha256(ROOT/'configs/perceptual_single_seed_policy_20261123.json'),runtime_guard_source_sha256=sha256(ROOT/'tools/neck72_runtime.py'),plan_sha256=sha256(plan_path),feature_space_plan_sha256=sha256(ROOT/'configs/perceptual_native_neck_feature_space_20261123.json'),source_sha256=sha256(__file__),model_io_source_sha256=sha256(ROOT/'tools/native_neck_io.py'),pixel_source_sha256=sha256(ROOT/'yolox/tracker/native_cue.py'),GT_read=False,future_frame_input=False,precision='FP32 including BN state, TF32 disabled',RGB_control_reads_IR_images=False,seconds=time.perf_counter()-started,peak_gpu_gib=torch.cuda.max_memory_allocated()/2**30))
+    require_storage(w)
 
 
 if __name__=='__main__':main()

@@ -9,6 +9,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 import numpy as np
 from tools.run_pseudo_ir_comparison import dump,sha256
+from tools.neck72_runtime import require_storage, require_host_memory
 from yolox.tracker.native_query_features import identity_pair_features
 from yolox.tracker.native_cue_corruption import permuted_current_packet
 
@@ -18,11 +19,13 @@ def main():
     plan=json.loads((ROOT/'configs/perceptual_mft_20261122.json').read_text());protocol=json.loads((ROOT/plan['protocol']).read_text());w=Path(plan['work_root'])
     config_path=ROOT/'configs/perceptual_native_neck_robust_query_20261123.json'
     if a.sequence not in protocol['train']:raise ValueError('Only Train query construction')
+    require_storage(w,2**29)
+    require_host_memory(8*2**30)
     directory=w/'native_neck_mismatch_query_bank'/a.sequence;directory.mkdir(parents=True,exist_ok=True)
     if (directory/'complete.json').exists():raise ValueError('Completed native query bank exists')
     alignment=json.loads((w/'native_neck_alignment/complete.json').read_text())
     if alignment['Dev_rows'] or alignment['Test_rows']:raise ValueError('Alignment partition mismatch')
-    names=[f'{cue}_s{seed}' for cue in ['rgb','ir'] for seed in [0,1,2]]
+    names=[f'{cue}_s{seed}' for cue in ['rgb','ir'] for seed in [0]]
     rotations={}
     for name in names:
         info=alignment['outputs'][name];path=Path(info['path'])
@@ -46,8 +49,8 @@ def main():
     rgb_path=w/'native_neck_candidate_features'/a.sequence/'rgb/features.npz';rm=feature_source(rgb_path,'COMPLETE_EXACT_TRAIN_NATIVE_FEATURES','feature_sha256')
     ir_path=w/'native_neck_candidate_features'/a.sequence/'ir/features.npz';im=feature_source(ir_path,'COMPLETE_EXACT_TRAIN_NATIVE_FEATURES','feature_sha256')
     if rm['index_sha256']!=index_meta['index_sha256'] or im['index_sha256']!=index_meta['index_sha256']:raise ValueError('Native feature/proposal index mismatch')
-    with np.load(rgb_path) as z:reference=z['reference_post'].copy();native={f'rgb_s{seed}':z[f'native_s{seed}']@rotations[f'rgb_s{seed}'] for seed in [0,1,2]}
-    with np.load(ir_path) as z:native.update({f'ir_s{seed}':z[f'native_s{seed}']@rotations[f'ir_s{seed}'] for seed in [0,1,2]})
+    with np.load(rgb_path) as z:reference=z['reference_post'].copy();native={f'rgb_s{seed}':z[f'native_s{seed}']@rotations[f'rgb_s{seed}'] for seed in [0]}
+    with np.load(ir_path) as z:native.update({f'ir_s{seed}':z[f'native_s{seed}']@rotations[f'ir_s{seed}'] for seed in [0]})
     starts=np.r_[0,np.flatnonzero(np.diff(index['stream'])!=0)+1];ends=np.r_[starts[1:],len(index['stream'])]
     group=np.repeat(np.arange(len(starts)),ends-starts);sg=group[index['edge_source']];tg=group[index['edge_target']]
     blocks=np.r_[0,np.flatnonzero((np.diff(sg)!=0)|(np.diff(tg)!=0))+1,len(sg)]
@@ -109,6 +112,7 @@ def main():
     write('long',dict(RGB3=rgb3,reference7=ref7),cue7);sources[str(source_path)]=sha256(source_path)
     dump(directory/'complete.json',dict(status='COMPLETE_TRAIN_ONLY_MISMATCH_QUERY_BANK',sequence=a.sequence,config_sha256=sha256(config_path),sources=sources,outputs=outputs,local_rows=index_meta['pair_rows'],long_rows=count,long_queries=query,alignment_sha256=sha256(w/'native_neck_alignment/complete.json'),Dev_rows=0,Test_rows=0,identity_labels_used_as_features=False,source_sha256=sha256(__file__),feature_source_sha256=sha256(ROOT/'yolox/tracker/native_query_features.py')))
     print(json.dumps(dict(sequence=a.sequence,status='COMPLETE_TRAIN_ONLY_MISMATCH_QUERY_BANK',local_rows=index_meta['pair_rows'],long_rows=count)),flush=True)
+    complete=json.loads((directory/'complete.json').read_text());complete.update(selected_encoder_seeds=[0],single_seed_user_policy_sha256=sha256(ROOT/'configs/perceptual_single_seed_policy_20261123.json'));dump(directory/'complete.json',complete);require_storage(w)
 
 
 if __name__=='__main__':main()
