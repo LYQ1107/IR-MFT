@@ -58,6 +58,13 @@ F4在线内存组件与MOT写盘已补齐：14项人工／未训练模块集成�
 观测／评估／成本／调度仍待完成，不增加方向完成数；见
 [F4_ONLINE_ENGINEERING](PERCEPTUAL_MFT_20261125_F4_ONLINE_ENGINEERING.md)。
 
+F4严格CPU张量加载与固定序列源图像交付组件后续已实现，20项张量及
+8项交付检查通过。实际父模型仍因六个缺失标记待验证，融合张量读取0；
+只加载原RGB并核对八帧Train工程前缀，IR仅做字节来源核对。完整Dev/Test
+截短拒绝与失败前缀保护已实现，但正式GPU生产入口、评估／成本／调度
+仍未完整接通，无新HOTA或方向完成数；见
+[F4_LOADING_DELIVERY](PERCEPTUAL_MFT_20261125_F4_LOADING_DELIVERY.md)。
+
 F2 的直接证据见 [八组完整 Test 分析](PERCEPTUAL_MFT_20261124_FACTORIAL_ASSESSMENT.md)，
 F1/F3 的冻结方案见 [native study](../../configs/perceptual_native_pyramid_study_20261124.json)，
 F4 的边界和原始检查见 [工程报告](PERCEPTUAL_MFT_20261124_FUSION_MEMORY_ENGINEERING.md)。
