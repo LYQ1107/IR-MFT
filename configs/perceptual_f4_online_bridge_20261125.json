@@ -1,0 +1,49 @@
+{
+  "status": "PREREGISTERED_F4_ONLINE_COMPOSITION_ENGINEERING_NOT_FORMAL",
+  "UTC": "2026-11-24T18:21:32.362487+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "F4_scientific_design_sha256": "fa5855dc0d97355b8bfcf6b7a25211b9b436798827439fb27a42191b57f381eb",
+  "frozen_dependencies": {
+    "tools/fusion_memory_capture.py": "b41c7c95e352941f8f7e257c47fb26b255662a3b8c3549f74db510de9cc890db",
+    "tools/fusion_memory_features.py": "0ce3b2d750ac429ab3fd9e644e70eef79edbddab38169725118ef00c38dbd586",
+    "tools/native_pyramid_online_inference.py": "5d4001fc44d8a6113ab67f5c6df69433b71398d8122ad9d33f5c0c290fe7d73e",
+    "tools/native_pyramid_stream_tracks.py": "80d5d6a209135b542fef10a645cc9e4ee18b252fcd8f1f49615e34a2ecf1cf94",
+    "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4",
+    "yolox/tracker/byte_tracker.py": "1a19bde221fc65bbca11d3c45cb2acbe571705510e3f94bfbaca95571d409f1a",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33",
+    "tools/fusion_memory_design.py": "833ef5abe30c9713e7b0d1148d897ca571323ec15f69a969ef9b7ad3f2cde903"
+  },
+  "implementation": [
+    "Shared currentB1 visual forward per exact visual/intervention route; separate native modules/states across differentroutes",
+    "Fourprofile ROI packets shared only within same visual/currentframe/profile; zero path registers no feature capture",
+    "OriginalBBox/confidence/ByteTrack settings unchanged; explicit causal local IDs; stream final MOT directly, no arrays/weights/images saved",
+    "After each tracker update discard consumed per-track observation references; retained RGB/aux/fused EMA/state and all future decisions must equal original uncleaned tracker",
+    "Forward failure aborts captures and poisons executor ratherthan retrypartially advanced state; partial MOT retained; no complete receipt for partialcoverage"
+  ],
+  "engineering": {
+    "synthetic": "Tiny synthetic frozen teacher and untrained actual native quality/temporal/spatial modules; explicit constant outputbias only, no fitted checkpoint or Train labels. Test ordinary RGB/sameq/fused controls, true current image roll/missing, temporal reset, local IDs and cleanup equivalence.",
+    "real": "Direct frozen RGBsource only: BT-003 Train originalframes1..8, actual CPU FP32 backbone/head at480x864 B1. Reference originalOnlineNativeDetector plus independentByteTrack/FusionMemoryTracker vs composedengine onidentical bytes. No learnednativefusioncheckpoint or realIR reads.",
+    "scope": "Engineering only. No CPU/GPU parity,800x1440 equivalence,fullDev/Test coverage,efficacy or visualqualification claim."
+  },
+  "execution": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "fixed_seed": 0,
+    "maximum_CPU_threads": 2,
+    "maximum_RSS_GiB": 4,
+    "host_reserve_GiB": 40,
+    "work_cap_GiB": 64,
+    "independent_disk_free_GiB": 40,
+    "new_GPU_work": false,
+    "new_NN_fits": 0,
+    "new_image_FPN_ROI_disk_cache": false
+  },
+  "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "source_content_reference": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/full_train_complete.json",
+  "actual_learned_fusion_transferred": false,
+  "formal_F4_launch_ready": false,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

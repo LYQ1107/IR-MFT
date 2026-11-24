@@ -50,6 +50,14 @@ F4实际文件核验代码后续已实现，22项人工文件检查与25项纯�
 新HOTA或完整执行器。不能增加本方向完成数或独立创新数；见
 [F4_PARENT_IO](PERCEPTUAL_MFT_20261125_F4_PARENT_IO.md)。
 
+F4在线内存组件与MOT写盘已补齐：14项人工／未训练模块集成检查，以及
+实际Train RGB前八帧完整在线编码检查通过，109个ROI。零与非零权重
+的检测包、ROI／保留记忆／KF／ID及MOT均匹配独立参照；释放已消费
+观测引用保持后续决策一致。但两个非零配置的短片段MOT仍与ByteTrack
+相同，没有精度收益或学习IR特征转移。正式父模型、加载、GPU、完整
+观测／评估／成本／调度仍待完成，不增加方向完成数；见
+[F4_ONLINE_ENGINEERING](PERCEPTUAL_MFT_20261125_F4_ONLINE_ENGINEERING.md)。
+
 F2 的直接证据见 [八组完整 Test 分析](PERCEPTUAL_MFT_20261124_FACTORIAL_ASSESSMENT.md)，
 F1/F3 的冻结方案见 [native study](../../configs/perceptual_native_pyramid_study_20261124.json)，
 F4 的边界和原始检查见 [工程报告](PERCEPTUAL_MFT_20261124_FUSION_MEMORY_ENGINEERING.md)。
