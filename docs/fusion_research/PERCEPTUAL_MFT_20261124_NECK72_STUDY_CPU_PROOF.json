@@ -1,0 +1,857 @@
+{
+  "status": "COMPLETE_CPU_NECK72_STUDY_RULES_AND_ACTUAL_PREFIX_PROOF",
+  "source_hashes": {
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "configs/perceptual_gpu_handoff_20261123.json": "6211580ea92dc85affd31def431efe4eaaec12f2402ebce4f85fbafe8d34c285",
+    "configs/perceptual_mft_20261122.json": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_consensus_new_ir_normal.json": "4d0bc3326953db7a036157ca86e2cd047df9648ba6506aa02b76dbd7725da11e",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_consensus_new_rgb_normal.json": "e2407bc8e1547fee1e951c5cbb7d1a0a2214d3bccdb43f04b224342fa319a96a",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_consensus_rgb_ir_normal.json": "2757ba8cdd54adf3bf6251b6ace3f1a3736ba852f5beaa4756441fa112144470",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_consensus_rgb_rgb_normal.json": "6fc25975394f90bfcd74818c32eb3a26bcd2062b85f6577e014fc1a043fb0f25",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_robust_new_ir_normal.json": "f803e58d71d3e7528442f104393e89fd767a95e33e1ffd9ad6236f542836a1da",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_robust_new_rgb_normal.json": "1a925b7f80209746404260397965b88d4bd90b0bf1972f314dbce3a55db599c0",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_robust_rgb_ir_normal.json": "8501139dc902e2dcb5bdd2cc63dc3819da5b4254e51ca422ef555e021197c0a7",
+    "configs/perceptual_native_common_test_cases_20261124/NC36_robust_rgb_rgb_normal.json": "9b883f92d765d83eceed5d5207aa4e764fa3d4fe855ef58f78737276b376d9e3",
+    "configs/perceptual_native_neck_clean_query_20261123.json": "71ba488c59373879233662b379bbc28e4c00d7a541a81503ac105e04e9a85377",
+    "configs/perceptual_native_neck_query_bank_20261123.json": "2c7fa3c9bbf1999ee0b4eb11d5fa1fa814b6b81fb04d088cb626daa277160f79",
+    "configs/perceptual_native_neck_robust_query_20261123.json": "c4ef5d6e8f0b7ebe9f825d41c4f404e20504561228c7bd72cbefffa32156e3e2",
+    "configs/perceptual_neck72_study_20261124.json": "a6acca4a810633303bc4602dafc900f42bebc882a22efc1dc31c52611d46ac69",
+    "configs/perceptual_single_seed_policy_20261123.json": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+    "tests/test_neck72_interfaces.py": "17055aa80c4ff89264bd8d7d6264cd148b53dbc959db47742f01ebe55d7ca058",
+    "tests/test_neck72_study.py": "8a51728af84993496a7faf932b978a8468d756f761c61e1e8af8bad030622cf0",
+    "tools/build_native_neck_mismatch_bank.py": "9945c4d05b852f44636fbc9936588f207472b390065b4042a23202494fc6cf20",
+    "tools/build_native_neck_query_bank.py": "c83bc7722d1d1e21d1f50f3c7cf632a18ae324df886c51d0d025b8b97514bf91",
+    "tools/check_neck72_train_crops.py": "e5e568f7cd73ce0ad6d73591b355415de35cd1c3271cc50ccbfcce4e155786e4",
+    "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
+    "tools/eval_mft26ir.py": "b6e414379131b31910aef4440213da09516a8b1e78d34b508dc65bd3807d8562",
+    "tools/export_neck72_study.py": "55016adb81dd94047675d4ccd1137545c5960f43518c64c6e65655b8b2e9a118",
+    "tools/export_perceptual_metrics47.py": "140c6721115f5053bbe0b4f7a4ef4c95a1d2894d344eb8d9eaa387ea7a34c41f",
+    "tools/extract_native_neck_candidate_features.py": "392ff39c7fcb9704512f9a5ba37d2f939698b72719becb508a907a30b6c6a445",
+    "tools/extract_native_neck_eval_features.py": "df7c63a1aedd56fd3b7f120f2c6d4b2d02a7bbbe323fe43e8ecdcbcf4b3ce76d",
+    "tools/extract_perceptual_mft_features.py": "082143e0b178db7c1eacda5a524d8c95b161bffedad91b6fac7fcb05f206d81f",
+    "tools/launch_neck72_study.py": "ae93c75ae6b57beb2c9519d92f541ef39e2489a6cba6fd75a947dccd0ba87686",
+    "tools/native_neck_io.py": "0bea4e14e72cee040b60f4a18479c3a614750a470112baaca0e9ec36384e892b",
+    "tools/native_neck_query_data.py": "07ec402a81770f94f249403958467132045480d42cc06d316bafde1799651c1a",
+    "tools/native_neck_robust_query_data.py": "e30906325190eded9e2d59b0dc902fbf461c69b4235dc80ceed913439eb39e70",
+    "tools/native_pyramid_content_guard.py": "dd5f3c4953f2e4198f6429616fff52a712959344ce7233a85bb32af8713c1ed0",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/native_query_replay.py": "1d64f7c5272c4e4b3ab58165cafe23c524fa1b3f7b54552640a0b910abcb3133",
+    "tools/neck72_evidence.py": "47cdefa4e6ee740185c15e3c972ef3c00c7ce5e1f6a01a173dc47a018131ad9b",
+    "tools/neck72_experiment.py": "99c55dd55015659bc10aa1c4bab11414a249aba2519cd3cce125ace91a674b10",
+    "tools/neck72_runtime.py": "37a580775c504c1318ffe72cb961f0e15f050b4a89e389e2c51824f45f7da56c",
+    "tools/neck72_smoke_binding.py": "c69ab4893057193479c5a119270231cf30f6b6deb0d85a422caa6a99f1ed0b01",
+    "tools/probe_neck72_gpu.py": "5e9a1b1fd5a3e6aff03e0bdd7aa89aefc7606825effdbb34309c0ff409c01fec",
+    "tools/probe_neck72_interfaces.py": "e904de57bb05d3b24a71c5ab71cd3f0193af21180d8241baa7377d437131b966",
+    "tools/probe_neck72_study.py": "e2dbc6d75db15f77e4a951e6372136b499c89d0b32579cad61a82ba48d347043",
+    "tools/register_neck72_interfaces.py": "554b3792bab28c33a582b05fb1050e2d3e631bc7f511395be63248aa50f08f8f",
+    "tools/register_neck72_study.py": "e25e14e73fe6bc1a1648374132fe5563d7dc8b4e96727c9076f8165b1232a4c7",
+    "tools/run_neck72_replay.py": "24f4f9a27a7783f6e91ddda0cbdd883be07f7e741ec8572d3f37f1ef573fd9bf",
+    "tools/run_pseudo_ir_comparison.py": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+    "tools/structural_train_image_reader.py": "c90e1530b620d5f34585c252937bc52aeb9d411e18f196aef9af7048dce8ae34",
+    "tools/train_native_neck_clean_query.py": "7a0e91b7406d751b8a9a9d2f61c0fd644e94908363ef1775fe40ac290b64c815",
+    "tools/train_native_neck_robust_query.py": "de3fe6e1e2296d5e50ec209acd7d248b222f5ce5ac6779a9634bed5908ba700c",
+    "yolox/tracker/__init__.py": "a6f4131dd2632ffa5d85e8d3fc5a7c08c516998241e6da1a928ea5bc6ff5ab27",
+    "yolox/tracker/association_calibrator.py": "579763ae52c0e42d9299600398c3fe9a1f26f948598eb064a314809d513c6191",
+    "yolox/tracker/association_features.py": "ae6efda4b25723674a9960cb81ac35dc38fa26801f68796f1e2e141b64e3fd9c",
+    "yolox/tracker/basetrack.py": "c938afcf7c516bba4a77155c2499fcae6f926df7a2faa6f73a4be1b073f9bb2d",
+    "yolox/tracker/byte_tracker.py": "1a19bde221fc65bbca11d3c45cb2acbe571705510e3f94bfbaca95571d409f1a",
+    "yolox/tracker/calibrated_foreground_tracker.py": "717a5fdd4b922eb3d507c05449c3327cda0436909e7f0f03718a8184f0052cc6",
+    "yolox/tracker/candidate_foreground_tracker.py": "05204ca934b080970a9bb3d2eaa8db75cf5db893edb2cb6613f2e863823875a4",
+    "yolox/tracker/consensus_identity_memory.py": "72d38ee7bdba0a9612a0de264192a7d5e5cd4ef50aabdc361c0a91db0fb9dfdd",
+    "yolox/tracker/counterfactual_query_tracker.py": "f91636477ed4fd5499faca59240a014485e236556ad88449e4dcf7c9f294eed4",
+    "yolox/tracker/cycle_candidate_tracker.py": "4af99900e5b26c96f3733a450c91ea355cc4c7d896be16f03a7938bcf54b1a8f",
+    "yolox/tracker/evidence_adapter.py": "1702158406834218b944f4befd36039a3313fe05fcb462f71004c147d856a388",
+    "yolox/tracker/evidence_byte_tracker.py": "6f16953382f1f3a77507f63b652a66386c1d944692fec713632e0a4ae59c6792",
+    "yolox/tracker/foreground_byte_tracker.py": "f50615391dd48fa5b8f3e05a0d784e7d20f5f00bb486002414fba2eac6442e42",
+    "yolox/tracker/foreground_transport.py": "cb9b4f35c567bdf9370f546f1020acf768be42e27f1d8cffb724647fce4c6287",
+    "yolox/tracker/foveated_causal_attention.py": "857bea6f5d279d358c685d55992b793e2aa7ce50742a1fce12531e9ddbc90ca6",
+    "yolox/tracker/foveated_observations.py": "170573cdfcadf9b97225a2de0813a688a0be4d4de868a588e330196e47427158",
+    "yolox/tracker/foveated_regions.py": "fab1541821d8535ccfef8d434d0f2b7fc6ceb6ad87650e332e5ee15f7ba97d18",
+    "yolox/tracker/guarded_rgb_tracker.py": "3dde6370b6a87434fe1fd28dafce9263d89e5f69296cea8fe62ad9cfbca23c29",
+    "yolox/tracker/kalman_filter.py": "9842d0dd9957c97e312d42e5789441add55082066d87cc051ac768143a46eb39",
+    "yolox/tracker/matching.py": "f18ada7b4da53d0142bbe581f9bc919248f02f548461d259ac754dbd35167890",
+    "yolox/tracker/missing_point_tracker.py": "ab0b86a2164f67cdc93cca15b088d0e5d140619f82a9d11dfbada6f811392c40",
+    "yolox/tracker/native_cue.py": "01de12324f10fe02b73de23a1dc8e67c0664103648f2e25da3ff8ce4eb47123c",
+    "yolox/tracker/native_cue_corruption.py": "5512e8cde1df0b4e3aafb7f4099392f887c676bfd2ee497465cc8023aea6c711",
+    "yolox/tracker/native_neck_metric.py": "2fbcacaf18477627528927f7269250ed2c880a1d65e14b2704410e357502c740",
+    "yolox/tracker/native_query_features.py": "c9c26d004c3c151b2c2edb5eb8b314e206437416844563ef2338f49cd1b7787b",
+    "yolox/tracker/native_query_mask.py": "dde6bf72c644b6238a436a98e3eacaade913677fb71842f477ce5d4d38d90f87",
+    "yolox/tracker/native_query_prior.py": "b55fdd500b93729b86f2fb51e13a401ac945e381423df04df903a2c0fc1be822",
+    "yolox/tracker/native_query_tracker.py": "368779f10cda22296bc92b895af63007b10ac94af31356cd6017b051941d03fb",
+    "yolox/tracker/ordered_identity_memory.py": "87ef26cc513df31bbec8a5e52c078fdcb7fc51551ae3849bb9fadbac8acc29b5",
+    "yolox/tracker/perceptual_features.py": "417e2f5c0e737d50a0844e84c03ba12a440451f0b9cc0317103b71883243ea70",
+    "yolox/tracker/perceptual_tracker.py": "7e6355143a92505797ac0367f54a23e42d30640c99fe9825992b23d8d70d6880",
+    "yolox/tracker/physical_motion.py": "dbc41633b29a2be7989cbcb6de30d59e93bacda9ea549f08800dba021a80f07a",
+    "yolox/tracker/prebirth_identity_tracker.py": "03da7a13eee7e0b26bfa6aad18fc5b41001cba175c41a56b2ea6bf5d12c84356",
+    "yolox/tracker/priority_observations.py": "3cb6b41cd273b362cc92d50fcec0eb01d41bab7b67bd1ee812f121fb79acf771",
+    "yolox/tracker/reachable_identity_memory.py": "565acbba55a31550c9599e51d13b0df3016f2f92f4c3636c1d0e6ba06fc7165a",
+    "yolox/tracker/registered_foreground_transport.py": "98722abda2bcc8885036bce73244e6c5a70351c95d8a7fd09bed1012055136b3",
+    "yolox/tracker/residual_foreground_tracker.py": "8ccec3ab6091da3f3ec64e05f1e9253b4b7f71e9d02f7ccaa152be67d6c43750",
+    "yolox/tracker/rgb_reference_context.py": "490e41fc8477f96d5132149087a6234562cb95d2f77f20ecd78c2fa416727931",
+    "yolox/tracker/roi_confirmed_recovery.py": "186c6a0eef157c4b6ca40c31281fd31f40144fb9bb885ba7f9cd18d389d031aa",
+    "yolox/tracker/semantic_physical_scores.py": "9f45eca7a70edc2a457f64a2cd1c2893001d1ece3929dfefaef67249614f62bd",
+    "yolox/tracker/semantic_transport.py": "624a93caa5a0aa53c3f96c2aa096858f1061a641b844f25038b22e51aeeb537a",
+    "yolox/tracker/spatial_identity_tokens.py": "6f39cc5a1ab7ebc387532d31bf5c3e3b7785bdd13bb7a201d0b2bc1a348c8e06",
+    "yolox/tracker/strong_rgb_tracker.py": "b72a9eecfbcea35c4b8de8730b3509bbb382532047da6e3f659a06bceac8d900",
+    "yolox/tracker/trajectory_consensus.py": "10cc536afb6e4a8bdfae9e90e0db39f2b3d77f1c88d01eb5255cc67426774fda",
+    "yolox/tracker/weak_recovery_tracker.py": "801605d06f3119703e62bd62abafc92e0eb2e6400f2263f4bec20b28871d4fe3"
+  },
+  "tests_passed": 10,
+  "pytest_command": [
+    "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_neck72_study.py"
+  ],
+  "test_log_sha256": "1c26a9febb28b66c3be72756104d17404a5caf2ae0b00d30fdb0a808cc4bbc8a",
+  "observer_actual_old_seed0_prefix_tracks_exact": true,
+  "actual_old_prefix_records": [
+    {
+      "algorithm": "ordered",
+      "frontend": "new",
+      "cue": "rgb",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "1a925b7f80209746404260397965b88d4bd90b0bf1972f314dbce3a55db599c0",
+      "source_features_sha256": "3c4ebfd4365c2bd10fe44579f3e86e28fd98c247140950caaa18e12c6f3ffeaa",
+      "source_transport_sha256": "3e8b694fab297bb5c660d8dd97ef027bde65fee81e012bd52835a2cf59333960",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/new.npz",
+          "sha256": "ddc1b6b41a69044ee8babc378987c39a58f31ca2097393ab869b3efb2f6199fe",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_new_rgb_False.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_new_rgb_True.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": -22.026613533496857,
+        "sum_abs_delta": 27.9748814702034,
+        "max_abs_delta": 3.639378309249878,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "ordered",
+      "frontend": "new",
+      "cue": "ir",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "f803e58d71d3e7528442f104393e89fd767a95e33e1ffd9ad6236f542836a1da",
+      "source_features_sha256": "3c4ebfd4365c2bd10fe44579f3e86e28fd98c247140950caaa18e12c6f3ffeaa",
+      "source_transport_sha256": "3e8b694fab297bb5c660d8dd97ef027bde65fee81e012bd52835a2cf59333960",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/new.npz",
+          "sha256": "ddc1b6b41a69044ee8babc378987c39a58f31ca2097393ab869b3efb2f6199fe",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/ir/new.npz",
+          "sha256": "c29825eb585a100631bdb0b0ce565673ab55b6319460c81751fd0bf15df7c501",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+              "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+              "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+              "cue": "ir",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+              "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+              "cue": "ir",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_new_ir_False.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_new_ir_True.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": 1.861256591975689,
+        "sum_abs_delta": 9.942453019320965,
+        "max_abs_delta": 3.859649419784546,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "ordered",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "9b883f92d765d83eceed5d5207aa4e764fa3d4fe855ef58f78737276b376d9e3",
+      "source_features_sha256": "b4e35c7ee3b09a8e2b2fe12fd43e09ee940bf3703bf1e52c0c8e07901ee563d8",
+      "source_transport_sha256": "876cd47777c58c2f888b4a71a26c96b57abd1dfacc58d21089f63f9e63f93b8c",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/rgb.npz",
+          "sha256": "96da5eff103dcb2127a30b50b2256e18ea8f9a691cb50ceb432c373dd7c1a126",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_rgb_rgb_False.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_rgb_rgb_True.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": -21.804615259170532,
+        "sum_abs_delta": 32.64852023124695,
+        "max_abs_delta": 3.903259038925171,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "ordered",
+      "frontend": "rgb",
+      "cue": "ir",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "8501139dc902e2dcb5bdd2cc63dc3819da5b4254e51ca422ef555e021197c0a7",
+      "source_features_sha256": "b4e35c7ee3b09a8e2b2fe12fd43e09ee940bf3703bf1e52c0c8e07901ee563d8",
+      "source_transport_sha256": "876cd47777c58c2f888b4a71a26c96b57abd1dfacc58d21089f63f9e63f93b8c",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/rgb.npz",
+          "sha256": "96da5eff103dcb2127a30b50b2256e18ea8f9a691cb50ceb432c373dd7c1a126",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/ir/rgb.npz",
+          "sha256": "8cfddc3630cf6b6a971e3cd04ec26893d46b2b7e2a16682d096ff26db8fca040",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+              "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+              "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+              "cue": "ir",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+              "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+              "cue": "ir",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_rgb_ir_False.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/ordered_rgb_ir_True.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": 12.26834962866269,
+        "sum_abs_delta": 18.824790451442823,
+        "max_abs_delta": 3.8408055305480957,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "consensus",
+      "frontend": "new",
+      "cue": "rgb",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "e2407bc8e1547fee1e951c5cbb7d1a0a2214d3bccdb43f04b224342fa319a96a",
+      "source_features_sha256": "3c4ebfd4365c2bd10fe44579f3e86e28fd98c247140950caaa18e12c6f3ffeaa",
+      "source_transport_sha256": "3e8b694fab297bb5c660d8dd97ef027bde65fee81e012bd52835a2cf59333960",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/new.npz",
+          "sha256": "ddc1b6b41a69044ee8babc378987c39a58f31ca2097393ab869b3efb2f6199fe",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_new_rgb_False.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_new_rgb_True.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": -9.982815355062485,
+        "sum_abs_delta": 18.138792008161545,
+        "max_abs_delta": 3.552293539047241,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "consensus",
+      "frontend": "new",
+      "cue": "ir",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "4d0bc3326953db7a036157ca86e2cd047df9648ba6506aa02b76dbd7725da11e",
+      "source_features_sha256": "3c4ebfd4365c2bd10fe44579f3e86e28fd98c247140950caaa18e12c6f3ffeaa",
+      "source_transport_sha256": "3e8b694fab297bb5c660d8dd97ef027bde65fee81e012bd52835a2cf59333960",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/new.npz",
+          "sha256": "ddc1b6b41a69044ee8babc378987c39a58f31ca2097393ab869b3efb2f6199fe",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/ir/new.npz",
+          "sha256": "c29825eb585a100631bdb0b0ce565673ab55b6319460c81751fd0bf15df7c501",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+              "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+              "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+              "cue": "ir",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+              "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+              "cue": "ir",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_new_ir_False.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_new_ir_True.txt",
+          "sha256": "9c2686a9665ec64373de47c897adb9a157fe1e19a934578564583f4927484984"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": 1.861256591975689,
+        "sum_abs_delta": 9.942453019320965,
+        "max_abs_delta": 3.859649419784546,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "consensus",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "6fc25975394f90bfcd74818c32eb3a26bcd2062b85f6577e014fc1a043fb0f25",
+      "source_features_sha256": "b4e35c7ee3b09a8e2b2fe12fd43e09ee940bf3703bf1e52c0c8e07901ee563d8",
+      "source_transport_sha256": "876cd47777c58c2f888b4a71a26c96b57abd1dfacc58d21089f63f9e63f93b8c",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/rgb.npz",
+          "sha256": "96da5eff103dcb2127a30b50b2256e18ea8f9a691cb50ceb432c373dd7c1a126",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_rgb_rgb_False.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_rgb_rgb_True.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": -21.804615259170532,
+        "sum_abs_delta": 32.64852023124695,
+        "max_abs_delta": 3.903259038925171,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    },
+    {
+      "algorithm": "consensus",
+      "frontend": "rgb",
+      "cue": "ir",
+      "frames": 32,
+      "original36encoder_seed0_model_only": true,
+      "tracked_outputs_exact": true,
+      "nonempty_query_posteriors_and_increments_exact": true,
+      "model_weights_and_buffers_unchanged": true,
+      "source_config_sha256": "2757ba8cdd54adf3bf6251b6ace3f1a3736ba852f5beaa4756441fa112144470",
+      "source_features_sha256": "b4e35c7ee3b09a8e2b2fe12fd43e09ee940bf3703bf1e52c0c8e07901ee563d8",
+      "source_transport_sha256": "876cd47777c58c2f888b4a71a26c96b57abd1dfacc58d21089f63f9e63f93b8c",
+      "native_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/rgb/rgb.npz",
+          "sha256": "96da5eff103dcb2127a30b50b2256e18ea8f9a691cb50ceb432c373dd7c1a126",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+              "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+              "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+              "cue": "rgb",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+              "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+              "cue": "rgb",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/dev/BT-005/ir/rgb.npz",
+          "sha256": "8cfddc3630cf6b6a971e3cd04ec26893d46b2b7e2a16682d096ff26db8fca040",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+              "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            },
+            "native_s1": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+              "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+              "cue": "ir",
+              "seed": 1,
+              "precision": "FP32 including BN state"
+            },
+            "native_s2": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+              "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+              "cue": "ir",
+              "seed": 2,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+          "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+          "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+          "applied": true
+        },
+        "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+        "feature_family": "native36"
+      },
+      "tracks": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_rgb_ir_False.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        },
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_cpu_prefix/consensus_rgb_ir_True.txt",
+          "sha256": "1c677381c2454876b4a38fed193db8224ac00ede8e8cb1aeae2610b5b910f9de"
+        }
+      ],
+      "query_increment_statistics": {
+        "packets": 1,
+        "pair_cells": 12,
+        "nonzero_delta_cells": 12,
+        "available_cells": 12,
+        "sum_delta": 12.26834962866269,
+        "sum_abs_delta": 18.824790451442823,
+        "max_abs_delta": 3.8408055305480957,
+        "branch_disabled": false,
+        "scope": "All cells of actual cached query matrices, no inference padding; bounded logit increments, not sigmoid gates or object-only averages."
+      }
+    }
+  ],
+  "actual_old_prefix_combinations": 8,
+  "frames_each": 32,
+  "source_scope": "Previously trained native36 seed0 models, not newly fitted neck72 models. Current observer/sequence reset/backend interfaces only; no accuracy evaluation.",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "GPU_work": false,
+  "new_neck72_fit": false,
+  "GT_read": false,
+  "new_Dev_or_Test_metrics": false,
+  "seconds": 43.20276138698682,
+  "pending_actual_GPU_engineering": true,
+  "full_system_runtime_complete": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
