@@ -10,6 +10,12 @@
 见[NATIVE_SPATIAL_ENGINEERING](PERCEPTUAL_MFT_20261124_NATIVE_SPATIAL_ENGINEERING.md)。
 下表中的“原空间gate＋冗余抑制完整当前IR验证”仍然未完成。
 
+完整九组空间研究后续已接通并登记，323来源与11依赖锁定，CPU控制器
+184707已核实等待前序全部导出和实际退出；实际worker九组×三更新及
+18个独立B1帧条件通过。当前仍无GPU工程资格、正式拟合或新准确率，
+不能据此把本方向或四方向总体标为验证完成。见
+[NATIVE_SPATIAL_QUEUE](PERCEPTUAL_MFT_20261124_NATIVE_SPATIAL_QUEUE.md)。
+
 | 方向 | 当前 November IR 证据 | 尚需完成 |
 | --- | --- | --- |
 | F1 动态质量 | `NativePyramidFusion(mode='quality')` 学习当前图像辅助金字塔，各 FPN 层预测质量 gate；匹配 RGB/gray/IR 和完整流程已登记、工程检查已做，正式拟合排在现有训练后 | 实际 GPU 门槛、完整 Train/Dev/Test、强对照、去质量等归因；尚无该模型的新 HOTA |

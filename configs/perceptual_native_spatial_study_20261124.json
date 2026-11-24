@@ -1,0 +1,247 @@
+{
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "single_seed_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "calibration_sha256": "0cfd93575bd5e01bbd1f011202e85f7faad7cbcfc4599c0283e5f17e27bc9d0f",
+  "Train_length_source": "structural_full_train_schedule/complete.json",
+  "Train_length_source_sha256": "8b4826011dad53788823f5c3571b9b30630b025692fa71e5f0b85bc0c441c5ea",
+  "fixed_seed": 0,
+  "training_input_hw": [
+    480,
+    864
+  ],
+  "inference_input_hw": [
+    800,
+    1440
+  ],
+  "fit": {
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "lambda_reliable_RGB": 0.02,
+    "warmup_updates": 500,
+    "horizon_updates": 81768,
+    "minimum_lr_fraction": 0.03,
+    "optimizer": "AdamW, only native fusion parameters; frozen original RGB encoder/head in evaluation mode.",
+    "precision": "Frozen GPU RGB encoder FP16; auxiliary module, frozen train head and loss FP32. CPU engineering uses FP32 encoder. No CPU/GPU numerical parity claim.",
+    "determinism": "Seed0, deterministic algorithms/CuDNN, CuBLAS4096:8, TF32 disabled; past memory and optical flow detached before every frame. Actual GPU engineering must pass before fitting."
+  },
+  "Train_delivery": {
+    "lengths": {
+      "BT-001": 3000,
+      "BT-003": 243,
+      "MSK-002": 1754,
+      "PF-001": 15000,
+      "SN-001": 684,
+      "SN-015": 6570
+    },
+    "complete_frames_per_epoch": 27251,
+    "clips_per_epoch": 6814,
+    "maximum_frames_per_clip": 4,
+    "short_tails": {
+      "BT-003": 3,
+      "MSK-002": 2,
+      "SN-015": 2
+    },
+    "repeated_padding_frames": 0,
+    "address_schedule": "SeedSequence([0, one-based epoch]) shuffles sorted video order; frames remain chronological within each video. Short tails retained. No cross-video clips.",
+    "weighting": "Natural video duration, including the long PF-001 video, not balanced per-video sampling. Standard foreground-normalized YOLOX loss per clip, including short tails.",
+    "temporal_state": "Continues across adjacent clips and optimizer updates within each video; resets between videos/epochs and on unavailable cue. Stop gradient through every past state, no BPTT. Past training states may have been computed before a parameter update.",
+    "unavailable": "Flat scalar cue is unavailable. All-unavailable clips deliver frames but skip AdamW instead of fabricating a gradient update. Report delivered clips and actual updates separately.",
+    "proof": "Actual delivered per-epoch addresses/digests and unique frame coverage; original GT/calibration hashes. No Dev/Test labels are accessible to the fit."
+  },
+  "status": "PREREGISTERED_NINE_ARM_SPATIAL_STUDY_PENDING_COMPLETE_WORKFLOW_AND_GPU_ENGINEERING",
+  "UTC": "2026-11-24T14:57:09.798069+00:00",
+  "prototype_sha256": "1aa003d146d3409134ec05c1b199e0a6a8402c804140d52da01165af804d4911",
+  "prototype_CPU_proof_sha256": "b7e4a46dc6196a056e85dea51f5457c02f099ce3642606bc1abb164c47eb40e9",
+  "additional_seed_work": false,
+  "geometry_fixed": false,
+  "architecture": {
+    "quality_parameters": 556681,
+    "feature_residual_bound": 0.5,
+    "context_channels": 32,
+    "primitives_are_not_originality_claims": true
+  },
+  "variants": [
+    {
+      "name": "spatial",
+      "use_quality": false,
+      "use_spatial": true,
+      "use_redundancy": false
+    },
+    {
+      "name": "quality_spatial",
+      "use_quality": true,
+      "use_spatial": true,
+      "use_redundancy": false
+    },
+    {
+      "name": "quality_spatial_redundancy",
+      "use_quality": true,
+      "use_spatial": true,
+      "use_redundancy": true
+    }
+  ],
+  "matched_cues": [
+    "rgb",
+    "gray",
+    "ir"
+  ],
+  "normal_fits": [
+    {
+      "id": "spatial_rgb",
+      "variant": "spatial",
+      "cue": "rgb",
+      "physical_gpu": "4"
+    },
+    {
+      "id": "spatial_gray",
+      "variant": "spatial",
+      "cue": "gray",
+      "physical_gpu": "5"
+    },
+    {
+      "id": "spatial_ir",
+      "variant": "spatial",
+      "cue": "ir",
+      "physical_gpu": "4"
+    },
+    {
+      "id": "quality_spatial_rgb",
+      "variant": "quality_spatial",
+      "cue": "rgb",
+      "physical_gpu": "5"
+    },
+    {
+      "id": "quality_spatial_gray",
+      "variant": "quality_spatial",
+      "cue": "gray",
+      "physical_gpu": "4"
+    },
+    {
+      "id": "quality_spatial_ir",
+      "variant": "quality_spatial",
+      "cue": "ir",
+      "physical_gpu": "5"
+    },
+    {
+      "id": "quality_spatial_redundancy_rgb",
+      "variant": "quality_spatial_redundancy",
+      "cue": "rgb",
+      "physical_gpu": "4"
+    },
+    {
+      "id": "quality_spatial_redundancy_gray",
+      "variant": "quality_spatial_redundancy",
+      "cue": "gray",
+      "physical_gpu": "5"
+    },
+    {
+      "id": "quality_spatial_redundancy_ir",
+      "variant": "quality_spatial_redundancy",
+      "cue": "ir",
+      "physical_gpu": "4"
+    }
+  ],
+  "budget_and_Dev": {
+    "stages": [
+      6,
+      9,
+      12
+    ],
+    "minimum_complete_Train_epochs": 6,
+    "maximum_complete_Train_epochs": 12,
+    "snapshots_every_complete_epoch": 1,
+    "initial_stage_order": [
+      "spatial",
+      "quality_spatial",
+      "quality_spatial_redundancy"
+    ],
+    "sequential_introduction": "At stage6 finish each three-cue variant and its complete Dev before starting the next enabled mechanism. All nine are mandatory even if earlier Dev is negative.",
+    "extension": "After all nine curves and both IR interventions through stage6 or9, extend all nine by3 full epochs iff any normal variant/cue improves best HOTA by more than0.2pp against best through stage-3. Stop by12; one fixed12-epoch cosine horizon.",
+    "selection": "Original276-column officialCSV COMBINED HOTA___AUC*100, AssA andIDF1 with full precision; higher HOTA,AssA,IDF1, earlier epoch, then registered variant order. Complete normal IR curves only choose primary before Test.",
+    "controls": "Each of9normal fits own complete Dev best. Strong RGB/gray controls use primary variant and own complete Dev best. Original canonical RGB and fresh sequentialB1 RGB retained.",
+    "Dev": "All4834Dev frames at every executed epoch; every IR normal snapshot also actual-image-roll andunavailable. No skipping negative normal fits."
+  },
+  "removals": {
+    "eligibility": "Only when normal IR primary exceeds complete Dev canonical RGB,fresh RGB,same-variant RGB andgray. Otherwise preserve all9Test and report failed architecture, no Test-based triggering.",
+    "choices": [
+      "no_spatial",
+      "no_frame_quality",
+      "no_redundancy"
+    ],
+    "only_enabled_mechanisms": true,
+    "reuse": "If complete arm semantic computation key exactly matches a normal IR fit, use that same fit/checkpoint provenance. Never reuse by scores or descriptive IDs.",
+    "same_complete_Train_budget": true,
+    "selection": "Retain every removal complete Dev curve; evaluate its own Dev best and epoch paired with primary. No Test promotion.",
+    "quality_scope": "Disables the frame-quality MLP only; spatial context and native contrast remain.",
+    "spatial_scope": "Disables learned spatial logit only; framequality and enabled redundancy remain.",
+    "redundancy_scope": "Disables explicit rho suppression only; abs/product spatial features remain. Not elimination of all possible redundancy handling."
+  },
+  "formal_Test": {
+    "sequences": [
+      "BT-002",
+      "BT-004",
+      "MSK-003",
+      "PF-002",
+      "SN-009",
+      "SN-011",
+      "SN-014"
+    ],
+    "frames": 15985,
+    "all9_normal_Dev_best_even_negative": true,
+    "primary_interventions": [
+      "unavailable",
+      "IR_image_spatial_roll"
+    ],
+    "all_trained_removals_own_and_paired": true,
+    "canonical_source_all39_CSV_exact": true,
+    "all47fields_and_per_sequence_and_original276CSV": true,
+    "no_Test_based_selection_or_trigger": true
+  },
+  "runtime": {
+    "all_unique_frozen_neural_models_and_fresh_RGB": true,
+    "per_sequence_prefix": 32,
+    "warmup_each_sequence": 8,
+    "measured_each_sequence": 24,
+    "measured_frames": 168,
+    "exact_input_bytes_and_MOT_prefix_and_packet_prefix_before_timing": true,
+    "one_condition_at_a_time": true,
+    "includes": "Image IO/decode/preprocess,RGBencoder/teacher,cueCNN,fusion,head,NMS,ByteTrack; sequentialB1; no instrumentation",
+    "excludes": "Weight loading and offline fixedDiffV2IRgeneration; report separately, not full15985-frameFPS",
+    "repeat": 1,
+    "GT_or_accuracy_input": false
+  },
+  "execution": {
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "prerequisite": "All currently registered chains including conditional fusion_factorial scientific export and actual producer exits. No new CUDA before complete release and real GPU engineering.",
+    "new_gpu_work_now": false,
+    "complete_pipeline_required_before_formal_fit": true,
+    "work_cap_GiB": 64,
+    "independent_disk_free_reserve_GiB": 40,
+    "host_MemAvailable_reserve_GiB": 40,
+    "worker_peak_RAM_bound_GiB": 8,
+    "worker_encoded_image_RAM_cache_GiB": 2,
+    "maximum_workers": 2,
+    "minimum_study_growth_reserve_GiB": 1.5,
+    "new_image_or_FPN_disk_copies": 0
+  },
+  "storage": {
+    "work_cap_GiB": 64,
+    "minimum_independent_filesystem_free_GiB": 40
+  },
+  "original_baseline_Test_HOTA": 29.529,
+  "target_Test_HOTA": 34.529,
+  "contribution": "Paired positive complete Dev/Test versus strong cue controls and enabled-module removal are necessary, not sufficient for novelty. Three switch combinations are one candidate family, not9architectures.",
+  "historical_Test_exposed": true,
+  "original_RGB_pretraining_saw_present_Dev": true,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "full_four_direction_completion": false
+}
