@@ -58,6 +58,9 @@ def main():
     torch.set_num_threads(2)
     cv2.setNumThreads(1)
     torch.backends.cudnn.benchmark = False
+    assert os.environ.get('CUBLAS_WORKSPACE_CONFIG') == ':4096:8'
+    torch.backends.cudnn.deterministic = True
+    torch.use_deterministic_algorithms(True)
     torch.backends.cuda.matmul.allow_tf32 = torch.backends.cudnn.allow_tf32 = False
     torch.cuda.set_per_process_memory_fraction(.45, 0)
     protocol = json.loads((ROOT / plan['protocol']).read_text())
@@ -78,6 +81,8 @@ def main():
                  physical_gpu=physical, dependencies=dependency, fixed_seed=0, engineering_steps=2,
                  source_hashes={name: sha256(ROOT / name) for name in names},
                  config_sha256=sha256(config_path), no_formal_training=True,
+                 diagnostic_deterministic_algorithms=True, cudnn_deterministic=True,
+                 CUBLAS_WORKSPACE_CONFIG=os.environ['CUBLAS_WORKSPACE_CONFIG'],
                  Dev_fit_rows=0, Test_accuracy_or_labels_read=False)
     dump(out / 'state.json', state)
     started = time.perf_counter()
@@ -173,7 +178,9 @@ def main():
             peak_own_allocated_GPU_GiB=torch.cuda.max_memory_allocated()/2**30,
             scope='Two diagnostic GPUupdates/path, seed0, actualRGBand NovemberIR Train images. '
                   'The live encoder is executed B1; no feature callback. No formal24pass fit, '
-                  'expanded coverage result, Dev/Test accuracy or HOTA is claimed.',
+                  'expanded coverage result, Dev/Test accuracy or HOTA is claimed. '
+                  'Deterministic CUDA algorithms are enabled for this engineering comparison; '
+                  'this is not a bit-exact reproduction claim for earlier nondeterministic fits.',
             goal_met=False, supported_innovations=0)
         dump(out / 'state.json', state)
         destination = ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261123_TRAIN_STREAM_OPTIMIZER_GPU_PARITY.json'

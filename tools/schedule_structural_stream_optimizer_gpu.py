@@ -40,7 +40,7 @@ def main():
             time.sleep(5)
         log = work / 'probe_structural_stream_optimizer_GPU.log'
         environment = dict(os.environ, CUDA_VISIBLE_DEVICES='4', OMP_NUM_THREADS='2',
-                           MKL_NUM_THREADS='2', OPENBLAS_NUM_THREADS='1')
+                           MKL_NUM_THREADS='2', OPENBLAS_NUM_THREADS='1', CUBLAS_WORKSPACE_CONFIG=':4096:8')
         with log.open('xb', buffering=0) as output:
             proc = subprocess.Popen([sys.executable, '-u', 'tools/probe_structural_stream_optimizer_gpu.py'],
                 cwd=ROOT, env=environment, stdin=subprocess.DEVNULL, stdout=output,

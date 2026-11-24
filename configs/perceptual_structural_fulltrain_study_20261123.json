@@ -1,0 +1,78 @@
+{
+  "status": "REGISTERED_FULL_TRAIN_STUDY_NO_FITS_ACTIVATED",
+  "created_UTC": "2026-11-23T14:37:01.610017+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "parent_structural_config_sha256": "909eb6fae97ce7eb64c79a31ee93e76d713003c51cc7d9c13dbd276cf49519fd",
+  "configuration": "configs/perceptual_structural_fulltrain_20261123.json",
+  "configuration_sha256": "19a15e95cd2a44542b383ff5852cc5cdac31b330db574a63f623c38f8ab531a5",
+  "single_seed_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "schedule_proof_sha256": "8b4826011dad53788823f5c3571b9b30630b025692fa71e5f0b85bc0c441c5ea",
+  "semantic_address_sha256": "16822f4e61543b86eac64f18a7e6e43cca6b2a2cf6bbf2fcb148f9c2f55124be",
+  "source_Train_coverage_audit_sha256": "bcafc09cf359e0fb68a54fd8b74b9e3665087685d9890878d39346514e36570b",
+  "source_complete_Dev_analysis_sha256": "786be3f0bf3bc1f9119d6f2f12155429452491e0ea68aa0cdd3e9f259507ea6b",
+  "hypothesis": "Existing1152frames cover4.227percent of Train and repeat24times; complete Dev curves peak early. Test the same architecture on complete Train observations with matched controls. This changes coverage, natural-length batch sampling and total updates; it is not a pure coverage-only attribution.",
+  "fits": [
+    {
+      "cue": "rgb",
+      "components": "111",
+      "physical_gpu": "4",
+      "seed": 0
+    },
+    {
+      "cue": "gray",
+      "components": "111",
+      "physical_gpu": "5",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "components": "111",
+      "physical_gpu": "4",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "components": "011",
+      "physical_gpu": "5",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "components": "101",
+      "physical_gpu": "4",
+      "seed": 0
+    },
+    {
+      "cue": "ir",
+      "components": "110",
+      "physical_gpu": "5",
+      "seed": 0
+    }
+  ],
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "trainable_parameters": 145600,
+  "logical_Train_epochs_each": 3,
+  "optimizer_macro_passes_each": 72,
+  "updates_each": 20736,
+  "snapshots": [
+    24,
+    48,
+    72
+  ],
+  "training_input_hw": [
+    480,
+    864
+  ],
+  "frozen_elements": "Original NovemberIR files, protocol, RGBcheckpoint, frozen shared encoder/head, architecture, losses, calibration, optimizer LR/clip/weight decay, inference resolution, ByteTrack parameters. Warmup remains288updates; cosine total horizon increases to20736.",
+  "selection": "FullIR111 primary selected by maximum completeDevHOTA over3snapshots and raw/priority. Tie: earlier macro pass, then raw. R/G receive the same6opportunities. Each removal has a primary-epoch/policy role and its independently Dev-selected best role. Never promote a Test winner or sum removal deltas.",
+  "mandatory_Test": "All formal trained six configurations, including negative ones, cover7/7Test15985frames. Also correctIR/imageRoll/unavailable and fresh/canonicalRGB; freeze all choices after completeDev.",
+  "engineering": "20actualGPUupdate smoke per fit, initialRGBexact, finite gradients; queued actualB1GPU optimizer parity must complete first. Source8zero/prefix32/full source and denseRGBgeometry proofs before accuracy.",
+  "scheduling": "Do not launch until the liveGPU parity schedule is COMPLETE and registered downstream evaluation tooling is ready. Only physical4/5, one fit worker/card; current factorial pipeline is not modified or interrupted.",
+  "storage": "Reuse originals, no image/FPN disk caches. EncodedRAM<=8GiB/worker with40GiB insertion reserve; work cap64GiB, disk free reserve40GiB. Only lightweight results/code in Git.",
+  "prior_Test_exposure": "Previous fixed111Test29.142 and baseline29.529 are already known. This is exploratory work; design motivation is the pre-existing Train coverage audit and completeDev evidence. The new model/checkpoint choices use Train/Dev only.",
+  "originality": "Training on more frames is not a contribution; S/C/R remain unproven mechanisms requiring matched attribution and prior-art assessment.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

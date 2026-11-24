@@ -1,0 +1,112 @@
+{
+  "status": "COMPLETE_TWO_STEP_LIVE_GPU_OPTIMIZER_PARITY",
+  "controller_pid": 3603374,
+  "physical_gpu": "4",
+  "dependencies": {
+    "structural_factorial_fit_state.json": "COMPLETE",
+    "structural_factorial_dev_state.json": "COMPLETE",
+    "structural_factorial_runtime_schedule.json": "COMPLETE_BOTH_RUNTIME_CONDITIONS_NO_GPU_CONFLICT",
+    "structural_factorial_test_state.json": "COMPLETE"
+  },
+  "fixed_seed": 0,
+  "engineering_steps": 2,
+  "source_hashes": {
+    "tools/probe_structural_stream_optimizer_gpu.py": "3f6442a8783c09c5dd6c5d50cb3a5ad58f26e94ca6fe0545c5896fcfc61d11c0",
+    "tools/probe_structural_stream_optimizer.py": "1e5c6fa2bcdf9d87af03fb44747a15d1ae2dd855d71a947dd99ceef3c6c49c74",
+    "tools/structural_stream_training.py": "3622e61ee4adbd560e82d7206c03c3ef9f52536fd6e8ee49bb648a1f0f1a2fe3",
+    "tools/structural_stream_loop.py": "8b8d1f501a8ea816f70f8e91d9aee4734cefe7ebdaaa6066ba7683a413383c74",
+    "tools/structural_train_image_reader.py": "c90e1530b620d5f34585c252937bc52aeb9d411e18f196aef9af7048dce8ae34",
+    "tools/train_structural_relative.py": "d7cbebe577bc0f1b628cc0cb364f6dc36d56d70f100ee4449135d4e7b4227279",
+    "tools/train_correlation_repair.py": "4016dfd41c54268647acd7848dbd44dc820050fcfc4f541b22786871f3df3d1a",
+    "tools/structural_grid.py": "92db9305998db1a4e460812b3890719da04a6eccdcba495b9e7f7dc6bcc52a3c",
+    "yolox/models/structural_factorial_repair.py": "af99564db8ccebb9af50069f1779be562ffd6ee70648e1985a79a04eb207b849",
+    "yolox/models/structural_nocycle_refinement.py": "1248f32c2b03bfd7825a0a44f99dee0f5127e256156e593e019928bbbf51f7bd",
+    "yolox/models/structural_relative_repair.py": "d7e1d91c7cc159232a572459bb6deb5eca3f00eacb0215ac49e0b722224bb12c",
+    "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+    "yolox/models/structural_relative_losses.py": "494ddf2f789ecc41b9791c56818a611e6629ae04a76c9684630ee277b59f940b",
+    "yolox/models/recoverable_curriculum.py": "0ff701157c4b1ff1a3ce36ee7903e21e28b15489a60f1ea66e6501f5563c7d34"
+  },
+  "config_sha256": "909eb6fae97ce7eb64c79a31ee93e76d713003c51cc7d9c13dbd276cf49519fd",
+  "no_formal_training": true,
+  "diagnostic_deterministic_algorithms": true,
+  "cudnn_deterministic": true,
+  "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+  "Dev_fit_rows": 0,
+  "Test_accuracy_or_labels_read": false,
+  "seconds": 68.62111096398439,
+  "actual_Train_frames": [
+    [
+      "SN-001",
+      136
+    ],
+    [
+      "SN-001",
+      247
+    ],
+    [
+      "MSK-002",
+      670
+    ],
+    [
+      "MSK-002",
+      524
+    ],
+    [
+      "BT-001",
+      2560
+    ],
+    [
+      "BT-001",
+      880
+    ],
+    [
+      "BT-003",
+      220
+    ],
+    [
+      "BT-003",
+      14
+    ]
+  ],
+  "unique_Train_frames": 8,
+  "actual_live_B1_features_descriptors_targets_exact": true,
+  "initialization_and_CPU_RNG_exact": true,
+  "updated9adapter_tensors_exact": true,
+  "AdamW_moments_steps_groups_exact": true,
+  "full_two_step_loss_history_exact": true,
+  "unchanged_legacy_loop_bytecode": true,
+  "frozen_head_exact": true,
+  "frozen_encoder_without_gradients": true,
+  "input_pass_records": [
+    {
+      "pass_index": 1,
+      "prepared_batches": 2,
+      "actual_frame_draw_sha256": "36e40b3062436872e7580b598fec1f548955b6156e327b12eb94bc9eb8f55493",
+      "unique_frames": {
+        "BT-001": 2,
+        "BT-003": 2,
+        "MSK-002": 2,
+        "PF-001": 0,
+        "SN-001": 2,
+        "SN-015": 0
+      },
+      "complete_input_pass": false
+    }
+  ],
+  "image_reader": {
+    "encoded_RAM_bytes": 2577869,
+    "limit_bytes": 8589934592,
+    "available_memory_reserve_bytes": 42949672960,
+    "hits": 0,
+    "misses": 16,
+    "evictions": 0,
+    "entries": 16,
+    "image_or_feature_disk_cache": false
+  },
+  "physical_GPU_UUID": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+  "physical_mapping_verified": true,
+  "peak_own_allocated_GPU_GiB": 3.8081536293029785,
+  "scope": "Two diagnostic GPUupdates/path, seed0, actualRGBand NovemberIR Train images. The live encoder is executed B1; no feature callback. No formal24pass fit, expanded coverage result, Dev/Test accuracy or HOTA is claimed. Deterministic CUDA algorithms are enabled for this engineering comparison; this is not a bit-exact reproduction claim for earlier nondeterministic fits.",
+  "goal_met": false,
+  "supported_innovations": 0
+}
