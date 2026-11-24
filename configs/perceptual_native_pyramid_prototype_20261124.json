@@ -1,0 +1,40 @@
+{
+  "status": "REGISTERED_BEFORE_REAL_TRAIN_NATIVE_PYRAMID_ENGINEERING",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "GPU_work": false,
+  "device": "cpu",
+  "modes": [
+    "quality",
+    "temporal"
+  ],
+  "matched_cues": [
+    "rgb",
+    "gray",
+    "ir"
+  ],
+  "sequence": "BT-001",
+  "frames": [
+    1,
+    2
+  ],
+  "engineering_updates_each": 2,
+  "input_hw": [
+    480,
+    864
+  ],
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "gradient_clip": 5,
+  "lambda_reliable_RGB": 0.02,
+  "feature_residual_bound": 0.5,
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "supervision": "Original full YOLOX loss including box/object/class, through the frozen RGB head into a newly learned cue encoder; reliable RGB detector-space preservation. No head or RGB encoder updates.",
+  "temporal": "Caller-owned sequence/frame state. Current-to-previous RGB Farneback flow, confidence-weighted warped native latent history; reset between two-frame engineering clips and on missing cue. Positive covariance is an internal confidence parameter, not calibrated physical IR sensor variance.",
+  "scope": "Engineering only, registered before consuming these losses. Six tiny two-update canaries do not constitute formal trained research models, convergence, current-IR architecture validation, HOTA evidence or innovations. No Dev/Test labels/metrics or saved weights.",
+  "formal_work_remaining": "Before a formal fit: freeze complete Train/Dev/Test protocol, common budgets, full-Train delivery, epoch selection, geometry/quality/contrast/memory/motion removals and input controls; validate actual GPU inference and source numerical conventions. Every engineering-passed formal candidate still requires all7Test even if Dev negative. Do not count this prototype as satisfying the four validated architecture requirement.",
+  "resources": "Use CPU only while existing GPU4/5 jobs continue. Do not change pinned active sources, make disk image/FPN copies or save prototype weights. Respect64GiB work cap and40GiB free disk reserve.",
+  "goal_met": false,
+  "supported_innovations": 0
+}
