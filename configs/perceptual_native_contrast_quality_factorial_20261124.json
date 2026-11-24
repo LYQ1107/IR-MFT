@@ -1,0 +1,107 @@
+{
+  "status": "PREREGISTERED_FACTORIAL_ATTRIBUTION_EXTENSION_NOT_GPU_LAUNCH_READY",
+  "registered_UTC": "2026-11-24T12:31:20.079294+00:00",
+  "parent_study": "configs/perceptual_native_pyramid_study_20261124.json",
+  "parent_study_sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+  "registered_before_any_native_normal_Dev_selection": true,
+  "purpose": "Complete single/cumulative/removal attribution of center-surround cue contrast and the learned fusion-quality gate. A combination beating RGB is insufficient to establish both modules.",
+  "factors": {
+    "S": "Center-surround normalized contrast and local scale inputs of the native cue encoder",
+    "Q": "Learned per-pyramid global fusion-quality gate; off uses the original fixed0.5 gate"
+  },
+  "cells": {
+    "00": {
+      "spectral": false,
+      "use_quality": false,
+      "source": "One new joint-disable fit, conditional on the original Dev-only gate"
+    },
+    "10": {
+      "spectral": true,
+      "use_quality": false,
+      "source": "Existing no_fusion_quality_gate removal"
+    },
+    "01": {
+      "spectral": false,
+      "use_quality": true,
+      "source": "Existing no_spectral_contrast removal"
+    },
+    "11": {
+      "spectral": true,
+      "use_quality": true,
+      "source": "Existing normal IR fit in the frozen primary mode"
+    }
+  },
+  "fixed_across_cells": [
+    "Same raw current November DiffV2IR pixels and calibration",
+    "Same RGB teacher checkpoint, encoder/head freezing and production FP16/B1 convention",
+    "Same seed0 module tensor initialization, nine encoder input channels and parameter inventory",
+    "Same original RGB confidence protection and reliable-RGB loss",
+    "Same full Train27251-frame chronological clips, schedule, optimizer and12-epoch LR horizon",
+    "Same frozen primary mode; if temporal, keep memory, flow and its quality-conditioned noise MLP"
+  ],
+  "gate_scope": "Quality=false removes only the feature-fusion gate MLP path. It does not remove the detached quality statistics used by temporal variance. Contrast=false preserves raw cue planes; local contrast is zero and local scale is one as in the existing removal.",
+  "fit_authorization": {
+    "input": "Complete six-arm normal Dev and native_pyramid_normal_selection_frozen.json only",
+    "condition": "Use original fit_registered_removals=True: primary IR strictly exceeds direct/fresh RGB, matched RGB and matched gray on both complete Dev videos",
+    "Test_accuracy_input": false,
+    "number_of_extra_formal_fits_at_most": 1,
+    "mode": "Original frozen primary mode",
+    "complete_Train_epochs": "Exactly the original common executed6/9/12 epoch budget",
+    "snapshots": "Every complete epoch1..executed budget",
+    "if_negative": "Preserve the negative normal architecture result and report this conditional extension not triggered; do not fit only because Test is attractive"
+  },
+  "selection": {
+    "primary": "Original parent IR primary is unchanged",
+    "policies": [
+      "All four cells paired at the original primary epoch",
+      "Each cell own best from all complete Dev epochs; same HOTA/AssA/IDF1/earlier-epoch tie rule"
+    ],
+    "freeze_before_extra_Test": true,
+    "all_selected_cells_full7_Test_even_negative": true,
+    "existing_cells": "Reuse already frozen parent outputs when the checkpoint/condition is identical; explicitly evaluate any missing paired snapshot, never substitute another epoch"
+  },
+  "contrasts": [
+    "S alone:10-00",
+    "Q alone:01-00",
+    "S conditional on Q:11-01",
+    "Q conditional on S:11-10",
+    "Combination:11-00",
+    "Interaction:11-10-01+00"
+  ],
+  "contribution_rule": "Report every effect on complete Dev and Test. A module requires positive alone and conditional effects on both splits, plus strong controls, real input interventions, mechanism/prior-art distinction and full costs. These necessary contrasts do not automatically establish originality or the complete Goal.",
+  "reporting": "All47 official fields, per sequence and COMBINED, original276-column CSV; use HOTA___AUC*100 from the original CSV for full-precision effect analysis. Preserve negative deltas and the exposed historical-Test limitation.",
+  "execution": {
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "order": "Independent follow-up after the existing structural/native/CGR/neck72/fresh-runtime queue has completed and actual processes have exited. Do not change any active predecessor registry.",
+    "launch_requires": [
+      "Source-pinned complete fit/Dev/selection/Test/export/cost pipeline",
+      "Actual GPU joint-disable training and source/missing identity canary",
+      "Complete original normal Dev-only fit authorization",
+      "Storage and host-memory admission"
+    ],
+    "CPU_canary": "Two ordered four-frame Train clips for joint-disable in each mode; no saved weights, Dev/Test labels, new seeds or accuracy"
+  },
+  "storage": {
+    "work_cap_GiB": 64,
+    "independent_disk_free_reserve_GiB": 40,
+    "host_MemAvailable_reserve_GiB": 40,
+    "worker_RAM_cap_GiB": 8,
+    "maximum_planned_additional_output_GiB": 0.5,
+    "image_or_FPN_disk_copies": 0,
+    "weights_images_arrays_or_raw_tracks_in_Git": false
+  },
+  "current_limitations": [
+    "No new normal NativePyramid Dev curve or HOTA exists yet",
+    "This extension adds attribution conditions, not an additional fusion architecture",
+    "All named image statistics, gating and filters have established prior art",
+    "Historical Test is exposed; original RGB pretraining included current Dev"
+  ],
+  "goal_met": false,
+  "supported_innovations": 0
+}
