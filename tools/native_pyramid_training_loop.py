@@ -103,7 +103,7 @@ def run_training_to_epoch(module, encoder, head, optimizer, provider, config, me
     output = Path(output)
     if through_epoch not in config['budget_and_Dev']['stages']:
         raise ValueError('Unregistered full-Train stage')
-    if metadata['study_sha256'] != sha256(config_path) or metadata['seed'] != 0:
+    if metadata['fit_config_sha256'] != sha256(config_path) or metadata['seed'] != 0:
         raise ValueError('Fit is not tied to the fixed seed0 study')
     expected_params = config['architecture'][module.mode + '_parameters']
     if sum(p.numel() for p in module.parameters()) != expected_params:
@@ -114,7 +114,7 @@ def run_training_to_epoch(module, encoder, head, optimizer, provider, config, me
             not torch.backends.cudnn.deterministic or torch.backends.cudnn.benchmark):
         raise ValueError('New native fits require the preregistered deterministic GPU settings')
     def verify_sources():
-        if sha256(config_path) != metadata['study_sha256']:
+        if sha256(config_path) != metadata['fit_config_sha256']:
             raise RuntimeError('Study changed during fitting')
         if any(sha256(root / name) != digest for name, digest in metadata['source_hashes'].items()):
             raise RuntimeError('Native fit implementation changed during fitting')

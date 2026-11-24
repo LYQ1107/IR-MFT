@@ -114,7 +114,7 @@ def test_actual_optimizer_restart_matches_uninterrupted_and_saves_no_rgb_weights
         storage=dict(work_cap_GiB=1, minimum_independent_filesystem_free_GiB=0))
     config_path = tmp_path / 'synthetic_engineering_config.json'
     config_path.write_text(json.dumps(config))
-    metadata = dict(study_sha256=sha256(config_path), seed=0, source_hashes={},
+    metadata = dict(fit_config_sha256=sha256(config_path), seed=0, source_hashes={},
                     cue='ir', fit_id='synthetic_engineering_only')
     complete = tmp_path / 'uninterrupted'
     history_full = run_training_to_epoch(module, encoder, head, optimizer, TinyProvider(), config,
