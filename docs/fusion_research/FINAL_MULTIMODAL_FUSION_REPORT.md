@@ -1,5 +1,7 @@
 # IR-MFT Phase VI final fusion report
 
+> Historical Phase VI archive, not completion of the current November DiffV2IR goal. F1/F2/F3 below use the causal-cache EMA luminance-difference auxiliary representation. These results must not be relabelled as experiments on the fixed November DiffV2IR images. The current reference is direct RGB-finetuned YOLOX-X + ByteTrack, Test HOTA 29.529; the active target is at least 34.529 with 2–3 independently supported multimodal contributions. The current goal is unachieved. See [current status](PERCEPTUAL_MFT_20261123_STATUS_ZH.md) and [the all-Train workflow](PERCEPTUAL_MFT_20261124_FULL_TRAIN_WORKFLOW.md). The historical numbers below are retained without changing their scope.
+
 This report records the reproducible Phase VI screening through F3. The
 repository is on branch `research/causal-multimodal-fusion-v1`; external
 weights, cache frames, per-frame predictions, and TrackEval artifacts are

@@ -1,0 +1,113 @@
+{
+  "status": "VERIFIED_TRAINED_FORMAL_CHECKPOINTS_TEST_BACKFILL_PENDING",
+  "cases": [
+    {
+      "role": "legacy_matched_RGB",
+      "source_Dev_case": "SR_rgb_full_s0_e06_raw",
+      "source_Dev_HOTA": 49.455,
+      "source_Dev_metrics_sha256": "dc2b3645f0e81f0ea5418593ca1b49002ebd10b0bf20bbdd2e5c6c7a74177696",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_relative_fit/rgb_full_s0/epoch06.pt",
+      "checkpoint_sha256": "71585475bb4216ae11648937f1e9b785880f9d21eddb1646a0fdf049d2934320",
+      "cue": "rgb",
+      "variant": "full",
+      "epoch": 6,
+      "policy": "raw",
+      "seed": 0,
+      "trainable_parameters": 145600,
+      "expected_hard_cycle": true
+    },
+    {
+      "role": "legacy_matched_gray",
+      "source_Dev_case": "SR_gray_full_s0_e24",
+      "source_Dev_HOTA": 47.679,
+      "source_Dev_metrics_sha256": "e30f1049e24834e7939ca9dc035e547d76b40cabee42f55c49f5cc053b774e76",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_relative_fit/gray_full_s0/epoch24.pt",
+      "checkpoint_sha256": "5759bb92480eaea8fb8499c916ba2ca7d0b0c1b0fd96d68714137b405f47aad4",
+      "cue": "gray",
+      "variant": "full",
+      "epoch": 24,
+      "policy": "priority",
+      "seed": 0,
+      "trainable_parameters": 145600,
+      "expected_hard_cycle": true
+    },
+    {
+      "role": "legacy_no_centering_paired6",
+      "source_Dev_case": "SR_ir_no_centering_s0_e06_raw",
+      "source_Dev_HOTA": 49.269,
+      "source_Dev_metrics_sha256": "b26c080293ef0189474e9f2d4e611957b5c8e9fd0fd5fecd401081b70b7441c5",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_relative_fit/ir_no_centering_s0/epoch06.pt",
+      "checkpoint_sha256": "5be57ad15f919babe482baeb0f2ffd9e7d6a3e867873e17c3b2382f8b0de1bf8",
+      "cue": "ir",
+      "variant": "no_centering",
+      "epoch": 6,
+      "policy": "raw",
+      "seed": 0,
+      "trainable_parameters": 145600,
+      "expected_hard_cycle": true
+    },
+    {
+      "role": "legacy_no_centering_Dev_best",
+      "source_Dev_case": "SR_ir_no_centering_s0_e24_raw",
+      "source_Dev_HOTA": 49.614,
+      "source_Dev_metrics_sha256": "bef4a83832cea94f0e6bd14a2c2ec3c8cfdbc492fb9507054fdc9146d18f2efb",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_relative_fit/ir_no_centering_s0/epoch24.pt",
+      "checkpoint_sha256": "cbf4ead43bc06dfa04ce655aa9b640619cd4619c8cf78e2af51ca12d59e4046b",
+      "cue": "ir",
+      "variant": "no_centering",
+      "epoch": 24,
+      "policy": "raw",
+      "seed": 0,
+      "trainable_parameters": 145600,
+      "expected_hard_cycle": true
+    }
+  ],
+  "fits": [
+    "gray_full_s0",
+    "ir_no_centering_s0",
+    "rgb_full_s0"
+  ],
+  "initial_six_fit_inventory": [
+    {
+      "fit": "gray_full_s0",
+      "complete_sha256": "044164c0b1838f17b917d0ee92b4c56d389574390defc38e8b919e3408eb5757",
+      "represented_in_three_completed_Test_specifications": false
+    },
+    {
+      "fit": "ir_full_s0",
+      "complete_sha256": "0a17d67020e096ca56f554463e19dfc3aaabecaca1b674ed1ae208fcc5f1af3f",
+      "represented_in_three_completed_Test_specifications": true
+    },
+    {
+      "fit": "ir_no_centering_s0",
+      "complete_sha256": "d5f069aeafcc71b79f197a69b4c34b66420f8b81212f6948dd360e9d779cb5fe",
+      "represented_in_three_completed_Test_specifications": false
+    },
+    {
+      "fit": "ir_no_cycle_s0",
+      "complete_sha256": "af84ca0f048f6c3b00451c46f8e758d079f94946468c3a007e31243c08d5f157",
+      "represented_in_three_completed_Test_specifications": true
+    },
+    {
+      "fit": "ir_no_structure_s0",
+      "complete_sha256": "efa54f1e3a29042361d15021794240ef1873da144ae62fb8bb84fc28a61c0e4c",
+      "represented_in_three_completed_Test_specifications": true
+    },
+    {
+      "fit": "rgb_full_s0",
+      "complete_sha256": "2c2d9e62515f55ce3e605de92dc869aa0a1da3c47c94e9922f1f049e6dff7603",
+      "represented_in_three_completed_Test_specifications": false
+    }
+  ],
+  "source_Dev_analysis_sha256": "97a6deb36b7be752f99864255163445a1842a2eac83a25c569148e807c68a101",
+  "selection": "Complete original59Dev only; same6/raw and Dev-best centering removal. This closes missing formal coverage, not Test-based primary promotion.",
+  "data_setting": "Actual unchanged NovemberDiffV2IR, not historical EMAauxiliary.",
+  "required_Test_sequences": 7,
+  "required_Test_frames_each": 15985,
+  "required_source_proof": "Before reusing restored-cycleIR reference, both raw/priority must exactly reproduce parentNT_ir_full_s0_e06 on all15985frames. Keep canonical/freshRGB and unavailable controls.",
+  "GPU_policy": "Physical4/5 only; do not interrupt or compete with current fullTrain pipeline. Backfill implementation/execution remains pending; this registry itself is not Test evidence.",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
