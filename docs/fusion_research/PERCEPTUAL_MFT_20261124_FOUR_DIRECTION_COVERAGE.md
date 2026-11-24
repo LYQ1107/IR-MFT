@@ -95,3 +95,8 @@ F4执行上下文和正式生产/分离CPU评估入口已部分实现，17项组
 实际CPU preflight完成；六个父模型完成标记仍缺，四个后续入口未齐。
 无完整登记、新GPU、学习融合转移或新HOTA，不能增加方向完成数。
 见[F4_WORKFLOW_CONTEXT](PERCEPTUAL_MFT_20261125_F4_WORKFLOW_CONTEXT.md)。
+
+F4独立测速组件后续已实现，23项人工检查通过。实际Train RGB八帧初次
+精确匹配，修订后重跑发生摘要异常；后续零记忆逐帧诊断复现旧参照，但
+原因未解决，不能放行资格或据此增加方向完成数。GPU工程/调度/导出仍缺，
+无新GPU、学习融合转移或HOTA；见[F4_RUNTIME_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_RUNTIME_COMPONENTS.md)。

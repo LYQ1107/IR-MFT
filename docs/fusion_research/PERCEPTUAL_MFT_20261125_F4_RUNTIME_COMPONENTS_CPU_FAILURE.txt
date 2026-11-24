@@ -1,0 +1,14 @@
+/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/torch/functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3637.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_f4_runtime_cpu.py", line 141, in <module>
+    main()
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_f4_runtime_cpu.py", line 105, in main
+    measurements = measure_sequence(
+  File "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_runtime.py", line 143, in measure_sequence
+    verified = _pass(engine_factory, images_factory, case, sequence, reference, prefix_frames,
+  File "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_runtime.py", line 115, in _pass
+    require(packets.hexdigest() == reference['prefix_packet_sha256'][case['id']],
+  File "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_parent_io.py", line 24, in require
+    raise ValueError(message)
+ValueError: Independent detection prefix differs from complete production

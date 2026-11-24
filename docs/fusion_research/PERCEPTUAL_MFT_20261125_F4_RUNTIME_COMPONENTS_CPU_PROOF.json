@@ -1,0 +1,523 @@
+{
+  "status": "IMPLEMENTED_F4_RUNTIME_COMPONENTS_WITH_UNRESOLVED_CPU_REPRODUCIBILITY_NO_GPU_QUALIFICATION",
+  "current_source_hashes": {
+    "tools/fusion_memory_runtime.py": "0173a972b1f01f5e8670fc725c018b5ea692134af5d13d9531792fd5a252028a",
+    "tools/fusion_memory_runtime_sources.py": "86e1146a6419d4d565e246c915458f98023f6ba29373d68273d2e4ffb600a23e",
+    "tools/benchmark_fusion_memory.py": "4f5a1a6ed6df67fed07d08f43af0899d21c9de257bb76453e6a4af253619bdc1",
+    "tools/probe_f4_runtime_cpu.py": "61873d90dc0a731f98d0510a7c7f9d04b258a6b48bbd37ddfe0eb7b26ac91cf3",
+    "tests/test_fusion_memory_runtime.py": "d0586c0a797d8ca831a44660d3c5fb38081d64537774159c1a90818f5f0cdfbd",
+    "configs/perceptual_f4_runtime_engineering_20261125.json": "acb91b3c619bd0c40dec27e3f4cf5e257c114aba7d22975ec4a214b964f453b7",
+    "configs/perceptual_f4_runtime_engineering_20261125_initial.json": "c9a9e790fee4f0c9b108dc8511e4b3e40262c04268334f4327d7a704a79406c4"
+  },
+  "synthetic_tests_passed": 23,
+  "synthetic_test_receipt": {
+    "exit_code": 0,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_pytest_1795550230888616797.txt",
+    "log_sha256": "9c95dc633c1a3fd215eee06595ec939ab76b18ae7ab9a0471b6d1bd65df173de",
+    "source_hashes": {
+      "tools/fusion_memory_runtime.py": "0173a972b1f01f5e8670fc725c018b5ea692134af5d13d9531792fd5a252028a",
+      "tools/fusion_memory_runtime_sources.py": "86e1146a6419d4d565e246c915458f98023f6ba29373d68273d2e4ffb600a23e",
+      "tools/benchmark_fusion_memory.py": "4f5a1a6ed6df67fed07d08f43af0899d21c9de257bb76453e6a4af253619bdc1",
+      "tests/test_fusion_memory_runtime.py": "d0586c0a797d8ca831a44660d3c5fb38081d64537774159c1a90818f5f0cdfbd"
+    },
+    "all_sources_unchanged": true
+  },
+  "initial_actual_CPU_proof": {
+    "status": "COMPLETE_ACTUAL_RGB_TRAIN_PREFIX_INDIVIDUAL_RUNTIME_COMPONENT_CPU",
+    "specification_sha256": "c9a9e790fee4f0c9b108dc8511e4b3e40262c04268334f4327d7a704a79406c4",
+    "source_hashes": {
+      "tools/fusion_memory_runtime.py": "0173a972b1f01f5e8670fc725c018b5ea692134af5d13d9531792fd5a252028a",
+      "tools/fusion_memory_runtime_sources.py": "c49ad39b50eaf614ac10fe79ef43c928c05c9d071b83b1431c4921ef8f6e06f6",
+      "tools/benchmark_fusion_memory.py": "4f5a1a6ed6df67fed07d08f43af0899d21c9de257bb76453e6a4af253619bdc1",
+      "tests/test_fusion_memory_runtime.py": "08a4bd1f95508f38d280690ebf16e02c4eb318dd6f31e2e98ee8114f1a54b74e",
+      "tools/probe_f4_runtime_cpu.py": "4634e6e09ce1da1bba73a4f2c4491e0607d3c3727f4b78ee343c718191fed4e6",
+      "tools/fusion_memory_online.py": "c202aa8b63bc3dc019f8bbda029df3fa46d44aa0fce5b4f116b1446c5fe054e8",
+      "tools/fusion_memory_observation.py": "df41bdd149e7c29debcd2786b3ef303acb44a1f06a506fce877223731b11bc8c",
+      "tools/fusion_memory_model_loading.py": "4e3cc7ca5841390a164d9f9a04a8d36547d40fb853c6c8aeff1026f19f1b013a",
+      "tools/fusion_memory_evaluation.py": "e72af67781f003243c7c7e3e16793ad717103adc73b375ad49fcf6499ee050e4",
+      "tools/fusion_memory_workflow.py": "5a19e96c95c4f87413ab3d1b26bd1d5f37fc90f23cf2ebf63c89877dffbeab97",
+      "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4",
+      "configs/perceptual_f4_runtime_engineering_20261125.json": "c9a9e790fee4f0c9b108dc8511e4b3e40262c04268334f4327d7a704a79406c4"
+    },
+    "pytest_receipt": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_pytest_1795549865902082298.json",
+    "pytest_receipt_sha256": "ff2db11b28d543e110b6213577c43a3aba686e66528c73a52e0e1d87d59b3376",
+    "pytest_passed": 23,
+    "source_reference": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_sequence_delivery_CPU/sequence_manifests/BT-003.json",
+    "source_reference_sha256": "46eecb7552b8733989fdd1315a97babdf25e277ab24ca69d06ab61a6248fab83",
+    "rows": [
+      {
+        "case": {
+          "id": "FM_direct_F4_engineering_fresh_RGB_byte_w000",
+          "visual": {
+            "id": "F4_engineering_fresh_RGB",
+            "family": "direct",
+            "cue": "rgb",
+            "baseline": true,
+            "model": {
+              "id": "F4_engineering_fresh_RGB",
+              "baseline": "fresh_RGB_B1",
+              "cue": "rgb",
+              "seed": 0
+            }
+          },
+          "visual_key": "direct:F4_engineering_fresh_RGB",
+          "profile": "byte",
+          "appearance_weight": 0.0,
+          "feature_source": null,
+          "quality_policy": "uniform",
+          "minimum_reliability": 0.2,
+          "score_acceptance_threshold": 0.6,
+          "positive_reliability_and_valid_embedding_still_required": true,
+          "intervention": "normal",
+          "fixed_seed": 0
+        },
+        "measurements": {
+          "verification": {
+            "sequence": "BT-003",
+            "prefix_frames": 8,
+            "warmup_frames": 0,
+            "measured_frames": 0,
+            "durations_seconds": [],
+            "packet_sha256": "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+            "literal_MOT_sha256": "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+            "memory_statistics": {
+              "FM_direct_F4_engineering_fresh_RGB_byte_w000": {
+                "primary_cost_calls": 0,
+                "changed_edges": 0
+              }
+            },
+            "sampled_retained_state_logical_bytes_max": {
+              "track_appearance": 0,
+              "track_KF_and_boxes": 2432,
+              "visual_temporal": 0,
+              "previous_gray": 25920,
+              "total": 28352
+            },
+            "IR_byte_frames_hashed": 8,
+            "IR_frames_decoded": 0,
+            "source_image_bytes_exact": true,
+            "complete_production_packets_and_MOT_exact": true,
+            "warmup_to_timing_state_preserved": false,
+            "simultaneous_conditions": 1
+          },
+          "timing": {
+            "sequence": "BT-003",
+            "prefix_frames": 8,
+            "warmup_frames": 2,
+            "measured_frames": 6,
+            "durations_seconds": [
+              3.727147505967878,
+              3.7634168170625344,
+              3.622299787006341,
+              3.792136137955822,
+              3.8359430009732023,
+              3.692392472992651
+            ],
+            "packet_sha256": "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+            "literal_MOT_sha256": "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+            "memory_statistics": {
+              "FM_direct_F4_engineering_fresh_RGB_byte_w000": {
+                "primary_cost_calls": 0,
+                "changed_edges": 0
+              }
+            },
+            "sampled_retained_state_logical_bytes_max": {
+              "track_appearance": 0,
+              "track_KF_and_boxes": 2432,
+              "visual_temporal": 0,
+              "previous_gray": 25920,
+              "total": 28352
+            },
+            "IR_byte_frames_hashed": 8,
+            "IR_frames_decoded": 0,
+            "source_image_bytes_exact": true,
+            "complete_production_packets_and_MOT_exact": true,
+            "warmup_to_timing_state_preserved": true,
+            "simultaneous_conditions": 1
+          },
+          "exact_source_and_output_checked_before_and_during_timing": true
+        },
+        "CPU_engineering_cost": {
+          "measured_frames": 6,
+          "seconds": 22.43333572195843,
+          "FPS": 0.2674591097090843,
+          "mean_latency_ms": 3738.8892869930714,
+          "median_latency_ms": 3745.282161515206,
+          "sampled_retained_state_logical_bytes_max": {
+            "track_appearance": 0,
+            "track_KF_and_boxes": 2432,
+            "visual_temporal": 0,
+            "previous_gray": 25920,
+            "total": 28352
+          },
+          "retained_state_scope": "Observed logical arrays/tensor storage after each prefix frame; excludes NN and Python heap, not full-sequence peak"
+        }
+      },
+      {
+        "case": {
+          "id": "FM_direct_F4_engineering_fresh_RGB_rgb_uniform_w005",
+          "visual": {
+            "id": "F4_engineering_fresh_RGB",
+            "family": "direct",
+            "cue": "rgb",
+            "baseline": true,
+            "model": {
+              "id": "F4_engineering_fresh_RGB",
+              "baseline": "fresh_RGB_B1",
+              "cue": "rgb",
+              "seed": 0
+            }
+          },
+          "visual_key": "direct:F4_engineering_fresh_RGB",
+          "profile": "rgb_uniform",
+          "appearance_weight": 0.05,
+          "feature_source": "rgb",
+          "quality_policy": "uniform",
+          "minimum_reliability": 0.2,
+          "score_acceptance_threshold": 0.6,
+          "positive_reliability_and_valid_embedding_still_required": true,
+          "intervention": "normal",
+          "fixed_seed": 0
+        },
+        "measurements": {
+          "verification": {
+            "sequence": "BT-003",
+            "prefix_frames": 8,
+            "warmup_frames": 0,
+            "measured_frames": 0,
+            "durations_seconds": [],
+            "packet_sha256": "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+            "literal_MOT_sha256": "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+            "memory_statistics": {
+              "FM_direct_F4_engineering_fresh_RGB_rgb_uniform_w005": {
+                "primary_cost_calls": 7,
+                "changed_edges": 21
+              }
+            },
+            "sampled_retained_state_logical_bytes_max": {
+              "track_appearance": 5120,
+              "track_KF_and_boxes": 2432,
+              "visual_temporal": 0,
+              "previous_gray": 25920,
+              "total": 33472
+            },
+            "IR_byte_frames_hashed": 8,
+            "IR_frames_decoded": 0,
+            "source_image_bytes_exact": true,
+            "complete_production_packets_and_MOT_exact": true,
+            "warmup_to_timing_state_preserved": false,
+            "simultaneous_conditions": 1
+          },
+          "timing": {
+            "sequence": "BT-003",
+            "prefix_frames": 8,
+            "warmup_frames": 2,
+            "measured_frames": 6,
+            "durations_seconds": [
+              3.7109462979715317,
+              3.69895972404629,
+              3.8504686119267717,
+              3.7879287640098482,
+              3.758334727026522,
+              3.639275569934398
+            ],
+            "packet_sha256": "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+            "literal_MOT_sha256": "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+            "memory_statistics": {
+              "FM_direct_F4_engineering_fresh_RGB_rgb_uniform_w005": {
+                "primary_cost_calls": 7,
+                "changed_edges": 21
+              }
+            },
+            "sampled_retained_state_logical_bytes_max": {
+              "track_appearance": 5120,
+              "track_KF_and_boxes": 2432,
+              "visual_temporal": 0,
+              "previous_gray": 25920,
+              "total": 33472
+            },
+            "IR_byte_frames_hashed": 8,
+            "IR_frames_decoded": 0,
+            "source_image_bytes_exact": true,
+            "complete_production_packets_and_MOT_exact": true,
+            "warmup_to_timing_state_preserved": true,
+            "simultaneous_conditions": 1
+          },
+          "exact_source_and_output_checked_before_and_during_timing": true
+        },
+        "CPU_engineering_cost": {
+          "measured_frames": 6,
+          "seconds": 22.44591369491536,
+          "FPS": 0.26730923416849683,
+          "mean_latency_ms": 3740.985615819227,
+          "median_latency_ms": 3734.640512499027,
+          "sampled_retained_state_logical_bytes_max": {
+            "track_appearance": 5120,
+            "track_KF_and_boxes": 2432,
+            "visual_temporal": 0,
+            "previous_gray": 25920,
+            "total": 33472
+          },
+          "retained_state_scope": "Observed logical arrays/tensor storage after each prefix frame; excludes NN and Python heap, not full-sequence peak"
+        }
+      }
+    ],
+    "source_sequence": "BT-003",
+    "unique_source_frames": 8,
+    "complete_source_Train_sequence_frames": 243,
+    "actual_RGB_decodes": 32,
+    "actual_IR_byte_hash_visits": 32,
+    "actual_IR_decodes": 0,
+    "individual_configurations": 2,
+    "measured_frames_each": 6,
+    "CPU_scope": "FP32 480x864, two independent eight-frame passes per case, two warmup/six timed; not formal 800x1440 GPU cost or full sequence FPS",
+    "source_packets_and_MOT_prefix_exact_before_and_during_timing": true,
+    "original_RGB_weights_BN_gradients_unchanged": true,
+    "original_RGB_state_sha256": "66e8d823169ff57eb2a1862e21ac61c581d49d82343305828b1b56680125c391",
+    "guarded_attempt_counters": {
+      "forbidden_data_reads": 0,
+      "forbidden_IR_decodes": 0,
+      "forbidden_checkpoint_loads": 0
+    },
+    "actual_learned_fusion_transferred": false,
+    "actual_Dev_Test_data_read": false,
+    "GT_read": false,
+    "new_GPU_work": false,
+    "new_NN_fits": false,
+    "new_accuracy": false,
+    "current_IR_learned_model_loads": 0,
+    "new_image_FPN_ROI_disk_cache": false,
+    "formal_F4_launch_ready": false,
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "seconds": 131.15467515401542,
+    "peak_RSS_GiB": 1.5470314025878906,
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "initial_CPU_proof_sha256": "62713f8ae72ba6c6e2fc83de20264842df80503999a15ae87057be07069580a4",
+  "initial_actual_CPU_scope": "Successful original CPU runtime-helper version; helper source SHA is unchanged, other snapshot hashes may differ. Not a current full-workflow or GPU qualification.",
+  "current_revision_actual_CPU_failure": {
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/probe_f4_runtime_cpu.py",
+      "--pytest-receipt",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_pytest_1795550230888616797.json",
+      "--output-name",
+      "fusion_memory_runtime_CPU_proof_R2.json"
+    ],
+    "exit_code": 1,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_CPU_execution_R2_1795550293727952242.log",
+    "log_sha256": "2bf252bd8c8a601a1aaaea280e1b7205430f306fa5797157cda894c51db50fc7",
+    "proof": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_CPU_proof_R2.json",
+    "proof_exists": false
+  },
+  "independent_zero_memory_diagnosis": {
+    "status": "COMPLETE_ACTUAL_CPU_DETECTION_COMPOSITION_DIAGNOSIS",
+    "source_reference_sha256": "46eecb7552b8733989fdd1315a97babdf25e277ab24ca69d06ab61a6248fab83",
+    "original_RGB_state_sha256": "66e8d823169ff57eb2a1862e21ac61c581d49d82343305828b1b56680125c391",
+    "RGB_state_unchanged": true,
+    "threads": 2,
+    "mkldnn": true,
+    "deterministic": false,
+    "float32_matmul_precision": "highest",
+    "frames": [
+      {
+        "frame": 1,
+        "counts": [
+          14,
+          14
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "904354aef13fd06f1d5a1aab2ffaa879e529a1a2e7d6935d15ec7ce4ae157804",
+          "904354aef13fd06f1d5a1aab2ffaa879e529a1a2e7d6935d15ec7ce4ae157804"
+        ]
+      },
+      {
+        "frame": 2,
+        "counts": [
+          13,
+          13
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "f63d505e2e81e21d23d9e40cb764588856e78c800f55b78d4c714135d5c1b76c",
+          "f63d505e2e81e21d23d9e40cb764588856e78c800f55b78d4c714135d5c1b76c"
+        ]
+      },
+      {
+        "frame": 3,
+        "counts": [
+          15,
+          15
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "20cfb4d013e05d6a4777d7beafbe2f68c71c13601d5f67975c37143a55a46b02",
+          "20cfb4d013e05d6a4777d7beafbe2f68c71c13601d5f67975c37143a55a46b02"
+        ]
+      },
+      {
+        "frame": 4,
+        "counts": [
+          13,
+          13
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "10113a22bffbb79476ad859fd00983eeb2115bf1fa1e5db9e89ab06732cb240c",
+          "10113a22bffbb79476ad859fd00983eeb2115bf1fa1e5db9e89ab06732cb240c"
+        ]
+      },
+      {
+        "frame": 5,
+        "counts": [
+          14,
+          14
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "7ce1b02e88ed787498839908ccec92220191c1da5e1221d29e7e8e8da085be2a",
+          "7ce1b02e88ed787498839908ccec92220191c1da5e1221d29e7e8e8da085be2a"
+        ]
+      },
+      {
+        "frame": 6,
+        "counts": [
+          15,
+          15
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "bfeb745d770a27bd9712da82d959cc8e0da11f0977202ee4384b64c9723f3681",
+          "bfeb745d770a27bd9712da82d959cc8e0da11f0977202ee4384b64c9723f3681"
+        ]
+      },
+      {
+        "frame": 7,
+        "counts": [
+          12,
+          12
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "3b3ee0b9a5c5a8fac55cd8cd450e834035d25f2740d7a5ac636b650c1da54f7d",
+          "3b3ee0b9a5c5a8fac55cd8cd450e834035d25f2740d7a5ac636b650c1da54f7d"
+        ]
+      },
+      {
+        "frame": 8,
+        "counts": [
+          13,
+          13
+        ],
+        "packets_exact": true,
+        "maximum_absolute_difference": 0.0,
+        "MOT_exact": true,
+        "packet_sha256": [
+          "f3a0745a75fd6de0dc0ddea6fa3ebb9697e8f8c4eda39f350ed1042d531a722b",
+          "f3a0745a75fd6de0dc0ddea6fa3ebb9697e8f8c4eda39f350ed1042d531a722b"
+        ]
+      }
+    ],
+    "full_prefix_packet_sha256": [
+      "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+      "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec"
+    ],
+    "full_prefix_MOT_sha256": [
+      "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+      "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69"
+    ],
+    "reference_packet_sha256": "60d18342f7520494b64d0ca1cd370dea21e4ca542e45d6be5927b90cf1a7dfec",
+    "reference_MOT_sha256": "68b524ae21df85085aab452c1bcd242cd0e21b8331b29c02a0b83f2982f2bd69",
+    "GT_read": false,
+    "Dev_Test_read": false,
+    "new_GPU": false,
+    "new_accuracy": false,
+    "seconds": 77.57418294309173,
+    "peak_RSS_GiB": 1.5457992553710938
+  },
+  "independent_diagnosis_source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_packet_diagnosis_1795550591605088320.json",
+  "independent_diagnosis_sha256": "2337dce9cd7aeac27ac0de2db37281807015c3372e4769721648faf08ed4d3f8",
+  "actual_preflight": {
+    "status": "F4_CPU_PREFLIGHT_NO_EXECUTION",
+    "missing_parent_markers": [
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_complete_Dev.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_normal_selection_frozen.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_Test_selection_frozen.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/complete_Dev.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/normal_selection_frozen.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/Test_selection_frozen.json"
+    ],
+    "parent_eligibility": null,
+    "predecessor_ready": false,
+    "spatial_controller_identity": {
+      "pid": 184707,
+      "start_ticks": 80301525,
+      "command_sha256": "6d78352ee397702c97a65a092e71ad87e4f4957b4b36aa930e1f339f4bffc696"
+    },
+    "spatial_controller_confirmed_live": true,
+    "missing_pipeline_entrypoints": [
+      "tools/probe_f4_gpu_engineering.py",
+      "tools/launch_fusion_memory.py",
+      "tools/export_fusion_memory.py"
+    ],
+    "complete_registration_present": false,
+    "new_GPU_work": false,
+    "tensor_loads": 0,
+    "new_accuracy": false,
+    "formal_launch_ready": false,
+    "observed_file_paths": [
+      "/data3/liuyeqiang/IR-MFT/configs/cfp/protocol_v2.json",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_f4_parent_io_20261125.json",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_fusion_memory_study_20261125.json",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_fusion_memory_workflow_20261125.json",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_gpu_handoff_20261123.json",
+      "/data3/liuyeqiang/IR-MFT/configs/perceptual_mft_20261122.json",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_design.py",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_dev_freeze.py",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_evaluation.py",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_model_loading.py",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_observation.py",
+      "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_parent_io.py",
+      "/proc/184707/stat",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/controller_identity.json",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/state.json"
+    ],
+    "file_read_count": 26,
+    "scope": "Actual CPU main preflight after imports; tensor loader/CUDA APIs and input files guarded",
+    "source_file": "tools/observe_fusion_memory.py",
+    "source_sha256": "3755db1b8f3550ed39f8387386f9d060eacb3e843494a9916178a50cbc47ea81"
+  },
+  "initial_pytest_failure": {
+    "receipt": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_memory_runtime_pytest_1795549761022020737.json",
+    "passed": 12,
+    "failed": 8,
+    "cause": "Synthetic fixture missing pipeline_registration_sha256; fixed fixture, kept strict verifier"
+  },
+  "source_compatibility": "Native original producer has no saved image/packet prefixes: require original full image/packet digest and literal original MOT prefix. Spatial also requires saved prefixes. Current F4 prefix is checked on actual inputs before/during timing.",
+  "failure_assessment": "Updated CPU attempt failed packet digest. Subsequent eight-frame zero-memory/original-detector comparison matched each other and old reference exactly; cause unknown, not declared fixed. Preserve strict comparisons and all logs. Require actual GPU qualification before production/cost.",
+  "actual_learned_fusion_transferred": false,
+  "new_GPU_work": false,
+  "actual_formal_GPU_costs": false,
+  "new_Dev_Test_accuracy": false,
+  "formal_launch_ready": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
