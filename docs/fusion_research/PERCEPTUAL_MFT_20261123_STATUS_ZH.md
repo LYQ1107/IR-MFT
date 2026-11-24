@@ -3,7 +3,8 @@
 更新时间：2026-11-24（北京时间）。任务仍在执行，目标尚未完成。
 
 另已清点16个seed0非结构训练条件，并启动native36旧查询/记忆两个后端
-的CPU补测流程：先精确复现8个原Dev选择，全部通过后执行26项完整Test，
+的CPU补测流程：8个原Dev选择的39指标/轨迹/276列CSV已经全部精确复现，
+26项完整Test已开始CPU回放，
 包含匹配RGB、原生残差关闭与当前候选编码置换。现有Test特征可复用，
 不新增GPU编码或随机种子。原主方法不变，尚无新的完整Test结论。
 见20261124_NATIVE_COMMON_BACKFILL_QUEUE与NONSTRUCTURAL_FIT_INVENTORY。
