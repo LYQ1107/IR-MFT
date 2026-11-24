@@ -59,6 +59,21 @@ def test_decoded_crop_memory_headroom_is_reserved_for_all_producers(monkeypatch)
         neck72_runtime.require_host_memory(8*2**30)
 
 
+def test_phase_admission_reserves_two_workers_and_child_only_its_incoming_memory(monkeypatch):
+    from tools import structural_train_image_reader
+    monkeypatch.setattr(structural_train_image_reader, 'available_memory_bytes', lambda: 56*2**30)
+    parent = neck72_runtime.require_host_memory(8*2**30, maximum_workers=2)
+    assert parent['maximum_workers'] == 2 and parent['reserve_bytes'] == 40*2**30
+    # A peer has now allocated8GiB; reserving it again in the child would
+    # reject a valid40GiB remainder. The child still checks its entire8GiB.
+    monkeypatch.setattr(structural_train_image_reader, 'available_memory_bytes', lambda: 48*2**30)
+    child = neck72_runtime.require_host_memory(8*2**30, maximum_workers=1)
+    assert child['maximum_workers'] == 1 and child['reserve_bytes'] == parent['reserve_bytes']
+    monkeypatch.setattr(structural_train_image_reader, 'available_memory_bytes', lambda: 48*2**30-1)
+    with pytest.raises(RuntimeError, match='retain40GiB'):
+        neck72_runtime.require_host_memory(8*2**30, maximum_workers=1)
+
+
 def sample_bank(work, cue):
     folder = work / 'native_neck_eval_features/dev/BT-005' / cue / 'seed_0'
     folder.mkdir(parents=True)

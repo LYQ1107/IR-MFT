@@ -43,7 +43,7 @@ def main():
     args = parser.parse_args()
     plan, protocol, work, study, _ = registered()
     assert args.sequence in protocol['train']
-    cv2.setNumThreads(1); require_host_memory(8*2**30); require_storage(work)
+    cv2.setNumThreads(1); require_host_memory(8*2**30, maximum_workers=1); require_storage(work)
     path = work / 'neck72_crop_verification' / args.sequence / (args.cue + '.json')
     assert not path.exists(), 'Preserve earlier crop verification evidence'
     reader, reference = make_image_reader(work, plan, protocol, LENGTHS, args.cue)

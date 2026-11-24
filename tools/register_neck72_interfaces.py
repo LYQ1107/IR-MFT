@@ -6,7 +6,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from tools.neck72_runtime import REGISTRY, read, require_storage
+from tools.neck72_runtime import REGISTRY, read, require_storage, RESOURCE_GUARD_REVISION
 from tools.run_pseudo_ir_comparison import dump, sha256
 
 
@@ -18,9 +18,10 @@ def main():
     proof_path = work / 'neck72_worker_interfaces_CPU_proof.json'
     proof = read(proof_path)
     assert proof['status'] == 'COMPLETE_CPU_NECK72_WORKER_INTERFACES_WITH_REAL_CACHED_DEV_AND_TRAIN_PIXELS'
-    assert proof['tests_passed'] == 9 and proof['source_views'] == 8 and proof['modes_each'] == 3
+    assert proof['tests_passed'] == 10 and proof['source_views'] == 8 and proof['modes_each'] == 3
+    assert proof['resource_guard_revision'] == RESOURCE_GUARD_REVISION
     assert not proof['GPU_work'] and not proof['formal_fit_started']
-    assert not proof['new_Dev_or_Test_accuracy'] and not proof['full_study_scheduler_implemented']
+    assert not proof['new_Dev_or_Test_accuracy'] and not proof['full_study_scheduler_validated_by_this_interface_probe']
     assert all(sha256(ROOT / p) == h for p, h in proof['source_hashes'].items())
     sources = dict(proof['source_hashes'])
     sources['tools/register_neck72_interfaces.py'] = sha256(__file__)
@@ -55,17 +56,23 @@ def main():
         candidate_observations=observation_counts, decoded_candidate_RAM_bound_bytes=crop_bounds,
         largest_decoded_candidate_RAM_bound_bytes=max(crop_bounds.values()),
         future_data_worker_RAM_bound_bytes=8*2**30, host_MemAvailable_reserve_bytes=40*2**30,
-        CPU_plus_GPU_producer_maximum=4, independent_work_disk_reserve_bytes=40*2**30,
+        resource_guard_revision=RESOURCE_GUARD_REVISION,
+        CPU_plus_GPU_producer_maximum=2, CPU_GPU_phase_barriers=True,
+        parent_incoming_RAM_bound_bytes=2*8*2**30, child_incoming_RAM_bound_bytes=8*2**30,
+        independent_work_disk_reserve_bytes=40*2**30,
         total_work_cap_bytes=64*2**30, dataset_or_FPN_copies=0,
         CPU_interface_proof_sha256=sha256(proof_path), old_Dev_seed0_layout_fixed=True,
         original_pixel_and_optimizer_step_computation_unchanged=True,
         actual_GPU_engineering_pending=True, GPU_workers_started=0, formal_fit_started=False,
-        full_study_scheduler_implemented=False, complete_study_queued=False,
-        pending=['Register complete seed0 head/Dev/convergence/removal/selection/Test/runtime/export protocol.',
-            'Implement complete bounded controller, verify CPU branches, and queue after actual CGR release.',
+        full_study_scheduler_code_present=(ROOT / 'tools/launch_neck72_study.py').is_file(),
+        full_study_scheduler_validated_by_this_interface_probe=False,
+        complete_study_queued_by_this_interface_registration=False,
+        pending=['Validate/register the complete accuracy pipeline with these resource-only source changes.',
+            'Restart the archived-empty CPU waiter and preserve the original scientific design.',
             'Verify original cached candidate crops against fixed current Train images before pixel encoding.',
             'Both4/5: real GPU source,20Train updates for8matched head conditions, frozen RGB/BN and exact zero fallback.',
-            'Complete original Train-only banks, matched fitting, all fullDev and frozen all7Test/reporting.'],
+            'Complete original Train-only banks, matched fitting, all fullDev and frozen all7Test/reporting.',
+            'Implement and complete the separately required full-system cost audit.'],
         scope='Worker interfaces only. Eight existing cached Dev views across three readout variants '
             'match the original formula exactly, and four actual Train images passed CPU forwards. '
             'Not a current-GPU pixel reproduction, a head fit, accuracy gain, new architecture or contribution.',

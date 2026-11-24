@@ -125,7 +125,9 @@ def test_native50_release_requires_all_jobs_and_actual_process_exit(tmp_path, mo
 def test_zero_child_exit_does_not_replace_required_evidence(tmp_path, monkeypatch):
     monkeypatch.setattr(launch, 'registered', lambda: None)
     monkeypatch.setattr(launch, 'require_storage', lambda *args: None)
-    monkeypatch.setattr(launch, 'require_host_memory', lambda *args: None)
+    reservations = []
+    monkeypatch.setattr(launch, 'require_host_memory',
+                        lambda incoming, maximum_workers: reservations.append((incoming, maximum_workers)))
     monkeypatch.setattr(launch.time, 'sleep', lambda seconds: None)
     class Done:
         pid = 101
@@ -136,3 +138,4 @@ def test_zero_child_exit_does_not_replace_required_evidence(tmp_path, monkeypatc
     with pytest.raises(RuntimeError, match='evidence is false'):
         queue.jobs('CHECK', [dict(id='x', command=['unused'])], False, lambda row: False)
     assert state['phases']['CHECK']['x']['status'] == 'FAILED_EVIDENCE'
+    assert reservations == [(8*2**30, 2)]

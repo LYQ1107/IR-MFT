@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from tools.neck72_experiment import (STUDY, REGISTRY, ALGORITHMS, context, registered, read,
     config_for, install_case, common_budget_decision, selected_cases)
 from tools.neck72_runtime import (REGISTRY as WORKER_REGISTRY, gpu_predecessor_ready,
-                                 require_storage, require_host_memory)
+                                 require_storage, require_host_memory, RESOURCE_GUARD_REVISION)
 from tools.native_remaining_test_backfill import finished
 from tools.run_pseudo_ir_comparison import dump, sha256
 
@@ -47,6 +47,10 @@ def register():
     artifacts[str(proof_path)] = sha256(proof_path)
     value = dict(status='REGISTERED_NECK72_COMPLETE_ACCURACY_PIPELINE_PENDING_ACTUAL_GPU',
         study_sha256=sha256(STUDY), worker_interfaces_sha256=sha256(work / WORKER_REGISTRY),
+        original_design_worker_interfaces_sha256=read(STUDY)['worker_interfaces_sha256'],
+        resource_guard_revision=RESOURCE_GUARD_REVISION,
+        maximum_concurrent_producers=2, CPU_GPU_phase_barriers=True,
+        parent_incoming_RAM_bound_bytes=2*8*2**30, child_incoming_RAM_bound_bytes=8*2**30,
         source_hashes={p: sha256(ROOT / p) for p in files}, artifact_hashes=artifacts,
         complete_accuracy_pipeline_implemented=True, full_system_runtime_implemented=False,
         actual_GPU_engineering_pending=True, fixed_seed=0, physical_gpus=['4', '5'],
@@ -120,7 +124,7 @@ class Queue:
                 reserved = sum(entries[k].get('growth_bytes', 0) for k, _ in self.active.values())
                 try:
                     require_storage(self.work, reserved + row.get('growth_bytes', 0))
-                    require_host_memory(8*2**30)
+                    require_host_memory(8*2**30, maximum_workers=2)
                 except RuntimeError as error:
                     self.state['status'] = 'WAITING_RESOURCE_HEADROOM_FOR_'+phase
                     self.state['resource_wait_reason'] = str(error)

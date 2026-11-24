@@ -12,6 +12,7 @@ from tools.run_pseudo_ir_comparison import sha256
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = 'neck72_worker_interfaces_registered.json'
+RESOURCE_GUARD_REVISION = 2
 
 
 def read(path):
@@ -70,11 +71,12 @@ def require_storage(work, growth_bytes=0):
 
 
 def require_host_memory(incoming_bytes, maximum_workers=4):
-    """Reserve40GiB after up to two CPU plus two GPU producers,8GiB each.
+    """Reserve40GiB after the caller's bounded incoming worker allocation.
 
-    The future controller must keep those producer counts bounded and place a
-    barrier between feature production and bank compilation. No pixel cache is
-    created here; this checks the existing compressed-crop bank's decoded RAM.
+    The legacy default remains conservative. The phase controller admits at
+    most two workers and never overlaps CPU/GPU phases; each child reserves its
+    own allocation because MemAvailable already excludes a resident peer's RAM.
+    No image cache or scientific training-budget change is made here.
     """
     from tools.structural_train_image_reader import available_memory_bytes
     if incoming_bytes < 0 or not 1 <= maximum_workers <= 4:
@@ -96,9 +98,10 @@ def require_gpu(work, seed=0, role='data'):
         raise ValueError('neck72 workers permit physicalGPU4/5 only')
     if not gpu_predecessor_ready(work):
         raise RuntimeError('Wait for complete structural/native/CGR exports and actual process exit')
-    require_host_memory(8 * 2**30)
+    require_host_memory(8 * 2**30, maximum_workers=1)
     registry = read(Path(work) / REGISTRY)
     assert registry['status'] == 'COMPLETE_CPU_NECK72_WORKER_INTERFACE_REGISTRATION_PENDING_GPU'
+    assert registry['resource_guard_revision'] == RESOURCE_GUARD_REVISION
     assert all(sha256(ROOT / p) == h for p, h in registry['source_hashes'].items())
     assert all(sha256(p) == h for p, h in registry['artifact_hashes'].items())
     if role == 'fit':

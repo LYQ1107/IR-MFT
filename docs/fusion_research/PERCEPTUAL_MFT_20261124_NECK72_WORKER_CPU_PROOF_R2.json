@@ -1,0 +1,1152 @@
+{
+  "status": "COMPLETE_CPU_NECK72_WORKER_INTERFACES_WITH_REAL_CACHED_DEV_AND_TRAIN_PIXELS",
+  "source_hashes": {
+    "tools/neck72_runtime.py": "9a5ed42a2fecb1a6bfa7f18830686b39d1b7584239952efce9bf22fd262b9ce7",
+    "tools/neck72_evidence.py": "47cdefa4e6ee740185c15e3c972ef3c00c7ce5e1f6a01a173dc47a018131ad9b",
+    "tools/probe_neck72_interfaces.py": "49cf5ebe269daac074433b05f609c9f5819694d86b74bb78fc21d2a174a2d5ce",
+    "tools/extract_native_neck_candidate_features.py": "392ff39c7fcb9704512f9a5ba37d2f939698b72719becb508a907a30b6c6a445",
+    "tools/extract_native_neck_eval_features.py": "df7c63a1aedd56fd3b7f120f2c6d4b2d02a7bbbe323fe43e8ecdcbcf4b3ce76d",
+    "tools/build_native_neck_query_bank.py": "8e1875118d3ce8d1cb8af7407378c8986ab89ec59d813f792ff6855137455e61",
+    "tools/build_native_neck_mismatch_bank.py": "c8ff2f3bd2121dae88bc280123fc28fc62ac1e0e62cfaeb31ebfd511afd6ddbb",
+    "tools/train_native_neck_clean_query.py": "7a0e91b7406d751b8a9a9d2f61c0fd644e94908363ef1775fe40ac290b64c815",
+    "tools/train_native_neck_robust_query.py": "de3fe6e1e2296d5e50ec209acd7d248b222f5ce5ac6779a9634bed5908ba700c",
+    "tools/native_neck_io.py": "0bea4e14e72cee040b60f4a18479c3a614750a470112baaca0e9ec36384e892b",
+    "tools/native_query_replay.py": "1d64f7c5272c4e4b3ab58165cafe23c524fa1b3f7b54552640a0b910abcb3133",
+    "tools/native_neck_query_data.py": "07ec402a81770f94f249403958467132045480d42cc06d316bafde1799651c1a",
+    "tools/native_neck_robust_query_data.py": "e30906325190eded9e2d59b0dc902fbf461c69b4235dc80ceed913439eb39e70",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/structural_train_image_reader.py": "c90e1530b620d5f34585c252937bc52aeb9d411e18f196aef9af7048dce8ae34",
+    "tools/run_pseudo_ir_comparison.py": "dfa99a387621f72e7fc68becd6dccc95cee85a80c5ae3a22869a13a15d83e106",
+    "tests/test_neck72_interfaces.py": "8ebaf26b0193db28d58bd2f52467b26aa92c979c902d546876ecc494e8837767",
+    "yolox/tracker/native_cue.py": "01de12324f10fe02b73de23a1dc8e67c0664103648f2e25da3ff8ce4eb47123c",
+    "yolox/tracker/native_query_features.py": "c9c26d004c3c151b2c2edb5eb8b314e206437416844563ef2338f49cd1b7787b",
+    "yolox/tracker/association_calibrator.py": "579763ae52c0e42d9299600398c3fe9a1f26f948598eb064a314809d513c6191",
+    "yolox/tracker/native_cue_corruption.py": "5512e8cde1df0b4e3aafb7f4099392f887c676bfd2ee497465cc8023aea6c711",
+    "yolox/tracker/native_query_mask.py": "dde6bf72c644b6238a436a98e3eacaade913677fb71842f477ce5d4d38d90f87",
+    "configs/perceptual_mft_20261122.json": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+    "configs/cfp/protocol_v2.json": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+    "configs/perceptual_single_seed_policy_20261123.json": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+    "configs/perceptual_gpu_handoff_20261123.json": "6211580ea92dc85affd31def431efe4eaaec12f2402ebce4f85fbafe8d34c285",
+    "configs/perceptual_native_neck_query_bank_20261123.json": "2c7fa3c9bbf1999ee0b4eb11d5fa1fa814b6b81fb04d088cb626daa277160f79",
+    "configs/perceptual_native_neck_clean_query_20261123.json": "71ba488c59373879233662b379bbc28e4c00d7a541a81503ac105e04e9a85377",
+    "configs/perceptual_native_neck_robust_query_20261123.json": "c4ef5d6e8f0b7ebe9f825d41c4f404e20504561228c7bd72cbefffa32156e3e2"
+  },
+  "tests_passed": 10,
+  "pytest_command": [
+    "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_neck72_interfaces.py"
+  ],
+  "test_log_sha256": "4736ffea6f9d6a63f6ea2d8e45ad08b5e23550a23444d3309c7f0e7c3797c735",
+  "resource_guard_revision": 2,
+  "original_reference_commit": "e25f2f9896ab094611edc809f87d7a5ad7e981d3",
+  "unchanged_original_pixel_forward_AST": true,
+  "unchanged_original_training_step_AST": true,
+  "full_existing_Dev_view_comparisons": [
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "normal",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "missing",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "without_alignment",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "normal",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/ir/seed_0/new.npz",
+          "sha256": "349312064f40df6c5ef042b71af2e6e702704ce03af3227c798d50bc94ef150d",
+          "complete_sha256": "ecf3ecf08ac80003ab4e757672a540ded89914f684fbeb856e3dcdd510d741d8",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "missing",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "without_alignment",
+      "frames": 1834,
+      "observations": 21922,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/new.npz",
+          "sha256": "1ee1a44ab40866d766529e18ad74e8115ce805e472c1769aa40dd4a8f672f0ba",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/ir/seed_0/new.npz",
+          "sha256": "349312064f40df6c5ef042b71af2e6e702704ce03af3227c798d50bc94ef150d",
+          "complete_sha256": "ecf3ecf08ac80003ab4e757672a540ded89914f684fbeb856e3dcdd510d741d8",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "normal",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "missing",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "without_alignment",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "normal",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/ir/seed_0/rgb.npz",
+          "sha256": "3c9044a013021803d4afc7c5cca58d751d2e43210727c7f47897e85acfe503bc",
+          "complete_sha256": "ecf3ecf08ac80003ab4e757672a540ded89914f684fbeb856e3dcdd510d741d8",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "missing",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "BT-005",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "without_alignment",
+      "frames": 1834,
+      "observations": 22383,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/rgb/seed_0/rgb.npz",
+          "sha256": "8fd07d915e3ea12b539e50773db85c9644be1fbe5ae8e36c41dc87ef931435d3",
+          "complete_sha256": "6490386485526aeb04e8b17d8182cd3e05f09a5727ca0ab44f1cd2dc269f31be",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/BT-005/ir/seed_0/rgb.npz",
+          "sha256": "3c9044a013021803d4afc7c5cca58d751d2e43210727c7f47897e85acfe503bc",
+          "complete_sha256": "ecf3ecf08ac80003ab4e757672a540ded89914f684fbeb856e3dcdd510d741d8",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "normal",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "missing",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "rgb",
+      "mode": "without_alignment",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "normal",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/ir/seed_0/new.npz",
+          "sha256": "242482bb2ab6208f31d1a31ee3466984725f1988df47a2cb7788bc0235ff9a32",
+          "complete_sha256": "a6d1f5ff9975db094a41fdd5c580e9803b6be42f056a3ffa45538c1bc69a9bf9",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "missing",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "new",
+      "cue": "ir",
+      "mode": "without_alignment",
+      "frames": 3000,
+      "observations": 32321,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/new.npz",
+          "sha256": "a0b0ad1d5a22fd2606a11d19707ddce8d4983c2b598dc33bdc02204c8836bb60",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/ir/seed_0/new.npz",
+          "sha256": "242482bb2ab6208f31d1a31ee3466984725f1988df47a2cb7788bc0235ff9a32",
+          "complete_sha256": "a6d1f5ff9975db094a41fdd5c580e9803b6be42f056a3ffa45538c1bc69a9bf9",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "normal",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "missing",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "rgb",
+      "mode": "without_alignment",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/rgb_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d8e8f614157f1a36ca1ee6160bdadf922e6cd30f275913e95fdab2f8af07f87b",
+          "applied": false
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "normal",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/ir/seed_0/rgb.npz",
+          "sha256": "094d93191b9f8d9de60dc4fe6236111f50663480b25272166df3d2be42011745",
+          "complete_sha256": "a6d1f5ff9975db094a41fdd5c580e9803b6be42f056a3ffa45538c1bc69a9bf9",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": true
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "missing",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sequence": "SN-013",
+      "frontend": "rgb",
+      "cue": "ir",
+      "mode": "without_alignment",
+      "frames": 3000,
+      "observations": 32258,
+      "original_seed0_formula_arrays_bit_exact": true,
+      "source_metadata": {
+        "rgb": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/rgb/seed_0/rgb.npz",
+          "sha256": "93df06d473f2235373e725c1b33fefcd4b30faca86f038dc41ecbd21ed87fbec",
+          "complete_sha256": "0d83c60817ab19b02647cd697eaab6f382ba42782fa07257a42882464180c49a",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+              "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+              "cue": "rgb",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            },
+            "reference_post": {
+              "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+              "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+              "cue": "reference",
+              "seed": 0,
+              "precision": "FP32 including BN state"
+            }
+          }
+        },
+        "ir": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_eval_features/dev/SN-013/ir/seed_0/rgb.npz",
+          "sha256": "094d93191b9f8d9de60dc4fe6236111f50663480b25272166df3d2be42011745",
+          "complete_sha256": "a6d1f5ff9975db094a41fdd5c580e9803b6be42f056a3ffa45538c1bc69a9bf9",
+          "checkpoints": {
+            "native_s0": {
+              "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+              "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+              "cue": "ir",
+              "seed": 0,
+              "precision": "FP32 including BN state",
+              "cumulative_native_epochs": 72
+            }
+          }
+        },
+        "alignment": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_alignment/ir_s0.npz",
+          "sha256": "f835381630e14a877188a957b2455c29eac56b3991564571dfb6ab33d8e50372",
+          "rotation_sha256": "d4aa99ba529cfc42f17eec798184a6f1ad12e009cfd49172a812a3dbf55c9a3e",
+          "applied": false
+        }
+      }
+    }
+  ],
+  "existing_Dev_unique_frames": 4834,
+  "source_views": 8,
+  "modes_each": 3,
+  "old_layout_reference_view": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_legacy_layout_readonly_view_9a5ed42a2fec",
+  "data_or_image_copies": 0,
+  "actual_Train_pixel_CPU_checks": [
+    {
+      "cue": "rgb",
+      "seed": 0,
+      "endpoint": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt",
+        "sha256": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+        "cue": "rgb",
+        "seed": 0,
+        "precision": "FP32 including BN state",
+        "cumulative_native_epochs": 72
+      },
+      "actual_Train_images": [
+        {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir/train/BT-003/visible/000001.jpg",
+          "sha256": "29ea9759e727097d70b756ec0fcfe5511ae0b0d3a626d11c9608d9a259c411a6",
+          "frame": 1
+        },
+        {
+          "path": "/data3/liuyeqiang/datasets/mft26-ir/train/BT-003/visible/000002.jpg",
+          "sha256": "b0ee21d0ffc2d3eb7bdbb679583e286d3667db8cc73a19c08a8f457e36db50d5",
+          "frame": 2
+        }
+      ],
+      "input_shape": [
+        2,
+        3,
+        128,
+        256
+      ],
+      "output_shape": [
+        2,
+        512
+      ],
+      "finite_unit_postneck_vectors": true,
+      "original_encoder_weights_and_BN_unchanged": true
+    },
+    {
+      "cue": "ir",
+      "seed": 0,
+      "endpoint": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt",
+        "sha256": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056",
+        "cue": "ir",
+        "seed": 0,
+        "precision": "FP32 including BN state",
+        "cumulative_native_epochs": 72
+      },
+      "actual_Train_images": [
+        {
+          "path": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation/train/BT-003/infrared_diffv2ir/000001.png",
+          "sha256": "6f668f6e374efa689b8764be8a13fa8bdbf784864eaa2ac5ee0b082765dc873d",
+          "frame": 1
+        },
+        {
+          "path": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation/train/BT-003/infrared_diffv2ir/000002.png",
+          "sha256": "777e0a3ce5ac04566683dd1fea1067640f35afadfd97f872999e5d6b8f8d0283",
+          "frame": 2
+        }
+      ],
+      "input_shape": [
+        2,
+        3,
+        128,
+        256
+      ],
+      "output_shape": [
+        2,
+        512
+      ],
+      "finite_unit_postneck_vectors": true,
+      "original_encoder_weights_and_BN_unchanged": true
+    }
+  ],
+  "artifact_hashes": {
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_candidate_index/BT-003/index.npz": "a5e7f6e42f149e8004385d2cfc2008a20ce18eb7dd9cbf63bf51b229c2faba9a",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/rgb_s0/epoch36.pt": "41473065ff8d05e2c902b67e5db1ce2116c0533df185a6f5b5f801d2d89424ce",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_neck_metric/ir_s0/epoch36.pt": "e5d5ff48f21908cbd2ba9152831870329b0b3465adc5d71bc1212b6c0b86f056"
+  },
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "GPU_work": false,
+  "new_Dev_or_Test_accuracy": false,
+  "formal_fit_started": false,
+  "full_study_scheduler_validated_by_this_interface_probe": false,
+  "actual_GPU_source_prefix_and_optimizer_checks_pending": true,
+  "cost_scope": "CPU engineering total seconds, not inference FPS or system latency.",
+  "seconds": 77.76728446409106,
+  "goal_met": false,
+  "supported_innovations": 0
+}

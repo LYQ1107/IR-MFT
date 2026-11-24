@@ -20,7 +20,7 @@ def main():
     config_path=ROOT/'configs/perceptual_native_neck_robust_query_20261123.json'
     if a.sequence not in protocol['train']:raise ValueError('Only Train query construction')
     require_storage(w,2**29)
-    require_host_memory(8*2**30)
+    require_host_memory(8*2**30, maximum_workers=1)
     directory=w/'native_neck_mismatch_query_bank'/a.sequence;directory.mkdir(parents=True,exist_ok=True)
     if (directory/'complete.json').exists():raise ValueError('Completed native query bank exists')
     alignment=json.loads((w/'native_neck_alignment/complete.json').read_text())

@@ -19,7 +19,7 @@ from tools.native_neck_io import load_native_encoder
 from tools.native_pyramid_training_loop import state_sha256
 from tools.native_query_replay import load_native_query_evidence
 from tools.neck72_evidence import load_neck72_evidence
-from tools.neck72_runtime import read, require_storage, require_host_memory
+from tools.neck72_runtime import read, require_storage, require_host_memory, RESOURCE_GUARD_REVISION
 from tools.run_pseudo_ir_comparison import dump, sha256
 from yolox.tracker.native_cue import native_crop, native_input
 
@@ -57,7 +57,7 @@ def main():
     command = [sys.executable, '-m', 'pytest', '-q', 'tests/test_neck72_interfaces.py']
     with log.open('x') as stream:
         subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=True)
-    assert re.search(r'\b9 passed\b', log.read_text())
+    assert re.search(r'\b10 passed\b', log.read_text())
     # The old helper expects cue/complete.json rather than cue/seed_0. This
     # read-only symlink view permits a literal reference-computation comparison
     # without changing the pinned old helper or copying any feature/pixel data.
@@ -130,19 +130,20 @@ def main():
         del model, value, feature, raw
     assert len(comparisons) == 24 and before == sources() and not torch.cuda.is_initialized()
     report = dict(status='COMPLETE_CPU_NECK72_WORKER_INTERFACES_WITH_REAL_CACHED_DEV_AND_TRAIN_PIXELS',
-        source_hashes=before, tests_passed=9, pytest_command=command, test_log_sha256=sha256(log),
+        source_hashes=before, tests_passed=10, pytest_command=command, test_log_sha256=sha256(log),
+        resource_guard_revision=RESOURCE_GUARD_REVISION,
         original_reference_commit='e25f2f9896ab094611edc809f87d7a5ad7e981d3',
         unchanged_original_pixel_forward_AST=True, unchanged_original_training_step_AST=True,
         full_existing_Dev_view_comparisons=comparisons, existing_Dev_unique_frames=4834,
         source_views=8, modes_each=3, old_layout_reference_view=str(alias),
         data_or_image_copies=0, actual_Train_pixel_CPU_checks=actual_pixels, artifact_hashes=artifacts,
         fixed_seed=0, additional_seed_work=False, GPU_work=False, new_Dev_or_Test_accuracy=False,
-        formal_fit_started=False, full_study_scheduler_implemented=False,
+        formal_fit_started=False, full_study_scheduler_validated_by_this_interface_probe=False,
         actual_GPU_source_prefix_and_optimizer_checks_pending=True,
         cost_scope='CPU engineering total seconds, not inference FPS or system latency.',
         seconds=time.monotonic()-started, goal_met=False, supported_innovations=0)
     require_storage(work); dump(output, report)
-    print(json.dumps(dict(status=report['status'], tests=9, existing_Dev_views=8, actual_Train_pixels=4,
+    print(json.dumps(dict(status=report['status'], tests=10, existing_Dev_views=8, actual_Train_pixels=4,
                           seconds=report['seconds'], CUDA_initialized=torch.cuda.is_initialized())), flush=True)
 
 
