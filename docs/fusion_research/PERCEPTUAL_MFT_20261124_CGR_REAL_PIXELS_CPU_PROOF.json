@@ -1,0 +1,854 @@
+{
+  "status": "COMPLETE_REAL2TRAIN_CGR_CPU_FORWARD_AND_ZERO_MISSING_PROOF",
+  "UTC": "2026-11-24T07:37:49.142442+00:00",
+  "source_inputs": [
+    {
+      "sequence": "BT-003",
+      "frame": 1,
+      "split": "train",
+      "RGB_sha256": "29ea9759e727097d70b756ec0fcfe5511ae0b0d3a626d11c9608d9a259c411a6",
+      "actual_November_IR_sha256": "6f668f6e374efa689b8764be8a13fa8bdbf784864eaa2ac5ee0b082765dc873d"
+    },
+    {
+      "sequence": "BT-003",
+      "frame": 2,
+      "split": "train",
+      "RGB_sha256": "b0ee21d0ffc2d3eb7bdbb679583e286d3667db8cc73a19c08a8f457e36db50d5",
+      "actual_November_IR_sha256": "777e0a3ce5ac04566683dd1fea1067640f35afadfd97f872999e5d6b8f8d0283"
+    }
+  ],
+  "CPU_precision": "Original half preprocessing values, FP32 CPU encoder/head and CGR modules. Not GPU FP16 parity.",
+  "input_hw": [
+    480,
+    864
+  ],
+  "independent_batch_size": 2,
+  "frozen_cases": 12,
+  "all_frozen_cases_exact_to_original_CGR_math": true,
+  "source_full_head_and_NMS_exact": true,
+  "learned_missing_exact_to_fresh_RGB": true,
+  "zero_branches_checked": 6,
+  "all_zero_branches_full_head_and_NMS_exact": true,
+  "frozen_RGB_weights_and_BN_unchanged": true,
+  "gate_statistics": {
+    "CRB_rgb_full_e12_priority": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.3923361159792101,
+          "std": 0.04628957525537528,
+          "min": 0.28222474455833435,
+          "max": 0.5894720554351807
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.39052566546877776,
+          "std": 0.05223472319997583,
+          "min": 0.0,
+          "max": 0.5894568562507629
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.08673727649434977,
+        "relative_feature_correction_RMS": 0.13971691024173036,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.398168146647053,
+          "std": 0.10662682457744493,
+          "min": 0.27618762850761414,
+          "max": 0.7559548616409302
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.391075477440968,
+          "std": 0.11146634761323515,
+          "min": 0.0,
+          "max": 0.7559545636177063
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.08632520682678677,
+        "relative_feature_correction_RMS": 0.13639961453820387,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.3497941294202098,
+          "std": 0.0475491363157969,
+          "min": 0.2919524013996124,
+          "max": 0.6038352251052856
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.3497910021631806,
+          "std": 0.04754508092670884,
+          "min": 0.2919524013996124,
+          "max": 0.6037817597389221
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.09467629536587553,
+        "relative_feature_correction_RMS": 0.12317743628582291,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_gray_full_e24_priority": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.6379386971854673,
+          "std": 0.23364487329771505,
+          "min": 0.0013392382534220815,
+          "max": 0.956243634223938
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.6372005574734947,
+          "std": 0.23514350100113318,
+          "min": 0.0,
+          "max": 0.956243634223938
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.1147076781218888,
+        "relative_feature_correction_RMS": 0.18477179611740793,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.5845137189822214,
+          "std": 0.23254618098070529,
+          "min": 0.005335557274520397,
+          "max": 0.9570518136024475
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.5795824388616982,
+          "std": 0.23858379232481788,
+          "min": 0.0,
+          "max": 0.9570516347885132
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.10265860974630257,
+        "relative_feature_correction_RMS": 0.16220748623886944,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.34125221243105186,
+          "std": 0.16121052614671674,
+          "min": 0.019720489159226418,
+          "max": 0.758574903011322
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.3412487601723384,
+          "std": 0.16120785892893982,
+          "min": 0.019720489159226418,
+          "max": 0.7585635781288147
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.04128289850585724,
+        "relative_feature_correction_RMS": 0.05371061025093901,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_full_e06_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.4537085654482786,
+          "std": 0.156266588367622,
+          "min": 0.014127779752016068,
+          "max": 0.7603099942207336
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.4531061978706009,
+          "std": 0.15757510267508448,
+          "min": 0.0,
+          "max": 0.7603099942207336
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.08109892904353501,
+        "relative_feature_correction_RMS": 0.13063462732328418,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.4192147489887214,
+          "std": 0.1810861153169953,
+          "min": 0.012857972644269466,
+          "max": 0.85146564245224
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.4178266465738646,
+          "std": 0.18368609468859812,
+          "min": 0.0,
+          "max": 0.851465106010437
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.08146310913718402,
+        "relative_feature_correction_RMS": 0.12871717420487683,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.18524277524815666,
+          "std": 0.0621031000949011,
+          "min": 0.04033007100224495,
+          "max": 0.3108387887477875
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.18524114789878143,
+          "std": 0.062102128429929564,
+          "min": 0.04033007100224495,
+          "max": 0.31083813309669495
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.021579295047105363,
+        "relative_feature_correction_RMS": 0.028075477927031942,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_aligned_e18_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.8059841536879424,
+          "std": 0.20552653565377693,
+          "min": 0.012218878604471684,
+          "max": 0.950695812702179
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.8038405437227253,
+          "std": 0.2101425161727712,
+          "min": 0.0,
+          "max": 0.9506953358650208
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.14338716758491488,
+        "relative_feature_correction_RMS": 0.23096888480908814,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.8078558789554662,
+          "std": 0.24589503008018543,
+          "min": 0.046046480536460876,
+          "max": 0.9820266366004944
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.80049814965208,
+          "std": 0.2591176317593475,
+          "min": 0.0,
+          "max": 0.9820260405540466
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.15897925729986287,
+        "relative_feature_correction_RMS": 0.25119788544245286,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.3842076688544986,
+          "std": 0.2017108109170322,
+          "min": 0.035924848169088364,
+          "max": 0.7100577354431152
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.38420468227546895,
+          "std": 0.201708993830919,
+          "min": 0.035924848169088364,
+          "max": 0.7100531458854675
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.0676036186683039,
+        "relative_feature_correction_RMS": 0.08795486134122107,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_aligned_e06_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.5733531725466435,
+          "std": 0.14159832530422337,
+          "min": 0.053411174565553665,
+          "max": 0.7536150217056274
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.5717754802974171,
+          "std": 0.14533446682934734,
+          "min": 0.0,
+          "max": 0.7536149621009827
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.09665798330888166,
+        "relative_feature_correction_RMS": 0.1556972425689826,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.5510966646967939,
+          "std": 0.19547859673159163,
+          "min": 0.04623175412416458,
+          "max": 0.8179956078529358
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.5472944280868511,
+          "std": 0.20245061183841553,
+          "min": 0.0,
+          "max": 0.8179951310157776
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.11339698696629438,
+        "relative_feature_correction_RMS": 0.17917484221070837,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.19088056812775725,
+          "std": 0.08382824802045076,
+          "min": 0.032616883516311646,
+          "max": 0.3339349329471588
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.19087911116672152,
+          "std": 0.08382758505287394,
+          "min": 0.032616883516311646,
+          "max": 0.3339327573776245
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.02632376121532539,
+        "relative_feature_correction_RMS": 0.03424820761494077,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_blanket_counterfactual_e18_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.6677259730485579,
+          "std": 0.25524677582142363,
+          "min": 0.001758428756147623,
+          "max": 0.9498710036277771
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.6673881016573388,
+          "std": 0.25593194401282865,
+          "min": 0.0,
+          "max": 0.9498710036277771
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.11641297175117345,
+        "relative_feature_correction_RMS": 0.1875186930291882,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.666240683223989,
+          "std": 0.2843976804874523,
+          "min": 0.004383683204650879,
+          "max": 0.9869269728660583
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.6653784644071381,
+          "std": 0.2862170224712157,
+          "min": 0.0,
+          "max": 0.9869266152381897
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.14186109080852588,
+        "relative_feature_correction_RMS": 0.22415003468312356,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.29368011462559673,
+          "std": 0.1496751022020645,
+          "min": 0.018865806981921196,
+          "max": 0.6051958203315735
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.2936774658844059,
+          "std": 0.14967330401897616,
+          "min": 0.018865806981921196,
+          "max": 0.6051945686340332
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.04795630324384032,
+        "relative_feature_correction_RMS": 0.06239296187597631,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_blanket_counterfactual_e06_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.4174095509347454,
+          "std": 0.15089085409927624,
+          "min": 0.009143682196736336,
+          "max": 0.7296956181526184
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.41692168027346516,
+          "std": 0.15190293219916168,
+          "min": 0.0,
+          "max": 0.7296956181526184
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.07272870119453458,
+        "relative_feature_correction_RMS": 0.11715181554560743,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.3987352495167956,
+          "std": 0.17325234731402625,
+          "min": 0.014397991821169853,
+          "max": 0.8349764943122864
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.39769652746704026,
+          "std": 0.1752833683987605,
+          "min": 0.0,
+          "max": 0.8349760174751282
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.08122406168961838,
+        "relative_feature_correction_RMS": 0.12833946321056994,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.1614192233271437,
+          "std": 0.0563599339481038,
+          "min": 0.03591189160943031,
+          "max": 0.27933236956596375
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.16141780510912707,
+          "std": 0.056359068366854455,
+          "min": 0.03591189160943031,
+          "max": 0.279331773519516
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.017766682968821463,
+        "relative_feature_correction_RMS": 0.02311512560715607,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_ir_no_curriculum_e06_raw": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.13703254944886323,
+          "std": 0.01734348586492904,
+          "min": 0.061760853976011276,
+          "max": 0.16874882578849792
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.13628968339511136,
+          "std": 0.019220267458541992,
+          "min": 0.0,
+          "max": 0.167453795671463
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.017978134701431253,
+        "relative_feature_correction_RMS": 0.028959284103844726,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.18375618288316475,
+          "std": 0.04329238080283312,
+          "min": 0.07391463220119476,
+          "max": 0.3922290802001953
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.18044517616062988,
+          "std": 0.045313462187808067,
+          "min": 0.0,
+          "max": 0.39222702383995056
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.03276370301711255,
+        "relative_feature_correction_RMS": 0.05176884743925826,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.057415235373708934,
+          "std": 0.001969821215385009,
+          "min": 0.05052119120955467,
+          "max": 0.06022069603204727
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.05741477859332974,
+          "std": 0.001969580618626261,
+          "min": 0.05052092671394348,
+          "max": 0.060220684856176376
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.017383922487533936,
+        "relative_feature_correction_RMS": 0.022617139763769143,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_IR_unavailable": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 0,
+        "missing_frames": 2,
+        "available_feature_cells": 0,
+        "learned_sigmoid_gate": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "effective_teacher_masked_trust": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "nonzero_feature_correction_fraction": null,
+        "feature_correction_RMS": null,
+        "relative_feature_correction_RMS": null,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 0,
+        "missing_frames": 2,
+        "available_feature_cells": 0,
+        "learned_sigmoid_gate": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "effective_teacher_masked_trust": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "nonzero_feature_correction_fraction": null,
+        "feature_correction_RMS": null,
+        "relative_feature_correction_RMS": null,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 0,
+        "missing_frames": 2,
+        "available_feature_cells": 0,
+        "learned_sigmoid_gate": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "effective_teacher_masked_trust": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "max": null
+        },
+        "nonzero_feature_correction_fraction": null,
+        "feature_correction_RMS": null,
+        "relative_feature_correction_RMS": null,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ],
+    "CRB_IR_IR_image_spatial_roll": [
+      {
+        "level": "P3",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 12960,
+        "learned_sigmoid_gate": {
+          "count": 12960,
+          "mean": 0.40600914935571325,
+          "std": 0.1901847850401277,
+          "min": 0.011618058197200298,
+          "max": 0.8550942540168762
+        },
+        "effective_teacher_masked_trust": {
+          "count": 12960,
+          "mean": 0.40558995586262303,
+          "std": 0.19093880163876728,
+          "min": 0.0,
+          "max": 0.8550942540168762
+        },
+        "nonzero_feature_correction_fraction": 0.9967592592592592,
+        "feature_correction_RMS": 0.07639125523779267,
+        "relative_feature_correction_RMS": 0.1230514789337092,
+        "reliable_teacher_cells": 42,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P4",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 3240,
+        "learned_sigmoid_gate": {
+          "count": 3240,
+          "mean": 0.40553610034971094,
+          "std": 0.20177981345510954,
+          "min": 0.012950330041348934,
+          "max": 0.8904743790626526
+        },
+        "effective_teacher_masked_trust": {
+          "count": 3240,
+          "mean": 0.4046371831567268,
+          "std": 0.20337794405599827,
+          "min": 0.0,
+          "max": 0.8904738426208496
+        },
+        "nonzero_feature_correction_fraction": 0.9919753086419754,
+        "feature_correction_RMS": 0.08438813392755379,
+        "relative_feature_correction_RMS": 0.13333890948460425,
+        "reliable_teacher_cells": 26,
+        "reliable_changed_feature_cells": 0
+      },
+      {
+        "level": "P5",
+        "frames": 2,
+        "available_frames": 2,
+        "missing_frames": 0,
+        "available_feature_cells": 810,
+        "learned_sigmoid_gate": {
+          "count": 810,
+          "mean": 0.18412101192882768,
+          "std": 0.06906409461948114,
+          "min": 0.03144032135605812,
+          "max": 0.34676405787467957
+        },
+        "effective_teacher_masked_trust": {
+          "count": 810,
+          "mean": 0.18411934421754178,
+          "std": 0.06906289279698313,
+          "min": 0.03144032135605812,
+          "max": 0.34676215052604675
+        },
+        "nonzero_feature_correction_fraction": 1.0,
+        "feature_correction_RMS": 0.02021877773251047,
+        "relative_feature_correction_RMS": 0.02630539351269527,
+        "reliable_teacher_cells": 0,
+        "reliable_changed_feature_cells": 0
+      }
+    ]
+  },
+  "gate_statistics_scope": "Read-only original CorrelationRepair hooks; no labels or changed outputs. Learned sigmoid gate and (1-p)*(p<.6)-masked trust use available feature cells including padding, not GT object regions. Missing frames do not fabricate gate samples. Corrections are measured after the actual output dtype cast; reliable feature preservation is not a guarantee of unchanged neighboring detector boxes. Temporary gate logits are cleared after each layer. Observer overhead must be excluded from independent per-method timing and disclosed in bundled production.",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "specification_sha256": "323424e8fd2e2855f0d63f6fd26851b72bd7a361d661d2fe608e4cc75f2b828a",
+  "source_hashes": {
+    "tools/probe_correlation_recovery_pixels_cpu.py": "4e56bf652b8649a418b67140e7ae470d04b145d63701e1db70cdcf24c8c97790",
+    "tools/correlation_recovery_inference.py": "7d1766697722d117d2dc21940766f3ff3ee1b9888ef875a666834565c7126974",
+    "tools/correlation_gate_observer.py": "274080f6ba9a1b65f7b07f099d7eea8f46dc76ff01f6505a352c58799fc95505",
+    "tools/extract_recoverable_correlation.py": "1ba5c5355d514059c6340d415e108d4bfc02fc26be6a21be0cb3924781fae082",
+    "yolox/models/local_correlation_repair.py": "d3dc5e64768d17b1f4e0209e939ff3955224177da112b5e842d4ac4e0f9cbda5"
+  },
+  "GPU_work": false,
+  "GT_read": false,
+  "Dev_read": false,
+  "Test_read": false,
+  "seconds": 118.25161031808238,
+  "actual_GPU_engineering_pending": true,
+  "formal_4_5_controller_not_yet_implemented": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}
