@@ -1,0 +1,32 @@
+{"role": "IR", "sequence": "BT-005", "frames": 1834, "GT_largest_track_fraction": 0.5324311978988238, "track_largest_GT_fraction": 0.789482699554642, "bijective_contingency_fraction": 0.5324311978988238}
+{"role": "IR", "sequence": "SN-013", "frames": 3000, "GT_largest_track_fraction": 0.418541343718099, "track_largest_GT_fraction": 0.8712994820220046, "bijective_contingency_fraction": 0.418541343718099}
+{"role": "RGB", "sequence": "BT-005", "frames": 1834, "GT_largest_track_fraction": 0.6415568110483365, "track_largest_GT_fraction": 0.8888318210352109, "bijective_contingency_fraction": 0.6285453404097472}
+{"role": "RGB", "sequence": "SN-013", "frames": 3000, "GT_largest_track_fraction": 0.37248537459898096, "track_largest_GT_fraction": 0.8934138516701264, "bijective_contingency_fraction": 0.37248537459898096}
+{"role": "own_increment_off", "sequence": "BT-005", "frames": 1834, "GT_largest_track_fraction": 0.5501771631043548, "track_largest_GT_fraction": 0.8504400502914619, "bijective_contingency_fraction": 0.5450908675277174}
+{"role": "own_increment_off", "sequence": "SN-013", "frames": 3000, "GT_largest_track_fraction": 0.4094157685762904, "track_largest_GT_fraction": 0.8698808848553602, "bijective_contingency_fraction": 0.4094157685762904}
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/diagnose_dev_track_concentration.py", line 200, in <module>
+    main()
+  File "/data3/liuyeqiang/IR-MFT/tools/diagnose_dev_track_concentration.py", line 172, in main
+    stem.with_suffix('.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/data3/liuyeqiang/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable

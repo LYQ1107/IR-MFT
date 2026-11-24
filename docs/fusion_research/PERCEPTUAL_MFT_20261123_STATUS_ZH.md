@@ -2,6 +2,23 @@
 
 更新时间：2026-11-25（北京时间）。任务仍在执行，目标尚未完成。
 
+最新机制诊断已完成并保留全部条件：原23组配对在完整Dev上有7组汇总
+HOTA为正、4组两段均正、9组方向反转；两段同时胜过RGB及自身关闭的
+仍为0。NR36在BT-005比RGB低7.245584，主要为AssA下降9.916235；
+SN-013则高2.598175。完整Dev事后轨迹诊断中BT匹配观测只差9次，
+但GT最大单轨占比IR53.243%、RGB64.156%，不能用IDSW只多4次概括。
+见[NATIVE_DEV_DOMAINS](PERCEPTUAL_MFT_20261125_NATIVE_DEV_DOMAINS.md)及
+[DEV_TRACK_CONCENTRATION](PERCEPTUAL_MFT_20261125_DEV_TRACK_CONCENTRATION.md)。
+
+六段Train各12帧的完整视觉机制检查也已完成：四个已完成全量拟合条件，
+再补IR111第一／二遍快照，共六组；5040项分域／层／区域标量全部保存，
+CPU913.818秒、峰值RSS1.158GiB，无参数更新或新GPU。IR111 P3弱RGB
+框内／背景置信0.332209／0.329141，逐域仅三段框内较高；修正从第一遍
+0.043460增至第三遍0.061386，但固定0.6稠密锚点支持仍净减7个GT。
+这是Train样本与稠密锚点诊断，不是Recall、Dev/Test HOTA或创新贡献。
+见[STRUCTURAL_TRAIN_MECHANISM](PERCEPTUAL_MFT_20261125_STRUCTURAL_TRAIN_MECHANISM.md)。
+六组全量训练仍完成四组，IR101/110继续在4/5卡；原Dev选择与队列未改。
+
 最新答复：有局部正向结果，但没有证据完整的2–3项独立多模态创新。
 已有完整七段Test最高观测HOTA31.504，相对原始RGB29.529为+1.975点；
 对应匹配RGB为31.440，所以IR增量只有+0.064，不能把全部提升归于IR。

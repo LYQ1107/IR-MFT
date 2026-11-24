@@ -16,6 +16,12 @@
 不能据此把本方向或四方向总体标为验证完成。见
 [NATIVE_SPATIAL_QUEUE](PERCEPTUAL_MFT_20261124_NATIVE_SPATIAL_QUEUE.md)。
 
+后续72个Train样本的全量拟合后机制诊断已完成：IR111实际P3修正非零，
+但弱RGB框内与背景结构置信接近，逐域只有三段框内均值较高；三遍全Train
+后固定稠密锚点支持仍低于原RGB。它不读取Dev/Test，不是完整Train
+测量或新跟踪指标；不能替代新空间门控家族的正式比较。详见
+[STRUCTURAL_TRAIN_MECHANISM](PERCEPTUAL_MFT_20261125_STRUCTURAL_TRAIN_MECHANISM.md)。
+
 | 方向 | 当前 November IR 证据 | 尚需完成 |
 | --- | --- | --- |
 | F1 动态质量 | `NativePyramidFusion(mode='quality')` 学习当前图像辅助金字塔，各 FPN 层预测质量 gate；匹配 RGB/gray/IR 和完整流程已登记、工程检查已做，正式拟合排在现有训练后 | 实际 GPU 门槛、完整 Train/Dev/Test、强对照、去质量等归因；尚无该模型的新 HOTA |
