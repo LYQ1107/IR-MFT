@@ -45,10 +45,13 @@ def main():
     output = work / 'neck72_online_inputs_CPU_proof.json'; assert not output.exists()
     require_storage(work); require_host_memory(4*2**30, maximum_workers=1)
     started = time.monotonic(); log = work / 'neck72_online_inputs_pytest.log'
-    command = [sys.executable, '-m', 'pytest', '-q', 'tests/test_neck72_online_inputs.py']
+    command = [sys.executable, '-m', 'pytest', '-q', 'tests/test_neck72_online_inputs.py',
+               'tests/test_neck72_frontend_serialization.py', 'tests/test_neck72_frontend_loader.py']
     with log.open('x') as stream:
         subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=True)
-    count = re.search(r'\b(\d+) passed\b', log.read_text()); assert count and int(count.group(1)) >= 12
+    count = re.search(r'\b(\d+) passed\b', log.read_text()); assert count and int(count.group(1)) >= 20
+    serialization_path = work / 'neck72_frontend_serialization_proof.json'
+    assert read(serialization_path)['all_frontends_exact']
     records, artifacts = [], {}
     for sequence in protocol['dev']:
         references = {}; producers = {arm: CurrentPointStream() for arm in ['new', 'rgb']}
@@ -150,6 +153,7 @@ def main():
     assert before == {p: sha256(ROOT / p) for p in sources()} and not torch.cuda.is_initialized()
     report = dict(status='COMPLETE_CPU_NECK72_ONLINE_INPUT_AND_PREFIX_PACKET_PROOF',
         source_hashes=before, artifact_hashes=artifacts, tests_passed=int(count.group(1)),
+        runtime_serialization_revision=2, frontend_serialization_proof_sha256=sha256(serialization_path),
         pytest_command=command, test_log_sha256=sha256(log), real_Dev_point_prefixes=records,
         all_consumed_real_Dev_point_arrays_exact=True, unique_Dev_RGB_frames=64,
         method_point_frames=128, actual_IR_images_opened_for_point_production=0,
@@ -161,7 +165,9 @@ def main():
             'four-mode/two-frontend pooled caches; streamed queries use existing36-encoder seed0 heads. '
             'Four actual Train images exercise72-encoder FP32 endpoints. '
             'Fresh detector/FP16 appearance/B1 versus B4 numerics and all frozen72-head equivalence '
-            'still require actual4/5GPU engineering; no FPS or new method metric is established.',
+            'still require actual4/5GPU engineering; no FPS or new method metric is established. '
+            'Serialization revision2 reuses existing compact artifacts with independently proven '
+            'complete Module.half state identity, preserving the original scientific specification.',
         goal_met=False, supported_innovations=0)
     require_storage(work); dump(output, report)
     print(report['status'], report['tests_passed'], 'tests;', len(records), 'real point prefixes;',

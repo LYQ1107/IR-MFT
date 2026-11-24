@@ -16,6 +16,7 @@ import torch
 from torch.nn import functional as F
 
 from tools.native_neck_io import load_native_encoder
+from tools.neck72_frontend_serialization import load_verified_frontend_model
 from tools.neck72_runtime import read
 from tools.run_pseudo_ir_comparison import sha256
 from yolox.data.data_augment import preproc
@@ -114,17 +115,15 @@ class FrozenFrontend:
         expected_variant = 'diffv2ir' if arm == 'new' else 'rgb'
         assert self.metadata['variant'] == expected_variant and self.metadata['seed'] == 0
         assert self.metadata['conf'] == .1 and self.metadata['nms'] == .7
-        checkpoint = Path(self.metadata['ckpt'])
-        assert sha256(checkpoint) == self.metadata['source_sha256']
+        state, serialization = load_verified_frontend_model(plan, arm, split, self.metadata, plan['work_root'])
         experiment = 'yolox_mft26ir_pseudo_ir_comparison.py' if arm == 'new' else 'yolox_mft26ir_visible.py'
         exp = get_exp(str(ROOT / 'exps' / experiment), None)
         self.model = exp.get_model()
-        saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
-        self.model.load_state_dict(saved['model'], strict=True)
-        del saved
+        self.model.load_state_dict(state, strict=True)
+        del state
         self.model = self.model.to(device).half().eval().requires_grad_(False)
         self.device = device
-        self.provenance = dict(checkpoint=str(checkpoint), checkpoint_sha256=self.metadata['source_sha256'],
+        self.provenance = dict(**serialization,
             source_manifest=str(self.manifest_path), source_manifest_sha256=sha256(self.manifest_path),
             precision='FP16, original unfused model and postprocess; independent current frame')
 

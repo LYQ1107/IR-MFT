@@ -29,16 +29,39 @@ def register():
     artifacts = dict(read(parent)['artifact_hashes'])
     artifacts[str(parent)] = sha256(parent); artifacts[str(proof_path)] = sha256(proof_path)
     artifacts.update(proof['artifact_hashes'])
+    serialization_path = work / 'neck72_frontend_serialization_proof.json'
+    serialization = read(serialization_path)
+    assert serialization['all_frontends_exact']
+    assert sha256(serialization_path) == proof['frontend_serialization_proof_sha256']
+    assert all(sha256(ROOT / p) == h for p, h in serialization['source_hashes'].items())
+    artifacts[str(serialization_path)] = sha256(serialization_path)
     frontend_sources = {}
     for arm, directory in plan['frozen_detection_sources'].items():
         metadata = Path(directory) / 'metrics.json'; protocol = read(metadata)['protocol']
-        checkpoint = Path(protocol['ckpt'])
-        assert protocol['seed'] == 0 and sha256(checkpoint) == protocol['source_sha256']
-        artifacts[str(metadata)] = sha256(metadata); artifacts[str(checkpoint)] = protocol['source_sha256']
+        split = 'dev' if arm.endswith('_dev') else 'test'
+        frontend = 'rgb' if arm.startswith('rgb_') else 'new'
+        rows = [row for row in serialization['rows'] if row['frontend'] == frontend]; assert len(rows) == 1
+        row = rows[0]
+        assert protocol['seed'] == 0 and protocol == row['source_protocols'][split]['protocol']
+        assert sha256(metadata) == row['source_protocols'][split]['sha256']
+        compact = row['compact']; checkpoint = Path(compact['file'])
+        if str(checkpoint) not in artifacts:
+            assert sha256(checkpoint) == compact['file_sha256']
+        else:
+            assert artifacts[str(checkpoint)] == compact['file_sha256']
+        artifacts[str(metadata)] = sha256(metadata); artifacts[str(checkpoint)] = compact['file_sha256']
         frontend_sources[arm] = dict(manifest=str(metadata), manifest_sha256=sha256(metadata),
-            checkpoint=str(checkpoint), checkpoint_sha256=protocol['source_sha256'])
+            accuracy_checkpoint=protocol['ckpt'], accuracy_checkpoint_sha256=protocol['source_sha256'],
+            runtime_checkpoint=str(checkpoint), runtime_checkpoint_sha256=compact['file_sha256'],
+            complete_canonical_half_state_exact=True)
+    archive = work / 'neck72_fresh_runtime_R1_before_serialization_revision2'
+    original = read(archive / 'archive_manifest.json')
+    assert original['scientific_specification_sha256'] == sha256(SPEC)
     value = dict(status='REGISTERED_NECK72_FRESH_IMAGE_RUNTIME_PENDING_ACTUAL_GPU_SOURCE_PROOF',
         specification_sha256=sha256(SPEC), source_hashes=proof['source_hashes'], artifact_hashes=artifacts,
+        runtime_serialization_revision=2, frontend_serialization_proof_sha256=sha256(serialization_path),
+        original_runtime_R1_registration_sha256=original['original_registration_sha256'],
+        scientific_specification_unchanged=True,
         frontend_sources=frontend_sources, parent_accuracy_registration_sha256=sha256(parent),
         full_component_runtime_code_implemented=True, actual_GPU_runtime_measured=False,
         original_accuracy_pipeline_unchanged=True, fixed_seed=0, physical_gpus=['4', '5'],

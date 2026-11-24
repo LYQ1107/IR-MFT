@@ -24,6 +24,8 @@ def sources():
     files.update(['tools/neck72_online_inputs.py', 'tools/neck72_runtime_study.py',
         'tools/benchmark_neck72_runtime.py', 'tools/launch_neck72_runtime.py',
         'tools/probe_neck72_online_inputs.py', 'tests/test_neck72_online_inputs.py',
+        'tools/neck72_frontend_serialization.py', 'tools/prove_neck72_frontend_serialization.py',
+        'tests/test_neck72_frontend_serialization.py', 'tests/test_neck72_frontend_loader.py',
         str(SPEC.relative_to(ROOT)), 'tools/run_pseudo_ir_comparison.py',
         'tools/native_cue_io.py', 'yolox/data/data_augment.py',
         'yolox/data/data_augment_rgbt.py', 'yolox/data/datasets/mot_rgbt.py',

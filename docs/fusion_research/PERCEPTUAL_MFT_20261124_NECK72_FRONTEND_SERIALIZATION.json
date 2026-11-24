@@ -1,0 +1,447 @@
+{
+  "status": "COMPLETE_NECK72_FRONTEND_SERIALIZATION_COMPARISON",
+  "rows": [
+    {
+      "frontend": "new",
+      "source_protocols": {
+        "dev": {
+          "protocol": {
+            "action": "infer",
+            "variant": "diffv2ir",
+            "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+            "resume": false,
+            "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_new_diffv2ir_dev",
+            "seed": 0,
+            "batch_size": 4,
+            "accumulate": 2,
+            "train_size": [
+              480,
+              864
+            ],
+            "workers": 4,
+            "ir_stats": null,
+            "calibration_epochs": 3,
+            "finetune_epochs": 3,
+            "lr": 0.0002,
+            "calibration_lr": 0.001,
+            "memory_fraction": 0.55,
+            "reserve_gib": 40.0,
+            "max_steps": 0,
+            "no_checkpoint": false,
+            "max_frames": 0,
+            "split": "dev",
+            "sequences": [
+              "BT-005",
+              "SN-013"
+            ],
+            "conf": 0.1,
+            "nms": 0.7,
+            "track_thresh": 0.6,
+            "track_buffer": 30,
+            "match_thresh": 0.9,
+            "skip_evaluation": false,
+            "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+            "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+            "initialization": "strict_direct",
+            "frames": 4834,
+            "physical_gpu": "3",
+            "ir_means": [
+              0.318765696840321,
+              0.318765696840321,
+              0.318765696840321
+            ],
+            "ir_std": [
+              0.11454358863241268,
+              0.11454358863241268,
+              0.11454358863241268
+            ],
+            "input_size": [
+              800,
+              1440
+            ],
+            "source_sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940",
+            "generated_ir_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation"
+          },
+          "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_new_diffv2ir_dev/metrics.json",
+          "sha256": "727383278f9871f1b4ef27b966ccdc7bf594214db8b60ab0bf794bc10a223928"
+        },
+        "test": {
+          "protocol": {
+            "action": "infer",
+            "variant": "diffv2ir",
+            "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/best_dev_ema_fp16.pth.tar",
+            "resume": false,
+            "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/test_new_diffv2ir_selected",
+            "seed": 0,
+            "batch_size": 4,
+            "accumulate": 2,
+            "train_size": [
+              480,
+              864
+            ],
+            "workers": 4,
+            "ir_stats": null,
+            "calibration_epochs": 3,
+            "finetune_epochs": 3,
+            "continuation_plan": null,
+            "stop_after_joint_epochs": null,
+            "lr": 0.0002,
+            "calibration_lr": 0.001,
+            "memory_fraction": 0.55,
+            "reserve_gib": 40.0,
+            "max_steps": 0,
+            "no_checkpoint": false,
+            "max_frames": 0,
+            "split": "test",
+            "sequences": [
+              "BT-002",
+              "BT-004",
+              "MSK-003",
+              "PF-002",
+              "SN-009",
+              "SN-011",
+              "SN-014"
+            ],
+            "conf": 0.1,
+            "nms": 0.7,
+            "track_thresh": 0.6,
+            "track_buffer": 30,
+            "match_thresh": 0.9,
+            "skip_evaluation": false,
+            "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+            "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+            "initialization": "strict_direct",
+            "frames": 15985,
+            "physical_gpu": "2",
+            "ir_means": [
+              0.318765696840321,
+              0.318765696840321,
+              0.318765696840321
+            ],
+            "ir_std": [
+              0.11454358863241268,
+              0.11454358863241268,
+              0.11454358863241268
+            ],
+            "input_size": [
+              800,
+              1440
+            ],
+            "source_sha256": "ec2543144611e11a12eaab768c5484dc3c575d95976f07d3cd50bcd593db30f0",
+            "generated_ir_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+            "source_training": {
+              "calibration_epochs": 3,
+              "joint_epochs": 3,
+              "completed_adaptation_epochs": 6,
+              "configured_maximum_joint_epochs": 3,
+              "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+              "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+            }
+          },
+          "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/test_new_diffv2ir_selected/metrics.json",
+          "sha256": "503ef9c623987ef20e22621ecfdc96aa0b9afb5df748fcbb4fa2a7002737643f"
+        }
+      },
+      "original": {
+        "file": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_new_diffv2ir_s0/latest_ckpt.pth.tar",
+        "file_sha256": "86f705ffed6ff39319de93d2c9bdb22332d6764276cf29a7f523500727d94940",
+        "bytes_read": 2237559467,
+        "serialized_fields": [
+          "completed_epochs",
+          "cuda_rng",
+          "ema_updates",
+          "history",
+          "loader_rng",
+          "manifest",
+          "model",
+          "numpy_rng",
+          "optimizer",
+          "python_rng",
+          "scaler",
+          "torch_rng",
+          "train_model"
+        ],
+        "saved_seed": 0,
+        "saved_completed_epochs": 6
+      },
+      "compact": {
+        "file": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_new_diffv2ir/best_dev_ema_fp16.pth.tar",
+        "file_sha256": "ec2543144611e11a12eaab768c5484dc3c575d95976f07d3cd50bcd593db30f0",
+        "bytes_read": 373356639,
+        "serialized_fields": [
+          "manifest",
+          "model",
+          "selection"
+        ],
+        "saved_seed": 0,
+        "saved_completed_epochs": null
+      },
+      "comparison": {
+        "all_state_tensors_exact": true,
+        "missing_keys": [],
+        "extra_keys": [],
+        "compared_tensors": 1681,
+        "floating_tensors": 1404,
+        "preserved_integer_or_boolean_buffers": 277,
+        "canonical_state_sha256": {
+          "original": "ad5bfbb1aa6d287e6ceb25d25c2eac251b54301bf16303577e0f6bd046a88463",
+          "compact": "ad5bfbb1aa6d287e6ceb25d25c2eac251b54301bf16303577e0f6bd046a88463"
+        },
+        "all_tensor_rows_files": [
+          {
+            "path": "docs/fusion_research/perceptual_neck72_serialization_20261124/new_tensors_00.json",
+            "sha256": "b0712d408c1f4e309cfd07db1639f084f8fd85447c6947085c5038dfd83a74e6",
+            "tensors": 600
+          },
+          {
+            "path": "docs/fusion_research/perceptual_neck72_serialization_20261124/new_tensors_01.json",
+            "sha256": "7df81737220c976bb0ad14a30763a0bb7bbd58d30d84857255e50ea7b469efb6",
+            "tensors": 600
+          },
+          {
+            "path": "docs/fusion_research/perceptual_neck72_serialization_20261124/new_tensors_02.json",
+            "sha256": "cd75503e8d6724b30173664e8bd2122a67a7a574ef6f62968905a0e12a0f4831",
+            "tensors": 481
+          }
+        ]
+      },
+      "canonical_half_state_covers_all_parameters_BN_and_integer_buffers": true
+    },
+    {
+      "frontend": "rgb",
+      "source_protocols": {
+        "dev": {
+          "protocol": {
+            "action": "infer",
+            "variant": "rgb",
+            "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+            "resume": false,
+            "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_matched_dev",
+            "seed": 0,
+            "batch_size": 4,
+            "accumulate": 2,
+            "train_size": [
+              480,
+              864
+            ],
+            "workers": 4,
+            "ir_stats": null,
+            "calibration_epochs": 0,
+            "finetune_epochs": 3,
+            "continuation_plan": null,
+            "stop_after_joint_epochs": null,
+            "lr": 0.0002,
+            "calibration_lr": 0.001,
+            "memory_fraction": 0.55,
+            "reserve_gib": 40.0,
+            "max_steps": 0,
+            "no_checkpoint": false,
+            "max_frames": 0,
+            "split": "dev",
+            "sequences": [
+              "BT-005",
+              "SN-013"
+            ],
+            "conf": 0.1,
+            "nms": 0.7,
+            "track_thresh": 0.6,
+            "track_buffer": 30,
+            "match_thresh": 0.9,
+            "skip_evaluation": false,
+            "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+            "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+            "initialization": "strict_direct",
+            "frames": 4834,
+            "physical_gpu": "2",
+            "ir_means": [
+              0.0651,
+              0.0262,
+              0.0581
+            ],
+            "ir_std": [
+              0.1916,
+              0.1015,
+              0.1084
+            ],
+            "input_size": [
+              800,
+              1440
+            ],
+            "source_sha256": "e9f5de7fa48ce71ecc4b96e43da5d16baa6423216230d62a5b63b25773439065",
+            "generated_ir_root": null,
+            "source_training": {
+              "calibration_epochs": 0,
+              "joint_epochs": 3,
+              "completed_adaptation_epochs": 3,
+              "configured_maximum_joint_epochs": 3,
+              "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+              "continuation_plan_sha256": null
+            }
+          },
+          "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/eval_rgb_matched_dev/metrics.json",
+          "sha256": "e5529d5816a3297320bdd2894d2ccbc7b19e638b409f32634551bb2d68b19704"
+        },
+        "test": {
+          "protocol": {
+            "action": "infer",
+            "variant": "rgb",
+            "ckpt": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+            "resume": false,
+            "output": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/test_rgb_matched_selected",
+            "seed": 0,
+            "batch_size": 4,
+            "accumulate": 2,
+            "train_size": [
+              480,
+              864
+            ],
+            "workers": 4,
+            "ir_stats": null,
+            "calibration_epochs": 0,
+            "finetune_epochs": 3,
+            "continuation_plan": null,
+            "stop_after_joint_epochs": null,
+            "lr": 0.0002,
+            "calibration_lr": 0.001,
+            "memory_fraction": 0.55,
+            "reserve_gib": 40.0,
+            "max_steps": 0,
+            "no_checkpoint": false,
+            "max_frames": 0,
+            "split": "test",
+            "sequences": [
+              "BT-002",
+              "BT-004",
+              "MSK-003",
+              "PF-002",
+              "SN-009",
+              "SN-011",
+              "SN-014"
+            ],
+            "conf": 0.1,
+            "nms": 0.7,
+            "track_thresh": 0.6,
+            "track_buffer": 30,
+            "match_thresh": 0.9,
+            "skip_evaluation": false,
+            "gt_root": "/data3/liuyeqiang/IR-MFT_assets/cfp/protocol_v2/gt",
+            "trackeval_root": "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack",
+            "initialization": "strict_direct",
+            "frames": 15985,
+            "physical_gpu": "3",
+            "ir_means": [
+              0.0651,
+              0.0262,
+              0.0581
+            ],
+            "ir_std": [
+              0.1916,
+              0.1015,
+              0.1084
+            ],
+            "input_size": [
+              800,
+              1440
+            ],
+            "source_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+            "generated_ir_root": null,
+            "source_training": {
+              "calibration_epochs": 0,
+              "joint_epochs": 3,
+              "completed_adaptation_epochs": 3,
+              "configured_maximum_joint_epochs": 3,
+              "initial_visible_sha256": "ba211af68a5cc94e0c8e27ed8ec2f48a012f32a3a0feafb8b6e038b725bf7fe0",
+              "continuation_plan_sha256": "699ade3fd6f4ca4b17ab95f4aee7711337ff4bbaa2422c7e6baf674941beb81a"
+            }
+          },
+          "path": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/test_rgb_matched_selected/metrics.json",
+          "sha256": "bc30ff8a3988634b4d97466af4345db59d4db6168b0e462c9f2a309cfe7c0ecc"
+        }
+      },
+      "original": {
+        "file": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_comparison_20261120/train_rgb_matched_s0/latest_ckpt.pth.tar",
+        "file_sha256": "e9f5de7fa48ce71ecc4b96e43da5d16baa6423216230d62a5b63b25773439065",
+        "bytes_read": 1189594907,
+        "serialized_fields": [
+          "completed_epochs",
+          "cuda_rng",
+          "ema_updates",
+          "history",
+          "loader_rng",
+          "manifest",
+          "model",
+          "numpy_rng",
+          "optimizer",
+          "python_rng",
+          "scaler",
+          "torch_rng",
+          "train_model"
+        ],
+        "saved_seed": 0,
+        "saved_completed_epochs": 3
+      },
+      "compact": {
+        "file": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+        "file_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+        "bytes_read": 198488722,
+        "serialized_fields": [
+          "manifest",
+          "model",
+          "selection"
+        ],
+        "saved_seed": 0,
+        "saved_completed_epochs": null
+      },
+      "comparison": {
+        "all_state_tensors_exact": true,
+        "missing_keys": [],
+        "extra_keys": [],
+        "compared_tensors": 894,
+        "floating_tensors": 748,
+        "preserved_integer_or_boolean_buffers": 146,
+        "canonical_state_sha256": {
+          "original": "61087c65781efd8b5b8184df67f70091dc5b1cddb0d1943129bc71573c44fe7d",
+          "compact": "61087c65781efd8b5b8184df67f70091dc5b1cddb0d1943129bc71573c44fe7d"
+        },
+        "all_tensor_rows_files": [
+          {
+            "path": "docs/fusion_research/perceptual_neck72_serialization_20261124/rgb_tensors_00.json",
+            "sha256": "08f5618835e24de98ff49914ca6a2d2f52d61fcf2e45329ef74abd7d37787a89",
+            "tensors": 600
+          },
+          {
+            "path": "docs/fusion_research/perceptual_neck72_serialization_20261124/rgb_tensors_01.json",
+            "sha256": "e8090e167243967c42e66385385e408c8b71111d732461918509d7bd6159e030",
+            "tensors": 294
+          }
+        ]
+      },
+      "canonical_half_state_covers_all_parameters_BN_and_integer_buffers": true
+    }
+  ],
+  "all_frontends_exact": true,
+  "source_hashes": {
+    "tools/prove_neck72_frontend_serialization.py": "e48f246907db3760a5aebbf57267328e28c1f4ca0b98a1ab990cb6b71656ff54",
+    "tests/test_neck72_frontend_serialization.py": "0af9846a253922fec134e77b98c91c30bbe1b5f1f8673e7e0fbc0d6ca353e220"
+  },
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "GPU_work": false,
+  "CNN_forward": false,
+  "new_accuracy": false,
+  "new_runtime_measurement": false,
+  "weight_files_created": 0,
+  "original_files_modified": false,
+  "peak_process_RSS_bytes": 5097586688,
+  "seconds": 402.7177364300005,
+  "scope": "Every original Dev detector floating tensor rounded exactly as nn.Module.half, and every unchanged integer/bool buffer, compared to the existing compact Dev-selected Test artifact. Uses protocol/weight metadata only, no Test accuracy or checkpoint search. A matching state permits serialization reuse, not a different model, B1/B4 numerical equivalence, fresh-image correctness, measured speed, accuracy gain or innovation.",
+  "goal_met": false,
+  "supported_innovations": 0,
+  "original_checkpoint_bytes_for_two_frontends": 3427154374,
+  "compact_checkpoint_bytes_for_two_frontends": 571845361,
+  "bytes_avoided_per_two_frontend_Dev_load": 2855309013,
+  "byte_reduction_fraction": 0.8331428063648703,
+  "full_private_comparison_sha256": "90e95b86cbfcfbc62169bcc1abc9ef972a1ede6863b9e88b407d29f174e91896",
+  "publication_scope": "All2575tensor records retained in five metadata-only chunks under1MiB; no model tensor values, weights or new files of images.",
+  "GPU_source_equivalence_still_pending": true
+}
