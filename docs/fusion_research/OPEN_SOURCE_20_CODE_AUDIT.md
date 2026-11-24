@@ -1,4 +1,6 @@
 # Open-source multimodal fusion code audit (20 pinned repositories)
+2026-11-24 license evidence supplement: see [six-entry pinned-source recheck](OPEN_SOURCE_20_LICENSE_EVIDENCE_20261124.md). The original20 JSON remains unchanged. All6complete returned trees,6root READMEs and14previously inspected code files were rechecked; project-wide grants remain unconfirmed for those6. The M2D-LIF notice below is limited to the inspected file header.
+
 This is a source-level audit at the exact commits in the task book. The files below were fetched from the pinned raw GitHub paths on 2026-10-21; the recorded bytes/SHA-256 and symbol lines are the evidence used for the design. No third-party source was copied into IR-MFT. A missing root license is recorded as a boundary, not inferred.
 ## Fixed source inventory
 | ID | Repository / commit | License evidence | Pinned source paths and observed interfaces |
@@ -68,7 +70,7 @@ The exact per-repository record above captures the callable class/forward surfac
 - **License/reuse boundary:** ROOT LICENSE NOT FOUND at the pinned raw paths; source was inspected only.
 ### R09 — M2D-LIF
 
-- **Observed interface / cost boundary:** LIF/LIFAdd/MF implement feature interaction blocks for [B,C,H,W] maps. The repository is AGPL-licensed at the Ultralytics-derived path.
+- **Observed interface / cost boundary:** LIF/LIFAdd/MF implement feature interaction blocks for [B,C,H,W] maps. The inspected `ultralytics/nn/modules/block.py` header states AGPL-3.0. This file-level notice does not establish the license scope of every project file; see the20261124supplement.
 - **IR-MFT migration decision:** Audit-only. No AGPL code is copied; the implementation is independently written with compatible tensor semantics.
 - **License/reuse boundary:** ROOT LICENSE NOT FOUND at the pinned raw paths; source was inspected only.
 ### R10 — ModTr
