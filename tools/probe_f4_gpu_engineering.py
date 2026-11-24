@@ -18,6 +18,7 @@ import torch
 from tools.fusion_memory_engineering import (EngineeringMismatch, compare_prefix, engineering_cases,
     original_Dev_prefixes, require_active_primary_memory, unchanged_Dev_prefixes)
 from tools.fusion_memory_evaluation import read, sha
+from tools.fusion_memory_gpu_checks import known_plane_ROI
 from tools.fusion_memory_observation import FixedSequenceImages, write_json
 from tools.fusion_memory_online import OnlineFusionMemory, visual_routes
 from tools.fusion_memory_parent_io import require
@@ -74,6 +75,8 @@ def main():
         require_storage(workflow.work)
         require(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024 <= 8*2**30, 'F4 GPU probe exceeded 8GiB host RSS')
     try:
+        coordinates=known_plane_ROI(next(teacher.parameters()).device)
+        require(coordinates['actual_CUDA'] is True,'Known-plane CPU result cannot qualify actual GPU geometry')
         for sequence in ['BT-005', 'SN-013']:
             composed = OnlineFusionMemory(teacher, cases, modules, (800, 1440), calibration)
             reference = OnlineNativeDetector(reference_teacher, [r['model'] for r in routes.values()],
@@ -95,6 +98,7 @@ def main():
             parent_Dev_evidence_sha256=spec['parent_Dev_evidence_sha256'], physical_gpu=physical, GPU_uuid=str(uuid),
             source_versions=registration['source_hashes'], original_Dev_source_pins=pins, model_information=information,
             cases=cases, results=results, actual_GPU_tensors_verified=True, model_state_hashes=before,
+            actual_GPU_ROI_coordinate_check=coordinates,
             actual_loaded_primary_fused_memory_and_positive_cost_exercised=True,
             deterministic_algorithms=torch.are_deterministic_algorithms_enabled(),
             peak_host_RSS_GiB=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024/2**30,

@@ -109,3 +109,11 @@ F4真实GPU工程入口及独立比较器后续已实现，19项人工检查通�
 F4完整逐配置出版/Dev固定分析组件后续已实现，25项人工文件检查通过；
 实际preflight仍缺六个父模型标记和调度器，没有完整登记、真实F4结果、
 GPU或新HOTA，不增加方向完成数或创新数。见[F4_RESULT_EXPORT_COMPONENTS](PERCEPTUAL_MFT_20261125_F4_RESULT_EXPORT_COMPONENTS.md)。
+
+F4完整控制器后续已接齐并通过95项CPU检查，384来源锁定登记；实际CPU
+控制器488189等待空间前序完整导出和实际退出，phases为空。真实CPU预检
+确认五个入口齐全、六个父模型标记仍缺，资格未知；无张量／图像／指标／
+GT读取或CUDA调用。实际GPU门槛、学习融合转移与正式Dev/Test仍未执行。
+CPU人工完整流程和子进程检查不能证明融合贡献，旧CPU摘要异常原因亦仍
+未知；四方向完成数、独立创新0和Goal未达结论不变。见
+[F4_FULL_WORKFLOW](PERCEPTUAL_MFT_20261125_F4_FULL_WORKFLOW.md)。

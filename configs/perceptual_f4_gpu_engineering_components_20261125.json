@@ -1,10 +1,10 @@
 {
-  "status": "PREREGISTERED_F4_GPU_ENGINEERING_ENTRY_AND_CPU_COMPONENT_CHECK_NOT_ACTUAL_GPU_QUALIFICATION",
+  "status": "PREREGISTERED_F4_GPU_ENGINEERING_WITH_ACTUAL_DEVICE_KNOWN_PLANE_CHECK",
   "UTC": "2026-11-24T20:22:44.350752+00:00",
   "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
   "frozen_dependencies": {
     "tools/fusion_memory_engineering.py": "b6ccee72a53bf6447ff756dd548c7efa6991bf8aa93cefca61996f4ad511d146",
-    "tools/probe_f4_gpu_engineering.py": "5170582acd571f365219527acd8d072f6908deb0f1a55f369b7b8087e0e04355",
+    "tools/probe_f4_gpu_engineering.py": "81cf8b7a75c5804945189d7d61cb3e4e5afe25e07a8c320df38aea8e9bc7310d",
     "tests/test_fusion_memory_engineering.py": "daec8af4d18b42fd3b4dd7747e09e9e363bbb5e8645b442a58b00b05b26c5f8c",
     "tools/probe_f4_engineering_cpu.py": "b0a9950268602d87713de3f34e8f45213083f443a4d4f9fd74faacc5e547e9b2",
     "tools/fusion_memory_online.py": "c202aa8b63bc3dc019f8bbda029df3fa46d44aa0fce5b4f116b1446c5fe054e8",
@@ -14,7 +14,8 @@
     "tools/fusion_memory_observation.py": "df41bdd149e7c29debcd2786b3ef303acb44a1f06a506fce877223731b11bc8c",
     "tools/fusion_memory_runtime_sources.py": "86e1146a6419d4d565e246c915458f98023f6ba29373d68273d2e4ffb600a23e",
     "tools/fusion_memory_workflow.py": "5a19e96c95c4f87413ab3d1b26bd1d5f37fc90f23cf2ebf63c89877dffbeab97",
-    "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4"
+    "yolox/tracker/fusion_memory_tracker.py": "6eacf652d0fca925fb79b6b4aa8270a4e93d67c203cf3abef3955b717d6378f4",
+    "tools/fusion_memory_gpu_checks.py": "06373a25acddce85aea4141e7f9b35c0dd6dd91de85ee3b0116926e7bc217137"
   },
   "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
   "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
@@ -33,5 +34,11 @@
   "actual_learned_IR_fusion_transferred": false,
   "complete_pipeline_implemented": false,
   "goal_met": false,
-  "supported_innovations": 0
+  "supported_innovations": 0,
+  "initial_specification_archive": {
+    "path": "configs/perceptual_f4_gpu_engineering_components_20261125_initial.json",
+    "sha256": "086febf7c98d1eae7b3b94b1b022969e4fd34a1401b4770c42f481fe193d9e16"
+  },
+  "actual_GPU_coordinate_contract": "After actual CUDA configuration, the source->network->stride8 ROI transform must exactly pool known linear planes to[24,12]; a CPU result cannot qualify CUDA.",
+  "historical_actual_CPU_comparator_scope": "Previous92second actualRGB CPU inference comparator remains evidence for unchanged executed core only. Changed GPU-entry code requires current CPU integration and later actualGPU execution."
 }

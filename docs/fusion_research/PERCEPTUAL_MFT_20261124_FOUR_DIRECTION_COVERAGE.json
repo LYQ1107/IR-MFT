@@ -118,7 +118,16 @@
     "configs/perceptual_f4_official_evaluation_20261125.json": "abdeea2748aa0098ec0df901e3e508fcd0c72f2c47b555044fca4642e726e65a",
     "tools/audit_ir_pair_train_progress.py": "327aea8c88f6e3bd3c132d9952938634083e0cc0cff0a03116be9d6d93d3878d",
     "docs/fusion_research/PERCEPTUAL_MFT_20261125_F4_OFFICIAL_EVALUATION_CPU_PROOF.json": "d65187b053f2d581e4f22f23fee6fbd07989ea2afb6cd43ec3d650bf958418cc",
-    "docs/fusion_research/PERCEPTUAL_MFT_20261125_IR_REMAINING_FIRST_FULL_TRAIN_AUDIT.json": "a47a0769426f622ccf1a892be5b1f1781782fc83cb03e483ed3f87ad2316aab0"
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_IR_REMAINING_FIRST_FULL_TRAIN_AUDIT.json": "a47a0769426f622ccf1a892be5b1f1781782fc83cb03e483ed3f87ad2316aab0",
+    "tools/fusion_memory_pipeline.py": "9fb212b395f684f794970edb25d7ca2d2d8fbab011f6bef5dc4772b912b293cf",
+    "tools/launch_fusion_memory.py": "8c4e2c2ab75c8435e8266f48f336331f121ba165682caa88a5d8d22e18301480",
+    "tools/probe_f4_pipeline_cpu.py": "0dabf7f24793f4a58bd573d2c52438ac51f7dd163c99b86612105fa54e7e16b2",
+    "tools/fusion_memory_gpu_checks.py": "06373a25acddce85aea4141e7f9b35c0dd6dd91de85ee3b0116926e7bc217137",
+    "tools/probe_f4_gpu_engineering.py": "81cf8b7a75c5804945189d7d61cb3e4e5afe25e07a8c320df38aea8e9bc7310d",
+    "tests/test_fusion_memory_pipeline.py": "83e66b3b70818f79374a0a965d63e235b3a5816faa48bfb63dce0ff5f21b9221",
+    "configs/perceptual_f4_full_workflow_20261125.json": "8763d341dce9cb425cd9e0b5b5fd59c2ff33672cced3f390897634753e96c6d9",
+    "configs/perceptual_f4_gpu_engineering_components_20261125.json": "2a7506a80c01445c8a1625be040a11e386fcc9ea33d1ffb29ec972ad615ee5e9",
+    "configs/perceptual_f4_gpu_engineering_components_20261125_initial.json": "086febf7c98d1eae7b3b94b1b022969e4fd34a1401b4770c42f481fe193d9e16"
   },
   "source_audit_sha256": "b31686c66b8be1d594093e61ae07aa9423ab28c2088ea7e9b492059e299f1533",
   "four_directions_completed_or_evidence_excluded": false,
@@ -337,5 +346,27 @@
     "all_actual_address_digests_exact": true,
     "final_three_pass_fit_complete": false,
     "new_HOTA": false
+  },
+  "latest_F4_full_workflow_UTC": "2026-11-24T21:26:17.363273+00:00",
+  "F4_full_workflow": {
+    "complete_pipeline_implemented": true,
+    "complete_CPU_integration_passed": 95,
+    "registered_source_count": 384,
+    "registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468",
+    "CPU_controller": {
+      "pid": 488189,
+      "start_ticks": 82242612,
+      "command_sha256": "cb654835ab22b9a1078e053073ad5ebf46f467050d7708420a6cfc0133778423"
+    },
+    "CPU_controller_status": "WAITING_FOR_COMPLETE_SPATIAL_EXPORT_AND_ACTUAL_EXITS",
+    "predecessor_release": false,
+    "missing_parent_markers": 6,
+    "actual_parent_eligibility": null,
+    "actual_GPU_engineering_completed": false,
+    "actual_learned_fusion_transferred": false,
+    "formal_accuracy_started": false,
+    "new_Dev_Test_accuracy": false,
+    "goal_met": false,
+    "independent_contribution_supported": false
   }
 }
