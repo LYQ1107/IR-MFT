@@ -1,0 +1,1192 @@
+{
+  "id": "NR37_native_query_rgb_rgb",
+  "config": {
+    "id": "NR37_native_query_rgb_rgb",
+    "backend": "native_query",
+    "detection_arm": "rgb",
+    "calibration_cue": "rgb",
+    "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch18.pt",
+    "association_plan_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+    "source_mode": "rgb",
+    "target_mode": "rgb",
+    "lags": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "object_files": true,
+    "preserve_distinct_objects": true,
+    "global_birth_threshold": 0.6,
+    "appearance_penalty": 0,
+    "shape_penalty": 0,
+    "color_penalty": 0,
+    "association_weight": 0.8,
+    "minimum_probability": 0.8,
+    "probability_margin": 0.15,
+    "opening_probability": 0.95,
+    "preserve_clear_motion": false,
+    "point_stages": [
+      "primary",
+      "secondary"
+    ],
+    "candidate_birth": false,
+    "registration": "Frozen thresholds before native Dev replay. Compare all current proposals and null; keep RGB point fallback. Prebirth consults only previously returned IDs before a new ID is first returned. No Test selection. Frozen original complete-Dev behavior/epoch selection for formal all7Test backfill. Keep all registered route variants; no Test-based primary promotion or new seed work.",
+    "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+    "association_capacity_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5",
+    "native_cue": "rgb",
+    "native_seed": 0,
+    "native_query_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_query/rgb_rgb_s0/epoch12.pt",
+    "query_ranking": true,
+    "query_weight": 0.8,
+    "query_minimum_probability": 0.8,
+    "query_margin": 0.1,
+    "query_opening_probability": 0.95,
+    "query_null": true,
+    "prebirth_recovery": true,
+    "identity_retention": 128,
+    "prebirth_probability": 0.9,
+    "prebirth_margin": 0.1,
+    "prebirth_minimum_score": 0.3,
+    "clear_identity_anchor": false
+  },
+  "metrics": {
+    "HOTA": 29.827,
+    "DetA": 49.668,
+    "AssA": 18.008,
+    "DetRe": 59.986,
+    "DetPr": 58.689,
+    "AssRe": 20.763,
+    "AssPr": 47.961,
+    "LocA": 73.82,
+    "OWTA": 32.86,
+    "HOTA(0)": 48.607,
+    "LocA(0)": 64.077,
+    "HOTALocA(0)": 31.146,
+    "MOTA": 50.947,
+    "MOTP": 69.828,
+    "MODA": 51.464,
+    "CLR_Re": 76.837,
+    "CLR_Pr": 75.175,
+    "MTR": 38.462,
+    "PTR": 57.692,
+    "MLR": 3.8462,
+    "CLR_TP": 111346.0,
+    "CLR_FN": 33566.0,
+    "CLR_FP": 36769.0,
+    "IDSW": 749.0,
+    "MT": 40.0,
+    "PT": 60.0,
+    "ML": 4.0,
+    "Frag": 2712.0,
+    "sMOTA": 27.763,
+    "IDF1": 31.822,
+    "IDR": 32.173,
+    "IDP": 31.478,
+    "IDTP": 46623.0,
+    "IDFN": 98289.0,
+    "IDFP": 101492.0,
+    "Dets": 148115.0,
+    "GT_Dets": 144912.0,
+    "IDs": 390.0,
+    "GT_IDs": 104.0
+  },
+  "per_sequence": {
+    "BT-002": {
+      "HOTA": 39.28258579451256,
+      "DetA": 45.39721339936191,
+      "AssA": 34.24653076988946,
+      "DetRe": 53.6447101526636,
+      "DetPr": 53.72098741674417,
+      "LocA": 69.71767049047249,
+      "IDF1": 49.97462701715214,
+      "IDR": 49.93914807302231,
+      "IDP": 50.01015640869389,
+      "MOTA": 25.943204868154158,
+      "CLR_Re": 63.24543610547667,
+      "CLR_Pr": 63.33536461507211,
+      "IDSW": 34,
+      "CLR_TP": 3118,
+      "CLR_FN": 1812,
+      "CLR_FP": 1805,
+      "Frag": 129,
+      "IDTP": 2462,
+      "IDFN": 2468,
+      "IDFP": 2461,
+      "Dets": 4923,
+      "GT_Dets": 4930,
+      "IDs": 22,
+      "GT_IDs": 10,
+      "CLR_Frames": 493
+    },
+    "BT-004": {
+      "HOTA": 41.380286150743515,
+      "DetA": 62.526108493454124,
+      "AssA": 27.46304647802347,
+      "DetRe": 68.6693798716976,
+      "DetPr": 69.14971207879803,
+      "LocA": 76.0530227236432,
+      "IDF1": 51.831393437232855,
+      "IDR": 51.651376146788984,
+      "IDP": 52.01266992213277,
+      "MOTA": 83.36828309305373,
+      "CLR_Re": 91.53342070773263,
+      "CLR_Pr": 92.17368351590339,
+      "IDSW": 30,
+      "CLR_TP": 6984,
+      "CLR_FN": 646,
+      "CLR_FP": 593,
+      "Frag": 108,
+      "IDTP": 3941,
+      "IDFN": 3689,
+      "IDFP": 3636,
+      "Dets": 7577,
+      "GT_Dets": 7630,
+      "IDs": 20,
+      "GT_IDs": 10,
+      "CLR_Frames": 763
+    },
+    "MSK-003": {
+      "HOTA": 35.04361623022314,
+      "DetA": 42.777207509052126,
+      "AssA": 29.117983792790135,
+      "DetRe": 48.89832465388474,
+      "DetPr": 56.03108845122486,
+      "LocA": 70.39361313326854,
+      "IDF1": 42.30715434645779,
+      "IDR": 39.61430161744483,
+      "IDP": 45.39281158550311,
+      "MOTA": 27.05127365594919,
+      "CLR_Re": 57.35708205094624,
+      "CLR_Pr": 65.72371876641405,
+      "IDSW": 120,
+      "CLR_TP": 17518,
+      "CLR_FN": 13024,
+      "CLR_FP": 9136,
+      "Frag": 668,
+      "IDTP": 12099,
+      "IDFN": 18443,
+      "IDFP": 14555,
+      "Dets": 26654,
+      "GT_Dets": 30542,
+      "IDs": 76,
+      "GT_IDs": 49,
+      "CLR_Frames": 629
+    },
+    "PF-002": {
+      "HOTA": 57.984956643307854,
+      "DetA": 63.53658670210718,
+      "AssA": 52.91881446020162,
+      "DetRe": 69.31929824561404,
+      "DetPr": 68.82604492366114,
+      "LocA": 75.50639738409096,
+      "IDF1": 82.35489495972764,
+      "IDR": 82.65,
+      "IDP": 82.06188978983948,
+      "MOTA": 84.06666666666666,
+      "CLR_Re": 92.43333333333334,
+      "CLR_Pr": 91.7756081416515,
+      "IDSW": 5,
+      "CLR_TP": 5546,
+      "CLR_FN": 454,
+      "CLR_FP": 497,
+      "Frag": 88,
+      "IDTP": 4959,
+      "IDFN": 1041,
+      "IDFP": 1084,
+      "Dets": 6043,
+      "GT_Dets": 6000,
+      "IDs": 8,
+      "GT_IDs": 2,
+      "CLR_Frames": 3000
+    },
+    "SN-009": {
+      "HOTA": 23.820882327059277,
+      "DetA": 56.01822247383286,
+      "AssA": 10.221378558118243,
+      "DetRe": 64.48573322862309,
+      "DetPr": 64.07027266816156,
+      "LocA": 75.02347344025627,
+      "IDF1": 23.764348843405035,
+      "IDR": 23.841398224329474,
+      "IDP": 23.687795866528113,
+      "MOTA": 68.0425789057779,
+      "CLR_Re": 84.59768512062475,
+      "CLR_Pr": 84.05264980949082,
+      "IDSW": 217,
+      "CLR_TP": 36399,
+      "CLR_FN": 6627,
+      "CLR_FP": 6906,
+      "Frag": 763,
+      "IDTP": 10258,
+      "IDFN": 32768,
+      "IDFP": 33047,
+      "Dets": 43305,
+      "GT_Dets": 43026,
+      "IDs": 95,
+      "GT_IDs": 14,
+      "CLR_Frames": 4500
+    },
+    "SN-011": {
+      "HOTA": 17.432662563851252,
+      "DetA": 41.261075893671126,
+      "AssA": 7.474072958788246,
+      "DetRe": 57.28407992525999,
+      "DetPr": 48.58270069610658,
+      "LocA": 73.01485987146161,
+      "IDF1": 16.283330514685158,
+      "IDR": 17.741539217492782,
+      "IDP": 15.046621868000209,
+      "MOTA": 28.975492905841165,
+      "CLR_Re": 73.7669676309809,
+      "CLR_Pr": 62.56185862374329,
+      "IDSW": 211,
+      "CLR_TP": 24020,
+      "CLR_FN": 8542,
+      "CLR_FP": 14374,
+      "Frag": 658,
+      "IDTP": 5777,
+      "IDFN": 26785,
+      "IDFP": 32617,
+      "Dets": 38394,
+      "GT_Dets": 32562,
+      "IDs": 105,
+      "GT_IDs": 9,
+      "CLR_Frames": 4500
+    },
+    "SN-014": {
+      "HOTA": 31.52430997543762,
+      "DetA": 56.68225454474928,
+      "AssA": 17.660900756712515,
+      "DetRe": 67.00883352679988,
+      "DetPr": 63.860343634428915,
+      "LocA": 76.18864461378912,
+      "IDF1": 34.39588813011269,
+      "IDR": 35.24379388784492,
+      "IDP": 33.58782223478958,
+      "MOTA": 70.07714370487588,
+      "CLR_Re": 87.83008604490159,
+      "CLR_Pr": 83.70328479193176,
+      "IDSW": 132,
+      "CLR_TP": 17761,
+      "CLR_FN": 2461,
+      "CLR_FP": 3458,
+      "Frag": 298,
+      "IDTP": 7127,
+      "IDFN": 13095,
+      "IDFP": 14092,
+      "Dets": 21219,
+      "GT_Dets": 20222,
+      "IDs": 64,
+      "GT_IDs": 10,
+      "CLR_Frames": 2100
+    }
+  },
+  "manifest": {
+    "status": "INFERENCE_COMPLETE_BEFORE_GT_EVALUATION",
+    "config": {
+      "id": "NR37_native_query_rgb_rgb",
+      "backend": "native_query",
+      "detection_arm": "rgb",
+      "calibration_cue": "rgb",
+      "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch18.pt",
+      "association_plan_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+      "source_mode": "rgb",
+      "target_mode": "rgb",
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "object_files": true,
+      "preserve_distinct_objects": true,
+      "global_birth_threshold": 0.6,
+      "appearance_penalty": 0,
+      "shape_penalty": 0,
+      "color_penalty": 0,
+      "association_weight": 0.8,
+      "minimum_probability": 0.8,
+      "probability_margin": 0.15,
+      "opening_probability": 0.95,
+      "preserve_clear_motion": false,
+      "point_stages": [
+        "primary",
+        "secondary"
+      ],
+      "candidate_birth": false,
+      "registration": "Frozen thresholds before native Dev replay. Compare all current proposals and null; keep RGB point fallback. Prebirth consults only previously returned IDs before a new ID is first returned. No Test selection. Frozen original complete-Dev behavior/epoch selection for formal all7Test backfill. Keep all registered route variants; no Test-based primary promotion or new seed work.",
+      "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+      "association_capacity_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5",
+      "native_cue": "rgb",
+      "native_seed": 0,
+      "native_query_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_query/rgb_rgb_s0/epoch12.pt",
+      "query_ranking": true,
+      "query_weight": 0.8,
+      "query_minimum_probability": 0.8,
+      "query_margin": 0.1,
+      "query_opening_probability": 0.95,
+      "query_null": true,
+      "prebirth_recovery": true,
+      "identity_retention": 128,
+      "prebirth_probability": 0.9,
+      "prebirth_margin": 0.1,
+      "prebirth_minimum_score": 0.3,
+      "clear_identity_anchor": false
+    },
+    "config_path": "/data3/liuyeqiang/IR-MFT/configs/perceptual_native_remaining_test_cases_20261124/NR37_native_query_rgb_rgb.json",
+    "config_sha256": "6daaa76ea07f7eb808befb7fdd017cc135f363350235498f02b8110007dfebd1",
+    "plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+    "split": "test",
+    "sequences": [
+      "BT-002",
+      "BT-004",
+      "MSK-003",
+      "PF-002",
+      "SN-009",
+      "SN-011",
+      "SN-014"
+    ],
+    "frames": 15985,
+    "sources": {
+      "BT-002": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/BT-002/rgb.npz",
+        "sha256": "fedf2df77554fb08b6ae6c4420d741c2e76491f344061dc0ff00d9031f65635d",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/BT-002/rgb.npz",
+          "sha256": "c386afe4c8d3dfe68b56b2850aa4c6b54880bf821a242cdd125cf3c7d777fa34"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-002/rgb/rgb.npz",
+            "sha256": "91092629394c08fc63877a7e06dd6fd10f0f9a34a72488b0499126075b481885",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "BT-004": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/BT-004/rgb.npz",
+        "sha256": "6780bad4fef67b9d5630999df4ceeae2c7ce841727de8fa9d3c59909ef179aee",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/BT-004/rgb.npz",
+          "sha256": "533b58b9561519c5eea4e365f86234769eccae39b0f3a6c86c6aeaa740d8b768"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-004/rgb/rgb.npz",
+            "sha256": "921350227a99c33851cb36f3b20944aa511627de7a81348450efd196949a50b3",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "MSK-003": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/MSK-003/rgb.npz",
+        "sha256": "66235267fb2573b9e0cf73ed77f7231382806c943e5cbb0a942892e4e8453c61",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/MSK-003/rgb.npz",
+          "sha256": "0bb7bc800bb6c03ba44ef13e4b8819678c8a0a699b27a0580a32aa81decdeabd"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/MSK-003/rgb/rgb.npz",
+            "sha256": "08f130ec5c95e152c8f1e43e7bdcd97fa391a72d7057eab26b67d1faa05376d3",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "PF-002": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/PF-002/rgb.npz",
+        "sha256": "bd6ce1862c223506378546eaaa37294a4fab5e084fd1581d0dab4e06e4d70610",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/PF-002/rgb.npz",
+          "sha256": "c24cbe696141ba650ec70f90b0fc2734bb880132a8053a372f085bfaf5eb9af0"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/PF-002/rgb/rgb.npz",
+            "sha256": "f11725f7225169b767757b9fa8942feb254aa873288019c9fef605743db6490f",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-009": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-009/rgb.npz",
+        "sha256": "5afc2d77edf8aa242d30ed7e6ea99f59ec923a7bee60c71a2f35413541063633",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-009/rgb.npz",
+          "sha256": "e121f38e247113757cfae24b488ff728653474d67ddf6bbec9e175e99a47ba43"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-009/rgb/rgb.npz",
+            "sha256": "ba327ce2b78165e97c7a5a69c3f60f7eeb68481e0a0db55c9eea41ae88c47025",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-011": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-011/rgb.npz",
+        "sha256": "b8ab1adb52ef43ac4a446a6d61de5b227ecac07527232e1d13675e4fef7f80d1",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-011/rgb.npz",
+          "sha256": "fa478c7a20ad04be3996101e28a2633846507a60079ebfc1751ef1b78f7f4ad1"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-011/rgb/rgb.npz",
+            "sha256": "b84972fe5ccc78540e2cc471876b975eb6b4b64c916180669cc41a6202cc9c60",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-014": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-014/rgb.npz",
+        "sha256": "bba441f9bfcaa8c59557b817a3ee3242032a5d5b50eab2c6d729620847bf392b",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-014/rgb.npz",
+          "sha256": "8e3cfbc5c186c135c8661384465377265dfeb903e0c6fe84865022f3428e2332"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-014/rgb/rgb.npz",
+            "sha256": "b7ffaa16ebf33b14a8ba4797b421143180baae3eab74fb899935c3b79c137319",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/rgb_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "6d61323be09c379fdf4ba3a42283dcb15b7d36f7abbc55135c74ef4574e2a861",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      }
+    },
+    "coverage": {
+      "BT-002": {
+        "frames": 493,
+        "detections": 6398,
+        "output_rows": 4923,
+        "output_sha256": "ff622c21de38e2049b76439804866127d91c1ddb5e12ffc371746ee8e9543c1c"
+      },
+      "BT-004": {
+        "frames": 763,
+        "detections": 9940,
+        "output_rows": 7577,
+        "output_sha256": "4156d90bee85bf6d57c330d95e399bb54239bb1c8f19ad75fe70684c76d79fcf"
+      },
+      "MSK-003": {
+        "frames": 629,
+        "detections": 34215,
+        "output_rows": 26654,
+        "output_sha256": "201685790e8acb074797e32bffb3af907d46fc061db1d336ddd4bd195c0e7a1c"
+      },
+      "PF-002": {
+        "frames": 3000,
+        "detections": 6293,
+        "output_rows": 6043,
+        "output_sha256": "2b789fbae5ffcac1620faa84092764d2e0ee0cef5fa1f207b82e2f2df9aeb504"
+      },
+      "SN-009": {
+        "frames": 4500,
+        "detections": 53378,
+        "output_rows": 43305,
+        "output_sha256": "9052f2fd5c35e14e8d7efab8ee419542ef2fa97e3bb21148afcca5777446891e"
+      },
+      "SN-011": {
+        "frames": 4500,
+        "detections": 48768,
+        "output_rows": 38394,
+        "output_sha256": "9edc22fc154c5744bc84ae3868330353885127fe29450450764fea67c2b674ef"
+      },
+      "SN-014": {
+        "frames": 2100,
+        "detections": 26028,
+        "output_rows": 21219,
+        "output_sha256": "3f0ec6d4a3a0dae756c9c7f4c7d43af89fd5f0ee7a1dff4640eee4a0403e68e9"
+      }
+    },
+    "statistics": {
+      "BT-002": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 4984,
+        "point_opened_edges": 6,
+        "history_anchors": 4984,
+        "duplicate_vetoes": 0,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 4984,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 19,
+        "prebirth_long_recoveries": 7,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 76,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 4989,
+        "native_increment_rows": 4989,
+        "native_opened_edges": 18,
+        "native_null_rejections": 21
+      },
+      "BT-004": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 7397,
+        "point_opened_edges": 8,
+        "history_anchors": 7397,
+        "duplicate_vetoes": 5,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 7397,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 18,
+        "prebirth_long_recoveries": 4,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 119,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 7947,
+        "native_increment_rows": 7947,
+        "native_opened_edges": 13,
+        "native_null_rejections": 8
+      },
+      "MSK-003": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 25385,
+        "point_opened_edges": 1,
+        "history_anchors": 25385,
+        "duplicate_vetoes": 10,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 25385,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 53,
+        "prebirth_long_recoveries": 16,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 208,
+        "suppressed_unemitted_IDs": 1,
+        "native_query_rows": 31457,
+        "native_increment_rows": 31457,
+        "native_opened_edges": 58,
+        "native_null_rejections": 221
+      },
+      "PF-002": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 6004,
+        "point_opened_edges": 1,
+        "history_anchors": 6004,
+        "duplicate_vetoes": 0,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 6004,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 6,
+        "prebirth_long_recoveries": 3,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 9,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 6157,
+        "native_increment_rows": 6157,
+        "native_opened_edges": 20,
+        "native_null_rejections": 13
+      },
+      "SN-009": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 43037,
+        "point_opened_edges": 14,
+        "history_anchors": 43037,
+        "duplicate_vetoes": 47,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 43037,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 223,
+        "prebirth_long_recoveries": 88,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 777,
+        "suppressed_unemitted_IDs": 11,
+        "native_query_rows": 45492,
+        "native_increment_rows": 45492,
+        "native_opened_edges": 252,
+        "native_null_rejections": 667
+      },
+      "SN-011": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 38140,
+        "point_opened_edges": 3,
+        "history_anchors": 38140,
+        "duplicate_vetoes": 63,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 38140,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 164,
+        "prebirth_long_recoveries": 65,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 577,
+        "suppressed_unemitted_IDs": 9,
+        "native_query_rows": 40960,
+        "native_increment_rows": 40960,
+        "native_opened_edges": 85,
+        "native_null_rejections": 649
+      },
+      "SN-014": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 20952,
+        "point_opened_edges": 2,
+        "history_anchors": 20952,
+        "duplicate_vetoes": 37,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 20952,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 0,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 138,
+        "prebirth_long_recoveries": 50,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 0,
+        "prebirth_candidate_pairs": 459,
+        "suppressed_unemitted_IDs": 6,
+        "native_query_rows": 22867,
+        "native_increment_rows": 22867,
+        "native_opened_edges": 136,
+        "native_null_rejections": 218
+      }
+    },
+    "replay_seconds": 797.065947388066,
+    "replay_FPS": 20.054802306360997,
+    "GT_inference_input": false,
+    "future_frame_input": false,
+    "previous_outputs_rewritten": false,
+    "git_commit": "7961a10f302e1b613df749e17a0131ab267065a8",
+    "tracker_source_sha256": "7e6355143a92505797ac0367f54a23e42d30640c99fe9825992b23d8d70d6880",
+    "byte_tracker_source_sha256": "1a19bde221fc65bbca11d3c45cb2acbe571705510e3f94bfbaca95571d409f1a",
+    "replay_source_sha256": "86f00ffd781ac6d38c83f10d6abca3f0e211c941d48227b8d53f9825dfaf3eb6",
+    "CPU_threads": "2",
+    "evidence_tracker_source_sha256": "6f16953382f1f3a77507f63b652a66386c1d944692fec713632e0a4ae59c6792",
+    "foreground_tracker_source_sha256": "f50615391dd48fa5b8f3e05a0d784e7d20f5f00bb486002414fba2eac6442e42",
+    "candidate_tracker_source_sha256": "05204ca934b080970a9bb3d2eaa8db75cf5db893edb2cb6613f2e863823875a4",
+    "residual_tracker_source_sha256": "8ccec3ab6091da3f3ec64e05f1e9253b4b7f71e9d02f7ccaa152be67d6c43750",
+    "calibration": {
+      "cue": "rgb",
+      "seed": 0,
+      "epoch": 18,
+      "sources": {
+        "BT-001": "680879a56e0354ee93636cb049b305abe23b7966b02980a7e12e9870c0e7c45f",
+        "BT-003": "3823308d40a764302f5349c7caede08d08f980c61e2ee9673db072167172a44f",
+        "MSK-002": "cbbe594135fb32759b08b7545b1a6cb2a75bfd2db23fc696fa09c5e9ef590c03",
+        "PF-001": "cb6ecad4f451d61549f771caee575b97c5eea6b218577ab0addcf373451f37f9",
+        "SN-001": "b808b90fb08b8998058aa5b302d9fbeee39370ec5e3d47aadc956be564fe201c",
+        "SN-015": "e9417b631991e0a2d20a294db4e7c9e6fc6d563ba2096a28b42727aa99c63071"
+      },
+      "fit_sequences": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "config_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+      "prior_plan_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+      "capacity_plan_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5"
+    },
+    "calibration_intervention": {
+      "disable_native_increment": false,
+      "shuffle_native_cue": false,
+      "scope": "Only native backend identity evidence; the complete frozen RGB scorer, real/null prior, RGB reference and detector proposals remain. Shuffle uses current-frame candidates only."
+    },
+    "association_checkpoint_sha256": "ee803aff569fd616e851851d34d1d0e7d7d5a37b0de85058e861c1b51e00e690",
+    "calibrated_tracker_source_sha256": "717a5fdd4b922eb3d507c05449c3327cda0436909e7f0f03718a8184f0052cc6",
+    "association_model_source_sha256": "579763ae52c0e42d9299600398c3fe9a1f26f948598eb064a314809d513c6191",
+    "association_features_source_sha256": "ae6efda4b25723674a9960cb81ac35dc38fa26801f68796f1e2e141b64e3fd9c",
+    "native_query": {
+      "cue": "rgb",
+      "seed": 0,
+      "epoch": 12,
+      "feature_schema": "native_query_v2_RGB26_cue9",
+      "config_sha256": "bf39c9818953bbde38c73f11f0433eb2a40d28f144323a32477750505e8ed433",
+      "feature_plan_sha256": "ab7d27a58c1db0da3289c472cb9835861c8bd5ab067d259502d69635042f93d8",
+      "sources": {
+        "BT-001_local": {
+          "query": {
+            "old": "680879a56e0354ee93636cb049b305abe23b7966b02980a7e12e9870c0e7c45f",
+            "reference": "aeffd014e750a102a5af989f05a26f5c3451b60d0d3f2f3a5061760d61d1b3eb",
+            "native": "bc3f2f9ff35728dfc1fb23d59ea89f248d248448633526da8331a5b306854f40"
+          },
+          "prior_cache": "bad7bb41e1b8186be987f5311bd13ddbf1f0545f494af6e75fefd450272f947d"
+        },
+        "BT-003_local": {
+          "query": {
+            "old": "3823308d40a764302f5349c7caede08d08f980c61e2ee9673db072167172a44f",
+            "reference": "de93e81857003df7013607f05b7b0f9059d2206d4950397bd011dead241517d7",
+            "native": "e5cdbc246102eae6d2571937617c36b9b844835ba2b91a00196296c18a1a5725"
+          },
+          "prior_cache": "a233a47a9ace2d33550503a92cd4f3b6045444b455cc53962a030ea351f32216"
+        },
+        "MSK-002_local": {
+          "query": {
+            "old": "cbbe594135fb32759b08b7545b1a6cb2a75bfd2db23fc696fa09c5e9ef590c03",
+            "reference": "fa0a404b4f2206487f32a0a8ac964c97e385d978d62e5f29d74297405d9533e2",
+            "native": "9fd608ab852a5990f3dcd4e74e4ef5b56254c8830730ddf1bb3ae2db8b7ca188"
+          },
+          "prior_cache": "4f924823f6def4f643ced5b78e5d51203174a8ec36d6e3532ee4a9534f20bf95"
+        },
+        "PF-001_local": {
+          "query": {
+            "old": "cb6ecad4f451d61549f771caee575b97c5eea6b218577ab0addcf373451f37f9",
+            "reference": "d83e9b96767c1e7e7c97bfd398f4d11535a3d6c9ca7f0d50c8d6bee218bda718",
+            "native": "4d15d516ea1889e24efd2bf0e4595225fee066eb05f8a23249a57dc2abfa9db9"
+          },
+          "prior_cache": "ca23e16ff598c9126b8caed41a2fb168d5d8b3e579795713e33b154ed21bfcd4"
+        },
+        "SN-001_local": {
+          "query": {
+            "old": "b808b90fb08b8998058aa5b302d9fbeee39370ec5e3d47aadc956be564fe201c",
+            "reference": "a53e8fd7411c14a61002e83fc41e26064ba4ceb0075ab312be114d01a072803b",
+            "native": "f96df19c99e83d8b81b821416e0d36b87ddac897ece64d0120d2c5f9e9f0a4ac"
+          },
+          "prior_cache": "b4b27f7255c0a5fd4d5200fa43bc92e9773f8b9e1bf65ed630278e01f8ced347"
+        },
+        "SN-015_local": {
+          "query": {
+            "old": "e9417b631991e0a2d20a294db4e7c9e6fc6d563ba2096a28b42727aa99c63071",
+            "reference": "3957059c3318f6bbc6b5549b1858f14ac8af8f7798c3e45249e2546d48de8580",
+            "native": "de360cfdebd4eb4d21b4de8cd7d21f45e39d2b762dd455760aaff9e7a287859b"
+          },
+          "prior_cache": "5ceb1970800cda3c9fe5d7b5ef67e3c627ab6cc6636f9dd675af9731fc70cdda"
+        },
+        "BT-001_long": {
+          "query": {
+            "old": "0d345defdb8f5c33922f3aa6d6217117004cfddb2ff6276606a5c793c54ebee5",
+            "reference": "1fe342150ea948fb4d004bf66ff74aac87bb1f14e82e5c23923783fc39737532",
+            "native": "6ee73e43c10a2161c225e271a8ac8789dbfd9a0263e6538f18c1d3a36a4ea626"
+          },
+          "prior_cache": "8333f11113b470f964c0dcd079ef6dc8a4719ff5128dde7c4ca95607a76d1db8"
+        },
+        "BT-003_long": {
+          "query": {
+            "old": "86e82058b0d4034380b74f4fa4a595adcfa1cff2408758c2ac0dc119fe89e43a",
+            "reference": "5ef7af8bdbbf7879c6d13375540f5c6752785eac7d1e6bed503586b3a14c3d6a",
+            "native": "2a06851248d049513aa43cd91de5487b932ee34c03ea9f7bd84b7fff27abe03c"
+          },
+          "prior_cache": "169a12a9356e6df1cd8a94035107b0df8520a62fd9761d53fa410b8c782a40a1"
+        },
+        "MSK-002_long": {
+          "query": {
+            "old": "6f2943873115dfa935e87f027b5c35925b2889b35880d2e18bbdf4dbe09379ae",
+            "reference": "df55321c2be6d3d764f77b153504766c400628b495fba5efaa6ae4a4cd7e0239",
+            "native": "b3af737d03a04ae13bc86655c74e8bfdcec31954a9057635ac8b867315e015c5"
+          },
+          "prior_cache": "86cd938a0af7ddad59c8b7222211dc63918273cdce38863199c4669bef4923d6"
+        },
+        "PF-001_long": {
+          "query": {
+            "old": "e1be385490f0e61bd3be896cef35cf2ee13e37b6a5a917a9c6835d0ad6369ab4",
+            "reference": "7ed5983788575e7a55e0d0b8bc3011226d7bfe15b98067c63414d9691b699d06",
+            "native": "79594eea98c68e08dbaf3300ecb6a291c6da8817c1a51e01bf5d5925bb085f42"
+          },
+          "prior_cache": "803978c10f653e0d5fc115373fcda6bd2f2e5c2ea6a9ee6ae8cb4c3d6234db26"
+        },
+        "SN-001_long": {
+          "query": {
+            "old": "9c8ef573143c1b56fdc54c02a7a0d7aede9c2b2b8a0963194ba0cdc38860867d",
+            "reference": "3fbc9d035d376fda28293bf295b22d2d3a8597b9cffeda4fa85a6aae944b7a02",
+            "native": "22b6a6a42e0caf6b383f9eeb677a41a039aafd6b02496c0ed21a35daee457a39"
+          },
+          "prior_cache": "64023e9e76a4a7cf5cc9ca9c8e439ae75ac0484f4aa2fb363e61455c2c9a0116"
+        },
+        "SN-015_long": {
+          "query": {
+            "old": "53a25ec18dca8dae576c01a8dc1a3a4f7edc142965d3dbcba02de3ebd90c34db",
+            "reference": "23540fbe9ccaadc29641f41caec799386a320b09e2dacd499df93fee855ec5bc",
+            "native": "6f8c9e0ea20ae76795ad73d58ac27b285f590f6e4429485630d2c93aae872f37"
+          },
+          "prior_cache": "28811df5089f977be7d7729ea8945ca4bc8a4d78ba7efd3d99586bed75e146d9"
+        }
+      },
+      "core": {
+        "frontend": "rgb",
+        "cue": "rgb",
+        "seed": 0,
+        "curve": [
+          {
+            "epoch": 6,
+            "HOTA": 43.682,
+            "IDF1": 49.791,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_rgb_rgb_s0_e06/metrics.json",
+            "Dev_metrics_sha256": "294d81d7f9ea09a02733774c4824be41fdf4596ad2668969270175c85f3abd64",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_rgb_rgb_s0_e06.json"
+          },
+          {
+            "epoch": 12,
+            "HOTA": 44.939,
+            "IDF1": 51.343,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_rgb_rgb_s0_e12/metrics.json",
+            "Dev_metrics_sha256": "f1eca4da77e8f5f17ec8b033c7a637e14106ed4118062541e4961aa18f12c249",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_rgb_rgb_s0_e12.json"
+          },
+          {
+            "epoch": 18,
+            "HOTA": 45.579,
+            "IDF1": 51.777,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_rgb_rgb_s0_e18/metrics.json",
+            "Dev_metrics_sha256": "10ed2597338100db43db34d525b195b85c17dc1c889535d7752bc395e7758fca",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_rgb_rgb_s0_e18.json"
+          },
+          {
+            "epoch": 24,
+            "HOTA": 43.667,
+            "IDF1": 49.198,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated24_dev/G_rgb_rgb_s0_e24/metrics.json",
+            "Dev_metrics_sha256": "19a232b9b8efa035ea0ffa79ac868a0ef3f631e1bf7e15cabfcf496f12315ed9",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated24_dev_20261123/G_rgb_rgb_s0_e24.json"
+          },
+          {
+            "epoch": 30,
+            "HOTA": 44.66,
+            "IDF1": 50.021,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated30_dev/G_rgb_rgb_s0_e30/metrics.json",
+            "Dev_metrics_sha256": "186f64f80e4890910f5683c63ba39d7b8aa7a2dbaed2da9008cdfeb7d792632a",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated30_dev_20261123/G_rgb_rgb_s0_e30.json"
+          },
+          {
+            "epoch": 36,
+            "HOTA": 44.602,
+            "IDF1": 49.916,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated36_dev/G_rgb_rgb_s0_e36/metrics.json",
+            "Dev_metrics_sha256": "714d798b448371a0b914941c3efe328ce320a0cdccf4dee7e418623fe1db2c33",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated36_dev_20261123/G_rgb_rgb_s0_e36.json"
+          }
+        ],
+        "selected": {
+          "epoch": 18,
+          "HOTA": 45.579,
+          "IDF1": 51.777,
+          "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_rgb_rgb_s0_e18/metrics.json",
+          "Dev_metrics_sha256": "10ed2597338100db43db34d525b195b85c17dc1c889535d7752bc395e7758fca",
+          "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_rgb_rgb_s0_e18.json"
+        },
+        "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_pair_selected_20261123/K_rgb_rgb_s0.json",
+        "configuration_sha256": "fd3e9cd74123374939377d631084043f5ce3d63e37a95315754c8c061f90fa0f",
+        "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch18.pt",
+        "checkpoint_sha256": "ee803aff569fd616e851851d34d1d0e7d7d5a37b0de85058e861c1b51e00e690",
+        "executed_epochs": 36
+      },
+      "prior_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_RGB_prior/rgb_s0/complete.json",
+      "prior_sha256": "7171a19e2d91fcf7de020058e4de8b0be4a23f4d9f18dd9cb769ed8f9ec8058d",
+      "prior_parameters": {
+        "t": 0.9787515319648361,
+        "a": 15.095318619444592,
+        "b": 1.4835358880491523,
+        "c": -0.006721871098552991
+      },
+      "alignment_sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9"
+    },
+    "native_query_checkpoint_sha256": "fd4106781cbf6bb927f42a3368f8db69e489e4a3970134ce3993400f97607c60",
+    "native_query_tracker_source_sha256": "368779f10cda22296bc92b895af63007b10ac94af31356cd6017b051941d03fb",
+    "native_query_features_source_sha256": "c9c26d004c3c151b2c2edb5eb8b314e206437416844563ef2338f49cd1b7787b",
+    "native_query_loader_source_sha256": "1d64f7c5272c4e4b3ab58165cafe23c524fa1b3f7b54552640a0b910abcb3133",
+    "prebirth_tracker_source_sha256": "03da7a13eee7e0b26bfa6aad18fc5b41001cba175c41a56b2ea6bf5d12c84356",
+    "replay_FPS_scope": "Cached features only; detector, crop encoders and point extraction excluded. This is not end-to-end FPS."
+  },
+  "metrics_sha256": "de5e92258d2c1b10b857c72223053db3aee5f64a5614f86a8bdff3bb1ba9d474",
+  "official_detailed_csv_sha256": "5b7a2d3661aa8408b8d41e844f155e41e724a62e49d6b5480673f9c59e2d8540",
+  "official_detailed_csv_file": "docs/fusion_research/perceptual_20261122_official_tables/native_remaining_test_backfill_test/NR37_native_query_rgb_rgb.csv"
+}

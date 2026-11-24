@@ -1,0 +1,1381 @@
+{
+  "id": "NR56_native_query_new_ir",
+  "config": {
+    "id": "NR56_native_query_new_ir",
+    "backend": "native_query",
+    "detection_arm": "new",
+    "calibration_cue": "rgb",
+    "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch30.pt",
+    "association_plan_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+    "source_mode": "rgb",
+    "target_mode": "rgb",
+    "lags": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "object_files": true,
+    "preserve_distinct_objects": true,
+    "global_birth_threshold": 0.6,
+    "appearance_penalty": 0,
+    "shape_penalty": 0,
+    "color_penalty": 0,
+    "association_weight": 0.8,
+    "minimum_probability": 0.8,
+    "probability_margin": 0.15,
+    "opening_probability": 0.95,
+    "preserve_clear_motion": false,
+    "point_stages": [
+      "primary",
+      "secondary"
+    ],
+    "candidate_birth": false,
+    "registration": "Frozen thresholds before native Dev replay. Compare all current proposals and null; keep RGB point fallback. Prebirth consults only previously returned IDs before a new ID is first returned. No Test selection. Frozen original complete-Dev behavior/epoch selection for formal all7Test backfill. Keep all registered route variants; no Test-based primary promotion or new seed work.",
+    "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+    "association_capacity_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5",
+    "native_cue": "ir",
+    "native_seed": 0,
+    "native_query_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_query/new_ir_s0/epoch12.pt",
+    "query_ranking": true,
+    "query_weight": 0.8,
+    "query_minimum_probability": 0.8,
+    "query_margin": 0.1,
+    "query_opening_probability": 0.95,
+    "query_null": true,
+    "prebirth_recovery": true,
+    "identity_retention": 128,
+    "prebirth_probability": 0.9,
+    "prebirth_margin": 0.1,
+    "prebirth_minimum_score": 0.3,
+    "clear_identity_anchor": false
+  },
+  "metrics": {
+    "HOTA": 29.794,
+    "DetA": 49.846,
+    "AssA": 17.914,
+    "DetRe": 59.74,
+    "DetPr": 59.18,
+    "AssRe": 20.62,
+    "AssPr": 51.002,
+    "LocA": 73.816,
+    "OWTA": 32.704,
+    "HOTA(0)": 48.27,
+    "LocA(0)": 64.172,
+    "HOTALocA(0)": 30.976,
+    "MOTA": 52.263,
+    "MOTP": 69.754,
+    "MODA": 52.782,
+    "CLR_Re": 76.864,
+    "CLR_Pr": 76.144,
+    "MTR": 39.423,
+    "PTR": 57.692,
+    "MLR": 2.8846,
+    "CLR_TP": 111385.0,
+    "CLR_FN": 33527.0,
+    "CLR_FP": 34897.0,
+    "IDSW": 752.0,
+    "MT": 41.0,
+    "PT": 60.0,
+    "ML": 3.0,
+    "Frag": 2664.0,
+    "sMOTA": 29.016,
+    "IDF1": 31.983,
+    "IDR": 32.135,
+    "IDP": 31.834,
+    "IDTP": 46567.0,
+    "IDFN": 98345.0,
+    "IDFP": 99715.0,
+    "Dets": 146282.0,
+    "GT_Dets": 144912.0,
+    "IDs": 420.0,
+    "GT_IDs": 104.0
+  },
+  "per_sequence": {
+    "BT-002": {
+      "HOTA": 36.67697294051868,
+      "DetA": 44.35791335241188,
+      "AssA": 30.426308389105184,
+      "DetRe": 51.98462688160564,
+      "DetPr": 53.75088308018368,
+      "LocA": 69.62536700723093,
+      "IDF1": 46.050732109713344,
+      "IDR": 45.294117647058826,
+      "IDP": 46.83305369127517,
+      "MOTA": 25.294117647058822,
+      "CLR_Re": 61.21703853955375,
+      "CLR_Pr": 63.29697986577181,
+      "IDSW": 21,
+      "CLR_TP": 3018,
+      "CLR_FN": 1912,
+      "CLR_FP": 1750,
+      "Frag": 131,
+      "IDTP": 2233,
+      "IDFN": 2697,
+      "IDFP": 2535,
+      "Dets": 4768,
+      "GT_Dets": 4930,
+      "IDs": 17,
+      "GT_IDs": 10,
+      "CLR_Frames": 493
+    },
+    "BT-004": {
+      "HOTA": 43.65483777648736,
+      "DetA": 63.03661887068031,
+      "AssA": 30.37799665794684,
+      "DetRe": 68.07339449541283,
+      "DetPr": 71.10198494182067,
+      "LocA": 76.66260053323425,
+      "IDF1": 53.91362571141614,
+      "IDR": 52.765399737876805,
+      "IDP": 55.1129363449692,
+      "MOTA": 83.09305373525558,
+      "CLR_Re": 89.63302752293578,
+      "CLR_Pr": 93.62080766598221,
+      "IDSW": 33,
+      "CLR_TP": 6839,
+      "CLR_FN": 791,
+      "CLR_FP": 466,
+      "Frag": 95,
+      "IDTP": 4026,
+      "IDFN": 3604,
+      "IDFP": 3279,
+      "Dets": 7305,
+      "GT_Dets": 7630,
+      "IDs": 18,
+      "GT_IDs": 10,
+      "CLR_Frames": 763
+    },
+    "MSK-003": {
+      "HOTA": 34.975035736967236,
+      "DetA": 43.544260863242336,
+      "AssA": 28.4860527140236,
+      "DetRe": 49.53902994668257,
+      "DetPr": 56.95114437578873,
+      "LocA": 70.58798111514344,
+      "IDF1": 42.91092472289832,
+      "IDR": 40.11852530940999,
+      "IDP": 46.121127714834195,
+      "MOTA": 30.551371881343726,
+      "CLR_Re": 58.96143016174449,
+      "CLR_Pr": 67.78334023412505,
+      "IDSW": 118,
+      "CLR_TP": 18008,
+      "CLR_FN": 12534,
+      "CLR_FP": 8559,
+      "Frag": 624,
+      "IDTP": 12253,
+      "IDFN": 18289,
+      "IDFP": 14314,
+      "Dets": 26567,
+      "GT_Dets": 30542,
+      "IDs": 73,
+      "GT_IDs": 49,
+      "CLR_Frames": 629
+    },
+    "PF-002": {
+      "HOTA": 55.98324896921005,
+      "DetA": 63.61230676720001,
+      "AssA": 49.304199337060425,
+      "DetRe": 69.33596491228072,
+      "DetPr": 68.96813485969567,
+      "LocA": 75.52831563637437,
+      "IDF1": 70.02992021276596,
+      "IDR": 70.21666666666667,
+      "IDP": 69.84416445623343,
+      "MOTA": 83.85000000000001,
+      "CLR_Re": 92.23333333333333,
+      "CLR_Pr": 91.74403183023873,
+      "IDSW": 5,
+      "CLR_TP": 5534,
+      "CLR_FN": 466,
+      "CLR_FP": 498,
+      "Frag": 93,
+      "IDTP": 4213,
+      "IDFN": 1787,
+      "IDFP": 1819,
+      "Dets": 6032,
+      "GT_Dets": 6000,
+      "IDs": 6,
+      "GT_IDs": 2,
+      "CLR_Frames": 3000
+    },
+    "SN-009": {
+      "HOTA": 23.10898704810392,
+      "DetA": 55.53224400763854,
+      "AssA": 9.696387475627766,
+      "DetRe": 63.86322101446616,
+      "DetPr": 63.83651490029786,
+      "LocA": 74.82354176889436,
+      "IDF1": 22.432903450679678,
+      "IDR": 22.437595872263284,
+      "IDP": 22.42821299135768,
+      "MOTA": 67.91474922140101,
+      "CLR_Re": 84.23511365221029,
+      "CLR_Pr": 84.19988848620017,
+      "IDSW": 221,
+      "CLR_TP": 36243,
+      "CLR_FN": 6783,
+      "CLR_FP": 6801,
+      "Frag": 776,
+      "IDTP": 9654,
+      "IDFN": 33372,
+      "IDFP": 33390,
+      "Dets": 43044,
+      "GT_Dets": 43026,
+      "IDs": 120,
+      "GT_IDs": 14,
+      "CLR_Frames": 4500
+    },
+    "SN-011": {
+      "HOTA": 19.64453607532455,
+      "DetA": 41.8561158022305,
+      "AssA": 9.341495174504914,
+      "DetRe": 57.15978263329228,
+      "DetPr": 49.63430603763469,
+      "LocA": 73.1289201324318,
+      "IDF1": 20.07964488088951,
+      "IDR": 21.601867207174006,
+      "IDP": 18.757833542227793,
+      "MOTA": 31.893004115226336,
+      "CLR_Re": 73.85909956390884,
+      "CLR_Pr": 64.1350436011627,
+      "IDSW": 216,
+      "CLR_TP": 24050,
+      "CLR_FN": 8512,
+      "CLR_FP": 13449,
+      "Frag": 650,
+      "IDTP": 7034,
+      "IDFN": 25528,
+      "IDFP": 30465,
+      "Dets": 37499,
+      "GT_Dets": 32562,
+      "IDs": 117,
+      "GT_IDs": 9,
+      "CLR_Frames": 4500
+    },
+    "SN-014": {
+      "HOTA": 30.701513724222647,
+      "DetA": 56.415742236109814,
+      "AssA": 16.798609548142053,
+      "DetRe": 66.42687224440292,
+      "DetPr": 63.76248210596268,
+      "LocA": 75.9426370810195,
+      "IDF1": 34.65329748843517,
+      "IDR": 35.37731183859164,
+      "IDP": 33.9583234442493,
+      "MOTA": 70.12659479774503,
+      "CLR_Re": 87.49381861339135,
+      "CLR_Pr": 83.98443062609769,
+      "IDSW": 138,
+      "CLR_TP": 17693,
+      "CLR_FN": 2529,
+      "CLR_FP": 3374,
+      "Frag": 295,
+      "IDTP": 7154,
+      "IDFN": 13068,
+      "IDFP": 13913,
+      "Dets": 21067,
+      "GT_Dets": 20222,
+      "IDs": 69,
+      "GT_IDs": 10,
+      "CLR_Frames": 2100
+    }
+  },
+  "manifest": {
+    "status": "INFERENCE_COMPLETE_BEFORE_GT_EVALUATION",
+    "config": {
+      "id": "NR56_native_query_new_ir",
+      "backend": "native_query",
+      "detection_arm": "new",
+      "calibration_cue": "rgb",
+      "association_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch30.pt",
+      "association_plan_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+      "source_mode": "rgb",
+      "target_mode": "rgb",
+      "lags": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "object_files": true,
+      "preserve_distinct_objects": true,
+      "global_birth_threshold": 0.6,
+      "appearance_penalty": 0,
+      "shape_penalty": 0,
+      "color_penalty": 0,
+      "association_weight": 0.8,
+      "minimum_probability": 0.8,
+      "probability_margin": 0.15,
+      "opening_probability": 0.95,
+      "preserve_clear_motion": false,
+      "point_stages": [
+        "primary",
+        "secondary"
+      ],
+      "candidate_birth": false,
+      "registration": "Frozen thresholds before native Dev replay. Compare all current proposals and null; keep RGB point fallback. Prebirth consults only previously returned IDs before a new ID is first returned. No Test selection. Frozen original complete-Dev behavior/epoch selection for formal all7Test backfill. Keep all registered route variants; no Test-based primary promotion or new seed work.",
+      "association_prior_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+      "association_capacity_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5",
+      "native_cue": "ir",
+      "native_seed": 0,
+      "native_query_checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_query/new_ir_s0/epoch12.pt",
+      "query_ranking": true,
+      "query_weight": 0.8,
+      "query_minimum_probability": 0.8,
+      "query_margin": 0.1,
+      "query_opening_probability": 0.95,
+      "query_null": true,
+      "prebirth_recovery": true,
+      "identity_retention": 128,
+      "prebirth_probability": 0.9,
+      "prebirth_margin": 0.1,
+      "prebirth_minimum_score": 0.3,
+      "clear_identity_anchor": false
+    },
+    "config_path": "/data3/liuyeqiang/IR-MFT/configs/perceptual_native_remaining_test_cases_20261124/NR56_native_query_new_ir.json",
+    "config_sha256": "b199bc747cfe22739118a1f571fb44083d1c26dc94d452f6cdfa619a8d994a40",
+    "plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+    "split": "test",
+    "sequences": [
+      "BT-002",
+      "BT-004",
+      "MSK-003",
+      "PF-002",
+      "SN-009",
+      "SN-011",
+      "SN-014"
+    ],
+    "frames": 15985,
+    "sources": {
+      "BT-002": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/BT-002/new.npz",
+        "sha256": "dcb885e6171204ad731a52423ca33a3a9eb6b2d140b11d6f7ce7adff6ac49cba",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/BT-002/new.npz",
+          "sha256": "519d025af0789aac14474a0405e2a6cf9a402526fc71e73e396969879f771f31"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-002/rgb/new.npz",
+            "sha256": "c0419db559dfa41d910d46c36cb82efbdd614c546400995ef570cc77510b9e8a",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-002/ir/new.npz",
+            "sha256": "e5cc3904f85612c2dd9c3c95b7ad4254d154cefb0a50850ff2d50a00f9159bc0",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "BT-004": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/BT-004/new.npz",
+        "sha256": "b20c09e7e2eea4975ae39eeefb2ddf0e14d525fa893e79687c7e91f472cb6393",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/BT-004/new.npz",
+          "sha256": "ce452e5d65f5ec2847afa8c53ad7221d256fbc0f40f5d954ebc901bbb3b32a8a"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-004/rgb/new.npz",
+            "sha256": "f26b21fdf42667669b1052efb1e7b10ee794704a02245332e2910b1183bc25a7",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/BT-004/ir/new.npz",
+            "sha256": "ea1eebdb3a911f3ace8d423be97c4964eaaa8fab1f3e4adc0cd45534f244b188",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "MSK-003": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/MSK-003/new.npz",
+        "sha256": "f8a61e6eddfe40471d1a77b36f31e4e7b4f31bef1c22cf1d5a6d312e97ace598",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/MSK-003/new.npz",
+          "sha256": "fdc16c6015dc827696ee357fd5b521b9843c27695742bf0e90935c92274f0194"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/MSK-003/rgb/new.npz",
+            "sha256": "8b9c5fefe186619b32376aaa4d4c8b75995337f48bb3ae6c7fb94dc9acdd8ba3",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/MSK-003/ir/new.npz",
+            "sha256": "5d0b668d506e0e175d382afa6e2487323b29221ec8788c93db833090cf0c6dd8",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "PF-002": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/PF-002/new.npz",
+        "sha256": "be9dad77e7b7eb7c58a05f84a208a8da7aec8d715cbec768fcf1d1475a2a341c",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/PF-002/new.npz",
+          "sha256": "81622d3c220ca74a2e3ef28bcf3ca35de1ceac9110512a30e7938c818f9c4c92"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/PF-002/rgb/new.npz",
+            "sha256": "67cb7b937394a652ab88db56ae8666d7a2355b64932551f7506b29241dc29beb",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/PF-002/ir/new.npz",
+            "sha256": "4b29731c5a2c574bcd71c85327f2e945cf164ab936e3a233ecfeaa1771d2713b",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-009": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-009/new.npz",
+        "sha256": "64b56e59e535d6256bb79c4a3d2166a184fcaa5e3d040925238cff522ce3fca8",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-009/new.npz",
+          "sha256": "16c6de52be56feed456414d64ecc7f7469763a813d9d186bf8579f495421252e"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-009/rgb/new.npz",
+            "sha256": "906f15558395404613367804a0ed2f68d6cb20980b79feb6305421cac2a2a102",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-009/ir/new.npz",
+            "sha256": "0f530dc1adfa12df1ace9f256e7846fcfe53990a05646cdb1dfb3c2b187c3907",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-011": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-011/new.npz",
+        "sha256": "bab3a6a59451348767e3f50d83e10af2232c516f83786ef5e5064fcd0461cfeb",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-011/new.npz",
+          "sha256": "d31aacb20d4e827bab484d8dbc8162d6e14e50a2d146b7a81224d7543219730e"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-011/rgb/new.npz",
+            "sha256": "b0e6989d906b5a33e59f999db4d1d9825f00a0eb0abe2c584fed341b8155ead5",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-011/ir/new.npz",
+            "sha256": "953a51dfc43941463b8c47d1d75f8d420e18961bba75a016f0d49c1226a21188",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      },
+      "SN-014": {
+        "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/features/test/SN-014/new.npz",
+        "sha256": "17fb3538fad3ad143d17980d85d22e671ef1d5dc01ccf927ba3ab83b8a6b1067",
+        "foreground_transport": {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/transport/test/SN-014/new.npz",
+          "sha256": "8d3effd012aeebaa2678cc651babe816f591e28fc5022464a2a368476c04c023"
+        },
+        "native_identity": {
+          "rgb": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-014/rgb/new.npz",
+            "sha256": "af5b82dbe34e2e73b0fa6bfe87fb7fe3a74e73b3193e837b598a179a1f0f079d",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s0/epoch36_fp32.pt",
+                "sha256": "6d10ddf06fede6fb79f543204bbd7f91282125d94814cd87b9e5434ae8a47f56",
+                "cue": "rgb",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s1/epoch36_fp32.pt",
+                "sha256": "8af94dc4f0bfa4088970e855da7ed8408cdaa265bb0f4363401024eb6712cc9b",
+                "cue": "rgb",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/rgb_s2/epoch36_fp32.pt",
+                "sha256": "1b4e8b18b3db965357414b136b7ee0e4f70cf221ef41760c893eebe641c8a333",
+                "cue": "rgb",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              },
+              "reference_post": {
+                "path": "/data3/liuyeqiang/IR-MFT_assets/cfp/phase1/reid_rgb_seed0/epoch12.pt",
+                "sha256": "2f7e5dc81517b17994b4ad9f77abd32fbcb0547e33bfd3638312580c2f885908",
+                "cue": "reference",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "ir": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_eval_features/test/SN-014/ir/new.npz",
+            "sha256": "d77503fdb89084fc8b320739caf7115e6772100fee9cffe130aa584af7565c1a",
+            "checkpoints": {
+              "native_s0": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s0/epoch36_fp32.pt",
+                "sha256": "195669e65d74adfb29b2d69b822f1e8ddb455e916e12edaeaa487728b81f5687",
+                "cue": "ir",
+                "seed": 0,
+                "precision": "FP32 including BN state"
+              },
+              "native_s1": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s1/epoch36_fp32.pt",
+                "sha256": "6ac66f116c665e0340bdc2ab70e7ba758eb1d4d1d6f1559a51246db2d1d0df15",
+                "cue": "ir",
+                "seed": 1,
+                "precision": "FP32 including BN state"
+              },
+              "native_s2": {
+                "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_cue/ir_s2/epoch36_fp32.pt",
+                "sha256": "203913b95dd6fe49328e7f06dae0389528c8148280abf0d1ea005b84f977eff7",
+                "cue": "ir",
+                "seed": 2,
+                "precision": "FP32 including BN state"
+              }
+            }
+          },
+          "alignment": {
+            "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_alignment/ir_s0.npz",
+            "sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9",
+            "rotation_sha256": "00df018fbcf170066da6e2fc3f7386f6479a6754408eb8b9fc9fcb3b3f7765ca",
+            "applied": true
+          },
+          "scope": "Current/past crop encodings only; proposal frames preserved; no GT.",
+          "feature_family": "native36"
+        }
+      }
+    },
+    "coverage": {
+      "BT-002": {
+        "frames": 493,
+        "detections": 6187,
+        "output_rows": 4768,
+        "output_sha256": "0b45ce44e9e2337d94e8fa108e7d91df811cd5e9bef8210599fd891d2f5f6b28"
+      },
+      "BT-004": {
+        "frames": 763,
+        "detections": 9950,
+        "output_rows": 7305,
+        "output_sha256": "02af90c9ba410c59da44d6b88758b33437d0413a84552d8839b57af0d6bc1e34"
+      },
+      "MSK-003": {
+        "frames": 629,
+        "detections": 34273,
+        "output_rows": 26567,
+        "output_sha256": "fef4108fb3e16ac2bb96b232533ad21039c08c484b14ef569305bcdd5e8b9384"
+      },
+      "PF-002": {
+        "frames": 3000,
+        "detections": 6295,
+        "output_rows": 6032,
+        "output_sha256": "b5562123b77905debc05645dfa2e557e4c1c0e71e96e17595d1621f8c8b45533"
+      },
+      "SN-009": {
+        "frames": 4500,
+        "detections": 53960,
+        "output_rows": 43044,
+        "output_sha256": "c26a2be3f475908c9ce68d0424cfa4a9d6ae64acf0f00635ce6897373aea8833"
+      },
+      "SN-011": {
+        "frames": 4500,
+        "detections": 46594,
+        "output_rows": 37499,
+        "output_sha256": "e6d0d9f75b711f40c668eb44dca3f76b851b8d317189bdf6983166fa7e1c8724"
+      },
+      "SN-014": {
+        "frames": 2100,
+        "detections": 26025,
+        "output_rows": 21067,
+        "output_sha256": "d1f5806d9a33c836afd6767efac78dfb076f3f172ea359d8839c09268c9171ba"
+      }
+    },
+    "statistics": {
+      "BT-002": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 4689,
+        "point_opened_edges": 2,
+        "history_anchors": 4689,
+        "duplicate_vetoes": 2,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 4689,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 4643,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 12,
+        "prebirth_long_recoveries": 4,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 12,
+        "prebirth_candidate_pairs": 81,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 4651,
+        "native_increment_rows": 4643,
+        "native_opened_edges": 13,
+        "native_null_rejections": 3
+      },
+      "BT-004": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 7130,
+        "point_opened_edges": 6,
+        "history_anchors": 7130,
+        "duplicate_vetoes": 1,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 7130,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 7705,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 11,
+        "prebirth_long_recoveries": 3,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 11,
+        "prebirth_candidate_pairs": 97,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 7761,
+        "native_increment_rows": 7705,
+        "native_opened_edges": 10,
+        "native_null_rejections": 6
+      },
+      "MSK-003": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 24978,
+        "point_opened_edges": 6,
+        "history_anchors": 24978,
+        "duplicate_vetoes": 24,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 24978,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 31338,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 56,
+        "prebirth_long_recoveries": 19,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 53,
+        "prebirth_candidate_pairs": 292,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 32081,
+        "native_increment_rows": 31338,
+        "native_opened_edges": 44,
+        "native_null_rejections": 116
+      },
+      "PF-002": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 6035,
+        "point_opened_edges": 0,
+        "history_anchors": 6035,
+        "duplicate_vetoes": 0,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 6035,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 6113,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 5,
+        "prebirth_long_recoveries": 1,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 5,
+        "prebirth_candidate_pairs": 12,
+        "suppressed_unemitted_IDs": 0,
+        "native_query_rows": 6125,
+        "native_increment_rows": 6113,
+        "native_opened_edges": 1,
+        "native_null_rejections": 2
+      },
+      "SN-009": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 42634,
+        "point_opened_edges": 26,
+        "history_anchors": 42634,
+        "duplicate_vetoes": 30,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 42634,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 43797,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 165,
+        "prebirth_long_recoveries": 60,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 165,
+        "prebirth_candidate_pairs": 660,
+        "suppressed_unemitted_IDs": 2,
+        "native_query_rows": 43799,
+        "native_increment_rows": 43797,
+        "native_opened_edges": 126,
+        "native_null_rejections": 1221
+      },
+      "SN-011": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 37106,
+        "point_opened_edges": 8,
+        "history_anchors": 37106,
+        "duplicate_vetoes": 64,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 37106,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 38265,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 128,
+        "prebirth_long_recoveries": 48,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 124,
+        "prebirth_candidate_pairs": 417,
+        "suppressed_unemitted_IDs": 6,
+        "native_query_rows": 38879,
+        "native_increment_rows": 38265,
+        "native_opened_edges": 51,
+        "native_null_rejections": 1003
+      },
+      "SN-014": {
+        "ambiguous_edges": 0,
+        "adjusted_edges": 0,
+        "protected_updates": 0,
+        "point_rows": 20736,
+        "point_opened_edges": 5,
+        "history_anchors": 20736,
+        "duplicate_vetoes": 23,
+        "IR_supported_rows": 0,
+        "candidate_births": 0,
+        "candidate_evidence": 0,
+        "IR_supported_births": 0,
+        "calibrated_rows": 20736,
+        "IR_increment_rows": 0,
+        "IR_applied_rows": 21729,
+        "motion_preserved_rows": 0,
+        "prebirth_recoveries": 91,
+        "prebirth_long_recoveries": 30,
+        "prebirth_clear_recoveries": 0,
+        "prebirth_IR_increment_links": 90,
+        "prebirth_candidate_pairs": 414,
+        "suppressed_unemitted_IDs": 4,
+        "native_query_rows": 21746,
+        "native_increment_rows": 21729,
+        "native_opened_edges": 55,
+        "native_null_rejections": 301
+      }
+    },
+    "replay_seconds": 761.8759747180156,
+    "replay_FPS": 20.98110523293026,
+    "GT_inference_input": false,
+    "future_frame_input": false,
+    "previous_outputs_rewritten": false,
+    "git_commit": "fa2e43379bde89215ed38e873883aa9dfd48ba1c",
+    "tracker_source_sha256": "7e6355143a92505797ac0367f54a23e42d30640c99fe9825992b23d8d70d6880",
+    "byte_tracker_source_sha256": "1a19bde221fc65bbca11d3c45cb2acbe571705510e3f94bfbaca95571d409f1a",
+    "replay_source_sha256": "86f00ffd781ac6d38c83f10d6abca3f0e211c941d48227b8d53f9825dfaf3eb6",
+    "CPU_threads": "2",
+    "evidence_tracker_source_sha256": "6f16953382f1f3a77507f63b652a66386c1d944692fec713632e0a4ae59c6792",
+    "foreground_tracker_source_sha256": "f50615391dd48fa5b8f3e05a0d784e7d20f5f00bb486002414fba2eac6442e42",
+    "candidate_tracker_source_sha256": "05204ca934b080970a9bb3d2eaa8db75cf5db893edb2cb6613f2e863823875a4",
+    "residual_tracker_source_sha256": "8ccec3ab6091da3f3ec64e05f1e9253b4b7f71e9d02f7ccaa152be67d6c43750",
+    "calibration": {
+      "cue": "rgb",
+      "seed": 0,
+      "epoch": 30,
+      "sources": {
+        "BT-001": "680879a56e0354ee93636cb049b305abe23b7966b02980a7e12e9870c0e7c45f",
+        "BT-003": "3823308d40a764302f5349c7caede08d08f980c61e2ee9673db072167172a44f",
+        "MSK-002": "cbbe594135fb32759b08b7545b1a6cb2a75bfd2db23fc696fa09c5e9ef590c03",
+        "PF-001": "cb6ecad4f451d61549f771caee575b97c5eea6b218577ab0addcf373451f37f9",
+        "SN-001": "b808b90fb08b8998058aa5b302d9fbeee39370ec5e3d47aadc956be564fe201c",
+        "SN-015": "e9417b631991e0a2d20a294db4e7c9e6fc6d563ba2096a28b42727aa99c63071"
+      },
+      "fit_sequences": [
+        "BT-001",
+        "BT-003",
+        "MSK-002",
+        "PF-001",
+        "SN-001",
+        "SN-015"
+      ],
+      "config_sha256": "25f4ef6b80c9cbf3e8182a78ab0aeb418ac261941f746c5618e3d8909ac447af",
+      "prior_plan_sha256": "c651cfd1f13d40c64913a91717df09cb91e1aef71f80e316701725535187d78f",
+      "capacity_plan_sha256": "f9f878ae46a7d3aa466bf0aad8a7a7fec8ee65e74f3327ec0f897242a40374a5"
+    },
+    "calibration_intervention": {
+      "disable_native_increment": false,
+      "shuffle_native_cue": false,
+      "scope": "Only native backend identity evidence; the complete frozen RGB scorer, real/null prior, RGB reference and detector proposals remain. Shuffle uses current-frame candidates only."
+    },
+    "association_checkpoint_sha256": "18114de6307620d7c8650f922806cdcf6641833d5e38f07ee0a0e6e542defb5c",
+    "calibrated_tracker_source_sha256": "717a5fdd4b922eb3d507c05449c3327cda0436909e7f0f03718a8184f0052cc6",
+    "association_model_source_sha256": "579763ae52c0e42d9299600398c3fe9a1f26f948598eb064a314809d513c6191",
+    "association_features_source_sha256": "ae6efda4b25723674a9960cb81ac35dc38fa26801f68796f1e2e141b64e3fd9c",
+    "native_query": {
+      "cue": "ir",
+      "seed": 0,
+      "epoch": 12,
+      "feature_schema": "native_query_v2_RGB26_cue9",
+      "config_sha256": "bf39c9818953bbde38c73f11f0433eb2a40d28f144323a32477750505e8ed433",
+      "feature_plan_sha256": "ab7d27a58c1db0da3289c472cb9835861c8bd5ab067d259502d69635042f93d8",
+      "sources": {
+        "BT-001_local": {
+          "query": {
+            "old": "680879a56e0354ee93636cb049b305abe23b7966b02980a7e12e9870c0e7c45f",
+            "reference": "aeffd014e750a102a5af989f05a26f5c3451b60d0d3f2f3a5061760d61d1b3eb",
+            "native": "8c77cd5cd93f40d76cf7d251b74173276343aa3ec6583f0e15e35bf0907a50f3"
+          },
+          "prior_cache": "5e0b04d165e8c5fbb46994292041faa18a917fddfb6c9de0003fc6ea75820df2"
+        },
+        "BT-003_local": {
+          "query": {
+            "old": "3823308d40a764302f5349c7caede08d08f980c61e2ee9673db072167172a44f",
+            "reference": "de93e81857003df7013607f05b7b0f9059d2206d4950397bd011dead241517d7",
+            "native": "efa4f83c8737a522b5678779ee3eaa2248712c1faef965578b9695cb937a8106"
+          },
+          "prior_cache": "c746fd383ecd7361a4e8da75f8d1b540631b551a9fae930962cd0f14514986a9"
+        },
+        "MSK-002_local": {
+          "query": {
+            "old": "cbbe594135fb32759b08b7545b1a6cb2a75bfd2db23fc696fa09c5e9ef590c03",
+            "reference": "fa0a404b4f2206487f32a0a8ac964c97e385d978d62e5f29d74297405d9533e2",
+            "native": "0d88612fb27ba6c66e5ac7a7bd0f0beb1a0d106168202d104e8a9804a6ec0d81"
+          },
+          "prior_cache": "9e74ac5b9519a65e9e7609eca9b8b469a3ae2ff894010ae348dd2d2734bb957e"
+        },
+        "PF-001_local": {
+          "query": {
+            "old": "cb6ecad4f451d61549f771caee575b97c5eea6b218577ab0addcf373451f37f9",
+            "reference": "d83e9b96767c1e7e7c97bfd398f4d11535a3d6c9ca7f0d50c8d6bee218bda718",
+            "native": "09c4fe96b6e5b36a67a17f7ce6eb70964546ce7377bc06103dd63a46ed7f56c6"
+          },
+          "prior_cache": "c214d4677b12660bd09e487df794e4f4608ee116892d21687e9537bd38b5d699"
+        },
+        "SN-001_local": {
+          "query": {
+            "old": "b808b90fb08b8998058aa5b302d9fbeee39370ec5e3d47aadc956be564fe201c",
+            "reference": "a53e8fd7411c14a61002e83fc41e26064ba4ceb0075ab312be114d01a072803b",
+            "native": "baff836417049b0c833b2d5bb26898c30554def3584baeabec75fc5dfcaa5a2a"
+          },
+          "prior_cache": "411364871aa6290c05953cf55bfd46fb0b510f438ce650211833e26ac1d02a23"
+        },
+        "SN-015_local": {
+          "query": {
+            "old": "e9417b631991e0a2d20a294db4e7c9e6fc6d563ba2096a28b42727aa99c63071",
+            "reference": "3957059c3318f6bbc6b5549b1858f14ac8af8f7798c3e45249e2546d48de8580",
+            "native": "b98758346ade786481d8bd49cf2684195248f219660d265068c57e88a4f7ac41"
+          },
+          "prior_cache": "39ac6920d7a18fbddb47640a38f1d4008a5f51bc0049f911ee682f156957a861"
+        },
+        "BT-001_long": {
+          "query": {
+            "old": "0d345defdb8f5c33922f3aa6d6217117004cfddb2ff6276606a5c793c54ebee5",
+            "reference": "1fe342150ea948fb4d004bf66ff74aac87bb1f14e82e5c23923783fc39737532",
+            "native": "87ed855be4a67f4f3a487956d03917b58310a2da4c3a78a7818ae92824996dc8"
+          },
+          "prior_cache": "d1d41fd0df4e5d1822c24ce997f0f38ba47a9a951a0ec89927b96317d6935ec9"
+        },
+        "BT-003_long": {
+          "query": {
+            "old": "86e82058b0d4034380b74f4fa4a595adcfa1cff2408758c2ac0dc119fe89e43a",
+            "reference": "5ef7af8bdbbf7879c6d13375540f5c6752785eac7d1e6bed503586b3a14c3d6a",
+            "native": "7b58ca9dcc34f8f119dfb82219e921ff59a0e7779040edaa3b4989c617f3704e"
+          },
+          "prior_cache": "dd91f5561b1e0ea34ac151c71e629e36f35d98ad7f77e3bc3ca3a6701d6f5a12"
+        },
+        "MSK-002_long": {
+          "query": {
+            "old": "6f2943873115dfa935e87f027b5c35925b2889b35880d2e18bbdf4dbe09379ae",
+            "reference": "df55321c2be6d3d764f77b153504766c400628b495fba5efaa6ae4a4cd7e0239",
+            "native": "748a2a24ff1302945093b62e8b89b15125214e0b835163fb8046a25b2b3b8d3f"
+          },
+          "prior_cache": "1b1c4209979220cb4dd46234bcda69448b3da7d92b48d6494d0c8354e6459fda"
+        },
+        "PF-001_long": {
+          "query": {
+            "old": "e1be385490f0e61bd3be896cef35cf2ee13e37b6a5a917a9c6835d0ad6369ab4",
+            "reference": "7ed5983788575e7a55e0d0b8bc3011226d7bfe15b98067c63414d9691b699d06",
+            "native": "ffeec4ac4f1513f8119d7de06cac96070e232129f25392c72f1bdb29324bc91a"
+          },
+          "prior_cache": "2c191d37d0a6440511680f97da506fd762f114a76c848fa1c2a2cf11bc1f06f3"
+        },
+        "SN-001_long": {
+          "query": {
+            "old": "9c8ef573143c1b56fdc54c02a7a0d7aede9c2b2b8a0963194ba0cdc38860867d",
+            "reference": "3fbc9d035d376fda28293bf295b22d2d3a8597b9cffeda4fa85a6aae944b7a02",
+            "native": "231ea06d7a2703390045939514054f1bf383dc86b25ddea93c601d6b7c2409ed"
+          },
+          "prior_cache": "3b26de567688edbe454e71dd9d57caa416ea3a554b1f9ebf8e7e8cb774a11757"
+        },
+        "SN-015_long": {
+          "query": {
+            "old": "53a25ec18dca8dae576c01a8dc1a3a4f7edc142965d3dbcba02de3ebd90c34db",
+            "reference": "23540fbe9ccaadc29641f41caec799386a320b09e2dacd499df93fee855ec5bc",
+            "native": "3ac869dd5ed81cfeccd0634f88c94475f93bebc39fea94456103d85d1ec47f0b"
+          },
+          "prior_cache": "4917fcf75505f0678bb96981c9667059575ffec285b806f7e1d84783669ed921"
+        }
+      },
+      "core": {
+        "frontend": "new",
+        "cue": "rgb",
+        "seed": 0,
+        "curve": [
+          {
+            "epoch": 6,
+            "HOTA": 46.137,
+            "IDF1": 51.754,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_new_rgb_s0_e06/metrics.json",
+            "Dev_metrics_sha256": "0f443619dfac3a6af206574b06583791a94304f0da4ea0a069bb7bb45190b71c",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_new_rgb_s0_e06.json"
+          },
+          {
+            "epoch": 12,
+            "HOTA": 49.122,
+            "IDF1": 57.304,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_new_rgb_s0_e12/metrics.json",
+            "Dev_metrics_sha256": "43c636af933960e81597e14da8b77b9d9781b4b84dc2613f17aef04c9d754a30",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_new_rgb_s0_e12.json"
+          },
+          {
+            "epoch": 18,
+            "HOTA": 46.43,
+            "IDF1": 52.745,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated_dev/G_new_rgb_s0_e18/metrics.json",
+            "Dev_metrics_sha256": "04f0c17941099a124b365bca46d221442daa5bdb97403776f7897cbe692e9ed7",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated_dev_20261123/G_new_rgb_s0_e18.json"
+          },
+          {
+            "epoch": 24,
+            "HOTA": 46.165,
+            "IDF1": 52.885,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated24_dev/G_new_rgb_s0_e24/metrics.json",
+            "Dev_metrics_sha256": "759e3e73fc0f3d7d48f4d49dc5e27c682fa2b7c9dee88f658d7fc7757e3122f7",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated24_dev_20261123/G_new_rgb_s0_e24.json"
+          },
+          {
+            "epoch": 30,
+            "HOTA": 49.385,
+            "IDF1": 58.012,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated30_dev/G_new_rgb_s0_e30/metrics.json",
+            "Dev_metrics_sha256": "ed2b7633780d3bfac80a0bd356de25b293d48343da2710465f4dc569ffd09bf4",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated30_dev_20261123/G_new_rgb_s0_e30.json"
+          },
+          {
+            "epoch": 36,
+            "HOTA": 49.227,
+            "IDF1": 57.724,
+            "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated36_dev/G_new_rgb_s0_e36/metrics.json",
+            "Dev_metrics_sha256": "38a0ae61296613a338057076eaec95100e6bffda6b2b6308fe06edba7271fecb",
+            "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated36_dev_20261123/G_new_rgb_s0_e36.json"
+          }
+        ],
+        "selected": {
+          "epoch": 30,
+          "HOTA": 49.385,
+          "IDF1": 58.012,
+          "Dev_metrics": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/calibrated30_dev/G_new_rgb_s0_e30/metrics.json",
+          "Dev_metrics_sha256": "ed2b7633780d3bfac80a0bd356de25b293d48343da2710465f4dc569ffd09bf4",
+          "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_calibrated30_dev_20261123/G_new_rgb_s0_e30.json"
+        },
+        "configuration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_pair_selected_20261123/K_new_rgb_s0.json",
+        "configuration_sha256": "373df56c1efa5f3de41c45c9a05209e0a600c728e735020dbfcc07bbbbceedf4",
+        "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/association_metric/rgb_s0/epoch30.pt",
+        "checkpoint_sha256": "18114de6307620d7c8650f922806cdcf6641833d5e38f07ee0a0e6e542defb5c",
+        "executed_epochs": 36
+      },
+      "prior_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_RGB_prior/new_s0/complete.json",
+      "prior_sha256": "50d75d146a82c530cdeb959777f35154ce0641ae50966d3d7b14ec62a799c9c0",
+      "prior_parameters": {
+        "t": 1.0195233615445067,
+        "a": 15.296213336386145,
+        "b": 1.4348474066199743,
+        "c": -0.05530876503518723
+      },
+      "alignment_sha256": "58101dc032c407d4180c94a852096361c5a007e6b567cacf68e3340315ef7ff9"
+    },
+    "native_query_checkpoint_sha256": "6e291ec0e346d177de9bb390d445db285dafa3dd6c6d0ae7ba9604437cb7c762",
+    "native_query_tracker_source_sha256": "368779f10cda22296bc92b895af63007b10ac94af31356cd6017b051941d03fb",
+    "native_query_features_source_sha256": "c9c26d004c3c151b2c2edb5eb8b314e206437416844563ef2338f49cd1b7787b",
+    "native_query_loader_source_sha256": "1d64f7c5272c4e4b3ab58165cafe23c524fa1b3f7b54552640a0b910abcb3133",
+    "prebirth_tracker_source_sha256": "03da7a13eee7e0b26bfa6aad18fc5b41001cba175c41a56b2ea6bf5d12c84356",
+    "replay_FPS_scope": "Cached features only; detector, crop encoders and point extraction excluded. This is not end-to-end FPS."
+  },
+  "metrics_sha256": "6a7a0dfa9269bb2dc6efc4c16c1a8368b7b612fd6a9abd0c391318c0f6626d5d",
+  "official_detailed_csv_sha256": "2ab8545fda3170198e2203d4bef411ee9a21682afde66c6f2a80de614a33d7d2",
+  "official_detailed_csv_file": "docs/fusion_research/perceptual_20261122_official_tables/native_remaining_test_backfill_test/NR56_native_query_new_ir.csv"
+}
