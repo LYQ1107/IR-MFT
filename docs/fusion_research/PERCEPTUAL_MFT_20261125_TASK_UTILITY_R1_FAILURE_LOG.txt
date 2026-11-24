@@ -1,0 +1,14 @@
+/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/torch/functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:3637.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+{"prepared": {"sequence": "BT-001", "frame": 1}, "GT_boxes": 10}
+{"prepared": {"sequence": "MSK-002", "frame": 1}, "GT_boxes": 46}
+{"prepared": {"sequence": "SN-015", "frame": 1}, "GT_boxes": 9}
+{"prepared": {"sequence": "PF-001", "frame": 1}, "GT_boxes": 2}
+{"prepared": {"sequence": "BT-003", "frame": 1}, "GT_boxes": 10}
+{"prepared": {"sequence": "SN-001", "frame": 1}, "GT_boxes": 10}
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_task_utility_cpu.py", line 167, in <module>
+    if __name__=='__main__':main()
+  File "/data3/liuyeqiang/IR-MFT/tools/probe_task_utility_cpu.py", line 105, in main
+    if position==0:assert torch.equal(predictions,data['reference'])
+AssertionError
