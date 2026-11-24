@@ -1,0 +1,87 @@
+{
+  "status": "PREREGISTERED_CONDITIONAL_F4_ENGINEERING_NOT_FORMAL_LAUNCH_READY",
+  "registered_UTC": "2026-11-24T13:57:54.022594+00:00",
+  "taskbook_sha256": "5f5161ecc0095c68704b8eef53edd7a9d7e78c6dbacd7b00e68a0aa10efaa9f4",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "native_visual_study_sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+  "purpose": "Implement the missing actual fusion-feature/quality-to-track-memory contract. Descriptor-only identity query models are not substituted for this direction.",
+  "formal_eligibility": "Only after the original current-November-IR visual primary passes complete Dev versus direct/fresh RGB and same-mode RGB/gray; freeze the visual primary, then register a complete F4 Dev/Test/cost workflow. No current learned visual feature is transferred during this engineering-only stage.",
+  "memory": {
+    "streams": [
+      "rgb_memory",
+      "aux_memory",
+      "fused_memory"
+    ],
+    "input": "Independently ROI-aligned actual RGB P3, learned native auxiliary P3 and fused P3 from the same current frame; fused/RGB channels match. Never replace fused features with an unrelated crop encoder.",
+    "reliability": "r=det_score*(1-max_current_detection_box_IoU)*q. IoU is an occlusion proxy and q is the provided fusion-weight reliability proxy, not calibrated ground truth uncertainty.",
+    "acceptance": "score>0.6 and r>=0.2 and a finite nonzero embedding; otherwise freeze that memory",
+    "mixing": "L2-normalize((1-0.2*r)*old+0.2*r*current); initialize directly on the first accepted observation",
+    "age": "Actual current frame minus last reliable update, independently per stream; effective stored reliability decays exp(-age/25)",
+    "unavailable": "No auxiliary/fused array access if unavailable. Freeze auxiliary/fused memory and use RGB memory for current association. Whole-sequence unavailable route must match the same RGB-memory control.",
+    "quality_controls": [
+      "provided same q for all three memories on an available observation",
+      "uniform q=1 ablation and strong ordinary RGB-memory control"
+    ]
+  },
+  "association": {
+    "backend": "Original BYTETracker via its existing track_factory/association_hook; baseline file bytes unchanged",
+    "stages": "Only primary high-score association; secondary and pending costs unchanged",
+    "cost": "Add nonnegative appearance_weight*past_effective_reliability*current_reliability*(1-cosine)/2 to existing cost on already valid edges with predicted-box IoU>=0.1. Never decrease costs or open an original over-threshold edge.",
+    "appearance_weights": [
+      0.0,
+      0.05,
+      0.1
+    ],
+    "feature_sources": [
+      "rgb",
+      "fused"
+    ],
+    "defaults": "Same det0.6/birth0.7/match0.9/buffer30@25fps/minarea100 as the original baseline",
+    "zero": "weight0 does not read or update feature memory and must exactly match BYTETracker boxes, scores, IDs and all tracked/lost/removed states under identical per-sequence ID initialization",
+    "sequence": "Explicit sequence and consecutive frame arguments; clear all state at a new video beginning at frame1; no retrospective relabeling"
+  },
+  "ROI": {
+    "operator": "torchvision.ops.roi_align",
+    "batch": 1,
+    "output_hw": [
+      3,
+      3
+    ],
+    "sampling_ratio": 2,
+    "aligned": true,
+    "coordinates": "Accept original-image boxes; explicitly multiply by the actual resize ratio, clip to resized valid image rectangle and derive equal X/Y stride from actual input/P3 sizes. Reject inconsistent geometry.",
+    "observed_environment": {
+      "torch": "2.6.0+cu118",
+      "torchvision": "0.21.0+cu118",
+      "compiled_ops": true
+    },
+    "engineering_geometry_check": "Known network-coordinate linear planes, ROI[8,4,40,20] at stride8 must average to[24,12]; CPU was checked before this protocol was written"
+  },
+  "required_formal_controls": [
+    "ByteTrack on the same selected visual detections",
+    "RGB-memory versus fused-memory on identical visual detections and q, equal three-weight Dev choice budgets",
+    "Strong ordinary RGB-memory q=1 and fused-memory q=1",
+    "Missing and wrong actual IR through both visual and memory paths",
+    "Freeze/quality removal and original strong RGB/gray visual controls",
+    "All engineering-passed trained formal candidates full7Test15985, even when Dev negative; all47fields/per-sequence/originalCSV/cost"
+  ],
+  "current_CPU_scope": "Synthetic embeddings/ROI planes and full4834-frame cached RGB Dev detection replay of the weight0 path only. No learned fusion features, new image encoding, Test replay, accuracy evaluation, saved model or formal F4 fit.",
+  "execution": {
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "release": "Any future F4 CUDA work waits for all currently registered queues including the conditional factorial extension and their actual process exits",
+    "work_cap_GiB": 64,
+    "independent_disk_free_reserve_GiB": 40,
+    "host_reserve_GiB": 40,
+    "new_image_or_FPN_disk_copies": 0
+  },
+  "novelty": "Normalized appearance memory, EMA and score weighting have established prior art. Only controlled evidence for actual learned fusion features/quality could support a fusion contribution; ordinary RGB memory gain must be reported separately.",
+  "goal_met": false,
+  "supported_innovations": 0,
+  "current_IR_architecture_validated": false
+}
