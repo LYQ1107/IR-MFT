@@ -100,14 +100,19 @@ def main():
             initials.add(state_sha256(module.state_dict()));optimizer=torch.optim.AdamW(module.parameters(),lr=spec['CPU']['learning_rate'],weight_decay=spec['CPU']['weight_decay'])
             steps=[]
             for position,data in enumerate(cached):
-                output,_,diagnostics=module(data['features'],data['pixels'][cue],data['metadata']['scores'],valid=data['valid'],return_proposals=True)
+                # Match the registered production trainer: fresh RGB head per
+                # optimizer input, rather than a long-lived cached CPU decode.
+                with torch.no_grad():reference,metadata=head_predictions(teacher.head,data['features'])
+                output,_,diagnostics=module(data['features'],data['pixels'][cue],metadata['scores'],valid=data['valid'],return_proposals=True)
                 predictions,_=head_predictions(teacher.head,output)
-                if position==0:assert torch.equal(predictions,data['reference'])
+                if position==0:assert torch.equal(predictions,reference)
                 with torch.no_grad():proposal,_=head_predictions(teacher.head,diagnostics.pop('detached_proposal_features'))
-                foreground,utility,labels=task_supervision(teacher.head,data['reference'],proposal,data['metadata'],data['targets'],diagnostics,
+                if position==0:assert torch.equal(proposal,reference)
+                foreground,utility,labels=task_supervision(teacher.head,reference,proposal,metadata,data['targets'],diagnostics,
                     spec['CPU']['input_hw'],temperature=spec['CPU']['utility_temperature'])
-                original=original_supervised_loss(teacher.head,predictions,data['metadata'],data['targets'],spec['CPU']['input_hw'])[0]
-                preservation=preserve_reference(predictions,data['reference'],data['metadata']['strides'],reliable_only=True)
+                if position==0:assert all(r['utility_label_mass']==0 for r in labels)
+                original=original_supervised_loss(teacher.head,predictions,metadata,data['targets'],spec['CPU']['input_hw'])[0]
+                preservation=preserve_reference(predictions,reference,metadata['strides'],reliable_only=True)
                 fg_weight=spec['CPU']['lambda_foreground'] if variant['supervise_foreground'] else 0.
                 utility_weight=spec['CPU']['lambda_utility'] if variant['supervise_utility'] else 0.
                 fg_gradient=direct_gradient(fg_weight*foreground,(p for t in module.task for p in t.foreground.parameters()))
@@ -119,7 +124,9 @@ def main():
                     foreground_loss=float(foreground.detach()),utility_loss=float(utility.detach()),
                     weighted_foreground_direct_gradient_L1=fg_gradient,weighted_utility_direct_gradient_L1=utility_gradient,
                     gradient_norm=norm,native_stem_gradient_L1=gradient(module,'encoder.blocks.0.0'),
-                    decoded_box_max_change=float((predictions[:,:,:4]-data['reference'][:,:,:4]).detach().abs().max()),
+                    decoded_box_max_change=float((predictions[:,:,:4]-reference[:,:,:4]).detach().abs().max()),
+                    cached_RGB_reference_max_abs=float((reference-data['reference']).abs().max()),
+                    cached_RGB_reference_different_values=int((reference!=data['reference']).sum()),
                     local_utility_labels=labels,foreground_gate_std=[float(r['foreground_logits'].detach().std()) for r in diagnostics['levels']]))
                 assert bool(torch.isfinite(loss)) and all(p.grad is None for p in teacher.parameters())
                 guard();state['completed_optimizer_updates']+=1;save()
@@ -132,15 +139,17 @@ def main():
             module.eval().requires_grad_(False);checks=[]
             with torch.no_grad():
                 for data in cached:
-                    missing=module(data['features'],None,data['metadata']['scores'],available=False)[0]
-                    missing_raw,_=head_predictions(teacher.head,missing);assert torch.equal(missing_raw,data['reference'])
+                    fresh,metadata=head_predictions(teacher.head,data['features'])
+                    missing=module(data['features'],None,metadata['scores'],available=False)[0]
+                    missing_raw,_=head_predictions(teacher.head,missing);assert torch.equal(missing_raw,fresh)
                     checks.append(dict(address=data['address'],missing_raw_head_bit_exact=True))
-                data=cached[0];normal=module(data['features'],data['pixels'][cue],data['metadata']['scores'],valid=data['valid'])[0]
+                data=cached[0];_,metadata=head_predictions(teacher.head,data['features'])
+                normal=module(data['features'],data['pixels'][cue],metadata['scores'],valid=data['valid'])[0]
                 normal_raw,_=head_predictions(teacher.head,normal);roll_changed=None
                 if cue=='ir':
-                    rolled=module(data['features'],data['IR_roll'],data['metadata']['scores'],valid=data['valid'])[0]
+                    rolled=module(data['features'],data['IR_roll'],metadata['scores'],valid=data['valid'])[0]
                     roll_raw,_=head_predictions(teacher.head,rolled);roll_changed=not torch.equal(normal_raw,roll_raw)
-                    assert roll_changed
+                    assert roll_changed and any(not torch.equal(a,b) for a,b in zip(normal,rolled))
             assert state_sha256(teacher.state_dict())==frozen
             identifier=variant['id']+'_'+cue
             conditions.append(dict(id=identifier,variant=variant,cue=cue,seed=0,initial_raw_RGB_exact=True,steps=steps,

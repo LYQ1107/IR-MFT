@@ -125,3 +125,11 @@ Dev/Test。三个已完成模型的当前／过去输入诊断也完成66个Trai
 不能把特征／语义差异等同于任务互补。这是固定几何结构路线的Train样本
 证据，不替尚未完成的原生CNN、时序或空间门控判定成败，不增加方向完成数。
 详见[TRAIN_CUE_SPECIFICITY](PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.md)。
+
+F2后续增加任务相关空间监督原型：相同推理结构和553705参数，四种监督
+组合×RGB／灰度／IR，真实六帧、72次CPU工程更新完成，12项核心检查通过。
+冻结RGB分配下的逐锚点检测损失差监督效用，前景框监督有已有工作基础。
+直接梯度、72项缺失和四项IR图像roll响应均核对，但只证明计算路径生效。
+R1零路径数值失败保留，R2未再次复现，根因未知；无正式拟合、GPU资格、
+Dev/Test或独立贡献，不把这项训练扩展另计为融合架构。见
+[TASK_UTILITY_CPU_ENGINEERING](PERCEPTUAL_MFT_20261125_TASK_UTILITY_CPU_ENGINEERING.md)。

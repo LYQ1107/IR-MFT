@@ -1,0 +1,172 @@
+{
+  "status": "PREREGISTERED_TASK_UTILITY_CPU_ENGINEERING_NOT_FORMAL_FIT",
+  "UTC": "2026-11-24T22:13:56.112569+00:00",
+  "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
+  "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
+  "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "calibration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/correlation_cache/calibration.json",
+  "calibration_sha256": "0cfd93575bd5e01bbd1f011202e85f7faad7cbcfc4599c0283e5f17e27bc9d0f",
+  "source_hashes": {
+    "tools/task_utility_fusion.py": "e30d8cf043bc5d95fd3ebe693f0aa74e6aeeb4b60df83b59ccf13c12e594a1da",
+    "tools/task_utility_objectives.py": "c431b4b1824293ae0f7b7187ca2b1d7825c319fc7817db912e9b249efcf72a42",
+    "tests/test_task_utility_fusion.py": "078780fc0bbf7b2e9219c51910b65cf006e9c6f0f8503e91979bed06457411ea",
+    "tools/probe_task_utility_cpu.py": "9776605763d56c22152a86c493af0ed3f838e92982985e04dc6940f3c40edd3a",
+    "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
+    "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/fusion_memory_model_loading.py": "4e3cc7ca5841390a164d9f9a04a8d36547d40fb853c6c8aeff1026f19f1b013a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+    "yolox/models/yolo_head.py": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8",
+    "yolox/models/losses.py": "e4644f138ddb8658cc26a03e5d80bb0fcd4e91bb8b0085d695958aafd47a031e"
+  },
+  "completed_IR_content_manifest": {
+    "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/source_image_content_manifest.json",
+    "sha256": "a2d5040d06a972139d5e97ff13042553c6f0fc4a8130da53c1079553ea02461c"
+  },
+  "motivating_Train_diagnosis": {
+    "path": "docs/fusion_research/PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.json",
+    "sha256": "ca50bb8ec98d758bc12dc9352781b2be3ce0eb545612662dbdaf8161c19996e0"
+  },
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_CPU_engineering_20261125",
+  "matched_cues": [
+    "rgb",
+    "gray",
+    "ir"
+  ],
+  "variants": [
+    {
+      "id": "no_aux_labels",
+      "kwargs": {
+        "use_foreground": true,
+        "use_utility": true
+      },
+      "supervise_foreground": false,
+      "supervise_utility": false
+    },
+    {
+      "id": "foreground_labels",
+      "kwargs": {
+        "use_foreground": true,
+        "use_utility": true
+      },
+      "supervise_foreground": true,
+      "supervise_utility": false
+    },
+    {
+      "id": "utility_labels",
+      "kwargs": {
+        "use_foreground": true,
+        "use_utility": true
+      },
+      "supervise_foreground": false,
+      "supervise_utility": true
+    },
+    {
+      "id": "foreground_utility_labels",
+      "kwargs": {
+        "use_foreground": true,
+        "use_utility": true
+      },
+      "supervise_foreground": true,
+      "supervise_utility": true
+    }
+  ],
+  "expected_parameters": 553705,
+  "CPU": {
+    "input_hw": [
+      480,
+      864
+    ],
+    "addresses": [
+      {
+        "sequence": "BT-001",
+        "frame": 1
+      },
+      {
+        "sequence": "MSK-002",
+        "frame": 1
+      },
+      {
+        "sequence": "SN-015",
+        "frame": 1
+      },
+      {
+        "sequence": "PF-001",
+        "frame": 1
+      },
+      {
+        "sequence": "BT-003",
+        "frame": 1
+      },
+      {
+        "sequence": "SN-001",
+        "frame": 1
+      }
+    ],
+    "updates_each": 6,
+    "total_conditions": 12,
+    "total_updates": 72,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 5,
+    "lambda_reliable_RGB": 0.02,
+    "lambda_foreground": 0.1,
+    "lambda_utility": 0.1,
+    "utility_temperature": 0.1,
+    "seed": 0,
+    "maximum_process_RSS_GiB": 4,
+    "host_reserve_GiB": 40,
+    "maximum_torch_threads": 2,
+    "encoded_image_RAM_MiB": 64,
+    "new_image_FPN_disk_cache": false
+  },
+  "design": {
+    "inference": "CurrentRGBandnativecurrentcueCNNonly;foreground/utilitylogitsaddtoglobalqualitylogit;boundedRGBresidualandmissingexactRGB.NoGTinput.",
+    "foreground": "Trainbboxcell-centeroccupancy,validrectangleonly;class-balancedBCE.Notsegmentationorocclusiontruth.",
+    "utility": "OneoriginalRGBSimOTAassignmentsharedbyRGBanddetachedconstant0.5-gateproposal.LocalYOLOXobjectness+foregroundclass+5IoUcost;sigmoid((L_RGB-L_proposal)/.1),weightclamp(absdelta/.1,0,1),allstopgrad.Zeroeffecthaszerolabelmass.",
+    "gate": "sigmoid(global_quality+enabled_foreground_logit+enabled_utility_logit);tasklogitszero-init,correctionprojectionzero-init.",
+    "original_task": "MaintraininglossretainsoriginalYOLOXdynamicassignmentandgeometryplus.02reliableRGBpreservation;addregisteredauxlossweights.NolossorweightselectionfromDev/Test.",
+    "matched_capacity": "Allfourconditionskeepbothinferenceheadsandgatesenabled.OnlytwoTrainauxiliarylossweightsareswitched;sameeffectiveinferencearchitectureand553705parameters."
+  },
+  "formal_remaining": {
+    "formal_launch_ready": false,
+    "actual_GPU_qualification": false,
+    "formal_Train_Dev_Test": false,
+    "engineering_checks_cannot_release_formal_fitting": true,
+    "scope_if_later_registered": "SamecompleteTrainbudgetforall12normalfits,frozencompleteDevchoices,matchedsingle/cumulative/removal,inputinterventions,full7Test47fields/raw276CSV,independentcost;keepnegatives.NopromotionusingTest.",
+    "GPU_policy": "Physical4/5maximum2onlyafterexistingregisteredqueuesandactualexits;donotpreempthealthywork."
+  },
+  "prior_art": [
+    {
+      "title": "Guided Attentive Feature Fusion for Multispectral Pedestrian Detection",
+      "url": "https://openaccess.thecvf.com/content/WACV2021/papers/Zhang_Guided_Attentive_Feature_Fusion_for_Multispectral_Pedestrian_Detection_WACV_2021_paper.pdf",
+      "verified_scope": "Primaryindexedsection4.2describessegmentationguidanceandmodality-selectionloss;fullPDFfetch403/SSLfailed.Noimplementationcopied;notanexactGAFFreplicationorclaimednewforegroundattention."
+    },
+    {
+      "title": "Target-Aware Dual Adversarial Learning and a Multi-Scenario Multi-Modality Benchmark To Fuse Infrared and Visible for Object Detection",
+      "url": "https://openaccess.thecvf.com/content/CVPR2022/html/Liu_Target-Aware_Dual_Adversarial_Learning_and_a_Multi-Scenario_Multi-Modality_Benchmark_To_CVPR_2022_paper.html",
+      "verified_scope": "Primaryindexedabstractestablishespriorjointfusion/detectionandtarget-awaretraining;notaclaimthatfixed-SimOTAutilityisnovel."
+    }
+  ],
+  "limitations": [
+    "SparseTrainengineeringisnotformalfit,convergenceorgain.",
+    "PseudoIRisRGBderived;noindependentthermalinformation.",
+    "HistoricalTestexposedandoriginalRGBpretrainingincludedDev.",
+    "Localutilityisnotcausaleffect,calibratedprobabilityoraguaranteeagainstneighboringheadchanges."
+  ],
+  "work_cap_GiB": 64,
+  "independent_free_GiB": 40,
+  "new_GPU_work": false,
+  "new_formal_NN_fits": false,
+  "new_Dev_Test_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "pre_execution_draft_archive": {
+    "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_unexecuted_design_initial_20261125.json",
+    "sha256": "4150f9630374d44637f65559e059f73f0e658d5ad17ab8834dc1951fad692096",
+    "scope": "Unexecutedinitialarchitecture-removaldraft;revisedbeforesixframecanarytokeepinferencecapacityidentical."
+  }
+}

@@ -1,0 +1,5015 @@
+{
+  "status": "COMPLETE_ACTUAL_TASK_UTILITY_CPU_ENGINEERING_NOT_FORMAL_FIT_OR_GAIN",
+  "identity": {
+    "pid": 551202,
+    "start_ticks": 82635681,
+    "command_sha256": "0eb3fec4a61c3ef74757f54dd663d5ec4be594e6e8468f00709770f2b17b1fa1"
+  },
+  "specification_sha256": "82c9b4365b61e42c67751471aeee14a8e01921d50ae6c972901f324a92bd4f56",
+  "source_hashes": {
+    "tools/task_utility_fusion.py": "e30d8cf043bc5d95fd3ebe693f0aa74e6aeeb4b60df83b59ccf13c12e594a1da",
+    "tools/task_utility_objectives.py": "c431b4b1824293ae0f7b7187ca2b1d7825c319fc7817db912e9b249efcf72a42",
+    "tests/test_task_utility_fusion.py": "078780fc0bbf7b2e9219c51910b65cf006e9c6f0f8503e91979bed06457411ea",
+    "tools/probe_task_utility_cpu.py": "b5f40126d111f0ede36c3c2d4f3536444872087e4a8233fb2a1e1bb0e07aa1df",
+    "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
+    "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
+    "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
+    "tools/fusion_memory_model_loading.py": "4e3cc7ca5841390a164d9f9a04a8d36547d40fb853c6c8aeff1026f19f1b013a",
+    "tools/spatial_native_fusion.py": "b5669f5e7deede832cfc58b2e7b148795f229ab6c7b6f99e9202fdbd6968de33",
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+    "yolox/models/yolo_head.py": "52d32755107a7b4951d7377d06142d1c0f6de9c025693672e565b46efe5f52d8",
+    "yolox/models/losses.py": "e4644f138ddb8658cc26a03e5d80bb0fcd4e91bb8b0085d695958aafd47a031e"
+  },
+  "pytest_receipt": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_pytest_1795558276325841461.json",
+  "pytest_receipt_sha256": "b8d143ab4565ec8b9e593777bd30a44e9c004fc6c5ff81452665a10300e33427",
+  "previous_F4_registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468",
+  "actual_conditions": [
+    {
+      "id": "no_aux_labels_rgb",
+      "variant": {
+        "id": "no_aux_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": false
+      },
+      "cue": "rgb",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.1597633808851242,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.392849922180176,
+          "original_YOLOX": 4.392849922180176,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.090532585978508,
+          "native_stem_gradient_L1": 0.07491812109947205,
+          "decoded_box_max_change": 1.5265655517578125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2214,
+              "harmful_cells": 140,
+              "equal_cells": 4066,
+              "utility_label_mass": 4.601034164428711,
+              "mean_signed_local_advantage": 9.171706551569514e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 24,
+              "harmful_cells": 826,
+              "equal_cells": 740,
+              "utility_label_mass": 3.543397903442383,
+              "mean_signed_local_advantage": -3.6648798413807526e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.3940987586975098,
+              "mean_signed_local_advantage": -1.0226538506685756e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.506176233291626,
+          "original_YOLOX": 2.506176233291626,
+          "foreground_loss": 0.6931306719779968,
+          "utility_loss": 0.6931459903717041,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.12283964455127716,
+          "native_stem_gradient_L1": 0.174338698387146,
+          "decoded_box_max_change": 2.5879974365234375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 818,
+              "harmful_cells": 1,
+              "equal_cells": 5601,
+              "utility_label_mass": 0.1715397834777832,
+              "mean_signed_local_advantage": 1.192427134810714e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 56,
+              "harmful_cells": 416,
+              "equal_cells": 1118,
+              "utility_label_mass": 2.294194459915161,
+              "mean_signed_local_advantage": 2.3135617084335536e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 318,
+              "harmful_cells": 0,
+              "equal_cells": 87,
+              "utility_label_mass": 0.01316070556640625,
+              "mean_signed_local_advantage": 3.249557039453066e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00010897516767727211,
+            9.858911653282121e-05,
+            0.00013265979941934347
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8239445686340332,
+          "original_YOLOX": 1.8239431381225586,
+          "foreground_loss": 0.6931220889091492,
+          "utility_loss": 0.6931519508361816,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.6677011251449585,
+          "native_stem_gradient_L1": 3.4980521202087402,
+          "decoded_box_max_change": 5.104644775390625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 99,
+              "harmful_cells": 0,
+              "equal_cells": 6321,
+              "utility_label_mass": 0.0009632110595703125,
+              "mean_signed_local_advantage": 1.5003287501258455e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 1,
+              "harmful_cells": 129,
+              "equal_cells": 1460,
+              "utility_label_mass": 0.0035333633422851562,
+              "mean_signed_local_advantage": -2.1922512871697108e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 232,
+              "harmful_cells": 19,
+              "equal_cells": 154,
+              "utility_label_mass": 4.30067777633667,
+              "mean_signed_local_advantage": -0.0009748763404786587
+            }
+          ],
+          "foreground_gate_std": [
+            0.00022468862880486995,
+            9.061289165401831e-05,
+            0.00021233833103906363
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.0842790603637695,
+          "original_YOLOX": 4.084278583526611,
+          "foreground_loss": 0.6931113600730896,
+          "utility_loss": 0.6931765675544739,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.2216021716594696,
+          "native_stem_gradient_L1": 0.4277857542037964,
+          "decoded_box_max_change": 4.9898681640625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 1137,
+              "harmful_cells": 24,
+              "equal_cells": 5259,
+              "utility_label_mass": 8.830273628234863,
+              "mean_signed_local_advantage": -2.7987491193925962e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 23,
+              "harmful_cells": 215,
+              "equal_cells": 1352,
+              "utility_label_mass": 3.58273983001709,
+              "mean_signed_local_advantage": 9.065993799595162e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 306,
+              "harmful_cells": 0,
+              "equal_cells": 99,
+              "utility_label_mass": 0.009012222290039062,
+              "mean_signed_local_advantage": 2.225239995823358e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00030374780180864036,
+            0.00010719029523897916,
+            0.00016841264732647687
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.719815969467163,
+          "original_YOLOX": 3.719815969467163,
+          "foreground_loss": 0.693122923374176,
+          "utility_loss": 0.6931673884391785,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15791673958301544,
+          "native_stem_gradient_L1": 0.5158870816230774,
+          "decoded_box_max_change": 1.9033660888671875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1758,
+              "harmful_cells": 16,
+              "equal_cells": 4646,
+              "utility_label_mass": 3.995429754257202,
+              "mean_signed_local_advantage": 1.1893586815858725e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 312,
+              "harmful_cells": 58,
+              "equal_cells": 1220,
+              "utility_label_mass": 3.4323577880859375,
+              "mean_signed_local_advantage": -4.361017090559471e-06
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 276,
+              "harmful_cells": 4,
+              "equal_cells": 125,
+              "utility_label_mass": 0.18213629722595215,
+              "mean_signed_local_advantage": 4.495308894547634e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.000249507836997509,
+            0.00012868033081758767,
+            0.0002777378249447793
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "no_aux_labels_gray",
+      "variant": {
+        "id": "no_aux_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": false
+      },
+      "cue": "gray",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15115584433078766,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.3928728103637695,
+          "original_YOLOX": 4.3928728103637695,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.08481630682945251,
+          "native_stem_gradient_L1": 0.07664259523153305,
+          "decoded_box_max_change": 1.8125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2042,
+              "harmful_cells": 138,
+              "equal_cells": 4240,
+              "utility_label_mass": 4.141819953918457,
+              "mean_signed_local_advantage": 1.15864977487945e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 26,
+              "harmful_cells": 775,
+              "equal_cells": 789,
+              "utility_label_mass": 3.0007429122924805,
+              "mean_signed_local_advantage": -5.26405347045511e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 380,
+              "harmful_cells": 6,
+              "equal_cells": 19,
+              "utility_label_mass": 3.082206964492798,
+              "mean_signed_local_advantage": 8.432953535475463e-08
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.5060439109802246,
+          "original_YOLOX": 2.5060439109802246,
+          "foreground_loss": 0.6931387782096863,
+          "utility_loss": 0.6931469440460205,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.08079416304826736,
+          "native_stem_gradient_L1": 0.10423276573419571,
+          "decoded_box_max_change": 2.873992919921875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 736,
+              "harmful_cells": 1,
+              "equal_cells": 5683,
+              "utility_label_mass": 0.14389991760253906,
+              "mean_signed_local_advantage": 7.936887413961813e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 55,
+              "harmful_cells": 407,
+              "equal_cells": 1128,
+              "utility_label_mass": 1.7209442853927612,
+              "mean_signed_local_advantage": 3.1126612157095224e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 326,
+              "harmful_cells": 0,
+              "equal_cells": 79,
+              "utility_label_mass": 0.013499259948730469,
+              "mean_signed_local_advantage": 3.3331505164824193e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0001119264488806948,
+            9.089465311262757e-05,
+            0.0001031435385812074
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8264687061309814,
+          "original_YOLOX": 1.8264667987823486,
+          "foreground_loss": 0.6931235194206238,
+          "utility_loss": 0.6931526064872742,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.7882298827171326,
+          "native_stem_gradient_L1": 5.000437259674072,
+          "decoded_box_max_change": 5.024993896484375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 84,
+              "harmful_cells": 0,
+              "equal_cells": 6336,
+              "utility_label_mass": 0.000820159912109375,
+              "mean_signed_local_advantage": 1.2775076108084704e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 147,
+              "equal_cells": 1443,
+              "utility_label_mass": 0.005245208740234375,
+              "mean_signed_local_advantage": -3.2988734233185824e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 233,
+              "harmful_cells": 19,
+              "equal_cells": 153,
+              "utility_label_mass": 4.666233062744141,
+              "mean_signed_local_advantage": -0.0010727877961471677
+            }
+          ],
+          "foreground_gate_std": [
+            0.00023074897762853652,
+            6.04581946390681e-05,
+            0.00019109345157630742
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.084874629974365,
+          "original_YOLOX": 4.084874629974365,
+          "foreground_loss": 0.6931302547454834,
+          "utility_loss": 0.6931712627410889,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.21325665712356567,
+          "native_stem_gradient_L1": 0.4527578055858612,
+          "decoded_box_max_change": 5.63873291015625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 876,
+              "harmful_cells": 22,
+              "equal_cells": 5522,
+              "utility_label_mass": 8.008258819580078,
+              "mean_signed_local_advantage": -2.5633589757489972e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 26,
+              "harmful_cells": 117,
+              "equal_cells": 1447,
+              "utility_label_mass": 2.2490663528442383,
+              "mean_signed_local_advantage": 6.051352102076635e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 240,
+              "harmful_cells": 1,
+              "equal_cells": 164,
+              "utility_label_mass": 0.006775856018066406,
+              "mean_signed_local_advantage": 1.668341383265215e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00029170626658014953,
+            5.147069532540627e-05,
+            0.0001860571646830067
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.72054123878479,
+          "original_YOLOX": 3.72054123878479,
+          "foreground_loss": 0.6931249499320984,
+          "utility_loss": 0.693166196346283,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.1420135200023651,
+          "native_stem_gradient_L1": 0.4284540116786957,
+          "decoded_box_max_change": 2.0813140869140625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1723,
+              "harmful_cells": 17,
+              "equal_cells": 4680,
+              "utility_label_mass": 3.1064462661743164,
+              "mean_signed_local_advantage": 7.455965260305675e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 368,
+              "harmful_cells": 57,
+              "equal_cells": 1165,
+              "utility_label_mass": 3.5173137187957764,
+              "mean_signed_local_advantage": -1.4207967069523875e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 322,
+              "harmful_cells": 0,
+              "equal_cells": 83,
+              "utility_label_mass": 0.22613286972045898,
+              "mean_signed_local_advantage": 5.583527672570199e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0002709664113353938,
+            7.043661753414199e-05,
+            0.000245406263275072
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "no_aux_labels_ir",
+      "variant": {
+        "id": "no_aux_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": false
+      },
+      "cue": "ir",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.11447439342737198,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.397302150726318,
+          "original_YOLOX": 4.397302150726318,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.09680886566638947,
+          "native_stem_gradient_L1": 0.11875419318675995,
+          "decoded_box_max_change": 2.0531768798828125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2350,
+              "harmful_cells": 156,
+              "equal_cells": 3914,
+              "utility_label_mass": 5.0015130043029785,
+              "mean_signed_local_advantage": -1.1233353689021897e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 23,
+              "harmful_cells": 816,
+              "equal_cells": 751,
+              "utility_label_mass": 3.662320137023926,
+              "mean_signed_local_advantage": -2.7267926270724274e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.7526071071624756,
+              "mean_signed_local_advantage": -8.473249181406572e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.5051474571228027,
+          "original_YOLOX": 2.5051474571228027,
+          "foreground_loss": 0.6931502819061279,
+          "utility_loss": 0.693147599697113,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.1491590142250061,
+          "native_stem_gradient_L1": 0.3418269157409668,
+          "decoded_box_max_change": 2.0279693603515625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 725,
+              "harmful_cells": 1,
+              "equal_cells": 5694,
+              "utility_label_mass": 0.16176223754882812,
+              "mean_signed_local_advantage": 6.693545628877473e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 57,
+              "harmful_cells": 314,
+              "equal_cells": 1219,
+              "utility_label_mass": 2.0202579498291016,
+              "mean_signed_local_advantage": 6.658301572315395e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 301,
+              "harmful_cells": 0,
+              "equal_cells": 104,
+              "utility_label_mass": 0.011606216430664062,
+              "mean_signed_local_advantage": 2.8657325401582057e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00011657409777399153,
+            9.324624261353165e-05,
+            0.0001182672567665577
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8085861206054688,
+          "original_YOLOX": 1.8085857629776,
+          "foreground_loss": 0.6931459307670593,
+          "utility_loss": 0.6931480765342712,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.3473636209964752,
+          "native_stem_gradient_L1": 1.5843747854232788,
+          "decoded_box_max_change": 3.05181884765625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 87,
+              "harmful_cells": 0,
+              "equal_cells": 6333,
+              "utility_label_mass": 0.0008487701416015625,
+              "mean_signed_local_advantage": 1.3220718741990822e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 16,
+              "harmful_cells": 59,
+              "equal_cells": 1515,
+              "utility_label_mass": 0.00171661376953125,
+              "mean_signed_local_advantage": -7.917296329651435e-08
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 183,
+              "harmful_cells": 17,
+              "equal_cells": 205,
+              "utility_label_mass": 2.3652851581573486,
+              "mean_signed_local_advantage": -0.0003825396706815809
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015738273214083165,
+            4.108344728592783e-05,
+            0.00019613179028965533
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.083853721618652,
+          "original_YOLOX": 4.083853721618652,
+          "foreground_loss": 0.6931734681129456,
+          "utility_loss": 0.6931383609771729,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.14082317054271698,
+          "native_stem_gradient_L1": 0.37685856223106384,
+          "decoded_box_max_change": 4.107513427734375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 970,
+              "harmful_cells": 28,
+              "equal_cells": 5422,
+              "utility_label_mass": 4.434858798980713,
+              "mean_signed_local_advantage": -1.0831528925336897e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 78,
+              "harmful_cells": 57,
+              "equal_cells": 1455,
+              "utility_label_mass": 1.2504637241363525,
+              "mean_signed_local_advantage": 4.877856554230675e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 168,
+              "harmful_cells": 0,
+              "equal_cells": 237,
+              "utility_label_mass": 0.005183219909667969,
+              "mean_signed_local_advantage": 1.2798074067177367e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00021369698515627533,
+            6.510022649308667e-05,
+            0.00029109299066476524
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.7589519023895264,
+          "original_YOLOX": 3.7589519023895264,
+          "foreground_loss": 0.6931697726249695,
+          "utility_loss": 0.6931428909301758,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.14380908012390137,
+          "native_stem_gradient_L1": 0.37787702679634094,
+          "decoded_box_max_change": 1.7810821533203125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1569,
+              "harmful_cells": 8,
+              "equal_cells": 4843,
+              "utility_label_mass": 2.7492804527282715,
+              "mean_signed_local_advantage": 8.911832082958426e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 404,
+              "harmful_cells": 43,
+              "equal_cells": 1143,
+              "utility_label_mass": 3.8396999835968018,
+              "mean_signed_local_advantage": -5.425044219009578e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 242,
+              "harmful_cells": 6,
+              "equal_cells": 157,
+              "utility_label_mass": 0.09679913520812988,
+              "mean_signed_local_advantage": 2.3410055291606113e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003076851135119796,
+            0.00011263612395850942,
+            0.0004034684970974922
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": true,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_labels_rgb",
+      "variant": {
+        "id": "foreground_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": false
+      },
+      "cue": "rgb",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.021543281379081236,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15981334447860718,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.462162017822266,
+          "original_YOLOX": 4.392849445343018,
+          "foreground_loss": 0.6931234002113342,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.018237281310121034,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.09060148894786835,
+          "native_stem_gradient_L1": 0.07494135946035385,
+          "decoded_box_max_change": 1.526519775390625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2214,
+              "harmful_cells": 140,
+              "equal_cells": 4066,
+              "utility_label_mass": 4.601034164428711,
+              "mean_signed_local_advantage": 9.171706551569514e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 24,
+              "harmful_cells": 826,
+              "equal_cells": 740,
+              "utility_label_mass": 3.543397903442383,
+              "mean_signed_local_advantage": -3.6648798413807526e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.3940987586975098,
+              "mean_signed_local_advantage": -1.0226538506685756e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0001589768216945231,
+            0.00014982884749770164,
+            0.00015857547987252474
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.5754847526550293,
+          "original_YOLOX": 2.5061757564544678,
+          "foreground_loss": 0.6930901408195496,
+          "utility_loss": 0.6931459903717041,
+          "weighted_foreground_direct_gradient_L1": 0.01754028660025142,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.12293324619531631,
+          "native_stem_gradient_L1": 0.17441314458847046,
+          "decoded_box_max_change": 2.5879364013671875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 818,
+              "harmful_cells": 1,
+              "equal_cells": 5601,
+              "utility_label_mass": 0.17165541648864746,
+              "mean_signed_local_advantage": 1.1911830597455264e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 56,
+              "harmful_cells": 416,
+              "equal_cells": 1118,
+              "utility_label_mass": 2.293884754180908,
+              "mean_signed_local_advantage": 2.3166488972492516e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 318,
+              "harmful_cells": 0,
+              "equal_cells": 87,
+              "utility_label_mass": 0.01316070556640625,
+              "mean_signed_local_advantage": 3.249557039453066e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00028684476274065673,
+            0.0002754903107415885,
+            0.00025314572849310935
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8932479619979858,
+          "original_YOLOX": 1.823941946029663,
+          "foreground_loss": 0.6930463314056396,
+          "utility_loss": 0.6931519508361816,
+          "weighted_foreground_direct_gradient_L1": 0.020152187942585442,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.6675984263420105,
+          "native_stem_gradient_L1": 3.4927797317504883,
+          "decoded_box_max_change": 5.1016845703125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 98,
+              "harmful_cells": 0,
+              "equal_cells": 6322,
+              "utility_label_mass": 0.00095367431640625,
+              "mean_signed_local_advantage": 1.485474054874203e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 1,
+              "harmful_cells": 129,
+              "equal_cells": 1460,
+              "utility_label_mass": 0.0035333633422851562,
+              "mean_signed_local_advantage": -2.1922512871697108e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 232,
+              "harmful_cells": 19,
+              "equal_cells": 154,
+              "utility_label_mass": 4.302169322967529,
+              "mean_signed_local_advantage": -0.0009750600438565016
+            }
+          ],
+          "foreground_gate_std": [
+            0.0004321838787291199,
+            0.0003824725572485477,
+            0.0003046200145035982
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.153570652008057,
+          "original_YOLOX": 4.084278583526611,
+          "foreground_loss": 0.6929143071174622,
+          "utility_loss": 0.6931774020195007,
+          "weighted_foreground_direct_gradient_L1": 0.02666725048720764,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.2217574268579483,
+          "native_stem_gradient_L1": 0.42797666788101196,
+          "decoded_box_max_change": 4.989227294921875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 1137,
+              "harmful_cells": 24,
+              "equal_cells": 5259,
+              "utility_label_mass": 8.832294464111328,
+              "mean_signed_local_advantage": -2.799589310598094e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 23,
+              "harmful_cells": 215,
+              "equal_cells": 1352,
+              "utility_label_mass": 3.582935333251953,
+              "mean_signed_local_advantage": 9.065873746294528e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 306,
+              "harmful_cells": 0,
+              "equal_cells": 99,
+              "utility_label_mass": 0.009002685546875,
+              "mean_signed_local_advantage": 2.222885314040468e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005420660017989576,
+            0.0006719866069033742,
+            0.00046747562009841204
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.789106845855713,
+          "original_YOLOX": 3.719815969467163,
+          "foreground_loss": 0.6929078102111816,
+          "utility_loss": 0.693168580532074,
+          "weighted_foreground_direct_gradient_L1": 0.022040761578864476,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15806236863136292,
+          "native_stem_gradient_L1": 0.515184223651886,
+          "decoded_box_max_change": 1.9019927978515625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1758,
+              "harmful_cells": 16,
+              "equal_cells": 4646,
+              "utility_label_mass": 3.996579170227051,
+              "mean_signed_local_advantage": 1.1896854630322196e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 312,
+              "harmful_cells": 58,
+              "equal_cells": 1220,
+              "utility_label_mass": 3.4331915378570557,
+              "mean_signed_local_advantage": -4.379798156151082e-06
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 276,
+              "harmful_cells": 4,
+              "equal_cells": 125,
+              "utility_label_mass": 0.18210530281066895,
+              "mean_signed_local_advantage": 4.494543463806622e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0007651492487639189,
+            0.0007361882016994059,
+            0.0006335203070193529
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_labels_gray",
+      "variant": {
+        "id": "foreground_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": false
+      },
+      "cue": "gray",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.019953239935375677,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15120655298233032,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.462185382843018,
+          "original_YOLOX": 4.3928728103637695,
+          "foreground_loss": 0.6931259036064148,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.01868177862434095,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.08488421887159348,
+          "native_stem_gradient_L1": 0.07659543305635452,
+          "decoded_box_max_change": 1.81219482421875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2042,
+              "harmful_cells": 138,
+              "equal_cells": 4240,
+              "utility_label_mass": 4.141819953918457,
+              "mean_signed_local_advantage": 1.15864977487945e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 26,
+              "harmful_cells": 775,
+              "equal_cells": 789,
+              "utility_label_mass": 3.0007429122924805,
+              "mean_signed_local_advantage": -5.26405347045511e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 380,
+              "harmful_cells": 6,
+              "equal_cells": 19,
+              "utility_label_mass": 3.082206964492798,
+              "mean_signed_local_advantage": 8.432953535475463e-08
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015370229084510356,
+            0.00016032715211622417,
+            0.0001433973666280508
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.575352191925049,
+          "original_YOLOX": 2.5060431957244873,
+          "foreground_loss": 0.6930890083312988,
+          "utility_loss": 0.6931469440460205,
+          "weighted_foreground_direct_gradient_L1": 0.016517798424047214,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.08089150488376617,
+          "native_stem_gradient_L1": 0.10431838780641556,
+          "decoded_box_max_change": 2.87298583984375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 736,
+              "harmful_cells": 1,
+              "equal_cells": 5683,
+              "utility_label_mass": 0.14390349388122559,
+              "mean_signed_local_advantage": 7.933730898912472e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 55,
+              "harmful_cells": 407,
+              "equal_cells": 1128,
+              "utility_label_mass": 1.721404790878296,
+              "mean_signed_local_advantage": 3.111414844170213e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 326,
+              "harmful_cells": 0,
+              "equal_cells": 79,
+              "utility_label_mass": 0.013499259948730469,
+              "mean_signed_local_advantage": 3.3331505164824193e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00027498352574184537,
+            0.00028290876070968807,
+            0.0002606200869195163
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8957594633102417,
+          "original_YOLOX": 1.826451301574707,
+          "foreground_loss": 0.6930623650550842,
+          "utility_loss": 0.6931522488594055,
+          "weighted_foreground_direct_gradient_L1": 0.021325632447315,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.7877023220062256,
+          "native_stem_gradient_L1": 4.993903160095215,
+          "decoded_box_max_change": 5.02398681640625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 84,
+              "harmful_cells": 0,
+              "equal_cells": 6336,
+              "utility_label_mass": 0.000820159912109375,
+              "mean_signed_local_advantage": 1.2775076108084704e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 146,
+              "equal_cells": 1444,
+              "utility_label_mass": 0.005245208740234375,
+              "mean_signed_local_advantage": -3.2988734233185824e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 233,
+              "harmful_cells": 19,
+              "equal_cells": 153,
+              "utility_label_mass": 4.6667351722717285,
+              "mean_signed_local_advantage": -0.0010728257475420833
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003730288881342858,
+            0.00037877625436522067,
+            0.00031062838388606906
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.154168128967285,
+          "original_YOLOX": 4.084874629974365,
+          "foreground_loss": 0.6929369568824768,
+          "utility_loss": 0.693172037601471,
+          "weighted_foreground_direct_gradient_L1": 0.024361973443774332,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.21331042051315308,
+          "native_stem_gradient_L1": 0.45274949073791504,
+          "decoded_box_max_change": 5.635986328125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 876,
+              "harmful_cells": 22,
+              "equal_cells": 5522,
+              "utility_label_mass": 8.008543014526367,
+              "mean_signed_local_advantage": -2.5636885766289197e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 26,
+              "harmful_cells": 117,
+              "equal_cells": 1447,
+              "utility_label_mass": 2.2499771118164062,
+              "mean_signed_local_advantage": 6.0485930589493364e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 240,
+              "harmful_cells": 1,
+              "equal_cells": 164,
+              "utility_label_mass": 0.006775856018066406,
+              "mean_signed_local_advantage": 1.668341383265215e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005489655304700136,
+            0.0006248826393857598,
+            0.00047615854418836534
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.789828300476074,
+          "original_YOLOX": 3.7205381393432617,
+          "foreground_loss": 0.692901611328125,
+          "utility_loss": 0.6931664347648621,
+          "weighted_foreground_direct_gradient_L1": 0.022534097799962183,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.14216667413711548,
+          "native_stem_gradient_L1": 0.42911428213119507,
+          "decoded_box_max_change": 2.0804595947265625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1723,
+              "harmful_cells": 17,
+              "equal_cells": 4680,
+              "utility_label_mass": 3.1070291996002197,
+              "mean_signed_local_advantage": 7.4484082688286435e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 368,
+              "harmful_cells": 57,
+              "equal_cells": 1165,
+              "utility_label_mass": 3.5172295570373535,
+              "mean_signed_local_advantage": -1.4089057003729977e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 322,
+              "harmful_cells": 0,
+              "equal_cells": 83,
+              "utility_label_mass": 0.22672414779663086,
+              "mean_signed_local_advantage": 5.5981272453209385e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0007569115259684622,
+            0.000734740577172488,
+            0.0007716091931797564
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_labels_ir",
+      "variant": {
+        "id": "foreground_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": false
+      },
+      "cue": "ir",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0192088934061303,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.11455095559358597,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.46661376953125,
+          "original_YOLOX": 4.397302627563477,
+          "foreground_loss": 0.6931117177009583,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.02039684193141511,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.09688255190849304,
+          "native_stem_gradient_L1": 0.1186414361000061,
+          "decoded_box_max_change": 2.0529937744140625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2350,
+              "harmful_cells": 156,
+              "equal_cells": 3914,
+              "utility_label_mass": 5.0015130043029785,
+              "mean_signed_local_advantage": -1.1233353689021897e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 23,
+              "harmful_cells": 816,
+              "equal_cells": 751,
+              "utility_label_mass": 3.662320137023926,
+              "mean_signed_local_advantage": -2.7267926270724274e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.7526071071624756,
+              "mean_signed_local_advantage": -8.473249181406572e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015072859241627157,
+            0.00015202215581666678,
+            0.00017724790086504072
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.574455499649048,
+          "original_YOLOX": 2.505146026611328,
+          "foreground_loss": 0.6930946707725525,
+          "utility_loss": 0.693147599697113,
+          "weighted_foreground_direct_gradient_L1": 0.016199964799398003,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.14926420152187347,
+          "native_stem_gradient_L1": 0.3425525426864624,
+          "decoded_box_max_change": 2.02783203125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 725,
+              "harmful_cells": 1,
+              "equal_cells": 5694,
+              "utility_label_mass": 0.16173839569091797,
+              "mean_signed_local_advantage": 6.695773890896817e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 57,
+              "harmful_cells": 314,
+              "equal_cells": 1219,
+              "utility_label_mass": 2.0212349891662598,
+              "mean_signed_local_advantage": 6.660060171270743e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 301,
+              "harmful_cells": 0,
+              "equal_cells": 104,
+              "utility_label_mass": 0.011606216430664062,
+              "mean_signed_local_advantage": 2.8657325401582057e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0002637096040416509,
+            0.00028660331736318767,
+            0.0002587491471786052
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8778917789459229,
+          "original_YOLOX": 1.8085851669311523,
+          "foreground_loss": 0.6930624842643738,
+          "utility_loss": 0.6931481957435608,
+          "weighted_foreground_direct_gradient_L1": 0.022461606249635224,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.34763163328170776,
+          "native_stem_gradient_L1": 1.5843604803085327,
+          "decoded_box_max_change": 3.0501708984375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 87,
+              "harmful_cells": 0,
+              "equal_cells": 6333,
+              "utility_label_mass": 0.0008487701416015625,
+              "mean_signed_local_advantage": 1.3220718741990822e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 16,
+              "harmful_cells": 59,
+              "equal_cells": 1515,
+              "utility_label_mass": 0.0017261505126953125,
+              "mean_signed_local_advantage": -7.977275373605153e-08
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 183,
+              "harmful_cells": 17,
+              "equal_cells": 205,
+              "utility_label_mass": 2.3639917373657227,
+              "mean_signed_local_advantage": -0.00038231597864069045
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003465208283159882,
+            0.0003384208830539137,
+            0.00034888164373114705
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.153148651123047,
+          "original_YOLOX": 4.0838541984558105,
+          "foreground_loss": 0.6929435133934021,
+          "utility_loss": 0.6931381225585938,
+          "weighted_foreground_direct_gradient_L1": 0.02400807565118157,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.1411134898662567,
+          "native_stem_gradient_L1": 0.3772042691707611,
+          "decoded_box_max_change": 4.108184814453125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 971,
+              "harmful_cells": 28,
+              "equal_cells": 5421,
+              "utility_label_mass": 4.43549919128418,
+              "mean_signed_local_advantage": -1.0831064173544291e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 78,
+              "harmful_cells": 57,
+              "equal_cells": 1455,
+              "utility_label_mass": 1.250937581062317,
+              "mean_signed_local_advantage": 4.8784528189571574e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 168,
+              "harmful_cells": 0,
+              "equal_cells": 237,
+              "utility_label_mass": 0.005183219909667969,
+              "mean_signed_local_advantage": 1.2798074067177367e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005498130922205746,
+            0.0005089818150736392,
+            0.0004795653803739697
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.828249454498291,
+          "original_YOLOX": 3.75895357131958,
+          "foreground_loss": 0.6929579377174377,
+          "utility_loss": 0.6931426525115967,
+          "weighted_foreground_direct_gradient_L1": 0.01905467597362076,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.14402765035629272,
+          "native_stem_gradient_L1": 0.377870112657547,
+          "decoded_box_max_change": 1.7807159423828125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1569,
+              "harmful_cells": 8,
+              "equal_cells": 4843,
+              "utility_label_mass": 2.750164270401001,
+              "mean_signed_local_advantage": 8.919881111069117e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 404,
+              "harmful_cells": 43,
+              "equal_cells": 1143,
+              "utility_label_mass": 3.8416788578033447,
+              "mean_signed_local_advantage": -5.43104215466883e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 242,
+              "harmful_cells": 6,
+              "equal_cells": 157,
+              "utility_label_mass": 0.09665966033935547,
+              "mean_signed_local_advantage": 2.336855322937481e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0006853996892459691,
+            0.0008409292786382139,
+            0.0007291225483641028
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": true,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "utility_labels_rgb",
+      "variant": {
+        "id": "utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": true
+      },
+      "cue": "rgb",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.1597633808851242,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.462164878845215,
+          "original_YOLOX": 4.392849922180176,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0033827466177172028,
+          "gradient_norm": 0.09053373336791992,
+          "native_stem_gradient_L1": 0.07491812109947205,
+          "decoded_box_max_change": 1.5265655517578125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2214,
+              "harmful_cells": 140,
+              "equal_cells": 4066,
+              "utility_label_mass": 4.601034164428711,
+              "mean_signed_local_advantage": 9.171706551569514e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 24,
+              "harmful_cells": 826,
+              "equal_cells": 740,
+              "utility_label_mass": 3.543397903442383,
+              "mean_signed_local_advantage": -3.6648798413807526e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.3940987586975098,
+              "mean_signed_local_advantage": -1.0226538506685756e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.575491428375244,
+          "original_YOLOX": 2.506176471710205,
+          "foreground_loss": 0.6931306719779968,
+          "utility_loss": 0.6931486129760742,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0011998515556115308,
+          "gradient_norm": 0.1229429766535759,
+          "native_stem_gradient_L1": 0.17448197305202484,
+          "decoded_box_max_change": 2.5875396728515625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 818,
+              "harmful_cells": 1,
+              "equal_cells": 5601,
+              "utility_label_mass": 0.1715397834777832,
+              "mean_signed_local_advantage": 1.192427134810714e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 56,
+              "harmful_cells": 416,
+              "equal_cells": 1118,
+              "utility_label_mass": 2.294194459915161,
+              "mean_signed_local_advantage": 2.3135617084335536e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 318,
+              "harmful_cells": 0,
+              "equal_cells": 87,
+              "utility_label_mass": 0.01316070556640625,
+              "mean_signed_local_advantage": 3.249557039453066e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00010897516767727211,
+            9.858911653282121e-05,
+            0.00013265979941934347
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8932417631149292,
+          "original_YOLOX": 1.8239259719848633,
+          "foreground_loss": 0.693122386932373,
+          "utility_loss": 0.6931440234184265,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0057621040896265185,
+          "gradient_norm": 0.6672921776771545,
+          "native_stem_gradient_L1": 3.495403528213501,
+          "decoded_box_max_change": 5.100738525390625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 99,
+              "harmful_cells": 0,
+              "equal_cells": 6321,
+              "utility_label_mass": 0.0009632110595703125,
+              "mean_signed_local_advantage": 1.5003287501258455e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 1,
+              "harmful_cells": 129,
+              "equal_cells": 1460,
+              "utility_label_mass": 0.0035333633422851562,
+              "mean_signed_local_advantage": -2.1922512871697108e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 232,
+              "harmful_cells": 19,
+              "equal_cells": 154,
+              "utility_label_mass": 4.300775527954102,
+              "mean_signed_local_advantage": -0.0009749075397849083
+            }
+          ],
+          "foreground_gate_std": [
+            0.0002241713518742472,
+            9.001920989248902e-05,
+            0.0002121626166626811
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.153589248657227,
+          "original_YOLOX": 4.084273815155029,
+          "foreground_loss": 0.6931112408638,
+          "utility_loss": 0.6931514739990234,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.006801391922635958,
+          "gradient_norm": 0.2215271294116974,
+          "native_stem_gradient_L1": 0.4274851381778717,
+          "decoded_box_max_change": 4.98663330078125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 1137,
+              "harmful_cells": 24,
+              "equal_cells": 5259,
+              "utility_label_mass": 8.830242156982422,
+              "mean_signed_local_advantage": -2.7984631742583588e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 23,
+              "harmful_cells": 215,
+              "equal_cells": 1352,
+              "utility_label_mass": 3.58235239982605,
+              "mean_signed_local_advantage": 9.066481288755313e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 305,
+              "harmful_cells": 0,
+              "equal_cells": 100,
+              "utility_label_mass": 0.009002685546875,
+              "mean_signed_local_advantage": 2.222885314040468e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003026184858754277,
+            0.00010705958993639797,
+            0.00016830138338264078
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.7891340255737305,
+          "original_YOLOX": 3.719817876815796,
+          "foreground_loss": 0.6931234002113342,
+          "utility_loss": 0.6931620240211487,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.005438449043140281,
+          "gradient_norm": 0.15801768004894257,
+          "native_stem_gradient_L1": 0.5160824060440063,
+          "decoded_box_max_change": 1.9058074951171875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1758,
+              "harmful_cells": 16,
+              "equal_cells": 4646,
+              "utility_label_mass": 3.9955081939697266,
+              "mean_signed_local_advantage": 1.1894469025719445e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 312,
+              "harmful_cells": 58,
+              "equal_cells": 1220,
+              "utility_label_mass": 3.4328935146331787,
+              "mean_signed_local_advantage": -4.39134419139009e-06
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 276,
+              "harmful_cells": 4,
+              "equal_cells": 125,
+              "utility_label_mass": 0.18213391304016113,
+              "mean_signed_local_advantage": 4.495249959290959e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.00024940099683590233,
+            0.0001309159561060369,
+            0.00028025018400512636
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "utility_labels_gray",
+      "variant": {
+        "id": "utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": true
+      },
+      "cue": "gray",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15115584433078766,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.462187767028809,
+          "original_YOLOX": 4.3928728103637695,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.002838586260622833,
+          "gradient_norm": 0.08481686562299728,
+          "native_stem_gradient_L1": 0.07664259523153305,
+          "decoded_box_max_change": 1.8125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2042,
+              "harmful_cells": 138,
+              "equal_cells": 4240,
+              "utility_label_mass": 4.141819953918457,
+              "mean_signed_local_advantage": 1.15864977487945e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 26,
+              "harmful_cells": 775,
+              "equal_cells": 789,
+              "utility_label_mass": 3.0007429122924805,
+              "mean_signed_local_advantage": -5.26405347045511e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 380,
+              "harmful_cells": 6,
+              "equal_cells": 19,
+              "utility_label_mass": 3.082206964492798,
+              "mean_signed_local_advantage": 8.432953535475463e-08
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.5753581523895264,
+          "original_YOLOX": 2.5060434341430664,
+          "foreground_loss": 0.6931387782096863,
+          "utility_loss": 0.6931474804878235,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0006214859558895114,
+          "gradient_norm": 0.0808500275015831,
+          "native_stem_gradient_L1": 0.10429617762565613,
+          "decoded_box_max_change": 2.873931884765625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 736,
+              "harmful_cells": 1,
+              "equal_cells": 5683,
+              "utility_label_mass": 0.14389991760253906,
+              "mean_signed_local_advantage": 7.936887413961813e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 55,
+              "harmful_cells": 407,
+              "equal_cells": 1128,
+              "utility_label_mass": 1.7209442853927612,
+              "mean_signed_local_advantage": 3.1126612157095224e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 326,
+              "harmful_cells": 0,
+              "equal_cells": 79,
+              "utility_label_mass": 0.013499259948730469,
+              "mean_signed_local_advantage": 3.3331505164824193e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0001119264488806948,
+            9.089465311262757e-05,
+            0.0001031435385812074
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8957550525665283,
+          "original_YOLOX": 1.826438546180725,
+          "foreground_loss": 0.6931237578392029,
+          "utility_loss": 0.6931455731391907,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0066035415866281255,
+          "gradient_norm": 0.7875618934631348,
+          "native_stem_gradient_L1": 4.995724201202393,
+          "decoded_box_max_change": 5.019927978515625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 84,
+              "harmful_cells": 0,
+              "equal_cells": 6336,
+              "utility_label_mass": 0.000820159912109375,
+              "mean_signed_local_advantage": 1.2775076108084704e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 147,
+              "equal_cells": 1443,
+              "utility_label_mass": 0.005245208740234375,
+              "mean_signed_local_advantage": -3.2988734233185824e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 233,
+              "harmful_cells": 19,
+              "equal_cells": 153,
+              "utility_label_mass": 4.666186332702637,
+              "mean_signed_local_advantage": -0.001072778832167387
+            }
+          ],
+          "foreground_gate_std": [
+            0.00023052374308463186,
+            6.0781629144912586e-05,
+            0.00019095772586297244
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.1541876792907715,
+          "original_YOLOX": 4.084872245788574,
+          "foreground_loss": 0.6931297183036804,
+          "utility_loss": 0.6931562423706055,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.00552670529941679,
+          "gradient_norm": 0.2132144421339035,
+          "native_stem_gradient_L1": 0.4525008499622345,
+          "decoded_box_max_change": 5.634368896484375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 876,
+              "harmful_cells": 22,
+              "equal_cells": 5522,
+              "utility_label_mass": 8.008024215698242,
+              "mean_signed_local_advantage": -2.5632114557083696e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 26,
+              "harmful_cells": 117,
+              "equal_cells": 1447,
+              "utility_label_mass": 2.248955249786377,
+              "mean_signed_local_advantage": 6.05174973316025e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 240,
+              "harmful_cells": 1,
+              "equal_cells": 164,
+              "utility_label_mass": 0.006775856018066406,
+              "mean_signed_local_advantage": 1.668341383265215e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00029112710035406053,
+            5.163687819731422e-05,
+            0.00018520253070164472
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.78985857963562,
+          "original_YOLOX": 3.7205419540405273,
+          "foreground_loss": 0.6931241154670715,
+          "utility_loss": 0.6931667327880859,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.005785392633697484,
+          "gradient_norm": 0.1421448141336441,
+          "native_stem_gradient_L1": 0.4287898540496826,
+          "decoded_box_max_change": 2.0841217041015625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1723,
+              "harmful_cells": 17,
+              "equal_cells": 4680,
+              "utility_label_mass": 3.106945753097534,
+              "mean_signed_local_advantage": 7.450784778484376e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 368,
+              "harmful_cells": 57,
+              "equal_cells": 1165,
+              "utility_label_mass": 3.5176804065704346,
+              "mean_signed_local_advantage": -1.4229147382138763e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 322,
+              "harmful_cells": 0,
+              "equal_cells": 83,
+              "utility_label_mass": 0.2261364459991455,
+              "mean_signed_local_advantage": 5.583616075455211e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.00027274430613033473,
+            7.319465657928959e-05,
+            0.00023858074564486742
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "utility_labels_ir",
+      "variant": {
+        "id": "utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": false,
+        "supervise_utility": true
+      },
+      "cue": "ir",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.324608564376831,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.11447439342737198,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.466616630554199,
+          "original_YOLOX": 4.397302150726318,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.004990951994841453,
+          "gradient_norm": 0.09681329876184464,
+          "native_stem_gradient_L1": 0.11875419318675995,
+          "decoded_box_max_change": 2.0531768798828125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2350,
+              "harmful_cells": 156,
+              "equal_cells": 3914,
+              "utility_label_mass": 5.0015130043029785,
+              "mean_signed_local_advantage": -1.1233353689021897e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 23,
+              "harmful_cells": 816,
+              "equal_cells": 751,
+              "utility_label_mass": 3.662320137023926,
+              "mean_signed_local_advantage": -2.7267926270724274e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.7526071071624756,
+              "mean_signed_local_advantage": -8.473249181406572e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.5744597911834717,
+          "original_YOLOX": 2.5051450729370117,
+          "foreground_loss": 0.6931502819061279,
+          "utility_loss": 0.6931470036506653,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.0006161250057630241,
+          "gradient_norm": 0.14931334555149078,
+          "native_stem_gradient_L1": 0.3421836495399475,
+          "decoded_box_max_change": 2.0282440185546875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 725,
+              "harmful_cells": 1,
+              "equal_cells": 5694,
+              "utility_label_mass": 0.16176223754882812,
+              "mean_signed_local_advantage": 6.693545628877473e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 57,
+              "harmful_cells": 314,
+              "equal_cells": 1219,
+              "utility_label_mass": 2.0202579498291016,
+              "mean_signed_local_advantage": 6.658301572315395e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 301,
+              "harmful_cells": 0,
+              "equal_cells": 104,
+              "utility_label_mass": 0.011606216430664062,
+              "mean_signed_local_advantage": 2.8657325401582057e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00011657409777399153,
+            9.324624261353165e-05,
+            0.0001182672567665577
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.8779023885726929,
+          "original_YOLOX": 1.8085870742797852,
+          "foreground_loss": 0.693146288394928,
+          "utility_loss": 0.6931490302085876,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.002814734743878944,
+          "gradient_norm": 0.34739547967910767,
+          "native_stem_gradient_L1": 1.5846595764160156,
+          "decoded_box_max_change": 3.0521087646484375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 87,
+              "harmful_cells": 0,
+              "equal_cells": 6333,
+              "utility_label_mass": 0.0008487701416015625,
+              "mean_signed_local_advantage": 1.3220718741990822e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 16,
+              "harmful_cells": 59,
+              "equal_cells": 1515,
+              "utility_label_mass": 0.00171661376953125,
+              "mean_signed_local_advantage": -7.917296329651435e-08
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 183,
+              "harmful_cells": 17,
+              "equal_cells": 205,
+              "utility_label_mass": 2.3652875423431396,
+              "mean_signed_local_advantage": -0.0003825405437964946
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015807666932232678,
+            4.0647053538123146e-05,
+            0.00019615463679656386
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.153163909912109,
+          "original_YOLOX": 4.083850860595703,
+          "foreground_loss": 0.6931727528572083,
+          "utility_loss": 0.6931304931640625,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.003179705412549083,
+          "gradient_norm": 0.14085039496421814,
+          "native_stem_gradient_L1": 0.3771379590034485,
+          "decoded_box_max_change": 4.113037109375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 970,
+              "harmful_cells": 28,
+              "equal_cells": 5422,
+              "utility_label_mass": 4.43488883972168,
+              "mean_signed_local_advantage": -1.0826691323018167e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 78,
+              "harmful_cells": 57,
+              "equal_cells": 1455,
+              "utility_label_mass": 1.2504595518112183,
+              "mean_signed_local_advantage": 4.8773807066027075e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 168,
+              "harmful_cells": 0,
+              "equal_cells": 237,
+              "utility_label_mass": 0.005183219909667969,
+              "mean_signed_local_advantage": 1.2798074067177367e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0002144741447409615,
+            6.667319394182414e-05,
+            0.0002895536017604172
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.8282699584960938,
+          "original_YOLOX": 3.7589545249938965,
+          "foreground_loss": 0.6931667327880859,
+          "utility_loss": 0.6931532025337219,
+          "weighted_foreground_direct_gradient_L1": 0.0,
+          "weighted_utility_direct_gradient_L1": 0.006575977065949701,
+          "gradient_norm": 0.14399540424346924,
+          "native_stem_gradient_L1": 0.3782973885536194,
+          "decoded_box_max_change": 1.783538818359375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1569,
+              "harmful_cells": 8,
+              "equal_cells": 4843,
+              "utility_label_mass": 2.7496659755706787,
+              "mean_signed_local_advantage": 8.909557436709292e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 404,
+              "harmful_cells": 43,
+              "equal_cells": 1143,
+              "utility_label_mass": 3.840008020401001,
+              "mean_signed_local_advantage": -5.427274663816206e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 242,
+              "harmful_cells": 6,
+              "equal_cells": 157,
+              "utility_label_mass": 0.09678244590759277,
+              "mean_signed_local_advantage": 2.3405935280607082e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003096065775025636,
+            0.00012125198554713279,
+            0.0004013064317405224
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": true,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_utility_labels_rgb",
+      "variant": {
+        "id": "foreground_utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": true
+      },
+      "cue": "rgb",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.021543281379081236,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15981334447860718,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.531476974487305,
+          "original_YOLOX": 4.392849445343018,
+          "foreground_loss": 0.6931234002113342,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.018237281310121034,
+          "weighted_utility_direct_gradient_L1": 0.0033827466177172028,
+          "gradient_norm": 0.09060263633728027,
+          "native_stem_gradient_L1": 0.07494135946035385,
+          "decoded_box_max_change": 1.526519775390625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2214,
+              "harmful_cells": 140,
+              "equal_cells": 4066,
+              "utility_label_mass": 4.601034164428711,
+              "mean_signed_local_advantage": 9.171706551569514e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 24,
+              "harmful_cells": 826,
+              "equal_cells": 740,
+              "utility_label_mass": 3.543397903442383,
+              "mean_signed_local_advantage": -3.6648798413807526e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.3940987586975098,
+              "mean_signed_local_advantage": -1.0226538506685756e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0001589768216945231,
+            0.00014982884749770164,
+            0.00015857547987252474
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.6447982788085938,
+          "original_YOLOX": 2.506174325942993,
+          "foreground_loss": 0.6930901408195496,
+          "utility_loss": 0.6931486129760742,
+          "weighted_foreground_direct_gradient_L1": 0.01754028660025142,
+          "weighted_utility_direct_gradient_L1": 0.0011950733050980489,
+          "gradient_norm": 0.12303625792264938,
+          "native_stem_gradient_L1": 0.17455559968948364,
+          "decoded_box_max_change": 2.587646484375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 818,
+              "harmful_cells": 1,
+              "equal_cells": 5601,
+              "utility_label_mass": 0.17165541648864746,
+              "mean_signed_local_advantage": 1.1911830597455264e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 56,
+              "harmful_cells": 416,
+              "equal_cells": 1118,
+              "utility_label_mass": 2.293884754180908,
+              "mean_signed_local_advantage": 2.3166488972492516e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 318,
+              "harmful_cells": 0,
+              "equal_cells": 87,
+              "utility_label_mass": 0.01316070556640625,
+              "mean_signed_local_advantage": 3.249557039453066e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00028684476274065673,
+            0.0002754903107415885,
+            0.00025314572849310935
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.9625458717346191,
+          "original_YOLOX": 1.823925495147705,
+          "foreground_loss": 0.6930463910102844,
+          "utility_loss": 0.6931437849998474,
+          "weighted_foreground_direct_gradient_L1": 0.02014496367837637,
+          "weighted_utility_direct_gradient_L1": 0.005631730363347742,
+          "gradient_norm": 0.6671944260597229,
+          "native_stem_gradient_L1": 3.4901998043060303,
+          "decoded_box_max_change": 5.097625732421875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 98,
+              "harmful_cells": 0,
+              "equal_cells": 6322,
+              "utility_label_mass": 0.00095367431640625,
+              "mean_signed_local_advantage": 1.485474054874203e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 1,
+              "harmful_cells": 129,
+              "equal_cells": 1460,
+              "utility_label_mass": 0.0035333633422851562,
+              "mean_signed_local_advantage": -2.1922512871697108e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 232,
+              "harmful_cells": 19,
+              "equal_cells": 154,
+              "utility_label_mass": 4.302036762237549,
+              "mean_signed_local_advantage": -0.0009750269236974418
+            }
+          ],
+          "foreground_gate_std": [
+            0.000432301196269691,
+            0.0003820416168309748,
+            0.00030460639391094446
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.222879886627197,
+          "original_YOLOX": 4.084272861480713,
+          "foreground_loss": 0.6929141879081726,
+          "utility_loss": 0.6931512951850891,
+          "weighted_foreground_direct_gradient_L1": 0.026568384453639737,
+          "weighted_utility_direct_gradient_L1": 0.006974024683586322,
+          "gradient_norm": 0.22167539596557617,
+          "native_stem_gradient_L1": 0.4276575446128845,
+          "decoded_box_max_change": 4.986236572265625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 1137,
+              "harmful_cells": 24,
+              "equal_cells": 5259,
+              "utility_label_mass": 8.83213996887207,
+              "mean_signed_local_advantage": -2.799242065520957e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 23,
+              "harmful_cells": 215,
+              "equal_cells": 1352,
+              "utility_label_mass": 3.582714080810547,
+              "mean_signed_local_advantage": 9.067235077964142e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 306,
+              "harmful_cells": 0,
+              "equal_cells": 99,
+              "utility_label_mass": 0.009002685546875,
+              "mean_signed_local_advantage": 2.222885314040468e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005421839887276292,
+            0.00067156832665205,
+            0.00046685399138368666
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.8584237098693848,
+          "original_YOLOX": 3.7198169231414795,
+          "foreground_loss": 0.6929060816764832,
+          "utility_loss": 0.6931615471839905,
+          "weighted_foreground_direct_gradient_L1": 0.022204170013083058,
+          "weighted_utility_direct_gradient_L1": 0.005628004983009305,
+          "gradient_norm": 0.1581551879644394,
+          "native_stem_gradient_L1": 0.515364408493042,
+          "decoded_box_max_change": 1.90447998046875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1758,
+              "harmful_cells": 16,
+              "equal_cells": 4646,
+              "utility_label_mass": 3.9966976642608643,
+              "mean_signed_local_advantage": 1.1897774129465688e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 313,
+              "harmful_cells": 58,
+              "equal_cells": 1219,
+              "utility_label_mass": 3.433582067489624,
+              "mean_signed_local_advantage": -4.417697709868662e-06
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 276,
+              "harmful_cells": 4,
+              "equal_cells": 125,
+              "utility_label_mass": 0.18211126327514648,
+              "mean_signed_local_advantage": 4.494690438150428e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0007659897673875093,
+            0.0007357247523032129,
+            0.0006470063817687333
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_utility_labels_gray",
+      "variant": {
+        "id": "foreground_utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": true
+      },
+      "cue": "gray",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.019953239935375677,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.15120655298233032,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.531499862670898,
+          "original_YOLOX": 4.3928728103637695,
+          "foreground_loss": 0.6931259036064148,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.01868177862434095,
+          "weighted_utility_direct_gradient_L1": 0.002838586260622833,
+          "gradient_norm": 0.08488478511571884,
+          "native_stem_gradient_L1": 0.07659543305635452,
+          "decoded_box_max_change": 1.81219482421875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2042,
+              "harmful_cells": 138,
+              "equal_cells": 4240,
+              "utility_label_mass": 4.141819953918457,
+              "mean_signed_local_advantage": 1.15864977487945e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 26,
+              "harmful_cells": 775,
+              "equal_cells": 789,
+              "utility_label_mass": 3.0007429122924805,
+              "mean_signed_local_advantage": -5.26405347045511e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 380,
+              "harmful_cells": 6,
+              "equal_cells": 19,
+              "utility_label_mass": 3.082206964492798,
+              "mean_signed_local_advantage": 8.432953535475463e-08
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015370229084510356,
+            0.00016032715211622417,
+            0.0001433973666280508
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.644667148590088,
+          "original_YOLOX": 2.5060434341430664,
+          "foreground_loss": 0.6930890083312988,
+          "utility_loss": 0.6931474804878235,
+          "weighted_foreground_direct_gradient_L1": 0.016517798424047214,
+          "weighted_utility_direct_gradient_L1": 0.0006233410686036223,
+          "gradient_norm": 0.08094710111618042,
+          "native_stem_gradient_L1": 0.1043819859623909,
+          "decoded_box_max_change": 2.872833251953125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 736,
+              "harmful_cells": 1,
+              "equal_cells": 5683,
+              "utility_label_mass": 0.14390349388122559,
+              "mean_signed_local_advantage": 7.933730898912472e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 55,
+              "harmful_cells": 407,
+              "equal_cells": 1128,
+              "utility_label_mass": 1.721404790878296,
+              "mean_signed_local_advantage": 3.111414844170213e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 326,
+              "harmful_cells": 0,
+              "equal_cells": 79,
+              "utility_label_mass": 0.013499259948730469,
+              "mean_signed_local_advantage": 3.3331505164824193e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.00027498352574184537,
+            0.00028290876070968807,
+            0.0002606200869195163
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.9650472402572632,
+          "original_YOLOX": 1.8264245986938477,
+          "foreground_loss": 0.6930624842643738,
+          "utility_loss": 0.6931452751159668,
+          "weighted_foreground_direct_gradient_L1": 0.02132121320346414,
+          "weighted_utility_direct_gradient_L1": 0.006391008642822271,
+          "gradient_norm": 0.7870494723320007,
+          "native_stem_gradient_L1": 4.989344596862793,
+          "decoded_box_max_change": 5.018798828125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 84,
+              "harmful_cells": 0,
+              "equal_cells": 6336,
+              "utility_label_mass": 0.000820159912109375,
+              "mean_signed_local_advantage": 1.2775076108084704e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 146,
+              "equal_cells": 1444,
+              "utility_label_mass": 0.005245208740234375,
+              "mean_signed_local_advantage": -3.2988734233185824e-07
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 233,
+              "harmful_cells": 19,
+              "equal_cells": 153,
+              "utility_label_mass": 4.666784763336182,
+              "mean_signed_local_advantage": -0.001072835293598473
+            }
+          ],
+          "foreground_gate_std": [
+            0.00037308980245143175,
+            0.0003785116714425385,
+            0.0003106262010987848
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.223481178283691,
+          "original_YOLOX": 4.084872245788574,
+          "foreground_loss": 0.6929365992546082,
+          "utility_loss": 0.6931559443473816,
+          "weighted_foreground_direct_gradient_L1": 0.024439752928628877,
+          "weighted_utility_direct_gradient_L1": 0.005718000498745823,
+          "gradient_norm": 0.21326042711734772,
+          "native_stem_gradient_L1": 0.4524628818035126,
+          "decoded_box_max_change": 5.63153076171875,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 876,
+              "harmful_cells": 22,
+              "equal_cells": 5522,
+              "utility_label_mass": 8.008277893066406,
+              "mean_signed_local_advantage": -2.563879024819471e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 26,
+              "harmful_cells": 117,
+              "equal_cells": 1447,
+              "utility_label_mass": 2.249870777130127,
+              "mean_signed_local_advantage": 6.049230432836339e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 240,
+              "harmful_cells": 1,
+              "equal_cells": 164,
+              "utility_label_mass": 0.006775856018066406,
+              "mean_signed_local_advantage": 1.668341383265215e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005489558097906411,
+            0.000624889275059104,
+            0.0004754744004458189
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.859145164489746,
+          "original_YOLOX": 3.720538377761841,
+          "foreground_loss": 0.6929014325141907,
+          "utility_loss": 0.6931653022766113,
+          "weighted_foreground_direct_gradient_L1": 0.02264948714264392,
+          "weighted_utility_direct_gradient_L1": 0.005876640796486754,
+          "gradient_norm": 0.14228981733322144,
+          "native_stem_gradient_L1": 0.4294246435165405,
+          "decoded_box_max_change": 2.0835113525390625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1723,
+              "harmful_cells": 17,
+              "equal_cells": 4680,
+              "utility_label_mass": 3.1068711280822754,
+              "mean_signed_local_advantage": 7.453820671798894e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 368,
+              "harmful_cells": 57,
+              "equal_cells": 1165,
+              "utility_label_mass": 3.5175206661224365,
+              "mean_signed_local_advantage": -1.412005894962931e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 322,
+              "harmful_cells": 0,
+              "equal_cells": 83,
+              "utility_label_mass": 0.2267301082611084,
+              "mean_signed_local_advantage": 5.598274219664745e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0007580408127978444,
+            0.0007348284125328064,
+            0.0007669163751415908
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": null,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    },
+    {
+      "id": "foreground_utility_labels_ir",
+      "variant": {
+        "id": "foreground_utility_labels",
+        "kwargs": {
+          "use_foreground": true,
+          "use_utility": true
+        },
+        "supervise_foreground": true,
+        "supervise_utility": true
+      },
+      "cue": "ir",
+      "seed": 0,
+      "initial_raw_RGB_exact": true,
+      "steps": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "loss": 3.393923282623291,
+          "original_YOLOX": 3.324608564376831,
+          "foreground_loss": 0.6931471824645996,
+          "utility_loss": 0.0,
+          "weighted_foreground_direct_gradient_L1": 0.0192088934061303,
+          "weighted_utility_direct_gradient_L1": 0.0,
+          "gradient_norm": 0.11455095559358597,
+          "native_stem_gradient_L1": 0.0,
+          "decoded_box_max_change": 0.0,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 394,
+              "reference_matched_cells": 43,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 6420,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 82,
+              "reference_matched_cells": 24,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 1590,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 25,
+              "reference_matched_cells": 0,
+              "helpful_cells": 0,
+              "harmful_cells": 0,
+              "equal_cells": 405,
+              "utility_label_mass": 0.0,
+              "mean_signed_local_advantage": 0.0
+            }
+          ],
+          "foreground_gate_std": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "loss": 4.535928726196289,
+          "original_YOLOX": 4.397302627563477,
+          "foreground_loss": 0.6931117177009583,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.02039684193141511,
+          "weighted_utility_direct_gradient_L1": 0.004990951994841453,
+          "gradient_norm": 0.09688698500394821,
+          "native_stem_gradient_L1": 0.1186414361000061,
+          "decoded_box_max_change": 2.0529937744140625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 217,
+              "reference_matched_cells": 202,
+              "helpful_cells": 2350,
+              "harmful_cells": 156,
+              "equal_cells": 3914,
+              "utility_label_mass": 5.0015130043029785,
+              "mean_signed_local_advantage": -1.1233353689021897e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 46,
+              "reference_matched_cells": 38,
+              "helpful_cells": 23,
+              "harmful_cells": 816,
+              "equal_cells": 751,
+              "utility_label_mass": 3.662320137023926,
+              "mean_signed_local_advantage": -2.7267926270724274e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 14,
+              "reference_matched_cells": 8,
+              "helpful_cells": 381,
+              "harmful_cells": 6,
+              "equal_cells": 18,
+              "utility_label_mass": 3.7526071071624756,
+              "mean_signed_local_advantage": -8.473249181406572e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.00015072859241627157,
+            0.00015202215581666678,
+            0.00017724790086504072
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "loss": 2.6437690258026123,
+          "original_YOLOX": 2.5051448345184326,
+          "foreground_loss": 0.6930946707725525,
+          "utility_loss": 0.6931471824645996,
+          "weighted_foreground_direct_gradient_L1": 0.016199964799398003,
+          "weighted_utility_direct_gradient_L1": 0.000617603760019847,
+          "gradient_norm": 0.14941851794719696,
+          "native_stem_gradient_L1": 0.34291017055511475,
+          "decoded_box_max_change": 2.0280609130859375,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1172,
+              "reference_matched_cells": 1,
+              "helpful_cells": 725,
+              "harmful_cells": 1,
+              "equal_cells": 5694,
+              "utility_label_mass": 0.16173839569091797,
+              "mean_signed_local_advantage": 6.695773890896817e-07
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 281,
+              "reference_matched_cells": 67,
+              "helpful_cells": 57,
+              "harmful_cells": 314,
+              "equal_cells": 1219,
+              "utility_label_mass": 2.0212349891662598,
+              "mean_signed_local_advantage": 6.660060171270743e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 65,
+              "reference_matched_cells": 0,
+              "helpful_cells": 301,
+              "harmful_cells": 0,
+              "equal_cells": 104,
+              "utility_label_mass": 0.011606216430664062,
+              "mean_signed_local_advantage": 2.8657325401582057e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0002637096040416509,
+            0.00028660331736318767,
+            0.0002587491471786052
+          ]
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "loss": 1.9472072124481201,
+          "original_YOLOX": 1.8085857629776,
+          "foreground_loss": 0.6930624842643738,
+          "utility_loss": 0.6931489109992981,
+          "weighted_foreground_direct_gradient_L1": 0.022463055425760103,
+          "weighted_utility_direct_gradient_L1": 0.0028860761176474625,
+          "gradient_norm": 0.3476616144180298,
+          "native_stem_gradient_L1": 1.5846325159072876,
+          "decoded_box_max_change": 3.05059814453125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 1002,
+              "reference_matched_cells": 0,
+              "helpful_cells": 87,
+              "harmful_cells": 0,
+              "equal_cells": 6333,
+              "utility_label_mass": 0.0008487701416015625,
+              "mean_signed_local_advantage": 1.3220718741990822e-08
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 241,
+              "reference_matched_cells": 0,
+              "helpful_cells": 16,
+              "harmful_cells": 59,
+              "equal_cells": 1515,
+              "utility_label_mass": 0.0017261505126953125,
+              "mean_signed_local_advantage": -7.977275373605153e-08
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 66,
+              "reference_matched_cells": 17,
+              "helpful_cells": 183,
+              "harmful_cells": 17,
+              "equal_cells": 205,
+              "utility_label_mass": 2.364025115966797,
+              "mean_signed_local_advantage": -0.00038232392398640513
+            }
+          ],
+          "foreground_gate_std": [
+            0.0003465286863502115,
+            0.0003389142802916467,
+            0.00034887867514044046
+          ]
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "loss": 4.222459316253662,
+          "original_YOLOX": 4.0838518142700195,
+          "foreground_loss": 0.6929433941841125,
+          "utility_loss": 0.6931302547454834,
+          "weighted_foreground_direct_gradient_L1": 0.0240152978626611,
+          "weighted_utility_direct_gradient_L1": 0.00325347872239945,
+          "gradient_norm": 0.14114120602607727,
+          "native_stem_gradient_L1": 0.3774886429309845,
+          "decoded_box_max_change": 4.114166259765625,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 363,
+              "reference_matched_cells": 41,
+              "helpful_cells": 971,
+              "harmful_cells": 28,
+              "equal_cells": 5421,
+              "utility_label_mass": 4.435306549072266,
+              "mean_signed_local_advantage": -1.0832661246240605e-05
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 92,
+              "reference_matched_cells": 22,
+              "helpful_cells": 78,
+              "harmful_cells": 57,
+              "equal_cells": 1455,
+              "utility_label_mass": 1.2509554624557495,
+              "mean_signed_local_advantage": 4.878115214523859e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 22,
+              "reference_matched_cells": 0,
+              "helpful_cells": 168,
+              "harmful_cells": 0,
+              "equal_cells": 237,
+              "utility_label_mass": 0.005183219909667969,
+              "mean_signed_local_advantage": 1.2798074067177367e-06
+            }
+          ],
+          "foreground_gate_std": [
+            0.0005498400423675776,
+            0.0005097702378407121,
+            0.00047903673839755356
+          ]
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "loss": 3.8975653648376465,
+          "original_YOLOX": 3.7589545249938965,
+          "foreground_loss": 0.6929574608802795,
+          "utility_loss": 0.6931530833244324,
+          "weighted_foreground_direct_gradient_L1": 0.019142603427553695,
+          "weighted_utility_direct_gradient_L1": 0.006785516801755875,
+          "gradient_norm": 0.14420892298221588,
+          "native_stem_gradient_L1": 0.3783215582370758,
+          "decoded_box_max_change": 1.783477783203125,
+          "cached_RGB_reference_max_abs": 0.0,
+          "cached_RGB_reference_different_values": 0,
+          "local_utility_labels": [
+            {
+              "stride": 8,
+              "valid_cells": 6420,
+              "box_foreground_cells": 592,
+              "reference_matched_cells": 19,
+              "helpful_cells": 1569,
+              "harmful_cells": 8,
+              "equal_cells": 4843,
+              "utility_label_mass": 2.7507715225219727,
+              "mean_signed_local_advantage": 8.921543667383958e-06
+            },
+            {
+              "stride": 16,
+              "valid_cells": 1590,
+              "box_foreground_cells": 145,
+              "reference_matched_cells": 48,
+              "helpful_cells": 404,
+              "harmful_cells": 43,
+              "equal_cells": 1143,
+              "utility_label_mass": 3.8422200679779053,
+              "mean_signed_local_advantage": -5.4323390941135585e-05
+            },
+            {
+              "stride": 32,
+              "valid_cells": 405,
+              "box_foreground_cells": 41,
+              "reference_matched_cells": 0,
+              "helpful_cells": 242,
+              "harmful_cells": 6,
+              "equal_cells": 157,
+              "utility_label_mass": 0.09664654731750488,
+              "mean_signed_local_advantage": 2.33653154282365e-05
+            }
+          ],
+          "foreground_gate_std": [
+            0.0006852966616861522,
+            0.0008450475288555026,
+            0.0007340413867495954
+          ]
+        }
+      ],
+      "missing_checks": [
+        {
+          "address": {
+            "sequence": "BT-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "MSK-002",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-015",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "PF-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "BT-003",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        },
+        {
+          "address": {
+            "sequence": "SN-001",
+            "frame": 1
+          },
+          "missing_raw_head_bit_exact": true
+        }
+      ],
+      "actual_IR_image_roll_changes_raw_head": true,
+      "formal_fit": false,
+      "tracking_accuracy_measured": false
+    }
+  ],
+  "common_initial_state_sha256": "b266e7dd3a2723b1f24fc1a669f7f3570e5ee82b328aa32b7f9c188f429782b0",
+  "parameters_each": 553705,
+  "actual_Train_frames": 6,
+  "Train_domains": 6,
+  "optimizer_updates_total": 72,
+  "complete_Train_epochs": 0,
+  "image_content_records": [
+    {
+      "sequence": "BT-001",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "e018a3c509f4e081b3a527bb44f291ce2da0aff642b94ce47cb05e82afd9aa24",
+      "bytes": 248291
+    },
+    {
+      "sequence": "BT-001",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "411df8ecec6a6fd116a3a1013d2320f51504befe2968ad16427b99ded59db324",
+      "bytes": 66370
+    },
+    {
+      "sequence": "BT-003",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "6f668f6e374efa689b8764be8a13fa8bdbf784864eaa2ac5ee0b082765dc873d",
+      "bytes": 251481
+    },
+    {
+      "sequence": "BT-003",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "29ea9759e727097d70b756ec0fcfe5511ae0b0d3a626d11c9608d9a259c411a6",
+      "bytes": 38913
+    },
+    {
+      "sequence": "MSK-002",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "90f3ae51ca03398e7b7f19838408354f94f379e07e6129226effe81c4eebe720",
+      "bytes": 273897
+    },
+    {
+      "sequence": "MSK-002",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "6d5bdd3deedd7759aa740ef2e0e6dc3c1fcb30646894dacac57daf89d425b5e3",
+      "bytes": 83455
+    },
+    {
+      "sequence": "PF-001",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "35f4a21efb7818da85475855c5e7216b193686310dc5652d8fad8640d08276de",
+      "bytes": 266747
+    },
+    {
+      "sequence": "PF-001",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "6b985711520d41e2af78edeb752c4c4ee5bd6dd283905e19eec451e51d80198e",
+      "bytes": 52694
+    },
+    {
+      "sequence": "SN-001",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "7ec2def3eb18f0fee2e33a2c1622ae1ee61ad1c54e7077438ae906c752edf472",
+      "bytes": 343561
+    },
+    {
+      "sequence": "SN-001",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "98bd6f62c7861c421565db06556d9ea2e055836a9d758923b01eb03fa5a1d5c4",
+      "bytes": 78097
+    },
+    {
+      "sequence": "SN-015",
+      "frame": 1,
+      "modality": "ir",
+      "sha256": "66400388501323283d60152da925d6dd7597f4140079a212fd5a6b0916d932fd",
+      "bytes": 359676
+    },
+    {
+      "sequence": "SN-015",
+      "frame": 1,
+      "modality": "rgb",
+      "sha256": "cfdf558211c14e8a394e7d3cc7a4912af1677a8af78f7d332a9b84823364973e",
+      "bytes": 94800
+    }
+  ],
+  "Train_GT_hashes": {
+    "BT-001": "88b18b21c0a8081d1481ad092d5633b6d3783ac6c90b4506ae6719df7f569537",
+    "MSK-002": "0274259cb4e0def37563551c76bb140fe571f8e42fd7b9c75c86430957e38b3e",
+    "SN-015": "8530124374f8e6c04f80c312ff816f93b5ee67253bd8ca6eb93d4de82b722cb0",
+    "PF-001": "85305e1d45b79c730dbd010ed2d807701411d1730ddc82fc0c5b63a25bd6aa5f",
+    "BT-003": "8dd19218384d88f248d79548315e6fbbdb126fed407daae45afc7bcd487ee660",
+    "SN-001": "ee9e1176399bd611aefa675fc3e4b9b2da71ddabae5e4656dd443de6ef2f294f"
+  },
+  "source_RGB_state_sha256": "66e8d823169ff57eb2a1862e21ac61c581d49d82343305828b1b56680125c391",
+  "original_RGB_weights_BN_and_gradients_unchanged": true,
+  "past_or_future_frame_input": false,
+  "actual_device": "cpu",
+  "new_GPU_work": false,
+  "saved_weights": false,
+  "new_image_FPN_ROI_disk_cache": false,
+  "formal_launch_ready": false,
+  "new_Dev_Test_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "seconds": 465.9559631939046,
+  "peak_process_RSS_GiB": 1.8500251770019531,
+  "scope": "Twelve engineering conditions,6Trainframes/6updates each. Dense fixed-reference task-loss labels are not causal efficacy/calibrated reliability. No formal fit, convergence, heldout accuracy or innovation evidence."
+}

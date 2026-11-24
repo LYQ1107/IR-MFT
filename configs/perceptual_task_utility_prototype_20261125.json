@@ -1,6 +1,6 @@
 {
-  "status": "PREREGISTERED_TASK_UTILITY_CPU_ENGINEERING_NOT_FORMAL_FIT",
-  "UTC": "2026-11-24T22:13:56.112569+00:00",
+  "status": "PREREGISTERED_TASK_UTILITY_CPU_ENGINEERING_FRESH_STEP_REFERENCE_R2",
+  "UTC": "2026-11-24T22:29:08.848757+00:00",
   "main_plan_sha256": "388e636d45840f3da8eae44cde2efc4731eeceadc7c169a39f19bf30488ecc03",
   "protocol_sha256": "fe3db8e991facfcd74981f76aa5c2271c18a9554386501eb2c2dd30a12bf6c60",
   "source_RGB_checkpoint": "/data3/liuyeqiang/IR-MFT_assets/pseudo_ir_budget_extension_20261121/train_rgb_matched/best_dev_ema_fp16.pth.tar",
@@ -11,7 +11,7 @@
     "tools/task_utility_fusion.py": "e30d8cf043bc5d95fd3ebe693f0aa74e6aeeb4b60df83b59ccf13c12e594a1da",
     "tools/task_utility_objectives.py": "c431b4b1824293ae0f7b7187ca2b1d7825c319fc7817db912e9b249efcf72a42",
     "tests/test_task_utility_fusion.py": "078780fc0bbf7b2e9219c51910b65cf006e9c6f0f8503e91979bed06457411ea",
-    "tools/probe_task_utility_cpu.py": "9776605763d56c22152a86c493af0ed3f838e92982985e04dc6940f3c40edd3a",
+    "tools/probe_task_utility_cpu.py": "b5f40126d111f0ede36c3c2d4f3536444872087e4a8233fb2a1e1bb0e07aa1df",
     "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
     "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
     "tools/native_pyramid_training_loop.py": "5eeaf8d1e2f19e88dc850dc19ef28cc992d00ba42d9388141ab5cb97b623e889",
@@ -30,7 +30,7 @@
     "path": "docs/fusion_research/PERCEPTUAL_MFT_20261125_TRAIN_CUE_SPECIFICITY.json",
     "sha256": "ca50bb8ec98d758bc12dc9352781b2be3ce0eb545612662dbdaf8161c19996e0"
   },
-  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_CPU_engineering_20261125",
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_CPU_engineering_R2_20261125",
   "matched_cues": [
     "rgb",
     "gray",
@@ -121,7 +121,8 @@
     "host_reserve_GiB": 40,
     "maximum_torch_threads": 2,
     "encoded_image_RAM_MiB": 64,
-    "new_image_FPN_disk_cache": false
+    "new_image_FPN_disk_cache": false,
+    "reference_policy": "FreshoriginalRGBheadforeachoptimizerinput,asoriginalnativeproductiontrainer. Allzero/missingassertsstilltorch.equal. Cacheddecodesretainedonlyfordriftdiagnostics;donotclaimcross-contextCPUreproduction."
   },
   "design": {
     "inference": "CurrentRGBandnativecurrentcueCNNonly;foreground/utilitylogitsaddtoglobalqualitylogit;boundedRGBresidualandmissingexactRGB.NoGTinput.",
@@ -155,7 +156,8 @@
     "SparseTrainengineeringisnotformalfit,convergenceorgain.",
     "PseudoIRisRGBderived;noindependentthermalinformation.",
     "HistoricalTestexposedandoriginalRGBpretrainingincludedDev.",
-    "Localutilityisnotcausaleffect,calibratedprobabilityoraguaranteeagainstneighboringheadchanges."
+    "Localutilityisnotcausaleffect,calibratedprobabilityoraguaranteeagainstneighboringheadchanges.",
+    "OriginalcachedCPUwidth/heightdriftcauseunresolved;freshstepchecksarenotGPUqualificationorproofthatoldF4runtimeanomalyisfixed."
   ],
   "work_cap_GiB": 64,
   "independent_free_GiB": 40,
@@ -168,5 +170,12 @@
     "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_unexecuted_design_initial_20261125.json",
     "sha256": "4150f9630374d44637f65559e059f73f0e658d5ad17ab8834dc1951fad692096",
     "scope": "Unexecutedinitialarchitecture-removaldraft;revisedbeforesixframecanarytokeepinferencecapacityidentical."
+  },
+  "prior_failed_execution": {
+    "specification": "configs/perceptual_task_utility_prototype_20261125_r1.json",
+    "specification_sha256": "5f1368eb09de6d2b9a84c59d0645e52d4c68ed26ec8cab655dffe5d5057720f9",
+    "source_commit": "60d6093",
+    "failure_record": "docs/fusion_research/PERCEPTUAL_MFT_20261125_TASK_UTILITY_R1_FAILURE.json",
+    "optimizer_updates": 0
   }
 }
