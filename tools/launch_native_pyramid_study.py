@@ -12,7 +12,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.native_pyramid_design import CANONICAL, FRESH, register_trial, snapshot_row, stage_models, test_models
-from tools.native_pyramid_experiment import FIT_CONFIGS, STUDY, context, frozen_json, make_arm, predecessor_ready, read, registry
+from tools.native_pyramid_experiment import CANONICAL_PROOF, PIPELINE_REVISION, FIT_CONFIGS, STUDY, context, frozen_json, make_arm, predecessor_ready, read, registry
 from tools.native_pyramid_study_rules import best_dev, budget_decision, select_models
 from tools.run_pseudo_ir_comparison import dump, sha256
 
@@ -35,6 +35,9 @@ def verify_probe(work, fit_id):
     assert data['status'] == 'COMPLETE_REAL_GPU_NATIVE_TRAIN_AND_B1_INFERENCE_ENGINEERING'
     assert data['metadata']['fit_config_sha256'] == sha256(FIT_CONFIGS / (fit_id+'.json'))
     assert data['updates'] == 2 and data['delivered_Train_frames'] == 8
+    assert data['metadata']['pipeline_revision'] == PIPELINE_REVISION
+    assert data['gate_statistics']['trained_aux']['frames'] == 16
+    assert data['gate_statistics']['zero_aux']['frames'] == 8
     assert data['frozen_RGB_weights_and_BN_unchanged_before_head_precision_conversion']
     assert all(all(row[k] for k in ['direct_B1_source_exact', 'zero_full_head_exact',
         'trained_unavailable_full_head_exact']) for row in data['source_and_missing_identity'])
@@ -139,6 +142,12 @@ def run_trial(queue, plan, protocol, phase, split, models, include_source_cases,
         assert data['frames'] == seq_lengths[entry['id']] and not data['GT_read']
         assert set(data['streams']) == {r['id'] for r in models}
         for row in data['streams'].values(): assert sha256(row['track_path']) == row['track_sha256']
+        for model in models:
+            if model.get('baseline'): continue
+            gates = data['gate_statistics'][model['id']]
+            assert gates['frames'] == seq_lengths[entry['id']] and len(gates['levels']) == 3
+            assert gates['available_frames']+gates['missing_frames'] == gates['frames']
+            if model.get('intervention') == 'unavailable': assert gates['missing_frames'] == gates['frames']
         if anchor is not None:
             old = read(Path(anchor) / 'sequence_manifests' / (entry['id']+'.json'))
             for key in ['track_sha256', 'detection_packet_sha256']:
@@ -208,11 +217,11 @@ def register():
     assert all(sha256(ROOT / p) == h for p, h in proof['tested_source_hashes'].items())
     sources = {n: sha256(ROOT / n) for n in sorted(set(names))}
     assert set(sources).issubset(proof['tested_source_hashes']), 'Freeze source versions covered by the CPU workflow run'
-    canonical_proof = ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261124_NATIVE_CANONICAL_DEV_ENGINEERING.json'
+    canonical_proof = CANONICAL_PROOF
     canonical = read(canonical_proof)
     assert canonical['status'] == 'COMPLETE_NATIVE_STREAM_CANONICAL_ALL4834DEV_ALL39_CSV_EXACT'
     assert all(sha256(ROOT / name) == digest for name, digest in canonical['source_hashes'].items())
-    value = dict(status='COMPLETE_REGISTERED_NATIVE_DEV_TEST_PIPELINE_PENDING_GPU_ENGINEERING',
+    value = dict(status='COMPLETE_REGISTERED_NATIVE_DEV_TEST_PIPELINE_PENDING_GPU_ENGINEERING', pipeline_revision=PIPELINE_REVISION,
         study_sha256=sha256(STUDY), source_hashes=sources,
         fit_configs={r['id']: sha256(FIT_CONFIGS / (r['id']+'.json')) for r in study['normal_fits']},
         artifact_hashes={str(p): sha256(p) for p in [STUDY, checkpoint,
@@ -233,7 +242,7 @@ def run():
     lock = path.with_suffix('.lock').open('w')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     assert not path.exists(), 'Preserve and diagnose an earlier queue before resuming'
-    state = dict(status='WAITING_FOR_EXISTING_STRUCTURAL_AND_LEGACY_GPU_WORK', controller_pid=os.getpid(),
+    state = dict(status='WAITING_FOR_EXISTING_STRUCTURAL_AND_LEGACY_GPU_WORK', controller_pid=os.getpid(), pipeline_revision=PIPELINE_REVISION,
         study_sha256=sha256(STUDY), registry_sha256=sha256(work / 'native_pyramid_pipeline_registered.json'),
         source_hashes=registration['source_hashes'], data_root=plan['data_root'], phases={},
         fixed_seed=0, additional_seed_work=False, physical_gpus=['4', '5'], maximum_cards=2,

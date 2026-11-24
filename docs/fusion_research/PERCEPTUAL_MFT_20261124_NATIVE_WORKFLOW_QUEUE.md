@@ -1,10 +1,10 @@
 # 原生辅助金字塔：完整实验流程已登记并排队
 
-2026-11-24。新增的完整实验控制器已运行，状态为 `WAITING_FOR_EXISTING_STRUCTURAL_AND_LEGACY_GPU_WORK`。当前是 CPU 调度进程，不占用新 GPU；已核实实际 PID、命令及空的 `CUDA_VISIBLE_DEVICES`，尚无新方案的正式训练或 HOTA。
+2026-11-24。当前第二版完整实验控制器已恢复运行，状态为 `WAITING_FOR_EXISTING_STRUCTURAL_AND_LEGACY_GPU_WORK`。首版在尚无子进程或GPU工作时归档，为正式训练前补齐任务书要求的gate统计；见 `PERCEPTUAL_MFT_20261124_NATIVE_GATE_OBSERVER_REVISION.md`。当前是CPU调度进程，不占用新GPU，尚无新方案的正式训练或HOTA。
 
-登记证据为 `PERCEPTUAL_MFT_20261124_NATIVE_WORKFLOW_REGISTRATION.json`，CPU 检查为 `PERCEPTUAL_MFT_20261124_NATIVE_WORKFLOW_CPU_TESTS.json`。99 个相关源码/六组配置文件的版本在测试前后保持一致，47 项 CPU 检查通过。它们验证局部数值、状态、恢复、Dev 规则、病例覆盖和队列隔离，不代表全部代码分支或实际 GPU 已通过。
+当前登记证据为 `PERCEPTUAL_MFT_20261124_NATIVE_WORKFLOW_REGISTRATION_V2.json`，CPU检查为 `PERCEPTUAL_MFT_20261124_NATIVE_WORKFLOW_CPU_TESTS_V2.json`。100个相关源码/六组配置文件的版本在测试前后保持一致，50项CPU检查通过，包含只读逐层gate/内部增益/协方差和实际特征修正统计。它们验证局部数值、状态、恢复、Dev规则、实验条件覆盖和队列隔离，不代表全部代码分支或实际GPU已通过。首版99文件/47检查证据保持归档。
 
-另已真实回放原 RGB 的完整 Dev 两段视频、4,834 帧，使用新的逐帧轨迹写入与每视频独立 ID；**39 项官方摘要和整份 276 列明细 CSV 与原 RGB 精确一致**。结果见 `PERCEPTUAL_MFT_20261124_NATIVE_CANONICAL_DEV_ENGINEERING.json`。这个证明复用原检测，不冒充 GPU 编码或新融合精度。
+第二版已再次真实回放原RGB的完整Dev两段视频、4,834帧，使用新的逐帧轨迹写入与每视频独立ID；**39项官方摘要和整份276列明细CSV与原RGB精确一致**。当前证明见 `PERCEPTUAL_MFT_20261124_NATIVE_CANONICAL_DEV_ENGINEERING_V2.json`。这个证明复用原检测，不冒充GPU编码或新融合精度。
 
 执行顺序已接齐：
 

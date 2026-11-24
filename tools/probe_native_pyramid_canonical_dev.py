@@ -12,7 +12,7 @@ import numpy as np
 
 from tools.eval_mft26ir import run_trackeval
 from tools.evaluate_native_pyramid import packet
-from tools.native_pyramid_experiment import STUDY, context
+from tools.native_pyramid_experiment import CANONICAL_PROOF, PIPELINE_REVISION, STUDY, context
 from tools.native_pyramid_stream_tracks import StreamTrackWriter
 from tools.run_pseudo_ir_comparison import dump, sha256
 
@@ -20,8 +20,8 @@ from tools.run_pseudo_ir_comparison import dump, sha256
 def main():
     assert os.environ.get('CUDA_VISIBLE_DEVICES') == ''
     plan, study, protocol, calibration, work, checkpoint = context()
-    folder = work / 'native_pyramid_canonical_Dev_engineering'
-    output = ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261124_NATIVE_CANONICAL_DEV_ENGINEERING.json'
+    folder = work / f'native_pyramid_canonical_Dev_engineering_v{PIPELINE_REVISION}'
+    output = CANONICAL_PROOF
     assert not folder.exists() and not output.exists()
     sources = ['tools/probe_native_pyramid_canonical_dev.py', 'tools/evaluate_native_pyramid.py',
         'tools/native_pyramid_stream_tracks.py', 'tools/eval_mft26ir.py',
@@ -54,7 +54,7 @@ def main():
     assert sha256(csv_path) == sha256(original_csv)
     assert all(sha256(ROOT / name) == digest for name, digest in hashes.items())
     dump(output, dict(status='COMPLETE_NATIVE_STREAM_CANONICAL_ALL4834DEV_ALL39_CSV_EXACT',
-        metrics=metrics, coverage=coverage, study_sha256=sha256(STUDY), source_hashes=hashes,
+        metrics=metrics, coverage=coverage, study_sha256=sha256(STUDY), source_hashes=hashes, pipeline_revision=PIPELINE_REVISION,
         official_CSV_sha256=sha256(csv_path), original_official_CSV_sha256=sha256(original_csv),
         source_metrics_sha256=sha256(baseline / 'metrics.json'), seconds=time.monotonic()-started,
         isolated_sequence_local_IDs_from1=True, all39_summary_exact=True, complete_official_CSV_exact=True,

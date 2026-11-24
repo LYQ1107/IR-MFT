@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 import numpy as np
 
 from tools.native_pyramid_experiment import (
-    FIT_CONFIGS, STUDY, context, gpu_settings, load_teacher, predecessor_ready, read, registry,
+    FIT_CONFIGS, PIPELINE_REVISION, STUDY, context, gpu_settings, load_teacher, predecessor_ready, read, registry,
 )
 from tools.native_pyramid_stream_tracks import StreamTrackWriter
 from tools.run_pseudo_ir_comparison import dump, sha256
@@ -60,7 +60,7 @@ def require_test_freeze(work, specification_path=None):
     return freeze
 
 
-def load_modules(rows, study):
+def load_modules(rows, study, observer=None):
     import torch
     from yolox.models.native_pyramid_fusion import NativePyramidFusion
     modules, information = {}, {}
@@ -84,6 +84,7 @@ def load_modules(rows, study):
         module = NativePyramidFusion(**arm['module_kwargs'])
         module.load_state_dict(saved['module'], strict=True)
         modules[name] = module.cuda().float().eval().requires_grad_(False)
+        if observer is not None: observer.attach(name, modules[name])
         information[name] = dict(row, fit_metadata=meta, trainable_parameter_count=sum(p.numel() for p in module.parameters()))
     return modules, information
 
@@ -91,6 +92,7 @@ def load_modules(rows, study):
 def produce(args):
     import torch
     from tools.native_pyramid_online_inference import OnlineNativeDetector
+    from tools.native_pyramid_gate_observer import NativeGateObserver
     from tools.native_pyramid_training_loop import guard_storage
     plan, study, protocol, calibration, work, checkpoint = context()
     registry(work)
@@ -105,7 +107,8 @@ def produce(args):
     source_path = Path(plan['frozen_detection_sources']['rgb_'+args.split]) / 'detections' / (args.sequence+'.npz')
     canonical = packet(source_path)
     model = load_teacher(checkpoint, training=False)
-    modules, information = load_modules(specification['models'], study)
+    observer = NativeGateObserver()
+    modules, information = load_modules(specification['models'], study, observer)
     assert 'NP_source_fresh_RGB' in modules
     engine = OnlineNativeDetector(model, specification['models'], modules, study['inference_input_hw'], calibration)
     folder = Path(specification['stream_directory'])
@@ -153,6 +156,9 @@ def produce(args):
                 assert streams[row['id']]['track_sha256'] == fresh['track_sha256']
                 assert streams[row['id']]['detection_packet_sha256'] == fresh['detection_packet_sha256']
         registry(work)
+        gates = {name: observer.summary(name) for name in observer.rows}
+        assert all(row['frames'] == all_lengths[args.sequence] and
+                   row['available_frames']+row['missing_frames'] == row['frames'] for row in gates.values())
         dump(complete_path, dict(status='COMPLETE_NATIVE_SEQUENTIAL_OBSERVATIONS_WITHOUT_GT',
             sequence=args.sequence, split=args.split, frames=all_lengths[args.sequence], streams=streams,
             specification_sha256=sha256(specification_path), study_sha256=sha256(STUDY),
@@ -161,11 +167,14 @@ def produce(args):
             fresh_B1_vs_historical_B4=parity, physical_gpu=physical, GPU_uuid=uuid,
             GT_read=False, future_frame_input=False, previous_outputs_rewritten=False,
             independent_input_batch_size=1, seconds=time.perf_counter()-started,
-            peak_gpu_GiB=torch.cuda.max_memory_allocated()/2**30,
-            runtime_scope='Shared bundle production, not per-method end-to-end FPS; separate individual benchmark required.'))
+            peak_gpu_GiB=torch.cuda.max_memory_allocated()/2**30, pipeline_revision=PIPELINE_REVISION,
+            gate_statistics=gates,
+            runtime_scope='Shared bundle production including read-only gate instrumentation, not per-method end-to-end FPS; separate uninstrumented individual benchmark required.'))
     except Exception:
         writer.abort()
         raise
+    finally:
+        observer.close()
 
 
 def produce_canonical(args):

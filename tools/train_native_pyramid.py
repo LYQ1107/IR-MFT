@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT))
 import torch
 
 from tools.native_pyramid_experiment import (
-    FIT_CONFIGS, STUDY, context, gpu_settings, load_teacher, predecessor_ready, read, registry,
+    FIT_CONFIGS, PIPELINE_REVISION, STUDY, context, gpu_settings, load_teacher, predecessor_ready, read, registry,
 )
 from tools.native_pyramid_fit import optimizer_step
 from tools.native_pyramid_online_inference import OnlineNativeDetector
@@ -49,7 +49,7 @@ def main():
     reader = TrainImageReader(plan['data_root'], plan['generated_ir_root'], protocol['train'])
     provider = OrderedTrainPixels(plan, protocol, arm['Train_delivery']['lengths'], calibration,
                                   reader, arm['training_input_hw'], 'cuda')
-    metadata = dict(fit_id=args.fit_id, mode=arm['mode'], cue=arm['cue'], removal=arm['removal'], seed=0,
+    metadata = dict(fit_id=args.fit_id, mode=arm['mode'], cue=arm['cue'], removal=arm['removal'], seed=0, pipeline_revision=PIPELINE_REVISION,
         fit_config_sha256=sha256(arm_path), study_sha256=sha256(STUDY),
         registry_sha256=sha256(work / 'native_pyramid_pipeline_registered.json'),
         source_RGB_sha256=study['source_RGB_sha256'], source_hashes=registration['source_hashes'],
@@ -89,6 +89,10 @@ def main():
         engine = OnlineNativeDetector(teacher, observations,
             dict(source_RGB=None, trained_native=module, zero_native=zero, trained_unavailable=module),
             study['inference_input_hw'], calibration)
+        from tools.native_pyramid_gate_observer import NativeGateObserver
+        observer = NativeGateObserver()
+        observer.attach('trained_aux', module)
+        observer.attach('zero_aux', zero)
         from tools.extract_structural_relative import detections
         from tools.native_pyramid_train_data import preprocess_observation
         from yolox.utils import postprocess
@@ -109,10 +113,15 @@ def main():
                     identities.append(dict(sequence=clip.sequence, frame=frame,
                         direct_B1_source_exact=True, zero_full_head_exact=info['full_head_exact_to_fresh_RGB']['zero_native'],
                         trained_unavailable_full_head_exact=info['full_head_exact_to_fresh_RGB']['trained_unavailable']))
+        gates = {name: observer.summary(name) for name in observer.rows}
+        assert gates['trained_aux']['frames'] == 16 and gates['trained_aux']['missing_frames'] == 8
+        assert gates['zero_aux']['frames'] == 8
+        assert all(level['nonzero_feature_correction_fraction'] == 0 for level in gates['zero_aux']['levels'])
+        observer.close()
         registry(work)
         report = dict(status='COMPLETE_REAL_GPU_NATIVE_TRAIN_AND_B1_INFERENCE_ENGINEERING',
             metadata=metadata, updates=2, delivered_Train_frames=8, completed_full_Train_epochs=0,
-            optimizer_rows=rows, source_and_missing_identity=identities,
+            optimizer_rows=rows, source_and_missing_identity=identities, gate_statistics=gates,
             frozen_RGB_weights_and_BN_unchanged_before_head_precision_conversion=True,
             production_inference_precision='Original RGB backbone/head FP16, native module FP32, sequentialB1',
             image_reader_statistics=reader.statistics(), seconds=time.monotonic()-started,

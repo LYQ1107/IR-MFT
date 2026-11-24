@@ -33,13 +33,21 @@ def export_row(work, split, key, tables):
     if output.exists(): assert sha256(output) == sha256(csv_path)
     else: shutil.copy2(csv_path, output)
     combined = next(r for r in raw if r['seq'] not in manifest['sequences'])
+    gates = {}
+    for sequence, source in manifest['sources'].items():
+        producer = read(source['manifest_path'])
+        assert sha256(source['manifest_path']) == source['manifest_sha256']
+        value = producer.get('gate_statistics', {}).get(key)
+        if not manifest['config'].get('baseline'):
+            assert value is not None and value['frames'] == manifest['coverage'][sequence]['frames']
+        gates[sequence] = value
     return dict(id=key, split=split, config=manifest['config'], config_sha256=manifest['config_sha256'],
         metrics=data['trackeval'], per_sequence=detailed_metrics(csv_path, manifest['sequences'], data['trackeval']),
         unrounded_combined_HOTA=100*float(combined['HOTA___AUC']),
         metrics_file=str(path), metrics_sha256=sha256(path),
         official_CSV_file=str(output.relative_to(ROOT)), official_CSV_sha256=sha256(csv_path),
         frames=manifest['frames'], sequences=manifest['sequences'], coverage=manifest['coverage'],
-        source_manifest_references=manifest['sources'])
+        source_manifest_references=manifest['sources'], per_sequence_gate_statistics=gates)
 
 
 def main():

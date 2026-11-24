@@ -7,6 +7,16 @@
 基线29.529、目标HOTA至少34.529及2–3项明确贡献；仅4/5卡、固定seed0。
 现有训练和评估接续运行，未重启或修改已冻结的计算代码。
 
+其余50项原native行为的完整Dev来源现已全部精确复现：每项4834帧，
+39摘要、完整轨迹和整个官方CSV一致。队列已自动进入50项冻结的完整
+Test，尚未统一读取部分Test准确率。见20261124_NATIVE_REMAINING_DEV_
+REPRODUCTION；这不是50项Test完成或新贡献证明。
+
+47项指标已与实际TrackEval字段对齐：HOTA15+CLEAR22+Identity6+Count4，
+官方摘要只列其中39项，额外8项原本就在276列明细里。现已为1747份已
+发布官方表、5726个逐序列/合并行生成47项视图，保持COMBINED与正确单位，
+没有新评估或序列平均。见perceptual_20261122_metrics47/README.md与index。
+
 间接来源进一步核查：native36的RGB/IR编码器各在四个正常完整Test条件中
 实际消费，训练端点与特征生产/回放SHA链一致；neck_metric72则只有两段
 Dev特征，尚无下游跟踪头或七段Test，继续列为未完成。旧ROI32项Dev均
@@ -21,11 +31,13 @@ AGPL-3.0声明，未据此推定整个项目。见OPEN_SOURCE_20_LICENSE_EVIDENC
 
 原生辅助金字塔的完整六组训练/Dev延长/条件去除/冻结Test/成本/官方表
 流程现已全部登记，并启动CPU调度进程等待现有结构作业和补测释放GPU。
-99个相关源码/配置版本已锁定，整套47项CPU检查通过；使用新轨迹写入
+首版无GPU工作时已归档，补齐逐层gate/内部置信/特征修正统计后恢复
+第二版CPU等待队列。100个相关源码/配置版本已锁定，整套50项CPU检查
+通过；使用新轨迹写入
 流程真实复现全部4834帧Dev，39摘要和276列CSV精确等于原RGB。真实GPU
 工程门槛及新正式训练仍待执行，不计新HOTA或创新。见
-20261124_NATIVE_WORKFLOW_QUEUE、REGISTRATION、CPU_TESTS与
-20261124_NATIVE_CANONICAL_DEV_ENGINEERING。
+20261124_NATIVE_WORKFLOW_QUEUE、REGISTRATION_V2、CPU_TESTS_V2、
+20261124_NATIVE_CANONICAL_DEV_ENGINEERING_V2与NATIVE_GATE_OBSERVER_REVISION。
 
 新的只读实际地址核查确认：RGB对照已完成52个宏循环，其中前48个覆盖
 两遍完整Train；灰度完成43个宏循环、一遍完整Train。两者的实际提供器

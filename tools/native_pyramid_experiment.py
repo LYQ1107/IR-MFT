@@ -10,6 +10,8 @@ from tools.structural_legacy_backfill import pid_finished, require_predecessor
 ROOT = Path(__file__).resolve().parents[1]
 STUDY = ROOT / 'configs/perceptual_native_pyramid_study_20261124.json'
 FIT_CONFIGS = ROOT / 'configs/perceptual_native_pyramid_fit_cases_20261124'
+PIPELINE_REVISION = 2
+CANONICAL_PROOF = ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261124_NATIVE_CANONICAL_DEV_ENGINEERING_V2.json'
 
 
 def read(path):
@@ -77,6 +79,7 @@ def registry(work):
     path = Path(work) / 'native_pyramid_pipeline_registered.json'
     data = read(path)
     assert data['status'] == 'COMPLETE_REGISTERED_NATIVE_DEV_TEST_PIPELINE_PENDING_GPU_ENGINEERING'
+    assert data['pipeline_revision'] == PIPELINE_REVISION
     assert data['study_sha256'] == sha256(STUDY)
     assert all(sha256(ROOT / f) == h for f, h in data['source_hashes'].items())
     assert all(sha256(f) == h for f, h in data['artifact_hashes'].items())
