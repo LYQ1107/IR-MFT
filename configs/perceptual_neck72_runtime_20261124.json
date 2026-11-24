@@ -1,0 +1,56 @@
+{
+  "status": "PREREGISTERED_NECK72_FRESH_IMAGE_RUNTIME_BEFORE_GPU_OR_RUNTIME_TEST",
+  "accuracy_study": "configs/perceptual_neck72_study_20261124.json",
+  "accuracy_study_sha256": "a6acca4a810633303bc4602dafc900f42bebc882a22efc1dc31c52611d46ac69",
+  "accuracy_registration_sha256": "6c97818940ff48a23f54601173f0573c01494ac7fd598183c9417397e126e0bb",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "maximum_workers": 2,
+  "coverage": "Every unique configuration in the complete Dev-frozen neck72 Test selection, preserving all role aliases and negative accuracy cases; no Test score used to choose costs.",
+  "sampling": {
+    "sequences": "Both complete-protocol Dev sequences for source engineering, then all7Test sequences for measured cost.",
+    "prefix_frames_per_sequence": 32,
+    "warmup_frames_per_sequence": 8,
+    "measured_frames_per_sequence": 24,
+    "image_batch": 1,
+    "repetitions": 1
+  },
+  "input_contract": "Actual current RGB and fixed November DiffV2IR only when consumed. Recompute original detector, NMS, consumed appearance/shape/color/quality, FP32 post-neck reference and enabled native vector/alignment, RGB body-point/LK/votes, and original query/ByteTrack decisions. Banks are reference comparisons outside timers, never substituted as inference inputs.",
+  "numerics": {
+    "detector": "Original unfused FP16 model/postprocess, B1; source accuracy originally used B4.",
+    "appearance": "Original FP16 pre-neck model; produce only raw/RGB-mask consumed views, batch<=64.",
+    "identity": "Original FP32 post-neck weights/BN, TF32 disabled, batch<=64, fixed Train alignment.",
+    "points": "Original point/LK/vote bodies restricted to consumed bbox/RGB modes; exact CPU source checks required.",
+    "source_gates": {
+      "same_detection_counts": true,
+      "boxes_max_abs_pixels": 0.01,
+      "scores_max_abs": 0.001,
+      "consumed_FP16_features_max_abs": 0.01,
+      "native_FP32_vectors_max_abs": 0.0001,
+      "all_consumed_point_arrays_exact": true,
+      "all_prefix_track_file_bytes_exact": true
+    }
+  },
+  "engineering": "All frozen cases must pass source/track equivalence on both32-frame Dev prefixes before any Test runtime. Preserve every diagnostic mismatch without changing any scientific model or selecting on Test. Failure remains pending runtime debugging, not a valid cost-for-accuracy claim.",
+  "timers": "Synchronized B1 frame latency includes file IO/decode, preprocessing/transfers, all consumed CNN and classical operations, dynamic packets and tracker. Record per-component durations and their actual total; never sum component FPS. Weight/verification-bank loading, provenance hashing, comparison/track serialization and offline IR generation excluded and disclosed.",
+  "memory": {
+    "maximum_worker_incoming_bytes": 8589934592,
+    "MemAvailable_reserve_bytes": 42949672960,
+    "work_cap_bytes": 68719476736,
+    "independent_disk_reserve_bytes": 42949672960,
+    "point_past_resized_RGB_frames": 8,
+    "temporary_prefix_feature_frames": 32,
+    "full_image_or_FPN_disk_copies": 0,
+    "maximum_case_growth_bytes": 8388608
+  },
+  "release": "Only after complete neck72 accuracy export and actual controller/child process exit. Current healthy preceding GPU work is untouched.",
+  "scope": "Stratified seven-video prefix full-component cost, not full15985frame FPS, an unbounded deployment implementation, a seed variance study, new accuracy, another fusion architecture or an innovation.",
+  "full_system_runtime_measured": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
