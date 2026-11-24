@@ -191,7 +191,7 @@ def source_files():
     names += ['tools/launch_native_pyramid_study.py', 'tools/train_native_pyramid.py',
         'tools/evaluate_native_pyramid.py', 'tools/benchmark_native_pyramid.py', 'tools/export_native_pyramid.py',
         'tools/probe_native_pyramid_workflow.py', 'tools/probe_native_pyramid_canonical_dev.py',
-        'tools/structural_train_image_reader.py', 'tools/build_correlation_cache.py',
+        'tools/structural_train_image_reader.py', 'tools/content_verified_train_reader.py', 'tools/build_correlation_cache.py',
         'tools/extract_structural_relative.py', 'tools/indexed_postprocess.py', 'tools/eval_mft26ir.py',
         'tools/structural_legacy_backfill.py', 'tools/summarize_pseudo_ir_comparison.py',
         'yolox/models/native_pyramid_fusion.py', 'yolox/models/frozen_head_repair.py',
@@ -221,14 +221,20 @@ def register():
     canonical = read(canonical_proof)
     assert canonical['status'] == 'COMPLETE_NATIVE_STREAM_CANONICAL_ALL4834DEV_ALL39_CSV_EXACT'
     assert all(sha256(ROOT / name) == digest for name, digest in canonical['source_hashes'].items())
+    reader_proof_path = work / 'content_verified_train_reader_CPU_proof.json'
+    reader_proof = read(reader_proof_path)
+    assert reader_proof['status'] == 'COMPLETE_CONTENT_VERIFIED_READER_CPU_PROOF'
+    assert reader_proof['unchanged_real_Train_pixels_exact'] and reader_proof['changed_bytes_rejected']
+    assert all(sha256(ROOT / name) == h for name, h in reader_proof['source_hashes'].items())
     value = dict(status='COMPLETE_REGISTERED_NATIVE_DEV_TEST_PIPELINE_PENDING_GPU_ENGINEERING', pipeline_revision=PIPELINE_REVISION,
         study_sha256=sha256(STUDY), source_hashes=sources,
         fit_configs={r['id']: sha256(FIT_CONFIGS / (r['id']+'.json')) for r in study['normal_fits']},
         artifact_hashes={str(p): sha256(p) for p in [STUDY, checkpoint,
-            work / 'correlation_cache/calibration.json', work / study['Train_length_source'], proof_path, canonical_proof]},
+            work / 'correlation_cache/calibration.json', work / study['Train_length_source'], proof_path, canonical_proof,
+            reader_proof_path]},
         pending_actual_GPU_engineering=True, full_Train_Dev_Test_pipeline_registered=True,
         fixed_seed=0, maximum_physical_cards=2, physical_gpus=['4', '5'],
-        generated_from_complete_Dev_only=True, no_formal_fitting_yet=True,
+        generated_from_complete_Dev_only=True, no_formal_fitting_yet=True, input_content_guard_revision=1,
         goal_met=False, supported_innovations=0)
     guard_storage(work)
     frozen_json(work / 'native_pyramid_pipeline_registered.json', value)

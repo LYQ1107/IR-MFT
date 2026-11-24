@@ -1,0 +1,200 @@
+{
+  "status": "REGISTERED_CONTENT_GUARD_RECOVERY_WITH_UNCHANGED_ORIGINAL_FITTER",
+  "UTC": "2026-11-24T08:21:39.210428+00:00",
+  "archive": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_input_metadata_guard_failure_20261124",
+  "archived_sha256": {
+    "structural_full_train_fit_state.json": "44b2f50c89628045f7d009a5a5c202706410b1331559d27262714c0094462eba",
+    "structural_full_train_dev_state.json": "535b7f7e5aedd6e45f50eb2f32b7ef3420cd15876952cdec9848744ccae6cd4b",
+    "structural_full_train_next_stage_state.json": "d4d9f00404388b7f68d93b2379ec3b2745a4297097ecfd0f72fa228efa09863a",
+    "structural_legacy_backfill_state.json": "408b3828b65c6aa9ef860dd0d0be4c9645a872f22f15bebda2008706ff088451",
+    "native_pyramid_study_state.json": "ae99c1ed21fd9d056fc75dfe2eaf2057d55a8ba178bfed42126f94b300ae3981",
+    "structural_full_train_pipeline_registered.json": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+    "native_pyramid_pipeline_registered.json": "ced3d7faf6fc97d14c5fe9fb3e3fecb147100eed4c5effe138cafa721d219862",
+    "native_pyramid_CPU_workflow_tests.json": "c251dba197e99ec5a597d31ec9940ec8962c66cc147b55b3442f92c686fc4125",
+    "native_pyramid_CPU_workflow_tests.log": "48e0b68a6763d01e3ea03f42a3a9ffcc3ff177029559f8b37466d2b30b47a961",
+    "launch_structural_full_train_fits.log": "fb4628056acb19d377185ebef0b80fffb61ce440a7dd7475ad501af3ef3a3c61",
+    "launch_structural_full_train_dev.log": "dc05acc320e8762dc912e29f16e37aa4185bb7724a67f881cd64586f16a58614",
+    "ir_111_s0.structural_full_train_fit.log": "282c5e0b4e7fc9be41e87719495888a280ece63b80a6c056ce4d6556ec751427",
+    "gray_111_s0.structural_full_train_fit.log": "cadb8dd93fc55623a13cc3e9feab990871a5366f3ed415dfa89e170acd43954e"
+  },
+  "parent_pipeline_sha256": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+  "reader_CPU_proof_sha256": "d278d79100d62279522858b01f6f31b3340a438f8c396c0ec3f1cf596216da80",
+  "source_hashes": {
+    "tools/content_verified_train_reader.py": "1e2ad8445729072e98595a61243fad27e68d2453c142cb7e76b1d660b90579d1",
+    "tools/train_structural_content_verified.py": "341083eecc6f7877f5a5f3a614364a33528737a512cbffac1bef4eefc0f29f62",
+    "tools/recover_full_train_content_guard.py": "bb4bcb1ff92629414320d0d9cec2e156616210409f4a19d37434ce278195c891",
+    "tests/test_content_verified_train_reader.py": "3cf3c845eac347cbccffe30f70a0e3cfbd6f5838a8e209d77a07f26359099538"
+  },
+  "reused_complete_fits": {
+    "rgb_111_s0": {
+      "full_train_complete_sha256": "cab79e82f5b206a0d6d58dbf2bfd38cb742d890a8d7fd3d7420a2d2d7c8532b0",
+      "snapshots": {
+        "24": {
+          "sha256": "3392124200440431c8c9652d6a4c57fa2c1a57fd97400e9baff2d063f492f9b6",
+          "bytes": 598960
+        },
+        "48": {
+          "sha256": "8a5aafa6d8b9b73c931d23ec6442bccb66da943e5d6ede0cbaa1ed9635a017e6",
+          "bytes": 608944
+        },
+        "72": {
+          "sha256": "ed2af6995e59f23d309d85248b14ece014d08599295fe05e3a95a6be2f6aee59",
+          "bytes": 618544
+        }
+      },
+      "updates": 20736,
+      "logical_Train_epochs": 3,
+      "all72_actual_address_digests_exact": true
+    },
+    "gray_111_s0": {
+      "full_train_complete_sha256": "4e3d110782af95bc78ea751727ad6a74d931926be35546b616a09724ef341fb8",
+      "snapshots": {
+        "24": {
+          "sha256": "82ee553b0359d331a7c853269111a208241c211efd4d956b636272495b59bc7a",
+          "bytes": 598960
+        },
+        "48": {
+          "sha256": "de39a0d977bb1f768fb9f2cd83bd86743e434b2fd3a38aa4cf1492eb75dcc813",
+          "bytes": 608944
+        },
+        "72": {
+          "sha256": "5c96902ffa4c7e85765e581451836e328dde70f05028ab5f5e40c50db17f4f36",
+          "bytes": 618544
+        }
+      },
+      "updates": 20736,
+      "logical_Train_epochs": 3,
+      "all72_actual_address_digests_exact": true
+    }
+  },
+  "source_failed_state": {
+    "status": "FAILED_PRESERVE_FULL_TRAIN_STUDY",
+    "controller_pid": 3603320,
+    "jobs": {
+      "rgb_111_s0": {
+        "cue": "rgb",
+        "components": "111",
+        "physical_gpu": "4",
+        "seed": 0,
+        "status": "COMPLETE",
+        "pid": 3605641,
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_structural_full_train.py",
+          "--cue",
+          "rgb",
+          "--components",
+          "111",
+          "--seed",
+          "0"
+        ],
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/rgb_111_s0.structural_full_train_fit.log",
+        "smoke_exit_code": 0,
+        "smoke_complete_sha256": "83fa0ee6e97581d0d82d3d8138e2f0969b837d60bd245007641c5ad0d48126b2",
+        "fit_exit_code": 0,
+        "fit_complete_sha256": "cab79e82f5b206a0d6d58dbf2bfd38cb742d890a8d7fd3d7420a2d2d7c8532b0"
+      },
+      "gray_111_s0": {
+        "cue": "gray",
+        "components": "111",
+        "physical_gpu": "5",
+        "seed": 0,
+        "status": "FIT_RUNNING",
+        "pid": 3605740,
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_structural_full_train.py",
+          "--cue",
+          "gray",
+          "--components",
+          "111",
+          "--seed",
+          "0"
+        ],
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/gray_111_s0.structural_full_train_fit.log",
+        "smoke_exit_code": 0,
+        "smoke_complete_sha256": "fa2d656ff15fc85817f2b807a385413bd41544fb0ad2108181543e686d6d3270"
+      },
+      "ir_111_s0": {
+        "cue": "ir",
+        "components": "111",
+        "physical_gpu": "4",
+        "seed": 0,
+        "status": "FIT_RUNNING",
+        "pid": 3871775,
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_structural_full_train.py",
+          "--cue",
+          "ir",
+          "--components",
+          "111",
+          "--seed",
+          "0"
+        ],
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ir_111_s0.structural_full_train_fit.log",
+        "smoke_exit_code": 0,
+        "smoke_complete_sha256": "84cc70fdc9f0192f6bd0b521c40f05bdb0fa90af9cf7023d47a5e2daef8ec6b3",
+        "fit_exit_code": 1
+      },
+      "ir_011_s0": {
+        "cue": "ir",
+        "components": "011",
+        "physical_gpu": "5",
+        "seed": 0,
+        "status": "PENDING"
+      },
+      "ir_101_s0": {
+        "cue": "ir",
+        "components": "101",
+        "physical_gpu": "4",
+        "seed": 0,
+        "status": "PENDING"
+      },
+      "ir_110_s0": {
+        "cue": "ir",
+        "components": "110",
+        "physical_gpu": "5",
+        "seed": 0,
+        "status": "PENDING"
+      }
+    },
+    "source_hashes": {
+      "tools/launch_structural_full_train_fits.py": "8e20fb8e30f39133226018aebc478997ae4631397c9406f1a7cb9d9dc63bbad0",
+      "tools/train_structural_full_train.py": "48420049ed9a9e97d9dd0b63798a8fa18f61e41ba0ebe655340832f758416d66",
+      "tools/structural_full_train_schedule.py": "51986e23ec4a775e66e6b5fcd87e21c08af4776e4e5f96f89accf4468793ff6b",
+      "tools/structural_full_train_inputs.py": "e15947caca2979e5e78ba6ae1a529086bd1d0f1151b7d0560eabad9b4f6fc1e6",
+      "tools/structural_stream_loop.py": "8b8d1f501a8ea816f70f8e91d9aee4734cefe7ebdaaa6066ba7683a413383c74",
+      "tools/structural_stream_training.py": "3622e61ee4adbd560e82d7206c03c3ef9f52536fd6e8ee49bb648a1f0f1a2fe3",
+      "tools/structural_train_image_reader.py": "c90e1530b620d5f34585c252937bc52aeb9d411e18f196aef9af7048dce8ae34",
+      "tools/train_structural_relative.py": "d7cbebe577bc0f1b628cc0cb364f6dc36d56d70f100ee4449135d4e7b4227279",
+      "yolox/models/structural_factorial_repair.py": "af99564db8ccebb9af50069f1779be562ffd6ee70648e1985a79a04eb207b849",
+      "yolox/models/structural_relative_repair.py": "d7e1d91c7cc159232a572459bb6deb5eca3f00eacb0215ac49e0b722224bb12c",
+      "yolox/models/structural_relative_losses.py": "494ddf2f789ecc41b9791c56818a611e6629ae04a76c9684630ee277b59f940b",
+      "yolox/models/frozen_head_repair.py": "b874f5a360b57627743c37508a9c73b691ade28dc64a88780ed91f8a3a19cf09",
+      "yolox/models/recoverable_curriculum.py": "0ff701157c4b1ff1a3ce36ee7903e21e28b15489a60f1ea66e6501f5563c7d34"
+    },
+    "full_train_study_sha256": "d0e434872fc804829fdf9724bc80a25f229d83db4b51ebd9221b7152e97a91ba",
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "logical_Train_epochs_each": 3,
+    "updates_each": 20736,
+    "goal_met": false,
+    "supported_innovations": 0,
+    "error": "AssertionError('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ir_111_s0.structural_full_train_fit.log')"
+  },
+  "full_train_study_sha256": "d0e434872fc804829fdf9724bc80a25f229d83db4b51ebd9221b7152e97a91ba",
+  "failed_IR_preserved_completed_macro_passes": 5,
+  "failed_IR_logged_successful_updates_at_least": 1536,
+  "failed_IR_successful_updates_at_most": 1567,
+  "partial_failed_IR_not_resumed": true,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "actual_failed_attempt_cost_preserved": true,
+  "scope": "RGB/gray completed artifacts independently verified. IR interrupted by a metadata guard; its exact historical cached bytes and offending file were not recorded. Redo only unfinishedIR from seed0 using exact byte-content validation, not a model-selection retry. Original files/readers, plans, loss/optimizer/fitter bytecode, schedules and completed controls unchanged. No image dataset copies and no changed bytes accepted. Other formal queues restore after registration.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

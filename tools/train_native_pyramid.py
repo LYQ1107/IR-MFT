@@ -18,7 +18,7 @@ from tools.native_pyramid_online_inference import OnlineNativeDetector
 from tools.native_pyramid_train_data import OrderedTrainPixels, epoch_clips
 from tools.native_pyramid_training_loop import guard_storage, run_training_to_epoch, state_sha256
 from tools.run_pseudo_ir_comparison import dump, sha256
-from tools.structural_train_image_reader import TrainImageReader
+from tools.native_pyramid_content_guard import make_image_reader
 from yolox.models.native_pyramid_fusion import NativePyramidFusion
 
 
@@ -46,7 +46,7 @@ def main():
     initial = state_sha256(module.state_dict())
     assert sum(p.numel() for p in module.parameters()) == study['architecture'][arm['mode']+'_parameters']
     optimizer = torch.optim.AdamW(module.parameters(), lr=arm['fit']['learning_rate'], weight_decay=arm['fit']['weight_decay'])
-    reader = TrainImageReader(plan['data_root'], plan['generated_ir_root'], protocol['train'])
+    reader, content_reference = make_image_reader(work, plan, protocol, arm['Train_delivery']['lengths'], arm['cue'])
     provider = OrderedTrainPixels(plan, protocol, arm['Train_delivery']['lengths'], calibration,
                                   reader, arm['training_input_hw'], 'cuda')
     metadata = dict(fit_id=args.fit_id, mode=arm['mode'], cue=arm['cue'], removal=arm['removal'], seed=0, pipeline_revision=PIPELINE_REVISION,
@@ -56,7 +56,8 @@ def main():
         protocol_sha256=study['protocol_sha256'], calibration_sha256=study['calibration_sha256'],
         Train_GT_sha256=provider.gt_hashes, initial_native_sha256=initial,
         physical_gpu=physical, GPU_uuid=uuid, past_memory_stop_gradient=True,
-        original_RGB_encoder_and_head_frozen=True, Dev_fit_rows=0, Test_fit_rows=0)
+        original_RGB_encoder_and_head_frozen=True, Dev_fit_rows=0, Test_fit_rows=0,
+        input_content_reference=content_reference, input_content_guard_revision=1)
     probe_path = work / 'native_pyramid_engineering' / args.fit_id / 'proof.json'
     if args.mode == 'probe':
         assert not probe_path.exists(), 'Preserve prior engineering evidence'

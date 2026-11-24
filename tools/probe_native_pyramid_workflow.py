@@ -22,6 +22,7 @@ def main():
     assert not output.exists(), 'Preserve previous CPU workflow evidence'
     tests = [str(p.relative_to(ROOT)) for p in ROOT.glob('tests/test_native_pyramid_*.py')]
     assert len(tests) == 8
+    tests.append('tests/test_native_content_reference.py')
     sources = {name: sha256(ROOT / name) for name in source_files()}
     tests_hashes = {name: sha256(ROOT / name) for name in tests}
     for name in sources:
@@ -35,19 +36,19 @@ def main():
     assert all(sha256(ROOT / name) == digest for name, digest in sources.items())
     assert all(sha256(ROOT / name) == digest for name, digest in tests_hashes.items())
     text = log.read_text()
-    assert '50 passed' in text and 'failed' not in text
+    assert '52 passed' in text and 'failed' not in text
     canonical = CANONICAL_PROOF
     proof = read(canonical)
     assert proof['all39_summary_exact'] and proof['complete_official_CSV_exact'] and proof['Dev_frames'] == 4834
     assert all(sha256(ROOT / name) == digest for name, digest in proof['source_hashes'].items())
-    report = dict(status='COMPLETE_CPU_NATIVE_WORKFLOW_TESTS', tests_passed=50, pytest_command=command, pipeline_revision=PIPELINE_REVISION,
+    report = dict(status='COMPLETE_CPU_NATIVE_WORKFLOW_TESTS', tests_passed=52, pytest_command=command, pipeline_revision=PIPELINE_REVISION,
         tested_source_hashes=sources, test_source_hashes=tests_hashes, log_sha256=sha256(log),
         canonical_Dev_proof_sha256=sha256(canonical), study_sha256=sha256(STUDY),
         seconds=time.monotonic()-started, GPU_work=False, formal_fit_started=False,
         scope='CPU source versions locked around unit/integration suite and complete canonical Dev replay. Hashes do not claim complete line/branch coverage or production GPU validation.',
-        pending_actual_GPU_canaries=True, goal_met=False, supported_innovations=0)
+        pending_actual_GPU_canaries=True, input_content_guard_revision=1, goal_met=False, supported_innovations=0)
     dump(output, report)
-    print(json.dumps(dict(status=report['status'], tests_passed=50, sources=len(sources), seconds=report['seconds'])), flush=True)
+    print(json.dumps(dict(status=report['status'], tests_passed=52, sources=len(sources), seconds=report['seconds'])), flush=True)
 
 
 if __name__ == '__main__': main()
