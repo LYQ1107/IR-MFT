@@ -1,0 +1,66 @@
+{
+  "all8_complete_Dev_before_Test": true,
+  "registration_sha256": "393692e2de630fd129bd0f95d855a9ea87d70c5c8629ec4f0b57396aac7a9a54",
+  "complete_Dev_metrics": {
+    "dev__botsort__source_RGB_fresh": "fdbf4b2843bc3b52d948a672ff000b96d11cbfb1636b8c1ec0d59777cd775d50",
+    "dev__botsort__matched_rgb": "c94b1e850d8e901b08602126e16ae6960545e3bcad6808b7c3983ef023ecc09c",
+    "dev__botsort__matched_gray": "51703639b959bdd236c37865d95899da0d9f88f580ec746eaf2f2b807b66d97a",
+    "dev__botsort__primary_IR": "f119914c70334a6a65a0cc246c980e1daa9bb49fd1b0c48c423a00319b063df7",
+    "dev__hybridsort__source_RGB_fresh": "93ea2cc75ace4d9509ed2cde22df5262ac58bdefcc4e6fdda4e78b245520ce08",
+    "dev__hybridsort__matched_rgb": "b898080facaefb4a9f4b3ac0b568888e171debc4dfdf4ecb1d5fdc661a3e8155",
+    "dev__hybridsort__matched_gray": "6b89e8ede9d8c7ff482c38b0eea4a7da9c0493905295df18cac92afb0c48a0e6",
+    "dev__hybridsort__primary_IR": "d5f1225c435c31435b5486f1795c2c65196d1fbb387d99330c2199aaa2fb421e"
+  },
+  "identical_parameters": {
+    "botsort": {
+      "name": "BoT-SORT no ReID, official demo ORB GMC",
+      "frame_rate": 25,
+      "arguments": {
+        "track_high_thresh": 0.6,
+        "track_low_thresh": 0.1,
+        "new_track_thresh": 0.7,
+        "track_buffer": 30,
+        "match_thresh": 0.8,
+        "proximity_thresh": 0.5,
+        "appearance_thresh": 0.25,
+        "with_reid": false,
+        "cmc_method": "orb",
+        "name": "MFT",
+        "ablation": false,
+        "mot20": false
+      },
+      "source_preset": "tools/demo.py",
+      "scope": "Official demo association defaults and ORB GMC. MFT frame rate25 and common area>100 output filter; person aspect filter not applied. No appearance network or pretrained person-ReID replication."
+    },
+    "hybridsort": {
+      "name": "HybridSORT no ReID, official MOT17 ablation association preset",
+      "argument_overrides": {
+        "use_byte": true,
+        "inertia": 0.05,
+        "iou_thresh": 0.25,
+        "asso": "Height_Modulated_IoU",
+        "TCM_first_step": true,
+        "TCM_byte_step": true,
+        "TCM_first_step_weight": 1.0,
+        "TCM_byte_step_weight": 1.0,
+        "hybrid_sort_with_reid": false
+      },
+      "constructor": {
+        "det_thresh": 0.6,
+        "max_age": 30,
+        "min_hits": 3,
+        "iou_threshold": 0.25,
+        "delta_t": 3,
+        "asso_func": "Height_Modulated_IoU",
+        "inertia": 0.05,
+        "use_byte": true
+      },
+      "source_preset": "exps/example/mot/yolox_x_ablation_hybrid_sort.py",
+      "scope": "Original Hybrid_Sort API with official preset TCM, low-score association and HMIoU. Other argument defaults come from pinned utils/args.py. No appearance network."
+    }
+  },
+  "no_parameter_search": true,
+  "original_fusion_primary_reselected": false,
+  "all8_Test_mandatory": true,
+  "freeze_UTC": "2026-11-25T19:29:26.041195+00:00"
+}

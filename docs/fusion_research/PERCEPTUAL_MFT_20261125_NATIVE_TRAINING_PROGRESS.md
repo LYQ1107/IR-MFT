@@ -11,13 +11,13 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 | 5 | 2.57830708 | 2.57856514 | 2.57829463 | 2.57967240 |
 | 6 | 2.57770683 | 2.57693930 | 2.57791129 | 2.57765829 |
 
-当前两组剩余任务均保持原PID：temporal_gray已完成三遍、继续第四遍，temporal_ir已完成两遍、继续第三遍；这是原journal与实际更新的只读观察，不增加六轮张量资格。完整Dev尚未启动。并行的公开后端补测仅使用既有冻结检测包和CPU，见[登记](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_REGISTERED.md)。下方初次启动描述按原记录时点保留，当前阶段以本段与状态表为准。
+当前两组剩余任务均保持原PID：temporal_gray已完成四遍、继续第五遍，temporal_ir已完成三遍、继续第四遍。这是原journal、实际更新与进程身份的只读观察，不增加六轮张量资格；完整Dev尚未启动。
 
-最新只读记录已确认temporal_ir也完成第三遍并由同一原进程进入第四遍，当前两组都在第四遍；仍未新增六轮模块资格。并行的公开后端8项完整Dev已全部结束，官方47字段核对退出0，完整8项Test按原参数继续，见[Dev分析](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_DEV_ANALYSIS_ZH.md)。
+并行的BoT-SORT／HybridSORT公开后端补测已完成8项完整Dev及8项完整Test，16个worker和原CPU控制器均实际退出0，官方47字段与逐序列CSV独立核对退出0。五后端40组汇总见[完整分析](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_COMPLETE_ANALYSIS_ZH.md)及[核对证据](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_COMPLETE_VERIFICATION.json)。新增Test中BoT的IR−RGB约−0.924点，Hybrid约+0.759点却低于灰度约0.311点；未据此改选原主方案，也未增加创新点。
 
 四组完整Train loss变化很小且非单调，不能代替收敛或HOTA结论。质量IR末轮2.577911，RGB末轮2.577707；未据此宣称IR增益。共同最低六轮及完整4834帧Dev规则保持，是否延长九／十二轮只依据完整Dev决定。全部较差正式正常条件仍须完整七段Test。
 
-原GPU4的quality_ir完成并退出0后，同一个原控制器自动启动temporal_gray；真实PID1330025、启动tick、argv、CUDA_VISIBLE_DEVICES=4与GPU UUID匹配，并已完成首轮、继续第二轮；此为原progress和实际日志读取，未新增完整六轮审计。GPU5原temporal_ir也已完成首轮并继续第二轮。旧只读观察器1254273完成目标、实际退出0；新只读观察器仅跟踪原剩余训练，不发送任何训练信号。
+原GPU4的quality_ir完成并退出0后，同一个原控制器自动启动temporal_gray；真实PID1330025、启动tick、argv、CUDA_VISIBLE_DEVICES=4与GPU UUID持续匹配。GPU5原temporal_ir为PID1248117，身份与GPU UUID也持续匹配。只读观察器仅跟踪原剩余训练，不发送训练信号；六轮审计仍只在原worker完整结束后执行。
 
 | 正常条件 | 当前状态 | 已完成全量Train轮数 | 独立模块快照核对 |
 | --- | --- | ---: | --- |
@@ -25,7 +25,7 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 | quality_gray | 原worker完成并退出0 | 6 | 全部六轮 |
 | quality_ir | 原worker完成并退出0 | 6 | 本次全部六轮 |
 | temporal_rgb | 原worker完成并退出0 | 6 | 全部六轮 |
-| temporal_gray | GPU4原进程第四遍正式训练 | 3 | 当前没有完整六轮资格 |
+| temporal_gray | GPU4原进程第五遍正式训练 | 4 | 当前没有完整六轮资格 |
 | temporal_ir | GPU5原进程第四遍正式训练 | 3 | 当前没有完整六轮资格 |
 
 正常原生方案保留(1−p)×1[p<0.6]教师置信特征mask及可靠RGB保持loss。已登记no_RGB_protection会同时去掉mask并将保持loss权重置0，是联合机制消融；仅在正常IR完整Dev超过直接RGB和同模式RGB／灰度后触发。当前配方、种子及选择规则均未更改。
