@@ -1,6 +1,6 @@
 # 新版伪红外 MFT：研究进展与结论
 
-更新时间：2026-11-25（北京时间）。任务仍在执行，目标尚未完成。
+更新时间：2026-11-26（北京时间）。任务仍在执行，目标尚未完成。
 
 最新13项冻结配置的完整七段Test已全部结束并独立核对47项与原276列CSV：
 固定主方案HOTA29.834177，同预算RGB29.467182、灰度29.421963，分别高
@@ -38,20 +38,20 @@ Train混算，也不按较高Test重新选主方法。缺失IR精确回到fresh 
 实际执行与范围见[COST_ANALYSIS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_MISSING_COSTS_ANALYSIS_ZH.md)。
 
 原生质量／时序融合六组真实GPU门槛已全部通过，同模式三输入初始参数一致。
-原NORMAL_TRAIN_06中quality_rgb／quality_gray／temporal_rgb现已各完成六遍
-全部27251帧，累计163506帧次／40884次实际更新，三个原worker均退出0。
-十八份原生快照有限、三组交付顺序相同、无padding，源RGB逐遍冻结检查通过。
-本轮新增temporal_rgb六遍独立CPU核对，原第一遍及两个六遍对照记录不变，见
-[NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
-原队列已把GPU5交给temporal_ir，真实PID／启动tick／argv／GPU UUID匹配，
-正式fit日志已超过32次更新。截至11月25日23:50（北京时间）的只读快照，
-GPU4的quality_ir原进程已完成五遍并继续第六遍，GPU5的temporal_ir继续首遍；
-temporal_gray仍待调度。固定新版PNG和逐次读图SHA断言保持，完整逐图消费
-列表未另存，未补造。早期观察器句柄已不可用且数字退出码未知；当前独立
-只读观察器1254273及原训练进程均已直接核对存活，没有重启训练或回填
-旧退出码。见[实际状态快照](PERCEPTUAL_MFT_20261125_NATIVE_LIVE_STATUS_SNAPSHOT.json)。
-完整Train loss变化很小，不能代替HOTA或收敛结论。全六组共同预算及完整
-Dev／Test尚未完成，没有新准确率或独立贡献；是否延长只看完整Dev。
+原NORMAL_TRAIN_06中quality_rgb／quality_gray／temporal_rgb／quality_ir现已各
+完成六轮全部27251帧，每组累计163506帧次／40884次实际更新，四个原worker
+均退出0。24份模块快照有限、四组实际地址顺序相同、无padding重复，源RGB
+冻结记录逐轮通过。本次新增quality_ir六轮独立CPU核对，旧16份相关证明
+及原首轮IR记录保持字节不变，见
+[NATIVE_QUALITY_IR_COMPLETE](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN.md)。
+原quality_ir结束后，原队列在GPU4启动temporal_gray，真实PID／启动tick／
+argv／GPU UUID匹配，已实际超过32次更新；GPU5原temporal_ir继续第二轮。
+旧观察器完成目标、实际退出0，新只读观察器继续跟踪原剩余任务，未重启
+训练或发送训练信号。新版PNG读图SHA断言保持，完整逐图消费列表未另存、
+未补造。新导出末行打印错误退出1，已生成文件随后独立核对通过，原审计
+与训练不重跑。完整Train loss变化很小，不能代替HOTA或收敛结论；全六组
+及完整Dev／Test仍待完成，没有新准确率或独立贡献。当前状态及完整四组
+曲线见[NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
 下方早期组件与等待状态按记录时点保留，当前执行状态以本页顶部为准。
 
 已完成六组已训练融合P3的Train身份检索诊断：固定72帧、1079个GT框、

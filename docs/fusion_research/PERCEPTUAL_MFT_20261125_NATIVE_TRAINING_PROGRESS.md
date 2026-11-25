@@ -1,37 +1,37 @@
-# 原生融合正式训练：三个对照六遍完成，两个IR分支正在训练
+# 原生融合正式训练：四组六轮完成，时序灰度／IR继续训练
 
-quality_rgb／quality_gray／temporal_rgb已各完成六遍全部27251帧，三个原worker均实际退出0。每组累计163506帧次、40884个片段／实际更新；每遍6814片段、无padding重复。三组六遍实际顺序摘要完全相同；十八份原生快照通过独立CPU有限性、历史及SHA核对，原RGB冻结检查逐遍通过。本轮新增核对temporal_rgb六份快照，旧两个对照和第一遍IR／时序证明保持原字节。
+quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全部27251帧，四个原worker均实际退出0。每组累计163506帧次、40884个片段／实际更新；每轮6814片段，无padding重复。24份原生模块快照有限、每组逐轮状态均不同且偏离初始化，四组每轮实际交付地址摘要一致；质量模式RGB／灰度／IR初始参数相同。原RGB冻结日志逐轮核对通过。此次新增quality_ir六轮证明，旧16份相关证明及首轮IR原件保持字节不变。
 
-| 完整Train遍数 | quality_rgb loss | quality_gray loss | temporal_rgb loss |
-| --- | ---: | ---: | ---: |
-| 1 | 2.57960204 | 2.57888883 | 2.58042841 |
-| 2 | 2.57919934 | 2.57904583 | 2.57961410 |
-| 3 | 2.57954909 | 2.57884048 | 2.58110718 |
-| 4 | 2.57744853 | 2.57810849 | 2.57879639 |
-| 5 | 2.57830708 | 2.57856514 | 2.57967240 |
-| 6 | 2.57770683 | 2.57693930 | 2.57765829 |
+| 完整Train轮次 | quality_rgb loss | quality_gray loss | quality_ir loss | temporal_rgb loss |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 2.57960204 | 2.57888883 | 2.57926598 | 2.58042841 |
+| 2 | 2.57919934 | 2.57904583 | 2.57899623 | 2.57961410 |
+| 3 | 2.57954909 | 2.57884048 | 2.57922564 | 2.58110718 |
+| 4 | 2.57744853 | 2.57810849 | 2.57777712 | 2.57879639 |
+| 5 | 2.57830708 | 2.57856514 | 2.57829463 | 2.57967240 |
+| 6 | 2.57770683 | 2.57693930 | 2.57791129 | 2.57765829 |
 
-三组完整Train loss变化很小。拟合及参数变化不等于HOTA提高，也不构成数值收敛证明。六组正常条件尚未全部完成；最低共同预算六遍，之后仅按全部完整4834帧Dev及预登记规则共同决定九／十二遍，不按Test或部分Train结果延长。当前没有本轮原生方案的新Dev／Test准确率，所有较差正式正常条件仍须完整七段Test。
+四组完整Train loss变化很小且非单调，不能代替收敛或HOTA结论。质量IR末轮2.577911，RGB末轮2.577707；未据此宣称IR增益。共同最低六轮及完整4834帧Dev规则保持，是否延长九／十二轮只依据完整Dev决定。全部较差正式正常条件仍须完整七段Test。
 
-原控制器已自动把GPU5从完成的temporal_rgb交给temporal_ir。新任务是正式fit／through-epoch6，实际PID、启动tick、argv、CUDA_VISIBLE_DEVICES=5及GPU UUID均匹配。11月25日23:50（北京时间）的原进程只读快照显示：quality_ir已完成五遍，正在第六遍；temporal_ir正在第一遍；temporal_gray尚在原队列等待。早期观察器交接时句柄已不可用、数字退出码未知；当前只读观察器1254273及两个原训练进程均直接核对存活，原训练未重启。此处只是原progress／实际日志的进度，不增加六遍完成资格或后续快照有限性证明。
+原GPU4的quality_ir完成并退出0后，同一个原控制器自动启动temporal_gray；真实PID1330025、启动tick、argv、CUDA_VISIBLE_DEVICES=4与GPU UUID匹配，并已确认至少32次更新。GPU5原temporal_ir已完成首轮并继续第二轮。旧只读观察器1254273完成目标、实际退出0；新只读观察器仅跟踪原剩余训练，不发送任何训练信号。
 
-| 正常条件 | 当前状态 | 完整Train遍数 | 本次及原已公开的独立快照核对 |
+| 正常条件 | 当前状态 | 已完成全量Train轮数 | 独立模块快照核对 |
 | --- | --- | ---: | --- |
-| quality_rgb | 六遍完成、原worker退出0 | 6 | 全部六遍 |
-| quality_gray | 六遍完成、原worker退出0 | 6 | 全部六遍 |
-| temporal_rgb | 六遍完成、原worker退出0 | 6 | 全部六遍 |
-| quality_ir | GPU4原进程继续第六遍 | 5 | 原首遍完整核对；后续原日志／SHA记录保留 |
-| temporal_ir | GPU5原队列正式训练中 | 0 | 工程门槛先前已通过；当前实际更新，不冒充完整一遍 |
-| temporal_gray | 原队列等待 | 0 | 工程门槛先前已通过，正式训练未调度 |
+| quality_rgb | 原worker完成并退出0 | 6 | 全部六轮 |
+| quality_gray | 原worker完成并退出0 | 6 | 全部六轮 |
+| quality_ir | 原worker完成并退出0 | 6 | 本次全部六轮 |
+| temporal_rgb | 原worker完成并退出0 | 6 | 全部六轮 |
+| temporal_gray | GPU4原队列正式训练 | 0 | 当前没有完整六轮资格 |
+| temporal_ir | GPU5原进程继续第二轮 | 1 | 当前没有完整六轮资格 |
 
-正常原生方案仍保留(1−p)×1[p<0.6]教师置信特征mask及可靠RGB保持loss。当前loss不能将效果归因于这些约束或优化中的某项；已登记no_RGB_protection会同时移除mask并将保持loss权重置0，是联合机制消融，仅在正常IR完整Dev超过直接RGB和同模式RGB／灰度后触发。当前没有更改配方、种子或选择规则。
+正常原生方案保留(1−p)×1[p<0.6]教师置信特征mask及可靠RGB保持loss。已登记no_RGB_protection会同时去掉mask并将保持loss权重置0，是联合机制消融；仅在正常IR完整Dev超过直接RGB和同模式RGB／灰度后触发。当前配方、种子及选择规则均未更改。
 
-正式IR读图使用固定11月新版PNG，实际执行的SHA断言绑定四份成功参考清单，预期RGB＋IR集合54502项。RGB／灰度条件的预期RGB集合27251项。原生epoch日志不另存完整逐图消费列表，本报告未补造该列表，也未用参考清单冒充实际消费清单。reader的8GiB是编码字节RAM容量，不是整个worker RSS上限；实际RSS／GPU映射与主机内存见发布核对JSON。
+实际IR读图仍固定11月DiffV2IR PNG，执行的SHA断言绑定原四份成功IR参考清单、54502个RGB＋IR条目；RGB／灰度的预期RGB集合27251项。原生训练没有另存完整逐图消费列表，未补造或以参考清单冒充。编码字节RAM容量8GiB不是整个worker RSS上限；真实进程／GPU映射与主机内存见发布核对。
 
-新增CPU核对实际退出0，完整调用5.500秒，观测峰值RSS0.597GiB；复用原有同一工具，只读已存在小型原生快照与记录，没有NN前向或GPU调用。原第一遍及两对照六遍的JSON、执行、原件均保持，新时序六遍原件另存。
+此次独立CPU审计实际退出0，完整调用5.360秒、观测峰值RSS0.579GiB；复用原工具，只读已有小型原生快照及记录，没有NN前向、GPU调用或新拟合。首次导出末行print参数错误退出1，已生成产物随后逐字节独立核对通过；原审计与训练结果没有重跑或改写。
 
-23:50快照工作盘按原guard口径lstat且不跟随符号链接，实测59.252GiB／上限64GiB，独立空闲2704.841GiB；主机MemAvailable及真实GPU进程见[状态快照](PERCEPTUAL_MFT_20261125_NATIVE_LIVE_STATUS_SNAPSHOT.json)，高于40GiB保留值。Git只保存轻量文本，不包含权重、图像、数组或缓存。
+发布核对时工作目录59.263GiB／上限64GiB，独立空闲2703.428GiB，主机MemAvailable86.441GiB，高于40GiB保留值。原guard按lstat且不跟随符号链接计数。Git仅保存文本证明，不包含权重、图像、数组或缓存。
 
-新增证据见[时序RGB六遍核对](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN.json)、[实际CPU执行](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_EXECUTION.json)、[真实交接及发布核对](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_VERIFICATION.json)和[完整六遍progress原件](perceptual_20261125_native_training_progress/temporal_rgb_six_epoch_original_progress.json)。原[两个六遍对照](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json)、[首遍IR／时序](PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json)及其原件保持。
+新增[质量IR六轮核对](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN.json)、[实际CPU执行](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN_EXECUTION.json)、[交接及发布核对](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN_VERIFICATION.json)、[完整六轮progress原件](perceptual_20261125_native_training_progress/quality_ir_six_epoch_original_progress.json)。旧[两个质量对照](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json)、[时序RGB六轮](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN.json)、[首轮IR／时序](PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json)原件保持。
 
-固定结构主方案仍29.834177 HOTA，对原RGB29.529为+0.305177；C只有条件消融支持，S不稳定、R有负贡献。本次进度不改变主模型、Test选择或独立创新计数。历史Test暴露、原RGB预训练见Dev、伪IR由RGB派生等限制保持。全套六组Train、完整Dev／预算决策／所需消融／七段Test／独立成本仍待完成，目标34.529及2–3项独立贡献未达，Goal保持active。
+固定结构主方案仍29.834177 HOTA，对原RGB29.529为+0.305177。本轮原生方案尚无完整Dev／Test准确率；S不稳定、R有负贡献、C只有条件消融支持，独立创新计数仍0。历史Test暴露、原RGB预训练见Dev及伪IR由RGB派生的限制保持。全六组完整Train、Dev／预算决策、所需消融、完整七段Test及独立成本仍待完成，目标34.529及2–3项独立贡献未达，Goal保持active。

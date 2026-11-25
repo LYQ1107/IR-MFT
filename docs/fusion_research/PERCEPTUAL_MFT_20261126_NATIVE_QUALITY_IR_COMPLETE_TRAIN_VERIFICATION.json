@@ -1,0 +1,437 @@
+{
+  "status": "COMPLETE_ORIGINAL_QUALITY_IR6_AND_TEMPORAL_GRAY_ACTUAL_HANDOFF_AUDIT",
+  "UTC": "2026-11-25T16:26:47.545256+00:00",
+  "actual_CPU_execution": {
+    "status": "EXITED",
+    "UTC_started": "2026-11-25T16:21:12.727400+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_native_epoch_prefix.py",
+      "--fit-id",
+      "quality_ir",
+      "--through-epoch",
+      "6",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_quality_ir_six_epoch_audit_20261126_r1"
+    ],
+    "identity": {
+      "pid": 1330507,
+      "start_ticks": 89064401,
+      "command_sha256": "0709895c9af41705c545468bc15518e3c423786f04dbc524f185449d9cb26bf2",
+      "argv_observed_exact": true
+    },
+    "source_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
+    "source_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_quality_ir_six_epoch_audit_20261126_r1.log",
+    "log_sha256": "0c5e762ada15ff529897bea7887d84c7ae4663305bd43e00d219018e6e3ec678",
+    "exit_code": 0,
+    "seconds": 5.360484004020691,
+    "observed_peak_RSS_GiB": 0.5792388916015625,
+    "new_fit": false,
+    "new_NN_or_GPU_work": false,
+    "result": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_quality_ir_six_epoch_audit_20261126_r1/complete.json",
+    "result_sha256": "80e7989aaa806e7a68e25ef58b26907d36b0e9f163d6ff60cc8651e1eaafda2d"
+  },
+  "completed_fit": "quality_ir",
+  "actual_original_fit_exit_code": 0,
+  "complete_full_Train_epochs": 6,
+  "delivered_frames_each_epoch": 27251,
+  "clips_each_epoch": 6814,
+  "delivered_frames_total": 163506,
+  "actual_optimizer_updates": 40884,
+  "all_24_completed_native_checkpoints_finite": true,
+  "all_4_six_epoch_address_schedules_identical": true,
+  "completed_fit_schedules": {
+    "quality_rgb": [
+      "5cd43f391f2ec277275e4212469f20caee0353cc55559e3dd4f64728f45372f7",
+      "7be1d66fc65a07083a04dce321de1eb7689d66d72a6c7cc22456cdbbef5cb6e7",
+      "34b241ca747ce03973a3d174ecc916e0d5e7fee66664d2d1f2bad6e19ff2fb76",
+      "a8a3463c10591a8747b925d9a984ce1ad1785250dc323090a512aad0a85010f4",
+      "2b166b377f3fd20ba765d4387ed99567140d7a4f5f377d35f4b6e9d6daafeee9",
+      "7abdda22b423a1871ebffdcf0aaef4d7de67413e514c47e718d2e9f67dd4f38f"
+    ],
+    "quality_gray": [
+      "5cd43f391f2ec277275e4212469f20caee0353cc55559e3dd4f64728f45372f7",
+      "7be1d66fc65a07083a04dce321de1eb7689d66d72a6c7cc22456cdbbef5cb6e7",
+      "34b241ca747ce03973a3d174ecc916e0d5e7fee66664d2d1f2bad6e19ff2fb76",
+      "a8a3463c10591a8747b925d9a984ce1ad1785250dc323090a512aad0a85010f4",
+      "2b166b377f3fd20ba765d4387ed99567140d7a4f5f377d35f4b6e9d6daafeee9",
+      "7abdda22b423a1871ebffdcf0aaef4d7de67413e514c47e718d2e9f67dd4f38f"
+    ],
+    "temporal_rgb": [
+      "5cd43f391f2ec277275e4212469f20caee0353cc55559e3dd4f64728f45372f7",
+      "7be1d66fc65a07083a04dce321de1eb7689d66d72a6c7cc22456cdbbef5cb6e7",
+      "34b241ca747ce03973a3d174ecc916e0d5e7fee66664d2d1f2bad6e19ff2fb76",
+      "a8a3463c10591a8747b925d9a984ce1ad1785250dc323090a512aad0a85010f4",
+      "2b166b377f3fd20ba765d4387ed99567140d7a4f5f377d35f4b6e9d6daafeee9",
+      "7abdda22b423a1871ebffdcf0aaef4d7de67413e514c47e718d2e9f67dd4f38f"
+    ],
+    "quality_ir": [
+      "5cd43f391f2ec277275e4212469f20caee0353cc55559e3dd4f64728f45372f7",
+      "7be1d66fc65a07083a04dce321de1eb7689d66d72a6c7cc22456cdbbef5cb6e7",
+      "34b241ca747ce03973a3d174ecc916e0d5e7fee66664d2d1f2bad6e19ff2fb76",
+      "a8a3463c10591a8747b925d9a984ce1ad1785250dc323090a512aad0a85010f4",
+      "2b166b377f3fd20ba765d4387ed99567140d7a4f5f377d35f4b6e9d6daafeee9",
+      "7abdda22b423a1871ebffdcf0aaef4d7de67413e514c47e718d2e9f67dd4f38f"
+    ]
+  },
+  "quality_mode_RGB_gray_IR_initial_parameters_identical": true,
+  "quality_IR_first_epoch_checkpoint_exact_to_prior_proof": true,
+  "epoch6_checkpoint_sha256": "9760fcf4eb98d89bbd2444c105b12e2350feca43f1f022b14dbc33c6f9116be1",
+  "preserved_previous_public_files": {
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json": "c6ee490efdfb9b89d58d4a697bc91d746094d089c33f0e8bf8d57fec48b0401b",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS_EXECUTION.json": "ddb7df4e64a3bca50f1013c8ffd3654bfef5a0dc638664c7fe397b3976a9bbb7",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS_CPU_LOG.txt": "23da848c70bbaed5b783d33dcd8616d9ea3e7ac0afdba20c1d9a9a72422053ef",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS_VERIFICATION.json": "d309ad23613925719641edca0ecd0ab61aa8eb03de60e3288ead34f2e7c59254",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json": "945f9d738e9c9558ab22c0363698581911ee2c5d01dc513be927a36555d8662f",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH_EXECUTION.json": "a1a92708dbbd44a1bb071f6aaf739987b92a228e60ccb68f279603eb2d61d04c",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH_CPU_LOG.txt": "7964a65fd3ae39db1e040db8b2cc0883ff45e56ea6e793f3b3a791447b04198b",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN.json": "88e292166b8f3987f1e1493f4a08980a3153fb1ecd068f31665962f7211c6d7c",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_EXECUTION.json": "9a4ce4cf16020c4d6070f9eff9b5f62313b326790302d16f793cd8a85715720a",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_CPU_LOG.txt": "8d9d18f4cf1deafd4da91eafdc03296380c8451a941111f0bed1dc995246685c",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_VERIFICATION.json": "792760624ab2f401efcea4eadb6649870bbb361ebc3b826fe4c8b12fcfb69fbe",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/temporal_rgb_six_epoch_original_progress.json": "3ab8fcb7b62d1995d2b879b262308199113070d92ee07735611699896ac32cf2",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/temporal_rgb_original_progress.json": "b5ed17f05de0e5337735ba198ad3a418b3819037e04fe1a0ca39778561096dd8",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/quality_gray_original_progress.json": "3cb7b1a17182f236616f4710412459311e1c28717c52bcab6ed398a4a93c8a43",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/quality_ir_original_progress.json": "6b6cadd99d49a17ded46e980d5d0400a64eb077cc98b2d6ab3ed806dc57fb98e",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/quality_rgb_original_progress.json": "5cecc54762f0972224639ac859e5fb77827bfb247f28c2577d735d4097927df6"
+  },
+  "original_quality_IR_job": {
+    "id": "quality_ir",
+    "physical_gpu": "4",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/train_native_pyramid.py",
+      "fit",
+      "--fit-id",
+      "quality_ir",
+      "--through-epoch",
+      "6"
+    ],
+    "status": "COMPLETE",
+    "pid": 1089904,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_ir.log",
+    "slot": "4",
+    "exit_code": 0
+  },
+  "original_controller_pid": 3943138,
+  "native_phase": "NORMAL_TRAIN_06",
+  "current_actual_training": {
+    "temporal_gray": {
+      "job": {
+        "id": "temporal_gray",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_gray",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1330025,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_gray.log",
+        "slot": "4"
+      },
+      "actual_pid": 1330025,
+      "actual_start_ticks": 89054988,
+      "actual_argv": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_gray",
+        "--through-epoch",
+        "6"
+      ],
+      "actual_command_sha256": "1afbbdd6225b94c0b1ea0b8b36a1c7cfd3be5fd948bc031660440102f4e5a741",
+      "CUDA_VISIBLE_DEVICES": "4",
+      "actual_RSS_GiB": 1.9349479675292969,
+      "actual_high_water_RSS_GiB": 1.9349479675292969
+    },
+    "temporal_ir": {
+      "job": {
+        "id": "temporal_ir",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_ir",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1248117,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_ir.log",
+        "slot": "5"
+      },
+      "actual_pid": 1248117,
+      "actual_start_ticks": 88101349,
+      "actual_argv": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_ir",
+        "--through-epoch",
+        "6"
+      ],
+      "actual_command_sha256": "bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58",
+      "CUDA_VISIBLE_DEVICES": "5",
+      "actual_RSS_GiB": 10.162567138671875,
+      "actual_high_water_RSS_GiB": 10.162567138671875
+    }
+  },
+  "normal_fits_completed_six_epochs": [
+    "quality_rgb",
+    "quality_gray",
+    "quality_ir",
+    "temporal_rgb"
+  ],
+  "all_six_normal_fits_complete": false,
+  "actual_initial_handoff": {
+    "status": "ORIGINAL_QUALITY_IR6_EXIT0_AND_ACTUAL_TEMPORAL_GRAY_HANDOFF",
+    "UTC": "2026-11-25T16:21:12.639420+00:00",
+    "state_sha256": "23abe0c231d157e0aa2982de9fb7e8633f14505807679a76d08d68d03815697b",
+    "source_state_phase": "NORMAL_TRAIN_06",
+    "completed_original_job": {
+      "id": "quality_ir",
+      "physical_gpu": "4",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "quality_ir",
+        "--through-epoch",
+        "6"
+      ],
+      "status": "COMPLETE",
+      "pid": 1089904,
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_ir.log",
+      "slot": "4",
+      "exit_code": 0
+    },
+    "completed_full_Train_epochs": 6,
+    "actual_optimizer_updates": 40884,
+    "delivered_frames": 163506,
+    "actual_current_workers": {
+      "temporal_gray": {
+        "pid": 1330025,
+        "start_ticks": 89054988,
+        "actual_argv": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_gray",
+          "--through-epoch",
+          "6"
+        ],
+        "actual_command_sha256": "1afbbdd6225b94c0b1ea0b8b36a1c7cfd3be5fd948bc031660440102f4e5a741",
+        "CUDA_VISIBLE_DEVICES": "4"
+      },
+      "temporal_ir": {
+        "pid": 1248117,
+        "start_ticks": 88101349,
+        "actual_argv": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_ir",
+          "--through-epoch",
+          "6"
+        ],
+        "actual_command_sha256": "bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58",
+        "CUDA_VISIBLE_DEVICES": "5"
+      }
+    },
+    "actual_current_GPU_applications": {
+      "temporal_gray": {
+        "GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "used_memory": "2404 MiB"
+      },
+      "temporal_ir": {
+        "GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "used_memory": "2404 MiB"
+      }
+    },
+    "original_native_controller_pid": 3943138,
+    "read_only_observer_pid": 1254273,
+    "read_only_observer_unified_exec_session": 26584,
+    "actual_observer_exit_code": 0,
+    "observer_result": {
+      "status": "OBSERVED_ORIGINAL_QUALITY_IR6_EXIT0_AND_TEMPORAL_GRAY_ACTUAL_UPDATES",
+      "UTC": "2026-11-25T16:20:04.042734+00:00",
+      "observer": {
+        "pid": 1254273,
+        "proc_snapshot_ok": true,
+        "state": "R",
+        "start_ticks": 88157640,
+        "command_sha256": "1243182fa747db9a99ede71670b2a7f165f88a74bd1a29fd34ff8adbc51b48d0",
+        "command": "python3 -u /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_quality6_read_only_watch_20261125_r1.py",
+        "CUDA_VISIBLE_DEVICES": ""
+      },
+      "native_phase": "NORMAL_TRAIN_06",
+      "original_controller": {
+        "pid": 3943138,
+        "proc_snapshot_ok": true,
+        "state": "S",
+        "start_ticks": 77632196,
+        "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/launch_native_pyramid_study.py run",
+        "CUDA_VISIBLE_DEVICES": ""
+      },
+      "workers": [
+        {
+          "id": "quality_ir",
+          "status": "COMPLETE",
+          "pid": 1089904,
+          "physical_gpu": "4",
+          "exit_code": 0,
+          "actual_process": {
+            "pid": 1089904,
+            "proc_snapshot_ok": false,
+            "PID_exists_on_recheck": false,
+            "read_error": "FileNotFoundError(2, 'No such file or directory')",
+            "read_race_not_terminal_qualification": true
+          },
+          "complete_epochs": 6,
+          "latest_actual_update": {
+            "fit": "quality_ir",
+            "epoch": 6,
+            "clip": 6784,
+            "clips": 6814,
+            "loss": 2.573221444073221,
+            "actual_updates": 40854,
+            "seconds": 28103.420125317993
+          }
+        },
+        {
+          "id": "temporal_ir",
+          "status": "RUNNING",
+          "pid": 1248117,
+          "physical_gpu": "5",
+          "exit_code": null,
+          "actual_process": {
+            "pid": 1248117,
+            "proc_snapshot_ok": true,
+            "state": "R",
+            "start_ticks": 88101349,
+            "command_sha256": "bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58",
+            "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 6",
+            "CUDA_VISIBLE_DEVICES": "5"
+          },
+          "complete_epochs": 1,
+          "latest_actual_update": {
+            "fit": "temporal_ir",
+            "epoch": 2,
+            "clip": 2048,
+            "clips": 6814,
+            "loss": 2.947512255690526,
+            "actual_updates": 8862,
+            "seconds": 9541.873478447087
+          },
+          "actual_identity_matches_original_job": true
+        },
+        {
+          "id": "temporal_gray",
+          "status": "RUNNING",
+          "pid": 1330025,
+          "physical_gpu": "4",
+          "exit_code": null,
+          "actual_process": {
+            "pid": 1330025,
+            "proc_snapshot_ok": true,
+            "state": "R",
+            "start_ticks": 89054988,
+            "command_sha256": "1afbbdd6225b94c0b1ea0b8b36a1c7cfd3be5fd948bc031660440102f4e5a741",
+            "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_gray --through-epoch 6",
+            "CUDA_VISIBLE_DEVICES": "4"
+          },
+          "complete_epochs": 0,
+          "latest_actual_update": {
+            "fit": "temporal_gray",
+            "epoch": 1,
+            "clip": 32,
+            "clips": 6814,
+            "loss": 4.04732920974493,
+            "actual_updates": 32,
+            "seconds": 14.878850828041323
+          },
+          "actual_identity_matches_original_job": true
+        }
+      ],
+      "host_MemAvailable_GiB": 84.90776062011719,
+      "independent_free_GiB": 2703.535285949707,
+      "new_GPU_NN_training_seed_work_by_observer": false,
+      "new_Dev_Test_accuracy": false,
+      "goal_met": false,
+      "observer_intended_exit_code": 0,
+      "observer_numeric_exit_requires_parent_confirmation": true
+    },
+    "new_native_Dev_or_Test_accuracy": false,
+    "new_GPU_or_NN_work_by_verification": false,
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "successful_old_observer_exit_code": 0,
+  "current_read_only_observer_handle": {
+    "status": "LIVE_READ_ONLY_OBSERVER",
+    "unified_exec_session_id": 52730,
+    "PID": 1331269,
+    "start_ticks": 89080239,
+    "actual_command_sha256": "bc4cc54a57e455c6e7ea2ab84192a4bc586ebb2464496cd0ae2e6f17d4a485a7",
+    "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_gray6_read_only_watch_20261126_r1.py",
+    "source_sha256": "0cc5d38755ff41d9414a3f02a179a3b33915738d83dce1ec7db81bf1fc502a7d",
+    "window_seconds": 21600,
+    "target": "Original temporal_gray six complete epochs and actual exit0",
+    "actual_observer_exit_code": null,
+    "UTC": "2026-11-25T16:25:16.261325+00:00"
+  },
+  "native_per_image_consumption_lists_not_saved_and_not_fabricated": true,
+  "registered_encoded_byte_RAM_capacity_each_GiB": 8,
+  "encoded_cache_cap_not_total_RSS_cap": true,
+  "host_MemAvailable_GiB": 86.44050216674805,
+  "host_MemAvailable_reserve_GiB": 40,
+  "work_GiB": 59.263042783364654,
+  "work_cap_GiB": 64,
+  "independent_free_GiB": 2703.4283599853516,
+  "new_NN_or_GPU_or_optimizer_work_by_audit": false,
+  "new_Dev_Test_accuracy": false,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "publication_console_first_attempt": {
+    "status": "PUBLICATION_CONSOLE_ONLY_ERROR_AFTER_OUTPUTS_WRITTEN",
+    "actual_exit_code": 1,
+    "origin": "exec_command Python stdin, final print call",
+    "exception": "TypeError: 'ensure_ascii' is an invalid keyword argument for print()",
+    "effect": "All six new audit/publication files already existed. Audit result/execution/log/progress bytes match successful original CPU audit; no scientific result or training was rerun or changed.",
+    "UTC": "2026-11-25T16:27:49.614407+00:00"
+  },
+  "publication_recheck": {
+    "status": "PASSED_ORIGINAL_FILE_EQUALITY_AND_LIVE_SOURCE_RECHECK",
+    "original_audit_result_exact": true,
+    "original_execution_and_log_exact": true,
+    "original_six_epoch_progress_exact": true,
+    "all_16_prior_public_proofs_exact": true,
+    "current_training_PID_tick_argv_exact": true,
+    "weights_images_arrays_published": false
+  }
+}
