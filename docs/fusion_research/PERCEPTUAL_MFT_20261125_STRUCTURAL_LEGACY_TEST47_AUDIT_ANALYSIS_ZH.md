@@ -42,5 +42,7 @@ C的同轮次Dev／Test差值为正，但按去C自身完整Dev选择时，完�
 全局47字段视图已更新为1934份原表、6647个逐段／合并行和75个阶段。原先1925份原表字节均保持不变，新增仅本九份原表。CPU导出实际退出0，10.686秒，观测峰值RSS0.599GiB。初次读取其/proc命令行为空，因此没有独立认证argv身份；Popen参数、原子进程句柄及退出码、日志和结果哈希保留，此记录不用于GPU资格判断。
 
 本九项共享producer耗时、缓存重放FPS均不是单方法NN成本；本轮没有新测初版九项的独立端到端成本。正在接续的六次GPU成本测量属于最新全量训练13项中原先缺测的三个控制，不能归到初版九项。
+
+后续CPU只读核对发现：恢复循环IR参照与旧Full_cycle_IR_e06_raw的检查点、模型metadata及64帧输出严格一致，可单独引用原历史B4成本2.808830／4.555138 FPS；这不是新增测速，旧数值退出码仍未知。其余八项在该旧档案对中未严格匹配，不能宣称九项成本全覆盖，更不能把此数值赋给原生quality_ir。见[历史成本别名核对](PERCEPTUAL_MFT_20261126_LEGACY_RUNTIME_ALIAS_AUDIT.md)。
 历史Test已经暴露，原RGB预训练曾见当前Dev，伪IR由RGB派生。固定新版PNG、MFT Protocol V2、seed0、物理4／5卡和最多两卡约束保持。保留全部负结果，独立创新计数仍0，Goal保持active。
 完整精度、来源与所有47项见[独立记录](PERCEPTUAL_MFT_20261125_STRUCTURAL_LEGACY_TEST47_AUDIT.json)，原CSV见[九项原表](perceptual_20261122_official_tables/structural_legacy_backfill_test)。

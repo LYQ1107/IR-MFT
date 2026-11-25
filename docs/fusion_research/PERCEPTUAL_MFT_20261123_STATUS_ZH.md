@@ -30,6 +30,11 @@ Train混算，也不按较高Test重新选主方法。缺失IR精确回到fresh 
 恢复IR参照精确复现其旧报告；详见
 [LEGACY_TEST47_ANALYSIS](PERCEPTUAL_MFT_20261125_STRUCTURAL_LEGACY_TEST47_AUDIT_ANALYSIS_ZH.md)。
 
+另有一项初版恢复循环IR已严格对上旧同检查点的两种B4成本参考：64帧
+检测数组、模型metadata和11项共同源码一致，复用原值而未新增GPU测速。
+另八项在该档案对中未严格匹配，旧数值退出码未回填，不宣称成本全覆盖。
+见[LEGACY_RUNTIME_ALIAS](PERCEPTUAL_MFT_20261126_LEGACY_RUNTIME_ALIAS_AUDIT.md)。
+
 原三个缺测控制已完成六次独立GPU4实测，各48计时帧／B4，全部worker
 退出0，原NN前缀／独立MOT精确。原十项成本保留，合计每模式13项均
 有实测值。原成本控制器875865已实际退出，并自动恢复同一个原生等待器
