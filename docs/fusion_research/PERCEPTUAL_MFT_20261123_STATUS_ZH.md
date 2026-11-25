@@ -57,6 +57,13 @@ argv／GPU UUID匹配，已实际超过32次更新；GPU5原temporal_ir继续第
 与训练不重跑。完整Train loss变化很小，不能代替HOTA或收敛结论；全六组
 及完整Dev／Test仍待完成，没有新准确率或独立贡献。当前状态及完整四组
 曲线见[NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
+新增四组已完成原生模型的只读参数诊断：145个参数张量均有历史非零
+AdamW二阶矩，各自40884步，三层零初始化输出投影均已全部更新，未发现
+整条辅助分支未收到训练梯度的情况。实际CPU退出0，无NN／GPU／新拟合；
+这不证明推理修正、收敛或模态收益。GPU4的temporal_gray现已完成首轮并
+继续第二轮，GPU5原temporal_ir也继续第二轮，均未重启。见
+[NATIVE_PARAMETER_LEARNING](PERCEPTUAL_MFT_20261126_NATIVE_PARAMETER_LEARNING_DIAGNOSTIC.md)。
+
 下方早期组件与等待状态按记录时点保留，当前执行状态以本页顶部为准。
 
 已完成六组已训练融合P3的Train身份检索诊断：固定72帧、1079个GT框、

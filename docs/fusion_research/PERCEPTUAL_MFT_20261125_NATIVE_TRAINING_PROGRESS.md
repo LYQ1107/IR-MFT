@@ -13,7 +13,7 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 
 四组完整Train loss变化很小且非单调，不能代替收敛或HOTA结论。质量IR末轮2.577911，RGB末轮2.577707；未据此宣称IR增益。共同最低六轮及完整4834帧Dev规则保持，是否延长九／十二轮只依据完整Dev决定。全部较差正式正常条件仍须完整七段Test。
 
-原GPU4的quality_ir完成并退出0后，同一个原控制器自动启动temporal_gray；真实PID1330025、启动tick、argv、CUDA_VISIBLE_DEVICES=4与GPU UUID匹配，并已确认至少32次更新。GPU5原temporal_ir已完成首轮并继续第二轮。旧只读观察器1254273完成目标、实际退出0；新只读观察器仅跟踪原剩余训练，不发送任何训练信号。
+原GPU4的quality_ir完成并退出0后，同一个原控制器自动启动temporal_gray；真实PID1330025、启动tick、argv、CUDA_VISIBLE_DEVICES=4与GPU UUID匹配，并已完成首轮、继续第二轮；此为原progress和实际日志读取，未新增完整六轮审计。GPU5原temporal_ir也已完成首轮并继续第二轮。旧只读观察器1254273完成目标、实际退出0；新只读观察器仅跟踪原剩余训练，不发送任何训练信号。
 
 | 正常条件 | 当前状态 | 已完成全量Train轮数 | 独立模块快照核对 |
 | --- | --- | ---: | --- |
@@ -21,7 +21,7 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 | quality_gray | 原worker完成并退出0 | 6 | 全部六轮 |
 | quality_ir | 原worker完成并退出0 | 6 | 本次全部六轮 |
 | temporal_rgb | 原worker完成并退出0 | 6 | 全部六轮 |
-| temporal_gray | GPU4原队列正式训练 | 0 | 当前没有完整六轮资格 |
+| temporal_gray | GPU4原队列第二轮正式训练 | 1 | 当前没有完整六轮资格 |
 | temporal_ir | GPU5原进程继续第二轮 | 1 | 当前没有完整六轮资格 |
 
 正常原生方案保留(1−p)×1[p<0.6]教师置信特征mask及可靠RGB保持loss。已登记no_RGB_protection会同时去掉mask并将保持loss权重置0，是联合机制消融；仅在正常IR完整Dev超过直接RGB和同模式RGB／灰度后触发。当前配方、种子及选择规则均未更改。
@@ -33,5 +33,7 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 发布核对时工作目录59.263GiB／上限64GiB，独立空闲2703.428GiB，主机MemAvailable86.441GiB，高于40GiB保留值。原guard按lstat且不跟随符号链接计数。Git仅保存文本证明，不包含权重、图像、数组或缓存。
 
 新增[质量IR六轮核对](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN.json)、[实际CPU执行](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN_EXECUTION.json)、[交接及发布核对](PERCEPTUAL_MFT_20261126_NATIVE_QUALITY_IR_COMPLETE_TRAIN_VERIFICATION.json)、[完整六轮progress原件](perceptual_20261125_native_training_progress/quality_ir_six_epoch_original_progress.json)。旧[两个质量对照](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json)、[时序RGB六轮](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN.json)、[首轮IR／时序](PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json)原件保持。
+
+新增已完成四组的[参数／历史梯度诊断](PERCEPTUAL_MFT_20261126_NATIVE_PARAMETER_LEARNING_DIAGNOSTIC.md)：145个参数张量均保存正AdamW二阶矩，各40884步；三层输出投影均已离开零初始化。该证据排查整分支无历史梯度，不证明精度、推理修正或收敛；完整Dev及其真实门控／特征修正统计仍待原六组全部完成。
 
 固定结构主方案仍29.834177 HOTA，对原RGB29.529为+0.305177。本轮原生方案尚无完整Dev／Test准确率；S不稳定、R有负贡献、C只有条件消融支持，独立创新计数仍0。历史Test暴露、原RGB预训练见Dev及伪IR由RGB派生的限制保持。全六组完整Train、Dev／预算决策、所需消融、完整七段Test及独立成本仍待完成，目标34.529及2–3项独立贡献未达，Goal保持active。
