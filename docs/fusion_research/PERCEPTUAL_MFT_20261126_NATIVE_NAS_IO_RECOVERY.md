@@ -1,4 +1,4 @@
-# 原生IR训练：NAS断连现场保全与原协议续跑准备
+# 原生IR训练：NAS断连现场与恢复入口
 
 原temporal_ir在第五遍读取固定11月IR的SN-015第4953帧时遇到NAS的EIO，实际退出1；原控制器进入FAILED_PRESERVE_NATIVE_STUDY并退出，原只读观察器也实际退出1。没有将其计为六轮完成。其余五组及30份已核对模块快照保持原件。
 
@@ -15,3 +15,5 @@
 这只解决恢复条件和执行入口，不代表NAS已经恢复、六组已经训练完或精度提升。当前Dev选定主方案完整Test仍29.834177，固定RGB基线29.529，目标34.529及2–3项独立贡献未达，创新计数仍0。历史Test暴露、RGB预训练见Dev及RGB派生伪IR限制继续披露；Goal保持active。
 
 [完整故障与恢复证据](PERCEPTUAL_MFT_20261126_NATIVE_NAS_IO_RECOVERY.json) · [当前训练记录](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)
+
+更新：NAS已自动重连，原优化器与时序状态已实际续跑，见[恢复后核对](PERCEPTUAL_MFT_20261126_NATIVE_NAS_IO_RESUMED.md)。上文等待状态保留为当时记录。
