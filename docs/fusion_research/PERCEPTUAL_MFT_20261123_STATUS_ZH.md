@@ -32,9 +32,13 @@ Train混算，也不按较高Test重新选主方法。缺失IR精确回到fresh 
 原生质量／时序融合六组真实GPU门槛现已全部通过，各8个Train帧／两次
 工程更新，原B1／零适配器／缺失模态输出精确；同模式三输入初始参数相同。
 原控制器已进入NORMAL_TRAIN_06，4／5卡的quality_rgb与quality_gray
-已各完成首遍全部27251帧／6814次实际更新，并继续第二遍。首遍交付顺序
-相同、无padding，原生小快照与日志一致且有限，源RGB逐遍冻结检查通过；
-独立CPU核对退出0，见[FIRST_EPOCH](PERCEPTUAL_MFT_20261125_NATIVE_FIRST_EPOCH.md)。
+已各完成两遍全部27251帧，累计54502帧次／13628次实际更新，并继续第三遍。
+两遍各自交付顺序相同、无padding，四份原生小快照与日志一致且有限，源RGB
+逐遍冻结检查通过；既有工具的只读CPU核对退出0，见
+[NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
+完整Train loss均值近乎不变；目前仅RGB／灰度对照，既不能据此宣称泛化收益，
+也不能判定尚未调度的原生IR成败。首遍原记录保持，见
+[FIRST_EPOCH](PERCEPTUAL_MFT_20261125_NATIVE_FIRST_EPOCH.md)。
 六遍阶段尚未完成，IR及其余时序组仍在同一正式队列。最低共同预算六遍
 全部27251帧，是否延长只看完整Dev。
 尚无新Dev／Test HOTA或独立贡献。详见

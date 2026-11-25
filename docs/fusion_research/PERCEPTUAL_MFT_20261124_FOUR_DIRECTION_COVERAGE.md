@@ -22,16 +22,16 @@ RGB29.529为+0.305177。C自身最佳消融的Dev／Test分别+0.557085／
 六次缺测成本GPU4执行已全部退出0，原生等待器已自动恢复。质量／时序
 两个模式×RGB／灰度／IR共六组真实GPU检查实际通过，零／缺失B1精确，
 同模式初始参数一致。原正式六遍共同预算队列已运行，当前两张卡拟合
-quality_rgb／quality_gray已各完成首遍27251帧／6814更新并继续第二遍，其他
+quality_rgb／quality_gray已各完成两遍27251帧／13628更新并继续第三遍，其他
 四组待调度；六遍共同预算未完成，尚无新Dev/Test。
 这使F1／F3的GPU工程门槛有了真实证据，但不增加方向完成数或创新数。
 见[NATIVE_GPU_START](PERCEPTUAL_MFT_20261125_NATIVE_PYRAMID_GPU_START.md)及
 [COMPLETE_RESULTS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_COMPLETE_RESULTS.md)。
 
-首遍快照与实际交付另有独立CPU核对，所有权与启动记录中的原PID／启动tick
+前两遍快照与实际交付另有独立CPU核对，所有权与启动记录中的原PID／启动tick
 一致；未另起训练或改变预算。图集补齐旧六组432条训练／36个正常Dev点及
 逐段Test的可复核SVG，只是完成已有证据的呈现，不增加方向或创新计数。
-见[FIRST_EPOCH](PERCEPTUAL_MFT_20261125_NATIVE_FIRST_EPOCH.md)及
+见[TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)及
 [FIGURES](PERCEPTUAL_MFT_20261125_FULL_TRAIN_FIGURES.md)。
 
 六组已训练融合P3后续完成Train身份区分诊断：原固定72帧／1079个GT框，
@@ -114,7 +114,7 @@ ByteTrack实际CPU检查。原图roll实际改变输入和特征，零／缺失�
 
 | 方向 | 当前 November IR 证据 | 尚需完成 |
 | --- | --- | --- |
-| F1 动态质量 | `NativePyramidFusion(mode='quality')` 学习当前图像辅助金字塔，各 FPN 层预测质量 gate；RGB/gray/IR三组真实GPU门槛均已通过。quality_rgb／quality_gray已各完成一遍Train并继续六遍预算，IR待调度 | 完整 Train/Dev/Test、强对照、去质量等归因；尚无该模型的新 HOTA |
+| F1 动态质量 | `NativePyramidFusion(mode='quality')` 学习当前图像辅助金字塔，各 FPN 层预测质量 gate；RGB/gray/IR三组真实GPU门槛均已通过。quality_rgb／quality_gray已各完成两遍Train并继续六遍预算，IR待调度 | 完整 Train/Dev/Test、强对照、去质量等归因；尚无该模型的新 HOTA |
 | F2 空间互补 | local correlation、结构描述匹配和有界残差已有当前 IR 训练与评估；S/C/R 八组属于同一空间残差家族的消融。旧缓存主模型 Dev 51.329、完整 Test 29.142。六组全量 Train 各三遍、50项完整Dev与13项完整Test及两种成本现已结束；固定主方案Dev48.764689／Test29.834177，对同预算RGB分别+0.886267／+0.366995；初版九项47字段补测也已结束 | 必要模态交互与原创性归因；不能把这些替代路线等同于任务书原空间 gate＋冗余抑制的完整当前 IR 验证，不能计八种架构 |
 | F3 因果特征时序 | `NativePyramidFusion(mode='temporal')` 在 F1 基础上加入 RGB 当前到过去光流和正方差递归滤波，连续 T≤4 片段、跨片段状态且过去状态 detach；三输入真实GPU门槛已通过，正式拟合在共同队列中待调度 | 正式拟合、完整 Dev/Test、去历史／去运动等对照，证明收益超过单帧和同容量 RGB。旧描述向量 GRU 不能代替此特征融合实验 |
 | F4 融合特征轨迹记忆 | 三路记忆及P3 ROIAlign、在线生产、官方评估、成本与调度完整代码已登记384来源并做CPU核验；完整4834帧零权重与BYTETracker严格一致。原CPU控制器等待空间父模型 | 当前IR父模型资格、真实GPU门槛、实际已学P3/q转移及完整正式比较和成本。已训练P3的Train闭集检索诊断不能替代F4验证；尚无方向完成或独立贡献 |
