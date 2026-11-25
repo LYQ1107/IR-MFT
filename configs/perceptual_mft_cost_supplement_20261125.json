@@ -1,0 +1,46 @@
+{
+  "status": "SOURCE_BOUND_EXECUTION_SPECIFICATION_NOT_ACTUAL_COST_RESULTS",
+  "cases": [
+    "FTT_IR_image_roll",
+    "FTT_IR_unavailable",
+    "FTT_source_RGB_canonical"
+  ],
+  "modes": [
+    "live",
+    "memory"
+  ],
+  "actual_GPU_runs_required": 6,
+  "NN_batch_size": 4,
+  "Dev_sequences": [
+    "BT-005",
+    "SN-013"
+  ],
+  "prefix_frames_each": 32,
+  "warmup_frames_each": 8,
+  "timed_frames_each": 24,
+  "total_timed_frames_each_run": 48,
+  "actual_profile_physical_gpu": "4",
+  "maximum_new_GPU_workers": 1,
+  "original_study_physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_global_study_GPU_workers": 2,
+  "fixed_seed": 0,
+  "new_fits": false,
+  "new_accuracy_recipe": false,
+  "Test_reselection": false,
+  "original_ten_cost_records_unchanged": true,
+  "source_equivalence": "Actual frozen proposal arrays and independent per-frame source-prefix ByteTrack rows exactly equal.",
+  "input_modes": "Current original PNG/JPEG read versus bounded decoded-prefix RAMcache;memory preload excluded.",
+  "missing_semantics": "AvailabilityFalse in the original implemented IR path;IR still delivered/encoded,notminimal missing-file fallback.",
+  "timing_limits": "B4prefix throughput,notB1latencyorfullTestFPS;sharedhost/OSfilecache uncontrolled;input hashes warm cache outside timer;compact tracking-row collection included.",
+  "scheduling": "After actual complete legacy export and original process exits,before native study. Defer only the pinned CPU-only idle native waiter with no children,using pidfd. Drain every own cost child before SIGCONT on success/failure. Never stop a training or unrelated process.",
+  "work_cap_GiB": 64,
+  "independent_free_reserve_GiB": 40,
+  "worker_RSS_cap_GiB": 8,
+  "decoded_prefix_RAM_cache_cap_GiB": 2,
+  "new_image_or_FPN_disk_cache": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

@@ -1,0 +1,236 @@
+{
+  "status": "COMPLETE_MISSING_COST_EXECUTORS_CPU_CHECKS_REGISTRATION_AND_ACTUAL_WAITING_SCHEDULER_NOT_GPU_COST",
+  "UTC": "2026-11-25T03:51:59.192581+00:00",
+  "old_protected_registrations": {
+    "existing_registrations": [
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_pipeline_registered.json",
+        "registration_sha256": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_content_guard_recovery_registered.json",
+        "registration_sha256": "cc46a2be9588e88bc37d69d73ebf1be6de9d295e6057b6f2d04539c1b7f9f2ef",
+        "sources": 4,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_pipeline_registered.json",
+        "registration_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_correlation_recovery_workflow_20261124.json",
+        "registration_sha256": "207f89148ed0a3d1f38db898dd695f306258274e35f50466f5f51bdcd13da9a2",
+        "sources": 87,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_worker_interfaces_registered.json",
+        "registration_sha256": "42826f40efa77d5f56722ad497faaedc417f0e9c56ac4a379945e7e069d33fb7",
+        "sources": 30,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_registered.json",
+        "registration_sha256": "6c97818940ff48a23f54601173f0573c01494ac7fd598183c9417397e126e0bb",
+        "sources": 94,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_fresh_runtime_registered.json",
+        "registration_sha256": "907fc7dec7e24f55450e81a150a14366d071144d489844443f75efdaffbc8aa6",
+        "sources": 137,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_factorial_pipeline_registered.json",
+        "registration_sha256": "bc05f29d9b9c3d53d277ad46dd3f4f0d787911c8c7252723a8a3918985d923a1",
+        "sources": 180,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/pipeline_registered.json",
+        "registration_sha256": "aed348fd24ef60cbef6f90bf9fa5319d2d3a539a7cacf41633d6daeb87a323b4",
+        "sources": 323,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      }
+    ],
+    "F4_source_count": 384,
+    "F4_registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468"
+  },
+  "old_TaskUtility_pipeline_sources": 427,
+  "runtime_dynamic_sources": 137,
+  "all_old_sources_and_artifacts_unchanged": true,
+  "missing_cost_registration_sha256": "e9b9dd6eb25bba51010980cb06197f87e831f85d46c00a0ec9d5c529f9ed7edd",
+  "new_pinned_source_count": 433,
+  "unit_tests_passed": 11,
+  "actual_unit_execution": {
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_mft_cost_supplement.py",
+      "--basetemp",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/mft_cost_supplement_pytest_1795578248821692602_scratch"
+    ],
+    "pid": 872447,
+    "exit_code": 0,
+    "seconds": 6.7254867820302024,
+    "source_hashes": {
+      "tools/mft_cost_supplement.py": "4c07452f67166d1e50d4c3b8a4df9336b67b41cf7524884148ba9fa0dbe14967",
+      "tools/benchmark_mft_missing_cost.py": "a4ea311f41c5dd9fe23ec7eb84390f7a9b1d50d86769d93fc0e85b20a19dd76c",
+      "tools/complete_mft_costs.py": "2bdb7d7986dfd71aa3d086057cbeab33f837bf1e017ba694451c7a646ccf8ea8",
+      "tests/test_mft_cost_supplement.py": "697a02c3127794702a49f9cc5e246405b0768588289b68e3389b41b8e10c7dc1",
+      "configs/perceptual_mft_cost_supplement_20261125.json": "9abc4e73bcb7cac0de3c9c0452aea1df7e6ef760b5c35c44483126bd7ca45e5b"
+    },
+    "all_sources_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/mft_cost_supplement_pytest_1795578248821692602.txt",
+    "log_sha256": "b4b5b12ec0c23f1ae90e7b47ef25c0cd80f8ec64955b4a52833b230bdb4d64ce",
+    "actual_CPU_subprocess_stop_resume_and_failure_tests": true,
+    "artificial_data_only": true,
+    "new_GPU_work": false,
+    "new_actual_neural_inference": false,
+    "new_tracking_accuracy": false
+  },
+  "actual_real_CPU_preflight": {
+    "status": "EXPECTED_REAL_CPU_PREFLIGHT_REJECTION_BEFORE_MODEL_OR_CUDA",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/benchmark_mft_missing_cost.py",
+      "--case",
+      "FTT_source_RGB_canonical"
+    ],
+    "pid": 878572,
+    "exit_code": 1,
+    "expected_exit_code": 1,
+    "seconds": 8.71861008706037,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/mft_missing_cost_real_CPU_preflight_20261125.log",
+    "log_sha256": "99451076745dc8ddffb911c626dc2bb9069cfde0d46611040601fe4b848b2b69",
+    "source_sha256": "a4ea311f41c5dd9fe23ec7eb84390f7a9b1d50d86769d93fc0e85b20a19dd76c",
+    "legacy_still_running": true,
+    "formal_model_loading_reached": false,
+    "image_loading_reached": false,
+    "new_GPU_work": false,
+    "new_accuracy": false
+  },
+  "actual_cost_controller": {
+    "pid": 875865,
+    "start_ticks": 84540487,
+    "command_sha256": "3bdb11b0528348cd973c2a3d458f9b713abc489bb0963925bc8d863d44c495f6"
+  },
+  "actual_cost_state": {
+    "status": "WAITING_FOR_ACTUAL_COMPLETE_LEGACY_EXPORT_AND_EXIT",
+    "controller_pid": 875865,
+    "controller_identity": {
+      "pid": 875865,
+      "start_ticks": 84540487,
+      "command_sha256": "3bdb11b0528348cd973c2a3d458f9b713abc489bb0963925bc8d863d44c495f6"
+    },
+    "phases": {},
+    "registration_sha256": "e9b9dd6eb25bba51010980cb06197f87e831f85d46c00a0ec9d5c529f9ed7edd",
+    "native_waiter_deferred": true,
+    "native_waiter_resumed": false,
+    "fixed_seed": 0,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "actual_profile_gpu": "4",
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "original_native_waiter": {
+    "pid": 3943138,
+    "start_ticks": 77632196,
+    "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d"
+  },
+  "actual_native_kernel_state": "T",
+  "native_waiter_had_no_children": true,
+  "native_study_state": "WAITING_FOR_EXISTING_STRUCTURAL_AND_LEGACY_GPU_WORK",
+  "native_study_phases": {},
+  "scheduling": "Original CPU-only native waiter is deferred with pidfd;current legacy GPUwork continues. Complete/failed cost worker exits are required before SIGCONT. Dead-owner release recovery verifies original identity and no live own child.",
+  "legacy_status": "PRODUCING_MISSING_FORMAL_ALL7_TEST_WITHOUT_GT",
+  "actual_uninterrupted_legacy_GPU_jobs": [
+    {
+      "sequence": "SN-009",
+      "physical_gpu": "4",
+      "identity": {
+        "pid": 847024,
+        "start_ticks": 84365101,
+        "command_sha256": "2e067d26b01322e3d43b80af6dc9cad7c95f5fc857070122526ae4e3e8532e9a"
+      },
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/structural_legacy_backfill.py",
+        "extract",
+        "--split",
+        "test",
+        "--sequence",
+        "SN-009"
+      ]
+    },
+    {
+      "sequence": "SN-011",
+      "physical_gpu": "5",
+      "identity": {
+        "pid": 847026,
+        "start_ticks": 84365122,
+        "command_sha256": "f68f6507612488854ccde96861a9a43f43e3629c3bd842d2443653da41166914"
+      },
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/structural_legacy_backfill.py",
+        "extract",
+        "--split",
+        "test",
+        "--sequence",
+        "SN-011"
+      ]
+    }
+  ],
+  "new_GPU_measurements": 0,
+  "new_fits": 0,
+  "new_accuracy": false,
+  "original_13_accuracy_outputs_and_recipe_unchanged": true,
+  "independent_costs_still_pending": 3,
+  "planned_real_GPU_runs": 6,
+  "actual_profile_physical_gpu": "4",
+  "maximum_new_GPU_workers": 1,
+  "original_study_physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_global_study_GPU_workers": 2,
+  "fixed_seed": 0,
+  "new_image_or_FPN_disk_cache": false,
+  "weights_images_arrays_in_Git": false,
+  "storage_stats": {
+    "work_file_bytes": 63191103084,
+    "work_cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960,
+    "free_bytes": 2926304817152
+  },
+  "work_GiB": 58.851300816982985,
+  "independent_free_GiB": 2725.3337364196777,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "original_all13_Test_accuracy_and_source_files_actually_rehashed": true,
+  "original_accuracy_source_hash_count": 291,
+  "original_Test47_proof_sha256": "f980784978806031a8cda9993192dd856c55ecac4fc548ca15c6c3d1a42605bc"
+}
