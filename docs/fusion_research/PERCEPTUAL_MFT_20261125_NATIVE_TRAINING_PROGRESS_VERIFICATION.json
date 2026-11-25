@@ -1,81 +1,322 @@
 {
-  "status": "COMPLETE_TWO_EPOCH_PROGRESS_PUBLICATION_CHECK",
-  "UTC": "2026-11-25T06:23:11.563134+00:00",
+  "status": "COMPLETE_TWO_SIX_EPOCH_CONTROLS_AND_FIRST_IR_TEMPORAL_TRAIN_VERIFICATION_NOT_FULL_STUDY",
+  "UTC": "2026-11-25T10:20:09.975950+00:00",
   "source_auditor_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
-  "actual_CPU_exit_code": 0,
-  "actual_CPU_identity": {
-    "pid": 1018931,
-    "start_ticks": 85418332,
-    "command_sha256": "deb3bc5654e48c4533c711399f13ede5ed35e9fc47f1d528b9113019d5b71eca",
-    "argv_observed_exact": true
+  "six_epoch_CPU_execution": {
+    "status": "EXITED",
+    "UTC_started": "2026-11-25T10:12:42.646097+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_native_epoch_prefix.py",
+      "--fit-id",
+      "quality_rgb",
+      "--fit-id",
+      "quality_gray",
+      "--through-epoch",
+      "6",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_six_epoch_audit_20261125_r1"
+    ],
+    "identity": {
+      "pid": 1131523,
+      "start_ticks": 86853393,
+      "command_sha256": "5a64e003cb50a92079f90d09869bbb51809bf79103dd26b014d76e1b42fbb031",
+      "argv_observed_exact": true
+    },
+    "source_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
+    "source_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_six_epoch_audit_20261125_r1.log",
+    "log_sha256": "23da848c70bbaed5b783d33dcd8616d9ea3e7ac0afdba20c1d9a9a72422053ef",
+    "exit_code": 0,
+    "seconds": 6.275017370004207,
+    "observed_peak_RSS_GiB": 0.5799942016601562,
+    "new_fit": false,
+    "new_NN_or_GPU_work": false,
+    "result": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_six_epoch_audit_20261125_r1/complete.json",
+    "result_sha256": "c6ee490efdfb9b89d58d4a697bc91d746094d089c33f0e8bf8d57fec48b0401b"
+  },
+  "IR_temporal_first_epoch_CPU_execution": {
+    "status": "EXITED",
+    "UTC_started": "2026-11-25T10:17:47.754958+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_native_epoch_prefix.py",
+      "--fit-id",
+      "quality_ir",
+      "--fit-id",
+      "temporal_rgb",
+      "--through-epoch",
+      "1",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_ir_temporal_first_epoch_audit_20261125_r1"
+    ],
+    "identity": {
+      "pid": 1134262,
+      "start_ticks": 86883904,
+      "command_sha256": "4cbf1b1c757a4aade513b5649f063824927e0b9cf260b2d873711b5f581a7a44",
+      "argv_observed_exact": true
+    },
+    "source_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
+    "source_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_ir_temporal_first_epoch_audit_20261125_r1.log",
+    "log_sha256": "7964a65fd3ae39db1e040db8b2cc0883ff45e56ea6e793f3b3a791447b04198b",
+    "exit_code": 0,
+    "seconds": 7.007660683011636,
+    "observed_peak_RSS_GiB": 0.5992202758789062,
+    "new_fit": false,
+    "new_NN_or_GPU_work": false,
+    "result": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_ir_temporal_first_epoch_audit_20261125_r1/complete.json",
+    "result_sha256": "945f9d738e9c9558ab22c0363698581911ee2c5d01dc513be927a36555d8662f"
   },
   "original_first_epoch_report_sha256_unchanged": "9127d298492251ff7f0263aaafa434f29a556dc29224e56454c84fc89ce84ee9",
-  "first_epoch_snapshot_records_unchanged": true,
+  "previous_two_epoch_report_sha256_in_Git_2e74363": "9f0079cf2cbf1e0645ef89ca1c9657078ad97e10209612d7b345d9c3824c0ef0",
+  "all_prior_epoch1_epoch2_snapshot_records_exact": true,
+  "both_six_epoch_address_schedules_identical": true,
   "captured_progress_checkpoint_SHA_links_exact": true,
-  "all_four_native_checkpoints_finite": true,
-  "both_epoch2_modules_changed_from_epoch1": true,
-  "both_two_epoch_address_schedules_identical": true,
-  "same_original_live_worker_identities": true,
-  "read_only_monitor_exited_normally": true,
-  "original_normal_stage": "NORMAL_TRAIN_06",
-  "minimum_full_Train_epochs_each": 6,
-  "rows": [
+  "all_fourteen_audited_native_checkpoints_finite": true,
+  "completed_control_rows": [
     {
       "fit_id": "quality_rgb",
-      "physical_gpu": "4",
-      "actual_pid": 953396,
-      "completed_full_Train_epochs": 2,
-      "delivered_frame_visits": 54502,
-      "unique_Train_frames_each_epoch": 27251,
-      "actual_optimizer_updates": 13628,
-      "mean_complete_epoch_Train_losses": [
+      "original_job": {
+        "id": "quality_rgb",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_rgb",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "COMPLETE",
+        "pid": 953396,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_rgb.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "completed_epochs": 6,
+      "frame_visits": 163506,
+      "actual_updates": 40884,
+      "full_epoch_losses": [
         2.5796020442189658,
-        2.579199342905058
+        2.579199342905058,
+        2.579549085010977,
+        2.577448526697492,
+        2.578307083486146,
+        2.577706833371397
       ],
-      "epoch2_checkpoint_sha256": "39688fb9b2dac625af3b8390f59ee6053776da3154d036cce54536706d104318",
-      "epoch2_module_differs_from_epoch1": true,
-      "latest_actual_optimizer_log": {
-        "fit": "quality_rgb",
-        "epoch": 3,
-        "clip": 2816,
-        "clips": 6814,
-        "loss": 2.108630952912129,
-        "actual_updates": 16444,
-        "seconds": 5264.658027405036
-      }
+      "epoch6_checkpoint_sha256": "da453beb4acdc6b6b2e0b411ddad09e70b8f6e4ff16dc83906218d676d379d66",
+      "all_native_tensors_finite": true,
+      "every_epoch_module_distinct": true
     },
     {
       "fit_id": "quality_gray",
-      "physical_gpu": "5",
-      "actual_pid": 953397,
-      "completed_full_Train_epochs": 2,
-      "delivered_frame_visits": 54502,
-      "unique_Train_frames_each_epoch": 27251,
-      "actual_optimizer_updates": 13628,
-      "mean_complete_epoch_Train_losses": [
+      "original_job": {
+        "id": "quality_gray",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_gray",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "COMPLETE",
+        "pid": 953397,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_gray.log",
+        "slot": "5",
+        "exit_code": 0
+      },
+      "completed_epochs": 6,
+      "frame_visits": 163506,
+      "actual_updates": 40884,
+      "full_epoch_losses": [
         2.5788888269272725,
-        2.579045826357622
+        2.579045826357622,
+        2.5788404844900294,
+        2.578108488559933,
+        2.578565135497588,
+        2.5769392994445965
       ],
-      "epoch2_checkpoint_sha256": "e7fa36d488cc95213fb3a2456800f7d297155089ca7bfec2fbb7de6d53c2ae35",
-      "epoch2_module_differs_from_epoch1": true,
-      "latest_actual_optimizer_log": {
-        "fit": "quality_gray",
-        "epoch": 3,
-        "clip": 2144,
-        "clips": 6814,
-        "loss": 2.1581055110515055,
-        "actual_updates": 15772,
-        "seconds": 5263.349488422042
-      }
+      "epoch6_checkpoint_sha256": "cd600d5ad015e102b939e311d33e29e6cbc761981ae358019112aa38e7b1becb",
+      "all_native_tensors_finite": true,
+      "every_epoch_module_distinct": true
     }
   ],
-  "work_GiB": 59.12077713012695,
-  "independent_free_GiB": 2724.379222869873,
-  "new_GPU_or_NN_or_optimizer_work_by_audit": false,
+  "original_controller": {
+    "pid": 3943138,
+    "kernel_state": "S",
+    "start_ticks": 77632196,
+    "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/launch_native_pyramid_study.py run",
+    "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+    "physical_gpu": "",
+    "actual_VmHWM_GiB": 0.588104248046875
+  },
+  "current_actual_training": [
+    {
+      "fit_id": "quality_ir",
+      "original_job": {
+        "id": "quality_ir",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_ir",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1089904,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_ir.log",
+        "slot": "4"
+      },
+      "actual_process": {
+        "pid": 1089904,
+        "kernel_state": "R",
+        "start_ticks": 86239317,
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id quality_ir --through-epoch 6",
+        "command_sha256": "5c52ca61ca1a0f268c92017b9eea802995e1a391db574376ebda547448436b16",
+        "physical_gpu": "4",
+        "actual_VmHWM_GiB": 10.127452850341797
+      },
+      "actual_GPU": {
+        "GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "used_memory": "2396 MiB"
+      },
+      "latest_actual_optimizer_log": {
+        "fit": "quality_ir",
+        "epoch": 2,
+        "clip": 448,
+        "clips": 6814,
+        "loss": 2.5507163549108163,
+        "actual_updates": 7262,
+        "seconds": 6576.46443289693
+      },
+      "current_progress_complete_epochs": 1,
+      "independently_audited_complete_epochs": 1,
+      "audited_epoch1_checkpoint_sha256": "e4b297a4a5584ad4157c14f388cf17d86c6758105c38edbb38a0a78171930490",
+      "input_content_expected_entries": 54502
+    },
+    {
+      "fit_id": "temporal_rgb",
+      "original_job": {
+        "id": "temporal_rgb",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_rgb",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1092884,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_rgb.log",
+        "slot": "5"
+      },
+      "actual_process": {
+        "pid": 1092884,
+        "kernel_state": "R",
+        "start_ticks": 86293265,
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_rgb --through-epoch 6",
+        "command_sha256": "b47d03bc07b53ac12edcf4882c670f70f3e04db7a285237f3c2cd98f5808ed40",
+        "physical_gpu": "5",
+        "actual_VmHWM_GiB": 2.8205413818359375
+      },
+      "actual_GPU": {
+        "GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "used_memory": "2404 MiB"
+      },
+      "latest_actual_optimizer_log": {
+        "fit": "temporal_rgb",
+        "epoch": 3,
+        "clip": 32,
+        "clips": 6814,
+        "loss": 4.042877845466137,
+        "actual_updates": 13660,
+        "seconds": 6032.559796418063
+      },
+      "current_progress_complete_epochs": 2,
+      "independently_audited_complete_epochs": 1,
+      "audited_epoch1_checkpoint_sha256": "34caebfbd992dc9dda9a08a04c8728622146cba5c86e49a308d2934777b70384",
+      "input_content_expected_entries": 27251
+    }
+  ],
+  "remaining_normal_fits": {
+    "temporal_gray": {
+      "id": "temporal_gray",
+      "physical_gpu": "4",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_gray",
+        "--through-epoch",
+        "6"
+      ],
+      "status": "PENDING"
+    },
+    "temporal_ir": {
+      "id": "temporal_ir",
+      "physical_gpu": "5",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_ir",
+        "--through-epoch",
+        "6"
+      ],
+      "status": "PENDING"
+    }
+  },
+  "original_normal_stage": "NORMAL_TRAIN_06",
+  "minimum_full_Train_epochs_each": 6,
+  "all_six_normal_fits_completed": false,
+  "first_formal_IR_full_Train_epoch_verified": true,
+  "first_IR_epoch_has_27251_frames_and_no_padding": true,
+  "quality_triple_initial_parameters_identical": true,
+  "native_per_image_consumption_lists_not_saved": true,
+  "on_read_SHA_assertions_bound_to_successful_fixed_RGB_IR_reference": true,
+  "prior_read_only_session_81718_no_longer_available": true,
+  "old_monitor_numeric_exit_code_not_reconstructed": true,
+  "recovery": "Read actual original state and live PIDs/argv/UUID/log updates;no restart or signal",
+  "work_GiB": 59.267878856509924,
+  "independent_free_GiB": 2724.1435928344727,
+  "resource_measurement_UTC": "2026-11-25T10:15:21.613470+00:00",
+  "new_GPU_or_NN_or_optimizer_work_by_audits": false,
   "new_Dev_Test_accuracy": false,
-  "IR_formal_training_completed_by_these_controls": false,
   "fixed_seed": 0,
   "additional_seed_work": false,
   "goal_met": false,
-  "supported_innovations": 0
+  "supported_innovations": 0,
+  "RAM_observation": {
+    "UTC": "2026-11-25T10:21:06.632786+00:00",
+    "registered_encoded_byte_RAM_capacity_each_GiB": 8,
+    "encoded_cache_capacity_is_not_total_process_RSS": true,
+    "host_MemAvailable_GiB": 81.42682647705078,
+    "host_MemAvailable_reserve_GiB": 40,
+    "actual_live_worker_HWM_GiB": {
+      "quality_ir": 10.127452850341797,
+      "temporal_rgb": 2.8205413818359375
+    },
+    "native_total_process_RSS_8GiB_cap_not_claimed": true
+  }
 }
