@@ -1,0 +1,328 @@
+{
+  "status": "COMPLETE_TASK_UTILITY_OBSERVATION_POST_SOURCE_AUDIT_WITH_ALL_DEV_IMAGES_GENERATED",
+  "UTC": "2026-11-25T01:13:04.245242+00:00",
+  "protected_sources": {
+    "existing_registrations": [
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_pipeline_registered.json",
+        "registration_sha256": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_content_guard_recovery_registered.json",
+        "registration_sha256": "cc46a2be9588e88bc37d69d73ebf1be6de9d295e6057b6f2d04539c1b7f9f2ef",
+        "sources": 4,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_pipeline_registered.json",
+        "registration_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_correlation_recovery_workflow_20261124.json",
+        "registration_sha256": "207f89148ed0a3d1f38db898dd695f306258274e35f50466f5f51bdcd13da9a2",
+        "sources": 87,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_worker_interfaces_registered.json",
+        "registration_sha256": "42826f40efa77d5f56722ad497faaedc417f0e9c56ac4a379945e7e069d33fb7",
+        "sources": 30,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_registered.json",
+        "registration_sha256": "6c97818940ff48a23f54601173f0573c01494ac7fd598183c9417397e126e0bb",
+        "sources": 94,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_fresh_runtime_registered.json",
+        "registration_sha256": "907fc7dec7e24f55450e81a150a14366d071144d489844443f75efdaffbc8aa6",
+        "sources": 137,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_factorial_pipeline_registered.json",
+        "registration_sha256": "bc05f29d9b9c3d53d277ad46dd3f4f0d787911c8c7252723a8a3918985d923a1",
+        "sources": 180,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/pipeline_registered.json",
+        "registration_sha256": "aed348fd24ef60cbef6f90bf9fa5319d2d3a539a7cacf41633d6daeb87a323b4",
+        "sources": 323,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      }
+    ],
+    "F4_source_count": 384,
+    "F4_registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468"
+  },
+  "runtime_dynamic_source_count": 137,
+  "old_controller_identities": [
+    {
+      "expected_identity": {
+        "pid": 3934649,
+        "start_ticks": 77568810,
+        "command_sha256": "e7bfc64738b598e97c4eae4191063e9ed6d352b388adb7112ca40071b1f36cf5",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_structural_full_train_dev.py"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3934650,
+        "start_ticks": 77568810,
+        "command_sha256": "3b7dc53709e247ddcd14cbcd6cf635127e61f0d88da4e1d2ac818e7de78e5bee",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/advance_structural_full_train.py"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3934651,
+        "start_ticks": 77568810,
+        "command_sha256": "f840a150644e3f9d5b48ce44cf95321d3d5997317f91c1dc3205986f399242d4",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/structural_legacy_backfill.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3943138,
+        "start_ticks": 77632196,
+        "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_native_pyramid_study.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3950079,
+        "start_ticks": 77683517,
+        "command_sha256": "8d6874b7c89cc28798605364ee926c4e15bf4cf7d0af18b1a526774af4dff84f",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_correlation_recovery_workflow.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 4099887,
+        "start_ticks": 78544481,
+        "command_sha256": "ad09f7e0e26a60133a4f972ac39636ac351e77ae84f5deafc4a01f2342bffee3",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_neck72_study.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 4173043,
+        "start_ticks": 78948799,
+        "command_sha256": "2525d7870ddfa337f1ee70c882c5b37022f5163aad6bc20bc460bf8ceb7d7f20",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_neck72_runtime.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 57946,
+        "start_ticks": 79430674,
+        "command_sha256": "e0800a923d58075622257e12a3965e14087c407b8c617f18cd67b0f8478d8ab4",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_fusion_factorial.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 184707,
+        "start_ticks": 80301525,
+        "command_sha256": "6d78352ee397702c97a65a092e71ad87e4f4957b4b36aa930e1f339f4bffc696",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_spatial_native.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 488189,
+        "start_ticks": 82242612,
+        "command_sha256": "cb654835ab22b9a1078e053073ad5ebf46f467050d7708420a6cfc0133778423",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_fusion_memory.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "original_identity_live_verified": true
+    }
+  ],
+  "actual_two_Dev_producers_complete_and_exited": [
+    {
+      "original_identity": {
+        "sequence": "BT-005",
+        "pid": 670842,
+        "start_ticks": 83323546,
+        "command_sha256": "3c67529bd89501b8a2234f6a16d1bd93f9ff61a50134f6137267e021f00649c1",
+        "physical_gpu": "4",
+        "actual_GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "nvidia_process_memory": "2892 MiB",
+        "current_process_verified": true,
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/extract_structural_full_train.py",
+          "--sequence",
+          "BT-005",
+          "--specification",
+          "/data3/liuyeqiang/IR-MFT/configs/perceptual_structural_fulltrain_dev_20261123.json"
+        ],
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/BT-005.full_train_full_dev.log"
+      },
+      "completed_exit_code": 0,
+      "complete_sequence_frames": 1834,
+      "actual_original_process_exited": true
+    },
+    {
+      "original_identity": {
+        "sequence": "SN-013",
+        "pid": 670843,
+        "start_ticks": 83323546,
+        "command_sha256": "f953f7957c0d593da44254e98036f51e6ad6fc88bab620845fab5ce9a9ebd478",
+        "physical_gpu": "5",
+        "actual_GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "nvidia_process_memory": "2628 MiB",
+        "current_process_verified": true,
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/extract_structural_full_train.py",
+          "--sequence",
+          "SN-013",
+          "--specification",
+          "/data3/liuyeqiang/IR-MFT/configs/perceptual_structural_fulltrain_dev_20261123.json"
+        ],
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/SN-013.full_train_full_dev.log"
+      },
+      "completed_exit_code": 0,
+      "complete_sequence_frames": 3000,
+      "actual_original_process_exited": true
+    }
+  ],
+  "current_original_Dev_status": "RUNNING_ALL50_COMPLETE_DEV_REPLAYS",
+  "current_original_Dev_job_counts": {
+    "COMPLETE": 19,
+    "RUNNING": 2,
+    "PENDING": 29
+  },
+  "current_original_Dev_state_sha256": "4140384b855e9b93e11ca4ba1899b430c0aecb2914efcace75a480492f130186",
+  "all4834_Dev_images_delivered": true,
+  "new_TaskUtility_sources_bound": 412,
+  "new_TaskUtility_GPU_work": false,
+  "new_TaskUtility_full_pipeline_registered": false,
+  "new_TaskUtility_Test_freeze_created": false,
+  "missing_TaskUtility_pipeline_entrypoints": [
+    "tools/benchmark_task_utility.py",
+    "tools/launch_task_utility.py",
+    "tools/export_task_utility.py",
+    "tools/probe_task_utility_workflow.py"
+  ],
+  "R1_failed_exit_code": 1,
+  "R2_official_baseline_reproduction_exit_code": 0,
+  "actual_new_candidate_accuracy_read": false,
+  "only_baseline_Dev_accuracy_reproduced": true,
+  "independent_supported_innovations": 0,
+  "goal_met": false,
+  "storage_stats": {
+    "work_file_bytes": 62712981071,
+    "work_cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960,
+    "free_bytes": 2928343179264
+  },
+  "work_GiB": 58.40601499285549,
+  "independent_free_GiB": 2727.232109069824
+}

@@ -17,10 +17,12 @@ RGB对照31.440，IR差值仅+0.064。这个最高观测不是按Test新选出�
 历史与实际成本范围均保留，见
 [ALL_SIX_FULL_TRAIN_AUDIT](PERCEPTUAL_MFT_20261125_ALL_SIX_FULL_TRAIN_AUDIT.md)。
 
-原Dev队列已自动进入PRODUCING_ALL49_STREAMS_WITHOUT_GT，BT-005与
-SN-013分别在物理4／5卡生成49路完整当前帧输出，另加原始RGB参照共50个
-完整Dev评估对象。本轮尚无新候选Dev/Test HOTA，不能以拟合完成代替
-收敛、泛化或创新证明；质量、空间、时序与轨迹记忆仍待完整验证。
+原Dev两段完整当前帧输出现已全部生成：BT-005的1834帧与SN-013的3000帧，
+物理4／5卡原producer均退出0。49路输出加原始RGB参照共50个完整Dev
+对象已进入CPU官方评估；完整家族的冻结选择与新Test尚未完成，不能以
+拟合或部分评估完成代替泛化及创新证明。质量、空间、时序与轨迹记忆
+仍待完整验证；本次状态快照见
+[OBSERVATION_SOURCE_AUDIT](PERCEPTUAL_MFT_20261125_TASK_UTILITY_OBSERVATION_SOURCE_AUDIT.json)。
 
 任务效用监督的独立训练步及断点循环现已接通，六项人工检查通过；
 真实四帧12条件已实际退出0，36次工程更新另12次全缺失检查完成。
@@ -42,8 +44,20 @@ SN-013分别在物理4／5卡生成49路完整当前帧输出，另加原始RGB�
 三次T4更新及12帧800×1440 B1；直接RGB／零／缺失的rawhead、NMS、
 MOT、局部ID及KF状态精确，原图roll在12帧改变输入、特征与检测输出。
 CPU524.981秒、RSS2.751GiB，无新GPU、正式模型快照、Dev/Test或收益。
-完整pipeline登记、生产／评估／独立成本／调度／导出及真实GPU资格仍
-待接通；见[WORKER_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_WORKER_COMPONENTS.md)。
+该worker证据本身不建立完整pipeline或真实GPU资格；见
+[WORKER_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_WORKER_COMPONENTS.md)。
+
+任务效用候选的生产／分离官方评估、完整Dev阶段与Test前原文件冻结组件
+后续补齐，27项人工检查通过。实际R1完成12帧当前RGB原图NN与4834帧
+原RGB包重放，但错误要求跨视频累计ID与逐视频ID的MOT文件字节相等而
+退出1；失败、部分成功产物与248.796秒成本保留。逐行复核仅SN-013的ID
+相差22，其他字段与全视频身份映射精确。R2只复用原产物，独立官方评估
+完整复现既有RGB的39项摘要、47项逐序列／合并值及276列CSV，未修改轨迹。
+这是评测组件核验，不是新IR收益；实际解码IR为0、正式TaskUtility快照
+加载0、新GPU0。完整控制器、独立成本、总导出、集成资格与正式登记仍
+待完成，真实TaskUtility Dev／Test与选择冻结尚不存在；旧CPU数值异常
+根因仍未知。详见
+[OBSERVATION_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_OBSERVATION_COMPONENTS.md)。
 
 任务相关空间监督原型已实现：同一553705参数推理结构，四种Train前景／
 效用监督组合×三种输入，12项核心检查及实际六帧／72次CPU工程更新

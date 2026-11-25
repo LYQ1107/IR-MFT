@@ -6,8 +6,9 @@
 
 六组结构匹配完整Train现已全部独立核验：各72宏循环／三遍27251帧、
 20736更新，所有实际地址摘要相同于原日程；四IR字节清单一致。
-完整Dev已在4／5卡生成49路输出，另有原始RGB参照共50对象，尚无新的
-候选指标；原始RGB／灰度字节未记录、灰度旧退出码未知等限制保持。
+完整Dev已在4／5卡生成两段共4834帧的49路输出，两producer均退出0；
+另有原始RGB参照共50对象，正在CPU官方评估，完整家族尚未冻结选择。
+原始RGB／灰度字节未记录、灰度旧退出码未知等限制保持。
 这完成拟合交付核验，不等于该方向完整Dev/Test归因完成，见
 [ALL_SIX_FULL_TRAIN_AUDIT](PERCEPTUAL_MFT_20261125_ALL_SIX_FULL_TRAIN_AUDIT.md)。
 
@@ -25,6 +26,13 @@ ByteTrack实际CPU检查。原图roll实际改变输入和特征，零／缺失�
 内部跟踪状态精确；没有正式TaskUtility快照、真实GPU资格、完整调度、
 新准确率或F4融合记忆转移，不增加方向或贡献计数。见
 [WORKER_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_WORKER_COMPONENTS.md)。
+
+任务监督的逐帧生产、官方47项评估及完整Dev／Test前冻结组件后续补齐，
+27项人工检查通过。真实RGB前12帧与完整4834帧基线包重放已执行；R1因
+跨视频ID字节比较假设不当退出1并保留，R2只读逐行复核及官方全部指标／
+原CSV精确复现。没有修改轨迹，没有新IR模型准确率、GPU资格、完整正式
+调度或独立贡献；独立成本、总控制器／导出和集成资格仍待补齐，见
+[OBSERVATION_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_OBSERVATION_COMPONENTS.md)。
 
 后续已补充当前IR原生空间门控家族的CPU原型：三种组合×三个cue，
 六段Train各一帧，共54次工程更新、10项单元检查通过。新编码器与空间／
