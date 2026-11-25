@@ -1,0 +1,77 @@
+"""Read-only original temporalIR6 completion observation; no train signals."""
+import ast
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import time
+import traceback
+
+W=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122')
+STEM='native_temporal_ir6_read_only_watch_20261126_r2'
+LATEST=W/(STEM+'_latest.json')
+LOG=W/(STEM+'.jsonl')
+WINDOW=21600
+EXPECTED={'temporal_gray':(1330025,89054988,'1afbbdd6225b94c0b1ea0b8b36a1c7cfd3be5fd948bc031660440102f4e5a741'),'temporal_ir':(1248117,88101349,'bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58')}
+
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def process(pid):
+    p=Path('/proc')/str(pid)
+    try:
+        st=(p/'stat').read_text();f=st[st.rfind(')')+2:].split();cmd=(p/'cmdline').read_bytes();env=(p/'environ').read_bytes().split(b'\0')
+        return dict(pid=pid,proc_snapshot_ok=True,state=f[0],start_ticks=int(f[19]),command_sha256=hashlib.sha256(cmd).hexdigest(),command=cmd.rstrip(b'\0').replace(b'\0',b' ').decode(),CUDA_VISIBLE_DEVICES=next((x.decode().split('=',1)[1] for x in env if x.startswith(b'CUDA_VISIBLE_DEVICES=')),None))
+    except OSError as e:
+        return dict(pid=pid,proc_snapshot_ok=False,PID_exists_on_recheck=p.exists(),read_error=repr(e),read_race_not_terminal_qualification=True)
+
+def last_update(path):
+    if not path:return None
+    try:
+        with Path(path).open('rb') as f:
+            f.seek(0,2);size=f.tell();f.seek(max(0,size-65536));lines=f.read().decode(errors='replace').splitlines()
+    except OSError:return None
+    for line in reversed(lines):
+        try:
+            v=ast.literal_eval(line)
+            if isinstance(v,dict) and 'actual_updates' in v:return v
+        except (ValueError,SyntaxError):pass
+    return None
+
+row={}
+def save(v,emit=False):
+    tmp=LATEST.with_suffix('.partial.json');tmp.write_text(json.dumps(v,indent=2)+'\n');os.replace(tmp,LATEST)
+    if emit:
+        line=json.dumps(v)+'\n'
+        with LOG.open('a') as f:f.write(line);f.flush()
+        print(line,end='',flush=True)
+
+def finish(status,code,**extra):
+    v=dict(row);v.update(status=status,UTC=utc(),observer_intended_exit_code=code,observer_numeric_exit_requires_parent_confirmation=True,**extra);save(v,True);raise SystemExit(code)
+def interrupted(signum,frame):finish('OBSERVER_INTERRUPTED_NO_TRAINING_ACTION',128+signum,received_signal=signum)
+for sig in [signal.SIGTERM,signal.SIGINT,signal.SIGHUP]:signal.signal(sig,interrupted)
+
+start=time.monotonic();next_emit=0;errors=0
+row=dict(status='READ_ONLY_OBSERVER_STARTED',UTC=utc(),observer=process(os.getpid()),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),window_seconds=WINDOW,target='Original temporal_ir6COMPLETE+actual exit0 onGPU5;completed temporal_gray retained onGPU4',new_GPU_NN_training_seed_work_by_observer=False)
+save(row,True)
+while time.monotonic()-start<WINDOW:
+    try:
+        state=json.loads((W/'native_pyramid_study_state.json').read_text());jobs=state['phases']['NORMAL_TRAIN_06'];parent=process(state['controller_pid']);consistent=parent.get('proc_snapshot_ok') and parent.get('start_ticks')==77632196 and parent.get('command_sha256')=='f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d';workers=[]
+        for name in ['temporal_gray','temporal_ir']:
+            j=jobs[name];v={k:j.get(k) for k in ['id','status','pid','physical_gpu','exit_code']};v['actual_process']=process(j['pid']) if j.get('pid') else None;p=W/'native_pyramid_fits'/name/'progress.json';v['complete_epochs']=json.loads(p.read_text())['completed_full_Train_epochs'] if p.exists() else 0;v['latest_actual_update']=last_update(j.get('log'))
+            if j['status']=='RUNNING':
+                a=v['actual_process'];match=bool(a.get('proc_snapshot_ok') and a.get('state') not in ['T','Z'] and a.get('command')==' '.join(j['command']) and a.get('CUDA_VISIBLE_DEVICES')==j['physical_gpu'])
+                if name in EXPECTED:match=match and (a.get('pid'),a.get('start_ticks'),a.get('command_sha256'))==EXPECTED[name]
+                v['actual_identity_matches_original_job']=match;consistent=consistent and match
+            workers.append(v)
+        target=next(v for v in workers if v['id']=='temporal_ir');a=target['actual_process'] or {};retired=(a.get('proc_snapshot_ok') and (a.get('state')=='Z' or a.get('start_ticks')!=EXPECTED['temporal_ir'][1])) or (not a.get('proc_snapshot_ok') and not a.get('PID_exists_on_recheck',True));done=bool(consistent and target['pid']==EXPECTED['temporal_ir'][0] and target['status']=='COMPLETE' and target['exit_code']==0 and target['complete_epochs']>=6 and retired);failed=state['status'].startswith('FAILED') or any(v['status']=='FAILED' for v in workers)
+        row=dict(status='VERIFIED_LIVE_WAIT' if consistent else 'TRANSIENT_PROCESS_READ_REINSPECT_SAME_ORIGINAL_JOBS',UTC=utc(),observer=process(os.getpid()),native_phase=state['status'],original_controller=parent,workers=workers,host_MemAvailable_GiB=next(int(l.split()[1])/1024**2 for l in Path('/proc/meminfo').read_text().splitlines() if l.startswith('MemAvailable:')),independent_free_GiB=os.statvfs(W).f_bavail*os.statvfs(W).f_frsize/2**30,new_GPU_NN_training_seed_work_by_observer=False,new_Dev_Test_accuracy=False,goal_met=False)
+        errors=0;now=time.monotonic();save(row,now>=next_emit)
+        if now>=next_emit:next_emit=now+50
+        if done:finish('OBSERVED_ORIGINAL_TEMPORAL_IR6_COMPLETE_EXIT0',0)
+        if failed:finish('SOURCE_QUEUE_REPORTED_FAILURE_PRESERVE_ORIGINAL_JOBS',1)
+    except Exception as e:
+        errors+=1;row=dict(status='OBSERVER_READ_ERROR_REINSPECT_ORIGINAL_JOBS_NOT_TRAINING_FAILURE',UTC=utc(),observer=process(os.getpid()),consecutive_observer_errors=errors,error=repr(e),traceback=traceback.format_exc(limit=5),new_training_actions=False);save(row,True)
+        if errors>=6:finish('OBSERVER_FAILURE_NEEDS_DIRECT_SOURCE_CHECK',2)
+    time.sleep(5)
+finish('OBSERVATION_WINDOW_ENDED_REINSPECT_SAME_JOBS',0,observation_timeout_is_not_training_failure=True)

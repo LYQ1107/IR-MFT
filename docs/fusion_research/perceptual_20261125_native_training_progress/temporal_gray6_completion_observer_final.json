@@ -1,0 +1,83 @@
+{
+  "status": "OBSERVED_ORIGINAL_TEMPORAL_GRAY6_COMPLETE_EXIT0",
+  "UTC": "2026-11-25T21:25:50.765071+00:00",
+  "observer": {
+    "pid": 1331269,
+    "proc_snapshot_ok": true,
+    "state": "R",
+    "start_ticks": 89080239,
+    "command_sha256": "bc4cc54a57e455c6e7ea2ab84192a4bc586ebb2464496cd0ae2e6f17d4a485a7",
+    "command": "python3 -u /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_gray6_read_only_watch_20261126_r1.py",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "native_phase": "NORMAL_TRAIN_06",
+  "original_controller": {
+    "pid": 3943138,
+    "proc_snapshot_ok": true,
+    "state": "S",
+    "start_ticks": 77632196,
+    "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+    "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/launch_native_pyramid_study.py run",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "workers": [
+    {
+      "id": "temporal_gray",
+      "status": "COMPLETE",
+      "pid": 1330025,
+      "physical_gpu": "4",
+      "exit_code": 0,
+      "actual_process": {
+        "pid": 1330025,
+        "proc_snapshot_ok": false,
+        "PID_exists_on_recheck": false,
+        "read_error": "FileNotFoundError(2, 'No such file or directory')",
+        "read_race_not_terminal_qualification": true
+      },
+      "complete_epochs": 6,
+      "latest_actual_update": {
+        "fit": "temporal_gray",
+        "epoch": 6,
+        "clip": 6784,
+        "clips": 6814,
+        "loss": 2.572262005731112,
+        "actual_updates": 40854,
+        "seconds": 18335.954685214092
+      }
+    },
+    {
+      "id": "temporal_ir",
+      "status": "RUNNING",
+      "pid": 1248117,
+      "physical_gpu": "5",
+      "exit_code": null,
+      "actual_process": {
+        "pid": 1248117,
+        "proc_snapshot_ok": true,
+        "state": "R",
+        "start_ticks": 88101349,
+        "command_sha256": "bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58",
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 6",
+        "CUDA_VISIBLE_DEVICES": "5"
+      },
+      "complete_epochs": 4,
+      "latest_actual_update": {
+        "fit": "temporal_ir",
+        "epoch": 5,
+        "clip": 1280,
+        "clips": 6814,
+        "loss": 2.3731539007276297,
+        "actual_updates": 28536,
+        "seconds": 27881.11741373909
+      },
+      "actual_identity_matches_original_job": true
+    }
+  ],
+  "host_MemAvailable_GiB": 75.0106315612793,
+  "independent_free_GiB": 2690.062999725342,
+  "new_GPU_NN_training_seed_work_by_observer": false,
+  "new_Dev_Test_accuracy": false,
+  "goal_met": false,
+  "observer_intended_exit_code": 0,
+  "observer_numeric_exit_requires_parent_confirmation": true
+}
