@@ -1,0 +1,33 @@
+{
+  "status": "PRESERVED_FIRST_ARTIFICIAL_RUNTIME_TEST_FAILURE",
+  "actual_execution": {
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_task_utility_runtime.py",
+      "--basetemp",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_runtime_pytest_1795571180675054778_scratch"
+    ],
+    "exit_code": 1,
+    "seconds": 8.824494643020444,
+    "source_hashes": {
+      "tools/task_utility_runtime.py": "3e8cf183f6ee573c5be0ef713d2bf04b1dac4659a55db0fde62c231f7ef695e6",
+      "tools/task_utility_runtime_sources.py": "2a620f3b0a77149e102270a4db49b262b0b08315b79eee953cbc493ddb306c8c",
+      "tools/benchmark_task_utility.py": "ebf82be1ed779378a997b124772d8fe8e3f12d650c305ae0b8c89e0e164b9d80",
+      "tests/test_task_utility_runtime.py": "18466357364fa171c2b3dbc3919d1ba9dd5d6d166decaf7b6cac531c3e1ac780",
+      "configs/perceptual_task_utility_runtime_20261125.json": "2adb6fc0a2fc7fa2b1e7aed0a49425bb325c3972f3a281bea3f06b9bce153225"
+    },
+    "all_sources_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/task_utility_runtime_pytest_1795571180675054778.txt",
+    "log_sha256": "57e7f1d70ab060c815985a6039b4d9d76eedcf07ba5ad385a6290ceaaa1cd29d",
+    "artificial_fixtures_only": true,
+    "new_GPU_work": false,
+    "new_accuracy": false
+  },
+  "original_test_source_sha256": "18466357364fa171c2b3dbc3919d1ba9dd5d6d166decaf7b6cac531c3e1ac780",
+  "explanation": "Artificial fakeYOLOXreturnedonly1decodedanchor,triggering original NMSscalar-mask shape behavior. Real800x1440YOLOXreturns23625anchors. Corrected the testfixture to2anchors with1eligible detection; no legacyNMS/model/accuracy/source-policy changed. Added independent full7video file-binding checks. Firstfailedreceipt/source/log retained,not relabeled successful.",
+  "formal_GPU_eligibility": false,
+  "new_accuracy": false
+}

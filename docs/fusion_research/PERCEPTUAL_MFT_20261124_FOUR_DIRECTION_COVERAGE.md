@@ -41,6 +41,13 @@ ByteTrack实际CPU检查。原图roll实际改变输入和特征，零／缺失�
 调度或独立贡献；独立成本、总控制器／导出和集成资格仍待补齐，见
 [OBSERVATION_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_OBSERVATION_COMPONENTS.md)。
 
+独立成本组件后续已接通并完成17项人工检查及真实Train八帧的B4 CPU
+路径核验，六次原RGB前向／24次访问，独立原始head、NMS及MOT精确。
+历史RGB的B4与25条新B1路径分开核对、计时，26项准确率配方不变。
+这是CPU功能证据，没有IR分支、正式GPU成本或完整研究资格；总控制器、
+总导出与集成检查尚待完成，不增加方向／创新计数。见
+[RUNTIME_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_RUNTIME_COMPONENTS.md)。
+
 后续已补充当前IR原生空间门控家族的CPU原型：三种组合×三个cue，
 六段Train各一帧，共54次工程更新、10项单元检查通过。新编码器与空间／
 冗余分支均有梯度，但空间变化很小，尚无正式拟合、Dev/Test或贡献证明。

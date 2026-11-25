@@ -62,10 +62,22 @@ CPU524.981秒、RSS2.751GiB，无新GPU、正式模型快照、Dev/Test或收益
 相差22，其他字段与全视频身份映射精确。R2只复用原产物，独立官方评估
 完整复现既有RGB的39项摘要、47项逐序列／合并值及276列CSV，未修改轨迹。
 这是评测组件核验，不是新IR收益；实际解码IR为0、正式TaskUtility快照
-加载0、新GPU0。完整控制器、独立成本、总导出、集成资格与正式登记仍
+加载0、新GPU0。完整控制器、正式独立成本执行、总导出、集成资格与正式登记仍
 待完成，真实TaskUtility Dev／Test与选择冻结尚不存在；旧CPU数值异常
 根因仍未知。详见
 [OBSERVATION_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_OBSERVATION_COMPONENTS.md)。
+
+独立测速入口及来源／计时组件后续已补齐，17项人工检查通过；保留首次
+人工一锚点fixture触发旧NMS形状错误及完整失败记录，实际NMS未修改。
+原计划26项同B1的措辞另作执行澄清：历史原RGB确为B4，测25条真实B1
+与1条真实B4原RGB参照，各自匹配原检测包／MOT，不用重放FPS或B1别名。
+准确率配方、训练与选择预算不变，B4批延迟不冒充单帧延迟。
+真实CPU仅8帧Train／六次B4前向／24帧访问，独立旧预处理与新路径的
+输入、原始head、NMS及MOT精确，CPU362.954秒／RSS2.557GiB；无IR读取、
+优化、TaskUtility快照、正式GPU成本或新准确率。真实CLI在登记缺失处
+先于模型加载／CUDA停止。完整控制器、总导出、集成检查／正式登记和
+真实GPU资格仍待完成，旧CPU数值异常根因仍未知；见
+[RUNTIME_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_RUNTIME_COMPONENTS.md)。
 
 任务相关空间监督原型已实现：同一553705参数推理结构，四种Train前景／
 效用监督组合×三种输入，12项核心检查及实际六帧／72次CPU工程更新

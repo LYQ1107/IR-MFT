@@ -1,0 +1,75 @@
+............F..                                                          [100%]
+=================================== FAILURES ===================================
+_ test_canonical_route_forwards_four_distinct_RGB_samples_through_actual_NN_API _
+
+    def test_canonical_route_forwards_four_distinct_RGB_samples_through_actual_NN_API():
+        model=FakeYOLOX().eval();case=dict(CANONICAL);engine=CanonicalRGBBatch(model,case,(32,32))
+        images=[np.full((32,32,3),v,np.uint8) for v in [20,40,60,80]]
+>       packets,info=engine.step_batch(images,'BT-003',1)
+
+tests/test_task_utility_runtime.py:162: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+../.venvs/trackocd-a100/lib/python3.10/site-packages/torch/utils/_contextlib.py:116: in decorate_context
+    return func(*args, **kwargs)
+tools/task_utility_runtime.py:66: in step_batch
+    selected=postprocess(decoded,1,.1,.7)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+prediction = tensor([[[ 6.2246,  8.0000, 22.2246, 24.0000,  0.9500,  0.9500]],
+
+        [[ 6.5674,  8.0000, 22.5674, 24.0000,  0.95...092,  8.0000, 22.9092, 24.0000,  0.9500,  0.9500]],
+
+        [[ 7.2520,  8.0000, 23.2520, 24.0000,  0.9500,  0.9500]]])
+num_classes = 1, conf_thre = 0.1, nms_thre = 0.7
+
+    def postprocess(prediction, num_classes, conf_thre=0.7, nms_thre=0.45):
+        box_corner = prediction.new(prediction.shape)
+        box_corner[:, :, 0] = prediction[:, :, 0] - prediction[:, :, 2] / 2
+        box_corner[:, :, 1] = prediction[:, :, 1] - prediction[:, :, 3] / 2
+        box_corner[:, :, 2] = prediction[:, :, 0] + prediction[:, :, 2] / 2
+        box_corner[:, :, 3] = prediction[:, :, 1] + prediction[:, :, 3] / 2
+        prediction[:, :, :4] = box_corner[:, :, :4]
+    
+        output = [None for _ in range(len(prediction))]
+        for i, image_pred in enumerate(prediction):
+    
+            # If none are remaining => process next image
+            if not image_pred.size(0):
+                continue
+            # Get score and class with highest confidence
+            class_conf, class_pred = torch.max(
+                image_pred[:, 5 : 5 + num_classes], 1, keepdim=True
+            )
+    
+            conf_mask = (image_pred[:, 4] * class_conf.squeeze() >= conf_thre).squeeze()
+            # _, conf_mask = torch.topk((image_pred[:, 4] * class_conf.squeeze()), 1000)
+            # Detections ordered as (x1, y1, x2, y2, obj_conf, class_conf, class_pred)
+            detections = torch.cat((image_pred[:, :5], class_conf, class_pred.float()), 1)
+            detections = detections[conf_mask]
+            if not detections.size(0):
+                continue
+    
+            nms_out_index = torchvision.ops.batched_nms(
+                detections[:, :4],
+>               detections[:, 4] * detections[:, 5],
+                detections[:, 6],
+                nms_thre,
+            )
+E           IndexError: index 4 is out of bounds for dimension 1 with size 1
+
+yolox/utils/boxes.py:62: IndexError
+=============================== warnings summary ===============================
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12
+  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) < LooseVersion("1.0.0"):
+
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68
+../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68
+  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) >= LooseVersion("1.1.0"):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_task_utility_runtime.py::test_canonical_route_forwards_four_distinct_RGB_samples_through_actual_NN_API
+1 failed, 14 passed, 4 warnings in 5.76s
