@@ -12,6 +12,13 @@ CPU1261.114秒／RSS2.790GiB。另有八项人工Dev规则检查，完整正式�
 贡献或方向完成数，见[T4_CPU_ENGINEERING](PERCEPTUAL_MFT_20261125_TASK_UTILITY_T4_CPU_ENGINEERING.md)及
 [STUDY_RULES](PERCEPTUAL_MFT_20261125_TASK_UTILITY_STUDY_RULES.md)。
 
+后续补齐任务监督研究配置、独立worker、只读诊断与CPU加载组件，
+10＋4项人工检查通过；一个IR联合条件完成三次T4更新及12帧B1/NMS/
+ByteTrack实际CPU检查。原图roll实际改变输入和特征，零／缺失输出及
+内部跟踪状态精确；没有正式TaskUtility快照、真实GPU资格、完整调度、
+新准确率或F4融合记忆转移，不增加方向或贡献计数。见
+[WORKER_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_WORKER_COMPONENTS.md)。
+
 后续已补充当前IR原生空间门控家族的CPU原型：三种组合×三个cue，
 六段Train各一帧，共54次工程更新、10项单元检查通过。新编码器与空间／
 冗余分支均有梯度，但空间变化很小，尚无正式拟合、Dev/Test或贡献证明。

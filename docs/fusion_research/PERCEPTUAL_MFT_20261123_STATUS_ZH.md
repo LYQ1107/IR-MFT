@@ -9,8 +9,8 @@ RGB对照31.440，IR差值仅+0.064。这个最高观测不是按Test新选出�
 另一分支Test+1.022而Dev−1.800，尚不能作为稳定贡献。目标34.529及
 2–3项独立贡献均未达到；详见[NATIVE_REMAINING_ASSESSMENT](PERCEPTUAL_MFT_20261124_NATIVE_REMAINING_ASSESSMENT.md)。
 
-六组匹配全量Train已完成四组；IR101／110日志各完成64/72宏循环、当前
-第65，原PID158984／159108继续在物理4／5卡执行第三遍。最近逐地址
+六组匹配全量Train已完成四组；IR101／110日志各完成71/72宏循环、当前
+第72，原PID158984／159108继续在物理4／5卡执行第三遍。最近逐地址
 完整核验仍为48/72宏循环、各两遍完整27251帧Train。
 每组13824次更新、55296次输入访问，48份实际交付地址摘要全部匹配。
 24宏循环才是一遍，不能写成48轮完整数据。见
@@ -32,6 +32,14 @@ RGB对照31.440，IR差值仅+0.064。这个最高观测不是按Test新选出�
 任务反馈与有害融合约束已有先例，具体局部效用亦未证原创性；见
 [STUDY_RULES](PERCEPTUAL_MFT_20261125_TASK_UTILITY_STUDY_RULES.md)与
 [PRIOR_ART](PERCEPTUAL_MFT_20261125_TASK_UTILITY_PRIOR_ART.md)。
+
+新任务监督研究配置、独立训练worker、只读诊断与CPU模型加载组件已
+补齐，10＋4项人工检查通过。一个实际IR联合监督条件按worker完成
+三次T4更新及12帧800×1440 B1；直接RGB／零／缺失的rawhead、NMS、
+MOT、局部ID及KF状态精确，原图roll在12帧改变输入、特征与检测输出。
+CPU524.981秒、RSS2.751GiB，无新GPU、正式模型快照、Dev/Test或收益。
+完整pipeline登记、生产／评估／独立成本／调度／导出及真实GPU资格仍
+待接通；见[WORKER_COMPONENTS](PERCEPTUAL_MFT_20261125_TASK_UTILITY_WORKER_COMPONENTS.md)。
 
 任务相关空间监督原型已实现：同一553705参数推理结构，四种Train前景／
 效用监督组合×三种输入，12项核心检查及实际六帧／72次CPU工程更新
