@@ -1,0 +1,77 @@
+{"status": "SEQUENCE_TRACKS_COMPLETE", "id": "sort__source_RGB_fresh", "split": "dev", "sequence": "BT-005", "frames": 1834, "detections": 22383, "output_rows": 17245, "output_sha256": "58d92c6f49634dcc9ee6e515dc02710535ec5a30f9549599f85aa53550f27d1a"}
+{"status": "SEQUENCE_TRACKS_COMPLETE", "id": "sort__source_RGB_fresh", "split": "dev", "sequence": "SN-013", "frames": 3000, "detections": 32258, "output_rows": 26260, "output_sha256": "8da028b56329cadfa4b7a14beec611a0470c4c387711b58f5cce47cedf693dd4"}
+
+CLEAR Config:
+THRESHOLD            : 0.5                           
+PRINT_CONFIG         : True                          
+
+Identity Config:
+THRESHOLD            : 0.5                           
+PRINT_CONFIG         : True                          
+
+ tracker(s) on 2 sequence(s) for 1 class(es) on MotChallenge2DBox dataset using the following metrics: HOTA, CLEAR, Identity, Count
+
+
+Evaluating tracker-result
+
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:03<00:03,  3.22s/it]100%|██████████| 2/2 [00:08<00:00,  4.35s/it]100%|██████████| 2/2 [00:08<00:00,  4.18s/it]
+Tracker tracker-result was unable to be evaluated.
+Cannot load backend 'TkAgg' which requires the 'tk' interactive framework, as 'headless' is currently running
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/eval.py", line 154, in evaluate
+    metric.plot_single_tracker_results(table_res, tracker_display_name, c_cls,
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/metrics/hota.py", line 190, in plot_single_tracker_results
+    plt.plot(self.array_labels, res[name], style)
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 3838, in plot
+    return gca().plot(
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 2784, in gca
+    return gcf().gca()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1107, in gcf
+    return figure()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1041, in figure
+    manager = new_figure_manager(
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 550, in new_figure_manager
+    _warn_if_gui_out_of_main_thread()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 527, in _warn_if_gui_out_of_main_thread
+    canvas_class = cast(type[FigureCanvasBase], _get_backend_mod().FigureCanvas)
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 368, in _get_backend_mod
+    switch_backend(rcParams._get("backend"))
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 432, in switch_backend
+    raise ImportError(
+ImportError: Cannot load backend 'TkAgg' which requires the 'tk' interactive framework, as 'headless' is currently running
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_public_trackers.py", line 440, in <module>
+    main()
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_public_trackers.py", line 434, in main
+    worker(args.method, args.stream, args.split)
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_public_trackers.py", line 349, in worker
+    official = run_official_tracks(output / 'track_results', output, plan, split)
+  File "/data3/liuyeqiang/IR-MFT/tools/fusion_memory_evaluation.py", line 142, in run_official_tracks
+    metrics = run_trackeval(str(result_directory), plan['evaluation']['GT_root'], str(output),
+  File "/data3/liuyeqiang/IR-MFT/tools/eval_mft26ir.py", line 261, in run_trackeval
+    evaluator.evaluate(dataset, [HOTA(), CLEAR(), Identity()])
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/_timing.py", line 64, in wrap
+    return f(*args, **kw)
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/eval.py", line 181, in evaluate
+    raise err
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/eval.py", line 154, in evaluate
+    metric.plot_single_tracker_results(table_res, tracker_display_name, c_cls,
+  File "/data3/liuyeqiang/IR-MFT_assets/vendor/VUP-PFTrack/trackeval/metrics/hota.py", line 190, in plot_single_tracker_results
+    plt.plot(self.array_labels, res[name], style)
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 3838, in plot
+    return gca().plot(
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 2784, in gca
+    return gcf().gca()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1107, in gcf
+    return figure()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 1041, in figure
+    manager = new_figure_manager(
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 550, in new_figure_manager
+    _warn_if_gui_out_of_main_thread()
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 527, in _warn_if_gui_out_of_main_thread
+    canvas_class = cast(type[FigureCanvasBase], _get_backend_mod().FigureCanvas)
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 368, in _get_backend_mod
+    switch_backend(rcParams._get("backend"))
+  File "/data3/liuyeqiang/.venvs/trackocd-a100/lib/python3.10/site-packages/matplotlib/pyplot.py", line 432, in switch_backend
+    raise ImportError(
+ImportError: Cannot load backend 'TkAgg' which requires the 'tk' interactive framework, as 'headless' is currently running

@@ -12,6 +12,14 @@ C相对消融自身Dev最佳在Dev／Test分别高0.557085／0.414747点，正�
 最新全量家族两种输入模式的13项独立B4成本也已全部补齐；详见
 [FULL_TRAIN_TEST47_ANALYSIS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_TEST47_AUDIT_ANALYSIS_ZH.md)。
 
+当前冻结输出的SORT／OC-SORT公开后端对照也已完成：先8项完整Dev，
+再冻结相同参数执行8项完整七段Test，16个CPU worker及控制器均实际退出0。
+IR对同预算RGB的Test HOTA差值分别为ByteTrack +0.366995、SORT −0.198019、
+OC-SORT +0.089625，收益没有跨这三种后端稳定成立。全部47项、原276列CSV、
+实际命令／退出码／CPU成本及两次基础设施失败均保留，固定主方法不变。
+旧BoT-SORT／HybridSORT的V3结果另按原提交归档，不混称为当前输入。
+见[PUBLIC_TRACKERS_ANALYSIS](PERCEPTUAL_MFT_20261125_PUBLIC_TRACKERS_ANALYSIS_ZH.md)。
+
 初版结构家族九项正式补测现已全部完成，独立CPU核对退出0，全部47项、
 原276列CSV和完整七段MOT保留。原Dev选定的初版IR参照复现30.275295，
 对初版RGB28.821328高1.453967、灰度29.637621高0.637674点；对应Dev也
@@ -36,10 +44,12 @@ Train混算，也不按较高Test重新选主方法。缺失IR精确回到fresh 
 本轮新增temporal_rgb六遍独立CPU核对，原第一遍及两个六遍对照记录不变，见
 [NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
 原队列已把GPU5交给temporal_ir，真实PID／启动tick／argv／GPU UUID匹配，
-正式fit日志已超过32次更新。GPU4的quality_ir已完成三遍并继续第四遍；
+正式fit日志已超过32次更新。截至11月25日23:50（北京时间）的只读快照，
+GPU4的quality_ir原进程已完成五遍并继续第六遍，GPU5的temporal_ir继续首遍；
 temporal_gray仍待调度。固定新版PNG和逐次读图SHA断言保持，完整逐图消费
-列表未另存，未补造。只读观察器句柄已不可用，数字退出码未知；直接依据
-原任务／真实进程恢复核实，未重启训练或回填该退出码。
+列表未另存，未补造。早期观察器句柄已不可用且数字退出码未知；当前独立
+只读观察器1254273及原训练进程均已直接核对存活，没有重启训练或回填
+旧退出码。见[实际状态快照](PERCEPTUAL_MFT_20261125_NATIVE_LIVE_STATUS_SNAPSHOT.json)。
 完整Train loss变化很小，不能代替HOTA或收敛结论。全六组共同预算及完整
 Dev／Test尚未完成，没有新准确率或独立贡献；是否延长只看完整Dev。
 下方早期组件与等待状态按记录时点保留，当前执行状态以本页顶部为准。

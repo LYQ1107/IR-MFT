@@ -13,14 +13,14 @@ quality_rgb／quality_gray／temporal_rgb已各完成六遍全部27251帧，三�
 
 三组完整Train loss变化很小。拟合及参数变化不等于HOTA提高，也不构成数值收敛证明。六组正常条件尚未全部完成；最低共同预算六遍，之后仅按全部完整4834帧Dev及预登记规则共同决定九／十二遍，不按Test或部分Train结果延长。当前没有本轮原生方案的新Dev／Test准确率，所有较差正式正常条件仍须完整七段Test。
 
-原控制器已自动把GPU5从完成的temporal_rgb交给temporal_ir。新任务是正式fit／through-epoch6，实际PID、启动tick、argv、CUDA_VISIBLE_DEVICES=5及GPU UUID均匹配，日志已出现超过32次优化更新；GPU4的quality_ir原进程继续第四遍，已完成三遍。temporal_gray尚在原队列等待。只读观察器在交接时已不可用，数字退出码未知；本次直接依据原状态和实际进程恢复核实，训练未重启，也未回填观察器退出码。
+原控制器已自动把GPU5从完成的temporal_rgb交给temporal_ir。新任务是正式fit／through-epoch6，实际PID、启动tick、argv、CUDA_VISIBLE_DEVICES=5及GPU UUID均匹配。11月25日23:50（北京时间）的原进程只读快照显示：quality_ir已完成五遍，正在第六遍；temporal_ir正在第一遍；temporal_gray尚在原队列等待。早期观察器交接时句柄已不可用、数字退出码未知；当前只读观察器1254273及两个原训练进程均直接核对存活，原训练未重启。此处只是原progress／实际日志的进度，不增加六遍完成资格或后续快照有限性证明。
 
 | 正常条件 | 当前状态 | 完整Train遍数 | 本次及原已公开的独立快照核对 |
 | --- | --- | ---: | --- |
 | quality_rgb | 六遍完成、原worker退出0 | 6 | 全部六遍 |
 | quality_gray | 六遍完成、原worker退出0 | 6 | 全部六遍 |
 | temporal_rgb | 六遍完成、原worker退出0 | 6 | 全部六遍 |
-| quality_ir | GPU4原进程继续第四遍 | 3 | 原首遍完整核对；后续原日志／SHA记录保留 |
+| quality_ir | GPU4原进程继续第六遍 | 5 | 原首遍完整核对；后续原日志／SHA记录保留 |
 | temporal_ir | GPU5原队列正式训练中 | 0 | 工程门槛先前已通过；当前实际更新，不冒充完整一遍 |
 | temporal_gray | 原队列等待 | 0 | 工程门槛先前已通过，正式训练未调度 |
 
@@ -30,7 +30,7 @@ quality_rgb／quality_gray／temporal_rgb已各完成六遍全部27251帧，三�
 
 新增CPU核对实际退出0，完整调用5.500秒，观测峰值RSS0.597GiB；复用原有同一工具，只读已存在小型原生快照与记录，没有NN前向或GPU调用。原第一遍及两对照六遍的JSON、执行、原件均保持，新时序六遍原件另存。
 
-工作盘实测59.287GiB／上限64GiB，独立空闲2708.436GiB；主机MemAvailable82.977GiB，高于40GiB保留值。记录时点见发布核对。Git只保存轻量文本，不包含权重、图像、数组或缓存。
+23:50快照工作盘按原guard口径lstat且不跟随符号链接，实测59.252GiB／上限64GiB，独立空闲2704.841GiB；主机MemAvailable及真实GPU进程见[状态快照](PERCEPTUAL_MFT_20261125_NATIVE_LIVE_STATUS_SNAPSHOT.json)，高于40GiB保留值。Git只保存轻量文本，不包含权重、图像、数组或缓存。
 
 新增证据见[时序RGB六遍核对](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN.json)、[实际CPU执行](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_EXECUTION.json)、[真实交接及发布核对](PERCEPTUAL_MFT_20261125_NATIVE_TEMPORAL_RGB_COMPLETE_TRAIN_VERIFICATION.json)和[完整六遍progress原件](perceptual_20261125_native_training_progress/temporal_rgb_six_epoch_original_progress.json)。原[两个六遍对照](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json)、[首遍IR／时序](PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json)及其原件保持。
 
