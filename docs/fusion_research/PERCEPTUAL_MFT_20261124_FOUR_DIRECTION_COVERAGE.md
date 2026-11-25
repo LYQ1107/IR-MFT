@@ -12,6 +12,14 @@ RGB29.529为+0.305177。C自身最佳消融的Dev／Test分别+0.557085／
 原控制器实际退出，旧九项补测在4／5卡接续；并不代表四方向全部完成。
 详见[FULL_TRAIN_TEST47_ANALYSIS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_TEST47_AUDIT_ANALYSIS_ZH.md)。
 
+六组已训练融合P3后续完成Train身份区分诊断：原固定72帧／1079个GT框，
+18份实际快照均保留。相同宏循环的IR对同预算RGB在三档采样间隔仅多
+5／1／0次正确匹配，对灰度多1／4／少2次；没有稳定身份收益。CPU实际
+退出0、13项检查通过，无新训练、GPU或缓存。这是GT理想框及已见身份的
+长间隔闭集检索，不是HOTA、F4学习融合转移或整个家族的排除证据，
+不增加四方向完成数或独立创新数。详见
+[TRAIN_FUSED_ROI_IDENTITY](PERCEPTUAL_MFT_20261125_TRAIN_FUSED_ROI_IDENTITY.md)。
+
 TaskUtility后续完整流程已补齐并登记427项来源，真实CPU控制器828842
 等待F4及全部前序导出和实际退出，当前phases为空。11项集成检查及
 人工数据上的六／九／十二遍共同预算调度分支已核验；这些不是实际
