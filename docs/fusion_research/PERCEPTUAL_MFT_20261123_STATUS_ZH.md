@@ -2,6 +2,9 @@
 
 更新时间：2026-11-26（北京时间）。任务仍在执行，目标尚未完成。
 
+新增两种公开后端的全部8项完整Dev已实际退出0，独立核对原276列CSV／MOT也退出0，共20项五后端×四输入的完整Dev均有47字段。BoT-SORT的IR−RGB HOTA约−0.011796，HybridSORT约+0.515827，但后者IR−灰度为−0.826703，仍无稳定的IR独有贡献。全部8项固定Test已按原参数开始，包含负Dev，原主方案及独立创新计数不变。原GPU4／5两组现均完成三遍并继续第四遍；完整六遍资格仍四组／24份独立模块快照。见[ADDITIONAL_PUBLIC_TRACKERS_DEV_ANALYSIS](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_DEV_ANALYSIS_ZH.md)。
+
+
 新增BoT-SORT无ReID（保留ORB）与HybridSORT无ReID（官方HMIoU／TCM／低分关联预设）的同检测输入CPU比较已登记并正式开始。8项接口检查、数值布局兼容与登记实际退出0，先全部8项完整Dev再全部8项完整Test，负结果全部保留。三次工程失败及依赖隔离记录完整归档，没有新准确率或独立贡献。见[ADDITIONAL_PUBLIC_TRACKERS_REGISTERED](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_REGISTERED.md)。原GPU4的temporal_gray已完成三遍并继续第四遍，GPU5原temporal_ir已完成两遍并继续第三遍；完整六轮资格仍只有四组／24份独立模块快照，本次未新增中途张量审计。
 
 
