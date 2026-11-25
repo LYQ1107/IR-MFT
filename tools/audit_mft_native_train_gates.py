@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""Measure saved native gates on eight fixed Train frames, using CPU only.
+
+This is a diagnostic of feature corrections, not Dev/Test, a model selection
+procedure, a tracker benchmark or a claim of CPU/GPU numerical equivalence.
+"""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import resource
+import sys
+import time
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+import cv2
+import torch
+
+from tools.native_pyramid_content_guard import make_image_reader
+from tools.native_pyramid_experiment import context
+from tools.native_pyramid_gate_observer import NativeGateObserver
+from tools.native_pyramid_train_data import current_to_previous_flow, detach_state, preprocess_observation, schedule_proof
+from tools.native_pyramid_training_loop import guard_storage, state_sha256
+from yolox.exp import get_exp
+from yolox.models.native_pyramid_fusion import NativePyramidFusion
+
+
+FITS = ['quality_rgb', 'quality_gray', 'quality_ir', 'temporal_rgb']
+
+
+def read(path):
+    return json.loads(Path(path).read_text())
+
+
+def sha(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(8 * 1024**2), b''):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def save(path, value):
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
+
+
+def utc():
+    return datetime.now(timezone.utc).isoformat()
+
+
+@torch.no_grad()
+def run(output):
+    if os.environ.get('CUDA_VISIBLE_DEVICES') != '' or torch.cuda.is_initialized():
+        raise ValueError('CUDA must be invisible and uninitialized')
+    os.nice(10)
+    torch.set_num_threads(2)
+    cv2.setNumThreads(1)
+    torch.manual_seed(0)
+    torch.use_deterministic_algorithms(True)
+    started = time.monotonic()
+    plan, study, protocol, calibration, work, checkpoint = context()
+    guard_storage(work)
+    registration_path = work / 'native_pyramid_pipeline_registered.json'
+    registration = read(registration_path)
+    files = {str(ROOT / name): expected for name, expected in registration['source_hashes'].items()}
+    for path in [Path(__file__), registration_path, checkpoint]:
+        files[str(path)] = sha(path)
+    if any(sha(path) != digest for path, digest in files.items()):
+        raise ValueError('Original registered sources changed before the diagnostic')
+    jobs = read(work / 'native_pyramid_study_state.json')['phases']['NORMAL_TRAIN_06']
+    modes, sources = {}, {}
+    for fit in FITS:
+        if jobs[fit]['status'] != 'COMPLETE' or jobs[fit].get('exit_code') != 0:
+            raise ValueError('Only the original four completed six-epoch fits may be inspected')
+        config_path = ROOT / 'configs/perceptual_native_pyramid_fit_cases_20261124' / (fit + '.json')
+        config = read(config_path)
+        snapshot = work / 'native_pyramid_fits' / fit / 'epoch_06.pt'
+        files[str(config_path)] = sha(config_path)
+        files[str(snapshot)] = sha(snapshot)
+        modes[fit] = config
+        sources[fit] = dict(checkpoint=str(snapshot), sha256=files[str(snapshot)],
+                            config_sha256=files[str(config_path)], cue=config['cue'])
+    sequence_order = schedule_proof(study['Train_delivery']['lengths'], 1)['video_order'][:2]
+    addresses = [dict(sequence=sequence, frame=frame) for sequence in sequence_order for frame in range(1, 5)]
+    assert len(addresses) == 8 and all(row['sequence'] in protocol['train'] for row in addresses)
+    specification = dict(status='FROZEN_BEFORE_TRAIN_GATE_PROBE_FORWARD', UTC=utc(),
+        fixed_seed=0, fits=FITS, snapshots=sources, addresses=addresses,
+        input_hw=study['inference_input_hw'], RGB_backbone_and_head='CPU FP32 reference',
+        native_base_features='FP32 reference features rounded to FP16 before native fusion',
+        native_module='CPU FP32',
+        decoded_head_role='CPU FP32 RGB confidence maps only; no post-fusion head or NMS',
+        selection_or_budget_decision_allowed=False, Dev_rows=0, Test_rows=0,
+        source_RGB_sha256=study['source_RGB_sha256'], source_hashes=files,
+        scope='Two first epoch1 Train videos, four initial consecutive frames each. '
+              'No GT, metric evaluation, new fitting, seed repetition or snapshot selection.')
+    specification_path = output / 'specification.json'
+    save(specification_path, specification)
+    files[str(specification_path)] = sha(specification_path)
+    print(json.dumps(dict(status='FROZEN_DIAGNOSTIC_LOADING_CPU_ONLY', UTC=utc(), frames=8)), flush=True)
+    model = get_exp(str(ROOT / 'exps/yolox_mft26ir_visible.py'), None).get_model()
+    saved = torch.load(checkpoint, map_location='cpu', weights_only=False)
+    model.load_state_dict(saved['model'], strict=True)
+    del saved
+    model = model.float().eval().requires_grad_(False)
+    frozen_model_hash = state_sha256(model.state_dict())
+    observer = NativeGateObserver()
+    modules, module_hashes = {}, {}
+    for fit in FITS:
+        saved = torch.load(sources[fit]['checkpoint'], map_location='cpu', weights_only=False)
+        metadata = saved['metadata']
+        if (saved['completed_epochs'] != 6 or metadata['seed'] != 0 or metadata['fit_id'] != fit or
+                metadata['fit_config_sha256'] != sources[fit]['config_sha256'] or
+                metadata['source_hashes'] != registration['source_hashes'] or
+                metadata['source_RGB_sha256'] != study['source_RGB_sha256']):
+            raise ValueError('Original native checkpoint lineage differs')
+        module = NativePyramidFusion(**modes[fit]['module_kwargs']).float().eval().requires_grad_(False)
+        module.load_state_dict(saved['module'], strict=True)
+        modules[fit] = module
+        module_hashes[fit] = state_sha256(module.state_dict())
+        observer.attach(fit, module)
+        del saved
+    reader, content_reference = make_image_reader(work, plan, protocol, study['Train_delivery']['lengths'], 'ir')
+    states = {fit: None for fit in FITS}
+    previous_gray, previous_sequence = None, None
+    per_frame = []
+    counters = dict(RGB_backbone_forwards=0, RGB_head_forwards=0, native_module_forwards=0,
+                    post_fusion_head_forwards=0, NMS_calls=0, tracker_calls=0)
+    print(json.dumps(dict(status='CPU_FP32_REFERENCE_MODEL_READY', UTC=utc(),
+                          seconds=time.monotonic()-started)), flush=True)
+    for address in addresses:
+        if time.monotonic() - started > 1200:
+            raise TimeoutError('Bounded CPU diagnostic exceeded its 1200s observation window')
+        sequence, frame = address['sequence'], address['frame']
+        if sequence != previous_sequence:
+            states = {fit: None for fit in FITS}
+            previous_gray = None
+        rgb, ir = reader.read(sequence, frame, 'rgb'), reader.read(sequence, frame, 'ir')
+        if ir.shape != rgb.shape[:2]:
+            raise ValueError('Fixed original RGB and IR geometry differs')
+        source = preprocess_observation(rgb, None, 'rgb', study['inference_input_hw'], calibration)
+        tensor = lambda value: torch.from_numpy(value[None].copy())
+        pixels, valid, gray = tensor(source[0]).float(), tensor(source[2]), source[3]
+        save(output / 'progress.json', dict(status='CPU_FP32_REFERENCE_FORWARD', UTC=utc(),
+            completed_frames=len(per_frame), required_frames=8, current=address,
+            seconds=time.monotonic()-started))
+        reference_features = model.backbone(pixels)
+        counters['RGB_backbone_forwards'] += 1
+        teacher = model.head(reference_features)
+        counters['RGB_head_forwards'] += 1
+        features = tuple(value.half() for value in reference_features)
+        if (teacher.shape[0] != 1 or teacher.shape[-1] != 6 or
+                not bool(torch.isfinite(teacher).all()) or
+                any(value.dtype != torch.float16 or not bool(torch.isfinite(value).all()) for value in features)):
+            raise ValueError('CPU FP32 reference head or rounded FP16 feature output is invalid')
+        scores, offset = [], 0
+        for value in features:
+            count = value.shape[-2] * value.shape[-1]
+            probability = teacher[:, offset:offset+count, 4] * teacher[:, offset:offset+count, 5]
+            scores.append(probability.reshape(1, 1, *value.shape[-2:]))
+            offset += count
+        if offset != teacher.shape[1]:
+            raise ValueError('Original decoded head and native feature grids disagree')
+        flow = current_to_previous_flow(gray, previous_gray)
+        frame_row = dict(sequence=sequence, frame=frame, fits={})
+        for fit in FITS:
+            cue = modes[fit]['cue']
+            prepared = source if cue == 'rgb' else preprocess_observation(
+                rgb, ir if cue == 'ir' else None, cue, study['inference_input_hw'], calibration)
+            repaired, state, information = modules[fit](features, tensor(prepared[1]), scores,
+                valid=valid, available=prepared[-1], state=states[fit], sequence=sequence,
+                frame=frame, flow_to_previous=flow)
+            counters['native_module_forwards'] += 1
+            states[fit] = detach_state(state)
+            if any(value.dtype != torch.float16 or not bool(torch.isfinite(value).all()) for value in repaired):
+                raise ValueError('Native repaired CPU FP16 features are invalid')
+            frame_row['fits'][fit] = dict(available=bool(prepared[-1]),
+                quality_gate=[float(level['gate'].reshape(-1)[0]) for level in information.get('levels', [])],
+                feature_tensor_exact_to_RGB=[bool(torch.equal(base, value)) for base, value in zip(features, repaired)])
+            del repaired
+        per_frame.append(frame_row)
+        previous_gray, previous_sequence = gray, sequence
+        peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024**2
+        if peak > 4:
+            raise RuntimeError('CPU gate diagnostic exceeded 4GiB RSS')
+        save(output / 'progress.json', dict(status='RUNNING_CPU_TRAIN_GATE_PROBE', UTC=utc(),
+            completed_frames=len(per_frame), required_frames=8, counters=counters, seconds=time.monotonic()-started,
+            peak_process_RSS_GiB=peak, latest=frame_row))
+        print(json.dumps(dict(status='CPU_TRAIN_GATE_FRAME_COMPLETE', UTC=utc(),
+            sequence=sequence, frame=frame, completed_frames=len(per_frame), seconds=time.monotonic()-started)), flush=True)
+    if (torch.cuda.is_initialized() or state_sha256(model.state_dict()) != frozen_model_hash or
+            any(state_sha256(modules[fit].state_dict()) != module_hashes[fit] for fit in FITS) or
+            any(sha(path) != digest for path, digest in files.items())):
+        raise ValueError('CUDA initialized, frozen weights changed or pinned diagnostic inputs changed')
+    statistics = {fit: observer.summary(fit) for fit in FITS}
+    observer.close()
+    manifest = reader.content_manifest()
+    if len(manifest) != 16:
+        raise ValueError('Actual input content records do not cover eight RGB/IR pairs')
+    report = dict(status='COMPLETE_CPU_TRAIN_NATIVE_GATE_DIAGNOSTIC_NOT_DEV_OR_GPU_QUALIFICATION',
+        UTC=utc(), specification=str(specification_path), specification_sha256=sha(specification_path),
+        source_hashes=files, snapshots=sources, fixed_seed=0, additional_seed_work=False,
+        frame_count=8, addresses=addresses, per_frame=per_frame, gate_statistics=statistics,
+        actual_input_content_manifest=manifest, image_reader_statistics=reader.statistics(),
+        input_content_reference=content_reference, counters=counters,
+        frozen_RGB_and_native_weights_unchanged=True, GPU_calls=0, backward_passes=0,
+        optimizer_updates=0, new_image_feature_or_weight_files=0, training_signals_sent=False,
+        GT_rows_read=0, Dev_rows=0, Test_rows=0, new_accuracy=False, supported_innovations=0, goal_met=False,
+        seconds=time.monotonic()-started,
+        peak_process_RSS_GiB=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024**2,
+        storage=guard_storage(work),
+        scope='Eight fixed Train frames only. CPU FP32 reference RGB backbone/head. Its features '
+              'are explicitly rounded to FP16 before the FP32 native module, which emits FP16 features. '
+              'This is a feature-rounding diagnostic, not the production FP16 RGB backbone/head path. '
+              'No CPU/CUDA numerical equivalence or GPU qualification claim. '
+              'FP32 RGB reference head used only for confidence maps: no fused head, NMS, tracker, '
+              'official metrics, convergence, accuracy, modality attribution or budget decisions. '
+              'Temporal coverage includes only four consecutive frames per sequence and is not '
+              'a long-occlusion or full-sequence experiment. Gate/correction activity is not utility.')
+    save(output / 'complete.json', report)
+    print(json.dumps(dict(status=report['status'], seconds=report['seconds'],
+                         peak_process_RSS_GiB=report['peak_process_RSS_GiB'])), flush=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output-directory', type=Path, required=True)
+    args = parser.parse_args()
+    args.output_directory.mkdir(exist_ok=False)
+    try:
+        run(args.output_directory)
+    except Exception as error:
+        save(args.output_directory / 'failure.json', dict(status='CPU_GATE_DIAGNOSTIC_FAILED',
+             UTC=utc(), error=repr(error), training_signals_sent=False, new_accuracy=False))
+        raise
+
+
+if __name__ == '__main__':
+    main()

@@ -36,4 +36,6 @@ quality_rgb／quality_gray／temporal_rgb／quality_ir现已各完成六轮全�
 
 新增已完成四组的[参数／历史梯度诊断](PERCEPTUAL_MFT_20261126_NATIVE_PARAMETER_LEARNING_DIAGNOSTIC.md)：145个参数张量均保存正AdamW二阶矩，各40884步；三层输出投影均已离开零初始化。该证据排查整分支无历史梯度，不证明精度、推理修正或收敛；完整Dev及其真实门控／特征修正统计仍待原六组全部完成。
 
+新增固定8帧Train的[CPU特征舍入诊断](PERCEPTUAL_MFT_20261126_NATIVE_TRAIN_FEATURE_ROUNDING_DIAGNOSTIC.md)：FP32 RGB参考FPN显式转FP16后，IR三层相对修正RMS约13.1%／4.1%／5.4%。这些样本的修正实际非零，但RGB／灰度也有明显修正，不证明精度或模态贡献；完整GPU Dev仍待完成。首次CPU FP16参考路径因成本结束的−15／外层241及原件完整保留，原GPU训练未改动。
+
 固定结构主方案仍29.834177 HOTA，对原RGB29.529为+0.305177。本轮原生方案尚无完整Dev／Test准确率；S不稳定、R有负贡献、C只有条件消融支持，独立创新计数仍0。历史Test暴露、原RGB预训练见Dev及伪IR由RGB派生的限制保持。全六组完整Train、Dev／预算决策、所需消融、完整七段Test及独立成本仍待完成，目标34.529及2–3项独立贡献未达，Goal保持active。

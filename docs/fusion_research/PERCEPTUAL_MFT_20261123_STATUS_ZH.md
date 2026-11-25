@@ -64,6 +64,13 @@ AdamW二阶矩，各自40884步，三层零初始化输出投影均已全部更�
 继续第二轮，GPU5原temporal_ir也继续第二轮，均未重启。见
 [NATIVE_PARAMETER_LEARNING](PERCEPTUAL_MFT_20261126_NATIVE_PARAMETER_LEARNING_DIAGNOSTIC.md)。
 
+新增固定8帧Train的CPU特征舍入诊断：使用FP32 RGB参考网络，将FPN
+显式转FP16后再融合。IR三层相对修正RMS约13.1%／4.1%／5.4%，这8帧
+未见门控全闭或修正全部被舍入抹去；不能替代正式GPU路径或HOTA。
+实际第二次CPU退出0；首次FP16参考路径因成本结束，−15／外层241及
+原规格／源码／日志保留。原GPU训练未被发送信号，独立贡献仍0。见
+[NATIVE_TRAIN_FEATURE_ROUNDING](PERCEPTUAL_MFT_20261126_NATIVE_TRAIN_FEATURE_ROUNDING_DIAGNOSTIC.md)。
+
 下方早期组件与等待状态按记录时点保留，当前执行状态以本页顶部为准。
 
 已完成六组已训练融合P3的Train身份检索诊断：固定72帧、1079个GT框、
