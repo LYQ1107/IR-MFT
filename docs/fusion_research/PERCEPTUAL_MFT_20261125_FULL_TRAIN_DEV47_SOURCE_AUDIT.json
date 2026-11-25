@@ -1,0 +1,321 @@
+{
+  "status": "COMPLETE_ALL50_FULL_TRAIN_DEV_POST_AUDIT_AND_ORIGINAL_TEST_FREEZE",
+  "UTC": "2026-11-25T01:27:16.261238+00:00",
+  "protected_sources": {
+    "existing_registrations": [
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_pipeline_registered.json",
+        "registration_sha256": "a095a245ed628a2c019be1ac4dfeef80ee2cc98b4d59de48697c34c8c10a33ef",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_content_guard_recovery_registered.json",
+        "registration_sha256": "cc46a2be9588e88bc37d69d73ebf1be6de9d295e6057b6f2d04539c1b7f9f2ef",
+        "sources": 4,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_pipeline_registered.json",
+        "registration_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+        "sources": 102,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/data3/liuyeqiang/IR-MFT/configs/perceptual_correlation_recovery_workflow_20261124.json",
+        "registration_sha256": "207f89148ed0a3d1f38db898dd695f306258274e35f50466f5f51bdcd13da9a2",
+        "sources": 87,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_worker_interfaces_registered.json",
+        "registration_sha256": "42826f40efa77d5f56722ad497faaedc417f0e9c56ac4a379945e7e069d33fb7",
+        "sources": 30,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_study_registered.json",
+        "registration_sha256": "6c97818940ff48a23f54601173f0573c01494ac7fd598183c9417397e126e0bb",
+        "sources": 94,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/neck72_fresh_runtime_registered.json",
+        "registration_sha256": "907fc7dec7e24f55450e81a150a14366d071144d489844443f75efdaffbc8aa6",
+        "sources": 137,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fusion_factorial_pipeline_registered.json",
+        "registration_sha256": "bc05f29d9b9c3d53d277ad46dd3f4f0d787911c8c7252723a8a3918985d923a1",
+        "sources": 180,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      },
+      {
+        "registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_spatial/pipeline_registered.json",
+        "registration_sha256": "aed348fd24ef60cbef6f90bf9fa5319d2d3a539a7cacf41633d6daeb87a323b4",
+        "sources": 323,
+        "all_sources_and_artifacts_exact": true,
+        "verified_here": true
+      }
+    ],
+    "F4_source_count": 384,
+    "F4_registration_sha256": "76cf91221ac39a351e6e97c66570d4de25bf903c3bac998ba35087a81cd19468"
+  },
+  "runtime_dynamic_source_count": 137,
+  "all_old_sources_and_artifacts_exact": true,
+  "old_controller_lifecycle": [
+    {
+      "expected_identity": {
+        "pid": 3934649,
+        "start_ticks": 77568810,
+        "command_sha256": "e7bfc64738b598e97c4eae4191063e9ed6d352b388adb7112ca40071b1f36cf5",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_structural_full_train_dev.py"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3934650,
+        "start_ticks": 77568810,
+        "command_sha256": "3b7dc53709e247ddcd14cbcd6cf635127e61f0d88da4e1d2ac818e7de78e5bee",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/advance_structural_full_train.py"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3934651,
+        "start_ticks": 77568810,
+        "command_sha256": "f840a150644e3f9d5b48ce44cf95321d3d5997317f91c1dc3205986f399242d4",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/structural_legacy_backfill.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3943138,
+        "start_ticks": 77632196,
+        "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_native_pyramid_study.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 3950079,
+        "start_ticks": 77683517,
+        "command_sha256": "8d6874b7c89cc28798605364ee926c4e15bf4cf7d0af18b1a526774af4dff84f",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_correlation_recovery_workflow.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 4099887,
+        "start_ticks": 78544481,
+        "command_sha256": "ad09f7e0e26a60133a4f972ac39636ac351e77ae84f5deafc4a01f2342bffee3",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_neck72_study.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 4173043,
+        "start_ticks": 78948799,
+        "command_sha256": "2525d7870ddfa337f1ee70c882c5b37022f5163aad6bc20bc460bf8ceb7d7f20",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_neck72_runtime.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 57946,
+        "start_ticks": 79430674,
+        "command_sha256": "e0800a923d58075622257e12a3965e14087c407b8c617f18cd67b0f8478d8ab4",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_fusion_factorial.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 184707,
+        "start_ticks": 80301525,
+        "command_sha256": "6d78352ee397702c97a65a092e71ad87e4f4957b4b36aa930e1f339f4bffc696",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_spatial_native.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    },
+    {
+      "expected_identity": {
+        "pid": 488189,
+        "start_ticks": 82242612,
+        "command_sha256": "cb654835ab22b9a1078e053073ad5ebf46f467050d7708420a6cfc0133778423",
+        "process_state": "S",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/launch_fusion_memory.py",
+          "run"
+        ],
+        "same_previous_identity": true
+      },
+      "original_process_exited": false,
+      "same_live_original_verified": true
+    }
+  ],
+  "original_Dev_jobs": {
+    "COMPLETE": 50
+  },
+  "original_Dev_controller_exited": true,
+  "original_Dev_state_sha256": "5c0bc8a461a050e79575cd102ef9e75bf2e1d5cf32e12706b3b90c055135576c",
+  "original_next_phase": "RUNNING_ALL_FROZEN_FULL_TRAIN_TEST",
+  "actual_original_runtime_process": {},
+  "frozen_original_Test_cases": 13,
+  "frozen_original_Test_models": 12,
+  "original_Test_specification_sha256": "a4c716f4b1e9b3f0702ff16106b3fe9282d6c6fc8f5c5469faca8f2c27b95265",
+  "original_Test_selection_sha256": "6e5787039e7d59bc702ed95cb9ee18cd4196b27d0b2c7e4200a70aa68b2c34f7",
+  "new_Test_accuracy_used_for_choice": false,
+  "new_TaskUtility_formal_registration_present": false,
+  "new_TaskUtility_Test_freeze_present": false,
+  "new_TaskUtility_pinned_sources_unchanged": 412,
+  "independent_Dev_auditor_R1_exit_code": 1,
+  "independent_Dev_auditor_R2_exit_code": 0,
+  "new_GPU_work_by_independent_audit": false,
+  "original_experiments_restarted": false,
+  "storage_stats": {
+    "work_file_bytes": 62872745882,
+    "work_cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960,
+    "free_bytes": 2927804608512
+  },
+  "work_GiB": 58.554807567968965,
+  "independent_free_GiB": 2726.730525970459,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "followup_Test_producer_UTC": "2026-11-25T01:29:58.592147+00:00",
+  "actual_Test_state_sha256": "65953da96ec081745bb3bb64874b390f9b70c0006971036437d1a79c74f1ddef",
+  "actual_Test_job_statuses": {
+    "FTT_primary_IR": "PENDING",
+    "FTT_matched_rgb": "PENDING",
+    "FTT_matched_gray": "PENDING",
+    "FTT_no_S_paired": "PENDING",
+    "FTT_no_S_Dev_best": "PENDING",
+    "FTT_no_C_paired": "PENDING",
+    "FTT_no_C_Dev_best": "PENDING",
+    "FTT_no_R_paired": "PENDING",
+    "FTT_no_R_Dev_best": "PENDING",
+    "FTT_IR_image_roll": "PENDING",
+    "FTT_IR_unavailable": "PENDING",
+    "FTT_source_RGB_fresh": "PENDING",
+    "FTT_source_RGB_canonical": "PENDING"
+  },
+  "actual_Test_accuracy_read": false,
+  "runtime_public_artifact_hashes": {
+    "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261123_FULL_TRAIN_SINGLE_METHOD_RUNTIME.json": "b841b198579acc72577b3b2c0fcfde9feb7dc54325f4f17155de6aa9b86b7ed3",
+    "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261123_FULL_TRAIN_SINGLE_METHOD_RUNTIME.md": "e8f8fd7e571a6e05a299c0a5758db5e8c274ce320be8782e331599d2c2ce0237",
+    "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261123_FULL_TRAIN_SINGLE_METHOD_RUNTIME_MEMORY_COMPONENTS.json": "f493672a54154d2d831fafb29914a2cc409dafaeb4a8420744a30b70915f1780",
+    "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261123_FULL_TRAIN_SINGLE_METHOD_RUNTIME_MEMORY_COMPONENTS.md": "9b719168aea50625d1d81239a9f07abedd7c4519defa7f97ef582727ec36d7fe"
+  },
+  "actual_live_Test_producers": [
+    {
+      "sequence": "SN-009",
+      "frames": 4500,
+      "pid": 734759,
+      "start_ticks": 83696629,
+      "command_sha256": "c68c60444c1289b15c0bac8db7a24b5595447aaadbed9ced31571d1e98c22109",
+      "physical_gpu": "4",
+      "actual_GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+      "nvidia_memory_MiB": "2622",
+      "source_prefix_audit_exit_code": 0
+    },
+    {
+      "sequence": "SN-011",
+      "frames": 4500,
+      "pid": 734761,
+      "start_ticks": 83696644,
+      "command_sha256": "7b979aa9859fe2165e0b261279cf9850c0cc287e0fe6ee9789c7018da3b16dc0",
+      "physical_gpu": "5",
+      "actual_GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+      "nvidia_memory_MiB": "2622",
+      "source_prefix_audit_exit_code": 0
+    }
+  ]
+}

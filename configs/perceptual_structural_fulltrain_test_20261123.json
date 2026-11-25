@@ -1,0 +1,225 @@
+{
+  "status": "FROZEN_FROM_ALL50_DEV_BEFORE_NEW_FULL_TRAIN_TEST",
+  "models": [
+    {
+      "id": "CG3_source_RGB",
+      "cue": "rgb",
+      "seed": 0,
+      "baseline": true
+    },
+    {
+      "id": "FT_gray_111_s0_e24",
+      "cue": "gray",
+      "components": "111",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/gray_111_s0/epoch24.pt"
+    },
+    {
+      "id": "FT_ir_011_s0_e24",
+      "cue": "ir",
+      "components": "011",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_011_s0/epoch24.pt"
+    },
+    {
+      "id": "FT_ir_011_s0_e48",
+      "cue": "ir",
+      "components": "011",
+      "seed": 0,
+      "epoch": 48,
+      "logical_Train_epoch": 2,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_011_s0/epoch48.pt"
+    },
+    {
+      "id": "FT_ir_101_s0_e24",
+      "cue": "ir",
+      "components": "101",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_centering",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_101_s0/epoch24.pt"
+    },
+    {
+      "id": "FT_ir_101_s0_e48",
+      "cue": "ir",
+      "components": "101",
+      "seed": 0,
+      "epoch": 48,
+      "logical_Train_epoch": 2,
+      "variant": "no_centering",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_101_s0/epoch48.pt"
+    },
+    {
+      "id": "FT_ir_110_s0_e24",
+      "cue": "ir",
+      "components": "110",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_110_s0/epoch24.pt"
+    },
+    {
+      "id": "FT_ir_110_s0_e72",
+      "cue": "ir",
+      "components": "110",
+      "seed": 0,
+      "epoch": 72,
+      "logical_Train_epoch": 3,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_110_s0/epoch72.pt"
+    },
+    {
+      "id": "FT_ir_111_s0_e24",
+      "cue": "ir",
+      "components": "111",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/epoch24.pt"
+    },
+    {
+      "id": "FT_ir_111_s0_e24_IR_image_spatial_roll",
+      "cue": "ir",
+      "components": "111",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/epoch24.pt",
+      "intervention": "IR_image_spatial_roll"
+    },
+    {
+      "id": "FT_ir_111_s0_e24_unavailable",
+      "cue": "ir",
+      "components": "111",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/ir_111_s0/epoch24.pt",
+      "intervention": "unavailable"
+    },
+    {
+      "id": "FT_rgb_111_s0_e24",
+      "cue": "rgb",
+      "components": "111",
+      "seed": 0,
+      "epoch": 24,
+      "logical_Train_epoch": 1,
+      "variant": "no_cycle",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/structural_full_train_fit/rgb_111_s0/epoch24.pt"
+    }
+  ],
+  "cases": [
+    {
+      "id": "FTT_primary_IR",
+      "source_Dev_case": "FT_ir_111_s0_e24_raw",
+      "source_Dev_metrics_sha256": "02aacb5346567654386a57521bbc0dff1464a528884f0d9f1af2e74c3849fddf"
+    },
+    {
+      "id": "FTT_matched_rgb",
+      "source_Dev_case": "FT_rgb_111_s0_e24_priority",
+      "source_Dev_metrics_sha256": "c8c1707190ad9b8102a85d939ebe58440ee89d61d50db77a691b8b2e00fcff4f"
+    },
+    {
+      "id": "FTT_matched_gray",
+      "source_Dev_case": "FT_gray_111_s0_e24_raw",
+      "source_Dev_metrics_sha256": "b454618a76568f0abb5aebbd4c25bfae3808f51c27299ec05887fdd2e68297a0"
+    },
+    {
+      "id": "FTT_no_S_paired",
+      "source_Dev_case": "FT_ir_011_s0_e24_raw",
+      "source_Dev_metrics_sha256": "af13f29d01f267af322d6af24593649279e882e2abc5bf45026ad2de7b20e482"
+    },
+    {
+      "id": "FTT_no_S_Dev_best",
+      "source_Dev_case": "FT_ir_011_s0_e48_raw",
+      "source_Dev_metrics_sha256": "88b9af8d5fc236453ca63efe72957ebbbcab648987e6e83af4682b5f56fbf87c"
+    },
+    {
+      "id": "FTT_no_C_paired",
+      "source_Dev_case": "FT_ir_101_s0_e24_raw",
+      "source_Dev_metrics_sha256": "2d5601bdeadfa3788d958a3b640a18efd8dd369c2dbd0124ebbb1b757f37f79b"
+    },
+    {
+      "id": "FTT_no_C_Dev_best",
+      "source_Dev_case": "FT_ir_101_s0_e48_raw",
+      "source_Dev_metrics_sha256": "d4146a91fb72231871c5af3a80659344bcfc813207524c0e67e7fbbc2f436a74"
+    },
+    {
+      "id": "FTT_no_R_paired",
+      "source_Dev_case": "FT_ir_110_s0_e24_raw",
+      "source_Dev_metrics_sha256": "f4d047507fbeb8992d65a4639dc8da63962a83b58f96d678e9bb85e63975ef64"
+    },
+    {
+      "id": "FTT_no_R_Dev_best",
+      "source_Dev_case": "FT_ir_110_s0_e72_raw",
+      "source_Dev_metrics_sha256": "9ae577bbb3a8fb0a61fe789706d5f62adb3f26f4093c3518b66b18ba99517cc0"
+    },
+    {
+      "id": "FTT_IR_image_roll",
+      "source_Dev_case": "FT_ir_111_s0_e24_IR_image_spatial_roll_raw",
+      "source_Dev_metrics_sha256": "df83e3ba78d734d0b825b0c1104f388240d46c8bb19a5ac6ab0c5744fd3e6cbb"
+    },
+    {
+      "id": "FTT_IR_unavailable",
+      "source_Dev_case": "FT_ir_111_s0_e24_unavailable_raw",
+      "source_Dev_metrics_sha256": "b1f603337217aa97bc172a96a961b4dad9c5f18fe1171b06cb3a437d9de96d03"
+    },
+    {
+      "id": "FTT_source_RGB_fresh",
+      "source_Dev_case": "FT_source_RGB_fresh",
+      "source_Dev_metrics_sha256": "a46787bed557af7ff18bb5b40128e704b3c9ce5c5be69e9bfdcf3c4a2dfdbb77"
+    },
+    {
+      "id": "FTT_source_RGB_canonical",
+      "source_Dev_case": "FT_source_RGB_canonical",
+      "source_Dev_metrics_sha256": "e6c0768606a13034166c0bf6b6c39e3db58dd1ea6f5e4070da802e12f1062402"
+    }
+  ],
+  "roles": {
+    "primary_IR": "FTT_primary_IR",
+    "matched_rgb": "FTT_matched_rgb",
+    "matched_gray": "FTT_matched_gray",
+    "no_S_paired": "FTT_no_S_paired",
+    "no_S_Dev_best": "FTT_no_S_Dev_best",
+    "no_C_paired": "FTT_no_C_paired",
+    "no_C_Dev_best": "FTT_no_C_Dev_best",
+    "no_R_paired": "FTT_no_R_paired",
+    "no_R_Dev_best": "FTT_no_R_Dev_best",
+    "IR_image_roll": "FTT_IR_image_roll",
+    "IR_unavailable": "FTT_IR_unavailable",
+    "source_RGB_fresh": "FTT_source_RGB_fresh",
+    "source_RGB_canonical": "FTT_source_RGB_canonical"
+  },
+  "config_sha256": "19a15e95cd2a44542b383ff5852cc5cdac31b330db574a63f623c38f8ab531a5",
+  "full_train_study_sha256": "d0e434872fc804829fdf9724bc80a25f229d83db4b51ebd9221b7152e97a91ba",
+  "single_seed_user_policy_sha256": "1f278840ccc0f60207f38fa4b31c492947f8fa62805979aae96913a92f0f6bd0",
+  "complete_Dev_analysis_sha256": "907f6cff1f4e131101faaa4b5dcb5bd2f1e00e81058b91bc53e8b04909b82deb",
+  "primary_case": "FTT_primary_IR",
+  "primary_source_Dev_case": "FT_ir_111_s0_e24_raw",
+  "selection_rule": "FullIR111 primary selected by maximum completeDevHOTA over3snapshots and raw/priority. Tie: earlier macro pass, then raw. R/G receive the same6opportunities. Each removal has a primary-epoch/policy role and its independently Dev-selected best role. Never promote a Test winner or sum removal deltas.",
+  "source_audit_policy": "Same previously registered last4tail protocol: matched boxes<=2pixels,scores<=.005; strict and nonstrict .6/.7 membership exact; at most1unmatched sub.6 tail candidate. Not tracking equivalence. Both fresh/canonical controls and exact unavailable checks mandatory.",
+  "counts": {
+    "roles": 13,
+    "unique_cases": 13,
+    "models": 12,
+    "output_streams": 23,
+    "sequences": 7,
+    "frames_each": 15985
+  },
+  "mandatory_Test_even_if_Dev_negative": true,
+  "Test_accuracy_used_for_selection": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

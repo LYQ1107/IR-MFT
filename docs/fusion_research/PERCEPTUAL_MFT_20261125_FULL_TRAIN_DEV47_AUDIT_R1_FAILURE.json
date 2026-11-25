@@ -1,0 +1,60 @@
+{
+  "status": "PRESERVED_INDEPENDENT_DEV_AUDITOR_R1_FORMAT_ASSUMPTION_FAILURE",
+  "actual_execution": {
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_full_train_dev47.py",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/all50_full_train_Dev47_audit_20261125"
+    ],
+    "pid": 729911,
+    "identity": {
+      "pid": 729911,
+      "start_ticks": 83661083,
+      "command_sha256": "f4de8d5aed8984148390601ba776bd96fd6ec84fcedaab30e26a29d1c499e84c"
+    },
+    "source_sha256": "a8a64effb0059c260cbcb2cf3af604217dad8093e8119fbbc7b54da75f5c879a",
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/all50_full_train_Dev47_audit_20261125.log",
+    "status": "EXITED",
+    "prior_wait_for_complete_original_Dev_seconds": 0.0008674710988998413,
+    "new_GPU_work": false,
+    "exit_code": 1,
+    "seconds": 5.527271047933027,
+    "peak_sampled_RSS_GiB": 0.5741844177246094,
+    "RSS_limit_exceeded": false,
+    "log_sha256": "259d0f85ac191b48de1e4730372e5450b914e38b534dcb2689858b4541c87eb1",
+    "source_unchanged": true
+  },
+  "archived_source": "tools/audit_mft_full_train_dev47_r1.py",
+  "archived_source_sha256": "a8a64effb0059c260cbcb2cf3af604217dad8093e8119fbbc7b54da75f5c879a",
+  "original_log": "Traceback (most recent call last):\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_full_train_dev47.py\", line 107, in <module>\n    if __name__=='__main__':main()\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_full_train_dev47.py\", line 48, in main\n    assert set(parsed['per_sequence47'])==set(protocol['dev']) and len(parsed['combined47'])==47\nTypeError: unhashable type: 'dict'\n",
+  "cause": "Auditor mistakenly treated official_csv47.per_sequence47 as a dictionary; original parser returns list including COMBINED. Corrected only auditor row-sequence access; original metric files, parser, models, frozen choices and scientific budget unchanged.",
+  "R2_actual_execution": {
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_full_train_dev47.py",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/all50_full_train_Dev47_audit_20261125_r2"
+    ],
+    "pid": 731086,
+    "identity": {
+      "pid": 731086,
+      "start_ticks": 83669041,
+      "command_sha256": "b920e924e5f76c0c3c4f5445e875d85e98f1ca40651e688028cb1e144e7caeb3"
+    },
+    "exit_code": 0,
+    "seconds": 5.5501204010797665,
+    "peak_sampled_RSS_GiB": 0.5787010192871094,
+    "RSS_limit_exceeded": false,
+    "source_sha256": "75e2dea99dc695aaac64793719f27735387c68d21b0b056ce3d04a3645b8e206",
+    "source_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/all50_full_train_Dev47_audit_20261125_r2.log",
+    "log_sha256": "b5ef58787cc235413b552a6a3df7588e092035fd293da23fe931ce355c131511",
+    "new_GPU_work": false,
+    "new_Test_accuracy_read": false
+  },
+  "new_GPU_work": false,
+  "new_Test_accuracy_read": false
+}
