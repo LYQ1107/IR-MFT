@@ -1,0 +1,42 @@
+{
+  "UTC": "2026-11-25T22:29:30.800328+00:00",
+  "registered_native_sources_unchanged": 102,
+  "recovery_PID": 1489657,
+  "recovery_kernel_state": "S",
+  "recovery_live_identity_matches": true,
+  "recovery_status": {
+    "status": "WAITING_ORIGINAL_NAS_SUPERVISOR_RECONNECTION",
+    "errno": 2,
+    "error": "FileNotFoundError(2, 'No such file or directory')",
+    "new_GPU_work": false,
+    "PID": 1489657,
+    "timestamp": 1795645765.858824
+  },
+  "native_state_status": "FAILED_PRESERVE_NATIVE_STUDY",
+  "current_native_controller_PID": 3943138,
+  "IR_job": {
+    "id": "temporal_ir",
+    "physical_gpu": "5",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/train_native_pyramid.py",
+      "fit",
+      "--fit-id",
+      "temporal_ir",
+      "--through-epoch",
+      "6"
+    ],
+    "status": "FAILED",
+    "pid": 1248117,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_ir.log",
+    "slot": "5",
+    "exit_code": 1
+  },
+  "resource": {
+    "work_GiB": 59.45161909144372,
+    "cap_GiB": 64,
+    "free_GiB": 2683.9659271240234,
+    "reserve_GiB": 40
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "status": "SOURCE_QUEUE_REPORTED_FAILURE_PRESERVE_ORIGINAL_JOBS",
+  "UTC": "2026-11-25T22:16:57.070232+00:00",
+  "observer": {
+    "pid": 1452564,
+    "proc_snapshot_ok": true,
+    "state": "R",
+    "start_ticks": 90900992,
+    "command_sha256": "fdd9adea33df93c6aafdfcb3c8f12f4bd9fd1ed9c4bf086479b6190a9f38d174",
+    "command": "python3 -u /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_ir6_read_only_watch_20261126_r2.py",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "native_phase": "FAILED_PRESERVE_NATIVE_STUDY",
+  "original_controller": {
+    "pid": 3943138,
+    "proc_snapshot_ok": true,
+    "state": "D",
+    "start_ticks": 77632196,
+    "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+    "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/launch_native_pyramid_study.py run",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "workers": [
+    {
+      "id": "temporal_gray",
+      "status": "COMPLETE",
+      "pid": 1330025,
+      "physical_gpu": "4",
+      "exit_code": 0,
+      "actual_process": {
+        "pid": 1330025,
+        "proc_snapshot_ok": false,
+        "PID_exists_on_recheck": false,
+        "read_error": "FileNotFoundError(2, 'No such file or directory')",
+        "read_race_not_terminal_qualification": true
+      },
+      "complete_epochs": 6,
+      "latest_actual_update": {
+        "fit": "temporal_gray",
+        "epoch": 6,
+        "clip": 6784,
+        "clips": 6814,
+        "loss": 2.572262005731112,
+        "actual_updates": 40854,
+        "seconds": 18335.954685214092
+      }
+    },
+    {
+      "id": "temporal_ir",
+      "status": "FAILED",
+      "pid": 1248117,
+      "physical_gpu": "5",
+      "exit_code": 1,
+      "actual_process": {
+        "pid": 1248117,
+        "proc_snapshot_ok": false,
+        "PID_exists_on_recheck": false,
+        "read_error": "FileNotFoundError(2, 'No such file or directory')",
+        "read_race_not_terminal_qualification": true
+      },
+      "complete_epochs": 4,
+      "latest_actual_update": {
+        "fit": "temporal_ir",
+        "epoch": 5,
+        "clip": 5888,
+        "clips": 6814,
+        "loss": 2.42559096607906,
+        "actual_updates": 33144,
+        "seconds": 30891.103930098005
+      }
+    }
+  ],
+  "host_MemAvailable_GiB": 92.71906661987305,
+  "independent_free_GiB": 2684.5955238342285,
+  "new_GPU_NN_training_seed_work_by_observer": false,
+  "new_Dev_Test_accuracy": false,
+  "goal_met": false,
+  "observer_intended_exit_code": 1,
+  "observer_numeric_exit_requires_parent_confirmation": true
+}

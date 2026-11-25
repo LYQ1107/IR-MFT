@@ -11,7 +11,7 @@ quality_rgb／quality_gray／quality_ir／temporal_rgb／temporal_gray各完成�
 | 5 | 2.57830708 | 2.57856514 | 2.57829463 | 2.57967240 | 2.57889570 |
 | 6 | 2.57770683 | 2.57693930 | 2.57791129 | 2.57765829 | 2.57691833 |
 
-当前仅剩temporal_ir在原GPU5进程继续训练：已完成四遍，进入第五遍。原temporal_gray已完成第六遍并退出0；新只读观察器接续跟踪原IR进程。六组完整Train共同预算结束前，完整Dev尚未启动；完整Dev曲线决定是否统一延长九／十二轮，正式正常条件即使较差仍须完整七段Test。
+temporal_ir原GPU5进程在第五遍因NAS图像读取EIO退出1，原控制器与观察器均已结束。已保存四遍及第五遍5888批次，恢复入口已通过CPU检查并启动，等待原NAS图像连续SHA匹配后自动续跑；见[故障与恢复准备](PERCEPTUAL_MFT_20261126_NATIVE_NAS_IO_RECOVERY.md)。temporal_gray已完成第六遍并退出0。六组完整Train共同预算结束前，完整Dev尚未启动；完整Dev曲线决定是否统一延长九／十二轮，正式正常条件即使较差仍须完整七段Test。
 
 | 正常条件 | 当前状态 | 完整Train轮数 | 独立模块核对 |
 | --- | --- | ---: | --- |
@@ -20,7 +20,7 @@ quality_rgb／quality_gray／quality_ir／temporal_rgb／temporal_gray各完成�
 | quality_ir | 原worker完成并退出0 | 6 | 全部六轮 |
 | temporal_rgb | 原worker完成并退出0 | 6 | 全部六轮 |
 | temporal_gray | 原worker完成并退出0 | 6 | 全部六轮 |
-| temporal_ir | GPU5原进程第五遍正式训练 | 4 | 尚无完整六轮资格 |
+| temporal_ir | NAS断连；恢复进程等待固定图像校验 | 4 | 尚无完整六轮资格 |
 
 时序灰度新增[六轮原件核对](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_COMPLETE_TRAIN.json)、[执行与成本](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_COMPLETE_TRAIN_EXECUTION.json)、[原始日志](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_COMPLETE_TRAIN_CPU_LOG.txt)、[完成及发布核对](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_COMPLETE_TRAIN_VERIFICATION.json)、[科研分析](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_COMPLETE_TRAIN.md)。首次审计因依赖路径漏项在导入阶段退出1，第二次恢复原环境路径后实际退出0；原训练与源码均保持，失败原件完整保留。
 

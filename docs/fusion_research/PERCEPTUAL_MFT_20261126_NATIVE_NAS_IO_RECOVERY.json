@@ -1,0 +1,179 @@
+{
+  "status": "PREPARED_SOURCE_PINNED_IO_RECOVERY_RUNNING_WAITING_ORIGINAL_NAS",
+  "UTC": "2026-11-25T22:30:58.490666+00:00",
+  "failure": "Original fixed November IR read raised EIO; subsequent NAS mount reads returned ENOTCONN/ENOENT while the existing supervisor retries SSH banner timeouts.",
+  "original_IR_actual_exit_code": 1,
+  "original_IR_observer_actual_exit_code": 1,
+  "original_failed_controller_and_worker_retired": true,
+  "last_completed_full_epochs": 4,
+  "last_observed_epoch5_clip": 5888,
+  "failed_executed_optimizer_updates": 33165,
+  "saved_epoch5_clips": 5888,
+  "saved_optimizer_updates": 33144,
+  "unsaved_optimizer_updates_to_replay": 21,
+  "physical_replayed_frames_expected": 84,
+  "replay_cost_is_infrastructure_overhead_not_extra_logical_epochs": true,
+  "checkpoint_sha256": "4aa2c60d56438dd2ce6c8bf5372d1e79d87b09639c473f6c3aa57a6c92c83965",
+  "saved_module_sha256": "336934293ca37f7623da8f3674b2796bf6beab56435570907c7fcd303d9990d1",
+  "saved_module_and_optimizer_finite": true,
+  "saved_optimizer_parameter_states": 46,
+  "saved_memory_sequence": "SN-015",
+  "saved_memory_frame": 4868,
+  "saved_memory_requires_grad_all_false": true,
+  "saved_torch_and_CUDA_RNG_fields_present": true,
+  "CPU_address_prefix_restore": {
+    "resumed_previously_delivered_clips": 5888,
+    "resumed_prefix_sha256": "a0057e412b06da2f3495fd1737d7cc62aa0cacc6cc82fc2d7596b082b168112e",
+    "reread_images": 0
+  },
+  "actual_CPU_preparation_tool_exit_code": 0,
+  "CPU_preparation_tool_session": 91723,
+  "actual_engineering_tool_exit_codes": [
+    0,
+    0
+  ],
+  "actual_training_python_engineering_checks": 11,
+  "original_continuation_AST_sha256": "52a08bc9b8ca998272d451bf11088519c0639363b3559a82c2c4d13097c00562",
+  "AST_schema_note": "System-Python and training-Python AST dumps have different schema fields; both raw engineering reports retained. The Python3.10 report exactly matches registration, and the original controller file SHA is identical in both. Recovery uses the original training Python3.10.21.",
+  "original_frozen_scientific_body_file": "/data3/liuyeqiang/IR-MFT/tools/launch_native_pyramid_study.py",
+  "original_frozen_scientific_body_file_sha256": "6117c69856a69ca7eb41f043cec082f2c95306edfee4f722e7287ca9a3234a5b",
+  "original_102_registered_sources_unchanged": true,
+  "completed_five_normal_fits_rerun": false,
+  "source": "tools/audit_mft_io_resume.py",
+  "source_sha256": "2c115277b7d558eb3a6575e5f47c6e1ec0b050f01ec876b1228d2acfb9ffe723",
+  "registration_sha256": "5821e6c864532d1f9634b39fb75444ba9794dd71df0ac69fccd55258da5ca554",
+  "new_recovery_controller_actual_live_identity": {
+    "UTC": "2026-11-25T22:29:30.800328+00:00",
+    "registered_native_sources_unchanged": 102,
+    "recovery_PID": 1489657,
+    "recovery_kernel_state": "S",
+    "recovery_live_identity_matches": true,
+    "recovery_status": {
+      "status": "WAITING_ORIGINAL_NAS_SUPERVISOR_RECONNECTION",
+      "errno": 2,
+      "error": "FileNotFoundError(2, 'No such file or directory')",
+      "new_GPU_work": false,
+      "PID": 1489657,
+      "timestamp": 1795645765.858824
+    },
+    "native_state_status": "FAILED_PRESERVE_NATIVE_STUDY",
+    "current_native_controller_PID": 3943138,
+    "IR_job": {
+      "id": "temporal_ir",
+      "physical_gpu": "5",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_ir",
+        "--through-epoch",
+        "6"
+      ],
+      "status": "FAILED",
+      "pid": 1248117,
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_ir.log",
+      "slot": "5",
+      "exit_code": 1
+    },
+    "resource": {
+      "work_GiB": 59.45161909144372,
+      "cap_GiB": 64,
+      "free_GiB": 2683.9659271240234,
+      "reserve_GiB": 40
+    }
+  },
+  "recovery_unified_session": 95270,
+  "recovery_actual_controller_exit_code": null,
+  "new_GPU_training_started_by_recovery_as_of_observation": false,
+  "data_gate": "Two consecutive byte SHA matches for the original fixed failed IR PNG, separated by15seconds, before original scientific continuation and new GPU child launch. Original on-read SHA guards remain active.",
+  "original_mount_supervisor_changed": false,
+  "checkpoint_backup": "A local hard link preserves the8MB saved optimizer/RNG/memory state; no checkpoint is uploaded. It initially shares the original inode and permits rollback after atomic replacement of latest.",
+  "copied_original_failure_and_preparation_evidence": [
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/native_pyramid_study_state.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/original_failed_queue_state.json",
+      "sha256": "552eb663b2dd0c4a478277dba4449ccd9484cdb0c310397739f417aa4677c83c",
+      "bytes": 18929
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/NORMAL_TRAIN_06_temporal_ir.log",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/original_IR_worker_log.txt",
+      "sha256": "3e328bd85728e8e949b848676716c58e501ea02671f666253ec9c0287bc6bceb",
+      "bytes": 152976
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/original_IR_four_epoch_progress.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/original_four_epoch_IR_progress.json",
+      "sha256": "e7b82f3f88a1394a50171c0d47702820ab61090d9136fdeb24ec712f0283356e",
+      "bytes": 20462
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/failure_1795645009765386724.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/original_IR_failure.json",
+      "sha256": "ddb37d1701c9d4cc3d194d1460c098c0ca8fa36b83726c4d71feea663e900e73",
+      "bytes": 15338
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/native_temporal_ir6_read_only_watch_20261126_r2_latest.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/original_IR_observer_terminal.json",
+      "sha256": "07d738fff0d79066924a29f2e92769682dec7b4901dd56cb172e821e420f3c5c",
+      "bytes": 2553
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/archive_manifest.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/archive_manifest.json",
+      "sha256": "92498b06e12d6e91ac6abd31aa2619ae1611ee770153f4c3a3aac137f9a0344b",
+      "bytes": 2980
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/engineering.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/engineering_system_python.json",
+      "sha256": "874c378ce0a41d3684ae4d113f8a70fb168666cc34b6d02ccc17231890d94be0",
+      "bytes": 351
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/python310_engineering/engineering.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/engineering_actual_python310.json",
+      "sha256": "160ca4f7022a6d797ec8bee1200815726b4681d22dc97d8c35435c11abaf2219",
+      "bytes": 351
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/registered.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/recovery_registered.json",
+      "sha256": "5821e6c864532d1f9634b39fb75444ba9794dd71df0ac69fccd55258da5ca554",
+      "bytes": 1693
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/nas_input_revalidation_r1.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/initial_NAS_input_revalidation.json",
+      "sha256": "f3b122c9697a24923e33453425d15bc9dd0dc3dd9e4852ca904584f29a5c5d23",
+      "bytes": 224
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/publication_live_observation.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/publication_live_observation.json",
+      "sha256": "1426db767ccee30e35cc2fb40b298496a7d52f13290a045ceeace95c5f95e951",
+      "bytes": 1166
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_io_recovery_20261126_r1/controller_execution.json",
+      "file": "docs/fusion_research/perceptual_20261126_native_nas_io_recovery/recovery_controller_initial_execution.json",
+      "sha256": "94c6f844d7707df4ee2311e590ee2db512d8faaea1a593c00d18c62ab92f7d7b",
+      "bytes": 1307
+    }
+  ],
+  "resource_observation": {
+    "work_GiB": 59.45161909144372,
+    "cap_GiB": 64,
+    "free_GiB": 2683.9659271240234,
+    "reserve_GiB": 40
+  },
+  "fixed_seed": 0,
+  "supported_innovations": 0,
+  "new_accuracy": false,
+  "goal_met": false,
+  "Goal_status": "active",
+  "scope": "Infrastructure recovery of the same registered fit, not an additional candidate, seed or successful accuracy result. Correct-fixed-input, protocol, fair RGB/gray controls and full Dev/Test decision code remain unchanged."
+}
