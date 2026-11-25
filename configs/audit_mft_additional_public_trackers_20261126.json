@@ -1,0 +1,273 @@
+{
+  "status": "FROZEN_ADDITIONAL_CPU_PUBLIC_TRACKERS_BEFORE_NEW_ACCURACY",
+  "output_directory": "additional_public_tracker_comparison_20261126_r4",
+  "reuse_detector_registration": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/public_tracker_comparison_20261125_r3/registered.json",
+  "reuse_detector_registration_sha256": "c85a21d5ca3c7e0f1cc8f8f8752f9b0a931e298e155dab05c03344be8ecf4b4a",
+  "streams": {
+    "source_RGB_fresh": {
+      "model_id": "CG3_source_RGB",
+      "proposal_key": "CG3_source_RGB",
+      "Dev_case": "FT_source_RGB_fresh",
+      "Test_case": "FTT_source_RGB_fresh",
+      "original_Test_configuration": "configs/perceptual_structural_fulltrain_test_cases_20261123/FTT_source_RGB_fresh.json"
+    },
+    "matched_rgb": {
+      "model_id": "FT_rgb_111_s0_e24",
+      "proposal_key": "FT_rgb_111_s0_e24",
+      "Dev_case": "FT_rgb_111_s0_e24_priority",
+      "Test_case": "FTT_matched_rgb",
+      "original_Test_configuration": "configs/perceptual_structural_fulltrain_test_cases_20261123/FTT_matched_rgb.json"
+    },
+    "matched_gray": {
+      "model_id": "FT_gray_111_s0_e24",
+      "proposal_key": "FT_gray_111_s0_e24_raw",
+      "Dev_case": "FT_gray_111_s0_e24_raw",
+      "Test_case": "FTT_matched_gray",
+      "original_Test_configuration": "configs/perceptual_structural_fulltrain_test_cases_20261123/FTT_matched_gray.json"
+    },
+    "primary_IR": {
+      "model_id": "FT_ir_111_s0_e24",
+      "proposal_key": "FT_ir_111_s0_e24_raw",
+      "Dev_case": "FT_ir_111_s0_e24_raw",
+      "Test_case": "FTT_primary_IR",
+      "original_Test_configuration": "configs/perceptual_structural_fulltrain_test_cases_20261123/FTT_primary_IR.json"
+    }
+  },
+  "references": {
+    "botsort": {
+      "root": "/data3/liuyeqiang/CFP-FishMOT_references/BoT-SORT",
+      "commit": "251985436d6712aaf682aaaf5f71edb4987224bd",
+      "origin": "https://github.com/NirAharon/BoT-SORT",
+      "files": {
+        "LICENSE": "12a15474ca15cec568da311e6cd89e593e3cd2bb5b790e75b90e1608306a3a5f",
+        "README.md": "b742de781491ad017d606fb2b46d2b1d5eea9f4be1817106321d96547d8d1465",
+        "tools/demo.py": "770b6133fd1e8c8bb374c2702dcc089eead596d1817a17dba3ec4d4fa5aff11c",
+        "tracker/basetrack.py": "a0f717a5059ebfa626a63cea5b040a649acd7720072f503cabfa24d749f082f6",
+        "tracker/bot_sort.py": "ba6dd32ad4b96ee49d6f70654159269bd45ce15fd0fe5007f3a1b81bc257edf0",
+        "tracker/gmc.py": "508c3a4ea0e9a72478ce2d1d29aa1eb8892b3804c76b524a16a34dca23dba9ba",
+        "tracker/kalman_filter.py": "c1a4c0acc71b9a91c0cdbe7b689f88712d68e7e8be4d7e54fb437f33fdbc9e5a",
+        "tracker/matching.py": "020b2215c20467b31f7d8a977a2f557b8d1838f8baa5a5be54c0b8d14bbee4e1",
+        "tracker/mc_bot_sort.py": "9ace9f1fff12b027c9903d30447ef1a1f252dfa04d5bfdf75ea7d077388ddaaa",
+        "tracker/tracking_utils/evaluation.py": "3d285196da0253756768a08789b5f159043111d7c01fe894e4b5328135fbc973",
+        "tracker/tracking_utils/io.py": "2ad720146b533697d1313e20d6573664038dd34c0259f4c7e738032e9c2b8379",
+        "tracker/tracking_utils/timer.py": "c233a8e3942d2734f0b56b79f385daabcc01a5707649c96943a518b951695d25"
+      }
+    },
+    "hybridsort": {
+      "root": "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT",
+      "commit": "396f8d30db13304c0cbaf1dcf2e16ded93ce1701",
+      "origin": "https://github.com/ymzis69/HybridSORT.git",
+      "files": {
+        "LICENSE": "e9d83751678cbaba6dfba902ea39215c423d93425e58f8450d6001f7261696f9",
+        "README.md": "2ebbaee7842daa9e8cded8bc717f0b30c713034a3c9d3bf7e2cf68d4f8e4809e",
+        "exps/example/mot/yolox_x_ablation_hybrid_sort.py": "7ded9f76b083c2e427533623647f0c17d19e83c8d86a9c611832c2a53b752629",
+        "trackers/hybrid_sort_tracker/association.py": "696c195f805dc1dee2bafa670820cb297ffbea9135a9dca1b6428c4f1ea24bd8",
+        "trackers/hybrid_sort_tracker/hybrid_sort.py": "b6fdd1b1a2f5fe9fa234e82ef09f45d3d3d66367bec27b97153335295ca32a35",
+        "trackers/hybrid_sort_tracker/hybrid_sort_reid.py": "b9a1817920636aeb11e1ff951e8fc1a2226370559e6af8b9ab1acb3251654a51",
+        "trackers/hybrid_sort_tracker/kalmanfilter.py": "54b81e53ffbd7958bc3810c5ecd5939e1bb6ee209956f56a3ba02147495cbbc0",
+        "trackers/hybrid_sort_tracker/kalmanfilter_score.py": "9e0a2a8e79bbb25bd2307a2c4f9d7e049c835340fc35a1f596a6fb40febd49a7",
+        "trackers/hybrid_sort_tracker/kalmanfilter_score_new.py": "df528a0ed2b2abdc08300fdafb42c5c99656c9c089f3331d933d5dd2d23d31c1",
+        "trackers/hybrid_sort_tracker/new_kalmanfilter.py": "4a72c2e51dfc952c53e4234381b232bfea9265a8f82fa95e0c7e43efc9d0602a",
+        "utils/args.py": "80bd7eea198d5c8abb9cd17425926f8f2a630c6ed3e25345c6ac66464b769e55"
+      }
+    }
+  },
+  "trackers": {
+    "botsort": {
+      "name": "BoT-SORT no ReID, official demo ORB GMC",
+      "frame_rate": 25,
+      "arguments": {
+        "track_high_thresh": 0.6,
+        "track_low_thresh": 0.1,
+        "new_track_thresh": 0.7,
+        "track_buffer": 30,
+        "match_thresh": 0.8,
+        "proximity_thresh": 0.5,
+        "appearance_thresh": 0.25,
+        "with_reid": false,
+        "cmc_method": "orb",
+        "name": "MFT",
+        "ablation": false,
+        "mot20": false
+      },
+      "source_preset": "tools/demo.py",
+      "scope": "Official demo association defaults and ORB GMC. MFT frame rate25 and common area>100 output filter; person aspect filter not applied. No appearance network or pretrained person-ReID replication."
+    },
+    "hybridsort": {
+      "name": "HybridSORT no ReID, official MOT17 ablation association preset",
+      "argument_overrides": {
+        "use_byte": true,
+        "inertia": 0.05,
+        "iou_thresh": 0.25,
+        "asso": "Height_Modulated_IoU",
+        "TCM_first_step": true,
+        "TCM_byte_step": true,
+        "TCM_first_step_weight": 1.0,
+        "TCM_byte_step_weight": 1.0,
+        "hybrid_sort_with_reid": false
+      },
+      "constructor": {
+        "det_thresh": 0.6,
+        "max_age": 30,
+        "min_hits": 3,
+        "iou_threshold": 0.25,
+        "delta_t": 3,
+        "asso_func": "Height_Modulated_IoU",
+        "inertia": 0.05,
+        "use_byte": true
+      },
+      "source_preset": "exps/example/mot/yolox_x_ablation_hybrid_sort.py",
+      "scope": "Original Hybrid_Sort API with official preset TCM, low-score association and HMIoU. Other argument defaults come from pinned utils/args.py. No appearance network."
+    }
+  },
+  "numpy_legacy_aliases": [
+    "float"
+  ],
+  "minimum_box_area": 100,
+  "no_image_feature_or_weight_cache_copies": true,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "GPU_work": false,
+  "CPU_workers": 1,
+  "complete8Dev_before8Test": true,
+  "all_Test_cases_mandatory_even_Dev_negative": true,
+  "no_parameter_search": true,
+  "original_fusion_primary_unchanged": true,
+  "historical_Test_already_exposed": true,
+  "historical_ReID_results": {
+    "commit": "619cf27b0395419aa97831a853aa4eb3013278ad",
+    "path": "docs/research/HISTORICAL_PUBLIC_METHODS_TRACKING_AUDIT.md",
+    "scope": "Existing BoT-SORT c0 and HybridSORT c2 used old V3 proposals/RGB fish-ReID. Preserve; do not relabel them as this detector or compare as matched detector controls."
+  },
+  "optional_ReID_import_policy": "Rejecting constructor sentinel for unused optional FastReID dependency in BoT-SORT; with_reid=False. Association/GMC source files remain unmodified.",
+  "scope": "Matched frozen detector-stream comparison, not a new fusion model, originality claim, person-ReID result or replacement of the original Dev-selected ByteTrack primary. CPU costs exclude neural detection/fusion and IR generation.",
+  "isolated_CPU_dependency": {
+    "status": "ISOLATED_CPU_WHEEL_VERIFIED_AND_EXTRACTED",
+    "UTC": "2026-11-25T18:59:13.788471+00:00",
+    "package": "lap",
+    "version": "0.5.14",
+    "PyPI_page": "https://pypi.org/project/lap/0.5.14/",
+    "wheel_url": "https://files.pythonhosted.org/packages/47/f4/7f162243a1b9b97cbc1040d471f2488303e950fcd6321980c89593d50df5/lap-0.5.14-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+    "wheel_bytes": 1732105,
+    "wheel_sha256": "908dc121ab0e9f1ff37ef80cc914c09970d4bc8561292a5fc88d689c8a75b409",
+    "target": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_cpu_deps_20261126_lap_0514",
+    "files": {
+      "lap/__init__.py": {
+        "bytes": 556,
+        "sha256": "02130add26903da3f0caa360dc2c43c8a83fd29c3cf372dd76a5499656a9bcc0"
+      },
+      "lap/_lapjv.cpython-310-x86_64-linux-gnu.so": {
+        "bytes": 995576,
+        "sha256": "b5374a3f387e41c2b7433713f5bc3d265eb66c25338b4a406d31a13ae2f8300f"
+      },
+      "lap/lapmod.py": {
+        "bytes": 11324,
+        "sha256": "39331fbb4a28b12975f283b05a1d5566636e2308394e2f50acece56e529b8678"
+      },
+      "lap/tests/__init__.py": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "lap/tests/cost_eps.csv.gz": {
+        "bytes": 1415310,
+        "sha256": "1b691b1995f646d0742d5a00e3036dfa01aaa8f0e02854b63356196791826610"
+      },
+      "lap/tests/test_arr_loop.py": {
+        "bytes": 2806,
+        "sha256": "8b866dffeef6b45ad8860016cd1ebc2ba7461b83162e282c772a071e82b246c5"
+      },
+      "lap/tests/test_lapjv.py": {
+        "bytes": 9310,
+        "sha256": "d5e84c550d81e4b18f6e3425648bb2472a18a6429ee4303745ebb85df12ee088"
+      },
+      "lap/tests/test_lapmod.py": {
+        "bytes": 9616,
+        "sha256": "cc06cb2cf9a99ac06c09a0e67e9dd6512a09b156a6845510c541a847895d8458"
+      },
+      "lap/tests/test_simple.py": {
+        "bytes": 88,
+        "sha256": "9153b0125c87706d1e461b05baa1805dd29b94b3bad4f714c3e304fcf5aa02d3"
+      },
+      "lap/tests/test_utils.py": {
+        "bytes": 5152,
+        "sha256": "481bf89b48c4496fb612578f99c7638fed19b8e3f8cef5f9f59f12c9e79a7ca7"
+      },
+      "lap-0.5.14.dist-info/METADATA": {
+        "bytes": 6653,
+        "sha256": "d6a63c27c17e85d03c703bbb9c0bb38f3a3f21b203598e8bec30a1b893de4d2e"
+      },
+      "lap-0.5.14.dist-info/WHEEL": {
+        "bytes": 186,
+        "sha256": "6bd53765f0767aea19610cd45606b9bafbe87b8673c81e144b553f63c06aab04"
+      },
+      "lap-0.5.14.dist-info/top_level.txt": {
+        "bytes": 4,
+        "sha256": "7150f96a9068e91953fb59ce85757daf9d29aa44134bb15e3229730fce2a4239"
+      },
+      "lap-0.5.14.dist-info/RECORD": {
+        "bytes": 1201,
+        "sha256": "2bd2b158530b9e99979a1401c92d0b194754b9e49ad46384acf75060f3b2c285"
+      },
+      "lap-0.5.14.dist-info/licenses/LICENSE": {
+        "bytes": 1306,
+        "sha256": "51b09c804e95c96c5c708b04e397e7e9714a83a6f7540df5e6109e28c418a370"
+      },
+      "cython_bbox.cpython-310-x86_64-linux-gnu.so": {
+        "bytes": 266608,
+        "sha256": "0f2c94418e02acf410ffd5fa1a6c54015d3ddd5be55a94133e1e49b487514e35"
+      }
+    },
+    "original_training_environment_modified": false,
+    "installed_with_dependencies": false,
+    "wheel_binary_copy_retained": false,
+    "compiled_auxiliary_dependencies": [
+      {
+        "package": "cython-bbox",
+        "version": "0.1.5",
+        "UTC": "2026-11-25T19:07:44.786164+00:00",
+        "source_archive_sha256": "c73a513e4f668db483e703701707c6d289de61322f8083635111cf8ee3e969a2",
+        "source_url": "https://files.pythonhosted.org/packages/21/8f/fcf24b032c7d501a995e9c8420ac5e601d8fd883dd045522b63b7869cabd/cython_bbox-0.1.5.tar.gz",
+        "module": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_cpu_deps_20261126_lap_0514/cython_bbox.cpython-310-x86_64-linux-gnu.so",
+        "module_sha256": "0f2c94418e02acf410ffd5fa1a6c54015d3ddd5be55a94133e1e49b487514e35",
+        "module_bytes": 266608,
+        "build_actual_exit_code": 0,
+        "build_log_sha256": "0bbf64030be9664e352e24689b56ab4283c3b6ea00f860b10ee06b131853e564",
+        "ABI_import_check_actual_exit_code": 0,
+        "runtime": {
+          "numpy": "1.24.3",
+          "numpy_include": "/data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/numpy/core/include",
+          "lap": "0.5.14",
+          "cython_bbox": "0.1.5",
+          "module": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_cpu_deps_20261126_lap_0514/cython_bbox.cpython-310-x86_64-linux-gnu.so"
+        },
+        "training_environment_modified": false
+      }
+    ]
+  },
+  "infrastructure_retry": {
+    "previous_attempt_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_comparison_20261126_r1",
+    "previous_engineering_exit_code": 1,
+    "previous_formal_Dev_or_Test_cases": 0,
+    "repair": "Supply the exact LAPJV dependency in an isolated CPU-only directory. Original detector packets, official tracker association/GMC source bytes and all scientific parameters unchanged.",
+    "original_specification_sha256": "9568bcdd23067b9f10f583aa567e6a0d6a7f3d7943d31ec9ecac20528b635c4b",
+    "original_source_sha256": "f4c54a56601bfbf115eae0552650991e350c5e826a4197388014fa066e7d2894"
+  },
+  "additional_dependency_import_retry": {
+    "previous_attempt_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_comparison_20261126_r2",
+    "previous_engineering_actual_exit_code": 1,
+    "previous_formal_Dev_or_Test_cases": 0,
+    "repair": "Build the original PyPI cython-bbox0.1.5 extension in the isolated CPU directory; tracker/GMC source bytes, streams, seed0, output filter and scientific parameters remain unchanged.",
+    "source_before_retry_sha256": "5d321903126fc6817c7ab61143408105f02f35c3ec339b34da20dd309cb59e95"
+  },
+  "HybridSORT_singleton_score_compatibility": {
+    "official_source_files_unmodified": true,
+    "layout_only": "Official predict score values normalized to a scalar Kalman score and a length-one simple-score array. Official update takes its existing first branch. Numeric values/position/KFstate/KFcovariance are checked against cloned unmodified predictor states before use.",
+    "parameters_or_association_formula_changed": false
+  },
+  "score_layout_retry": {
+    "previous_attempt_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_comparison_20261126_r3",
+    "previous_engineering_actual_exit_code": 1,
+    "previous_formal_Dev_or_Test_cases": 0,
+    "source_before_retry_sha256": "5d321903126fc6817c7ab61143408105f02f35c3ec339b34da20dd309cb59e95"
+  }
+}

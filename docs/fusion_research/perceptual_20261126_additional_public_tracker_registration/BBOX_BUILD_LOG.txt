@@ -1,0 +1,17 @@
+/data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/setuptools/__init__.py:94: _DeprecatedInstaller: setuptools.installer and fetch_build_eggs are deprecated.
+!!
+
+        ********************************************************************************
+        Requirements should be satisfied by a PEP 517 installer.
+        If you are using pip, you can try `pip install --use-pep517`.
+        ********************************************************************************
+
+!!
+  dist.fetch_build_eggs(dist.setup_requires)
+running build_ext
+Compiling src/cython_bbox.pyx because it changed.
+[1/1] Cythonizing src/cython_bbox.pyx
+building 'cython_bbox' extension
+creating /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_cpu_cython_bbox_build_20261126/temporary_objects/src
+cc -pthread -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O3 -fstack-protector -fstack-clash-protection -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -fPIC -fPIC -I/data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/numpy/core/include -I/data3/liuyeqiang/.venvs/trackocd-a100/include -I/data3/liuyeqiang/.local/share/uv/python/cpython-3.10.21-linux-x86_64-gnu/include/python3.10 -c src/cython_bbox.c -o /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_cpu_cython_bbox_build_20261126/temporary_objects/src/cython_bbox.o -Wno-cpp
+cc -pthread -shared -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--build-id=sha1 -Wl,--exclude-libs,ALL /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_cpu_cython_bbox_build_20261126/temporary_objects/src/cython_bbox.o -L/data3/liuyeqiang/.local/share/uv/python/cpython-3.10.21-linux-x86_64-gnu/lib -o /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/additional_public_tracker_cpu_deps_20261126_lap_0514/cython_bbox.cpython-310-x86_64-linux-gnu.so

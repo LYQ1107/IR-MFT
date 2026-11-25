@@ -2,6 +2,9 @@
 
 更新时间：2026-11-26（北京时间）。任务仍在执行，目标尚未完成。
 
+新增BoT-SORT无ReID（保留ORB）与HybridSORT无ReID（官方HMIoU／TCM／低分关联预设）的同检测输入CPU比较已登记并正式开始。8项接口检查、数值布局兼容与登记实际退出0，先全部8项完整Dev再全部8项完整Test，负结果全部保留。三次工程失败及依赖隔离记录完整归档，没有新准确率或独立贡献。见[ADDITIONAL_PUBLIC_TRACKERS_REGISTERED](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_REGISTERED.md)。原GPU4的temporal_gray已完成三遍并继续第四遍，GPU5原temporal_ir已完成两遍并继续第三遍；完整六轮资格仍只有四组／24份独立模块快照，本次未新增中途张量审计。
+
+
 最新13项冻结配置的完整七段Test已全部结束并独立核对47项与原276列CSV：
 固定主方案HOTA29.834177，同预算RGB29.467182、灰度29.421963，分别高
 0.366995、0.412215点；对原始RGB29.529高0.305177，未达目标34.529。

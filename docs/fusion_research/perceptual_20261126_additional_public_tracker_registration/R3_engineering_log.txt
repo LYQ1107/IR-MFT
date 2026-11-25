@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT/trackers/hybrid_sort_tracker/hybrid_sort.py", line 341, in update
+    trk[:] = [pos[0][0], pos[0][1], pos[0][2], pos[0][3], kalman_score, simple_score[0]]
+IndexError: invalid index to scalar variable.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_additional_public_trackers.py", line 398, in <module>
+    main()
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_additional_public_trackers.py", line 394, in main
+    globals()[args.action]()
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_additional_public_trackers.py", line 172, in engineering
+    result = update(method, model, frame_detections(data, frame), image)
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_additional_public_trackers.py", line 153, in update
+    return model.update(detections, (1, 1), (1, 1))
+  File "/data3/liuyeqiang/CFP-FishMOT_references/HybridSORT/trackers/hybrid_sort_tracker/hybrid_sort.py", line 343, in update
+    trk[:] = [pos[0][0], pos[0][1], pos[0][2], pos[0][3], kalman_score, simple_score]
+ValueError: setting an array element with a sequence. The requested array would exceed the maximum number of dimension of 1.
