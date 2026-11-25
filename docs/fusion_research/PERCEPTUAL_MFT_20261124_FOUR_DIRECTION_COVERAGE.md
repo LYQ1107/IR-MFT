@@ -20,15 +20,13 @@ RGB29.529为+0.305177。C自身最佳消融的Dev／Test分别+0.557085／
 [LEGACY_TEST47_ANALYSIS](PERCEPTUAL_MFT_20261125_STRUCTURAL_LEGACY_TEST47_AUDIT_ANALYSIS_ZH.md)。
 
 六次缺测成本GPU4执行已全部退出0，原生控制器已自动接续。质量／时序
-两个模式×RGB／灰度／IR共六组真实GPU检查已通过。正式共同预算中，
-quality_rgb／quality_gray已各完成六遍全部27251帧／40884更新、163506帧次，
-原worker均退出0；十二份有限快照、实际顺序、无padding及源RGB冻结核对通过。
-GPU4的quality_ir与GPU5的temporal_rgb已正式接续，各至少一遍27251帧
-另有独立核对，真实进程／启动tick／argv／GPU UUID匹配。IR逐次读图SHA
-门槛绑定固定新版参考清单，但完整逐图消费列表未另存，未补造。
-temporal_gray／temporal_ir尚待调度；全六组共同预算与完整Dev／Test仍未完成。
-这推进F1／F3正式训练，但没有新HOTA、方向完成资格或独立创新。
-旧四张图仍只整理原结构家族，不替原生IR／时序判断成败。见
+两个模式×三cue的GPU工程门槛已通过。quality_rgb／quality_gray／temporal_rgb
+现已各完成六遍27251帧／40884更新，原worker退出0；十八份快照、完整交付、
+无padding及原RGB冻结核对通过。原队列GPU5已接续temporal_ir正式训练，
+实际进程／启动tick／argv／GPU UUID及超过32次更新核实；GPU4的quality_ir
+三遍完成、第四遍继续，temporal_gray待调度。固定新版IR及读图SHA门槛保持，
+未补造原生逐图消费清单。全六组共同预算、完整Dev／Test仍未完成，没有新
+HOTA、方向完成资格或独立创新。旧图集仍只整理原结构家族。见
 [TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)及
 [FIGURES](PERCEPTUAL_MFT_20261125_FULL_TRAIN_FIGURES.md)。
 

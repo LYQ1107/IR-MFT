@@ -1,0 +1,298 @@
+{
+  "status": "COMPLETE_THREE_SIX_EPOCH_CONTROLS_AND_REAL_TEMPORAL_IR_HANDOFF_NOT_FULL_STUDY",
+  "UTC": "2026-11-25T13:44:47.977980+00:00",
+  "actual_CPU_execution": {
+    "status": "EXITED",
+    "UTC_started": "2026-11-25T13:41:54.339178+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_native_epoch_prefix.py",
+      "--fit-id",
+      "temporal_rgb",
+      "--through-epoch",
+      "6",
+      "--output-directory",
+      "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_rgb_six_epoch_audit_20261125_r1"
+    ],
+    "identity": {
+      "pid": 1248591,
+      "start_ticks": 88108562,
+      "command_sha256": "9f26a2bd730f2cfc8f392060afcbe6d34e48974ab5c7d958dd7936d46ac41210",
+      "argv_observed_exact": true
+    },
+    "source_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
+    "source_unchanged": true,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_rgb_six_epoch_audit_20261125_r1.log",
+    "log_sha256": "8d9d18f4cf1deafd4da91eafdc03296380c8451a941111f0bed1dc995246685c",
+    "exit_code": 0,
+    "seconds": 5.499803611077368,
+    "observed_peak_RSS_GiB": 0.59722900390625,
+    "new_fit": false,
+    "new_NN_or_GPU_work": false,
+    "result": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_rgb_six_epoch_audit_20261125_r1/complete.json",
+    "result_sha256": "88e292166b8f3987f1e1493f4a08980a3153fb1ecd068f31665962f7211c6d7c"
+  },
+  "source_auditor_sha256": "81f0831b8ee01e356d316c20f11b6e7790b2da44c760efbb2dda200fb285b006",
+  "completed_control_rows": [
+    {
+      "fit_id": "quality_rgb",
+      "completed_full_Train_epochs": 6,
+      "frame_visits": 163506,
+      "actual_updates": 40884,
+      "all_native_tensors_finite": true,
+      "every_epoch_module_distinct": true,
+      "epoch6_checkpoint_sha256": "da453beb4acdc6b6b2e0b411ddad09e70b8f6e4ff16dc83906218d676d379d66",
+      "full_epoch_losses": [
+        2.5796020442189658,
+        2.579199342905058,
+        2.579549085010977,
+        2.577448526697492,
+        2.578307083486146,
+        2.577706833371397
+      ],
+      "original_job": {
+        "id": "quality_rgb",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_rgb",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "COMPLETE",
+        "pid": 953396,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_rgb.log",
+        "slot": "4",
+        "exit_code": 0
+      }
+    },
+    {
+      "fit_id": "quality_gray",
+      "completed_full_Train_epochs": 6,
+      "frame_visits": 163506,
+      "actual_updates": 40884,
+      "all_native_tensors_finite": true,
+      "every_epoch_module_distinct": true,
+      "epoch6_checkpoint_sha256": "cd600d5ad015e102b939e311d33e29e6cbc761981ae358019112aa38e7b1becb",
+      "full_epoch_losses": [
+        2.5788888269272725,
+        2.579045826357622,
+        2.5788404844900294,
+        2.578108488559933,
+        2.578565135497588,
+        2.5769392994445965
+      ],
+      "original_job": {
+        "id": "quality_gray",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_gray",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "COMPLETE",
+        "pid": 953397,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_gray.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    {
+      "fit_id": "temporal_rgb",
+      "completed_full_Train_epochs": 6,
+      "frame_visits": 163506,
+      "actual_updates": 40884,
+      "all_native_tensors_finite": true,
+      "every_epoch_module_distinct": true,
+      "epoch6_checkpoint_sha256": "d2a744c899377b14102e6df9548eaa4bc4794bdc1b253397eacf7dbf31dd5ec2",
+      "full_epoch_losses": [
+        2.5804284074578008,
+        2.57961410021621,
+        2.5811071776822407,
+        2.5787963906288285,
+        2.5796723979849743,
+        2.577658290199286
+      ],
+      "original_job": {
+        "id": "temporal_rgb",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_rgb",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "COMPLETE",
+        "pid": 1092884,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_rgb.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    }
+  ],
+  "all_eighteen_completed_control_checkpoints_finite": true,
+  "all_three_six_epoch_address_schedules_identical": true,
+  "temporal_RGB_prior_epoch1_to5_records_exact": true,
+  "preserved_previous_public_files": {
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_FIRST_EPOCH.json": "9127d298492251ff7f0263aaafa434f29a556dc29224e56454c84fc89ce84ee9",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_MODALITY_FIRST_EPOCH.json": "945f9d738e9c9558ab22c0363698581911ee2c5d01dc513be927a36555d8662f",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.json": "c6ee490efdfb9b89d58d4a697bc91d746094d089c33f0e8bf8d57fec48b0401b",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS_VERIFICATION.json": "d309ad23613925719641edca0ecd0ab61aa8eb03de60e3288ead34f2e7c59254",
+    "docs/fusion_research/perceptual_20261125_native_training_progress/temporal_rgb_original_progress.json": "b5ed17f05de0e5337735ba198ad3a418b3819037e04fe1a0ca39778561096dd8"
+  },
+  "original_controller": {
+    "pid": 3943138,
+    "state": "S",
+    "start_ticks": 77632196,
+    "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/launch_native_pyramid_study.py run",
+    "command_sha256": "f3ebd6890d984680c1e9807e60237fdbb9880b4e5ab4f88d53c481a6ec37f70d",
+    "CUDA_VISIBLE_DEVICES": "",
+    "actual_VmHWM_GiB": 0.588104248046875
+  },
+  "native_phase": "NORMAL_TRAIN_06",
+  "current_actual_IR_training": [
+    {
+      "fit_id": "quality_ir",
+      "original_job": {
+        "id": "quality_ir",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_ir",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1089904,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_quality_ir.log",
+        "slot": "4"
+      },
+      "actual_process": {
+        "pid": 1089904,
+        "state": "R",
+        "start_ticks": 86239317,
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id quality_ir --through-epoch 6",
+        "command_sha256": "5c52ca61ca1a0f268c92017b9eea802995e1a391db574376ebda547448436b16",
+        "CUDA_VISIBLE_DEVICES": "4",
+        "actual_VmHWM_GiB": 10.359539031982422
+      },
+      "actual_GPU": {
+        "GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "used_memory": "2396 MiB"
+      },
+      "latest_actual_optimizer_log": {
+        "fit": "quality_ir",
+        "epoch": 4,
+        "clip": 4896,
+        "clips": 6814,
+        "loss": 2.8041719039719477,
+        "actual_updates": 25338,
+        "seconds": 18849.729921913007
+      },
+      "current_original_journal_completed_epochs": 3
+    },
+    {
+      "fit_id": "temporal_ir",
+      "original_job": {
+        "id": "temporal_ir",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_ir",
+          "--through-epoch",
+          "6"
+        ],
+        "status": "RUNNING",
+        "pid": 1248117,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_06_temporal_ir.log",
+        "slot": "5"
+      },
+      "actual_process": {
+        "pid": 1248117,
+        "state": "R",
+        "start_ticks": 88101349,
+        "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 6",
+        "command_sha256": "bef4ed686dffb9cc9fe8225788736a2848ea9346941dcc7bdb0d5a272389ef58",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "actual_VmHWM_GiB": 2.0614395141601562
+      },
+      "actual_GPU": {
+        "GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "used_memory": "2404 MiB"
+      },
+      "latest_actual_optimizer_log": {
+        "fit": "temporal_ir",
+        "epoch": 1,
+        "clip": 160,
+        "clips": 6814,
+        "loss": 3.666679637134075,
+        "actual_updates": 160,
+        "seconds": 209.77883503807243
+      },
+      "current_original_journal_completed_epochs": 0
+    }
+  ],
+  "pending_normal_fits": {
+    "temporal_gray": {
+      "id": "temporal_gray",
+      "physical_gpu": "4",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_gray",
+        "--through-epoch",
+        "6"
+      ],
+      "status": "PENDING"
+    }
+  },
+  "normal_fits_completed_six_epochs": 3,
+  "all_six_normal_fits_complete": false,
+  "temporal_IR_formal_training_actually_updating": true,
+  "temporal_IR_complete_full_epoch_not_claimed": true,
+  "read_only_observer_62246_handle_unavailable": true,
+  "read_only_observer_PID1141649_gone": true,
+  "read_only_observer_numeric_exit_unknown": true,
+  "read_only_observer_last_status": "VERIFIED_LIVE_WAIT",
+  "read_only_observer_last_UTC": "2026-11-25T13:40:36.513255+00:00",
+  "recovery": "Fresh original queue andrealworker PID/starttick/argv/CUDA/GPU UUID/logupdate inspection,no training restart orsignal",
+  "native_per_image_consumption_lists_not_saved_and_not_fabricated": true,
+  "registered_encoded_byte_RAM_capacity_each_GiB": 8,
+  "encoded_cache_cap_not_total_RSS_cap": true,
+  "host_MemAvailable_GiB": 82.9774284362793,
+  "host_MemAvailable_reserve_GiB": 40,
+  "work_GiB": 59.287463006563485,
+  "work_cap_GiB": 64,
+  "independent_free_GiB": 2708.436206817627,
+  "new_NN_or_GPU_or_optimizer_work_by_audit": false,
+  "new_Dev_Test_accuracy": false,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

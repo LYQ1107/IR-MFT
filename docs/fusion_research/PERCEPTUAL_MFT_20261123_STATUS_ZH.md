@@ -29,20 +29,19 @@ Train混算，也不按较高Test重新选主方法。缺失IR精确回到fresh 
 [FULL_TRAIN_COMPLETE_RESULTS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_COMPLETE_RESULTS.md)，
 实际执行与范围见[COST_ANALYSIS](PERCEPTUAL_MFT_20261125_FULL_TRAIN_MISSING_COSTS_ANALYSIS_ZH.md)。
 
-原生质量／时序融合六组真实GPU门槛已全部通过，各8个Train帧／两次
-工程更新，原B1／零适配器／缺失模态输出精确；同模式三输入初始参数相同。
-原控制器NORMAL_TRAIN_06的quality_rgb／quality_gray现已各完成六遍
-全部27251帧，累计163506帧次／40884次实际更新，两个原worker均退出0。
-十二份快照有限且逐遍参数不同，交付顺序相同、无padding，源RGB逐遍冻结
-检查通过；第一／二遍旧记录精确保持。两个只读CPU核对均退出0，见
+原生质量／时序融合六组真实GPU门槛已全部通过，同模式三输入初始参数一致。
+原NORMAL_TRAIN_06中quality_rgb／quality_gray／temporal_rgb现已各完成六遍
+全部27251帧，累计163506帧次／40884次实际更新，三个原worker均退出0。
+十八份原生快照有限、三组交付顺序相同、无padding，源RGB逐遍冻结检查通过。
+本轮新增temporal_rgb六遍独立CPU核对，原第一遍及两个六遍对照记录不变，见
 [NATIVE_TRAINING_PROGRESS](PERCEPTUAL_MFT_20261125_NATIVE_TRAINING_PROGRESS.md)。
-原队列已自动接续GPU4的quality_ir与GPU5的temporal_rgb；两者各完成
-至少首遍27251帧并通过独立快照／交付核对，真实PID／启动tick／argv及GPU
-UUID匹配。IR使用固定新版PNG，逐次读图SHA断言绑定原参考清单，原生
-逐图消费列表未另存，未补造。temporal_gray／temporal_ir仍待调度。
-完整Train loss变化很小，不能代替HOTA或收敛结论。六组共同预算及完整
+原队列已把GPU5交给temporal_ir，真实PID／启动tick／argv／GPU UUID匹配，
+正式fit日志已超过32次更新。GPU4的quality_ir已完成三遍并继续第四遍；
+temporal_gray仍待调度。固定新版PNG和逐次读图SHA断言保持，完整逐图消费
+列表未另存，未补造。只读观察器句柄已不可用，数字退出码未知；直接依据
+原任务／真实进程恢复核实，未重启训练或回填该退出码。
+完整Train loss变化很小，不能代替HOTA或收敛结论。全六组共同预算及完整
 Dev／Test尚未完成，没有新准确率或独立贡献；是否延长只看完整Dev。
-原首遍记录保持，见[FIRST_EPOCH](PERCEPTUAL_MFT_20261125_NATIVE_FIRST_EPOCH.md)。
 下方早期组件与等待状态按记录时点保留，当前执行状态以本页顶部为准。
 
 已完成六组已训练融合P3的Train身份检索诊断：固定72帧、1079个GT框、
