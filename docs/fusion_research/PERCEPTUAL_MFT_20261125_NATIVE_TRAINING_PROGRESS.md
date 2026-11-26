@@ -28,7 +28,7 @@
 旧完整Dev观察器14350和自动CPU导出77049已正常完成，不再当作活跃训练句柄。九轮只读观察器86394按六小时窗口实际退出0后，已续接为26625，继承原worker身份信息并核验原控制器与两卡进程的真实PID／启动tick／argv／CUDA环境；原模型训练未重启。日志中的批次仅是周期记录，progress.json还可能停留在上一个完整epoch；二者均不能冒充共同九轮已完成。
 
 独立创新计数仍0。新原生家族尚未完成最终预算、选模、触发的模块去除、完整七段Test与独立逐方法成本。既有正式主方案Test仍29.834177，对原RGB29.529约+0.305177；这不是本批原生结果。Test目标34.529及2–3项独立贡献未达，Goal继续active。历史Test暴露、RGB预训练见Dev和RGB派生伪IR限制保持。
-本次发布核对：工作目录约59.802GiB／64GiB，独立空闲约2680.410GiB，高于40GiB保留值。只发布小型文本、SVG和CSV；PNG预览留在工作目录，不上传权重、图像数据集、FPN或原始轨迹。
+本次发布核对：工作目录约59.804GiB／64GiB，独立空闲约2674.822GiB，高于40GiB保留值。只发布小型文本、SVG和CSV；PNG预览留在工作目录，不上传权重、图像数据集、FPN或原始轨迹。
 
 后续九／十二轮完整Dev的[独立导出检查与自动等待](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_DEV_AUDIT_READY.md)已接好；CPU工程检查实际退出0，九轮实际结果仍待原实验完成。
 
@@ -36,6 +36,8 @@
 
 最新完整轮次核对：quality_ir已完成原第9轮并实际退出0，九轮训练地址与质量RGB／灰度对照全部一致，旧六轮及此前第7、8轮历史／快照保持字节一致。原进程退场后读取其稳定优化器，确认最终459171个参数有限、已存学习率与匹配控制相同；历史非零梯度不作为IR收益或收敛证据。随后temporal_ir完成第7轮，190757逻辑帧次、47698次更新；独立CPU前缀审计核验七份模块状态有限且不同、旧六轮历史保持不变，未读取活跃优化器，并继续原第8轮。
 
-当前六组完整轮次按quality_rgb／quality_gray／quality_ir／temporal_rgb／temporal_gray／temporal_ir顺序为9／9／9／9／6／7；[当前状态与原件](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)。4号卡已按原队列接入temporal_gray，5号卡继续temporal_ir。完整九轮Dev尚未开始，上述六轮指标仍是最近完整Dev结果。原历史NAS恢复中的额外物理重放继续单独保留，不计成新的逻辑epoch。
+新增[时序灰度七轮完整前缀证明](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_SEVEN_EPOCHS.md)：累计190757逻辑帧次、47698次更新，七份原生状态有限且不同，旧六轮快照和历史与已发布审计一致；CPU实际退出0，未读取活跃优化器。该组是灰度强对照，不将其描述为IR训练或模态收益。
+
+当前六组完整轮次按quality_rgb／quality_gray／quality_ir／temporal_rgb／temporal_gray／temporal_ir顺序为9／9／9／9／7／7；[当前状态与原件](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)。六组均已至少完成七遍完整Train，共同九轮阶段仍为4／6完成。4号卡的temporal_gray与5号卡的temporal_ir均继续原第8轮。完整九轮Dev尚未开始，上述六轮指标仍是最近完整Dev结果。原历史NAS恢复中的额外物理重放继续单独保留，不计成新的逻辑epoch。
 
 新增[完整Dev逐目标身份误差诊断](PERCEPTUAL_MFT_20261126_NATIVE_DEV_TRACK_ERRORS.md)：14个完整条件、294条目标记录及9702次逐阈值官方CSV核验均完成；发现SN-013收益集中于少数身份、BT-005存在明显身份分配退化。全部正负记录与复现代码已发布。该诊断没有新训练、选模或Test读取，不增加准确率或独立创新计数。
