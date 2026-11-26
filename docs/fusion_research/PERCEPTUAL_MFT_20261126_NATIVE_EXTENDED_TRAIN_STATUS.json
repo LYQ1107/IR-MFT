@@ -1,8 +1,8 @@
 {
   "status": "OBSERVED_PARTIAL_EXTENDED_TRAIN_NOT_NINE_EPOCH_DEV_OR_FINAL_STUDY",
-  "UTC": "2026-11-26T11:44:41.467047+00:00",
+  "UTC": "2026-11-26T12:16:53.756185+00:00",
   "common_registered_stage_budget": 9,
-  "complete_original_stage9_jobs": 4,
+  "complete_original_stage9_jobs": 5,
   "required_normal_fits": 6,
   "fits": [
     {
@@ -153,27 +153,16 @@
       "fit_id": "temporal_gray",
       "mode": "temporal",
       "cue": "gray",
-      "complete_full_Train_epochs": 8,
-      "logical_delivered_frames": 218008,
-      "actual_optimizer_updates": 54512,
-      "current_stage_original_job_status": "RUNNING",
-      "actual_original_exit_code": null,
-      "actual_live_worker": {
-        "PID": 2005053,
-        "start_ticks": 95230539,
-        "raw_argv_sha256": "831868479ee36367f5a71a5018fd0b104d34a6a38f21cdc333224636b2f315c6",
-        "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_gray --through-epoch 9",
-        "CUDA_VISIBLE_DEVICES": "4",
-        "kernel_state": "S",
-        "fit": "temporal_gray",
-        "actual_GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
-        "actual_live_identity_verified": true,
-        "actual_live_identity_verified_UTC": "2026-11-26T11:44:41.467047+00:00"
-      },
+      "complete_full_Train_epochs": 9,
+      "logical_delivered_frames": 245259,
+      "actual_optimizer_updates": 61326,
+      "current_stage_original_job_status": "COMPLETE",
+      "actual_original_exit_code": 0,
+      "actual_live_worker": null,
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_gray/progress.json",
-      "last_complete_epoch_progress_sha256": "a46f60155de29c458d5dd193d07c2d2b7fea188d9919c90138ab6f9fbd7103fe",
-      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_gray/epoch_08.pt",
-      "last_complete_snapshot_sha256": "161c88c1d6a53377351b2c9ec9a8464e98a9a97cdbb192811e08b92d2052e3c3",
+      "last_complete_epoch_progress_sha256": "e81357cfda53f90252be51d9bc701a15bf1c10158b85294511d97bc09bf911b9",
+      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_gray/epoch_09.pt",
+      "last_complete_snapshot_sha256": "b991dfb14c0ca05043a0c74ec399683cf5738527efa10e3689721c0459358447",
       "all_recorded_epoch_addresses_match_common_schedule": true,
       "original_job": {
         "id": "temporal_gray",
@@ -188,11 +177,12 @@
           "--through-epoch",
           "9"
         ],
-        "status": "RUNNING",
+        "status": "COMPLETE",
         "IO_recovery_retry": false,
         "pid": 2005053,
         "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_gray.log",
-        "slot": "4"
+        "slot": "4",
+        "exit_code": 0
       }
     },
     {
@@ -210,11 +200,11 @@
         "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026",
         "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 9",
         "CUDA_VISIBLE_DEVICES": "5",
-        "kernel_state": "D",
+        "kernel_state": "R",
         "fit": "temporal_ir",
-        "actual_GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "actual_GPU_record": "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB",
         "actual_live_identity_verified": true,
-        "actual_live_identity_verified_UTC": "2026-11-26T11:44:41.467047+00:00"
+        "actual_live_identity_verified_UTC": "2026-11-26T12:16:53.756185+00:00"
       },
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/progress.json",
       "last_complete_epoch_progress_sha256": "7235c2bd72570386923010e58f0134da1c62b922bf10054b6ec3a204aabe2a7d",
@@ -287,6 +277,11 @@
       "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_PAIR_EIGHT_EPOCHS.json",
       "sha256": "dadbe83a450d9ecc589abc795a3e79a367e919f6da4eae8d51f89c3db35c3854",
       "scope": "Both original temporal fits completed8fullTrain;16immutable native states finite,old7prefixes exact; no accuracy."
+    },
+    {
+      "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_NINE_EPOCHS.json",
+      "sha256": "d299c2cb62d2821646bbd9da741a412d7698cc5fa35c89bfbb0d15cb505ff8c3",
+      "scope": "Fifth original nine-epoch fit completed actual0; independent stable optimizer diagnostic actual0; no accuracy."
     }
   ],
   "counts_are_logical_complete_epoch_frames_not_total_physical_recovery_replays": true,
@@ -302,8 +297,8 @@
   "optimizer_latest_not_loaded_while_fits_active": true,
   "fixed_seed": 0,
   "additional_seed_work": false,
-  "work_GiB": 59.808454152196646,
-  "independent_available_GiB": 2666.5515937805176,
+  "work_GiB": 59.809402173385024,
+  "independent_available_GiB": 2662.851993560791,
   "new_image_feature_or_weight_copies": 0,
   "frozen_source_closures": {
     "native": {
@@ -412,5 +407,12 @@
     "all72_normal_roll_pairs": true,
     "actual_CPU_exit_code": 0,
     "no_new_accuracy_or_contribution": true
+  },
+  "latest_finished_CPU_learning_diagnostic": {
+    "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_NINE_EPOCHS.json",
+    "sha256": "d299c2cb62d2821646bbd9da741a412d7698cc5fa35c89bfbb0d15cb505ff8c3",
+    "fit_id": "temporal_gray",
+    "actual_CPU_tool_exit_code": 0,
+    "original_GPU_worker_exit_code": 0
   }
 }

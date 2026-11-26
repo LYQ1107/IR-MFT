@@ -1,0 +1,168 @@
+{
+  "status": "VERIFIED_ORIGINAL_TEMPORAL_GRAY_COMPLETE_NINE_EPOCH_FIT_NOT_COMPLETE_NINE_EPOCH_DEV_OR_ACCURACY",
+  "UTC": "2026-11-26T12:16:53.756185+00:00",
+  "fit_id": "temporal_gray",
+  "cue": "gray",
+  "IR_formal_Train_used": false,
+  "original_job": {
+    "id": "temporal_gray",
+    "physical_gpu": "4",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/train_native_pyramid.py",
+      "fit",
+      "--fit-id",
+      "temporal_gray",
+      "--through-epoch",
+      "9"
+    ],
+    "status": "COMPLETE",
+    "IO_recovery_retry": false,
+    "pid": 2005053,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_gray.log",
+    "slot": "4",
+    "exit_code": 0
+  },
+  "actual_original_exit_code": 0,
+  "original_worker_absent": true,
+  "complete_Train_epochs": 9,
+  "logical_delivered_frames": 245259,
+  "actual_optimizer_updates": 61326,
+  "all9_Train_addresses_match_completed_controls": true,
+  "old8_snapshots_and_journals_exact_to_published": true,
+  "old8_public_proof": "docs/fusion_research/perceptual_20261126_native_temporal_pair_eight_epochs/actual_CPU_prefix_audit.json",
+  "old8_public_proof_sha256": "4042d5ef7a1f27d422d9b33d4220c8c4c2739bf3e54acae038d0ee5ef894bcc6",
+  "all9_native_states_finite_via_old8_and_new9_independent_proofs": true,
+  "all9_native_state_hashes_distinct": true,
+  "snapshots": [
+    {
+      "epoch": 1,
+      "checkpoint_sha256": "4db4536cfa971155fd96cfa0750d81daea39fd75b6c7b4e048032ae7959e4bb5",
+      "actual_module_sha256": "dde1f59855c104e6053fd1da342e3cd1e28418883aaf9d3d2cb4cfdec8aa78c4",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 2,
+      "checkpoint_sha256": "5b7393e8be1d6090485acf14f58e63fd7bb007354db6709ec869563906a08a16",
+      "actual_module_sha256": "5c0e3c0cfc61f8612bdd98691f83caec25de061621ed85795bc8f7a035b2bb20",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 3,
+      "checkpoint_sha256": "bcc27d14445037163ec5654a15fa8edf8517539c7dd759d74166cfe4448f0b86",
+      "actual_module_sha256": "93d29ed5adcbe2ef2f3cbb3e0bd91ff37034025d15a538d1fad8154bd38ad532",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 4,
+      "checkpoint_sha256": "d8806ca5d72cb5e0f0cd3effbead16d1396ce1d0026ee58a7387786b92c85d2b",
+      "actual_module_sha256": "37357a8cd6d6961a3fab9edadc36f860d10840380f3ff37df83a9b1f5af90842",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 5,
+      "checkpoint_sha256": "794d0bf08f2002e954d404153e9cbaf09981bf166f88c8c6be60506b3fefdcbc",
+      "actual_module_sha256": "ec703781d5da46cdbd284e24d7fea00d3392e79852069dbe696f57b1494a7c4b",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 6,
+      "checkpoint_sha256": "c1885e27921d183c12086d645ea3c796c11dfd7a94c076b415a1d490e0c86264",
+      "actual_module_sha256": "45ff5a006e82e060b4447c5130c4bf69321fa348bc08eca5d030b32aa2e77e70",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 7,
+      "checkpoint_sha256": "57dc79b8d36b9d979268d487f6281c831614a9ea82cea98464e52547a18f8755",
+      "actual_module_sha256": "d3a2445a28c35be2a0457c7b4050e765da662b4f52e97b425c03e28203798306",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 8,
+      "checkpoint_sha256": "161c88c1d6a53377351b2c9ec9a8464e98a9a97cdbb192811e08b92d2052e3c3",
+      "actual_module_sha256": "ca64644c0ba314bd715e2bed0fb7026924b433b9a4bc12bf57e6f8da487ba1b4",
+      "finite_from_published_prefix8": true
+    },
+    {
+      "epoch": 9,
+      "checkpoint_sha256": "b991dfb14c0ca05043a0c74ec399683cf5738527efa10e3689721c0459358447",
+      "actual_module_sha256": "864bfe2d0497539186e992c5c9182adae9aeda77c45babb7c4c5409c4d8e1dd9",
+      "finite_from_new_finished_CPU_diagnostic": true
+    }
+  ],
+  "native_parameter_elements": 459657,
+  "total_parameter_tensors": 46,
+  "tensors_with_historical_nonzero_gradient": 46,
+  "initial_native_sha256": "e0ea1c8f8646a784bfc74f0076da0afb5fc0d65c1e68243df543b3ffc7ddfc8a",
+  "trained_native_sha256": "864bfe2d0497539186e992c5c9182adae9aeda77c45babb7c4c5409c4d8e1dd9",
+  "final_native_parameters_finite_and_equal_stable_resumable_state": true,
+  "optimizer_step_counts": [
+    61326
+  ],
+  "stored_optimizer_lr": 5.211831000128794e-05,
+  "stored_optimizer_weight_decay": 0.0001,
+  "same_observed_optimizer_hyperparameters_as_completed_temporal_RGB": true,
+  "optimizer_latest_loaded_only_after_original_worker_retired": true,
+  "actual_CPU_tool_session": 9170,
+  "actual_CPU_tool_exit_code": 0,
+  "actual_CPU_child_exit_code": 0,
+  "actual_CPU_child_identity": {
+    "pid": 2239863,
+    "start_ticks": 96211989,
+    "raw_argv_sha256": "24ea6638c7f839c9e969dc49906715a4c9a8a55658c74e7ae356639aaebd2bd0"
+  },
+  "CPU_child_wall_seconds": 5.114027859992348,
+  "CPU_internal_seconds": 0.1920846359571442,
+  "CPU_peak_RSS_GiB": 0.5797653198242188,
+  "source_audit_tool": "tools/audit_mft_native_learning_state.py",
+  "source_audit_tool_sha256": "aab4f92fbb9d608f3cab56251dc0436c7cb7fd395be366c9baebe5e88ed5cfde",
+  "gradient_evidence_is_not_cue_benefit_or_convergence": true,
+  "complete_original_normal9_jobs": 5,
+  "complete_Train_epochs_in_fixed_order": [
+    9,
+    9,
+    9,
+    9,
+    9,
+    8
+  ],
+  "required_normal_fits": [
+    "quality_rgb",
+    "quality_gray",
+    "quality_ir",
+    "temporal_rgb",
+    "temporal_gray",
+    "temporal_ir"
+  ],
+  "actual_active_GPU_workers": [
+    {
+      "PID": 1845169,
+      "start_ticks": 94463963,
+      "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026",
+      "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 9",
+      "CUDA_VISIBLE_DEVICES": "5",
+      "kernel_state": "R",
+      "fit": "temporal_ir",
+      "actual_GPU_record": "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+    }
+  ],
+  "future_all7_CPU_only_pending": true,
+  "source102_and_Task427_unchanged": true,
+  "original_controller_exit_code": null,
+  "latest_complete_Dev_stage": 6,
+  "full9_Dev_started": false,
+  "full9_Dev_results_available": false,
+  "required_cumulative_Dev_cases_after_all6_fits": 92,
+  "final_Dev_selection_triggered_removals_all7_Test_and_costs_incomplete": true,
+  "raw_proofs": "perceptual_20261126_native_temporal_gray_nine_epochs",
+  "work_GiB": 59.809402173385024,
+  "available_GiB": 2662.851993560791,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "new_forward_backward_optimizer_or_GPU_work": false,
+  "new_image_feature_or_weight_copies": false,
+  "new_Dev_or_Test_accuracy": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
