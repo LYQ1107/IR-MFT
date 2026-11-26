@@ -1,0 +1,21 @@
+{
+  "status": "REGISTERED_BEFORE_AMBIGUITY_TRAIN_CALIBRATION_OR_DEV_REPLAY",
+  "user_priority": "At least+5 original RGB-only YOLOX-X+ByteTrack full Test HOTA; +10 stretch. Same fixed November IR and ProtocolV2. No extra RGB architecture or seed search.",
+  "data": "Read the already qualified tracklet R2 causal proposal and native RGB/IR BN-neck512 banks. No new NN forward, no new weights, image/FPN copy or GPU allocation.",
+  "evidence": "Fisher global cost blending harmed Dev; late RGB identity links improve only0.314 Dev HOTA. Investigate conditional cue competition inside the original geometry graph while the separately frozen R2 Test continues unchanged.",
+  "A": "Protect original Hungarian matches with tracked gap1, fused geometric cost<=0.4, row/column geometric margin>=0.1. Only original finite cost<=0.9 and IoU>=0.1 edges remain eligible for appearance reasoning.",
+  "B": "RGB identity template>=3 reliable observations; current descriptor must have an absolute Train wrong-ID99th-percentile cosine threshold and bidirectional uniqueness margin>=0.1. For RGB-uncertain rows, actual IR can supply a unique preference, excluding columns already claimed by confident RGB.",
+  "penalty": "Only add bounded0.5*past_quality*current_quality*(preferred_cosine-competing_cosine)/2 to competing row/column edges; use maximum instead of sum. No formerly inadmissible geometric edge is added. Keep original secondary/unconfirmed matching and birth thresholds.",
+  "quality": "Actual confidence times1-max current proposal overlap; templates update only score>0.6 and overlap<=0.5, normalized EMA0.2. No calibrated uncertainty claim.",
+  "C": "Optionally compose the tested R2 first-publication RGB identity links after actual matching-pool departure, same25frame original buffer and maxgap250. Never relabel already published IDs.",
+  "controls": "Nine fixed CPU policies: original, late-only, RGB-primary, RGB/IR-primary, RGB-primary+late, RGB/IR-primary+late, duplicateRGB auxiliary+late, current IR-descriptor roll+late, unavailable IR-descriptor+late. The latter interventions concern identity evidence only; the actual IR detector stays normal.",
+  "thresholds": "Only existing11967 Train descriptors, same cyclic wrong-ID pair draws;99th percentile for BOTH RGB and IR. No Dev/Test threshold fitting; no multiple weights or seeds.",
+  "selection": "All9 complete Dev. Maximize HOTA,AssA,IDF1, prefer earlier simple policy at exact ties. Enter one frozen complete Test only if better than the identical late-only reference; otherwise retain and reuse the already frozen R2 result. Never use ongoing Test scores to choose policies.",
+  "release": "CPU-only alongside the unchanged original R2 GPU owner. Future Test replays wait for original R2 full Test/actual exit and use its fixed banks; no additional GPUs or NN extraction.",
+  "fixed_seed": 0,
+  "new_GPU_work": false,
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "supported_innovations": 0,
+  "goal_met": false
+}

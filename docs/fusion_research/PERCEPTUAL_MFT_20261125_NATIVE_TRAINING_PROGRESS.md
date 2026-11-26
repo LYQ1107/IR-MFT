@@ -1,3 +1,5 @@
+> [最新完整Dev与条件关联状态](PERCEPTUAL_MFT_20261127_TRACKLET_DEV_AND_AMBIGUITY_STATUS.md)：身份续接50.429366，比同IR父模型+0.314156；IR确认无额外增益，长保留负向。11个相关worker与1128字段独立核验实际0。原方案已冻结并在4/5继续完整Test；9项条件关联在CPU复用同一银行运行，不依据新Test选型。原始RGB Test29.528971，已验证IR Test29.799525，+5仍未达。下方段落为各自旧观察时点。
+
 > [身份续接R2](PERCEPTUAL_MFT_20261127_TRACKLET_PERMANENCE_R2_STATUS.md)已通过六项CPU回归和4/5两卡各12帧真实工程，当前正在提取完整Dev候选与两路身份描述符。原YOLOX-X和新版IR视觉父模型不变，复用既有seed0 ResNet50 RGB/IR身份编码器；全部Dev/Test紧凑载荷预计0.90GiB，不再反复编码每种关联条件。尚无新精度，不增加创新计数。
 
 > 最新进展：配对Fisher完整Dev五项及九个相关子进程全部实际退出0；零50.115210，非零40.838753–47.221266，全部负增益，无新Test。独立CPU审计705字段及条件Test“不应启动”检查均实际0。[结果与下一步](PERCEPTUAL_MFT_20261127_FISHER_FULL_DEV.md)。当前完整Test29.799525相对原始RGB29.528971仍仅+0.270555，目标未达；继续改进并保持新版IR、seed0、GPU4/5与64GiB上限。下方旧段落保留原观察时点。
