@@ -33,3 +33,7 @@
 后续九／十二轮完整Dev的[独立导出检查与自动等待](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_DEV_AUDIT_READY.md)已接好；CPU工程检查实际退出0，九轮实际结果仍待原实验完成。首批quality_rgb／quality_gray已各完成第7轮，其余四组继续原队列。
 
 最新核对：[首批质量模式RGB／灰度已完成九轮且实际退出0](PERCEPTUAL_MFT_20261126_NATIVE_FIRST_PAIR_NINE_EPOCHS.md)，每组245259逻辑帧次、61326次更新，优化器连续性CPU检查实际退出0。4／5卡已由原队列接入quality_ir／temporal_rgb续训；另外两组仍待接续。完整九轮Dev尚未开始，上述六轮指标仍是最近完整Dev结果。
+
+最新完整轮次核对：quality_ir已完成第7轮并继续第8轮；temporal_rgb已完成第8轮并继续后续九轮预算。两项新增交付与检查点均与原RGB／灰度对照日程匹配，原六轮快照保持字节一致。当前六组完整轮次为9／9／7／8／6／6；九轮阶段实际完成2／6，完整Dev尚未开始。该节点只记录训练进度，不增加准确率或独立创新。原历史NAS恢复中的额外物理重放仍单独保留，不计成新的逻辑epoch。
+
+[当前六组训练状态及两项新保存证明](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)；观察时工作目录约59.790GiB／64GiB，独立空闲约2682.954GiB。
