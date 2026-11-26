@@ -1,0 +1,106 @@
+{
+  "status": "SOURCE_BOUND_NATIVE_MECHANISM_AND_PRIOR_ART_REVIEW_NOT_NEW_ACCURACY",
+  "UTC": "2026-11-26T03:47:22.373613+00:00",
+  "source_control_commit_at_review": "5eeda63c1e1a31ec60364a0032981aa7220d820f",
+  "source_bindings": {
+    "yolox/models/native_pyramid_fusion.py": "9e7b2ea8557528abc0d744ec5a3a15a9028d238a94e56bcbf59514429396b64a",
+    "tools/native_pyramid_train_data.py": "dfc54620594a51c29d1a55c408619ecd97cd11c1daa6ba8b7e7ffe8e57984f28",
+    "tools/native_pyramid_online_inference.py": "5d4001fc44d8a6113ab67f5c6df69433b71398d8122ad9d33f5c0c290fe7d73e",
+    "configs/perceptual_native_pyramid_study_20261124.json": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+    "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV_ANALYSIS_ZH.json": "d0904224d10d4e50a3eebddf27956185f99751846a2b670acb79d668ea00be6d"
+  },
+  "implemented_mechanism_scopes": [
+    {
+      "component": "local_contrast_planes",
+      "code_file": "yolox/models/native_pyramid_fusion.py",
+      "line": 15,
+      "scope": "Nine encoder input channels: masked cue, bounded local normalized contrast, local scale. Masked9x9box moments; no FFT/wavelet transform. Global image statistics are computed before local contrast removal."
+    },
+    {
+      "component": "quality_gate",
+      "code_file": "yolox/models/native_pyramid_fusion.py",
+      "line": 164,
+      "scope": "One sigmoid scalar per image and pyramid level, broadcast spatially. Eight pooled/detached features feed the MLP; spatial selectivity also comes from the native projection and the RGB confidence/validity mask. Not per-target calibrated uncertainty."
+    },
+    {
+      "component": "temporal_confidence",
+      "code_file": "yolox/models/native_pyramid_fusion.py",
+      "line": 168,
+      "scope": "Positive observation term from the current image/level MLP; positive process term is a learned constant per pyramid level. Warped past covariance/support give spatially varying gains shared across channels. No full channel covariance or calibrated thermal likelihood. Past state is detached, no BPTT."
+    },
+    {
+      "component": "RGB_feature_protection",
+      "code_file": "yolox/models/native_pyramid_fusion.py",
+      "line": 189,
+      "scope": "Teacher confidence>=0.6 suppresses correction at that feature site. This does not guarantee unchanged neighboring convolutional detector outputs. Whole unavailable branch returns exact freshB1RGB and clears memory; B1/B4 distinction remains."
+    },
+    {
+      "component": "original_ablation_scope",
+      "code_file": "configs/perceptual_native_pyramid_study_20261124.json",
+      "scope": "Original normal six matched arms, conditional IR removals, and queued IR S×Q factorial remain unchanged. IR-internal removals alone do not establish that the component benefit is exclusive to pseudoIR."
+    }
+  ],
+  "primary_sources": [
+    {
+      "id": "Heeger1992",
+      "title": "Normalization of cell responses in cat striate cortex",
+      "year": 1992,
+      "primary_URL": "https://www.cns.nyu.edu/heegerlab/content/publications/Heeger-VisNeurosci1992a.pdf",
+      "abstract_index_URL": "https://pubmed.ncbi.nlm.nih.gov/1504027/",
+      "checked_scope": "Original-paper indexed abstract/PubMed abstract. Author PDF opened with18pages but no readable text; no full-paper reading claimed.",
+      "supports": "Contrast-dependent normalization is an established visual-computation principle; no biological-equivalence claim for the implemented module."
+    },
+    {
+      "id": "Jarrett2009",
+      "title": "What is the Best Multi-Stage Architecture for Object Recognition?",
+      "year": 2009,
+      "primary_URL": "https://www.cs.toronto.edu/~ranzato/publications/architecture-iccv09.pdf",
+      "checked_scope": "Author PDF actually opened,8pages/649parsedlines; section2 local contrast normalization, PDFpage3.",
+      "supports": "Subtractive/divisive local contrast normalization precedes this project. Paper uses a9x9Gaussian window; current code uses a masked box neighborhood with fixed stabilizers, so exact equivalence is not asserted."
+    },
+    {
+      "id": "GAFF2021",
+      "title": "Guided Attentive Feature Fusion for Multispectral Pedestrian Detection",
+      "year": 2021,
+      "primary_URL": "https://openaccess.thecvf.com/content/WACV2021/papers/Zhang_Guided_Attentive_Feature_Fusion_for_Multispectral_Pedestrian_Detection_WACV_2021_paper.pdf",
+      "checked_scope": "Official-paper indexed sections3.1/3.2 and equations1–4 checked. Direct official PDF and HTML fetch returned403. No full-paper fetch or reproduction claimed.",
+      "supports": "Attention/residual enhancement and reliability-based modality weighting have direct multispectral-detection precedent. GAFF pixel-wise masks are distinct from the current per-level global gate."
+    },
+    {
+      "id": "FGFA2017",
+      "title": "Flow-Guided Feature Aggregation for Video Object Detection",
+      "year": 2017,
+      "primary_URL": "https://arxiv.org/pdf/1703.10025",
+      "official_URL": "https://openaccess.thecvf.com/content_iccv_2017/html/Zhu_Flow-Guided_Feature_Aggregation_ICCV_2017_paper.html",
+      "checked_scope": "Author arXivv2 PDF actually opened,10pages/790parsedlines; section3.2 equations1/2. Direct CVF fetch returned403.",
+      "supports": "Motion-guided feature warping plus adaptive aggregation is established. The checked main formula sums i-K…i+K; current module retains only detached past state. This scoped distinction is not an originality proof."
+    },
+    {
+      "id": "Kalman1960",
+      "title": "A New Approach to Linear Filtering and Prediction Problems",
+      "year": 1960,
+      "primary_URL": "https://cs-www.cs.yale.edu/homes/yry/readings/general/Kalman1960.pdf",
+      "DOI": "10.1115/1.3662552",
+      "checked_scope": "Indexed original-paper abstract checked; direct Yale PDF fetch returned502. Only filtering/error-covariance-recursion principle used, no detailed equation-equivalence or optimality claim.",
+      "supports": "Recursive filtering/error-covariance estimation precedes this module. Its positive learned feature-confidence values are not calibrated physical thermal sensor noise."
+    }
+  ],
+  "secondary_search_results_used_for_technical_claims": false,
+  "review_exhaustive": false,
+  "third_party_methods_reproduced_by_this_review": false,
+  "new_paper_metrics_imported_into_MFT_table": false,
+  "new_model_or_seed_or_GPU_job_launched": false,
+  "original_102_and_future427_sources_unchanged": true,
+  "original_registered_recipe_selection_budget_queue_changed": false,
+  "current_Dev6_IR_HOTA": 50.115209825334276,
+  "current_Dev6_strongest_RGB_HOTA": 49.91847790519531,
+  "current_Dev6_IR_minus_strongest_RGB": 0.19673192013896568,
+  "epoch6_temporal_minus_quality_IR_minus_same_RGB_effect": -0.0011571408,
+  "same_epoch_interaction_is_descriptive_not_isolated_causal_effect": true,
+  "RGB_gray_component_switches_needed_only_for_stronger_modality_exclusivity_claim": true,
+  "no_ad_hoc_GPU_expansion_authorized_by_this_review": true,
+  "Test_results_read": false,
+  "new_Dev_or_Test_accuracy_claimed": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}
