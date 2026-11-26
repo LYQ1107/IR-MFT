@@ -1,0 +1,760 @@
+{
+  "anchor_exchange": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "ALL6_TRAIN_LOCKED_ANCHOR_COMPARISON",
+      "UTC": "2026-11-26T23:17:27.138283+00:00",
+      "sequence": "SN-015",
+      "frame": 6570,
+      "frames": 6570,
+      "seconds": 342.9730366610456,
+      "score_RAM_bytes": {
+        "EMA_RGB": 79768,
+        "EMA_paired": 79768,
+        "anchor_RGB": 79768,
+        "anchor_paired": 79768
+      },
+      "new_optimizer_steps": 0,
+      "new_accuracy": false
+    },
+    "complete": true,
+    "frozen_sources_verified": 496
+  },
+  "pixel_probe": {
+    "actual_exit": 0,
+    "frames": 30,
+    "analysis_samples": 282,
+    "equal_video_aggregate": {
+      "center_box": {
+        "RGB_gray": -0.05045013735252896,
+        "IR": -0.06983115019872056,
+        "IR_minus_RGB_gray_equal_video_delta": -0.0193810128461916
+      },
+      "shape_box": {
+        "RGB_gray": -0.06699553833775412,
+        "IR": -0.07034211843002451,
+        "IR_minus_RGB_gray_equal_video_delta": -0.0033465800922703876
+      }
+    },
+    "new_tracking_accuracy": false,
+    "only_fixed30_Train_frames": true
+  },
+  "two_track_exchange": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "ALL6_TRAIN_TWO_TRACK_EXCHANGE_DIAGNOSIS",
+      "UTC": "2026-11-26T22:56:05.195746+00:00",
+      "sequence": "SN-015",
+      "frame": 6570,
+      "frames": 6570,
+      "seconds": 306.8664434340317,
+      "score_RAM_bytes": {
+        "RGB": 79768,
+        "paired": 79768
+      },
+      "new_optimizer_steps": 0,
+      "new_accuracy": false
+    },
+    "complete": true,
+    "frozen_sources_verified": 492
+  },
+  "study_auditors": {
+    "selective": {
+      "actual_exit": 0,
+      "live": null,
+      "progress": {
+        "status": "COMPLETE_READ_ONLY_FULL_STUDY_AUDIT",
+        "UTC": "2026-11-26T22:59:44.878363+00:00"
+      },
+      "complete": true
+    },
+    "archive": {
+      "actual_exit": null,
+      "live": null,
+      "progress": {
+        "status": "COMPLETE_READ_ONLY_FULL_STUDY_AUDIT",
+        "UTC": "2026-11-26T23:14:25.090095+00:00"
+      },
+      "complete": true,
+      "separate_closure_recheck": {
+        "actual_exit": 0,
+        "tool_chunk": "c5d226",
+        "fields": 6627,
+        "original_session_exit143_preserved": true,
+        "original_child_exit_not_recorded": true
+      }
+    }
+  },
+  "archive_fit": {
+    "actual_exit": 0,
+    "live": null,
+    "complete": true,
+    "Train_frames": 27251,
+    "early_known_edges": 12951,
+    "model_sha256": "746336c5bac6b5c907c6765a3b71103bfe8804d97dbc48e3c46bfe44266eae7c",
+    "final_fit_diagnostics": {
+      "RGB": {
+        "weighted_objective_after_final_step": 0.32548937200200906,
+        "gradient_norm": 1.6590246612590417e-09,
+        "rows": 12951,
+        "weight": 0.9999999999999967,
+        "optimizer_updated_during_diagnostic": false
+      },
+      "paired": {
+        "weighted_objective_after_final_step": 0.3113906663234999,
+        "gradient_norm": 1.578486848991833e-08,
+        "rows": 12951,
+        "weight": 0.9999999999999967,
+        "optimizer_updated_during_diagnostic": false
+      }
+    }
+  },
+  "archive_controller": {
+    "state": "COMPLETE_ARCHIVE_FULL_TEST_REQUIRES_SCIENTIFIC_ASSESSMENT",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "ARCHIVE_REASONING_EVAL_REGISTER",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_native_zero",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_fixed_RGB_late",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_fixed_RGB_late_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_RGB_q99",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_paired_q99",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_RGB_q99_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_paired_q99_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_RGB_q999",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_paired_q999",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_RGB_q999_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_OFFICIAL",
+        "id": "AR_paired_q999_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_INTERVENTION_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_INTERVENTION_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_INTERVENTION_OFFICIAL",
+        "id": "AR_intervention_missing",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_DEV_INTERVENTION_OFFICIAL",
+        "id": "AR_intervention_roll",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "BT-002",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "BT-004",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "MSK-003",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "PF-002",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "SN-009",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "SN-011",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_REPLAY",
+        "id": "SN-014",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_OFFICIAL",
+        "id": "AR_native_zero",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_OFFICIAL",
+        "id": "AR_fixed_RGB_late_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_OFFICIAL",
+        "id": "AR_RGB_q999_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "ARCHIVE_REASONING_TEST_OFFICIAL",
+        "id": "AR_paired_q999_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      }
+    ]
+  },
+  "archive_auditor": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "COMPLETE_INDEPENDENT_ALL6_TRAIN_ARCHIVE_FIT_AUDIT",
+      "UTC": "2026-11-26T22:33:23.587010+00:00"
+    },
+    "complete": true
+  },
+  "frozen_archive_fit_sources_verified": 498,
+  "frozen_archive_evaluation_sources_verified": 506,
+  "frozen_archive_audit_sources_verified": 2,
+  "UTC": "2026-11-26T23:26:10.455476+00:00",
+  "bank": {
+    "state": "COMPLETE_TRAIN_BANK_READY_NO_NEW_MODEL_OR_ACCURACY",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "4",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "5",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "PF-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-015",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "MSK-002",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-003",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      }
+    ]
+  },
+  "risk": {
+    "state": "COMPLETE_CANDIDATE_RISK_NO_DEV_GAIN_NO_NEW_TEST",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "CANDIDATE_RISK_CPU_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT_REGISTER",
+        "id": "register",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT",
+        "id": "fit",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_native_zero",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_pose_late_control",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_RGB_risk",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_risk",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_risk_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_direct_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      }
+    ]
+  },
+  "auditor": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "COMPLETE_INDEPENDENT_TRAIN_AND_FORMAL_METRIC_AUDIT",
+      "UTC": "2026-11-26T22:44:36.951375+00:00"
+    }
+  },
+  "frozen_auditor_sources_verified": 3,
+  "selective": {
+    "state": "COMPLETE_SELECTIVE_PROTECTION_NO_DEV_GAIN_NO_NEW_TEST",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "SELECTIVE_PROTECTION_CAL_REGISTER",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_CALIBRATE",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_EVAL_REGISTER",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_RGB_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_shape_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_direct_shape_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_RGB_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_shape_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_direct_shape_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      }
+    ]
+  },
+  "frozen_selective_sources_verified": 498,
+  "risk_fit_progress": {
+    "phase": "late_Train_calibration",
+    "sequence": "SN-015",
+    "frame": 6570,
+    "frames": 6570,
+    "seconds": 2379.5907359990524,
+    "GT_split": "train",
+    "GPU_work": false,
+    "new_tracking_accuracy": false
+  },
+  "progress": {
+    "SN-001": {
+      "frame": 684,
+      "frames": 684,
+      "proposals": 8797,
+      "uncompressed_payload_bytes": 18203148,
+      "physical_gpu": "5",
+      "seconds": 284.88632281695027,
+      "GT_labels_parsed": false
+    },
+    "BT-003": {
+      "frame": 243,
+      "frames": 243,
+      "proposals": 3097,
+      "uncompressed_payload_bytes": 6408492,
+      "physical_gpu": "5",
+      "seconds": 106.7284725200152,
+      "GT_labels_parsed": false
+    },
+    "BT-001": {
+      "frame": 3000,
+      "frames": 3000,
+      "proposals": 42063,
+      "uncompressed_payload_bytes": 87034292,
+      "physical_gpu": "5",
+      "seconds": 1296.7094264419284,
+      "GT_labels_parsed": false
+    },
+    "PF-001": {
+      "frame": 15000,
+      "frames": 15000,
+      "proposals": 30889,
+      "uncompressed_payload_bytes": 64118460,
+      "physical_gpu": "4",
+      "seconds": 6155.107988929027,
+      "GT_labels_parsed": false
+    },
+    "MSK-002": {
+      "frame": 1754,
+      "frames": 1754,
+      "proposals": 91770,
+      "uncompressed_payload_bytes": 189808432,
+      "physical_gpu": "5",
+      "seconds": 897.333326740074,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 6570,
+      "frames": 6570,
+      "proposals": 73023,
+      "uncompressed_payload_bytes": 151116692,
+      "physical_gpu": "5",
+      "seconds": 2821.3081125579774,
+      "GT_labels_parsed": false
+    }
+  },
+  "ledger": {
+    "maximum_bytes": 1288490188,
+    "sequences": {
+      "PF-001": 64118460,
+      "SN-015": 151116692,
+      "BT-001": 87034292,
+      "MSK-002": 189808432,
+      "SN-001": 18203148,
+      "BT-003": 6408492
+    },
+    "total_reserved_bytes": 516689516
+  },
+  "work_GiB": 61.993112293072045,
+  "free_GiB": 2637.919502258301,
+  "bank_complete": true,
+  "fitted_models": true,
+  "risk_Dev_complete": true,
+  "risk_Test_complete": false,
+  "frozen_risk_sources_verified": 486,
+  "last_formal_Test_HOTA": 30.715876827587834,
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "last_formal_gain_pp": 1.1869061401938623,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}

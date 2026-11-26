@@ -1,0 +1,617 @@
+{
+  "status": "COMPLETE_DEV_FROZEN_ARCHIVE_FULL7_TEST_AND_COMPLETED_TRAIN_DIAGNOSES_TARGET_NOT_MET",
+  "UTC": "2026-11-26T23:29:04.460001+00:00",
+  "observation_UTC": "2026-11-26T23:26:10.455476+00:00",
+  "fixed_original_RGB_Test_HOTA": 29.528970687393972,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "stretch_target_Test_HOTA": 39.52897068739397,
+  "selected_case": {
+    "id": "AR_RGB_q999_shape",
+    "kind": "RGB",
+    "quantile": "q999",
+    "shape": true
+  },
+  "selected_Test_HOTA": 30.715876827587834,
+  "HOTA_gain_over_original_RGB_pp": 1.1869061401938623,
+  "remaining_to_plus5_pp": 3.8130938598061377,
+  "selected_Dev_HOTA": 52.098427171322534,
+  "Dev_gain_over_previous_best_pp": 0.11459022586507928,
+  "all_Test_sequences": 7,
+  "all_Test_frames": 15985,
+  "Test_used_for_selection": false,
+  "matched_IR_identity_control": {
+    "case": {
+      "id": "AR_paired_q999_shape",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": true
+    },
+    "HOTA": 30.837886844425295,
+    "HOTA_minus_RGB_identity_control_pp": 0.12201001683746071,
+    "promoted_from_Test": false
+  },
+  "not_a_global_historical_best_claim": true,
+  "source_detector_historical_Dev_exposure": true,
+  "historical_Test_previously_exposed": true,
+  "selective": {
+    "actual_controller_exit": 0,
+    "actual_independent_auditor_exit": 0,
+    "all14_study_jobs_actual_exit_zero": true,
+    "official_numeric_fields_reparsed": 1692,
+    "complete_Dev_cases": 8,
+    "no_qualified_override_preferences": true,
+    "no_changed_MOT_or_all47_vs_corresponding_static_controls": true,
+    "no_new_Test": true
+  },
+  "archive": {
+    "actual_controller_exit": 0,
+    "all30_study_jobs_actual_exit_zero": true,
+    "official_numeric_fields_reparsed": 6627,
+    "normal_Dev_cases": 11,
+    "Dev_intervention_cases": 2,
+    "Test_cases": 4,
+    "freeze_sha256": "afb737f46ea90267107588d4a2545ef5fa8ce8c5b22dc9aedcd0f0dffd728600",
+    "main_controller_actual_tool": "457801",
+    "original_auditor_session_actual_tool_exit": 143,
+    "original_auditor_child_exit_not_recorded": true,
+    "original_execution_record_unchanged": true,
+    "separate_read_only_reverification_actual_exit": 0,
+    "reverification_actual_tool": "c5d226",
+    "original_report_sha256": "e38b81478845c57f5ff83a337c8622ebb5bb184e707d39a2b36d9921baf5f1b7",
+    "model_bytes_unchanged": true,
+    "no_refitting_or_selection_change_during_reverification": true
+  },
+  "posterior_exchange": {
+    "frames": 27251,
+    "actual_exit": 0,
+    "actual_tool": "ce2574",
+    "source_registration_sha256": "958b13c0f17c631312a2e69a09c573cc4311a5df454acf630d73837d735915ad",
+    "all_teacher_MOT_exact": true,
+    "late_known_beneficial_three_frame_windows": 9,
+    "none_passed_positive_score_floor": true,
+    "new_tracker": false,
+    "new_accuracy": false
+  },
+  "locked_anchor": {
+    "frames": 27251,
+    "actual_exit": 0,
+    "actual_tool": "e245aa",
+    "source_registration_sha256": "e7d5912ba02f69577fa870e6f7ab62563a38357a82a8741a383a784c042ccf27",
+    "source_files": 496,
+    "models": {
+      "EMA_RGB": {
+        "early": {
+          "beneficial": {
+            "windows": 132,
+            "positive_margin_windows": 1,
+            "min": -0.4740722179412842,
+            "max": 0.08860880136489868,
+            "median": -0.3328637182712555,
+            "passing_late_wrong_thresholds": {
+              "q99": 1,
+              "q999": 1
+            }
+          },
+          "harmful": {
+            "windows": 7219,
+            "positive_margin_windows": 0,
+            "min": -0.6828020215034485,
+            "max": -0.05089327692985535,
+            "median": -0.3403484746813774,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "neutral": {
+            "windows": 172,
+            "positive_margin_windows": 0,
+            "min": -0.47905388101935387,
+            "max": -0.08198750019073486,
+            "median": -0.2629387080669403,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late": {
+          "beneficial": {
+            "windows": 9,
+            "positive_margin_windows": 0,
+            "min": -0.4299963600933552,
+            "max": -0.31007616594433784,
+            "median": -0.3343203067779541,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "harmful": {
+            "windows": 2427,
+            "positive_margin_windows": 0,
+            "min": -0.6008535623550415,
+            "max": -0.043688178062438965,
+            "median": -0.3492410033941269,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "neutral": {
+            "windows": 12,
+            "positive_margin_windows": 0,
+            "min": -0.38499291241168976,
+            "max": -0.2077147215604782,
+            "median": -0.2546878904104233,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late_nonbeneficial_three_frame_window_thresholds": {
+          "q99": 0.025,
+          "q999": 0.025
+        },
+        "late_nonbeneficial_window_count": 2439
+      },
+      "EMA_paired": {
+        "early": {
+          "beneficial": {
+            "windows": 132,
+            "positive_margin_windows": 1,
+            "min": -0.41310463938862085,
+            "max": 0.04952533543109894,
+            "median": -0.2724631819874048,
+            "passing_late_wrong_thresholds": {
+              "q99": 1,
+              "q999": 1
+            }
+          },
+          "harmful": {
+            "windows": 7219,
+            "positive_margin_windows": 0,
+            "min": -0.5618319921195507,
+            "max": -0.03426133096218109,
+            "median": -0.3030498940497637,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "neutral": {
+            "windows": 172,
+            "positive_margin_windows": 0,
+            "min": -0.4020579229108989,
+            "max": -0.04302847385406494,
+            "median": -0.21452786400914192,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late": {
+          "beneficial": {
+            "windows": 9,
+            "positive_margin_windows": 0,
+            "min": -0.35027087293565273,
+            "max": -0.23151963390409946,
+            "median": -0.2726234570145607,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "harmful": {
+            "windows": 2427,
+            "positive_margin_windows": 0,
+            "min": -0.5298859998583794,
+            "max": -0.03580443561077118,
+            "median": -0.29888956621289253,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "neutral": {
+            "windows": 12,
+            "positive_margin_windows": 0,
+            "min": -0.3898703381419182,
+            "max": -0.1538989171385765,
+            "median": -0.2062221709638834,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late_nonbeneficial_three_frame_window_thresholds": {
+          "q99": 0.025,
+          "q999": 0.025
+        },
+        "late_nonbeneficial_window_count": 2439
+      },
+      "anchor_RGB": {
+        "early": {
+          "beneficial": {
+            "windows": 132,
+            "positive_margin_windows": 63,
+            "min": -0.3000160828232765,
+            "max": 0.10002490878105164,
+            "median": 0.021924279630184174,
+            "passing_late_wrong_thresholds": {
+              "q99": 63,
+              "q999": 63
+            }
+          },
+          "harmful": {
+            "windows": 7219,
+            "positive_margin_windows": 3,
+            "min": -0.5358290672302246,
+            "max": 0.04461689293384552,
+            "median": -0.22077402472496033,
+            "passing_late_wrong_thresholds": {
+              "q99": 3,
+              "q999": 3
+            }
+          },
+          "neutral": {
+            "windows": 172,
+            "positive_margin_windows": 0,
+            "min": -0.4293481856584549,
+            "max": 0.01462864875793457,
+            "median": -0.09578894078731537,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late": {
+          "beneficial": {
+            "windows": 9,
+            "positive_margin_windows": 0,
+            "min": -0.2758278511464596,
+            "max": -0.08040843904018402,
+            "median": -0.20356595888733864,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "harmful": {
+            "windows": 2427,
+            "positive_margin_windows": 3,
+            "min": -0.571936696767807,
+            "max": 0.02899971604347229,
+            "median": -0.22822412475943565,
+            "passing_late_wrong_thresholds": {
+              "q99": 3,
+              "q999": 3
+            }
+          },
+          "neutral": {
+            "windows": 12,
+            "positive_margin_windows": 0,
+            "min": -0.44154858589172363,
+            "max": -0.15651632845401764,
+            "median": -0.26936040446162224,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late_nonbeneficial_three_frame_window_thresholds": {
+          "q99": 0.025,
+          "q999": 0.025
+        },
+        "late_nonbeneficial_window_count": 2439
+      },
+      "anchor_paired": {
+        "early": {
+          "beneficial": {
+            "windows": 132,
+            "positive_margin_windows": 23,
+            "min": -0.29373789206147194,
+            "max": 0.0781486090272665,
+            "median": -0.003837134689092636,
+            "passing_late_wrong_thresholds": {
+              "q99": 23,
+              "q999": 23
+            }
+          },
+          "harmful": {
+            "windows": 7219,
+            "positive_margin_windows": 5,
+            "min": -0.5222964212298393,
+            "max": 0.03905302286148071,
+            "median": -0.15883950144052505,
+            "passing_late_wrong_thresholds": {
+              "q99": 5,
+              "q999": 5
+            }
+          },
+          "neutral": {
+            "windows": 172,
+            "positive_margin_windows": 0,
+            "min": -0.2993927448987961,
+            "max": 0.021546579897403717,
+            "median": -0.0765855684876442,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late": {
+          "beneficial": {
+            "windows": 9,
+            "positive_margin_windows": 0,
+            "min": -0.23774572648108006,
+            "max": -0.15944523364305496,
+            "median": -0.22747253440320492,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          },
+          "harmful": {
+            "windows": 2427,
+            "positive_margin_windows": 3,
+            "min": -0.4908948801457882,
+            "max": 0.06661035120487213,
+            "median": -0.17301582917571068,
+            "passing_late_wrong_thresholds": {
+              "q99": 3,
+              "q999": 3
+            }
+          },
+          "neutral": {
+            "windows": 12,
+            "positive_margin_windows": 0,
+            "min": -0.3483755439519882,
+            "max": -0.12109474092721939,
+            "median": -0.24745061458088458,
+            "passing_late_wrong_thresholds": {
+              "q99": 0,
+              "q999": 0
+            }
+          }
+        },
+        "late_nonbeneficial_three_frame_window_thresholds": {
+          "q99": 0.025,
+          "q999": 0.025218352140857738
+        },
+        "late_nonbeneficial_window_count": 2439
+      }
+    },
+    "early_three_frame_windows_overlap_not_independent": true,
+    "early_anchor_RGB_beneficial_harmful": [
+      63,
+      3
+    ],
+    "early_EMA_RGB_beneficial_harmful": [
+      1,
+      0
+    ],
+    "early_anchor_equal_average_IR_beneficial_harmful": [
+      23,
+      5
+    ],
+    "late_all_modes_beneficial_passing": 0,
+    "late_anchor_harmful_passing": 3,
+    "all_teacher_MOT_exact": true,
+    "model_coefficients_not_used_for_these_similarity_scores": true,
+    "new_tracker": false,
+    "new_model_fits": 0,
+    "new_accuracy": false
+  },
+  "pixel_probe": {
+    "frames": 30,
+    "sequences": 6,
+    "proposals_measured": 533,
+    "known_high_score_analysis_samples": 282,
+    "actual_tool": "2cab3c",
+    "actual_exit": 0,
+    "equal_video_aggregate": {
+      "center_box": {
+        "RGB_gray": -0.05045013735252896,
+        "IR": -0.06983115019872056,
+        "IR_minus_RGB_gray_equal_video_delta": -0.0193810128461916
+      },
+      "shape_box": {
+        "RGB_gray": -0.06699553833775412,
+        "IR": -0.07034211843002451,
+        "IR_minus_RGB_gray_equal_video_delta": -0.0033465800922703876
+      }
+    },
+    "not_full_Train_or_tracking_accuracy_validation": true,
+    "unconditional_box_correction_not_promoted": true,
+    "scalar_observation_rows_saved_in_small_JSON": 282,
+    "original_feature_dump_flag_scope": "No image,crop,512D descriptor bank or candidate-pair cache was dumped. The small audit JSON does contain per-proposal scalar geometry measurements and IoU deltas."
+  },
+  "next_research": {
+    "plan": "configs/perceptual_identity_ledger_followup_20261127.json",
+    "status": "Design only;not an implemented method or validated contribution",
+    "previous_closed_exchange_tracker_plan": "Held after lateTrain failed to support beneficial decisions",
+    "required": "Implement GT-free logical identity memory separately from physical geometry;all6Train candidate collection before fits,then fullDevregistration and fixed Test gate.",
+    "no_new_Test_selection_from_current_control_result": true
+  },
+  "resources": {
+    "seed": 0,
+    "physical_GPUs_if_needed": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "current_studies_new_GPU_work": false,
+    "work_GiB": 61.993112293072045,
+    "work_cap_GiB": 64,
+    "free_GiB": 2637.919502258301,
+    "reserve_GiB": 40,
+    "no_images_weights_or_pair_feature_dump_in_Git": true
+  },
+  "goal_met": false,
+  "supported_innovations": 0,
+  "lightweight_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/selective_actual/controller.actual_tool_completion_r1.json",
+      "sha256": "f30f98af9021ff90245c51bfa2d1c9f6c0e90c1e4cb28bf459fb59bc0dffe5be",
+      "source_sha256": "f30f98af9021ff90245c51bfa2d1c9f6c0e90c1e4cb28bf459fb59bc0dffe5be",
+      "bytes": 1394
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/selective_actual/independent_study_audit_r1.actual_tool_completion.json",
+      "sha256": "fb5a99b868b4c208e80eca8600560a29a5637c966fd943a3d97eef0c924ab4e2",
+      "source_sha256": "fb5a99b868b4c208e80eca8600560a29a5637c966fd943a3d97eef0c924ab4e2",
+      "bytes": 1661
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/controller.actual_tool_completion_r1.json",
+      "sha256": "fc6573e71a339fc6445009d4943d38b6c2bf3b7fec726919067baff5e2b1967e",
+      "source_sha256": "fc6573e71a339fc6445009d4943d38b6c2bf3b7fec726919067baff5e2b1967e",
+      "bytes": 1494
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/independent_study_audit_r1.actual_tool_reply.json",
+      "sha256": "4f39f5d9cda818002a8ac511689b43221c1b9b44e1659530a43c6d3edb452ebe",
+      "source_sha256": "4f39f5d9cda818002a8ac511689b43221c1b9b44e1659530a43c6d3edb452ebe",
+      "bytes": 128
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/independent_study_audit_r1.execution.json",
+      "sha256": "7d8e9d4ff02cfd05eb306f6c49fa1a7641308e7a6e2e55df487a8db39e64e378",
+      "source_sha256": "7d8e9d4ff02cfd05eb306f6c49fa1a7641308e7a6e2e55df487a8db39e64e378",
+      "bytes": 1377
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/independent_study_closure_verification.json",
+      "sha256": "b1fc62fdb981c90725dc7c7494d909419ecc8438241edb487d1011dc4ba14ca0",
+      "source_sha256": "b1fc62fdb981c90725dc7c7494d909419ecc8438241edb487d1011dc4ba14ca0",
+      "bytes": 1139
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/independent_study_closure_verification.actual_tool_reply.json",
+      "sha256": "64b1de9a0751417254426ca8115ea49ca9bafee6e9d2c62384f197fa981be200",
+      "source_sha256": "64b1de9a0751417254426ca8115ea49ca9bafee6e9d2c62384f197fa981be200",
+      "bytes": 1277
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/full_Test_results.json",
+      "sha256": "c6a951b0dae67c5bc0f1b0948066960f3a334d20bce02d3a6286b62e52c5923e",
+      "source_sha256": "c6a951b0dae67c5bc0f1b0948066960f3a334d20bce02d3a6286b62e52c5923e",
+      "bytes": 394054
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/archive_actual/complete_Dev_interventions.json",
+      "sha256": "2b41766930eb3a120fe073625bc8b1e6f00c0bf0dd9be0285fbf6513ff3c7e97",
+      "source_sha256": "2b41766930eb3a120fe073625bc8b1e6f00c0bf0dd9be0285fbf6513ff3c7e97",
+      "bytes": 167495
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/posterior_exchange/complete_Train.json",
+      "sha256": "8cdd92aed718ffafb35e149e2a4729f6e66a41fe7e464a7e75ffcf0248beadce",
+      "source_sha256": "8cdd92aed718ffafb35e149e2a4729f6e66a41fe7e464a7e75ffcf0248beadce",
+      "bytes": 10853
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/posterior_exchange/CPU_diagnostic_r1.execution.json",
+      "sha256": "deefff886b60edb687cb750f327e6510dd49f65350846f079e413d45bcd037bd",
+      "source_sha256": "deefff886b60edb687cb750f327e6510dd49f65350846f079e413d45bcd037bd",
+      "bytes": 1507
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/posterior_exchange/CPU_diagnostic_r1.actual_tool_completion.json",
+      "sha256": "56c220a4a95c66dcadc6ba56a3672992795d0e087ec83ab0c5e1cd64cc2a68ba",
+      "source_sha256": "56c220a4a95c66dcadc6ba56a3672992795d0e087ec83ab0c5e1cd64cc2a68ba",
+      "bytes": 1604
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/registered.json",
+      "sha256": "e7d5912ba02f69577fa870e6f7ab62563a38357a82a8741a383a784c042ccf27",
+      "source_sha256": "e7d5912ba02f69577fa870e6f7ab62563a38357a82a8741a383a784c042ccf27",
+      "bytes": 65597
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/complete_Train.json",
+      "sha256": "e5bc331fef936a81dad9ed60b2d155c7d03b1aa66adc8873326afd2832a38607",
+      "source_sha256": "e5bc331fef936a81dad9ed60b2d155c7d03b1aa66adc8873326afd2832a38607",
+      "bytes": 17023
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CPU_diagnostic_r1.execution.json",
+      "sha256": "46cc282c09170ea4d32492aee9485965ebdb7f31a39c80b59df78d3456d599d6",
+      "source_sha256": "46cc282c09170ea4d32492aee9485965ebdb7f31a39c80b59df78d3456d599d6",
+      "bytes": 1711
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CPU_diagnostic_r1.actual_tool_completion.json",
+      "sha256": "0a4d95be4257fa4140c677de2f50301bf1a99b2dfccadcfec061df31ca2f1a3e",
+      "source_sha256": "0a4d95be4257fa4140c677de2f50301bf1a99b2dfccadcfec061df31ca2f1a3e",
+      "bytes": 1792
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CPU_regressions_r1.json",
+      "sha256": "276e2d11de0598cc32c33d34e0325b67e50ed8fb8d38aeded180acbbdb691bb6",
+      "source_sha256": "276e2d11de0598cc32c33d34e0325b67e50ed8fb8d38aeded180acbbdb691bb6",
+      "bytes": 632
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CPU_regressions_r1.stdout.txt",
+      "sha256": "cf458e0ee1094d79c6c877a769907e6498c14447ae4af9e798e8be3456248761",
+      "source_sha256": "cf458e0ee1094d79c6c877a769907e6498c14447ae4af9e798e8be3456248761",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "0fa9a9367c776ebe487415b67c58b6ee458702be4c3457e81d80226498eae5c1",
+      "source_sha256": "0fa9a9367c776ebe487415b67c58b6ee458702be4c3457e81d80226498eae5c1",
+      "bytes": 1182
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/CLI_r1.actual_tool_reply.json",
+      "sha256": "907895882974d23d4644f53f2e2fac3e3241a9073129bbda9e2938a13db80891",
+      "source_sha256": "907895882974d23d4644f53f2e2fac3e3241a9073129bbda9e2938a13db80891",
+      "bytes": 372
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/registration_r1.actual_tool_reply.json",
+      "sha256": "8681227d12863db89c48a62a7374daff9312b0cbe9e7b15c47a6ea59e63cd256",
+      "source_sha256": "8681227d12863db89c48a62a7374daff9312b0cbe9e7b15c47a6ea59e63cd256",
+      "bytes": 254
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/pixel_probe/selection_before_images.json",
+      "sha256": "7eae77ac43eba1864688cc62d6acd37ee9aa1ee29e9e8770cf4cf1dd5365ee9e",
+      "source_sha256": "7eae77ac43eba1864688cc62d6acd37ee9aa1ee29e9e8770cf4cf1dd5365ee9e",
+      "bytes": 4123
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/pixel_probe/complete.json",
+      "sha256": "0100d87ece6d28945b4f579b4475fbe25e4612942acc6c90e8fe694da870cb38",
+      "source_sha256": "0100d87ece6d28945b4f579b4475fbe25e4612942acc6c90e8fe694da870cb38",
+      "bytes": 286777
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/pixel_probe/actual_tool_reply.json",
+      "sha256": "27eef3e23b72ccf1672f2056bb6409eeb871b6869f23db382008a2a4720806cd",
+      "source_sha256": "27eef3e23b72ccf1672f2056bb6409eeb871b6869f23db382008a2a4720806cd",
+      "bytes": 622
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/locked_anchor/supervisor.py.txt",
+      "sha256": "c64af3cf3fb11033094bf3d7662db4a2152f99a3234a0a5a5f4b5ec7f99b81eb",
+      "source_sha256": "c64af3cf3fb11033094bf3d7662db4a2152f99a3234a0a5a5f4b5ec7f99b81eb",
+      "bytes": 2727
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_Test_and_followups/final_observation.json",
+      "sha256": "4f7add10918fcaeef69ad4a33dc13209505743d5174458b22d850ebdd1d5d871",
+      "source_sha256": "4f7add10918fcaeef69ad4a33dc13209505743d5174458b22d850ebdd1d5d871",
+      "bytes": 19449
+    }
+  ]
+}

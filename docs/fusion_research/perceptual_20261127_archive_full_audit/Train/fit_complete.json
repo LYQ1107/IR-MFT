@@ -1,0 +1,102 @@
+{
+  "status": "COMPLETE_SEPARATE_ARCHIVE_TRAIN_MODELS_NO_NEW_ACCURACY",
+  "UTC": "2026-11-26T22:25:05.944116+00:00",
+  "model_file": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/private_models.json",
+  "model_sha256": "746336c5bac6b5c907c6765a3b71103bfe8804d97dbc48e3c46bfe44266eae7c",
+  "registration_sha256": "2a031aa47e045563aac10a7e8c4588f3db87f1082b7ab34cd0f033f61ab4ce3b",
+  "coverage_sha256": "23abed9275d4a3139a3d0a15a3cfb75a8a2522fc5e20fc23c314f38f6b2a641b",
+  "feature_names": [
+    "log_gap",
+    "log_new_public_age",
+    "log_old_template_age",
+    "dx_body",
+    "dy_body",
+    "distance_body",
+    "abs_log_width",
+    "abs_log_height",
+    "abs_log_aspect",
+    "RGB_cosine",
+    "IR_cosine",
+    "IR_available",
+    "RGB_row_margin",
+    "RGB_column_margin",
+    "IR_row_margin",
+    "IR_column_margin",
+    "old_template_quality",
+    "new_template_quality",
+    "RGB_quality_support",
+    "IR_quality_support",
+    "cue_disagreement",
+    "log_old_reliable_count",
+    "log_new_reliable_count",
+    "new_detection_score",
+    "relative_displacement_per_frame",
+    "log_new_template_recency"
+  ],
+  "thresholds": {
+    "RGB": {
+      "q99": 0.9767399671870625,
+      "q999": 0.9906120040181262
+    },
+    "paired": {
+      "q99": 0.9709795065446102,
+      "q999": 0.9830861413180398
+    }
+  },
+  "late_calibration_counts": {
+    "RGB": {
+      "known": 4961,
+      "positive": 544,
+      "negative": 4417
+    },
+    "paired": {
+      "known": 4961,
+      "positive": 544,
+      "negative": 4417
+    }
+  },
+  "early_videos_used": [
+    "BT-001",
+    "BT-003",
+    "MSK-002",
+    "PF-001",
+    "SN-001",
+    "SN-015"
+  ],
+  "empty_early_videos": [],
+  "early_known_edges": 12951,
+  "Train_frames": 27251,
+  "Train_sequences": 6,
+  "Dev_rows": 0,
+  "Test_rows": 0,
+  "unique_Train_proposals": 249639,
+  "optimizer_passes": 6,
+  "bounded_RAM_feature_payload_bytes": 1934496,
+  "feature_pair_disk_dump": false,
+  "truncated_pairs": 0,
+  "all_teacher_MOT_exact": true,
+  "all_frames_and_proposals_used": true,
+  "seed": 0,
+  "new_GPU_work": false,
+  "final_fit_diagnostics": {
+    "RGB": {
+      "weighted_objective_after_final_step": 0.32548937200200906,
+      "gradient_norm": 1.6590246612590417e-09,
+      "rows": 12951,
+      "weight": 0.9999999999999967,
+      "optimizer_updated_during_diagnostic": false
+    },
+    "paired": {
+      "weighted_objective_after_final_step": 0.3113906663234999,
+      "gradient_norm": 1.578486848991833e-08,
+      "rows": 12951,
+      "weight": 0.9999999999999967,
+      "optimizer_updated_during_diagnostic": false
+    }
+  },
+  "seconds": 196.36725809797645,
+  "new_tracking_accuracy": false,
+  "encoder_Train_identity_exposure": "Frozen descriptor encoders previously saw these Train identities. Late calibration is not a new heldout-encoder evaluation.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

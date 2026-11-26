@@ -1,0 +1,38 @@
+{
+  "status": "TRAIN_ONLY_LOCKED_IDENTITY_ANCHOR_COMPARISON_BEFORE_COLLECTION",
+  "hypothesis": "An adaptive template may lose an old identity after association errors. Compare a locked first3reliable-view anchor with the original0.8/0.2EMA,using direct appearance evidence and keeping all tracker decisions unchanged.",
+  "evidence_modes": [
+    "EMA_RGB",
+    "EMA_paired",
+    "anchor_RGB",
+    "anchor_paired"
+  ],
+  "paired_similarity": "Fixed equal RGB/IR cosine average;missingIR falls back to RGB. Identical geometry/candidate masks and every competitor counts.",
+  "anchor": "Mean of first3reliable unit observations,normalized once and never updated later;no labels enter anchor creation. Three-view count uses the exact original score/overlap reliability rule.",
+  "decision_window": "Minimum mutual margin for a closed2x2exchange over exactly3consecutive observed candidate frames. Similarities scaled0..1,not probabilities.",
+  "minimum_score_margin": 0.025,
+  "interpretation": ".025scaled margin equals.05cosine margin. LateTrain harmful+neutral windows define99/99.9quantiles;report real beneficial/harmful passing counts,no promised false-link bound.",
+  "Train_frames": 27251,
+  "Train_videos": 6,
+  "new_model_fits": 0,
+  "new_optimizer_steps": 0,
+  "current_stage": "Diagnosis only,no modified tracking costs,Dev or Test.",
+  "previous_diagnosis": "All9late beneficial C1posterior-score windows had negative evidence. This comparison does not lower a threshold to force these same posterior decisions.",
+  "all_frame_and_proposal_delivery": true,
+  "no_feature_or_pair_disk_dump": true,
+  "score_RAM_payload_cap_per_mode_bytes": 67108864,
+  "fixed_seed": 0,
+  "new_GPU_work": false,
+  "physical_GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "historical_Test_previously_exposed": true,
+  "encoder_previously_seen_Train_identities": true,
+  "source_detector_historical_Dev_exposure": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

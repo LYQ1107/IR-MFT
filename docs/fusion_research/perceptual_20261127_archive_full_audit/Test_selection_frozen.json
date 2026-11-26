@@ -1,0 +1,64 @@
+{
+  "status": "FROZEN_ARCHIVE_FULL_DEV_SELECTION_AND_CONTROLS",
+  "UTC": "2026-11-26T23:03:41.896135+00:00",
+  "cases": [
+    {
+      "id": "AR_native_zero",
+      "kind": "reference_native",
+      "quantile": null,
+      "shape": false
+    },
+    {
+      "id": "AR_fixed_RGB_late_shape",
+      "kind": "reference_pose",
+      "quantile": null,
+      "shape": true
+    },
+    {
+      "id": "AR_RGB_q999_shape",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": true
+    },
+    {
+      "id": "AR_paired_q999_shape",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": true
+    }
+  ],
+  "chosen_case": {
+    "id": "AR_RGB_q999_shape",
+    "kind": "RGB",
+    "quantile": "q999",
+    "shape": true
+  },
+  "matched_identity_control": {
+    "id": "AR_paired_q999_shape",
+    "kind": "paired",
+    "quantile": "q999",
+    "shape": true
+  },
+  "Dev_interventions": [
+    {
+      "id": "AR_intervention_missing",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": true,
+      "intervention": "missing",
+      "source_case": "AR_paired_q999_shape"
+    },
+    {
+      "id": "AR_intervention_roll",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": true,
+      "intervention": "roll",
+      "source_case": "AR_paired_q999_shape"
+    }
+  ],
+  "complete_Dev_sha256": "c37728ee0688409f16e2e9a2189734c02f83adb931a522c8f102c5e77f83d780",
+  "Test_read_for_selection": false,
+  "current_parent_Test_scores_used": false,
+  "historical_Test_previously_exposed": true
+}
