@@ -1,0 +1,43 @@
+{
+  "status": "RESEARCH_DESIGN_FROM_COMPLETE_DEV_DIAGNOSIS_NOT_EXECUTED",
+  "source_timeline_registration_sha256": "04ec40b2120bdab82b81a6092cc4a8e4db8a44c465b840363937ee0cbc01a1a9",
+  "source_graph_registration_sha256": "46f4c6f3965c5921fb8e5ceeb6ae737d83805df97a1c9291d5f505c143b0fe3a",
+  "source_graph_complete_sha256": "cca6c25b1e417216cda15cada94f9d6fa909520fc192ee901db06713857cd6d7",
+  "scope": "Keep the original risk experiment and both GPU Train producers unchanged. Finish its registered fitting and complete-Dev decision. These are follow-up hypotheses, not a running method, accepted contribution or accuracy result.",
+  "primary_goal": "Fixed November DiffV2IR MFT, original RGB-only YOLOX-X+ByteTrack Test29.528970687393972; at least+5 absolute HOTA, stretch+10; no Test selection.",
+  "diagnosed_native_Dev_events": 73,
+  "events_passing_current_nonlearned_masks": 17,
+  "events_masked_by_hard_geometric_protection": 17,
+  "previous_identity_absent_from_primary_pool": 27,
+  "other_mask_reasons": {"reach_or_scale": 6, "nonprimary_proposal": 4, "past_template_history": 2},
+  "priority_1": {
+    "hypothesis": "A Train-calibrated reliability decision can selectively revise a confidently wrong geometric assignment, instead of protecting it unconditionally.",
+    "evidence": "On the unchanged original Dev trajectory, hard geometric protection masks17 desired diagnostic edges, including13 short-gap and3 continuous events. This does not prove a proposed override would select a correct match.",
+    "planned_mechanism": "Permit a risk-model mutual preference to override a protected row/column only under a threshold frozen on late Train wrong-edge scores and an explicit uniqueness margin. Retain all protected matches otherwise; no GT/event/time routing at inference.",
+    "intended_calibration": "Evaluate the stricter99.9th percentile wrong-edge threshold with probability margin0.05, before complete-Dev replay; formally register the implemented policy and engineering evidence first.",
+    "controls": "Same fitted coefficients, same detector/encoders, RGB-masked versus paired identity features; original static protection remains a complete-Dev control. Fixed seed0."
+  },
+  "priority_2": {
+    "hypothesis": "Train-supervised archive-to-new-tracklet reasoning can preserve identity after the active25-frame pool has expired.",
+    "evidence": "26 of30 long-gap native-Dev diagnostic events have the previous identity outside the primary pool. Existing fixed RGB late linking reduces only3 of these long-gap event counts.",
+    "planned_mechanism": "Learn a separately calibrated archive decision from actual Train old-template/new-tracklet pairs on the unchanged teacher trajectory. Keep tracker lifetime and emitted prefixes causal. Retire only after true matching-pool departure; never use future features or GT identities at inference.",
+    "fit_requirement": "Use all6 complete Train candidate banks and all27251 frames after successful closure. Current short-gap model scores are not assumed calibrated for archive gaps; archive coefficients and thresholds need separate Train supervision and calibration.",
+    "controls": "Existing fixed RGB late links, RGB-masked archive model, paired archive model, and no archive decision; complete-Dev selection before any new Test. No extra seeds or image/FPN copies."
+  },
+  "deprioritized": "No tracked-gap1 event passed the feature support and was excluded solely by the lost-only rescue restriction in this diagnosis; do not add a broad tracked-edge rescue solely on speculation.",
+  "interpretation_limits": [
+    "Events use whole-sequence official HOTA alignment atalpha0.5, not CLEAR IDSW/Frag or an online GT oracle.",
+    "Mask counts are conditional on the unchanged original trajectory. Earlier learned decisions may change later pools;17/73 is not a global recovery bound or a prediction of HOTA improvement.",
+    "Neither hypothesis is an established innovation or independent IR contribution. Public method mechanisms and historical Test exposure must remain disclosed.",
+    "Formal implementation, engineering, Train calibration and full-Dev evidence are required before promotion."
+  ],
+  "fixed_seed": 0,
+  "physical_GPUs": ["4", "5"],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "new_model_fits_executed": 0,
+  "new_HOTA_result": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
