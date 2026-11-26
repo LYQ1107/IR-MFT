@@ -1,0 +1,243 @@
+{
+  "UTC": "2026-11-26T22:06:14.375908+00:00",
+  "bank": {
+    "state": "COMPLETE_TRAIN_BANK_READY_NO_NEW_MODEL_OR_ACCURACY",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "4",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "5",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "PF-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-015",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "MSK-002",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-003",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      }
+    ]
+  },
+  "risk": {
+    "state": "CANDIDATE_RISK_CPU_FIT",
+    "actual_exit": null,
+    "live": {
+      "PID": 2785342,
+      "start_ticks": 99342520,
+      "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": [
+      {
+        "phase": "CANDIDATE_RISK_CPU_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT_REGISTER",
+        "id": "register",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT",
+        "id": "fit",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "CPU0",
+        "live": {
+          "PID": 2849463,
+          "start_ticks": 99704716,
+          "raw_argv_sha256": "5de6ec7802cb78d76751d5ef6fc0df08e0a9833c5f050bca7dd87b1372105b82",
+          "CUDA_VISIBLE_DEVICES": "",
+          "kernel_state": "R"
+        }
+      }
+    ]
+  },
+  "auditor": {
+    "actual_exit": null,
+    "live": {
+      "PID": 2799652,
+      "start_ticks": 99428955,
+      "raw_argv_sha256": "c770729a463dc5ff75fef06bf87af9cc1d39f34756cbfe66ba7a1ea172953aa5",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "progress": {
+      "status": "WAITING_ORIGINAL_RISK_CONTROLLER",
+      "UTC": "2026-11-26T22:06:12.328235+00:00",
+      "original_controller_live": {
+        "PID": 2785342,
+        "start_ticks": 99342520,
+        "kernel_state": "S",
+        "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965"
+      },
+      "new_GPU_work": false
+    }
+  },
+  "frozen_auditor_sources_verified": 3,
+  "selective": {
+    "state": "WAITING_UNCHANGED_PARENT_RISK_COMPLETE",
+    "actual_exit": null,
+    "live": {
+      "PID": 2853422,
+      "start_ticks": 99725658,
+      "raw_argv_sha256": "0ac754a1592ab378780f03126c11ca062d2096f964a7679d54d69596679f2313",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": []
+  },
+  "frozen_selective_sources_verified": 498,
+  "risk_fit_progress": {
+    "phase": "Newton_2",
+    "sequence": "MSK-002",
+    "frame": 1000,
+    "frames": 1754,
+    "seconds": 684.8147794790566,
+    "GT_split": "train",
+    "GPU_work": false,
+    "new_tracking_accuracy": false
+  },
+  "progress": {
+    "SN-001": {
+      "frame": 684,
+      "frames": 684,
+      "proposals": 8797,
+      "uncompressed_payload_bytes": 18203148,
+      "physical_gpu": "5",
+      "seconds": 284.88632281695027,
+      "GT_labels_parsed": false
+    },
+    "BT-003": {
+      "frame": 243,
+      "frames": 243,
+      "proposals": 3097,
+      "uncompressed_payload_bytes": 6408492,
+      "physical_gpu": "5",
+      "seconds": 106.7284725200152,
+      "GT_labels_parsed": false
+    },
+    "BT-001": {
+      "frame": 3000,
+      "frames": 3000,
+      "proposals": 42063,
+      "uncompressed_payload_bytes": 87034292,
+      "physical_gpu": "5",
+      "seconds": 1296.7094264419284,
+      "GT_labels_parsed": false
+    },
+    "PF-001": {
+      "frame": 15000,
+      "frames": 15000,
+      "proposals": 30889,
+      "uncompressed_payload_bytes": 64118460,
+      "physical_gpu": "4",
+      "seconds": 6155.107988929027,
+      "GT_labels_parsed": false
+    },
+    "MSK-002": {
+      "frame": 1754,
+      "frames": 1754,
+      "proposals": 91770,
+      "uncompressed_payload_bytes": 189808432,
+      "physical_gpu": "5",
+      "seconds": 897.333326740074,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 6570,
+      "frames": 6570,
+      "proposals": 73023,
+      "uncompressed_payload_bytes": 151116692,
+      "physical_gpu": "5",
+      "seconds": 2821.3081125579774,
+      "GT_labels_parsed": false
+    }
+  },
+  "ledger": {
+    "maximum_bytes": 1288490188,
+    "sequences": {
+      "PF-001": 64118460,
+      "SN-015": 151116692,
+      "BT-001": 87034292,
+      "MSK-002": 189808432,
+      "SN-001": 18203148,
+      "BT-003": 6408492
+    },
+    "total_reserved_bytes": 516689516
+  },
+  "work_GiB": 61.7983165839687,
+  "free_GiB": 2638.27099609375,
+  "bank_complete": true,
+  "fitted_models": false,
+  "risk_Dev_complete": false,
+  "risk_Test_complete": false,
+  "frozen_risk_sources_verified": 486,
+  "last_formal_Test_HOTA": 29.955069130617183,
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "last_formal_gain_pp": 0.42609844322321067,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}
