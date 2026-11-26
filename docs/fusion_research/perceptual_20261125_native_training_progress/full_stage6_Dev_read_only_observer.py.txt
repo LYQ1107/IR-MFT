@@ -1,0 +1,72 @@
+"""Read-only observation of the original complete stage6 Dev; no model actions."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import time
+import traceback
+
+W=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122')
+STEM='native_full_dev6_read_only_watch_20261126_r1'
+LATEST=W/(STEM+'_latest.json')
+LOG=W/(STEM+'.jsonl')
+EXPECTED_PARENT=(1489657,91266785,'64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47')
+EXPECTED_NN={'SN-013':(1558335,92083004,'0e71d336a5f4fbc532698fe7d804743ca39cfab6ab8dc340517e7904d5f890f5'),'BT-005':(1558336,92083004,'ca20770ccfc4976b7c79bae4badd9b75710e3bcba9ff7a090388b6e56c3a0625')}
+WINDOW=21600
+
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def read(p):return json.loads(Path(p).read_text())
+def proc(pid):
+    p=Path('/proc')/str(pid)
+    try:
+        raw=(p/'cmdline').read_bytes();fields=(p/'stat').read_text().rsplit(')',1)[1].split();env=(p/'environ').read_bytes().split(b'\0')
+        return dict(PID=pid,ok=True,state=fields[0],start_ticks=int(fields[19]),argv_sha256=hashlib.sha256(raw).hexdigest(),command=raw.rstrip(b'\0').replace(b'\0',b' ').decode(),CUDA_VISIBLE_DEVICES=next((x.decode().split('=',1)[1] for x in env if x.startswith(b'CUDA_VISIBLE_DEVICES=')),None))
+    except OSError as e:return dict(PID=pid,ok=False,exists_on_recheck=p.exists(),error=repr(e),transient_read_not_terminal=True)
+def save(value,emit=False):
+    tmp=LATEST.with_suffix('.partial.json');tmp.write_text(json.dumps(value,indent=2)+'\n');os.replace(tmp,LATEST)
+    if emit:
+        line=json.dumps(value)+'\n'
+        with LOG.open('a') as stream:stream.write(line)
+        print(line,end='',flush=True)
+def end(status,code,row,**extra):
+    value=dict(row,status=status,UTC=utc(),observer_intended_exit_code=code,actual_numeric_exit_requires_parent_tool=True,**extra);save(value,True);raise SystemExit(code)
+
+started=time.monotonic();next_emit=0;errors=0;pinned={}
+row=dict(status='READ_ONLY_FULL_DEV6_OBSERVER_STARTED',UTC=utc(),observer=proc(os.getpid()),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),window_seconds=WINDOW,no_training_or_GPU_actions=True)
+save(row,True)
+while time.monotonic()-started<WINDOW:
+    try:
+        state=read(W/'native_pyramid_study_state.json');parent=proc(state['controller_pid']);consistent=parent.get('ok') and parent.get('state') not in ['T','Z'] and (parent['PID'],parent['start_ticks'],parent['argv_sha256'])==EXPECTED_PARENT
+        phases={};active=[]
+        for phase,jobs in state['phases'].items():
+            if not phase.startswith('dev_normal_06'):continue
+            phases[phase]=dict(total=len(jobs),complete=sum(j['status']=='COMPLETE' and j.get('exit_code')==0 for j in jobs.values()),failed=sum(j['status']=='FAILED' for j in jobs.values()),pending=sum(j['status']=='PENDING' for j in jobs.values()))
+            for key,job in jobs.items():
+                if job['status']!='RUNNING':continue
+                actual=proc(job['pid']);slot=job.get('slot');cuda=slot if slot in ['4','5'] else ''
+                match=bool(actual.get('ok') and actual.get('state') not in ['T','Z'] and actual.get('command')==' '.join(job['command']) and actual.get('CUDA_VISIBLE_DEVICES')==cuda)
+                token=(phase,key,job['pid'])
+                if match:
+                    value=(actual['PID'],actual['start_ticks'],actual['argv_sha256'])
+                    if phase=='dev_normal_06_NN':match=value==EXPECTED_NN[key]
+                    elif token in pinned:match=value==pinned[token]
+                    else:pinned[token]=value
+                consistent=consistent and match
+                entry=dict(phase=phase,id=key,actual_process=actual,actual_identity_matches_registered_job=match)
+                if phase=='dev_normal_06_NN':
+                    path=W/'native_pyramid_streams/dev_normal_06/sequence_manifests'/(key+'.progress.json');entry['NN_progress']=read(path) if path.exists() else None
+                active.append(entry)
+        stage=W/'native_pyramid_Dev_stage_06.json';decision=read(stage) if stage.exists() else None
+        all_done=bool(phases and all(p['complete']==p['total'] and not p['failed'] for p in phases.values()))
+        decision_complete=bool(decision and decision.get('status')=='COMPLETE_ALL_REGISTERED_DEV_AT_STAGE' and not decision.get('Test_read_for_selection',True))
+        row=dict(status='VERIFIED_LIVE_FULL_DEV6_WAIT' if consistent else 'TRANSIENT_PROCESS_READ_REINSPECT_SAME_JOBS',UTC=utc(),observer=proc(os.getpid()),original_controller=parent,current_native_phase=state['status'],stage6_phases=phases,active_jobs=active,stage6_complete_file_exists=bool(decision),stage6_decision=decision.get('decision') if decision_complete else None,no_training_or_GPU_actions=True,new_accuracy_claimed_by_observer=False,goal_met=False)
+        errors=0;now=time.monotonic();save(row,now>=next_emit)
+        if now>=next_emit:next_emit=now+50
+        if decision_complete and all_done and consistent:end('OBSERVED_ORIGINAL_FULL_STAGE6_DEV_AND_FROZEN_DECISION_COMPLETE',0,row)
+        if state['status'].startswith('FAILED') or any(p['failed'] for p in phases.values()):end('SOURCE_NATIVE_QUEUE_FAILED_PRESERVE_ORIGINAL_JOBS',1,row)
+    except Exception as error:
+        errors+=1;row=dict(status='READ_ONLY_DEV_OBSERVER_ERROR_REINSPECT_SOURCE_NOT_TRAIN_FAILURE',UTC=utc(),error=repr(error),consecutive_errors=errors,traceback=traceback.format_exc(limit=5),no_training_actions=True);save(row,True)
+        if errors>=6:end('OBSERVER_FAILED_NEEDS_DIRECT_SOURCE_CHECK',2,row)
+    time.sleep(5)
+end('OBSERVATION_WINDOW_ENDED_REINSPECT_SAME_ORIGINAL_JOBS',0,row,observation_timeout_is_not_training_failure=True)
