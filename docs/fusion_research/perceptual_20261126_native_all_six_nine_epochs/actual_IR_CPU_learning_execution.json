@@ -1,0 +1,52 @@
+{
+  "status": "ACTUAL_CPU_LEARNING_DIAGNOSTIC_EXITED",
+  "UTC": "2026-11-26T13:19:45.869145+00:00",
+  "command": [
+    "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+    "-u",
+    "/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_learning_state.py",
+    "--fit-id",
+    "temporal_ir",
+    "--through-epoch",
+    "9",
+    "--output-directory",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_ir_nine_epoch_learning_20261126_r1"
+  ],
+  "identity": {
+    "pid": 2312113,
+    "start_ticks": 96615715,
+    "raw_argv_sha256": "5b522d4e0a298b3764e10390f338d2e48f8b4bb530bd71150ec39ef8cfa208e6"
+  },
+  "source_sha256": "aab4f92fbb9d608f3cab56251dc0436c7cb7fd395be366c9baebe5e88ed5cfde",
+  "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_ir_nine_epoch_learning_20261126_r1.log",
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_temporal_ir_nine_epoch_learning_20261126_r1",
+  "exit_code": 0,
+  "new_GPU_work": false,
+  "original_model_process_already_retired": true,
+  "optimizer_latest_read_only_after_original_actual_exit_zero": true,
+  "original_job": {
+    "id": "temporal_ir",
+    "physical_gpu": "5",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/train_native_pyramid.py",
+      "fit",
+      "--fit-id",
+      "temporal_ir",
+      "--through-epoch",
+      "9"
+    ],
+    "status": "COMPLETE",
+    "IO_recovery_retry": false,
+    "pid": 1845169,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_ir.log",
+    "slot": "5",
+    "exit_code": 0
+  },
+  "finished_UTC": "2026-11-26T13:19:50.734217+00:00",
+  "wall_seconds": 4.86622184002772,
+  "log_sha256": "93e54c8f0a94a7cb6b4b07b324d18accfbfeeef98df11195d05cdad0c564e725",
+  "complete_report_exists": true,
+  "source_unchanged": true
+}

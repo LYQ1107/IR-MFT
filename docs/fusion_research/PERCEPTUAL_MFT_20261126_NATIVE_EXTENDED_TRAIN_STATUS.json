@@ -1,8 +1,8 @@
 {
-  "status": "OBSERVED_PARTIAL_EXTENDED_TRAIN_NOT_NINE_EPOCH_DEV_OR_FINAL_STUDY",
-  "UTC": "2026-11-26T12:16:53.756185+00:00",
+  "status": "OBSERVED_ALL_SIX_NINE_EPOCH_FITS_COMPLETE_ORIGINAL_FULL_DEV_RUNNING_NOT_ACCURACY",
+  "UTC": "2026-11-26T13:23:25.161482+00:00",
   "common_registered_stage_budget": 9,
-  "complete_original_stage9_jobs": 5,
+  "complete_original_stage9_jobs": 6,
   "required_normal_fits": 6,
   "fits": [
     {
@@ -189,27 +189,16 @@
       "fit_id": "temporal_ir",
       "mode": "temporal",
       "cue": "ir",
-      "complete_full_Train_epochs": 8,
-      "logical_delivered_frames": 218008,
-      "actual_optimizer_updates": 54512,
-      "current_stage_original_job_status": "RUNNING",
-      "actual_original_exit_code": null,
-      "actual_live_worker": {
-        "PID": 1845169,
-        "start_ticks": 94463963,
-        "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026",
-        "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 9",
-        "CUDA_VISIBLE_DEVICES": "5",
-        "kernel_state": "R",
-        "fit": "temporal_ir",
-        "actual_GPU_record": "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB",
-        "actual_live_identity_verified": true,
-        "actual_live_identity_verified_UTC": "2026-11-26T12:16:53.756185+00:00"
-      },
+      "complete_full_Train_epochs": 9,
+      "logical_delivered_frames": 245259,
+      "actual_optimizer_updates": 61326,
+      "current_stage_original_job_status": "COMPLETE",
+      "actual_original_exit_code": 0,
+      "actual_live_worker": null,
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/progress.json",
-      "last_complete_epoch_progress_sha256": "7235c2bd72570386923010e58f0134da1c62b922bf10054b6ec3a204aabe2a7d",
-      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/epoch_08.pt",
-      "last_complete_snapshot_sha256": "c14923de1741044436087ce4060dde522d0a6ef7a07da8afcbcf24b6d8bf8bf9",
+      "last_complete_epoch_progress_sha256": "04641fa1027c5af715c16ab547f34f93a7658ccddb4eb0b4d696d304d0ae2498",
+      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/epoch_09.pt",
+      "last_complete_snapshot_sha256": "6607cc3786fab28ba97dd835d70d764151af070ec0602c12ba0b7d8a2c789065",
       "all_recorded_epoch_addresses_match_common_schedule": true,
       "original_job": {
         "id": "temporal_ir",
@@ -224,11 +213,12 @@
           "--through-epoch",
           "9"
         ],
-        "status": "RUNNING",
+        "status": "COMPLETE",
         "IO_recovery_retry": false,
         "pid": 1845169,
         "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_ir.log",
-        "slot": "5"
+        "slot": "5",
+        "exit_code": 0
       }
     }
   ],
@@ -282,6 +272,11 @@
       "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_NINE_EPOCHS.json",
       "sha256": "d299c2cb62d2821646bbd9da741a412d7698cc5fa35c89bfbb0d15cb505ff8c3",
       "scope": "Fifth original nine-epoch fit completed actual0; independent stable optimizer diagnostic actual0; no accuracy."
+    },
+    {
+      "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.json",
+      "sha256": "5d01ea979731d1b6f35c58f0b5d541a113da1db8615e9bb59cd9e7c724f6d4a1",
+      "bytes": 15790
     }
   ],
   "counts_are_logical_complete_epoch_frames_not_total_physical_recovery_replays": true,
@@ -289,7 +284,7 @@
   "latest_complete_Dev_stage": 6,
   "latest_complete_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json",
   "latest_complete_Dev_report_sha256": "63426a8689f27ce662557b2df1d737db1d55d18af7e716bdd1374bdc290d688e",
-  "full9_Dev_started": false,
+  "full9_Dev_started": true,
   "full9_Dev_results_available": false,
   "required_cumulative_Dev_cases_after_all6_normal_fits": 92,
   "final_normal_selection_and_triggered_removals_full_Test_runtime_incomplete": true,
@@ -320,15 +315,7 @@
     "sha256": "095d48d0ae8fa02665f0b2e905d03a8c643e5a44a4d0d7cfc3adc7a7f8c29894",
     "scope": "14 completed stage6 Dev conditions, 9702 exact detailed official numeric checks, no new accuracy or selection."
   },
-  "active_nine_epoch_observer": {
-    "session_id": 26625,
-    "PID": 1977278,
-    "source_sha256": "863bb9b885f20f762aac7e2ad3b81b392e475ebc76c57849e93278f465d5bc5e",
-    "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_nine_epoch_read_only_watch_20261126_r2.py",
-    "observation_expiry_UTC_approximate": "2026-11-26T15:11:10.390167+00:00",
-    "previous_observer86394_actual_tool_exit_code": 0,
-    "original_training_not_restarted": true
-  },
+  "active_nine_epoch_observer": null,
   "no_parameter_finiteness_claim_for_unchecked_intermediate_snapshots": true,
   "new_intermediate_CPU_audit": {
     "fit_ids": [
@@ -409,10 +396,79 @@
     "no_new_accuracy_or_contribution": true
   },
   "latest_finished_CPU_learning_diagnostic": {
-    "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_GRAY_NINE_EPOCHS.json",
-    "sha256": "d299c2cb62d2821646bbd9da741a412d7698cc5fa35c89bfbb0d15cb505ff8c3",
-    "fit_id": "temporal_gray",
-    "actual_CPU_tool_exit_code": 0,
-    "original_GPU_worker_exit_code": 0
-  }
+    "fit_id": "temporal_ir",
+    "through_epoch": 9,
+    "report": "perceptual_20261126_native_all_six_nine_epochs/actual_IR_CPU_learning_diagnostic.json",
+    "actual_tool_session": 63265,
+    "actual_tool_exit_code": 0,
+    "actual_child_exit_code": 0
+  },
+  "current_original_phase": "dev_normal_09_NN",
+  "closed_nine_epoch_observer": {
+    "session": 26625,
+    "actual_tool_exit_code": 0,
+    "target_achieved": true,
+    "report": "PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.json"
+  },
+  "active_original_Dev_workers": {
+    "SN-013": {
+      "PID": 2311695,
+      "start_ticks": 96612960,
+      "raw_argv_sha256": "9f2a392e4819b66561e853d2fb0c344cfe9931bff4ab34bd12cd65b7032b6b77",
+      "CUDA_VISIBLE_DEVICES": "4",
+      "kernel_state": "R",
+      "identity_verified": true,
+      "original_job": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
+        ],
+        "status": "RUNNING",
+        "IO_recovery_retry": false,
+        "pid": 2311695,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_SN-013.log",
+        "slot": "4"
+      }
+    },
+    "BT-005": {
+      "PID": 2311696,
+      "start_ticks": 96612960,
+      "raw_argv_sha256": "d5f19146d411f6fbe5aa945b76f596d745bc68cd9346e57808575dd27665e671",
+      "CUDA_VISIBLE_DEVICES": "5",
+      "kernel_state": "R",
+      "identity_verified": true,
+      "original_job": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
+        ],
+        "status": "RUNNING",
+        "IO_recovery_retry": false,
+        "pid": 2311696,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_BT-005.log",
+        "slot": "5"
+      }
+    }
+  },
+  "all6_normal_fits_completed_nine_full_Train_epochs": true,
+  "latest_all_six_nine_epoch_completion_report": "PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.json",
+  "latest_fixed_generator_causality_report": "PERCEPTUAL_MFT_20261126_NOVEMBER_GENERATOR_CAUSALITY.json"
 }
