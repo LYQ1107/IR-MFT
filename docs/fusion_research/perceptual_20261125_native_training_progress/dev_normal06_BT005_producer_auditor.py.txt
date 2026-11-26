@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""Audit an actually completed full video; no GT, metrics, selection or GPU."""
+import datetime
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+
+ROOT = Path('/data3/liuyeqiang/IR-MFT')
+WORK = Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122')
+SPEC = WORK / 'native_pyramid_specs/dev_normal_06.json'
+PRODUCER = WORK / 'native_pyramid_streams/dev_normal_06/sequence_manifests/BT-005.json'
+OUTPUT = WORK / 'native_dev6_BT005_producer_audit_20261126_r1.json'
+
+
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
+def read(path):
+    return json.loads(Path(path).read_text())
+
+
+def sha(path):
+    value = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024*1024), b''):
+            value.update(block)
+    return value.hexdigest()
+
+
+def track_proof(path, expected_rows):
+    raw, geometry = hashlib.sha256(), hashlib.sha256()
+    count, previous, identities = 0, 0, set()
+    with Path(path).open('rb') as stream:
+        for line in stream:
+            raw.update(line)
+            cells = line.decode('ascii').strip().split(',')
+            require(len(cells) == 10, 'Original ten-column MOT required')
+            frame, identity = int(cells[0]), int(cells[1])
+            coordinates = [float(value) for value in cells[2:7]]
+            require(1 <= frame <= 1834 and frame >= previous and identity > 0 and
+                    all(math.isfinite(value) for value in coordinates) and
+                    coordinates[2] > 0 and coordinates[3] > 0 and 0 <= coordinates[4] <= 1,
+                    'Invalid original MOT row')
+            if frame != previous:
+                identities.clear()
+            require(identity not in identities, 'Duplicate output identity in a frame')
+            identities.add(identity)
+            # Literal frame/ID/box columns only: exclude confidence-only changes.
+            # This is not an identity-renumbering invariant or an accuracy metric.
+            geometry.update((','.join(cells[:6])+'\n').encode())
+            previous, count = frame, count+1
+    require(count == expected_rows, 'Original complete MOT row count differs')
+    return dict(rows=count, raw_MOT_sha256=raw.hexdigest(),
+        literal_frame_ID_box_sha256=geometry.hexdigest())
+
+
+def main():
+    require(os.environ.get('CUDA_VISIBLE_DEVICES') == '', 'Explicit CPU-only environment required')
+    require(not OUTPUT.exists(), 'Preserve an earlier independent video audit')
+    state = read(WORK/'native_pyramid_study_state.json')
+    job = state['phases']['dev_normal_06_NN']['BT-005']
+    require(job['status'] == 'COMPLETE' and type(job.get('exit_code')) is int and job['exit_code'] == 0 and
+            job['pid'] == 1558336, 'Wait for the original worker actual exit0')
+    original = Path('/proc/1558336')
+    if original.exists():
+        fields = (original/'stat').read_text().rsplit(')',1)[1].split()
+        require(int(fields[19]) != 92083004 or fields[0] == 'Z', 'Original worker is still alive')
+    specification, producer = read(SPEC), read(PRODUCER)
+    require(sha(SPEC) == 'c144fde806ccd064445d587cb721a81c0ff76784e613e3f602a854e17de349dd' and
+            producer['status'] == 'COMPLETE_NATIVE_SEQUENTIAL_OBSERVATIONS_WITHOUT_GT' and
+            producer['sequence'] == 'BT-005' and producer['split'] == 'dev' and producer['frames'] == 1834 and
+            producer['specification_sha256'] == sha(SPEC) and producer['study_sha256'] == specification['study_sha256'] and
+            producer['GT_read'] is False and producer['future_frame_input'] is False and
+            producer['previous_outputs_rewritten'] is False and producer['independent_input_batch_size'] == 1 and
+            producer['physical_gpu'] == '5' and producer['GPU_uuid'] == 'f07a0798-7ddc-ec7c-a27c-d47124bbfe81',
+            'Wrong/incomplete original producer')
+    registered = read(WORK/'native_pyramid_pipeline_registered.json')
+    require(all(sha(ROOT/name) == digest for name,digest in registered['source_hashes'].items()),
+            'Frozen native source changed')
+    models = {value['id']:value for value in specification['models']}
+    require(len(models) == len(producer['streams']) == 61 and
+            set(models) == set(producer['streams']) == set(producer['models']), 'All61 original streams required')
+    streams, summaries = {}, []
+    for key, model in models.items():
+        require(all(producer['models'][key][name] == value for name,value in model.items()),
+                'Original producer model differs from the frozen specification')
+        stream = producer['streams'][key]
+        require(stream['frames'] == 1834 and stream['sequence'] == 'BT-005', 'Incomplete original stream')
+        proof = track_proof(stream['track_path'], stream['track_rows'])
+        require(proof['raw_MOT_sha256'] == stream['track_sha256'], 'Original emitted MOT bytes changed')
+        streams[key] = dict(**proof, path=stream['track_path'],
+            original_detection_packet_sha256=stream['detection_packet_sha256'], detections=stream['detections'])
+        if model.get('baseline'):
+            continue
+        gates = producer['gate_statistics'][key]
+        require(gates['frames'] == 1834 and gates['available_frames']+gates['missing_frames'] == 1834 and
+                len(gates['levels']) == 3, 'Gate diagnostics do not cover the whole video')
+        if model['intervention'] == 'unavailable':
+            require(gates['missing_frames'] == 1834 and gates['available_frames'] == 0 and
+                    all(value['quality_gate']['count'] == 0 for value in gates['levels']),
+                    'Unavailable modality is not actually missing')
+        summaries.append(dict(id=key, fit_id=model['fit_id'], epoch=model['epoch'], mode=model['mode'],
+            cue=model['cue'], intervention=model['intervention'], frames=gates['frames'],
+            available_frames=gates['available_frames'], missing_frames=gates['missing_frames'],
+            levels=gates['levels']))
+    fresh = streams['NP_source_fresh_RGB']
+    interventions = []
+    for mode in ['quality','temporal']:
+        for epoch in range(1,7):
+            key = f'NP_{mode}_ir_e{epoch:02d}'
+            normal, wrong, missing = (streams[key+suffix] for suffix in ['', '_roll', '_off'])
+            require(all(missing[field] == fresh[field] for field in
+                ['raw_MOT_sha256','literal_frame_ID_box_sha256','original_detection_packet_sha256','detections','rows']),
+                'Actual unavailable output differs from fresh RGB')
+            interventions.append(dict(id=key,
+                missing_full_MOT_and_packet_digest_equal_fresh_RGB=True,
+                normal_full_MOT_equals_fresh_RGB=normal['raw_MOT_sha256']==fresh['raw_MOT_sha256'],
+                normal_literal_frame_ID_box_equals_fresh_RGB=normal['literal_frame_ID_box_sha256']==fresh['literal_frame_ID_box_sha256'],
+                normal_packets_equal_fresh_RGB=normal['original_detection_packet_sha256']==fresh['original_detection_packet_sha256'],
+                normal_full_MOT_equals_wrong_IR=normal['raw_MOT_sha256']==wrong['raw_MOT_sha256'],
+                normal_literal_frame_ID_box_equals_wrong_IR=normal['literal_frame_ID_box_sha256']==wrong['literal_frame_ID_box_sha256'],
+                normal_packets_equal_wrong_IR=normal['original_detection_packet_sha256']==wrong['original_detection_packet_sha256']))
+    report = dict(status='COMPLETE_BT005_FULL_VIDEO_PRODUCER_AUDIT_NOT_OFFICIAL_DEV_ACCURACY',
+        UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(), sequence='BT-005', frames=1834,
+        split='dev', original_job=job, original_worker_confirmed_finished=True,
+        original_producer=str(PRODUCER), original_producer_sha256=sha(PRODUCER),
+        original_specification_sha256=sha(SPEC), original_registry_sha256=sha(WORK/'native_pyramid_pipeline_registered.json'),
+        independently_checked_streams=streams, complete_gate_statistics=summaries,
+        IR_intervention_output_identity=interventions,
+        fresh_B1_vs_historical_B4=producer['fresh_B1_vs_historical_B4'],
+        recorded_original_image_bytes_delivery_sha256=producer['original_image_bytes_delivery_sha256'],
+        original_bundle_seconds=producer['seconds'], original_instrumented_peak_GPU_GiB=producer['peak_gpu_GiB'],
+        original_bundle_runtime_is_not_per_method_FPS=True,
+        image_digest_scope='Recorded by original producer on the encoded bytes decoded for inference. '
+            'This independent CPU audit does not reread the source images or reconstruct a per-image list.',
+        packet_digest_scope='The original producer asserted per-frame unavailable detections equal fresh RGB. '
+            'Detection packets were not persisted; their rolling digests cannot be independently reconstructed here.',
+        literal_MOT_hash_scope='Excludes confidence but retains original row order and literal IDs/boxes. '
+            'Different hashes are software output differences, not accuracy or association-quality improvements.',
+        only_one_of_two_Dev_videos_qualified=True, complete_Dev_official_metrics_available=False,
+        HOTA_or_other_accuracy_computed=False, checkpoint_or_budget_selected=False,
+        GPU_work=False, Test_results_read=False, new_training_or_seeds=False,
+        source_audit_file=str(Path(__file__)), source_audit_file_sha256=sha(__file__),
+        fixed_seed=0, supported_innovations=0, goal_met=False)
+    require(sha(PRODUCER) == report['original_producer_sha256'], 'Producer changed during audit')
+    with OUTPUT.open('x') as handle:
+        json.dump(report,handle,ensure_ascii=False,indent=2)
+        handle.write('\n')
+    print(json.dumps(dict(status=report['status'], actual_original_worker_exit_code=0,
+        independently_checked_streams=len(streams), IR_intervention_pairs=len(interventions),
+        all12_missing_MOT_equal_fresh=True,
+        normal_frame_ID_box_different_from_fresh=sum(not value['normal_literal_frame_ID_box_equals_fresh_RGB'] for value in interventions),
+        normal_frame_ID_box_different_from_wrong_IR=sum(not value['normal_literal_frame_ID_box_equals_wrong_IR'] for value in interventions),
+        report=str(OUTPUT),report_sha256=sha(OUTPUT),HOTA_computed=False,goal_met=False)),flush=True)
+
+
+if __name__=='__main__':
+    main()
