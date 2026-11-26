@@ -1,0 +1,537 @@
+{
+  "status": "COMPLETE_C1_ALL6_TRAIN_AND_ALL6_FULLDEV_NEGATIVE_NEW_AUDITORS_AND_TRAIN_EXCHANGE_DIAGNOSIS_RUNNING",
+  "UTC": "2026-11-26T22:54:44.755385+00:00",
+  "observation_UTC": "2026-11-26T22:53:51.954588+00:00",
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "minimum_Test_HOTA": 34.52897068739397,
+  "stretch_Test_HOTA": 39.52897068739397,
+  "latest_formal_Test_HOTA": 29.955069130617183,
+  "latest_formal_gain_pp": 0.42609844322321067,
+  "risk_complete": {
+    "actual_controller_exit": 0,
+    "actual_controller_tool": "f26bc3",
+    "actual_independent_auditor_exit": 0,
+    "actual_independent_auditor_tool": "04100c",
+    "all11_original_jobs_actual_exit_zero": true,
+    "Train_frames": 27251,
+    "known_early_edges": 138411,
+    "optimizer_passes": 6,
+    "complete_Train_traversals": 8,
+    "Dev_cases": 6,
+    "Dev_frames": 4834,
+    "all47_numeric_fields_reparsed": 1410,
+    "full_Dev": {
+      "native_HOTA": 50.115209825334276,
+      "pose_late_control_HOTA": 51.983836945457455,
+      "RGB_risk_HOTA": 43.1586166646113,
+      "paired_risk_HOTA": 43.15946212553705,
+      "best_learned_case": {
+        "id": "CR_paired_risk_shape",
+        "kind": "paired",
+        "blend": 0.5,
+        "shape": true
+      },
+      "best_learned_HOTA": 44.584787082169115,
+      "best_learned_minus_frozen_pose_control_pp": -7.39904986328834,
+      "matched_paired_minus_RGB_HOTA_pp": 0.0008454609257455559
+    },
+    "final_Train_convergence": {
+      "RGB": {
+        "exact_final_weighted_Train_objective": 0.25432184345219644,
+        "exact_final_gradient_L2_norm": 3.171962964437184e-06,
+        "estimated_undamped_next_Newton_step_L2_norm": 0.00014445504886986032,
+        "final_objective_no_larger_than_before_last_step": true,
+        "stationarity_diagnostic_gradient_below_1e_minus3": true,
+        "no_optimizer_update_performed_by_auditor": true,
+        "known_early_edges": 138411,
+        "objective_weight": 0.9999999999999938,
+        "late_wrong_edges": 18758,
+        "late_wrong_score_bytes": 150064
+      },
+      "paired": {
+        "exact_final_weighted_Train_objective": 0.2536503983557695,
+        "exact_final_gradient_L2_norm": 3.5578063605791307e-06,
+        "estimated_undamped_next_Newton_step_L2_norm": 0.0001595761749838153,
+        "final_objective_no_larger_than_before_last_step": true,
+        "stationarity_diagnostic_gradient_below_1e_minus3": true,
+        "no_optimizer_update_performed_by_auditor": true,
+        "known_early_edges": 138411,
+        "objective_weight": 0.9999999999999938,
+        "late_wrong_edges": 18758,
+        "late_wrong_score_bytes": 150064
+      }
+    },
+    "within_own_state_primary_assignment_changed_frames": 54,
+    "changed_count_scope": "Base-vs-learned LAP comparison on that run current state;not count of all frames differing from the original complete trajectory",
+    "paired_lost_rescue_admissions": 0,
+    "Test_promoted": false,
+    "new_Test": false,
+    "Dev_winner": {
+      "id": "CR_pose_late_control",
+      "kind": "reference_pose_late",
+      "blend": 0.0,
+      "shape": true
+    },
+    "independent_IR_contribution_established": false
+  },
+  "new_read_only_auditors": {
+    "actual_tests_passed": 2,
+    "actual_test_exit": 0,
+    "actual_test_tool": "e70851",
+    "source_hashes": {
+      "tools/audit_mft_recoverability_studies.py": "dc1f0377b10aedb81a3c4bec7c4411a69148d9326048d39b00d2f7f9d92729a7",
+      "tests/test_mft_recoverability_study_audit.py": "ef565fc2981a890319a175629063dbc5e5c4389a7de07d94ea43614a2030858b"
+    },
+    "selective": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2910707,
+        "start_ticks": 100008596,
+        "raw_argv_sha256": "a150042dc0e0afb43aa3ab52f7b06824ad97c524d569af5588057963c62977ed",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "progress": {
+        "status": "WAITING_ACTUAL_CLOSED_STUDY_AND_TRAIN_AUDITS",
+        "UTC": "2026-11-26T22:53:40.447162+00:00",
+        "waiting": [
+          {
+            "name": "original_study",
+            "live": {
+              "PID": 2853422,
+              "start_ticks": 99725658,
+              "kernel_state": "S",
+              "raw_argv_sha256": "0ac754a1592ab378780f03126c11ca062d2096f964a7679d54d69596679f2313"
+            }
+          }
+        ],
+        "new_optimizer_steps": 0,
+        "new_GPU_work": false
+      },
+      "complete": false
+    },
+    "archive": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2912572,
+        "start_ticks": 100016606,
+        "raw_argv_sha256": "97bd0315bd98f006af306bcd1a6e7b3a0e45241aa1a0f57d532f9e7584c1169a",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "progress": {
+        "status": "WAITING_ACTUAL_CLOSED_STUDY_AND_TRAIN_AUDITS",
+        "UTC": "2026-11-26T22:53:45.497673+00:00",
+        "waiting": [
+          {
+            "name": "original_study",
+            "live": {
+              "PID": 2892320,
+              "start_ticks": 99902380,
+              "kernel_state": "S",
+              "raw_argv_sha256": "2e2be99796e7cdff3599c9f9ead01a60600b4eb9cfe4a795544a9adc8680a17d"
+            }
+          },
+          {
+            "name": "independent_selective_study_audit",
+            "live": {
+              "PID": 2910707,
+              "start_ticks": 100008596,
+              "kernel_state": "S",
+              "raw_argv_sha256": "a150042dc0e0afb43aa3ab52f7b06824ad97c524d569af5588057963c62977ed"
+            }
+          }
+        ],
+        "new_optimizer_steps": 0,
+        "new_GPU_work": false
+      },
+      "complete": false
+    },
+    "selective_full_Train_q999_rebuild": true,
+    "archive_reuses_completed_independent_Train_fit_audit": true,
+    "all47_all_sequences_and_MOT_freeze_checks": true,
+    "new_optimizer_steps": 0,
+    "new_models": 0
+  },
+  "two_track_exchange": {
+    "protocol": "configs/perceptual_two_track_exchange_20261127.json",
+    "registered_sha256": "958b13c0f17c631312a2e69a09c573cc4311a5df454acf630d73837d735915ad",
+    "sources": 492,
+    "actual_tests_passed": 3,
+    "actual_test_exit": 0,
+    "actual_test_tool": "855b4b",
+    "state": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2917053,
+        "start_ticks": 100042305,
+        "raw_argv_sha256": "5a7f22a694db8d64d86f9c33ca2c9dca25dcd7fc179076a65517ffc6025f0168",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "R"
+      },
+      "progress": {
+        "status": "ALL6_TRAIN_TWO_TRACK_EXCHANGE_DIAGNOSIS",
+        "UTC": "2026-11-26T22:53:51.339924+00:00",
+        "sequence": "PF-001",
+        "frame": 12000,
+        "frames": 15000,
+        "seconds": 173.01060414104722,
+        "score_RAM_bytes": {
+          "RGB": 18832,
+          "paired": 18832
+        },
+        "new_optimizer_steps": 0,
+        "new_accuracy": false
+      },
+      "complete": false,
+      "frozen_sources_verified": 492
+    },
+    "Train_frames_required": 27251,
+    "new_optimizer_steps": 0,
+    "new_models": 0,
+    "original_teacher_costs_unchanged_by_design": true,
+    "full_Train_MOT_checks_complete": false,
+    "three_consecutive_past_only_frames": true,
+    "proposed_exchange_preserves_primary_matched_rows_and_columns": true,
+    "nonbeneficial_Train_windows_include_harmful_and_neutral": true,
+    "unknown_labels_never_negatives": true,
+    "all_competitors_count_in_minimum_mutual_probability_margin": true,
+    "current_stage_diagnostic_only_no_new_tracker": true,
+    "new_Dev_or_Test": false,
+    "local_pair_correctness_not_future_HOTA_or_global_recovery_bound": true
+  },
+  "other_live_studies": {
+    "selective": {
+      "state": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+      "actual_exit": null,
+      "live": {
+        "PID": 2853422,
+        "start_ticks": 99725658,
+        "raw_argv_sha256": "0ac754a1592ab378780f03126c11ca062d2096f964a7679d54d69596679f2313",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "jobs": [
+        {
+          "phase": "SELECTIVE_PROTECTION_CAL_REGISTER",
+          "id": "all6",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_CALIBRATE",
+          "id": "all6",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_ENGINEERING",
+          "id": "all6",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_EVAL_REGISTER",
+          "id": "all6",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+          "id": "BT-005",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+          "id": "SN-013",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU1",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_RGB_static",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_static",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU1",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_shape_static",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_direct_shape_static",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU1",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_RGB_selective",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU0",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_selective",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "CPU1",
+          "live": null
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_shape_selective",
+          "status": "RUNNING",
+          "actual_exit": null,
+          "slot": "CPU0",
+          "live": {
+            "PID": 2919286,
+            "start_ticks": 100058699,
+            "raw_argv_sha256": "879f9fd0f635d4c93d7872cd6b862206d0f033acefe3682b60beabcf4650c748",
+            "CUDA_VISIBLE_DEVICES": "",
+            "kernel_state": "R"
+          }
+        },
+        {
+          "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+          "id": "SP_paired_direct_shape_selective",
+          "status": "RUNNING",
+          "actual_exit": null,
+          "slot": "CPU1",
+          "live": {
+            "PID": 2919367,
+            "start_ticks": 100059353,
+            "raw_argv_sha256": "2e43003f443ad08f9c04e295f424dfc3cd1e54ff5262facfcef59d4a6f5c4394",
+            "CUDA_VISIBLE_DEVICES": "",
+            "kernel_state": "R"
+          }
+        }
+      ]
+    },
+    "archive": {
+      "state": "WAITING_ACTUAL_ARCHIVE_FIT_AND_COMPLETE_SELECTIVE_STUDY",
+      "actual_exit": null,
+      "live": {
+        "PID": 2892320,
+        "start_ticks": 99902380,
+        "raw_argv_sha256": "2e2be99796e7cdff3599c9f9ead01a60600b4eb9cfe4a795544a9adc8680a17d",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "jobs": []
+    }
+  },
+  "resources": {
+    "work_GiB": 61.86663594935089,
+    "work_cap_GiB": 64,
+    "free_GiB": 2638.104072570801,
+    "reserve_GiB": 40,
+    "seed": 0,
+    "new_GPU_work": false,
+    "physical_GPUs_if_needed": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "new_images_or_FPN_or_pair_disk_cache": false
+  },
+  "source_detector_historical_Dev_exposure": true,
+  "encoder_previously_seen_Train_identities": true,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "lightweight_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/risk_actual_closure/controller.actual_tool_completion_r1.json",
+      "sha256": "987c7d446f012ba645bb4d9bd6338b25026231cdc2c9b58e85a6e7de5d146e81",
+      "source_sha256": "987c7d446f012ba645bb4d9bd6338b25026231cdc2c9b58e85a6e7de5d146e81",
+      "bytes": 1358
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/risk_actual_closure/independent_audit_r1.actual_tool_completion.json",
+      "sha256": "408f49e361e4d593e5c89d2b0a3625d12c30421c082ad501fd2a5cc05f7cc5ed",
+      "source_sha256": "408f49e361e4d593e5c89d2b0a3625d12c30421c082ad501fd2a5cc05f7cc5ed",
+      "bytes": 1372
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/risk_actual_closure/independent_audit_r1.execution.json",
+      "sha256": "284b7a119ca3428136f29e4389a42b63e8976ac4be969f8a5e3903daa0334fe0",
+      "source_sha256": "284b7a119ca3428136f29e4389a42b63e8976ac4be969f8a5e3903daa0334fe0",
+      "bytes": 1269
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/risk_actual_closure/independent_audit_complete.json",
+      "sha256": "2a5f8f61643e5181561b794a8800f5e427869e7f9f5f09c843641c18d7082f81",
+      "source_sha256": "2a5f8f61643e5181561b794a8800f5e427869e7f9f5f09c843641c18d7082f81",
+      "bytes": 471
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/independent_study_CPU_regressions_r1.json",
+      "sha256": "2777df3119174f26b7b34f02563e1bf6268a6c6d3b45c384bbb27ac9c4bc7006",
+      "source_sha256": "2777df3119174f26b7b34f02563e1bf6268a6c6d3b45c384bbb27ac9c4bc7006",
+      "bytes": 600
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/independent_study_CPU_regressions_r1.stdout.txt",
+      "sha256": "a8965ab0c8b7a4fda2128999c5757bdec6d468c4e36f015edf1a9aa185f9d101",
+      "source_sha256": "a8965ab0c8b7a4fda2128999c5757bdec6d468c4e36f015edf1a9aa185f9d101",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/independent_study_CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "1c6c05762b6c2a1745eac56cacb8736dab40e70492234f3e6f30eef38abb9ade",
+      "source_sha256": "1c6c05762b6c2a1745eac56cacb8736dab40e70492234f3e6f30eef38abb9ade",
+      "bytes": 1181
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/independent_study_audit_registered.json",
+      "sha256": "9406a845e116641793d94da68c966abcdb5271dc5419a65a12ab9bc3cf678ea1",
+      "source_sha256": "9406a845e116641793d94da68c966abcdb5271dc5419a65a12ab9bc3cf678ea1",
+      "bytes": 1893
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/independent_study_registration_r1.actual_tool_reply.json",
+      "sha256": "7905143c4693f15a1aa133526a1815d0f81505de7085a511e6cbdc76a14b73e6",
+      "source_sha256": "7905143c4693f15a1aa133526a1815d0f81505de7085a511e6cbdc76a14b73e6",
+      "bytes": 234
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/execution_snapshot.json",
+      "sha256": "4056b0e852c363b01039bbb8097b046aa315dd72d377ef04225f85fb9753bef5",
+      "source_sha256": "4056b0e852c363b01039bbb8097b046aa315dd72d377ef04225f85fb9753bef5",
+      "bytes": 1373
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/selective/progress_snapshot.json",
+      "sha256": "62d0c34a690f29996dcedc689702d75587e1861326f3de0793547278f31451d3",
+      "source_sha256": "62d0c34a690f29996dcedc689702d75587e1861326f3de0793547278f31451d3",
+      "bytes": 429
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/independent_study_CPU_regressions_r1.json",
+      "sha256": "a76aa3b9df6b1e8ecb5df0960fa1c7a95c593f43681039b525b5422a0f714c73",
+      "source_sha256": "a76aa3b9df6b1e8ecb5df0960fa1c7a95c593f43681039b525b5422a0f714c73",
+      "bytes": 600
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/independent_study_CPU_regressions_r1.stdout.txt",
+      "sha256": "a8965ab0c8b7a4fda2128999c5757bdec6d468c4e36f015edf1a9aa185f9d101",
+      "source_sha256": "a8965ab0c8b7a4fda2128999c5757bdec6d468c4e36f015edf1a9aa185f9d101",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/independent_study_CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "1c6c05762b6c2a1745eac56cacb8736dab40e70492234f3e6f30eef38abb9ade",
+      "source_sha256": "1c6c05762b6c2a1745eac56cacb8736dab40e70492234f3e6f30eef38abb9ade",
+      "bytes": 1181
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/independent_study_audit_registered.json",
+      "sha256": "1b4b9370c1864282faa06afcf3591eb7e64ab9f8fef9f3e2291e8eaf1c2150ee",
+      "source_sha256": "1b4b9370c1864282faa06afcf3591eb7e64ab9f8fef9f3e2291e8eaf1c2150ee",
+      "bytes": 2470
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/independent_study_registration_r1.actual_tool_reply.json",
+      "sha256": "ccde7b7acb72bd764e55c17d9ab94affb7ba73cdbcf9a4959c8916df97baa323",
+      "source_sha256": "ccde7b7acb72bd764e55c17d9ab94affb7ba73cdbcf9a4959c8916df97baa323",
+      "bytes": 232
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/execution_snapshot.json",
+      "sha256": "7d8e9d4ff02cfd05eb306f6c49fa1a7641308e7a6e2e55df487a8db39e64e378",
+      "source_sha256": "7d8e9d4ff02cfd05eb306f6c49fa1a7641308e7a6e2e55df487a8db39e64e378",
+      "bytes": 1377
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/archive/progress_snapshot.json",
+      "sha256": "5dbebd2f5ea88c7144ba64259ae6c51cde6df44993904fad82b32e74ba865db2",
+      "source_sha256": "5dbebd2f5ea88c7144ba64259ae6c51cde6df44993904fad82b32e74ba865db2",
+      "bytes": 698
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/new_auditors/supervisor.py.txt",
+      "sha256": "658c47f10655764056a95b88cd1aa31dc44b1d35d971e8669fa549aa09afd44c",
+      "source_sha256": "658c47f10655764056a95b88cd1aa31dc44b1d35d971e8669fa549aa09afd44c",
+      "bytes": 2942
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/CPU_regressions_r1.json",
+      "sha256": "806a3db3d269596f0f4d15cd30614ab76fcf14f838a35bfbbfdb4ee3d0a5a86c",
+      "source_sha256": "806a3db3d269596f0f4d15cd30614ab76fcf14f838a35bfbbfdb4ee3d0a5a86c",
+      "bytes": 601
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/CPU_regressions_r1.stdout.txt",
+      "sha256": "ec3f23287265821fd4f7236ebdcbfbccb54375f5ebeeacd54847663b8d036699",
+      "source_sha256": "ec3f23287265821fd4f7236ebdcbfbccb54375f5ebeeacd54847663b8d036699",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "1c3432857f6ee5246f8e7e50eef5a4257aa4b19dcad1f321edd82ab6271f75ce",
+      "source_sha256": "1c3432857f6ee5246f8e7e50eef5a4257aa4b19dcad1f321edd82ab6271f75ce",
+      "bytes": 1182
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/registered.json",
+      "sha256": "958b13c0f17c631312a2e69a09c573cc4311a5df454acf630d73837d735915ad",
+      "source_sha256": "958b13c0f17c631312a2e69a09c573cc4311a5df454acf630d73837d735915ad",
+      "bytes": 64700
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/registration_r1.actual_tool_reply.json",
+      "sha256": "80a0dbd4e0f7ca52bc9091d5199d26213bbaaa2bd436972e9b7c3ad2afcb96aa",
+      "source_sha256": "80a0dbd4e0f7ca52bc9091d5199d26213bbaaa2bd436972e9b7c3ad2afcb96aa",
+      "bytes": 258
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/execution_snapshot.json",
+      "sha256": "a3e266b694c3fa273ace1e2e92454836b44e025bb9be9da054fcd1133a5953bc",
+      "source_sha256": "a3e266b694c3fa273ace1e2e92454836b44e025bb9be9da054fcd1133a5953bc",
+      "bytes": 1302
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/exchange_Train_diagnosis/supervisor.py.txt",
+      "sha256": "abcba855c7c02503628c0a6204dca51a4ae8ffa177c20e2adf7ed6e01b38680c",
+      "source_sha256": "abcba855c7c02503628c0a6204dca51a4ae8ffa177c20e2adf7ed6e01b38680c",
+      "bytes": 2711
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_risk_negative_exchange_ready/all_live_snapshot.json",
+      "sha256": "e239de590506972315833e0dffda36cc4927edecd90f4bd58ad12446595babed",
+      "source_sha256": "e239de590506972315833e0dffda36cc4927edecd90f4bd58ad12446595babed",
+      "bytes": 14749
+    }
+  ]
+}

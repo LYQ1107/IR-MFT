@@ -1,0 +1,548 @@
+{
+  "two_track_exchange": {
+    "actual_exit": null,
+    "live": {
+      "PID": 2917053,
+      "start_ticks": 100042305,
+      "raw_argv_sha256": "5a7f22a694db8d64d86f9c33ca2c9dca25dcd7fc179076a65517ffc6025f0168",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "R"
+    },
+    "progress": {
+      "status": "ALL6_TRAIN_TWO_TRACK_EXCHANGE_DIAGNOSIS",
+      "UTC": "2026-11-26T22:53:51.339924+00:00",
+      "sequence": "PF-001",
+      "frame": 12000,
+      "frames": 15000,
+      "seconds": 173.01060414104722,
+      "score_RAM_bytes": {
+        "RGB": 18832,
+        "paired": 18832
+      },
+      "new_optimizer_steps": 0,
+      "new_accuracy": false
+    },
+    "complete": false,
+    "frozen_sources_verified": 492
+  },
+  "study_auditors": {
+    "selective": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2910707,
+        "start_ticks": 100008596,
+        "raw_argv_sha256": "a150042dc0e0afb43aa3ab52f7b06824ad97c524d569af5588057963c62977ed",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "progress": {
+        "status": "WAITING_ACTUAL_CLOSED_STUDY_AND_TRAIN_AUDITS",
+        "UTC": "2026-11-26T22:53:40.447162+00:00",
+        "waiting": [
+          {
+            "name": "original_study",
+            "live": {
+              "PID": 2853422,
+              "start_ticks": 99725658,
+              "kernel_state": "S",
+              "raw_argv_sha256": "0ac754a1592ab378780f03126c11ca062d2096f964a7679d54d69596679f2313"
+            }
+          }
+        ],
+        "new_optimizer_steps": 0,
+        "new_GPU_work": false
+      },
+      "complete": false
+    },
+    "archive": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2912572,
+        "start_ticks": 100016606,
+        "raw_argv_sha256": "97bd0315bd98f006af306bcd1a6e7b3a0e45241aa1a0f57d532f9e7584c1169a",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "progress": {
+        "status": "WAITING_ACTUAL_CLOSED_STUDY_AND_TRAIN_AUDITS",
+        "UTC": "2026-11-26T22:53:45.497673+00:00",
+        "waiting": [
+          {
+            "name": "original_study",
+            "live": {
+              "PID": 2892320,
+              "start_ticks": 99902380,
+              "kernel_state": "S",
+              "raw_argv_sha256": "2e2be99796e7cdff3599c9f9ead01a60600b4eb9cfe4a795544a9adc8680a17d"
+            }
+          },
+          {
+            "name": "independent_selective_study_audit",
+            "live": {
+              "PID": 2910707,
+              "start_ticks": 100008596,
+              "kernel_state": "S",
+              "raw_argv_sha256": "a150042dc0e0afb43aa3ab52f7b06824ad97c524d569af5588057963c62977ed"
+            }
+          }
+        ],
+        "new_optimizer_steps": 0,
+        "new_GPU_work": false
+      },
+      "complete": false
+    }
+  },
+  "archive_fit": {
+    "actual_exit": 0,
+    "live": null,
+    "complete": true,
+    "Train_frames": 27251,
+    "early_known_edges": 12951,
+    "model_sha256": "746336c5bac6b5c907c6765a3b71103bfe8804d97dbc48e3c46bfe44266eae7c",
+    "final_fit_diagnostics": {
+      "RGB": {
+        "weighted_objective_after_final_step": 0.32548937200200906,
+        "gradient_norm": 1.6590246612590417e-09,
+        "rows": 12951,
+        "weight": 0.9999999999999967,
+        "optimizer_updated_during_diagnostic": false
+      },
+      "paired": {
+        "weighted_objective_after_final_step": 0.3113906663234999,
+        "gradient_norm": 1.578486848991833e-08,
+        "rows": 12951,
+        "weight": 0.9999999999999967,
+        "optimizer_updated_during_diagnostic": false
+      }
+    }
+  },
+  "archive_controller": {
+    "state": "WAITING_ACTUAL_ARCHIVE_FIT_AND_COMPLETE_SELECTIVE_STUDY",
+    "actual_exit": null,
+    "live": {
+      "PID": 2892320,
+      "start_ticks": 99902380,
+      "raw_argv_sha256": "2e2be99796e7cdff3599c9f9ead01a60600b4eb9cfe4a795544a9adc8680a17d",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": []
+  },
+  "archive_auditor": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "COMPLETE_INDEPENDENT_ALL6_TRAIN_ARCHIVE_FIT_AUDIT",
+      "UTC": "2026-11-26T22:33:23.587010+00:00"
+    },
+    "complete": true
+  },
+  "frozen_archive_fit_sources_verified": 498,
+  "frozen_archive_evaluation_sources_verified": 506,
+  "frozen_archive_audit_sources_verified": 2,
+  "UTC": "2026-11-26T22:53:51.954588+00:00",
+  "bank": {
+    "state": "COMPLETE_TRAIN_BANK_READY_NO_NEW_MODEL_OR_ACCURACY",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "4",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "5",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "PF-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-015",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "MSK-002",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-001",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-003",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      }
+    ]
+  },
+  "risk": {
+    "state": "COMPLETE_CANDIDATE_RISK_NO_DEV_GAIN_NO_NEW_TEST",
+    "actual_exit": 0,
+    "live": null,
+    "jobs": [
+      {
+        "phase": "CANDIDATE_RISK_CPU_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT_REGISTER",
+        "id": "register",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_CPU_FIT",
+        "id": "fit",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_native_zero",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_pose_late_control",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_RGB_risk",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_risk",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_risk_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_RISK_DEV_OFFICIAL",
+        "id": "CR_paired_direct_shape",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      }
+    ]
+  },
+  "auditor": {
+    "actual_exit": 0,
+    "live": null,
+    "progress": {
+      "status": "COMPLETE_INDEPENDENT_TRAIN_AND_FORMAL_METRIC_AUDIT",
+      "UTC": "2026-11-26T22:44:36.951375+00:00"
+    }
+  },
+  "frozen_auditor_sources_verified": 3,
+  "selective": {
+    "state": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+    "actual_exit": null,
+    "live": {
+      "PID": 2853422,
+      "start_ticks": 99725658,
+      "raw_argv_sha256": "0ac754a1592ab378780f03126c11ca062d2096f964a7679d54d69596679f2313",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": [
+      {
+        "phase": "SELECTIVE_PROTECTION_CAL_REGISTER",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_CALIBRATE",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_ENGINEERING",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_EVAL_REGISTER",
+        "id": "all6",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+        "id": "BT-005",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_REPLAY",
+        "id": "SN-013",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_RGB_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_shape_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_direct_shape_static",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_RGB_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU0",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_selective",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "CPU1",
+        "live": null
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_shape_selective",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "CPU0",
+        "live": {
+          "PID": 2919286,
+          "start_ticks": 100058699,
+          "raw_argv_sha256": "879f9fd0f635d4c93d7872cd6b862206d0f033acefe3682b60beabcf4650c748",
+          "CUDA_VISIBLE_DEVICES": "",
+          "kernel_state": "R"
+        }
+      },
+      {
+        "phase": "SELECTIVE_PROTECTION_DEV_OFFICIAL",
+        "id": "SP_paired_direct_shape_selective",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "CPU1",
+        "live": {
+          "PID": 2919367,
+          "start_ticks": 100059353,
+          "raw_argv_sha256": "2e43003f443ad08f9c04e295f424dfc3cd1e54ff5262facfcef59d4a6f5c4394",
+          "CUDA_VISIBLE_DEVICES": "",
+          "kernel_state": "R"
+        }
+      }
+    ]
+  },
+  "frozen_selective_sources_verified": 498,
+  "risk_fit_progress": {
+    "phase": "late_Train_calibration",
+    "sequence": "SN-015",
+    "frame": 6570,
+    "frames": 6570,
+    "seconds": 2379.5907359990524,
+    "GT_split": "train",
+    "GPU_work": false,
+    "new_tracking_accuracy": false
+  },
+  "progress": {
+    "SN-001": {
+      "frame": 684,
+      "frames": 684,
+      "proposals": 8797,
+      "uncompressed_payload_bytes": 18203148,
+      "physical_gpu": "5",
+      "seconds": 284.88632281695027,
+      "GT_labels_parsed": false
+    },
+    "BT-003": {
+      "frame": 243,
+      "frames": 243,
+      "proposals": 3097,
+      "uncompressed_payload_bytes": 6408492,
+      "physical_gpu": "5",
+      "seconds": 106.7284725200152,
+      "GT_labels_parsed": false
+    },
+    "BT-001": {
+      "frame": 3000,
+      "frames": 3000,
+      "proposals": 42063,
+      "uncompressed_payload_bytes": 87034292,
+      "physical_gpu": "5",
+      "seconds": 1296.7094264419284,
+      "GT_labels_parsed": false
+    },
+    "PF-001": {
+      "frame": 15000,
+      "frames": 15000,
+      "proposals": 30889,
+      "uncompressed_payload_bytes": 64118460,
+      "physical_gpu": "4",
+      "seconds": 6155.107988929027,
+      "GT_labels_parsed": false
+    },
+    "MSK-002": {
+      "frame": 1754,
+      "frames": 1754,
+      "proposals": 91770,
+      "uncompressed_payload_bytes": 189808432,
+      "physical_gpu": "5",
+      "seconds": 897.333326740074,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 6570,
+      "frames": 6570,
+      "proposals": 73023,
+      "uncompressed_payload_bytes": 151116692,
+      "physical_gpu": "5",
+      "seconds": 2821.3081125579774,
+      "GT_labels_parsed": false
+    }
+  },
+  "ledger": {
+    "maximum_bytes": 1288490188,
+    "sequences": {
+      "PF-001": 64118460,
+      "SN-015": 151116692,
+      "BT-001": 87034292,
+      "MSK-002": 189808432,
+      "SN-001": 18203148,
+      "BT-003": 6408492
+    },
+    "total_reserved_bytes": 516689516
+  },
+  "work_GiB": 61.86663594935089,
+  "free_GiB": 2638.104072570801,
+  "bank_complete": true,
+  "fitted_models": true,
+  "risk_Dev_complete": true,
+  "risk_Test_complete": false,
+  "frozen_risk_sources_verified": 486,
+  "last_formal_Test_HOTA": 29.955069130617183,
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "last_formal_gain_pp": 0.42609844322321067,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}
