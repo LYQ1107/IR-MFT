@@ -1,0 +1,20 @@
+{
+  "UTC": "2026-11-26T01:31:16.281616+00:00",
+  "status": "COMPLETE_FIGURE_INPUT_GUARD_CHECK_NOT_FIGURE_OR_ACCURACY_COMPLETION",
+  "source": "/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py",
+  "source_sha256": "cb40d0dd5cfd205bcfc07ff257deb101d449d03f0d4ce5a7f0e3c91557bf88ae",
+  "readiness_actual_exit_code": 0,
+  "readiness_stdout": "{\"status\": \"WAITING_FOR_COMPLETE_NATIVE_MINIMUM6_FULL_DEV_AUDIT\", \"complete_report_exists\": false, \"figures_created\": false, \"GPU_work\": false, \"Test_results_read\": false, \"new_accuracy_claimed\": false}\n",
+  "readiness_stderr": "",
+  "export_missing_input_actual_exit_code": 1,
+  "export_missing_input_stdout": "",
+  "export_missing_input_stderr": "Traceback (most recent call last):\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py\", line 250, in <module>\n    main()\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py\", line 246, in main\n    export(args.output_directory, args.preview_directory)\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py\", line 117, in export\n    report, points, references = source_data()\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py\", line 55, in source_data\n    require(ready()['complete_report_exists'], 'No figures before actual complete native Dev evidence')\n  File \"/data3/liuyeqiang/IR-MFT/tools/audit_mft_native_dev_figures.py\", line 28, in require\n    raise ValueError(message)\nValueError: No figures before actual complete native Dev evidence\n",
+  "expected_missing_input_rejection": true,
+  "no_output_directories_created": true,
+  "GPU_work": false,
+  "Test_results_read": false,
+  "figures_created": false,
+  "new_accuracy_claimed": false,
+  "goal_met": false,
+  "process_identity_not_observed_for_short_CPU_checks": true
+}
