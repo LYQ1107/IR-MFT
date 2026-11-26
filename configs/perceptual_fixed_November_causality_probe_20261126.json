@@ -1,0 +1,53 @@
+{
+  "status": "PREREGISTERED_SMALL_TRAIN_GENERATOR_CAUSALITY_AND_CACHE_PARITY_PROBE_NOT_MFT_ACCURACY",
+  "physical_gpu": "4",
+  "physical_gpu_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+  "maximum_cuda_memory_fraction": 0.6,
+  "minimum_free_gpu_MiB_before_start": 28000,
+  "minimum_available_host_GiB": 32,
+  "maximum_child_wall_seconds": 600,
+  "required_original_phase": "NORMAL_TRAIN_09",
+  "allowed_original_phases": ["NORMAL_TRAIN_09", "dev_normal_09_NN", "dev_normal_09_OFFICIAL", "NORMAL_TRAIN_12", "dev_normal_12_NN", "dev_normal_12_OFFICIAL"],
+  "resource_scope": "Only physical GPUs4/5; the eight-call GPU4 auxiliary check may share that card with original native production when free memory meets the guard. It is excluded from formal standalone FPS measurements.",
+  "maximum_anonymous_RAM_weight_cache_GiB": 8,
+  "maximum_CPU_RAM_staging_seconds": 1800,
+  "original_controller": {
+    "PID": 1489657,
+    "start_ticks": 91266785,
+    "raw_argv_sha256": "64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47"
+  },
+  "original_IR_worker": {
+    "PID": 1845169,
+    "start_ticks": 94463963,
+    "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026"
+  },
+  "generator_archive": "diffv2ir_final_20261104",
+  "generator_configuration": "diffv2ir_final_20261104/final_config.json",
+  "use_original_SAM_and_DiffV2IR": true,
+  "SAM_masks_recomputed_each_call": true,
+  "BLIP": false,
+  "fixed_generator_seed": 20261101,
+  "additional_training_seeds": false,
+  "data_split": "train",
+  "reference_sequence": "BT-003",
+  "reference_frames": [1, 2, 3],
+  "prefix_frames": [1, 2],
+  "changed_future": {"sequence": "BT-001", "frame": 3},
+  "sequence_reset_interlude": {"sequence": "BT-001", "frame": 1},
+  "sequence_reset_return": {"sequence": "BT-003", "frame": 1},
+  "total_generator_calls": 8,
+  "input_fixture": "Prepare both complete three-frame sequence directories with RGB symlinks before either prefix is generated; changed sequence frame3 points to the different Train image.",
+  "deliberate_lookahead_control": "A CPU checksum using each current frame plus the on-disk future frame must change for both prefixes; validates that the fixture actually distinguishes lookahead.",
+  "criteria": [
+    "Compare both complete generated prefix images and SAM masks across original and changed-future runs without discarding negative differences.",
+    "After a different-sequence interlude, regenerate reference frame1 and compare its pixels with the original first call.",
+    "Compare reference frame1-3 with existing fixed November PNG and original saved SAM metadata; exact cache parity is an observed result, not presumed.",
+    "Record actual generator checkpoint SHA256, code/configuration/version provenance, per-call costs and GPU identities."
+  ],
+  "original_dataset_outputs_modified": false,
+  "persistent_weight_or_RGB_copies": false,
+  "verified_anonymous_RAM_weight_staging_allowed": true,
+  "Test_GT_or_accuracy_read": false,
+  "MFT_forward_or_training": false,
+  "scope": "Eight calls from the first three original Train frames and two explicit Train counterfactual/reset frames; not a whole-dataset cache reproduction, formal FPS, complete system runtime, tracking gain or independent contribution. Abort only this probe if the original native phase changes."
+}

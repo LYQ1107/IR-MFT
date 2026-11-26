@@ -1,0 +1,533 @@
+{
+  "status": "COMPLETE_RAM_STAGING_AND_EIGHT_TRAIN_GPU4_GENERATOR_PROBE",
+  "UTC": "2026-11-26T12:59:41.798570+00:00",
+  "source_sha256": "4b4bf66a50f3aa8835dbc7b5790a248c1428f1a5036e484236c57db198ede0f3",
+  "plan_sha256": "13abf4d6ef9b28cf993bcc4a440c64069051860293b599381efd2af9b2a74d52",
+  "supervisor_source_sha256": "51eac8b9023a4b95ccf3534c1be72990ff4fb83e1012b594e0e46d8175eab3f5",
+  "original_stage_ram_source_sha256": "26e308c80bd97afb58c98fb23659380ae5e60349f67698a6c9943063c345ccd9",
+  "original_artifact_manifest_sha256": "ba78b6d8455da3da2dc682ffd8038fa3f22471e1f08d430ae507b013ed3642d6",
+  "private_RAM_root": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1",
+  "output_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_actual_generator_causality_20261126_r3",
+  "expected_RAM_bytes": 8079059126,
+  "RAM_limit_GiB": 8,
+  "disk_weight_copies": 0,
+  "original_cache_links_modified": false,
+  "original_training_signalled": false,
+  "original_phase_at_start": "NORMAL_TRAIN_09",
+  "staging_processes": {
+    "model": {
+      "PID": 2290685,
+      "start_ticks": 96495308,
+      "raw_argv_sha256": "96ae68c9894f4d269691b6b092a2c8483148aa58efad4a67e9370f5f2ae7e7b2",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "-c",
+        "from pathlib import Path; import sys; sys.path.insert(0,'/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts'); import stage_ram; stage_ram.R=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1'); stage_ram.os.sys.argv=['private-original-stage-ram','model']; stage_ram.main()"
+      ],
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/model.log",
+      "CPU_only": true,
+      "actual_exit_code": 0
+    },
+    "sam": {
+      "PID": 2290686,
+      "start_ticks": 96495308,
+      "raw_argv_sha256": "7312afe7c156e479da0db2a2bf712cac3e8a435b634dea074bf23e337712068a",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "-c",
+        "from pathlib import Path; import sys; sys.path.insert(0,'/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/scripts'); import stage_ram; stage_ram.R=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1'); stage_ram.os.sys.argv=['private-original-stage-ram','sam']; stage_ram.main()"
+      ],
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/sam.log",
+      "CPU_only": true,
+      "actual_exit_code": 0
+    }
+  },
+  "GPU_probe_started": true,
+  "actual_NVML_samples": [
+    {
+      "seconds": 0.11688187497202307,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 2.223549428046681,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 4.333454446983524,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 6.4431936730397865,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 8.551721755065955,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 10.656342016067356,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 12.765641523059458,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 14.872062770999037,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 16.979853241005912,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 19.09568968100939,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 21.224378886050545,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 23.34732120204717,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 25.4772399259964,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 27.607103973045014,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 29.719723714981228,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 31.843901549000293,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 33.9658305470366,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 36.08962679596152,
+      "project_original_and_auxiliary": [
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 38.222844653064385,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 40.326759204035625,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 42.452016392024234,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 44.56105216406286,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 46.66664441896137,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 48.79578481905628,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 416 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 50.913142450968735,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 53.052695377962664,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 55.178576522972435,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 57.31073339807335,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 59.42294199997559,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 61.56407251802739,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 63.689295202028006,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 65.79499536496587,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 67.91969955805689,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 70.03758250304963,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 72.13811278401408,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 74.27634653600398,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 76.40713756799232,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 818 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 78.54067756503355,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 1212 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 80.6644334240118,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 5052 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 82.80617334798444,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 5146 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 84.93678189907223,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17538 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 87.07464801799506,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 89.22685265901964,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 91.33391007804312,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 93.46013929496985,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 95.58763286506291,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 97.69456123700365,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 99.82100316800643,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 101.99442466604523,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 104.1231065109605,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 106.25918794400059,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 108.3908577960683,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 110.533407445997,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 112.66889219498262,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 114.79244923300575,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 116.89497204497457,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 119.0128631190164,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 121.14216264698189,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 123.30360944301356,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 125.43123597104568,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 127.55178410897497,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 129.6805613170145,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    },
+    {
+      "seconds": 131.95118382503279,
+      "project_original_and_auxiliary": [
+        "2304375, GPU-daa9b388-4540-242c-83d7-3261bb232a7c, 17548 MiB",
+        "1845169, GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81, 2404 MiB"
+      ]
+    }
+  ],
+  "exit_code": 0,
+  "last_original_phase": "NORMAL_TRAIN_09",
+  "last_observed_UTC": "2026-11-26T13:12:22.274144+00:00",
+  "RAM_ready": [
+    "model",
+    "sam"
+  ],
+  "staging_seconds": 760.4756168270251,
+  "RAM_ready_original_receipts": {
+    "model": {
+      "pid": 2290685,
+      "files": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/cache/ram/DiffV2IR/IR-500k/finetuned_checkpoints/M3FD.ckpt",
+          "source": "/data3/liuyeqiang/nas/A100/IR-MFT/thermalgen_probe2_20261102/weights/DiffV2IR/IR-500k/finetuned_checkpoints/M3FD.ckpt",
+          "sha256": "dcb838964eca6386f78248d73d335bca8ead5463222058d3e924fafdf8e8efb1",
+          "bytes": 7704016743,
+          "seconds": 758.3743331299629,
+          "pid": 2290685,
+          "fd": 3
+        }
+      ]
+    },
+    "sam": {
+      "pid": 2290686,
+      "files": [
+        {
+          "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/cache/ram/SAM/sam_vit_b_01ec64.pth",
+          "source": "/data3/liuyeqiang/nas/A100/IR-MFT/thermalgen_probe2_20261102/weights/SAM/sam_vit_b_01ec64.pth",
+          "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+          "bytes": 375042383,
+          "seconds": 69.56762439501472,
+          "pid": 2290686,
+          "fd": 3
+        }
+      ]
+    }
+  },
+  "RAM_staging_seconds": 760.4760893729981,
+  "GPU_child_identity": {
+    "PID": 2304375,
+    "start_ticks": 96571356,
+    "raw_argv_sha256": "b8b30c3fd9b39c4f671549728f0707e3d712bf56af545d358bf8cc973e4125e6"
+  },
+  "command": [
+    "/data3/liuyeqiang/IR-MFT/diffv2ir_final_20261104/environments/diffv2ir/bin/python",
+    "-u",
+    "/data3/liuyeqiang/IR-MFT/tools/audit_fixed_November_generator_causality.py",
+    "--asset-cache-root",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/cache/ram",
+    "--output-directory",
+    "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_actual_generator_causality_20261126_r3"
+  ],
+  "GPU_probe_started_UTC": "2026-11-26T13:12:22.278559+00:00",
+  "GPU_probe_exit_code": 0,
+  "complete_report_exists": true,
+  "GPU_probe_wall_seconds": 133.95419762504753,
+  "log_sha256": "b55aaaaaa3d37d09447cbdf4d23ea040314910f7fdb4132315c8d15c2a392846",
+  "total_wall_seconds": 900.6697550379904,
+  "owned_RAM_holders_released": true
+}

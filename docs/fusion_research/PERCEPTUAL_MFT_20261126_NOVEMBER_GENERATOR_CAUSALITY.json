@@ -1,0 +1,153 @@
+{
+  "status": "VERIFIED_EIGHT_TRAIN_FIXED_NOVEMBER_GENERATOR_PREFIX_RESET_AND_SAMPLED_CACHE_PARITY_NOT_MFT_ACCURACY",
+  "UTC": "2026-11-26T13:18:14.282714+00:00",
+  "generator_source": "fixed November DiffV2IR M3FD + SAM ViT-B; BLIP disabled; fixed per-frame generator seed20261101",
+  "actual_unified_session": 36626,
+  "actual_unified_exit_code": 0,
+  "actual_GPU_child_identity": {
+    "PID": 2304375,
+    "start_ticks": 96571356,
+    "raw_argv_sha256": "b8b30c3fd9b39c4f671549728f0707e3d712bf56af545d358bf8cc973e4125e6"
+  },
+  "actual_GPU_child_exit_code": 0,
+  "actual_CPU_fixture_only_exit_code": 0,
+  "CPU_fixture_only_was_not_generator_evidence": true,
+  "physical_gpus_for_project": [
+    "4",
+    "5"
+  ],
+  "auxiliary_generator_physical_gpu": "4",
+  "all_observed_project_GPU_UUIDs": [
+    "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+    "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81"
+  ],
+  "all_observed_project_GPUs_within4_5": true,
+  "total_generation_calls": 8,
+  "original_sequence": "Train BT-003 frames1/2/3",
+  "counterfactual_future": "same BT-003 frames1/2; frame3 symlink replaced by Train BT-001 frame3 before either prefix generation",
+  "two_full_future_suffixes_prepared_before_prefix": true,
+  "deliberately_leaky_CPU_control_detected_changed_future_for_both_prefixes": true,
+  "prefix_comparisons": [
+    {
+      "frame": 1,
+      "exact_IR_pixels": true,
+      "exact_SAM_pixels": true
+    },
+    {
+      "frame": 2,
+      "exact_IR_pixels": true,
+      "exact_SAM_pixels": true
+    }
+  ],
+  "sequence_reset": {
+    "exact_IR_pixels": true,
+    "exact_SAM_pixels": true
+  },
+  "all8_calls_exact_cached_IR_pixels": true,
+  "all8_calls_exact_cached_SAM_pixels": true,
+  "unique_original_RGB_frames": 5,
+  "unique_original_RGB_scope": [
+    "BT-003:1",
+    "BT-003:2",
+    "BT-003:3",
+    "BT-001:3",
+    "BT-001:1"
+  ],
+  "weight_receipts": {
+    "DiffV2IR": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/cache/ram/DiffV2IR/IR-500k/finetuned_checkpoints/M3FD.ckpt",
+      "resolved_path": "/memfd:diff_config_DiffV2IR (deleted)",
+      "bytes": 7704016743,
+      "mtime_ns": 1795698714281958756,
+      "sha256": "dcb838964eca6386f78248d73d335bca8ead5463222058d3e924fafdf8e8efb1"
+    },
+    "SAM": {
+      "path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fixed_November_private_verified_RAM_20261126_r1/cache/ram/SAM/sam_vit_b_01ec64.pth",
+      "resolved_path": "/memfd:diff_config_SAM (deleted)",
+      "bytes": 375042383,
+      "mtime_ns": 1795698050234726679,
+      "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+    }
+  },
+  "source_sha256": "4b4bf66a50f3aa8835dbc7b5790a248c1428f1a5036e484236c57db198ede0f3",
+  "plan_sha256": "13abf4d6ef9b28cf993bcc4a440c64069051860293b599381efd2af9b2a74d52",
+  "versions": {
+    "torch": "2.6.0+cu118",
+    "torchvision": "0.21.0+cu118",
+    "numpy": "1.26.4",
+    "Pillow": "12.3.0",
+    "k-diffusion": "0.1.1.post1",
+    "transformers": "4.26.1",
+    "segment-anything": "1.0"
+  },
+  "mean_SAM_seconds": 1.1082181012170622,
+  "mean_DiffV2IR_seconds": 3.8404891191021306,
+  "mean_generation_with_local_IO_seconds": 5.348726388896466,
+  "model_loading_selected_region_seconds": 33.787124356022105,
+  "actual_generator_child_wall_seconds": 133.95419762504753,
+  "actual_RAM_stage_and_child_total_wall_seconds": 900.6697550379904,
+  "RAM_staging_seconds": 760.4760893729981,
+  "anonymous_RAM_weight_bytes": 8079059126,
+  "anonymous_RAM_weight_GiB": 7.524210145696998,
+  "anonymous_RAM_holders_actual_exit_codes": {
+    "model": 0,
+    "sam": 0
+  },
+  "owned_RAM_holders_released": true,
+  "sample_max_own_allocated_GPU_GiB": 8.48852252960205,
+  "observed_NVML_auxiliary_peak_MiB": 17548,
+  "auxiliary_child_peak_process_RSS_GiB": 15.201431274414062,
+  "source102_and_Task427_verified_unchanged": {
+    "native_pyramid_pipeline_registered.json": {
+      "registry_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+      "source_count": 102,
+      "mismatches": []
+    },
+    "task_utility/pipeline_registered.json": {
+      "registry_sha256": "6f302f6710b9c6fd5e36bba034e277c769d5f30d75b5068701193ecfbdadfdff",
+      "source_count": 427,
+      "mismatches": []
+    }
+  },
+  "original_MFT_training_signalled": false,
+  "original_dataset_or_cache_PNGs_replaced": false,
+  "large_weights_or_RGB_copied_to_disk": false,
+  "new_MFT_training": false,
+  "new_Train_random_seed": false,
+  "new_Test": false,
+  "new_tracking_accuracy": false,
+  "all48070_cache_frames_reproduced": false,
+  "all7_Test_cache_online_parity_verified": false,
+  "formal_FPS_measured": false,
+  "generation_inclusive_MFT_system_runtime_measured": false,
+  "earlier_attempts": [
+    {
+      "attempt": "r1",
+      "actual_unified_exit_code": 1,
+      "actual_child_exit_code": -15,
+      "generated_frames": 0,
+      "pre_GPU_provenance_complete": false,
+      "reason": "Owned pre-GPU weight read stopped to strengthen the entire changed-future fixture before any prefix generation."
+    },
+    {
+      "attempt": "r2",
+      "actual_unified_exit_code": 1,
+      "actual_child_exit_code": -15,
+      "generated_frames": 0,
+      "pre_GPU_provenance_complete": false,
+      "reason": "Owned pre-GPU mounted-NAS bulk weight read stopped to release I/O; replaced by verified anonymous RAM over original SSH transport.",
+      "receipt_fixture_true_field_was_intent_not_observed_completion": true
+    }
+  ],
+  "raw_directory": "perceptual_20261126_November_generator_causality",
+  "work_GiB": 59.8118980852887,
+  "available_GiB": 2655.8604774475098,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "limitations": [
+    "Five unique Train RGB frames and eight calls only; no whole-cache or Test parity claim.",
+    "The original fixed-image dataset is unchanged.",
+    "Selected-region generator timers and local writes are not a formal throughput benchmark or full MFT system runtime.",
+    "This is a causality and reproducibility engineering result, not tracking improvement or novelty."
+  ]
+}
