@@ -23,9 +23,11 @@
 
 六组已完成最低六遍27251帧，每组保留模型逻辑交付163506帧次、40884次优化器更新；36份模块状态有限且逐轮不同，同一模式三种输入初始化匹配，各轮地址摘要一致。新增九轮阶段并未把旧六轮检查点替换。IR的旧NAS失败及恢复原件仍保留：保存点后21次更新丢失并重放84帧，额外物理交付不计作逻辑epoch或新种子。原RGB冻结、原图SHA和源代码约束保持。
 
-完整[阶段指标与原件](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json)、[中文科研分析](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV_ANALYSIS_ZH.md)、[47字段总表](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.csv)、[三张完整对照图](perceptual_20261126_native_minimum6_dev_figures/README.md)均已准备发布。原[IR六轮证明](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_IR_COMPLETE_TRAIN.md)、[BT-005整段输入依赖核对](PERCEPTUAL_MFT_20261126_NATIVE_BT005_COMPLETE_PRODUCER.md)、[五个公开后端完整比较](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_COMPLETE_ANALYSIS_ZH.md)保留。
+完整[阶段指标与原件](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json)、[中文科研分析](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV_ANALYSIS_ZH.md)、[47字段总表](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.csv)、[三张完整对照图](perceptual_20261126_native_minimum6_dev_figures/README.md)均已发布。原[IR六轮证明](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_IR_COMPLETE_TRAIN.md)、[BT-005整段输入依赖核对](PERCEPTUAL_MFT_20261126_NATIVE_BT005_COMPLETE_PRODUCER.md)、[五个公开后端完整比较](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_COMPLETE_ANALYSIS_ZH.md)保留。
 
 旧完整Dev观察器14350和自动CPU导出77049已正常完成，不再当作活跃训练句柄。新的九轮只读观察器86394已确认原控制器与两卡训练进程的真实PID／启动tick／argv／CUDA环境。日志中的批次仅是周期记录，progress.json还可能停留在上一个完整epoch；二者均不能冒充九轮已完成。
 
 独立创新计数仍0。新原生家族尚未完成最终预算、选模、触发的模块去除、完整七段Test与独立逐方法成本。既有正式主方案Test仍29.834177，对原RGB29.529约+0.305177；这不是本批原生结果。Test目标34.529及2–3项独立贡献未达，Goal继续active。历史Test暴露、RGB预训练见Dev和RGB派生伪IR限制保持。
 本次发布核对：工作目录约59.770GiB／64GiB，独立空闲约2683.157GiB，高于40GiB保留值。只发布小型文本、SVG和CSV；PNG预览留在工作目录，不上传权重、图像数据集、FPN或原始轨迹。
+
+后续九／十二轮完整Dev的[独立导出检查与自动等待](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_DEV_AUDIT_READY.md)已接好；CPU工程检查实际退出0，九轮实际结果仍待原实验完成。首批quality_rgb／quality_gray已各完成第7轮，其余四组继续原队列。
