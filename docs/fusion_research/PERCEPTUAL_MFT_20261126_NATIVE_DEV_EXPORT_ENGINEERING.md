@@ -11,3 +11,5 @@
 本页仅是结果核对程序的工程证据，无新增原生Dev／Test精度、收敛或创新结论。原主方案Test HOTA仍29.834177，对固定RGB29.529约+0.305177；目标34.529及2–3项独立贡献未达，Goal保持active。历史Test暴露、RGB预训练见Dev和RGB派生伪IR限制保持。后续仍须完整Test、触发的同预算去除实验、运行成本和研究分析。
 
 [CPU执行原件](PERCEPTUAL_MFT_20261126_NATIVE_DEV_EXPORT_ENGINEERING_EXECUTION.json) · [原stdout](PERCEPTUAL_MFT_20261126_NATIVE_DEV_EXPORT_ENGINEERING_CPU_LOG.txt) · [导出工具](../../tools/audit_mft_native_full_dev_stage.py)
+
+已启动独立CPU导出等待入口，实际session77049、PID1569870；启动tick与非空argv／CPU环境匹配。它等待原62路完整Dev、65个原worker退出0及冻结决定后才运行固定版本导出工具；尚未执行新评估，也未生成新精度结果。原研究控制器与GPU工作保持。等待入口六小时超时只结束观察，不停止或重启原训练。自身写出的退出值须由独立工具实际完成结果复核，当前保持未知。见[实际排队核对](PERCEPTUAL_MFT_20261126_NATIVE_DEV_CPU_EXPORT_QUEUED.json)。

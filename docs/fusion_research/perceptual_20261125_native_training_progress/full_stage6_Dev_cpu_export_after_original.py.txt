@@ -1,0 +1,152 @@
+#!/usr/bin/env python3
+"""Wait for original full Dev, then execute the pinned CPU evidence exporter."""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+ROOT = Path('/data3/liuyeqiang/IR-MFT')
+WORK = Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122')
+TOOL = ROOT / 'tools/audit_mft_native_full_dev_stage.py'
+TOOL_SHA = '971ff4788f011d7f4e70778986aa059ecfab7d1abd7d2b9485cf59df1a83f693'
+SOURCE = Path(__file__).resolve()
+STEM = WORK / 'native_full_dev6_cpu_export_after_original_20261126_r1'
+REPORT = ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json'
+PHASE = 'dev_normal_06'
+DEADLINE_SECONDS = 21600
+
+
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def read(path):
+    return json.loads(Path(path).read_text())
+
+
+def pin(pid):
+    p = Path('/proc') / str(pid)
+    raw = (p / 'cmdline').read_bytes()
+    stat = (p / 'stat').read_text().rsplit(')', 1)[1].split()
+    return dict(PID=pid, start_ticks=int(stat[19]), state=stat[0],
+        raw_argv_sha256=hashlib.sha256(raw).hexdigest(),
+        actual_argv=raw.replace(b'\0', b' ').decode().strip())
+
+
+def save(record):
+    record['UTC'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    temporary = STEM.with_suffix('.temporary_' + str(os.getpid()))
+    temporary.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
+    os.replace(temporary, STEM.with_suffix('.execution.json'))
+
+
+def main():
+    if os.environ.get('CUDA_VISIBLE_DEVICES') != '':
+        raise ValueError('This evidence exporter is strictly CPU-only')
+    if STEM.with_suffix('.execution.json').exists() or REPORT.exists():
+        raise ValueError('Preserve an earlier exporter or publication; no duplicate launch')
+    started = time.monotonic()
+    record = dict(status='WAITING_FOR_ORIGINAL_COMPLETE_FULL_STAGE6_DEV',
+        exporter=pin(os.getpid()), source=str(SOURCE), source_sha256=sha(SOURCE),
+        CPU_export_tool=str(TOOL), CPU_export_tool_sha256=TOOL_SHA,
+        original_controller_expected=dict(PID=1489657, start_ticks=91266785,
+            raw_argv_sha256='64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47'),
+        actual_exit_code=None, actual_child_exit_code=None, child=None,
+        CUDA_VISIBLE_DEVICES='', GPU_work=False, Test_results_read=False,
+        no_training_or_GPU_actions=True, goal_met=False,
+        observation_timeout_is_not_original_job_failure=True)
+    save(record)
+    try:
+        published = read(ROOT / 'docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_FULL_DEV_CONFIGS_REGISTERED.json')
+        identifiers = {row['id'] for row in published['cases']}
+        expected = {PHASE+'_NN': {'SN-013','BT-005'}, PHASE+'_CANONICAL': {'source'},
+            PHASE+'_SOURCE_OFFICIAL': {'NP_source_fresh_RGB','NP_source_canonical_RGB'},
+            PHASE+'_OFFICIAL': identifiers-{'NP_source_fresh_RGB','NP_source_canonical_RGB'}}
+        while True:
+            if sha(TOOL) != TOOL_SHA or sha(SOURCE) != record['source_sha256']:
+                raise ValueError('Pinned CPU evidence export source changed')
+            state = read(WORK / 'native_pyramid_study_state.json')
+            if 'FAIL' in state['status']:
+                raise ValueError('Preserve original native failure: '+state['status'])
+            phases = {key:state.get('phases',{}).get(key,{}) for key in expected}
+            complete = all(set(phases[key]) == ids and all(j['status']=='COMPLETE' and
+                type(j.get('exit_code')) is int and j['exit_code']==0
+                for j in phases[key].values()) for key,ids in expected.items())
+            record.update(original_controller_phase=state['status'],
+                original_stage_jobs_complete=complete,
+                elapsed_wait_seconds=time.monotonic()-started)
+            stage = WORK / 'native_pyramid_Dev_stage_06.json'
+            if complete and stage.exists():
+                decision = read(stage)
+                if decision['status'] != 'COMPLETE_ALL_REGISTERED_DEV_AT_STAGE' or decision['Test_read_for_selection'] is not False:
+                    raise ValueError('Original complete Dev stage is unqualified')
+                break
+            actual = pin(1489657)
+            for key,value in record['original_controller_expected'].items():
+                if actual[key] != value:
+                    raise ValueError('Original controller identity changed')
+            if actual['state'] in ['T','Z']:
+                raise ValueError('Original controller is stopped/terminal before complete Dev')
+            record['original_controller_actual'] = actual
+            if time.monotonic()-started >= DEADLINE_SECONDS:
+                record['status']='OBSERVATION_DEADLINE_NOT_ORIGINAL_JOB_FAILURE'
+                record['actual_exit_code']=0
+                save(record)
+                print(json.dumps(dict(status=record['status'],original_job_not_restarted=True)),flush=True)
+                return
+            save(record)
+            time.sleep(15)
+        log = STEM.with_suffix('.child.log')
+        command = ['/data3/liuyeqiang/.venvs/trackocd-a100/bin/python','-u',str(TOOL),'--publish']
+        record.update(status='RUNNING_PINNED_CPU_FULL_STAGE6_DEV_AUDIT',
+            requested_child_command=command, original_stage_decision_sha256=sha(stage),
+            child_log=str(log))
+        child_started = time.monotonic()
+        peak_rss = 0
+        with log.open('xb',buffering=0) as output:
+            process = subprocess.Popen(command,cwd=ROOT,env=dict(os.environ,CUDA_VISIBLE_DEVICES='',
+                OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1'),
+                stdin=subprocess.DEVNULL,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
+            save(record)
+            while process.poll() is None:
+                try:
+                    if record['child'] is None:
+                        identity = pin(process.pid)
+                        if identity['actual_argv']:
+                            raw=(Path('/proc')/str(process.pid)/'cmdline').read_bytes()
+                            identity['actual_argv_matches_requested']=raw==b'\0'.join(v.encode() for v in command)+b'\0'
+                            record['child']=identity
+                            save(record)
+                    for line in (Path('/proc')/str(process.pid)/'status').read_text().splitlines():
+                        if line.startswith('VmRSS:'):
+                            peak_rss=max(peak_rss,int(line.split()[1])*1024)
+                except OSError:
+                    pass
+                time.sleep(.1)
+        code=process.wait()
+        record.update(actual_child_exit_code=code,child_wall_seconds=time.monotonic()-child_started,
+            child_peak_sampled_RSS_GiB=peak_rss/2**30,child_log_sha256=sha(log))
+        if code:
+            raise RuntimeError('Preserve actual CPU exporter failure: '+str(log))
+        if record['child'] is None or not record['child']['actual_argv_matches_requested']:
+            raise ValueError('Actual CPU exporter identity not observed/matched')
+        report=read(REPORT)
+        if report['status']!='COMPLETE_INDEPENDENT_MINIMUM6_FULL_DEV_AUDIT_NOT_FINAL_STUDY':
+            raise ValueError('Unexpected audit output')
+        record.update(status='COMPLETE_PINNED_CPU_MINIMUM6_DEV_EXPORT_NOT_FINAL_STUDY',
+            report=str(REPORT),report_sha256=sha(REPORT),actual_exit_code=0)
+        save(record)
+        print(json.dumps(dict(status=record['status'],actual_child_exit_code=code,
+            report_sha256=record['report_sha256'],goal_met=False)),flush=True)
+    except Exception as error:
+        record.update(status='FAILED_PRESERVE_CPU_MINIMUM6_DEV_EXPORT',error=repr(error),actual_exit_code=1)
+        save(record)
+        raise
+
+
+if __name__=='__main__':
+    main()
