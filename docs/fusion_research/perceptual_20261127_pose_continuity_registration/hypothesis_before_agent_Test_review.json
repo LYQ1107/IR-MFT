@@ -1,0 +1,15 @@
+{
+  "status": "PREREGISTERED_AFTER_ALL6_MOTION_DEV_BEFORE_CURRENT_R2_TEST_OUTCOME_READ",
+  "priority": "Fixed November IR method at least+5 complete Test HOTA over original RGB-only YOLOX-X+ByteTrack29.528970687393972, +10 stretch.",
+  "Dev_evidence": "Train-calibrated full Q raises DetA from68.248044 to69.521914 but lowers AssA36.839899->27.637378 and HOTA50.115210->43.784497. Calibrating center acceleration is harmful. Isolate aspect dynamics and current-pose output without changing original center dynamics.",
+  "A": "Aspect-only process covariance: reuse the same Train sigma_aspect0.029661453082623204, keep all original x/y/height process blocks, original R and initialization. No new statistics or parameter search.",
+  "B": "For rendering only, anchor output width/height to the same current detection while retaining the filtered center. Internal original Kalman states, association, frame/ID/score/order and output row count are unchanged. Apply only when current raw detection area>100; otherwise keep original output box.",
+  "raw_measurement_control": "Render the current detection whole box after the original association, same area>100 fallback. It tests whether center smoothing also causes localization loss. It does not feed raw rendering back into future association or rewrite past output.",
+  "composition": "Each of aspect-Q, shape output anchoring and raw-box output control is tested with and without the already selected causal late identity links. Eight complete normal Dev policies including original and late-only. No new RGB architecture, NN fit or seed.",
+  "selection": "All8 complete Dev videos, maximize HOTA then AssA then IDF1, prefer earlier simple policy at exact ties. Only a gain over identical late-only freezes one new complete7 Test. No Test result selects policies or parameters.",
+  "engineering": "Aspect-only keeps original center/height state for identical measurements. Anchor modes must retain literal full-sequence frame/ID/score/order hashes versus their zero/late references, maintain current-measurement provenance, never alter internal states, and pass future-suffix and reset checks. Original and late-only whole MOT must match earlier references.",
+  "data_and_resources": "Reuse sealed R2 FP32 proposal/identity banks, current-frame only; CPU study, no extra GPU extraction or images/weights/FPN copies. Physical4/5 maximum2 cards if later needed, work64GiB cap and40GiB reserve, fixedseed0.",
+  "limits": "Classical pose/identity decoupling is not automatically a novel multimodal contribution. Overall improvement over original RGB cannot by itself attribute the whole gain to IR. Historical Test exposure remains disclosed.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

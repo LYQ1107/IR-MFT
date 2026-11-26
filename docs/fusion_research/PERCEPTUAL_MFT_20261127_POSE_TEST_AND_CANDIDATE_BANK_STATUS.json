@@ -1,0 +1,566 @@
+{
+  "status": "POSE_COMPLETE_TEST_ONLY_PLUS_0_426_ALL_TRAIN_BANK_RUNNING_ON_4_5",
+  "UTC": "2026-11-26T20:16:29.268624+00:00",
+  "original_RGB_baseline": "Original direct RGB-only YOLOX-X+ByteTrack, full ProtocolV2 Test7/15985",
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "selected_pose_Test_HOTA": 29.955069130617183,
+  "HOTA_gain_over_original_RGB_pp": 0.42609844322321067,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "stretch_target_Test_HOTA": 39.52897068739397,
+  "gap_to_plus5_HOTA": 4.573901556776789,
+  "HOTA_gain_over_IR_late_parent_pp": 0.05289444538654209,
+  "HOTA_gain_over_fresh_B1_RGB_pp": 0.1346389566171986,
+  "full_Test_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_POSE_CONTINUITY_FULL_TEST.json",
+  "full_Test_report_sha256": "031c902614225ba21917f0ba833825c2293cfcc16696d7230a2dac19bb6fa6a8",
+  "previous_tracklet_Test_HOTA": 29.90217468523064,
+  "per_sequence": [
+    {
+      "sequence": "BT-002",
+      "HOTA": 39.6031685025317,
+      "gain_over_same_IR_late_parent_pp": 0.024573653889660818
+    },
+    {
+      "sequence": "BT-004",
+      "HOTA": 49.883444323311096,
+      "gain_over_same_IR_late_parent_pp": 1.2114423141806867
+    },
+    {
+      "sequence": "MSK-003",
+      "HOTA": 24.63017757743162,
+      "gain_over_same_IR_late_parent_pp": -0.11402930915081555
+    },
+    {
+      "sequence": "PF-002",
+      "HOTA": 58.04838092977691,
+      "gain_over_same_IR_late_parent_pp": -0.5085938363328708
+    },
+    {
+      "sequence": "SN-009",
+      "HOTA": 26.953295846385437,
+      "gain_over_same_IR_late_parent_pp": 0.03462840002881151
+    },
+    {
+      "sequence": "SN-011",
+      "HOTA": 18.626291510497055,
+      "gain_over_same_IR_late_parent_pp": 0.03138793836266629
+    },
+    {
+      "sequence": "SN-014",
+      "HOTA": 35.59132564943354,
+      "gain_over_same_IR_late_parent_pp": -0.08602199993781312
+    }
+  ],
+  "pose_full_Dev_HOTA": 51.983836945457455,
+  "pose_Dev_gain_over_IR_late_parent_pp": 1.5544706468328897,
+  "pose_Dev_and_Test_actual_controller_exit_code": 0,
+  "pose_all20_related_workers_actual_exit_zero": true,
+  "pose_Dev_audit_fields": 1551,
+  "pose_Test_audit_fields": 2256,
+  "pose_independent_audits_actual_exit_code": 0,
+  "current_bank_state_snapshot": {
+    "status": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+    "controller_pid": 2741594,
+    "phases": {
+      "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING": {
+        "4": {
+          "id": "4",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2741870,
+          "slot": "4",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING_4.log",
+          "started_monotonic": 990706.057445483,
+          "started_UTC": "2026-11-26T20:08:54.770967+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99070605,
+          "command_sha256": "edb0432b1ff03fe8989dd054efde7797900a6ad8f7764d8e9b9bb134ce1b2bfd",
+          "last_live_monotonic": 990751.019732329,
+          "observed_peak_RSS_bytes": 1785696256,
+          "exit_code": 0,
+          "completion_observed_UTC": "2026-11-26T20:09:54.280170+00:00",
+          "worker_wall_upper_seconds": 59.50912027794402,
+          "worker_wall_lower_seconds": 44.962286845897324
+        },
+        "5": {
+          "id": "5",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2741898,
+          "slot": "5",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING_5.log",
+          "started_monotonic": 990706.99726313,
+          "started_UTC": "2026-11-26T20:08:55.710776+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99070699,
+          "command_sha256": "edb0432b1ff03fe8989dd054efde7797900a6ad8f7764d8e9b9bb134ce1b2bfd",
+          "last_live_monotonic": 990751.019958919,
+          "observed_peak_RSS_bytes": 1792159744,
+          "exit_code": 0,
+          "completion_observed_UTC": "2026-11-26T20:09:54.280413+00:00",
+          "worker_wall_upper_seconds": 58.5695932849776,
+          "worker_wall_lower_seconds": 44.022695788997225
+        }
+      },
+      "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN": {
+        "PF-001": {
+          "id": "PF-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "PF-001"
+          ],
+          "status": "RUNNING",
+          "pid": 2742946,
+          "slot": "4",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN_PF-001.log",
+          "started_monotonic": 990776.12234388,
+          "started_UTC": "2026-11-26T20:10:04.835857+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99077612,
+          "command_sha256": "e4cecb743832fa4adfe9f0fc0acfa24bbfb9efee5251dacecbd8f2dd53061ac9",
+          "last_live_monotonic": 991153.81085616,
+          "observed_peak_RSS_bytes": 1795891200
+        },
+        "SN-015": {
+          "id": "SN-015",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "SN-015"
+          ],
+          "status": "RUNNING",
+          "pid": 2742975,
+          "slot": "5",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN_SN-015.log",
+          "started_monotonic": 990777.100976461,
+          "started_UTC": "2026-11-26T20:10:05.814489+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99077710,
+          "command_sha256": "5a9ca40ccd6fdda975d973d340a8088791514b5fbab19d02c1617dc403a9b638",
+          "last_live_monotonic": 991153.811021367,
+          "observed_peak_RSS_bytes": 1826697216
+        },
+        "BT-001": {
+          "id": "BT-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "BT-001"
+          ],
+          "status": "PENDING"
+        },
+        "MSK-002": {
+          "id": "MSK-002",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "MSK-002"
+          ],
+          "status": "PENDING"
+        },
+        "SN-001": {
+          "id": "SN-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "SN-001"
+          ],
+          "status": "PENDING"
+        },
+        "BT-003": {
+          "id": "BT-003",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "BT-003"
+          ],
+          "status": "PENDING"
+        }
+      }
+    },
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "new_NN_fits": 0,
+    "new_accuracy": false,
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "current_bank_controller_snapshot": {
+    "status": "ACTUAL_TWO_GPU_TRAIN_BANK_CONTROLLER_RUNNING",
+    "UTC_started": "2026-11-26T20:08:30.750316+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "/data3/liuyeqiang/IR-MFT/tools/run_mft_candidate_train_bank.py",
+      "run"
+    ],
+    "source_sha256": "a1670a1cd85c65d5b566e5350e1d665e2b3d8d4ffaf0b9d2b222d38da348d90a",
+    "actual_child_exit_code": null,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/controller.stdout.txt",
+    "controller_GPU_work": false,
+    "child_GPU_work": true,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "pipeline_registration_sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d",
+    "identity": {
+      "PID": 2741594,
+      "start_ticks": 99068203,
+      "raw_argv_sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd",
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "startup_argv_snapshots": [
+      {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 120,
+        "sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd"
+      }
+    ]
+  },
+  "current_bank_registration_sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d",
+  "current_bank_registered_sources": 471,
+  "current_bank_GPU_engineering_actual_exit_zero": 2,
+  "current_bank_CPU_storage_tests_actual_exit_zero": 4,
+  "current_bank_full_Train_target_frames": 27251,
+  "current_bank_maximum_extra_payload_GiB": 1.199999999254942,
+  "current_bank_progress_snapshot": {
+    "PF-001": {
+      "frame": 900,
+      "frames": 15000,
+      "proposals": 1830,
+      "uncompressed_payload_bytes": 3798848,
+      "physical_gpu": "4",
+      "seconds": 338.74689384910744,
+      "GT_labels_parsed": false
+    },
+    "BT-003_engineering_5": {
+      "frame": 6,
+      "frames": 6,
+      "proposals": 82,
+      "uncompressed_payload_bytes": 169680,
+      "physical_gpu": "5",
+      "seconds": 3.0077179049840197,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 900,
+      "frames": 6570,
+      "proposals": 9729,
+      "uncompressed_payload_bytes": 20133980,
+      "physical_gpu": "5",
+      "seconds": 350.58294805395417,
+      "GT_labels_parsed": false
+    },
+    "BT-003_engineering_4": {
+      "frame": 6,
+      "frames": 6,
+      "proposals": 82,
+      "uncompressed_payload_bytes": 169680,
+      "physical_gpu": "4",
+      "seconds": 3.350869945017621,
+      "GT_labels_parsed": false
+    }
+  },
+  "current_bank_precision": "Detections remain FP32; identity descriptors encoded FP32, stored FP16, restore/normalize FP32 downstream",
+  "current_bank_new_tracking_accuracy": false,
+  "current_bank_new_NN_fits": 0,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "new_seeds": 0,
+  "work_GiB": 61.354664909653366,
+  "work_cap_GiB": 64,
+  "independent_available_GiB": 2639.2954864501953,
+  "reserve_GiB": 40,
+  "target_plus5_met": false,
+  "target_plus10_met": false,
+  "goal_met": false,
+  "goal_active": true,
+  "supported_innovations": 0,
+  "historical_Test_previously_exposed": true,
+  "RGB_pretraining_included_current_Dev": true,
+  "IR_generated_from_RGB": true,
+  "new_bank_stage_designed_after_pose_Test_review": true,
+  "all_future_risk_model_fitting_Train_only": true,
+  "runtime_scope": "Existing CPU cache replays exclude image, detection, encoders and offline IR generation; not end-to-end FPS.",
+  "raw_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_r2_full_test/actual_completion/controller.execution.json",
+      "sha256": "81704f5fa0808e3f3a2c3afc8243cac97c8ca248ecfd4cccc70e631f34c7842b",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/tracklet_permanence_20261127_r2/controller.execution.json",
+      "source_sha256": "81704f5fa0808e3f3a2c3afc8243cac97c8ca248ecfd4cccc70e631f34c7842b"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_r2_full_test/actual_completion/independent_test_audit_r1.execution.json",
+      "sha256": "a47d2188f974e4d92b01a783fb4ddb329a7a623760a455bf8be5349b7849f274",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/tracklet_permanence_20261127_r2/independent_test_audit_r1.execution.json",
+      "source_sha256": "a47d2188f974e4d92b01a783fb4ddb329a7a623760a455bf8be5349b7849f274"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_r2_full_test/actual_completion/independent_test_audit_r1.stdout.txt",
+      "sha256": "230849503175335f0d9d739a7a7cda9d96d4c9d9f5f26cca1f32f4af852e7c80",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/tracklet_permanence_20261127_r2/independent_test_audit_r1.stdout.txt",
+      "source_sha256": "230849503175335f0d9d739a7a7cda9d96d4c9d9f5f26cca1f32f4af852e7c80"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_r2_full_test/actual_completion/independent_test_audit_complete.json",
+      "sha256": "8422a262cfe188b33d93835e14e23fc614efebc5b982573f2b7922353705b0d4",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/tracklet_permanence_20261127_r2/independent_test_audit_complete.json",
+      "source_sha256": "8422a262cfe188b33d93835e14e23fc614efebc5b982573f2b7922353705b0d4"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/controller.execution.json",
+      "sha256": "3f8c3015281dd7f19cf82f8357a98b50992d0aa68cccac2c1798ffb2858805d5",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/controller.execution.json",
+      "source_sha256": "3f8c3015281dd7f19cf82f8357a98b50992d0aa68cccac2c1798ffb2858805d5"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/independent_Dev_audit_r1.actual_completion.json",
+      "sha256": "a7100cdbf186e2c035d47a1e4b9ee04652a83ef35fc21ccfa291164a506dab24",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/independent_Dev_audit_r1.actual_completion.json",
+      "source_sha256": "a7100cdbf186e2c035d47a1e4b9ee04652a83ef35fc21ccfa291164a506dab24"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/independent_Dev_audit_r1.actual_tool_reply.json",
+      "sha256": "f10e6a521a549cffb239051063736ab583f14013d64f36c17719556fbc8ae88d",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/independent_Dev_audit_r1.actual_tool_reply.json",
+      "source_sha256": "f10e6a521a549cffb239051063736ab583f14013d64f36c17719556fbc8ae88d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/independent_Dev_audit_r1.stdout.txt",
+      "sha256": "f474fd5571e26b262f57e19058de6de8d1d8c945910604c745bf78b46855daa4",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/independent_Dev_audit_r1.stdout.txt",
+      "source_sha256": "f474fd5571e26b262f57e19058de6de8d1d8c945910604c745bf78b46855daa4"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/independent_Dev_audit_r1.source_binding.json",
+      "sha256": "d876789ae517aa2299550b3ce92b3e2e514b5db6fd4e36434ff3b491acf6185d",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/independent_Dev_audit_r1.source_binding.json",
+      "source_sha256": "d876789ae517aa2299550b3ce92b3e2e514b5db6fd4e36434ff3b491acf6185d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_train_motion_full_dev/actual_completion/independent_Dev_audit_complete.json",
+      "sha256": "211b5f48b433d673eee668fa2952910c942b2d86d0a504b5fe2755a8e98d3767",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/train_motion_prior_20261127/independent_Dev_audit_complete.json",
+      "source_sha256": "211b5f48b433d673eee668fa2952910c942b2d86d0a504b5fe2755a8e98d3767"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/pipeline_registered.json",
+      "sha256": "72133fa4fdfb942b04bd5e804a72bb690bb94e7056d8edbd5f65b01c317153e7",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/pipeline_registered.json",
+      "source_sha256": "72133fa4fdfb942b04bd5e804a72bb690bb94e7056d8edbd5f65b01c317153e7"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/Train_motion_statistics.json",
+      "sha256": "bac53eec6b94c36bca24abb22a1b7ba90ff9bccad3f55798935c6d738b9972ef",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/Train_motion_statistics.json",
+      "source_sha256": "bac53eec6b94c36bca24abb22a1b7ba90ff9bccad3f55798935c6d738b9972ef"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/CPU_regressions_r2.json",
+      "sha256": "12a62f7f1c07d79c2506a4cb046425d55f14c5ed2987712c4b4ccd51ef607243",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/CPU_regressions_r2.json",
+      "source_sha256": "12a62f7f1c07d79c2506a4cb046425d55f14c5ed2987712c4b4ccd51ef607243"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/CPU_regressions_r2.stdout.txt",
+      "sha256": "63eba582bfa20baa088ee86a9d8d943737ffe469b1a02877b954e6ecd33f7d45",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/CPU_regressions_r2.stdout.txt",
+      "source_sha256": "63eba582bfa20baa088ee86a9d8d943737ffe469b1a02877b954e6ecd33f7d45"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "e9a4f867c78e1d55c96429142fbc4c6c3422abe6a9ba65494bc3eac5dc1882cf",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/CPU_regressions_r1.actual_tool_reply.json",
+      "source_sha256": "e9a4f867c78e1d55c96429142fbc4c6c3422abe6a9ba65494bc3eac5dc1882cf"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/hypothesis_before_agent_Test_review.json",
+      "sha256": "6b1d5c81ed5c2940c1b63ada637f668b4e935475a0a7e577941e86b87111a9e2",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/hypothesis_before_agent_Test_review.json",
+      "source_sha256": "6b1d5c81ed5c2940c1b63ada637f668b4e935475a0a7e577941e86b87111a9e2"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/hypothesis_timing_context.json",
+      "sha256": "d0db5bc0fc495d5a529054e1f12426528924fb5ac8efd7ca2773c7f22b2861e7",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/hypothesis_timing_context.json",
+      "source_sha256": "d0db5bc0fc495d5a529054e1f12426528924fb5ac8efd7ca2773c7f22b2861e7"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/owned_driver_derivation_r1.json",
+      "sha256": "92859312b37dd91b7a24c8a0cd7be797e14db3dec6cc655019ec93bba8b794f4",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/owned_driver_derivation_r1.json",
+      "source_sha256": "92859312b37dd91b7a24c8a0cd7be797e14db3dec6cc655019ec93bba8b794f4"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/derived_driver_before_Test_exposure_scope_clarification.py.txt",
+      "sha256": "69cbafb0c491bb79fdaaba84250ff71e922118d0fa084213d84a4fae4e32afb3",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/derived_driver_before_Test_exposure_scope_clarification.py.txt",
+      "source_sha256": "69cbafb0c491bb79fdaaba84250ff71e922118d0fa084213d84a4fae4e32afb3"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/owned_Dev_auditor_derivation_r1.json",
+      "sha256": "e0a5527d00536be8c1fcb44dba18106b346d84d4fe8257a8084b3b04533a6c9a",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/owned_Dev_auditor_derivation_r1.json",
+      "source_sha256": "e0a5527d00536be8c1fcb44dba18106b346d84d4fe8257a8084b3b04533a6c9a"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_registration/Dev_auditor_derivation_prewrite_r1.json",
+      "sha256": "f9b01c5752cdc0d063fad990fe2f756e9f4eaec497743d886a4b9f134da561b8",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/Dev_auditor_derivation_prewrite_r1.json",
+      "source_sha256": "f9b01c5752cdc0d063fad990fe2f756e9f4eaec497743d886a4b9f134da561b8"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/controller.execution.json",
+      "sha256": "6786c460d9ba8d6e1344e13474562bbec77bddce66f2f83a25bb9a1aa5608b63",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/controller.execution.json",
+      "source_sha256": "6786c460d9ba8d6e1344e13474562bbec77bddce66f2f83a25bb9a1aa5608b63"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Dev_audit_r1.actual_completion.json",
+      "sha256": "113d61e5f9404c41883392be54cc8fe3e6c8df5127f4799d6a2e4f24f883b013",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Dev_audit_r1.actual_completion.json",
+      "source_sha256": "113d61e5f9404c41883392be54cc8fe3e6c8df5127f4799d6a2e4f24f883b013"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Dev_audit_r1.actual_tool_reply.json",
+      "sha256": "ede37faceb313f66904d64938b83b90fc281b0c1d586adf5129ba523b93e3441",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Dev_audit_r1.actual_tool_reply.json",
+      "source_sha256": "ede37faceb313f66904d64938b83b90fc281b0c1d586adf5129ba523b93e3441"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Dev_audit_r1.stdout.txt",
+      "sha256": "e68ab5de39c947424909dc478171a2ca2f7ded14650d14c8d9078fdd70b47059",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Dev_audit_r1.stdout.txt",
+      "source_sha256": "e68ab5de39c947424909dc478171a2ca2f7ded14650d14c8d9078fdd70b47059"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Dev_audit_complete.json",
+      "sha256": "92edfe47ecadf7193d68be1e2e4f6b4ba5fbbe1291c451ca0c5ceb1ba5177714",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Dev_audit_complete.json",
+      "source_sha256": "92edfe47ecadf7193d68be1e2e4f6b4ba5fbbe1291c451ca0c5ceb1ba5177714"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Test_audit_r1.actual_completion.json",
+      "sha256": "f58c5ddec20bfffa9ed6f9f504970e20bc50555be862bd464ba8f4342e081f5d",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Test_audit_r1.actual_completion.json",
+      "source_sha256": "f58c5ddec20bfffa9ed6f9f504970e20bc50555be862bd464ba8f4342e081f5d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Test_audit_r1.actual_tool_reply.json",
+      "sha256": "25e006ecf964cbb4bc7a5980dddccb5162bfa05530b8843f3a927330dc334a57",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Test_audit_r1.actual_tool_reply.json",
+      "source_sha256": "25e006ecf964cbb4bc7a5980dddccb5162bfa05530b8843f3a927330dc334a57"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Test_audit_r1.stdout.txt",
+      "sha256": "734711181192d408b7d85ee7dcf2f14649b245c65faf88335ab970760cd6633c",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Test_audit_r1.stdout.txt",
+      "source_sha256": "734711181192d408b7d85ee7dcf2f14649b245c65faf88335ab970760cd6633c"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_pose_continuity_full_test/actual_completion/independent_Test_audit_complete.json",
+      "sha256": "1cb0c1bf428d720ca0713475c035cc05bc13f4539aa201313f58d2cb2749b0b5",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/pose_continuity_20261127/independent_Test_audit_complete.json",
+      "source_sha256": "1cb0c1bf428d720ca0713475c035cc05bc13f4539aa201313f58d2cb2749b0b5"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/pipeline_registered.json",
+      "sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/pipeline_registered.json",
+      "source_sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/CPU_storage_regressions_r1.json",
+      "sha256": "877f183050c8e55bd8503b146a9aa50aba358244b9b10003c5897d201b757bda",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/CPU_storage_regressions_r1.json",
+      "source_sha256": "877f183050c8e55bd8503b146a9aa50aba358244b9b10003c5897d201b757bda"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/CPU_storage_regressions_r1.stdout.txt",
+      "sha256": "f6e6b8418565fbd6476bef4cd4eea6509c221f48d795a78ffe3933df059705b7",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/CPU_storage_regressions_r1.stdout.txt",
+      "source_sha256": "f6e6b8418565fbd6476bef4cd4eea6509c221f48d795a78ffe3933df059705b7"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/CPU_storage_regressions_r1.actual_tool_reply.json",
+      "sha256": "41506c28492b4b1d1b710c2747b968844907d5217e3d030a6061f10f41baefa0",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/CPU_storage_regressions_r1.actual_tool_reply.json",
+      "source_sha256": "41506c28492b4b1d1b710c2747b968844907d5217e3d030a6061f10f41baefa0"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/gpu_engineering_4.json",
+      "sha256": "17b1e03615f8f0381e045bb131627a9d34bda2dea1672b20a0070e700b1f0ff7",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/gpu_engineering_4.json",
+      "source_sha256": "17b1e03615f8f0381e045bb131627a9d34bda2dea1672b20a0070e700b1f0ff7"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/gpu_engineering_5.json",
+      "sha256": "bde9e68cdac981a8e32b6158454f494ce2d315939d8ab9a3bfc40a0cbd2f0e20",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/gpu_engineering_5.json",
+      "source_sha256": "bde9e68cdac981a8e32b6158454f494ce2d315939d8ab9a3bfc40a0cbd2f0e20"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/controller_execution_snapshot.json",
+      "sha256": "7b805d92012e1e59574025eaef03dc390e2338c3617e076a612b9bcc2c33e612",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/controller.execution.json",
+      "source_sha256": "7b805d92012e1e59574025eaef03dc390e2338c3617e076a612b9bcc2c33e612"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/state_snapshot.json",
+      "sha256": "72c4e11cf18f2d74513f9c59b979ef48fbb9ab7617a35e41a6878dd7fc5843b6",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/state.json",
+      "source_sha256": "72c4e11cf18f2d74513f9c59b979ef48fbb9ab7617a35e41a6878dd7fc5843b6"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_train_bank_registration/payload_reservations_snapshot.json",
+      "sha256": "f35ed26fef419de33df00881a492ed4d6e955394d283714507d12ba15d405afb",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/payload_reservations.json",
+      "source_sha256": "f35ed26fef419de33df00881a492ed4d6e955394d283714507d12ba15d405afb"
+    }
+  ]
+}

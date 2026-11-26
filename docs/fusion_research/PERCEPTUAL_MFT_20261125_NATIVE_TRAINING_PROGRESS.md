@@ -1,3 +1,5 @@
+> [最新Pose完整Test与Train两卡数据提取](PERCEPTUAL_MFT_20261127_POSE_TEST_AND_CANDIDATE_BANK_STATUS.md)：完整Test29.955069，相对固定原始RGB29.528971仅+0.426098，+5仍未达。20个实验worker与2256字段独立审计实际0。形状Dev增益+1.554471未等量迁移到Test。现4/5各一个worker提取全部27251帧Train真实候选；两卡12+6帧工程与4项存储预算测试已通过，新增载荷上限1.2GiB。下方旧段落按其原观察时点保留。
+
 > [最新完整Dev负结果与Train运动滤波](PERCEPTUAL_MFT_20261127_RESCUE_NEGATIVE_TRAIN_MOTION_STATUS.md)：遮挡恢复组合HOTA50.376163低于late-only50.429366；IDF1虽+0.872262，未达HOTA规则，不追加Test。10个worker与1551字段独立审计实际0。全部六段Train运动统计已完成、4项滤波回归实际通过，现运行六项CPU完整Dev；原R2七段Test保持冻结，后续不按其分数选型。下方旧段落保留各自观察时点。
 
 > [9项条件关联完整Dev与下一步](PERCEPTUAL_MFT_20261127_AMBIGUITY_NEGATIVE_RESCUE_STATUS.md)：新组合50.198833低于late-only50.429366，不追加Test。11个相关worker和1692字段独立审计实际0。IR正常/错位、重复RGB和缺失描述符都未改变对应RGB最终轨迹；偏好对数不算贡献。正在CPU运行未匹配丢失轨迹恢复八项Dev，旧七段Test仍由4/5继续。+5目标未达。下方均为各自旧观察时点。

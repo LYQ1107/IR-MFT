@@ -1,0 +1,512 @@
+{
+  "status": "COMPLETE_TRACKLET_FULL_TEST_REQUIRES_SCIENTIFIC_ASSESSMENT",
+  "controller_pid": 2589403,
+  "phases": {
+    "TRACKLET_20261127_R2_GPU_ENGINEERING": {
+      "4": {
+        "id": "4",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2589545,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_4.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "5": {
+        "id": "5",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2589546,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_5.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_DEV_NN": {
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2590137,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_SN-013.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2590138,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_BT-005.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_DEV_REPLAY": {
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2614244,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_REPLAY_BT-005.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2614245,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_REPLAY_SN-013.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_DEV_OFFICIAL": {
+      "TP_native_zero": {
+        "id": "TP_native_zero",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "TP_native_zero"
+        ],
+        "status": "COMPLETE",
+        "pid": 2616342,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_OFFICIAL_TP_native_zero.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "TP_retention250": {
+        "id": "TP_retention250",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "TP_retention250"
+        ],
+        "status": "COMPLETE",
+        "pid": 2616343,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_OFFICIAL_TP_retention250.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "TP_late_RGB": {
+        "id": "TP_late_RGB",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "TP_late_RGB"
+        ],
+        "status": "COMPLETE",
+        "pid": 2616805,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_OFFICIAL_TP_late_RGB.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "TP_late_RGB_IR": {
+        "id": "TP_late_RGB_IR",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "TP_late_RGB_IR"
+        ],
+        "status": "COMPLETE",
+        "pid": 2616806,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_OFFICIAL_TP_late_RGB_IR.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "TP_retention250_late_RGB_IR": {
+        "id": "TP_retention250_late_RGB_IR",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "TP_retention250_late_RGB_IR"
+        ],
+        "status": "COMPLETE",
+        "pid": 2617270,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_OFFICIAL_TP_retention250_late_RGB_IR.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_TEST_NN": {
+      "SN-009": {
+        "id": "SN-009",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-009"
+        ],
+        "status": "COMPLETE",
+        "pid": 2617799,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_SN-009.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "SN-011": {
+        "id": "SN-011",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-011"
+        ],
+        "status": "COMPLETE",
+        "pid": 2617800,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_SN-011.log",
+        "slot": "5",
+        "exit_code": 0
+      },
+      "PF-002": {
+        "id": "PF-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "PF-002"
+        ],
+        "status": "COMPLETE",
+        "pid": 2655058,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_PF-002.log",
+        "slot": "5",
+        "exit_code": 0
+      },
+      "SN-014": {
+        "id": "SN-014",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-014"
+        ],
+        "status": "COMPLETE",
+        "pid": 2655360,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_SN-014.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "BT-004": {
+        "id": "BT-004",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-004"
+        ],
+        "status": "COMPLETE",
+        "pid": 2675926,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_BT-004.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "MSK-003": {
+        "id": "MSK-003",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "MSK-003"
+        ],
+        "status": "COMPLETE",
+        "pid": 2679989,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_MSK-003.log",
+        "slot": "5",
+        "exit_code": 0
+      },
+      "BT-002": {
+        "id": "BT-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-002"
+        ],
+        "status": "COMPLETE",
+        "pid": 2682396,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_NN_BT-002.log",
+        "slot": "4",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_TEST_REPLAY": {
+      "BT-002": {
+        "id": "BT-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-002"
+        ],
+        "status": "COMPLETE",
+        "pid": 2686734,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_BT-002.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "BT-004": {
+        "id": "BT-004",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-004"
+        ],
+        "status": "COMPLETE",
+        "pid": 2686735,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_BT-004.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "MSK-003": {
+        "id": "MSK-003",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "MSK-003"
+        ],
+        "status": "COMPLETE",
+        "pid": 2687228,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_MSK-003.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "PF-002": {
+        "id": "PF-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "PF-002"
+        ],
+        "status": "COMPLETE",
+        "pid": 2687229,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_PF-002.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "SN-009": {
+        "id": "SN-009",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-009"
+        ],
+        "status": "COMPLETE",
+        "pid": 2688152,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_SN-009.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "SN-011": {
+        "id": "SN-011",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-011"
+        ],
+        "status": "COMPLETE",
+        "pid": 2688153,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_SN-011.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "SN-014": {
+        "id": "SN-014",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "replay",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-014"
+        ],
+        "status": "COMPLETE",
+        "pid": 2690363,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_REPLAY_SN-014.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_TEST_OFFICIAL": {
+      "TP_native_zero": {
+        "id": "TP_native_zero",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "test",
+          "--case",
+          "TP_native_zero"
+        ],
+        "status": "COMPLETE",
+        "pid": 2690955,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_OFFICIAL_TP_native_zero.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "TP_late_RGB": {
+        "id": "TP_late_RGB",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "evaluate",
+          "--split",
+          "test",
+          "--case",
+          "TP_late_RGB"
+        ],
+        "status": "COMPLETE",
+        "pid": 2690956,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_TEST_OFFICIAL_TP_late_RGB.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      }
+    }
+  },
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "UTC": "2026-11-26T19:19:09.156446+00:00",
+  "phase": "TRACKLET_20261127_R2_TEST_OFFICIAL",
+  "HOTA_gain_over_original_RGB_pp": 0.3732039978366686
+}

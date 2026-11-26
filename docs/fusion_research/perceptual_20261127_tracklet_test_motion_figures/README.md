@@ -1,0 +1,1 @@
+Graphs use already audited official COMBINED and all7 per-video Test rows; no averaging per-video HOTA, new evaluation, NN work or seeds. Fixed original RGB reference and absolute+5/+10 targets. No error bars from nonexistent seed repeats. SVGs are public; PNG verification previews remain private. Source: tools/plot_mft_tracklet_test_motion_analysis.py.

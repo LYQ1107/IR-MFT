@@ -1,0 +1,146 @@
+{
+  "parent": "/data3/liuyeqiang/IR-MFT/tools/run_mft_train_motion_prior.py",
+  "parent_sha256": "5d45e763cfb4c068f51d7e2fa13650e3b6733853848a61008d3e75f1e8d9f7bd",
+  "destination": "/data3/liuyeqiang/IR-MFT/tools/run_mft_pose_continuity.py",
+  "destination_sha256": "69cbafb0c491bb79fdaaba84250ff71e922118d0fa084213d84a4fae4e32afb3",
+  "changes": [
+    {
+      "old": "Train-calibrated motion covariance study",
+      "new": "causal pose/identity continuity study",
+      "count": 1
+    },
+    {
+      "old": "from tools.mft_train_motion_prior import TrainMotionPrior, policies",
+      "new": "from tools.mft_pose_continuity import PoseContinuity, policies",
+      "count": 1
+    },
+    {
+      "old": "return TrainMotionPrior(case,thresholds,",
+      "new": "return PoseContinuity(case,thresholds,",
+      "count": 1
+    },
+    {
+      "old": "tools/run_mft_train_motion_prior.py",
+      "new": "tools/run_mft_pose_continuity.py",
+      "count": 1
+    },
+    {
+      "old": "tools/mft_train_motion_prior.py",
+      "new": "tools/mft_pose_continuity.py",
+      "count": 1
+    },
+    {
+      "old": "tests/test_mft_train_motion_prior.py",
+      "new": "tests/test_mft_pose_continuity.py",
+      "count": 1
+    },
+    {
+      "old": "configs/perceptual_train_motion_tracking_20261127.json",
+      "new": "configs/perceptual_pose_continuity_20261127.json",
+      "count": 1
+    },
+    {
+      "old": "work / 'train_motion_prior_20261127'",
+      "new": "work / 'pose_continuity_20261127'",
+      "count": 1
+    },
+    {
+      "old": "from tools.run_mft_occlusion_rescue import registered as previous_registered",
+      "new": "from tools.run_mft_train_motion_prior import registered as previous_registered",
+      "count": 1
+    },
+    {
+      "old": "TRAIN_MOTION_PRIOR",
+      "new": "POSE_CONTINUITY",
+      "count": 10
+    },
+    {
+      "old": "ALL6",
+      "new": "ALL8",
+      "count": 1
+    },
+    {
+      "old": "REGISTERED_CPU_ONLY_TRAIN_CALIBRATED_MOTION",
+      "new": "REGISTERED_CPU_ONLY_POSE_IDENTITY_CONTINUITY",
+      "count": 1
+    },
+    {
+      "old": "prior=work/'occlusion_rescue_20261127'",
+      "new": "prior=work/'train_motion_prior_20261127'",
+      "count": 1
+    },
+    {
+      "old": "state['status']=='COMPLETE_OCCLUSION_RESCUE_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'",
+      "new": "state['status']=='COMPLETE_TRAIN_MOTION_PRIOR_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'",
+      "count": 1
+    },
+    {
+      "old": "len(jobs)==10",
+      "new": "len(jobs)==8",
+      "count": 1
+    },
+    {
+      "old": "audit['official_numeric_fields_checked']==1551",
+      "new": "audit['official_numeric_fields_checked']==1269",
+      "count": 1
+    },
+    {
+      "old": "work / 'occlusion_rescue_20261127/controller.execution.json'",
+      "new": "work / 'train_motion_prior_20261127/controller.execution.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'occlusion_rescue_20261127/complete_Dev.json'",
+      "new": "work / 'train_motion_prior_20261127/complete_Dev.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'occlusion_rescue_20261127/independent_Dev_audit_complete.json'",
+      "new": "work / 'train_motion_prior_20261127/independent_Dev_audit_complete.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'occlusion_rescue_20261127/independent_Dev_audit_r1.actual_completion.json'",
+      "new": "work / 'train_motion_prior_20261127/independent_Dev_audit_r1.actual_completion.json'",
+      "count": 1
+    },
+    {
+      "old": "MK_native_zero",
+      "new": "PC_native_zero",
+      "count": 1
+    },
+    {
+      "old": "MK_late_only",
+      "new": "PC_late_only",
+      "count": 1
+    },
+    {
+      "old": "r['case'] in policies()[:6]",
+      "new": "r['case'] in policies()",
+      "count": 1
+    },
+    {
+      "old": "def replay(split, sequence):",
+      "new": "def identity_score_hash(path):\n    digest=hashlib.sha256()\n    with Path(path).open()as stream:\n        for line in stream:\n            fields=line.split(',')\n            digest.update(','.join([*fields[:2],*fields[6:]]).encode())\n    return digest.hexdigest()\n\n\ndef replay(split, sequence):",
+      "count": 1
+    },
+    {
+      "old": "    assert all(s['detection_packet_sha256'] == bank['packet_sha256'] for s in streams.values())",
+      "new": "    assert all(s['detection_packet_sha256'] == bank['packet_sha256'] for s in streams.values())\n    anchor_proofs={}\n    for case in cases:\n        if case['render']!='filtered':\n            old_id='TP_late_RGB'if case['late']else'TP_native_zero'\n            own=identity_score_hash(streams[case['id']]['track_path'])\n            expected_meta=identity_score_hash(reference['streams'][old_id]['track_path'])\n            assert own==expected_meta\n            anchor_proofs[case['id']]=dict(actual_frame_ID_score_order_hash=own,reference_hash=expected_meta,reference=old_id)",
+      "count": 1
+    },
+    {
+      "old": "        bank=bank, zero_and_late_only_MOT_exact=True,",
+      "new": "        bank=bank, anchor_frame_ID_score_order_exact_proofs=anchor_proofs, zero_and_late_only_MOT_exact=True,",
+      "count": 1
+    },
+    {
+      "old": "    motion=read(base/'Train_motion_statistics.json')\n    motion_execution",
+      "new": "    prior_hypothesis=read(base/'hypothesis_before_agent_Test_review.json')\n    current_hypothesis=read(SPEC)\n    prior_hypothesis.pop('status');current_hypothesis.pop('status');current_hypothesis.pop('timing_scope')\n    assert prior_hypothesis==current_hypothesis\n    paths.extend([base/'hypothesis_before_agent_Test_review.json',base/'hypothesis_timing_context.json'])\n    motion=read(base/'Train_motion_statistics.json')\n    motion_execution",
+      "count": 1
+    }
+  ],
+  "previous_source_unchanged": true,
+  "Train_statistics_reused_byte_exact": true,
+  "new_NN_fits": 0
+}

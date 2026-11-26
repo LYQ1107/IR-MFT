@@ -1,0 +1,114 @@
+{
+  "parent": "/data3/liuyeqiang/IR-MFT/tools/audit_mft_train_motion_dev.py",
+  "parent_sha256": "91c2b41a1621cb86750c87dde080a2bcfc791401e130450f9b754284fbcbf88e",
+  "destination": "/data3/liuyeqiang/IR-MFT/tools/audit_mft_pose_continuity_dev.py",
+  "destination_sha256": "cf91093ee13b03d4c870b89d83b4a1ab2033be55e24672746782e92548ca9abc",
+  "changes": [
+    {
+      "old": "tools.run_mft_train_motion_prior import locations, registered, policies",
+      "new": "tools.run_mft_pose_continuity import locations, registered, policies, identity_score_hash",
+      "count": 1
+    },
+    {
+      "old": "TRAIN_MOTION_PRIOR",
+      "new": "POSE_CONTINUITY",
+      "count": 4
+    },
+    {
+      "old": "train_motion",
+      "new": "pose_continuity",
+      "count": 2
+    },
+    {
+      "old": "ALL6",
+      "new": "ALL8",
+      "count": 1
+    },
+    {
+      "old": "len(jobs) == 8",
+      "new": "len(jobs) == 10",
+      "count": 1
+    },
+    {
+      "old": "original_Dev_related_workers_actual_exit_zero=8",
+      "new": "original_Dev_related_workers_actual_exit_zero=10",
+      "count": 1
+    },
+    {
+      "old": "original_workers_actual_exit_zero=8",
+      "new": "original_workers_actual_exit_zero=10",
+      "count": 1
+    },
+    {
+      "old": "8\u4e2a\u76f8\u5173\u5b9e\u9a8c\u5b50\u8fdb\u7a0b",
+      "new": "10\u4e2a\u76f8\u5173\u5b9e\u9a8c\u5b50\u8fdb\u7a0b",
+      "count": 1
+    },
+    {
+      "old": "1269",
+      "new": "1551",
+      "count": 2
+    },
+    {
+      "old": "MK_native_zero",
+      "new": "PC_native_zero",
+      "count": 1
+    },
+    {
+      "old": "MK_late_only",
+      "new": "PC_late_only",
+      "count": 1
+    },
+    {
+      "old": "r['case'] in policies()[:6]",
+      "new": "r['case'] in policies()",
+      "count": 1
+    },
+    {
+      "old": "['Train_calibrated_motion_update_frames']",
+      "new": "['aspect_calibrated_update_frames']",
+      "count": 1
+    },
+    {
+      "old": "Train Q\u66f4\u65b0\u5e27\u6570",
+      "new": "\u5bbd\u9ad8\u6bd4Q\u66f4\u65b0\u5e27\u6570",
+      "count": 2
+    },
+    {
+      "old": "Train\u8fd0\u52a8\u8fc7\u7a0b\u534f\u65b9\u5dee\uff1a\u5b8c\u6574Dev\u7ed3\u679c",
+      "new": "\u5f53\u524d\u5f62\u72b6\u4e0e\u8eab\u4efd\u8fde\u7eed\u6027\uff1a\u5b8c\u6574Dev\u7ed3\u679c",
+      "count": 1
+    },
+    {
+      "old": "        motion_scope='Only process covariance changes. Original measurement noise, initialization, thresholds and buffer25 are retained. Real replay asserts the shared prediction filter is restored after every frame.',",
+      "new": "        motion_scope='Aspect-only covariance uses the unchanged Train sigma and retains original center/height covariance. Shape/raw rendering anchors are output-only and retain original filter/association states.',",
+      "count": 1
+    },
+    {
+      "old": "        matching_scope='Changed motion states can change geometric costs and assignments. This experiment does not lock baseline primary assignments.',",
+      "new": "        matching_scope='Aspect Q can change shape costs and assignments. Output-only anchors retain literal frame/ID/score/order/row counts versus their original or late-only references.',",
+      "count": 1
+    },
+    {
+      "old": "        counter_scope='Train_calibrated_motion_update_frames counts activations, not correct associations. Inherited primary-hook counters are unused and do not measure motion-induced assignment changes.',",
+      "new": "        counter_scope='Aspect update frames and numeric output-box changes count activations, not correct matches. Legacy primary-hook counters are unused and cannot measure these effects.',\n        current_R2_Test_previously_reviewed_by_agent=True, hypothesis_authored_before_agent_R2_Test_review=True,\n        implementation_after_agent_R2_Test_review=True, Test_accuracy_scope='Only new pose Test; historical and current earlier R2 benchmark exposure is explicitly retained.',",
+      "count": 1
+    },
+    {
+      "old": "            coverage[sequence] = dict(track_sha256=stream['track_sha256'], track_rows=stream['track_rows'],\n                                     statistics=record['statistics'][row['case']['id']])",
+      "new": "            detail={}\n            if row['case']['render']!='filtered':\n                proof=record['anchor_frame_ID_score_order_exact_proofs'][row['case']['id']]\n                old=read(peer/'streams/dev/sequence_manifests'/(sequence+'.json'))\n                ref=old['streams']['TP_late_RGB'if row['case']['late']else'TP_native_zero']\n                actual=identity_score_hash(stream['track_path']);expected=identity_score_hash(ref['track_path'])\n                assert actual==expected==proof['actual_frame_ID_score_order_hash']==proof['reference_hash']\n                detail=dict(actual_frame_ID_score_order_hash=actual,reference_hash=expected)\n            coverage[sequence] = dict(track_sha256=stream['track_sha256'], track_rows=stream['track_rows'],\n                                     statistics=record['statistics'][row['case']['id']],**detail)",
+      "count": 1
+    },
+    {
+      "old": "\u672c\u5b9e\u9a8c\u6ca1\u6709IR\u8eab\u4efd\u63cf\u8ff0\u7b26\u5e72\u9884\uff1b\u6240\u6709\u65b9\u6848\u4ecd\u7528\u540c\u4e00\u65b0\u7248IR\u89c6\u89c9\u68c0\u6d4b\u5668\u3002\u5bbd\u9ad8\u6bd4Q\u66f4\u65b0\u5e27\u6570\u548clate\u7eed\u63a5\u6b21\u6570\u662f\u6fc0\u6d3b\u8bb0\u5f55\uff0c\u4e0d\u4ee3\u8868\u6b63\u786e\u5339\u914d\u6216\u72ec\u7acb\u7ea2\u5916\u8d21\u732e\u3002\u6539\u53d8\u8fd0\u52a8\u72b6\u6001\u53ef\u4ee5\u5f71\u54cd\u51e0\u4f55\u4ee3\u4ef7\u548c\u5339\u914d\uff0c\u9700\u770bHOTA\u3001AssA\u3001IDF1\u53ca\u9010\u89c6\u9891\u3002",
+      "new": "\u672c\u5b9e\u9a8c\u6ca1\u6709IR\u8eab\u4efd\u63cf\u8ff0\u7b26\u5e72\u9884\uff1b\u6240\u6709\u65b9\u6848\u4ecd\u7528\u540c\u4e00\u65b0\u7248IR\u89c6\u89c9\u68c0\u6d4b\u5668\u3002\u4ec5\u5bbd\u9ad8\u6bd4Q\u4f1a\u5f71\u54cd\u540e\u7eed\u51e0\u4f55\u5339\u914d\uff1b\u8f93\u51fa\u5f62\u72b6\u548c\u539f\u59cb\u6846\u951a\u5b9a\u9010\u89c6\u9891\u4fdd\u6301frame/ID/score/order/\u884c\u6570\u7684\u771f\u5b9e\u6587\u4ef6\u54c8\u5e0c\u3002\u66f4\u65b0\u5e27\u6570\u548c\u7eed\u63a5\u6b21\u6570\u662f\u6fc0\u6d3b\u8bb0\u5f55\uff0c\u4e0d\u80fd\u5f53\u6210\u6b63\u786e\u5339\u914d\u6216\u72ec\u7acb\u7ea2\u5916\u8d21\u732e\u3002",
+      "count": 1
+    },
+    {
+      "old": "\u8fd0\u52a8\u5148\u9a8c\u4ec5\u62df\u5408\u516d\u6bb5Train\u6807\u6ce8\u4e2d\u7684\u8fde\u7eed\u4e09\u5e27\u52a0\u901f\u5ea6\uff0c\u5305\u542b\u6807\u6ce8\u566a\u58f0\u548c\u63d2\u503c\u5f71\u54cd\uff1b\u539flate\u7eed\u63a5\u9608\u503c\u4fdd\u6301\u539f\u6837\u3002\u6ee4\u6ce2\u5668\u7684\u6d4b\u91cf\u566a\u58f0\u548c\u521d\u59cb\u5316\u4fdd\u7559\uff1b\u9759\u6001\u9884\u6d4b\u6ee4\u6ce2\u5668\u53ea\u5728\u540c\u6b65\u5355\u5e27\u66f4\u65b0\u8303\u56f4\u5185\u7ed1\u5b9a\u5e76\u6062\u590d\u3002",
+      "new": "\u5bbd\u9ad8\u6bd4Q\u53ea\u590d\u7528\u539fTrain sigma_aspect0.029661453082623204\uff0c\u6ca1\u6709\u65b0\u62df\u5408\uff1b\u5305\u62ec\u6807\u6ce8\u566a\u58f0\u548c\u63d2\u503c\u9650\u5236\u3002\u5f53\u524d\u5f62\u72b6/\u6846\u6765\u81ea\u540c\u5e27\u68c0\u6d4b\uff0c\u4e0d\u628a\u8f93\u51fa\u951a\u5b9a\u53cd\u9988\u7ed9\u5185\u90e8\u6ee4\u6ce2\u5668\uff0c\u4e0d\u6539\u5199\u5386\u53f2\u3002\u516b\u9879\u5047\u8bbe\u5728agent\u9996\u6b21\u9605\u8bfb\u5f53\u524dR2 Test\u524d\u5199\u5b9a\uff0c\u5b9e\u73b0\u4e0e\u672c\u6b21Dev\u5728\u8be5\u9605\u8bfb\u4e4b\u540e\uff1b\u5386\u53f2Test\u66b4\u9732\u7ee7\u7eed\u62ab\u9732\uff0c\u4e0d\u80fd\u58f0\u79f0\u5168\u65b0\u76f2\u6d4b\u3002\u65b0\u65b9\u6848\u9009\u578b\u53ea\u8bfb\u53d6\u5168\u90e8Dev\u5b98\u65b9\u6307\u6807\u3002",
+      "count": 1
+    }
+  ],
+  "previous_source_unchanged": true
+}

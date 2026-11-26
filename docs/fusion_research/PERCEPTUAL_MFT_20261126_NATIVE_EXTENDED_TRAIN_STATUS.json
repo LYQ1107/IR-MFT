@@ -1,14 +1,14 @@
 {
-  "status": "ALL8_OCCLUSION_RESCUE_DEV_NONPOSITIVE_TRAIN_MOTION_CPU_DEV_RUNNING",
-  "UTC": "2026-11-26T19:15:50.017769+00:00",
+  "status": "POSE_COMPLETE_TEST_ONLY_PLUS_0_426_ALL_TRAIN_BANK_RUNNING_ON_4_5",
+  "UTC": "2026-11-26T20:16:29.268624+00:00",
   "current_user_priority": "At least+5 absolute HOTA versus original direct RGB-only YOLOX-X+ByteTrack; stretch+10. Extra RGB architectures/removals deferred.",
   "original_RGB_Test_HOTA": 29.528970687393972,
-  "primary_IR_Test_HOTA": 29.799525425926028,
-  "primary_IR_Test_gain_pp": 0.2705547385320557,
+  "primary_IR_Test_HOTA": 29.955069130617183,
+  "primary_IR_Test_gain_pp": 0.42609844322321067,
   "current_required_Test_HOTA": 34.52897068739397,
   "current_stretch_Test_HOTA": 39.52897068739397,
-  "latest_complete_Test_report": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_PRIMARY_FULL_TEST.json",
-  "latest_complete_Test_report_sha256": "339f1c035ef4d234b11830d5008eee99911f9bbb1b68e7a556d3861524082e63",
+  "latest_complete_Test_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_POSE_CONTINUITY_FULL_TEST.json",
+  "latest_complete_Test_report_sha256": "031c902614225ba21917f0ba833825c2293cfcc16696d7230a2dac19bb6fa6a8",
   "latest_memory_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_NATIVE_MEMORY_NO_GAIN.json",
   "latest_memory_Dev_report_sha256": "fccf8e11569208e5051dc3e79a96ed4d0b8d9d446134328047f6311e8c0312cd",
   "memory_V3_actual_controller_exit_zero": true,
@@ -208,8 +208,8 @@
   "maximum_cards": 2,
   "fixed_seed": 0,
   "additional_seed_work": false,
-  "work_GiB": 61.22557787690312,
-  "independent_available_GiB": 2639.6624069213867,
+  "work_GiB": 61.354664909653366,
+  "independent_available_GiB": 2639.2954864501953,
   "target_plus5_met": false,
   "target_plus10_met": false,
   "supported_innovations": 0,
@@ -928,7 +928,7 @@
   "Fisher_conditional_Test_audit_actual_exit_code": 0,
   "Fisher_complete_Dev_gain_pp": 0.0,
   "Fisher_new_Test": false,
-  "next": "Finish all6 CPU motion Dev, select/freeze exclusively there; then review the unchanged original R2 complete Test and reuse sealed banks for any Dev-qualified Test.",
+  "next": "Complete all6 Train banks on4/5, audit real proposals/descriptors, then fit association-risk fusion on Train only and choose a future Test from complete Dev.",
   "latest_tracklet_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_TRACKLET_PERMANENCE_R2_STATUS.json",
   "latest_tracklet_report_sha256": "7ac3367001c7a0842907896ef5e5defd20d0866ce0674b3f32d6577ed9b70db7",
   "tracklet_R2_registered_sources": 447,
@@ -1504,5 +1504,220 @@
     ]
   },
   "Train_motion_fit_actual_exit_code": 0,
-  "Train_motion_regression_tests_actual_exit_zero": 4
+  "Train_motion_regression_tests_actual_exit_zero": 4,
+  "latest_complete_pose_Dev": "docs/fusion_research/PERCEPTUAL_MFT_20261127_POSE_CONTINUITY_FULL_DEV.json",
+  "latest_complete_pose_Dev_sha256": "70176b2d8a54f4a67d00ac64e9134c00ee5a0c69e2c5233b575fdbe65d38f155",
+  "latest_pose_and_candidate_bank_status": "docs/fusion_research/PERCEPTUAL_MFT_20261127_POSE_TEST_AND_CANDIDATE_BANK_STATUS.json",
+  "latest_pose_and_candidate_bank_status_sha256": "4be7b461ac734c0be6f6d5970514d7f336d24a3327febed568fbb17d4edf46b1",
+  "pose_actual_main_exit_code": 0,
+  "pose_all20_workers_actual_exit_zero": true,
+  "pose_Dev_fields_checked": 1551,
+  "pose_Test_fields_checked": 2256,
+  "candidate_bank_registration_sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d",
+  "candidate_bank_registered_sources": 471,
+  "candidate_bank_state_snapshot": {
+    "status": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+    "controller_pid": 2741594,
+    "phases": {
+      "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING": {
+        "4": {
+          "id": "4",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2741870,
+          "slot": "4",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING_4.log",
+          "started_monotonic": 990706.057445483,
+          "started_UTC": "2026-11-26T20:08:54.770967+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99070605,
+          "command_sha256": "edb0432b1ff03fe8989dd054efde7797900a6ad8f7764d8e9b9bb134ce1b2bfd",
+          "last_live_monotonic": 990751.019732329,
+          "observed_peak_RSS_bytes": 1785696256,
+          "exit_code": 0,
+          "completion_observed_UTC": "2026-11-26T20:09:54.280170+00:00",
+          "worker_wall_upper_seconds": 59.50912027794402,
+          "worker_wall_lower_seconds": 44.962286845897324
+        },
+        "5": {
+          "id": "5",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2741898,
+          "slot": "5",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING_5.log",
+          "started_monotonic": 990706.99726313,
+          "started_UTC": "2026-11-26T20:08:55.710776+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99070699,
+          "command_sha256": "edb0432b1ff03fe8989dd054efde7797900a6ad8f7764d8e9b9bb134ce1b2bfd",
+          "last_live_monotonic": 990751.019958919,
+          "observed_peak_RSS_bytes": 1792159744,
+          "exit_code": 0,
+          "completion_observed_UTC": "2026-11-26T20:09:54.280413+00:00",
+          "worker_wall_upper_seconds": 58.5695932849776,
+          "worker_wall_lower_seconds": 44.022695788997225
+        }
+      },
+      "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN": {
+        "PF-001": {
+          "id": "PF-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "PF-001"
+          ],
+          "status": "RUNNING",
+          "pid": 2742946,
+          "slot": "4",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN_PF-001.log",
+          "started_monotonic": 990776.12234388,
+          "started_UTC": "2026-11-26T20:10:04.835857+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99077612,
+          "command_sha256": "e4cecb743832fa4adfe9f0fc0acfa24bbfb9efee5251dacecbd8f2dd53061ac9",
+          "last_live_monotonic": 991153.81085616,
+          "observed_peak_RSS_bytes": 1795891200
+        },
+        "SN-015": {
+          "id": "SN-015",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "SN-015"
+          ],
+          "status": "RUNNING",
+          "pid": 2742975,
+          "slot": "5",
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/logs/CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN_SN-015.log",
+          "started_monotonic": 990777.100976461,
+          "started_UTC": "2026-11-26T20:10:05.814489+00:00",
+          "argv_identity_observed": true,
+          "start_ticks": 99077710,
+          "command_sha256": "5a9ca40ccd6fdda975d973d340a8088791514b5fbab19d02c1617dc403a9b638",
+          "last_live_monotonic": 991153.811021367,
+          "observed_peak_RSS_bytes": 1826697216
+        },
+        "BT-001": {
+          "id": "BT-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "BT-001"
+          ],
+          "status": "PENDING"
+        },
+        "MSK-002": {
+          "id": "MSK-002",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "MSK-002"
+          ],
+          "status": "PENDING"
+        },
+        "SN-001": {
+          "id": "SN-001",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "SN-001"
+          ],
+          "status": "PENDING"
+        },
+        "BT-003": {
+          "id": "BT-003",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_candidate_train_bank.py",
+            "produce",
+            "--sequence",
+            "BT-003"
+          ],
+          "status": "PENDING"
+        }
+      }
+    },
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "new_NN_fits": 0,
+    "new_accuracy": false,
+    "goal_met": false,
+    "supported_innovations": 0
+  },
+  "candidate_bank_controller_snapshot": {
+    "status": "ACTUAL_TWO_GPU_TRAIN_BANK_CONTROLLER_RUNNING",
+    "UTC_started": "2026-11-26T20:08:30.750316+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "/data3/liuyeqiang/IR-MFT/tools/run_mft_candidate_train_bank.py",
+      "run"
+    ],
+    "source_sha256": "a1670a1cd85c65d5b566e5350e1d665e2b3d8d4ffaf0b9d2b222d38da348d90a",
+    "actual_child_exit_code": null,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/controller.stdout.txt",
+    "controller_GPU_work": false,
+    "child_GPU_work": true,
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "pipeline_registration_sha256": "e9a71f66494b75d786d3cdc98bd52f36f8965345cfe9206771ae3e8a5681789d",
+    "identity": {
+      "PID": 2741594,
+      "start_ticks": 99068203,
+      "raw_argv_sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd",
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "startup_argv_snapshots": [
+      {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 120,
+        "sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd"
+      }
+    ]
+  },
+  "candidate_bank_actual_GPU_engineering_exit_zero": 2,
+  "candidate_bank_CPU_storage_test_passes": 4,
+  "candidate_bank_new_model_accuracy": false,
+  "candidate_bank_new_NN_fits": 0
 }

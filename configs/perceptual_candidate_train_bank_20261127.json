@@ -1,0 +1,20 @@
+{
+  "status": "PREREGISTERED_BEFORE_ALL_TRAIN_CAUSAL_CANDIDATE_EXTRACTION",
+  "priority": "Original RGB-only YOLOX-X+ByteTrack Test29.528970687393972; at least+5 HOTA, stretch+10. Fixed November DiffV2IR and ProtocolV2, seed0, at most physical4/5.",
+  "evidence": "Frozen pose+late complete Test29.955069130617183 is only+0.42609844322321067, despite Dev51.983836945457455. Hand-set association penalties and motion-Q studies did not solve identity continuity. Prior Fisher fit used sparse GT ROIs rather than all real current detections and their tracking errors.",
+  "purpose": "Prepare all real Train proposals and paired identity evidence for a subsequent Train-supervised, likelihood-based association-risk model. Labels will be joined from Train only after sealing this bank. The extraction stage does not fit or evaluate a new model.",
+  "models": "Reuse the same frozen NP_temporal_ir_e06 visual detector and fixed seed0 native RGB/IR BN-neck512 encoders. No encoder retraining, new RGB architecture, weights or seeds.",
+  "data": "All6 Train videos,27251 ordered frames, same-frame original RGB and fixed November IR bytes. No oracle GT crops, GT-label parsing, Dev/Test images or Test labels in full-bank production. Metadata/checksum qualification may read prior training receipts.",
+  "precision": "Preserve all source detections in FP32. Encode RGB/IR descriptors in FP32, then store FP16 descriptors solely to control disk usage. Check finite unit vectors and FP16 round-trip norm/error bounds<=1e-3; downstream readers restore FP32 and normalize. Dev/Test banks remain their original FP32; quantization is disclosed, not described as byte-equal to FP32.",
+  "schema": "Only detections Nx5 FP32, rgb/ir Nx512 FP16, frame_ids and offsets INT64. No images, crops or full-frame/FPN feature copies. Never drop proposals or videos to meet storage; a hard budget failure must stop the attempted writer and preserve its state.",
+  "storage": "Global Train uncompressed-payload reservation maximum1.2GiB across both workers, fcntl-locked atomic ledger. Check before writing each bank and every100 frames. Work64GiB cap,40GiB disk reserve; initial work+1.1*1.2GiB+0.1GiB must fit. No bank or weights in Git.",
+  "engineering": "Both4/5 independently process12 actual Train BT-003 frames, compare a separately reset6-frame neural prefix, verify original zero-tracker parity and descriptor quantization, frozen weights/BN and real GPU identity. Complete both engineering jobs actual0 before full6 NN jobs.",
+  "release": "Original R2 and pose controllers, workers and independent Test audits must actually exit0. If the pose Test has already met+5, skip further Train extraction. Otherwise use only4/5, one model group per worker.",
+  "limits": "Earlier Test results have informed the need for another research stage; this is not a fresh blind test. Future weight fitting uses Train only and any next Test policy must be selected from complete Dev. No positive HOTA or independent multimodal contribution is assumed.",
+  "maximum_uncompressed_payload_GiB": 1.2,
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "new_NN_fits": 0,
+  "goal_met": false,
+  "supported_innovations": 0
+}
