@@ -37,3 +37,5 @@
 最新完整轮次核对：quality_ir已完成第7轮并继续第8轮；temporal_rgb已完成第8轮并继续后续九轮预算。两项新增交付与检查点均与原RGB／灰度对照日程匹配，原六轮快照保持字节一致。当前六组完整轮次为9／9／7／8／6／6；九轮阶段实际完成2／6，完整Dev尚未开始。该节点只记录训练进度，不增加准确率或独立创新。原历史NAS恢复中的额外物理重放仍单独保留，不计成新的逻辑epoch。
 
 [当前六组训练状态及两项新保存证明](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)；观察时工作目录约59.790GiB／64GiB，独立空闲约2682.954GiB。
+
+最新核对：[时序RGB辅助对照完成九轮且实际退出0](PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_RGB_NINE_EPOCHS.md)，原CPU参数／优化器诊断实际退出0；九轮阶段当前3／6完成。5号卡已按原队列接入temporal_ir，4号卡继续quality_ir，temporal_gray仍等待原4号卡释放。两卡均使用固定新版伪IR继续原训练，完整九轮Dev仍未开始。

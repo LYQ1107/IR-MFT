@@ -1,0 +1,76 @@
+{
+  "UTC": "2026-11-26T07:28:30.450348+00:00",
+  "status": "THIRD_NORMAL_NINE_EPOCH_FIT_EXIT0_AND_TWO_ORIGINAL_IR_WORKERS_LIVE",
+  "completed_fit": "temporal_rgb",
+  "actual_original_exit_code": 0,
+  "original_worker_absent": true,
+  "original_controller_actual_exit_code": null,
+  "active_workers": {
+    "quality_ir": {
+      "PID": 1717534,
+      "start_ticks": 93495735,
+      "raw_argv_sha256": "9a857b59aeb06c24d539c829e61fc7884f2934387b819fbe01f997101c4c06c7",
+      "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id quality_ir --through-epoch 9",
+      "CUDA_VISIBLE_DEVICES": "4",
+      "actual_GPU_record": {
+        "GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+        "used_GPU_memory_MiB": "2396 MiB"
+      },
+      "actual_live_identity_verified": true,
+      "original_job": {
+        "id": "quality_ir",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "quality_ir",
+          "--through-epoch",
+          "9"
+        ],
+        "status": "RUNNING",
+        "IO_recovery_retry": false,
+        "pid": 1717534,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_quality_ir.log",
+        "slot": "4"
+      }
+    },
+    "temporal_ir": {
+      "PID": 1845169,
+      "start_ticks": 94463963,
+      "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026",
+      "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 9",
+      "CUDA_VISIBLE_DEVICES": "5",
+      "actual_GPU_record": {
+        "GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+        "used_GPU_memory_MiB": "2404 MiB"
+      },
+      "actual_live_identity_verified": true,
+      "original_job": {
+        "id": "temporal_ir",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/train_native_pyramid.py",
+          "fit",
+          "--fit-id",
+          "temporal_ir",
+          "--through-epoch",
+          "9"
+        ],
+        "status": "RUNNING",
+        "IO_recovery_retry": false,
+        "pid": 1845169,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_ir.log",
+        "slot": "5"
+      }
+    }
+  },
+  "maximum_cards": 2,
+  "no_original_queue_reorder_or_restart": true,
+  "new_accuracy": false,
+  "goal_met": false
+}

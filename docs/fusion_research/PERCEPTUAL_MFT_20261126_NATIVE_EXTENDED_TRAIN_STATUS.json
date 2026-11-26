@@ -1,8 +1,8 @@
 {
   "status": "OBSERVED_PARTIAL_EXTENDED_TRAIN_NOT_NINE_EPOCH_DEV_OR_FINAL_STUDY",
-  "UTC": "2026-11-26T06:29:37.498492+00:00",
+  "UTC": "2026-11-26T07:28:31.155872+00:00",
   "common_registered_stage_budget": 9,
-  "complete_original_stage9_jobs": 2,
+  "complete_original_stage9_jobs": 3,
   "required_normal_fits": 6,
   "fits": [
     {
@@ -90,8 +90,32 @@
         "PID": 1717534,
         "start_ticks": 93495735,
         "raw_argv_sha256": "9a857b59aeb06c24d539c829e61fc7884f2934387b819fbe01f997101c4c06c7",
+        "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id quality_ir --through-epoch 9",
         "CUDA_VISIBLE_DEVICES": "4",
-        "actual_identity_verified": true
+        "actual_GPU_record": {
+          "GPU_uuid": "GPU-daa9b388-4540-242c-83d7-3261bb232a7c",
+          "used_GPU_memory_MiB": "2396 MiB"
+        },
+        "actual_live_identity_verified": true,
+        "original_job": {
+          "id": "quality_ir",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/train_native_pyramid.py",
+            "fit",
+            "--fit-id",
+            "quality_ir",
+            "--through-epoch",
+            "9"
+          ],
+          "status": "RUNNING",
+          "IO_recovery_retry": false,
+          "pid": 1717534,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_quality_ir.log",
+          "slot": "4"
+        }
       },
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/quality_ir/progress.json",
       "last_complete_epoch_progress_sha256": "cb14d1381722d7d592adf990efc6a1fa8fd057adfa10dbbb80833909b9e9df08",
@@ -122,22 +146,16 @@
       "fit_id": "temporal_rgb",
       "mode": "temporal",
       "cue": "rgb",
-      "complete_full_Train_epochs": 8,
-      "logical_delivered_frames": 218008,
-      "actual_optimizer_updates": 54512,
-      "current_stage_original_job_status": "RUNNING",
-      "actual_original_exit_code": null,
-      "actual_live_worker": {
-        "PID": 1720764,
-        "start_ticks": 93520526,
-        "raw_argv_sha256": "7e77349bde31981b2b316e6396cc9b67004006bf6a51c1d84980ad2157c88782",
-        "CUDA_VISIBLE_DEVICES": "5",
-        "actual_identity_verified": true
-      },
+      "complete_full_Train_epochs": 9,
+      "logical_delivered_frames": 245259,
+      "actual_optimizer_updates": 61326,
+      "current_stage_original_job_status": "COMPLETE",
+      "actual_original_exit_code": 0,
+      "actual_live_worker": null,
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_rgb/progress.json",
-      "last_complete_epoch_progress_sha256": "1811cbb2bbe60ea8f4aab0f38931b5d4a658ad3ab7e525b2021cd3d8835a58cc",
-      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_rgb/epoch_08.pt",
-      "last_complete_snapshot_sha256": "15f9015a371aaaadd6ed2a18d7d128b4dc3be5014c8543e0e3ed3a072d076539",
+      "last_complete_epoch_progress_sha256": "38dccad8da1d710813534ff20d76c18d6fa003b3edaf4f008e9629da13097ff7",
+      "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_rgb/epoch_09.pt",
+      "last_complete_snapshot_sha256": "398196925b69e70be35a7426e7b19a69c9338c43e36360baa796c1914bd6ad29",
       "all_recorded_epoch_addresses_match_common_schedule": true,
       "original_job": {
         "id": "temporal_rgb",
@@ -152,11 +170,12 @@
           "--through-epoch",
           "9"
         ],
-        "status": "RUNNING",
+        "status": "COMPLETE",
         "IO_recovery_retry": false,
         "pid": 1720764,
         "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_rgb.log",
-        "slot": "5"
+        "slot": "5",
+        "exit_code": 0
       }
     },
     {
@@ -198,9 +217,39 @@
       "complete_full_Train_epochs": 6,
       "logical_delivered_frames": 163506,
       "actual_optimizer_updates": 40884,
-      "current_stage_original_job_status": "PENDING",
+      "current_stage_original_job_status": "RUNNING",
       "actual_original_exit_code": null,
-      "actual_live_worker": null,
+      "actual_live_worker": {
+        "PID": 1845169,
+        "start_ticks": 94463963,
+        "raw_argv_sha256": "66a0f63ac580910fbc9c6ffb500f3320ee3fabad4d22aa4fcfdb5269a075c026",
+        "actual_command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/train_native_pyramid.py fit --fit-id temporal_ir --through-epoch 9",
+        "CUDA_VISIBLE_DEVICES": "5",
+        "actual_GPU_record": {
+          "GPU_uuid": "GPU-f07a0798-7ddc-ec7c-a27c-d47124bbfe81",
+          "used_GPU_memory_MiB": "2404 MiB"
+        },
+        "actual_live_identity_verified": true,
+        "original_job": {
+          "id": "temporal_ir",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/train_native_pyramid.py",
+            "fit",
+            "--fit-id",
+            "temporal_ir",
+            "--through-epoch",
+            "9"
+          ],
+          "status": "RUNNING",
+          "IO_recovery_retry": false,
+          "pid": 1845169,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_ir.log",
+          "slot": "5"
+        }
+      },
       "last_complete_epoch_progress_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/progress.json",
       "last_complete_epoch_progress_sha256": "11fa59310a3900a1228aa78a3911abb5c5663c6e2c94a03b5520d2f6cf68e830",
       "last_complete_snapshot_path": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/epoch_06.pt",
@@ -219,8 +268,11 @@
           "--through-epoch",
           "9"
         ],
-        "status": "PENDING",
-        "IO_recovery_retry": false
+        "status": "RUNNING",
+        "IO_recovery_retry": false,
+        "pid": 1845169,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/NORMAL_TRAIN_09_temporal_ir.log",
+        "slot": "5"
       }
     }
   ],
@@ -238,6 +290,11 @@
       "file": "docs/fusion_research/perceptual_20261126_native_extended_train/temporal_rgb_epoch8_observation.json",
       "sha256": "e0b12b31f8ad39b94faac4f386be973d73f6b5e9bd3ba580b9332635d43aff18",
       "bytes": 28218
+    },
+    {
+      "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_TEMPORAL_RGB_NINE_EPOCHS.json",
+      "sha256": "de391141013a6feb2f4f7e748bfce45a511e645359de8904c558c65a99acfec6",
+      "scope": "Third original nine-epoch fit, actualCPUqualification and originalIRGPUhandoff; no accuracy."
     }
   ],
   "counts_are_logical_complete_epoch_frames_not_total_physical_recovery_replays": true,
@@ -254,8 +311,8 @@
   "no_parameter_finiteness_claim_for_intermediate7_8_from_this_observation": true,
   "fixed_seed": 0,
   "additional_seed_work": false,
-  "work_GiB": 59.7898135734722,
-  "independent_available_GiB": 2682.9543533325195,
+  "work_GiB": 59.79202465247363,
+  "independent_available_GiB": 2682.859043121338,
   "new_image_feature_or_weight_copies": 0,
   "frozen_source_closures": {
     "native": {
