@@ -1,0 +1,54 @@
+{
+  "status": "ORIGINAL_REMOVAL_SCOPE_SUPERSEDED_BY_EXPLICIT_USER",
+  "UTC": "2026-11-26T15:06:18.334884+00:00",
+  "user_instruction": "先不用做这样的实验，只需要做我们的实验比一般的最原始的不使用红外模态的数据的跟踪baseline高至少5HOTA，或者进一步可以高10HOTA就行",
+  "controller_before": {
+    "PID": 1489657,
+    "kernel_state": "S",
+    "start_ticks": 91266785,
+    "raw_argv_sha256": "64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47",
+    "raw_argv": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "tools/audit_mft_io_resume.py",
+      "run"
+    ],
+    "kernel_exit_wait_status": 0
+  },
+  "controller_after": {
+    "PID": 1489657,
+    "start_ticks": 91266785,
+    "kernel_state": "Z",
+    "actual_exit_code_from_kernel_wait_status": -15
+  },
+  "original_workers_terminated": {
+    "2384266": {
+      "PID": 2384266,
+      "kernel_state": "Z",
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_argv": [],
+      "kernel_exit_wait_status": 15,
+      "actual_exit_code_from_kernel_wait_status": -15
+    },
+    "2384267": {
+      "PID": 2384267,
+      "kernel_state": "Z",
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_argv": [],
+      "kernel_exit_wait_status": 15,
+      "actual_exit_code_from_kernel_wait_status": -15
+    }
+  },
+  "original_controller_and_two_workers_no_longer_running": true,
+  "all_two_worker_exits_are_actual_SIGTERM_minus15": true,
+  "original_state_archive_sha256": "3bcfb337c09b58e107a87e5d12cac0abbbc6dd75fb25e3ab62e7b3c066deeb4f",
+  "preserved_progress": {},
+  "pending_four_removal_fits_deferred": true,
+  "original_frozen_normal_selection_unchanged": true,
+  "old_downstream_CPU_queues_cannot_release_because_original_scope_is_not_complete": true,
+  "new_GPU_work_started": false,
+  "Goal_status": "active",
+  "goal_met": false
+}

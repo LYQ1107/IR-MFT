@@ -1,0 +1,71 @@
+{
+  "status": "FROZEN_FROM_COMPLETE_NATIVE_DEV_BEFORE_TEST",
+  "UTC": "2026-11-26T15:06:41.650682+00:00",
+  "study_sha256": "5126f835ce7ccfec5e50ba4dc2d94204aab0db9322ee0198fedbc4a0c9afc589",
+  "complete_Dev_before_Test": true,
+  "complete_Dev_file": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/original_baseline_priority_20261126/complete_normal_Dev_new_user_scope.json",
+  "complete_Dev_sha256": "7673bea556d0231f7388bbb267fa9bba2da05f226ed84572ff412bff140ce29b",
+  "specification_sha256": "25c180c1e4c6065bd5cefa6f59d0c1506a0f143114ee75684e49f46e7dbaec5b",
+  "models": [
+    {
+      "id": "NP_source_fresh_RGB",
+      "cue": "rgb",
+      "seed": 0,
+      "baseline": "fresh_RGB_B1"
+    },
+    {
+      "id": "NP_temporal_ir_e06",
+      "fit_id": "temporal_ir",
+      "epoch": 6,
+      "mode": "temporal",
+      "cue": "ir",
+      "removal": null,
+      "seed": 0,
+      "intervention": "normal",
+      "geometry_fixed": false,
+      "fit_config_sha256": "f8d7bfa32131eb925778eeab25d643d4b050959d807cf1ff4c907e4962674a42",
+      "checkpoint": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_fits/temporal_ir/epoch_06.pt",
+      "checkpoint_sha256": "33e17d6a408ced3fca838d9dd59a1e906ffabfeb7cabb37098178d1c387810e5"
+    }
+  ],
+  "cases": [
+    {
+      "id": "NP_source_fresh_RGB",
+      "config": "/data3/liuyeqiang/IR-MFT/configs/perceptual_native_pyramid_test_cases_20261124/NP_source_fresh_RGB.json",
+      "config_sha256": "0e41b723fd171953d7aaddf2e27239716ca704b2867b68d2c955018389f96ff4"
+    },
+    {
+      "id": "NP_temporal_ir_e06",
+      "config": "/data3/liuyeqiang/IR-MFT/configs/perceptual_native_pyramid_test_cases_20261124/NP_temporal_ir_e06.json",
+      "config_sha256": "ee60ed5b721ffeb5257f2eb2ec3e937787b93d15506b8e2a394797d13d9ec19c"
+    },
+    {
+      "id": "NP_source_canonical_RGB",
+      "config": "/data3/liuyeqiang/IR-MFT/configs/perceptual_native_pyramid_test_cases_20261124/NP_source_canonical_RGB.json",
+      "config_sha256": "d0fc302ddd00f5d31813ac1a25e336aabc2780f39ecfff1d3f078b163b75456b"
+    }
+  ],
+  "roles": {
+    "primary_IR": "NP_temporal_ir_e06",
+    "source_RGB_fresh": "NP_source_fresh_RGB",
+    "source_RGB_canonical": "NP_source_canonical_RGB"
+  },
+  "complete_epochs_each": 9,
+  "original_normal_selection_sha256": "fd3b82e44e499f6e8d4488a5155a2ef55da75b4b4f15e6573307e1c2255857d9",
+  "cancellation_receipt_sha256": "e0aa8f5ac5cfa5b8436549703d9838605451e699f984e67f97c2eb86038aaad3",
+  "user_instruction": "先不用做这样的实验，只需要做我们的实验比一般的最原始的不使用红外模态的数据的跟踪baseline高至少5HOTA，或者进一步可以高10HOTA就行",
+  "scope": "Original RGB baseline and the previously Dev-frozen primary; additional RGB/removal studies deferred.",
+  "original_RGB_baseline_HOTA": 29.5289636096556,
+  "required_HOTA": 34.528963609655605,
+  "stretch_HOTA": 39.528963609655605,
+  "seed": 0,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "historical_Test_previously_exposed": true,
+  "Test_read_for_selection": false,
+  "new_seed_or_Test_based_retuning": false,
+  "goal_met": false
+}

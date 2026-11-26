@@ -1,6 +1,6 @@
 {
-  "status": "OBSERVED_ALL_SIX_NINE_EPOCH_FITS_COMPLETE_ORIGINAL_FULL_DEV_RUNNING_NOT_ACCURACY",
-  "UTC": "2026-11-26T13:23:25.161482+00:00",
+  "status": "COMPLETE_NINE_EPOCH_DEV_USER_BASELINE_PRIORITY_FULL7_TEST_RUNNING",
+  "UTC": "2026-11-26T15:11:00.745004+00:00",
   "common_registered_stage_budget": 9,
   "complete_original_stage9_jobs": 6,
   "required_normal_fits": 6,
@@ -280,20 +280,20 @@
     }
   ],
   "counts_are_logical_complete_epoch_frames_not_total_physical_recovery_replays": true,
-  "actual_original_controller_exit_code": null,
-  "latest_complete_Dev_stage": 6,
-  "latest_complete_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json",
-  "latest_complete_Dev_report_sha256": "63426a8689f27ce662557b2df1d737db1d55d18af7e716bdd1374bdc290d688e",
+  "actual_original_controller_exit_code": -15,
+  "latest_complete_Dev_stage": 9,
+  "latest_complete_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_STAGE9_FULL_DEV.json",
+  "latest_complete_Dev_report_sha256": "874da6913aa24f7840b3cf3c80ba2360e15e37e553d3ecfd4cb4a075e032219e",
   "full9_Dev_started": true,
-  "full9_Dev_results_available": false,
+  "full9_Dev_results_available": true,
   "required_cumulative_Dev_cases_after_all6_normal_fits": 92,
   "final_normal_selection_and_triggered_removals_full_Test_runtime_incomplete": true,
-  "new_forward_backward_optimizer_GPU_work": false,
+  "new_forward_backward_optimizer_GPU_work": true,
   "optimizer_latest_not_loaded_while_fits_active": true,
   "fixed_seed": 0,
   "additional_seed_work": false,
-  "work_GiB": 59.809402173385024,
-  "independent_available_GiB": 2662.851993560791,
+  "work_GiB": 59.98333452641964,
+  "independent_available_GiB": 2641.6383895874023,
   "new_image_feature_or_weight_copies": 0,
   "frozen_source_closures": {
     "native": {
@@ -307,7 +307,7 @@
       "registry_sha256": "6f302f6710b9c6fd5e36bba034e277c769d5f30d75b5068701193ecfbdadfdff"
     }
   },
-  "new_Dev_or_Test_accuracy": false,
+  "new_Dev_or_Test_accuracy": true,
   "supported_innovations": 0,
   "goal_met": false,
   "latest_Dev_identity_error_diagnostic": {
@@ -385,16 +385,7 @@
     }
   },
   "all6_normal_fits_completed_at_least8_full_Train_epochs": true,
-  "latest_Dev_gate_diagnostic": {
-    "file": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_DEV_GATE_DIAGNOSIS.json",
-    "sha256": "fd7d85d76be6dfcfc90925e23d9e34fb80955a85539a12f0fe592c68e76a7d30",
-    "stage": 6,
-    "all60_gated_conditions": true,
-    "all360_level_rows": true,
-    "all72_normal_roll_pairs": true,
-    "actual_CPU_exit_code": 0,
-    "no_new_accuracy_or_contribution": true
-  },
+  "latest_Dev_gate_diagnostic": "PERCEPTUAL_MFT_20261126_NATIVE_STAGE9_DEV_GATE_DIAGNOSIS.json",
   "latest_finished_CPU_learning_diagnostic": {
     "fit_id": "temporal_ir",
     "through_epoch": 9,
@@ -403,72 +394,271 @@
     "actual_tool_exit_code": 0,
     "actual_child_exit_code": 0
   },
-  "current_original_phase": "dev_normal_09_NN",
+  "current_original_phase": "SUPERSEDED_BY_USER_BASELINE_PRIORITY_20261126",
   "closed_nine_epoch_observer": {
     "session": 26625,
     "actual_tool_exit_code": 0,
     "target_achieved": true,
     "report": "PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.json"
   },
-  "active_original_Dev_workers": {
-    "SN-013": {
-      "PID": 2311695,
-      "start_ticks": 96612960,
-      "raw_argv_sha256": "9f2a392e4819b66561e853d2fb0c344cfe9931bff4ab34bd12cd65b7032b6b77",
-      "CUDA_VISIBLE_DEVICES": "4",
-      "kernel_state": "R",
-      "identity_verified": true,
-      "original_job": {
-        "id": "SN-013",
-        "command": [
-          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
-          "-u",
-          "tools/evaluate_native_pyramid.py",
-          "produce",
-          "--split",
-          "dev",
-          "--sequence",
-          "SN-013",
-          "--specification",
-          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
-        ],
-        "status": "RUNNING",
-        "IO_recovery_retry": false,
-        "pid": 2311695,
-        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_SN-013.log",
-        "slot": "4"
-      }
-    },
-    "BT-005": {
-      "PID": 2311696,
-      "start_ticks": 96612960,
-      "raw_argv_sha256": "d5f19146d411f6fbe5aa945b76f596d745bc68cd9346e57808575dd27665e671",
-      "CUDA_VISIBLE_DEVICES": "5",
-      "kernel_state": "R",
-      "identity_verified": true,
-      "original_job": {
-        "id": "BT-005",
-        "command": [
-          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
-          "-u",
-          "tools/evaluate_native_pyramid.py",
-          "produce",
-          "--split",
-          "dev",
-          "--sequence",
-          "BT-005",
-          "--specification",
-          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
-        ],
-        "status": "RUNNING",
-        "IO_recovery_retry": false,
-        "pid": 2311696,
-        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_BT-005.log",
-        "slot": "5"
-      }
-    }
-  },
+  "active_original_Dev_workers": {},
   "all6_normal_fits_completed_nine_full_Train_epochs": true,
   "latest_all_six_nine_epoch_completion_report": "PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.json",
-  "latest_fixed_generator_causality_report": "PERCEPTUAL_MFT_20261126_NOVEMBER_GENERATOR_CAUSALITY.json"
+  "latest_fixed_generator_causality_report": "PERCEPTUAL_MFT_20261126_NOVEMBER_GENERATOR_CAUSALITY.json",
+  "actual_original_wrapper_tool_exit_code": 143,
+  "current_scope": "Original RGB baseline +5 Test HOTA; +10 stretch. Extra RGB structures and removals deferred by explicit user.",
+  "original_broad_study_completed": false,
+  "original_scope_removal_fits_completed": false,
+  "original_frozen_budget_decision": {
+    "completed_stage": 9,
+    "next_stage": null,
+    "extend_all_six": false,
+    "comparisons": [
+      {
+        "mode": "quality",
+        "cue": "rgb",
+        "earlier_best_HOTA": 49.918,
+        "current_best_HOTA": 49.918,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "quality",
+        "cue": "gray",
+        "earlier_best_HOTA": 49.414,
+        "current_best_HOTA": 49.414,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "quality",
+        "cue": "ir",
+        "earlier_best_HOTA": 49.703,
+        "current_best_HOTA": 49.703,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "rgb",
+        "earlier_best_HOTA": 48.097,
+        "current_best_HOTA": 48.097,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "gray",
+        "earlier_best_HOTA": 48.941,
+        "current_best_HOTA": 48.941,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "ir",
+        "earlier_best_HOTA": 50.115,
+        "current_best_HOTA": 50.115,
+        "improvement_pp": 0.0
+      }
+    ],
+    "numerical_convergence_claim": false,
+    "selection_input_split": "dev"
+  },
+  "all_six_normal_Dev_best_unchanged": true,
+  "retired_original_Dev_jobs": {
+    "SN-013": {
+      "id": "SN-013",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/evaluate_native_pyramid.py",
+        "produce",
+        "--split",
+        "dev",
+        "--sequence",
+        "SN-013",
+        "--specification",
+        "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
+      ],
+      "status": "COMPLETE",
+      "IO_recovery_retry": false,
+      "pid": 2311695,
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_SN-013.log",
+      "slot": "4",
+      "exit_code": 0
+    },
+    "BT-005": {
+      "id": "BT-005",
+      "command": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/evaluate_native_pyramid.py",
+        "produce",
+        "--split",
+        "dev",
+        "--sequence",
+        "BT-005",
+        "--specification",
+        "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/dev_normal_09.json"
+      ],
+      "status": "COMPLETE",
+      "IO_recovery_retry": false,
+      "pid": 2311696,
+      "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/dev_normal_09_NN_BT-005.log",
+      "slot": "5",
+      "exit_code": 0
+    }
+  },
+  "active_baseline_priority_controller": {
+    "PID": 2416500,
+    "start_ticks": 97260838,
+    "raw_argv_sha256": "2da8638f0cf31744fe942f5c02c8fc9019b048a5dfcf93f8e154325ea7aa6350",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "baseline_priority_phase": "test_original_baseline_priority_20261126_NN",
+  "baseline_priority_state_at_observation": {
+    "status": "test_original_baseline_priority_20261126_NN",
+    "controller_pid": 2416500,
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "registration_sha256": "7e726800e925e8b11d088f0fdd9a23f0ec7ef01cea154f4fc16ed198e08c0bbd",
+    "phases": {
+      "test_original_baseline_priority_20261126_NN": {
+        "SN-009": {
+          "id": "SN-009",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "SN-009",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "RUNNING",
+          "pid": 2416643,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/test_original_baseline_priority_20261126_NN_SN-009.log",
+          "slot": "4"
+        },
+        "SN-011": {
+          "id": "SN-011",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "SN-011",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "RUNNING",
+          "pid": 2416644,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/test_original_baseline_priority_20261126_NN_SN-011.log",
+          "slot": "5"
+        },
+        "PF-002": {
+          "id": "PF-002",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "PF-002",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "PENDING"
+        },
+        "SN-014": {
+          "id": "SN-014",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "SN-014",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "PENDING"
+        },
+        "BT-004": {
+          "id": "BT-004",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "BT-004",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "PENDING"
+        },
+        "MSK-003": {
+          "id": "MSK-003",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "MSK-003",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "PENDING"
+        },
+        "BT-002": {
+          "id": "BT-002",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/evaluate_native_pyramid.py",
+            "produce",
+            "--split",
+            "test",
+            "--sequence",
+            "BT-002",
+            "--specification",
+            "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+          ],
+          "status": "PENDING"
+        }
+      }
+    },
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "user_instruction": "先不用做这样的实验，只需要做我们的实验比一般的最原始的不使用红外模态的数据的跟踪baseline高至少5HOTA，或者进一步可以高10HOTA就行",
+    "original_RGB_baseline_HOTA": 29.5289636096556,
+    "required_HOTA": 34.528963609655605,
+    "stretch_HOTA": 39.528963609655605,
+    "goal_met": false,
+    "UTC": "2026-11-26T15:10:57.608117+00:00",
+    "phase": "test_original_baseline_priority_20261126_NN"
+  },
+  "baseline_priority_freeze_sha256": "65dad7840e5c8df49f15c68ce16e293581a4c7d432f395a5e9a3ccdaaa5cd8db",
+  "new_accuracy_scope": "Completed nine-epoch Dev only; no new Test accuracy yet.",
+  "new_GPU_work_scope": "Frozen Test forward inference only; no new backward pass or optimizer step.",
+  "original_RGB_Test_HOTA": 29.5289636096556,
+  "current_required_Test_HOTA": 34.5289636096556,
+  "current_stretch_Test_HOTA": 39.5289636096556,
+  "current_goal_scope_overrides_older_scope": true
 }

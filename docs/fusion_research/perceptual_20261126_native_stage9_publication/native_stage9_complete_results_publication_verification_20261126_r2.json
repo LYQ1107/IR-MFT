@@ -1,0 +1,217 @@
+{
+  "status": "VERIFIED_COMPLETE_STAGE9_RESULTS_FOR_SMALL_TEXT_PUBLICATION_NOT_FINAL_GOAL",
+  "UTC": "2026-11-26T15:00:09.679898+00:00",
+  "parent_report_sha256": "874da6913aa24f7840b3cf3c80ba2360e15e37e553d3ecfd4cb4a075e032219e",
+  "cases": 92,
+  "old_62_rows_deep_equal_by_original_case_ID": true,
+  "all_six_choices_unchanged": true,
+  "original_worker_phase_counts": {
+    "dev_normal_06_NN": 2,
+    "dev_normal_06_OFFICIAL": 60,
+    "dev_normal_06_CANONICAL": 1,
+    "dev_normal_06_SOURCE_OFFICIAL": 2,
+    "dev_normal_09_NN": 2,
+    "dev_normal_09_OFFICIAL": 30,
+    "NORMAL_TRAIN_09": 6
+  },
+  "original_completed_workers": 103,
+  "original_Dev_related_workers": 97,
+  "original_continuation_training_workers": 6,
+  "all_original_workers_actual_exit_zero": true,
+  "original_budget": {
+    "completed_stage": 9,
+    "next_stage": null,
+    "extend_all_six": false,
+    "comparisons": [
+      {
+        "mode": "quality",
+        "cue": "rgb",
+        "earlier_best_HOTA": 49.918,
+        "current_best_HOTA": 49.918,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "quality",
+        "cue": "gray",
+        "earlier_best_HOTA": 49.414,
+        "current_best_HOTA": 49.414,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "quality",
+        "cue": "ir",
+        "earlier_best_HOTA": 49.703,
+        "current_best_HOTA": 49.703,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "rgb",
+        "earlier_best_HOTA": 48.097,
+        "current_best_HOTA": 48.097,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "gray",
+        "earlier_best_HOTA": 48.941,
+        "current_best_HOTA": 48.941,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "ir",
+        "earlier_best_HOTA": 50.115,
+        "current_best_HOTA": 50.115,
+        "improvement_pp": 0.0
+      }
+    ],
+    "numerical_convergence_claim": false,
+    "selection_input_split": "dev"
+  },
+  "normal_selection_sha256": "fd3b82e44e499f6e8d4488a5155a2ef55da75b4b4f15e6573307e1c2255857d9",
+  "removals_registration_sha256": "b0fea9029d49ea0c3c997552480d60869f2dc21b134d9753aeff3ebe58f869c6",
+  "original_source_closures": {
+    "native_pyramid_pipeline_registered.json": {
+      "registry_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+      "sources": 102,
+      "all_unchanged": true
+    },
+    "task_utility/pipeline_registered.json": {
+      "registry_sha256": "6f302f6710b9c6fd5e36bba034e277c769d5f30d75b5068701193ecfbdadfdff",
+      "sources": 427,
+      "all_unchanged": true
+    }
+  },
+  "original_controller": {
+    "PID": 1489657,
+    "start_ticks": 91266785,
+    "raw_argv_sha256": "64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47",
+    "kernel_state": "S",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "current_phase": "REMOVAL_TRAIN",
+  "active_original_removal_workers": [
+    {
+      "fit_id": "temporal_no_spectral_contrast",
+      "PID": 2384266,
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "fddf6692df2b8945d443e27f18758989fbbfadf745c7e3dee2107542315ac4ff",
+      "kernel_state": "D",
+      "CUDA_VISIBLE_DEVICES": "4"
+    },
+    {
+      "fit_id": "temporal_no_fusion_quality_gate",
+      "PID": 2384267,
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "d17ec463b1fca98c3d184fcfba2c732452ced67e5f71b96c25e59ebd45f0baf5",
+      "kernel_state": "S",
+      "CUDA_VISIBLE_DEVICES": "5"
+    }
+  ],
+  "removal_job_statuses": {
+    "temporal_no_spectral_contrast": "RUNNING",
+    "temporal_no_fusion_quality_gate": "RUNNING",
+    "temporal_fixed_original_RGB_geometry": "PENDING",
+    "temporal_no_RGB_protection": "PENDING",
+    "temporal_no_temporal_memory": "PENDING",
+    "temporal_no_motion_alignment": "PENDING"
+  },
+  "all_six_removal_GPU_engineering_actual_exit_zero": true,
+  "original_config_allowlist": [
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_rgb_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_rgb_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_rgb_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_gray_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_gray_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_gray_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e07_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e07_off.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e08_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e08_off.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e09_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_quality_ir_e09_off.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_rgb_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_rgb_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_rgb_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_gray_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_gray_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_gray_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e07.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e07_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e07_off.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e08.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e08_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e08_off.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e09.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e09_roll.json",
+    "configs/perceptual_native_pyramid_dev_cases_20261124/NP_temporal_ir_e09_off.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_no_spectral_contrast.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_no_fusion_quality_gate.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_fixed_original_RGB_geometry.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_no_RGB_protection.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_no_temporal_memory.json",
+    "configs/perceptual_native_pyramid_fit_cases_20261124/temporal_no_motion_alignment.json"
+  ],
+  "all_five_final_scientific_PNG_previews_visually_inspected": true,
+  "normal_figure_r1_r2_plotted_CSV_byte_identical": true,
+  "original_receipts_preserved_without_self_exit_field_rewrite": true,
+  "external_actual_exit_ledger": [
+    {
+      "receipt": "native_stage9_full_dev_cpu_export_queued_20261126_r1.execution.json",
+      "receipt_sha256": "fee51c9a575192bcf75ba5a44bb168268f9aa2759a6c15910f386cf221fef436",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": "26539",
+      "actual_tool_reply_reference": "original completed tool reply"
+    },
+    {
+      "receipt": "native_stage9_complete_descriptive_analysis_execution_20261126_r1.execution.json",
+      "receipt_sha256": "2185cd57f2ee07a1a4b6c6b6ce4547fd2ce4e5770a7b6c29795421fba9b3132f",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": null,
+      "actual_tool_reply_reference": "e37807"
+    },
+    {
+      "receipt": "native_stage9_gate_diagnosis_execution_20261126_r1.execution.json",
+      "receipt_sha256": "9395026d76a0881a6f902ac4337deadca98d2f0e00856b7a6efa09a2c1304561",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": null,
+      "actual_tool_reply_reference": "369618"
+    },
+    {
+      "receipt": "native_stage9_complete_figures_execution_20261126_r1.execution.json",
+      "receipt_sha256": "252a01ea8b2a1944fe7a417569db8452c58a73ff38f48aa10743d6fcf6361575",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": "48167",
+      "actual_tool_reply_reference": "004f22"
+    },
+    {
+      "receipt": "native_stage9_complete_figures_execution_20261126_r2.execution.json",
+      "receipt_sha256": "c3e2e2a0a8c1dae352a51cbe530ae4f7edb8409060ca1566296e02c94b844257",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": "98574",
+      "actual_tool_reply_reference": "523178"
+    },
+    {
+      "receipt": "native_stage9_gate_figures_execution_20261126_r1.execution.json",
+      "receipt_sha256": "3ed3a5a248433be9fd62210aafa7ca43513aea3b539872afc1f1422c8bc7832d",
+      "actual_child_exit_code": 0,
+      "actual_tool_exit_code": 0,
+      "original_tool_session": "82464",
+      "actual_tool_reply_reference": "43909c"
+    }
+  ],
+  "prior_preflight_failure": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_stage9_publication_preflight_r1_delivery_failure.json",
+  "current_free_GiB": 2642.810749053955,
+  "no_new_NN_or_Test_execution": true,
+  "supported_innovations": 0,
+  "goal_met": false
+}

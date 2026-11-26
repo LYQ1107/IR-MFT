@@ -1,0 +1,142 @@
+{
+  "status": "test_original_baseline_priority_20261126_NN",
+  "controller_pid": 2416500,
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "registration_sha256": "7e726800e925e8b11d088f0fdd9a23f0ec7ef01cea154f4fc16ed198e08c0bbd",
+  "phases": {
+    "test_original_baseline_priority_20261126_NN": {
+      "SN-009": {
+        "id": "SN-009",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-009",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "RUNNING",
+        "pid": 2416643,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/test_original_baseline_priority_20261126_NN_SN-009.log",
+        "slot": "4"
+      },
+      "SN-011": {
+        "id": "SN-011",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-011",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "RUNNING",
+        "pid": 2416644,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/test_original_baseline_priority_20261126_NN_SN-011.log",
+        "slot": "5"
+      },
+      "PF-002": {
+        "id": "PF-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "PF-002",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "PENDING"
+      },
+      "SN-014": {
+        "id": "SN-014",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "SN-014",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "PENDING"
+      },
+      "BT-004": {
+        "id": "BT-004",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-004",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "PENDING"
+      },
+      "MSK-003": {
+        "id": "MSK-003",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "MSK-003",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "PENDING"
+      },
+      "BT-002": {
+        "id": "BT-002",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/evaluate_native_pyramid.py",
+          "produce",
+          "--split",
+          "test",
+          "--sequence",
+          "BT-002",
+          "--specification",
+          "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_specs/test_original_baseline_priority_20261126.json"
+        ],
+        "status": "PENDING"
+      }
+    }
+  },
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "user_instruction": "先不用做这样的实验，只需要做我们的实验比一般的最原始的不使用红外模态的数据的跟踪baseline高至少5HOTA，或者进一步可以高10HOTA就行",
+  "original_RGB_baseline_HOTA": 29.5289636096556,
+  "required_HOTA": 34.528963609655605,
+  "stretch_HOTA": 39.528963609655605,
+  "goal_met": false,
+  "UTC": "2026-11-26T15:10:57.608117+00:00",
+  "phase": "test_original_baseline_priority_20261126_NN"
+}

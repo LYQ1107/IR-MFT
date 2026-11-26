@@ -1,0 +1,56 @@
+{
+  "UTC": "2026-11-26T15:06:18.281347+00:00",
+  "user_instruction": "先不用做这样的实验，只需要做我们的实验比一般的最原始的不使用红外模态的数据的跟踪baseline高至少5HOTA，或者进一步可以高10HOTA就行",
+  "processes_before": {
+    "1489657": {
+      "PID": 1489657,
+      "kernel_state": "S",
+      "start_ticks": 91266785,
+      "raw_argv_sha256": "64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47",
+      "raw_argv": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/audit_mft_io_resume.py",
+        "run"
+      ],
+      "kernel_exit_wait_status": 0
+    },
+    "2384266": {
+      "PID": 2384266,
+      "kernel_state": "R",
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "fddf6692df2b8945d443e27f18758989fbbfadf745c7e3dee2107542315ac4ff",
+      "raw_argv": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_no_spectral_contrast",
+        "--through-epoch",
+        "9"
+      ],
+      "kernel_exit_wait_status": 0
+    },
+    "2384267": {
+      "PID": 2384267,
+      "kernel_state": "R",
+      "start_ticks": 97077621,
+      "raw_argv_sha256": "d17ec463b1fca98c3d184fcfba2c732452ced67e5f71b96c25e59ebd45f0baf5",
+      "raw_argv": [
+        "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+        "-u",
+        "tools/train_native_pyramid.py",
+        "fit",
+        "--fit-id",
+        "temporal_no_fusion_quality_gate",
+        "--through-epoch",
+        "9"
+      ],
+      "kernel_exit_wait_status": 0
+    }
+  },
+  "action": "Defer additional controls and removal fitting; evaluate the already Dev-frozen primary on all7 Test.",
+  "source_files_or_completed_experiments_to_modify": false,
+  "Goal_status": "active"
+}
