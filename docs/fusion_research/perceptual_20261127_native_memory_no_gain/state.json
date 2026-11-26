@@ -1,0 +1,147 @@
+{
+  "status": "COMPLETE_NATIVE_MEMORY_NO_POSITIVE_DEV_GAIN_NO_NEW_TEST",
+  "controller_pid": 2495056,
+  "phases": {
+    "PMM_20261126_V3_GPU_ENGINEERING": {
+      "4": {
+        "id": "4",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2495157,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_GPU_ENGINEERING_4.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "5": {
+        "id": "5",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2495158,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_GPU_ENGINEERING_5.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "PMM_20261126_V3_DEV_NN": {
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2496080,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_DEV_NN_SN-013.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2496081,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_DEV_NN_BT-005.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "PMM_20261126_V3_DEV_OFFICIAL": {
+      "FM_native_NP_temporal_ir_e06_byte_w000": {
+        "id": "FM_native_NP_temporal_ir_e06_byte_w000",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FM_native_NP_temporal_ir_e06_byte_w000"
+        ],
+        "status": "COMPLETE",
+        "pid": 2512919,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_DEV_OFFICIAL_FM_native_NP_temporal_ir_e06_byte_w000.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "FM_native_NP_temporal_ir_e06_fused_uniform_w005": {
+        "id": "FM_native_NP_temporal_ir_e06_fused_uniform_w005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FM_native_NP_temporal_ir_e06_fused_uniform_w005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2512920,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_DEV_OFFICIAL_FM_native_NP_temporal_ir_e06_fused_uniform_w005.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "FM_native_NP_temporal_ir_e06_fused_uniform_w010": {
+        "id": "FM_native_NP_temporal_ir_e06_fused_uniform_w010",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_native_memory_priority_v3.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FM_native_NP_temporal_ir_e06_fused_uniform_w010"
+        ],
+        "status": "COMPLETE",
+        "pid": 2513372,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/PMM_20261126_V3_DEV_OFFICIAL_FM_native_NP_temporal_ir_e06_fused_uniform_w010.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      }
+    }
+  },
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "fixed_seed": 0,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "additional_seed_work": false,
+  "scope": "Native IR parent only, three memory weights; extra RGB architectures/removals deferred.",
+  "supported_innovations": 0,
+  "goal_met": false,
+  "UTC": "2026-11-26T16:34:23.613923+00:00",
+  "phase": "PMM_20261126_V3_DEV_OFFICIAL",
+  "complete_Dev_sha256": "b1f73faaa9f464c1ea4b3650ca56e7e7776cd96e81ba408130bd175735ec2b20",
+  "Dev_gain_pp": 0.0
+}

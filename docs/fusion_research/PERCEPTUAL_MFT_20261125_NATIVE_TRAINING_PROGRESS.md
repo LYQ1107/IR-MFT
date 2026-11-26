@@ -1,6 +1,6 @@
 # 当前优先目标：原始RGB baseline至少+5 HOTA
 
-最新完整七段Test已完成并核验：原始RGB29.528971，冻结IR主方案29.799525，**仅+0.270555点**，未达+5；新鲜B1 RGB29.820430。IDF1下降、IDSW由450增至487，负结果不删除。[完整Test与分析](PERCEPTUAL_MFT_20261126_NATIVE_PRIMARY_FULL_TEST_ANALYSIS_ZH.md)为当前结果入口。原11个实验worker均实际退出0；旧汇总常数约0.000007点的误差仅做CPU修复，原失败记录保留。原CSV未变，基线显示仍29.529。记忆V3已通过4/5两卡各12帧GPU工程并正在执行三个预登记权重的完整Dev，无新RGB结构或种子；Goal继续active。以下旧状态段落按各自时点保留。
+最新完整七段Test已完成并核验：原始RGB29.528971，冻结IR主方案29.799525，**仅+0.270555点**，未达+5；新鲜B1 RGB29.820430。IDF1下降、IDSW由450增至487，负结果不删除。[完整Test与分析](PERCEPTUAL_MFT_20261126_NATIVE_PRIMARY_FULL_TEST_ANALYSIS_ZH.md)为当前结果入口。原11个实验worker均实际退出0；旧汇总常数约0.000007点的误差仅做CPU修复，原失败记录保留。原CSV未变，基线显示仍29.529。[记忆V3完整Dev](PERCEPTUAL_MFT_20261127_NATIVE_MEMORY_NO_GAIN.md)已结束：三个权重全部47项及同视频MOT字节相同，均HOTA50.115210，无增益、不追加Test。[Train Fisher身份投影](PERCEPTUAL_MFT_20261127_FISHER_TRAIN_AND_DEV_STATUS.md)已拟合94组身份、17266条采样ROI，时间留出检索30.97%相对原始RGB24.74%为正向诊断，尚不是HOTA提升。新方案两张卡工程实际0、旧缓存字节及零路径复现通过，当前仅物理4/5运行预先固定的完整Dev五项；无新RGB结构或种子，Goal继续active。以下旧状态段落按各自时点保留。
 
 [后续记忆V2与只读Test审计](PERCEPTUAL_MFT_20261126_NATIVE_MEMORY_PRIORITY_V2.md)已准备：在任何新GPU任务前修正官方COMBINED行的布局核验，真实原CSV141字段回归及活跃前序CUDA拒绝检查均通过；旧CPU等待记录保留，模型和三权重不变。V2及独立交付审计均仅CPU等待当前七段Test，当前没有新增完整Test准确率。
 
@@ -35,4 +35,4 @@
 
 此前正式主方案Test29.834177，对原RGB29.528964约+0.305214点；它不是本批原生结果。旧的[六轮结果](PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json)、[共同九轮训练原件](PERCEPTUAL_MFT_20261126_NATIVE_ALL_SIX_NINE_EPOCHS.md)、[五种公开后端完整结果](PERCEPTUAL_MFT_20261126_ADDITIONAL_PUBLIC_TRACKERS_COMPLETE_ANALYSIS_ZH.md)、[逐身份误差分析](PERCEPTUAL_MFT_20261126_NATIVE_DEV_TRACK_ERRORS.md)继续保留。原NAS恢复中21次额外更新、84帧重放不改写为逻辑轮数或新种子。
 
-最新磁盘工作目录59.983GiB／64GiB，独立空闲2641.638GiB，高于40GiB保留值。只推送小型代码、配置、JSON、CSV、文本及SVG，权重、图片、PNG预览、MOT与特征缓存不推送。[机器状态](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)记录本次时点。
+最新磁盘工作目录60.242GiB／64GiB，独立空闲2640.685GiB，高于40GiB保留值。只推送小型代码、配置、JSON、CSV、文本及SVG，权重、图片、PNG预览、MOT与特征缓存不推送。[机器状态](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_TRAIN_STATUS.json)记录本次时点。

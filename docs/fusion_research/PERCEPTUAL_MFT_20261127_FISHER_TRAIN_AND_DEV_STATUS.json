@@ -1,0 +1,383 @@
+{
+  "status": "TRAIN_FIT_COMPLETE_FORMAL_DEV_NOT_COMPLETE",
+  "UTC": "2026-11-26T16:57:48.133021+00:00",
+  "current_controller_state": {
+    "status": "FISHER_20261127_R1_DEV_NN",
+    "controller_pid": 2536709,
+    "phases": {
+      "FISHER_20261127_R1_GPU_ENGINEERING": {
+        "4": {
+          "id": "4",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2536917,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_GPU_ENGINEERING_4.log",
+          "slot": "4",
+          "exit_code": 0
+        },
+        "5": {
+          "id": "5",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2536918,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_GPU_ENGINEERING_5.log",
+          "slot": "5",
+          "exit_code": 0
+        }
+      },
+      "FISHER_20261127_R1_DEV_NN": {
+        "SN-013": {
+          "id": "SN-013",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "SN-013"
+          ],
+          "status": "RUNNING",
+          "pid": 2537791,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_SN-013.log",
+          "slot": "4"
+        },
+        "BT-005": {
+          "id": "BT-005",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "BT-005"
+          ],
+          "status": "RUNNING",
+          "pid": 2537792,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_BT-005.log",
+          "slot": "5"
+        }
+      }
+    },
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "additional_seed_work": false,
+    "user_priority": "Original direct RGB baseline +5 HOTA; +10 stretch",
+    "supported_innovations": 0,
+    "goal_met": false,
+    "UTC": "2026-11-26T16:58:56.067815+00:00",
+    "phase": "FISHER_20261127_R1_DEV_NN"
+  },
+  "controller_execution_snapshot": {
+    "status": "ACTUAL_PAIRED_FISHER_MEMORY_CONTROLLER_RUNNING",
+    "UTC_started": "2026-11-26T16:56:34.134336+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "/data3/liuyeqiang/IR-MFT/tools/run_mft_fisher_memory.py",
+      "run"
+    ],
+    "source_sha256": "1f1d13bbdd7e76247751c16a9678419f196552c29664b15ef08308773bc01032",
+    "actual_child_exit_code": null,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/fisher_memory_20261127/controller.stdout.txt",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "pipeline_registration_sha256": "183e93df99f86855d2ebe1702f91fe3c0b6d6d36151830d8ab1151b96f507a1c",
+    "identity": {
+      "PID": 2536709,
+      "start_ticks": 97916542,
+      "raw_argv_sha256": "11aefab860d88a7835cde2b3364db147d459e6aeec9a964756fa35ad58bbfbd7",
+      "CUDA_VISIBLE_DEVICES": ""
+    }
+  },
+  "fit_report_sha256": "f625545fcc157f822e3fb518220fe1717bb3892ae12397c5ee1a4bd8dae0408f",
+  "fit_details": {
+    "dimensions": 64,
+    "requested_dimensions": 64,
+    "ridge_fraction": 0.01,
+    "absolute_ridge": 2.6328598694806025e-06,
+    "input_dimensions": 640,
+    "observations": 17266,
+    "video_counts": [
+      {
+        "video": 0,
+        "identities": 10,
+        "observations": 1920
+      },
+      {
+        "video": 1,
+        "identities": 10,
+        "observations": 1920
+      },
+      {
+        "video": 2,
+        "identities": 49,
+        "observations": 9346
+      },
+      {
+        "video": 3,
+        "identities": 2,
+        "observations": 384
+      },
+      {
+        "video": 4,
+        "identities": 13,
+        "observations": 1864
+      },
+      {
+        "video": 5,
+        "identities": 10,
+        "observations": 1832
+      }
+    ],
+    "within_trace": 0.16850303164675856,
+    "between_trace": 0.013557101860487624,
+    "video_local_identity_classes": 94,
+    "inference_uses_video_or_identity_labels": false
+  },
+  "sampled_frames": 1152,
+  "sampled_ROI_observations": 17270,
+  "fitted_ROI_observations": 17266,
+  "canonical_full_Train_video_local_identities": 98,
+  "sampled_identities": 97,
+  "fitted_identities": 94,
+  "excluded_sparse_sampled_identities": [
+    {
+      "video": 5,
+      "identity": 11,
+      "observations": 1,
+      "reason": "Fewer than3 sampled observations cannot support early-fit/late-query identity evidence"
+    },
+    {
+      "video": 5,
+      "identity": 13,
+      "observations": 2,
+      "reason": "Fewer than3 sampled observations cannot support early-fit/late-query identity evidence"
+    },
+    {
+      "video": 5,
+      "identity": 14,
+      "observations": 1,
+      "reason": "Fewer than3 sampled observations cannot support early-fit/late-query identity evidence"
+    }
+  ],
+  "temporal_Train_retrieval": {
+    "raw_RGB": {
+      "rows": [
+        {
+          "video": 0,
+          "queries": 580,
+          "correct": 82,
+          "top1_percent": 14.137931034482758
+        },
+        {
+          "video": 1,
+          "queries": 580,
+          "correct": 107,
+          "top1_percent": 18.448275862068964
+        },
+        {
+          "video": 2,
+          "queries": 2823,
+          "correct": 53,
+          "top1_percent": 1.8774353524619198
+        },
+        {
+          "video": 3,
+          "queries": 116,
+          "correct": 81,
+          "top1_percent": 69.82758620689656
+        },
+        {
+          "video": 4,
+          "queries": 565,
+          "correct": 104,
+          "top1_percent": 18.4070796460177
+        },
+        {
+          "video": 5,
+          "queries": 555,
+          "correct": 143,
+          "top1_percent": 25.765765765765767
+        }
+      ],
+      "queries": 5219,
+      "correct": 570,
+      "equal_video_top1_percent": 24.744012311282276
+    },
+    "raw_IR": {
+      "rows": [
+        {
+          "video": 0,
+          "queries": 580,
+          "correct": 46,
+          "top1_percent": 7.931034482758621
+        },
+        {
+          "video": 1,
+          "queries": 580,
+          "correct": 129,
+          "top1_percent": 22.24137931034483
+        },
+        {
+          "video": 2,
+          "queries": 2823,
+          "correct": 40,
+          "top1_percent": 1.4169323414806942
+        },
+        {
+          "video": 3,
+          "queries": 116,
+          "correct": 62,
+          "top1_percent": 53.44827586206897
+        },
+        {
+          "video": 4,
+          "queries": 565,
+          "correct": 79,
+          "top1_percent": 13.982300884955752
+        },
+        {
+          "video": 5,
+          "queries": 555,
+          "correct": 96,
+          "top1_percent": 17.2972972972973
+        }
+      ],
+      "queries": 5219,
+      "correct": 452,
+      "equal_video_top1_percent": 19.386203363151026
+    },
+    "raw_paired": {
+      "rows": [
+        {
+          "video": 0,
+          "queries": 580,
+          "correct": 62,
+          "top1_percent": 10.689655172413794
+        },
+        {
+          "video": 1,
+          "queries": 580,
+          "correct": 130,
+          "top1_percent": 22.413793103448278
+        },
+        {
+          "video": 2,
+          "queries": 2823,
+          "correct": 57,
+          "top1_percent": 2.0191285866099893
+        },
+        {
+          "video": 3,
+          "queries": 116,
+          "correct": 69,
+          "top1_percent": 59.48275862068966
+        },
+        {
+          "video": 4,
+          "queries": 565,
+          "correct": 113,
+          "top1_percent": 20.0
+        },
+        {
+          "video": 5,
+          "queries": 555,
+          "correct": 141,
+          "top1_percent": 25.405405405405407
+        }
+      ],
+      "queries": 5219,
+      "correct": 572,
+      "equal_video_top1_percent": 23.335123481427857
+    },
+    "early_Train_fitted_Fisher": {
+      "rows": [
+        {
+          "video": 0,
+          "queries": 580,
+          "correct": 97,
+          "top1_percent": 16.724137931034484
+        },
+        {
+          "video": 1,
+          "queries": 580,
+          "correct": 138,
+          "top1_percent": 23.79310344827586
+        },
+        {
+          "video": 2,
+          "queries": 2823,
+          "correct": 52,
+          "top1_percent": 1.8420120439249026
+        },
+        {
+          "video": 3,
+          "queries": 116,
+          "correct": 92,
+          "top1_percent": 79.3103448275862
+        },
+        {
+          "video": 4,
+          "queries": 565,
+          "correct": 164,
+          "top1_percent": 29.02654867256637
+        },
+        {
+          "video": 5,
+          "queries": 555,
+          "correct": 195,
+          "top1_percent": 35.13513513513514
+        }
+      ],
+      "queries": 5219,
+      "correct": 738,
+      "equal_video_top1_percent": 30.97188034308716
+    }
+  },
+  "new_tracking_HOTA": false,
+  "raw_IR_unique_benefit_established": false,
+  "source_RGB_architecture_changed": false,
+  "extra_random_seeds": false,
+  "plus5_target_HOTA": 34.52897068739397,
+  "plus10_target_HOTA": 39.52897068739397,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "actual_GPU_engineering_workers_exit_zero": 2,
+  "all6_real_Train_cache_anchor_RGB_IR_P3_byte_exact": true,
+  "complete_Dev_inference_running": true,
+  "engineering_reports": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_fisher_Train_registration/gpu_engineering_4.json",
+      "sha256": "2d04031e3e77bd4b761b76318882ff9e43382771801c25f88d2b67ccfd9df05f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_fisher_Train_registration/gpu_engineering_5.json",
+      "sha256": "1262f9b61a12056930e5b48e600e7b6e8a061ba4f77a5e1512899c20f2f3d8bd"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "status": "REGISTERED_BEFORE_NEW_IDENTITY_FIT_OR_DEV_PRODUCTION",
+  "user_priority": "Original direct RGB-only YOLOX-X plus ByteTrack; minimum +5 absolute full-Test HOTA, stretch +10. No additional RGB architecture search.",
+  "primary_visual_id": "NP_temporal_ir_e06",
+  "primary_checkpoint_sha256": "33e17d6a408ced3fca838d9dd59a1e906ffabfeb7cabb37098178d1c387810e5",
+  "source_RGB_sha256": "fc27f6bbfb961d409247a765c8704b2dd83121a0160df672933b81d36aa27e46",
+  "actual_IR": "Fixed November DiffV2IR uint8 PNG, unchanged original main plan root and canonical ProtocolV2 split",
+  "fit": {
+    "features": "Reuse existing frozen shared-source RGB/actual-IR P3, stride8, at480x864. Canonical Train GT ROI Align3x3 mean, each branch unit length, concatenate/sqrt2.",
+    "Train_frames_per_video": 192,
+    "Train_videos": 6,
+    "labels": "Canonical video-local Train identity labels; never Dev/Test identity fitting",
+    "dimensions": 64,
+    "ridge_fraction": 0.01,
+    "method": "Regularized Fisher projection, equal video and identity weights. Between-identity scatter centered within each Train video to avoid explicitly rewarding video separation.",
+    "diagnostic": "First70percent of each Train identity's temporal observations fit a diagnostic transform; late30percent retrieval reported separately. Final transform fits all1152 sampled Train frames. This is sampled feature calibration, not full27251-frame NN training.",
+    "new_neural_training": false
+  },
+  "association": {
+    "cost_weights": [0.25, 0.5],
+    "lost_buffers_frames": [25, 250],
+    "feature_policy": "Causal per-track normalized EMA; update only reliable nonoverlapping current observations; bounded foreground descriptor history.",
+    "appearance_distance": "Half cosine distance of Train-fitted paired descriptor; compare with original geometric cost only inside fixed motion gate",
+    "minimum_geometry_IoU": 0.01,
+    "maximum_normalized_center_distance": 4.0,
+    "update_alpha": 0.2,
+    "minimum_update_score": 0.6,
+    "maximum_update_overlap": 0.5,
+    "selection": "Frozen zero plus four Fisher weight/buffer combinations on complete two-video Dev; maximize HOTA, AssA, IDF1, then smaller buffer and weight. A positive Dev gain over identical zero authorizes one preselected full Test; preserve every failure. No per-video policy and no Test tuning."
+  },
+  "engineering": "Exact zero-path detections and MOT; frozen source and fusion bytes; actual cache anchor parity on both permitted GPUs; causal reset and no-future contract before full Dev.",
+  "storage": "Reuse the existing23.45GiB Train maps read-only; no image/FPN copies. New small projection stays local. Dev candidate descriptors may be stored once as bounded compact proposals, never full-frame maps, to avoid repeated NN extraction. No weights/arrays/MOT/image upload.",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "physical_gpus": ["4", "5"],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "goal_met": false,
+  "supported_innovations": 0
+}
