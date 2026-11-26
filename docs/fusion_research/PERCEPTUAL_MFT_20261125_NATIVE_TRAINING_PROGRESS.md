@@ -1,5 +1,7 @@
 # 当前优先目标：原始RGB baseline至少+5 HOTA
 
+最新完整七段Test已完成并核验：原始RGB29.528971，冻结IR主方案29.799525，**仅+0.270555点**，未达+5；新鲜B1 RGB29.820430。IDF1下降、IDSW由450增至487，负结果不删除。[完整Test与分析](PERCEPTUAL_MFT_20261126_NATIVE_PRIMARY_FULL_TEST_ANALYSIS_ZH.md)为当前结果入口。原11个实验worker均实际退出0；旧汇总常数约0.000007点的误差仅做CPU修复，原失败记录保留。原CSV未变，基线显示仍29.529。记忆V3已通过4/5两卡各12帧GPU工程并正在执行三个预登记权重的完整Dev，无新RGB结构或种子；Goal继续active。以下旧状态段落按各自时点保留。
+
 [后续记忆V2与只读Test审计](PERCEPTUAL_MFT_20261126_NATIVE_MEMORY_PRIORITY_V2.md)已准备：在任何新GPU任务前修正官方COMBINED行的布局核验，真实原CSV141字段回归及活跃前序CUDA拒绝检查均通过；旧CPU等待记录保留，模型和三权重不变。V2及独立交付审计均仅CPU等待当前七段Test，当前没有新增完整Test准确率。
 
 [伪红外历史外观匹配的CPU检查与队列](PERCEPTUAL_MFT_20261126_NATIVE_MEMORY_PRIORITY_CPU_READY.md)已完成：四个不同Train帧，零权重包／MOT精确复现，非零记忆实际影响代价，视频切换重置正确。后续仅同一伪红外主模型三个固定权重，不训练新的RGB结构。新控制器仅CPU等待当前七段Test实际退出，实际CUDA入口拒绝检查已通过；正式GPU工程、Dev及新精度仍未开始。该工作不增加创新计数。

@@ -1,0 +1,9 @@
+{"status": "WAITING_FOR_ORIGINAL_PRIMARY_FULL7_TEST_AND_ACTUAL_EXIT", "UTC": "2026-11-26T15:48:05.626307+00:00", "original_phase": "test_original_baseline_priority_20261126_NN", "original_controller": {"PID": 2416500, "same_start_ticks": true, "kernel_state": "S", "raw_argv_sha256": "2da8638f0cf31744fe942f5c02c8fc9019b048a5dfcf93f8e154325ea7aa6350"}, "actual_controller_child_exit_code": null, "phases": {"test_original_baseline_priority_20261126_NN": {"expected": 7, "present": 7, "complete": 2}, "test_original_baseline_priority_20261126_CANONICAL": {"expected": 1, "present": 0, "complete": 0}, "test_original_baseline_priority_20261126_SOURCE_OFFICIAL": {"expected": 2, "present": 0, "complete": 0}, "test_original_baseline_priority_20261126_OFFICIAL": {"expected": 1, "present": 0, "complete": 0}}, "publication_created": false, "GPU_work": false, "Test_accuracy_read": false}
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_original_baseline_priority_test.py", line 298, in <module>
+    main()
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_original_baseline_priority_test.py", line 283, in main
+    ready, _, _ = readiness(work, cases)
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_original_baseline_priority_test.py", line 92, in readiness
+    raise RuntimeError('Preserve the actual original primary Test failure; never restart from this audit.')
+RuntimeError: Preserve the actual original primary Test failure; never restart from this audit.
