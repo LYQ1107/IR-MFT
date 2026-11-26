@@ -1,0 +1,107 @@
+{
+  "status": "OBSERVED_ORIGINAL_FULL_STAGE6_DEV_AND_FROZEN_DECISION_COMPLETE",
+  "UTC": "2026-11-26T02:48:44.008689+00:00",
+  "observer": {
+    "PID": 1563181,
+    "ok": true,
+    "state": "R",
+    "start_ticks": 92138072,
+    "argv_sha256": "6f700d975ab0aae9cac36ca4d09953a3ebff891fa36000d39f70af42fbcaabae",
+    "command": "python3 -u /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_full_dev6_read_only_watch_20261126_r1.py",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "original_controller": {
+    "PID": 1489657,
+    "ok": true,
+    "state": "R",
+    "start_ticks": 91266785,
+    "argv_sha256": "64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47",
+    "command": "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python -u tools/audit_mft_io_resume.py run",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "current_native_phase": "NORMAL_TRAIN_09",
+  "stage6_phases": {
+    "dev_normal_06_NN": {
+      "total": 2,
+      "complete": 2,
+      "failed": 0,
+      "pending": 0
+    },
+    "dev_normal_06_CANONICAL": {
+      "total": 1,
+      "complete": 1,
+      "failed": 0,
+      "pending": 0
+    },
+    "dev_normal_06_SOURCE_OFFICIAL": {
+      "total": 2,
+      "complete": 2,
+      "failed": 0,
+      "pending": 0
+    },
+    "dev_normal_06_OFFICIAL": {
+      "total": 60,
+      "complete": 60,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "active_jobs": [],
+  "stage6_complete_file_exists": true,
+  "stage6_decision": {
+    "completed_stage": 6,
+    "next_stage": 9,
+    "extend_all_six": true,
+    "comparisons": [
+      {
+        "mode": "quality",
+        "cue": "rgb",
+        "earlier_best_HOTA": 49.918,
+        "current_best_HOTA": 49.918,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "quality",
+        "cue": "gray",
+        "earlier_best_HOTA": 48.467,
+        "current_best_HOTA": 49.414,
+        "improvement_pp": 0.9470000000000027
+      },
+      {
+        "mode": "quality",
+        "cue": "ir",
+        "earlier_best_HOTA": 48.061,
+        "current_best_HOTA": 49.703,
+        "improvement_pp": 1.642000000000003
+      },
+      {
+        "mode": "temporal",
+        "cue": "rgb",
+        "earlier_best_HOTA": 47.932,
+        "current_best_HOTA": 48.097,
+        "improvement_pp": 0.16499999999999915
+      },
+      {
+        "mode": "temporal",
+        "cue": "gray",
+        "earlier_best_HOTA": 48.941,
+        "current_best_HOTA": 48.941,
+        "improvement_pp": 0.0
+      },
+      {
+        "mode": "temporal",
+        "cue": "ir",
+        "earlier_best_HOTA": 47.408,
+        "current_best_HOTA": 50.115,
+        "improvement_pp": 2.7070000000000007
+      }
+    ],
+    "numerical_convergence_claim": false,
+    "selection_input_split": "dev"
+  },
+  "no_training_or_GPU_actions": true,
+  "new_accuracy_claimed_by_observer": false,
+  "goal_met": false,
+  "observer_intended_exit_code": 0,
+  "actual_numeric_exit_requires_parent_tool": true
+}
