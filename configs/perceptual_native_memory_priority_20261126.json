@@ -1,0 +1,48 @@
+{
+  "status": "PREREGISTERED_NATIVE_PRIMARY_ONLY_MEMORY_DEV_STUDY_NO_ADDITIONAL_RGB_STRUCTURES",
+  "UTC": "2026-11-26T15:19:07.979454+00:00",
+  "primary_id": "NP_temporal_ir_e06",
+  "parent_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_STAGE9_FULL_DEV.json",
+  "parent_Dev_report_sha256": "874da6913aa24f7840b3cf3c80ba2360e15e37e553d3ecfd4cb4a075e032219e",
+  "original_normal_selection_sha256": "fd3b82e44e499f6e8d4488a5155a2ef55da75b4b4f15e6573307e1c2255857d9",
+  "CPU_probe_input_hw": [
+    320,
+    576
+  ],
+  "formal_input_hw": [
+    800,
+    1440
+  ],
+  "appearance_weights": [
+    0.0,
+    0.05,
+    0.1
+  ],
+  "feature_source": "fused",
+  "quality_policy": "uniform",
+  "minimum_reliability": 0.2,
+  "update_alpha": 0.2,
+  "minimum_IoU": 0.1,
+  "decay_frames": 25.0,
+  "memory": "Current frozen RGB/native/fused stride8 ROIs pooled online; causal per-track unit-vector EMA, never a disk feature bank.",
+  "cost": "Only primary ByteTrack association cost receives the existing bounded cosine penalty. Geometry, detector, score thresholds and subsequent association stages stay original.",
+  "new_NN_training": false,
+  "new_RGB_or_gray_architectures": false,
+  "attention_gate_calibration_claim": false,
+  "selection": "Complete two-video Dev, all3 fixed weights; maximize full-precision HOTA, AssA, IDF1, then prefer smaller weight. No Test scores or threshold search.",
+  "promotion": "Only a positive Dev improvement over the identical zero-weight visual parent may authorize a new memory Test; all negative Dev retained.",
+  "release": "Actual original-baseline priority Test controller/worker exits and saved complete outputs, followed by actual GPU Train engineering on physical4/5. Current Test retains exclusive GPU ownership.",
+  "scope": "Reduced current user priority; original broader F4 both-family/control/removal protocol is deferred and will not be falsely marked complete.",
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "no_feature_image_or_weight_disk_copies": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}
