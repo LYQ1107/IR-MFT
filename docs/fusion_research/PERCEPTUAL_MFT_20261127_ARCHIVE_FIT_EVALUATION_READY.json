@@ -1,0 +1,534 @@
+{
+  "status": "COMPLETE_INDEPENDENTLY_AUDITED_ARCHIVE_FIT_FULL_DEV_CONTROLLER_WAITING_PREDECESSORS",
+  "UTC": "2026-11-26T22:34:15.561191+00:00",
+  "observation_UTC": "2026-11-26T22:33:57.762405+00:00",
+  "fixed_original_RGB_Test_HOTA": 29.528970687393972,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "stretch_target_Test_HOTA": 39.52897068739397,
+  "latest_formal_Test_HOTA": 29.955069130617183,
+  "latest_formal_gain_over_original_RGB_pp": 0.42609844322321067,
+  "remaining_to_plus5_pp": 4.573901556776789,
+  "mechanism": "Actual matching-pool departure followed by separately trained archive-to-current-tracklet reasoning; up to32frames after first output may resolve current/future identity only. No prefix rewriting or tracker lifetime extension.",
+  "Train_fit": {
+    "frames": 27251,
+    "sequences": 6,
+    "proposals": 249639,
+    "early_known_edges": 12951,
+    "early_positive_edges": 1558,
+    "early_negative_edges": 11393,
+    "late_counts": {
+      "RGB": {
+        "known": 4961,
+        "positive": 544,
+        "negative": 4417
+      },
+      "paired": {
+        "known": 4961,
+        "positive": 544,
+        "negative": 4417
+      }
+    },
+    "RAM_feature_payload_bytes": 1934496,
+    "RAM_feature_payload_cap_bytes": 134217728,
+    "feature_pair_disk_dump": false,
+    "truncated_pairs": 0,
+    "fitted_models": [
+      "RGB",
+      "paired"
+    ],
+    "optimizer_updates_per_model": 6,
+    "fixed_seed": 0,
+    "actual_worker_exit": 0,
+    "actual_fit_tool_chunk": "68e901",
+    "supervised_Dev_rows": 0,
+    "supervised_Test_rows": 0,
+    "all_Train_frames_and_proposals_delivered": true,
+    "original_teacher_MOT_exact": true,
+    "thresholds": {
+      "RGB": {
+        "q99": 0.9767399671870625,
+        "q999": 0.9906120040181262
+      },
+      "paired": {
+        "q99": 0.9709795065446102,
+        "q999": 0.9830861413180398
+      }
+    },
+    "model_sha256": "746336c5bac6b5c907c6765a3b71103bfe8804d97dbc48e3c46bfe44266eae7c",
+    "source_registration_sha256": "2a031aa47e045563aac10a7e8c4588f3db87f1082b7ab34cd0f033f61ab4ce3b",
+    "frozen_Train_sources": 498,
+    "seconds": 196.36725809797645,
+    "coefficients_means_and_scales_private": true,
+    "encoder_seen_Train_identities": true
+  },
+  "independent_Train_audit": {
+    "actual_worker_exit": 0,
+    "actual_tool_chunk": "edfa45",
+    "frames": 27251,
+    "feature_target_packets_exact": true,
+    "teacher_MOT_exact": true,
+    "normalization_rebuilt": true,
+    "independent_final_objective_gradient": {
+      "RGB": {
+        "weighted_objective_after_final_step": 0.32548937200200906,
+        "gradient_norm": 1.659024561184825e-09,
+        "weight": 0.9999999999999967,
+        "thresholds": {
+          "q99": 0.9767399671870625,
+          "q999": 0.9906120040181262
+        },
+        "late_calibration_counts": {
+          "known": 4961,
+          "positive": 544,
+          "negative": 4417
+        },
+        "normalization_rebuilt_and_exact_within_2e_minus12": true,
+        "coefficients_unchanged": true,
+        "independent_numerical_path": true
+      },
+      "paired": {
+        "weighted_objective_after_final_step": 0.3113906663234999,
+        "gradient_norm": 1.5784868398517087e-08,
+        "weight": 0.9999999999999967,
+        "thresholds": {
+          "q99": 0.9709795065446102,
+          "q999": 0.9830861413180398
+        },
+        "late_calibration_counts": {
+          "known": 4961,
+          "positive": 544,
+          "negative": 4417
+        },
+        "normalization_rebuilt_and_exact_within_2e_minus12": true,
+        "coefficients_unchanged": true,
+        "independent_numerical_path": true
+      }
+    },
+    "model_bytes_unchanged": true,
+    "new_optimizer_steps": 0,
+    "new_models": 0,
+    "source_registration_sha256": "1c2f5d0e011b14bfaf0b0cad9a8f59addef4a3ba7ce92b5f3204a862430d52ce"
+  },
+  "checks": {
+    "causal_module_tests_passed": 5,
+    "matched_control_tests_passed": 3,
+    "numerical_auditor_tests_passed": 2,
+    "actual_test_tools": [
+      "d27242",
+      "3500ad",
+      "6b54ab"
+    ],
+    "actual_test_exits": [
+      0,
+      0,
+      0
+    ],
+    "real_all6_Train_engineering_actual_exit": 0,
+    "real_Train_engineering_frames": 768,
+    "actual_engineering_tool_chunk": "1af79c",
+    "both_CLI_actual_exits_zero": true
+  },
+  "full_Dev_plan": {
+    "registration_sha256": "b677235859b236e5cc5713a1b3d5bedb031fcd9c6506afeac653d08b45278c3a",
+    "frozen_sources": 506,
+    "normal_cases": [
+      {
+        "id": "AR_native_zero",
+        "kind": "reference_native",
+        "quantile": null,
+        "shape": false
+      },
+      {
+        "id": "AR_fixed_RGB_late",
+        "kind": "reference_late",
+        "quantile": null,
+        "shape": false
+      },
+      {
+        "id": "AR_fixed_RGB_late_shape",
+        "kind": "reference_pose",
+        "quantile": null,
+        "shape": true
+      },
+      {
+        "id": "AR_RGB_q99",
+        "kind": "RGB",
+        "quantile": "q99",
+        "shape": false
+      },
+      {
+        "id": "AR_paired_q99",
+        "kind": "paired",
+        "quantile": "q99",
+        "shape": false
+      },
+      {
+        "id": "AR_RGB_q99_shape",
+        "kind": "RGB",
+        "quantile": "q99",
+        "shape": true
+      },
+      {
+        "id": "AR_paired_q99_shape",
+        "kind": "paired",
+        "quantile": "q99",
+        "shape": true
+      },
+      {
+        "id": "AR_RGB_q999",
+        "kind": "RGB",
+        "quantile": "q999",
+        "shape": false
+      },
+      {
+        "id": "AR_paired_q999",
+        "kind": "paired",
+        "quantile": "q999",
+        "shape": false
+      },
+      {
+        "id": "AR_RGB_q999_shape",
+        "kind": "RGB",
+        "quantile": "q999",
+        "shape": true
+      },
+      {
+        "id": "AR_paired_q999_shape",
+        "kind": "paired",
+        "quantile": "q999",
+        "shape": true
+      }
+    ],
+    "cases": 11,
+    "models_shared_across_all_cases": true,
+    "controller": {
+      "state": "WAITING_ACTUAL_ARCHIVE_FIT_AND_COMPLETE_SELECTIVE_STUDY",
+      "actual_exit": null,
+      "live": {
+        "PID": 2892320,
+        "start_ticks": 99902380,
+        "raw_argv_sha256": "2e2be99796e7cdff3599c9f9ead01a60600b4eb9cfe4a795544a9adc8680a17d",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "jobs": []
+    },
+    "wait_for_selective_actual_exit_zero": true,
+    "prior_gate": "Maximum fullDev best HOTA of pose,risk,selective; no current parent Test scores used",
+    "all3_reference_MOT_and_all47_exact_required": true,
+    "all_matched_shape_ID_score_order_checks_required": true,
+    "missing_IR_and_current_frame_roll_controls_frozen_after_selection_before_Test": true,
+    "missing_IR_fullMOT_and_all47_equals_matched_RGB_required": true,
+    "full_Test_if_Dev_gain": "All7Test15985frames,chosen method,matched RGB/paired identity control,and2 frozen references",
+    "Test_selection": false,
+    "new_accuracy": false
+  },
+  "unchanged_parent_risk": {
+    "state": "CANDIDATE_RISK_CPU_FIT",
+    "actual_exit": null,
+    "fit_progress": {
+      "phase": "late_Train_calibration",
+      "sequence": "SN-015",
+      "frame": 4500,
+      "frames": 6570,
+      "seconds": 2347.9535607540747,
+      "GT_split": "train",
+      "GPU_work": false,
+      "new_tracking_accuracy": false
+    },
+    "frozen_sources_checked": 486
+  },
+  "unchanged_selective_protection": {
+    "state": "WAITING_UNCHANGED_PARENT_RISK_COMPLETE",
+    "actual_exit": null,
+    "frozen_sources_checked": 498
+  },
+  "resources": {
+    "work_GiB": 61.79859739728272,
+    "work_cap_GiB": 64,
+    "free_GiB": 2638.2573776245117,
+    "free_reserve_GiB": 40,
+    "physical_GPUs_used_for_reused_banks": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "new_GPU_work": false,
+    "new_NN_fits": 0
+  },
+  "limitations": [
+    "No new Dev or Test tracking result is available in this report; final training gradients are not HOTA gains.",
+    "Lower paired Train loss is not proof of independent IR benefit,generalization,novelty or2-3 supported contributions.",
+    "Quantiles calibrate observed wrong candidate edges,not a bound on episode-level false links or future tracking errors.",
+    "Frozen encoders previously saw these Train identities; lateTrain calibration is not a heldout-encoder evaluation.",
+    "RGB identity controls retain the same fixed pseudoIR visual detector; whole IR contribution needs separate detector controls.",
+    "Historical Test exposure remains; current/future IDs only are changed,never past outputs.",
+    "CachedCPU replay and training times exclude encoder,image IO,pseudoIR generation and end-to-end tracker costs."
+  ],
+  "historical_Test_previously_exposed": true,
+  "source_detector_historical_Dev_exposure": true,
+  "pseudoIR_is_existing_RGB_derived_DiffV2IR": true,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "lightweight_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/CPU_regressions_r1.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/CPU_regressions_r1.json",
+      "sha256": "6e327702e11fb8997c3a4e743949260199f66f6d56e5a49d6968c38a22ec34a8",
+      "source_sha256": "6e327702e11fb8997c3a4e743949260199f66f6d56e5a49d6968c38a22ec34a8",
+      "bytes": 810
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/CPU_regressions_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/CPU_regressions_r1.stdout.txt",
+      "sha256": "e9057e91facc7e5cb00b60667cb0f4b6846911f414a343497636f791c5587c60",
+      "source_sha256": "e9057e91facc7e5cb00b60667cb0f4b6846911f414a343497636f791c5587c60",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/CPU_regressions_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "4216cc7bd4f4b3002bab87264805938a30ca75d8e1703c49e150a6efd13680cf",
+      "source_sha256": "4216cc7bd4f4b3002bab87264805938a30ca75d8e1703c49e150a6efd13680cf",
+      "bytes": 1181
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/CLI_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/CLI_r1.actual_tool_reply.json",
+      "sha256": "43db1d1b8917d71ef0da872746e48aca807de592666733632e1cb0fd9dab9eb0",
+      "source_sha256": "43db1d1b8917d71ef0da872746e48aca807de592666733632e1cb0fd9dab9eb0",
+      "bytes": 389
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/CPU_real_Train_engineering.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/CPU_real_Train_engineering.json",
+      "sha256": "0873987580de76861c8000c85394b2eb51d71052b13b5d75ec162f74db2f1e5a",
+      "source_sha256": "0873987580de76861c8000c85394b2eb51d71052b13b5d75ec162f74db2f1e5a",
+      "bytes": 67552
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/engineering_r1.execution.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/engineering_r1.execution.json",
+      "sha256": "bd3785cf54a159af6a476669dee3ce2cd80317dfb969e7a82153e8ec3edf8ad9",
+      "source_sha256": "bd3785cf54a159af6a476669dee3ce2cd80317dfb969e7a82153e8ec3edf8ad9",
+      "bytes": 1718
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/engineering_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/engineering_r1.actual_tool_reply.json",
+      "sha256": "17c6175396d766e809216e08a65ec35882cb100f77c5d1f7341cfc910000c39e",
+      "source_sha256": "17c6175396d766e809216e08a65ec35882cb100f77c5d1f7341cfc910000c39e",
+      "bytes": 1799
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/engineering_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/engineering_r1.stdout.txt",
+      "sha256": "c38a1aa469b4a105c50d3c5204857d83acb8c5ae9e8061094b4603aca00f85f5",
+      "source_sha256": "c38a1aa469b4a105c50d3c5204857d83acb8c5ae9e8061094b4603aca00f85f5",
+      "bytes": 74
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_registered.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_registered.json",
+      "sha256": "2a031aa47e045563aac10a7e8c4588f3db87f1082b7ab34cd0f033f61ab4ce3b",
+      "source_sha256": "2a031aa47e045563aac10a7e8c4588f3db87f1082b7ab34cd0f033f61ab4ce3b",
+      "bytes": 66010
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/registration_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/registration_r1.actual_tool_reply.json",
+      "sha256": "4b4ae036361ee0ec912716dfa3599d78741a883a7af7e56174271c2bb524d408",
+      "source_sha256": "4b4ae036361ee0ec912716dfa3599d78741a883a7af7e56174271c2bb524d408",
+      "bytes": 253
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_complete.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_complete.json",
+      "sha256": "ee6ecee864d5e684d2be0544924fa996a52820bf913c6be3edcc06ecb4df1f22",
+      "source_sha256": "ee6ecee864d5e684d2be0544924fa996a52820bf913c6be3edcc06ecb4df1f22",
+      "bytes": 2890
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/Train_archive_coverage.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/Train_archive_coverage.json",
+      "sha256": "23abed9275d4a3139a3d0a15a3cfb75a8a2522fc5e20fc23c314f38f6b2a641b",
+      "source_sha256": "23abed9275d4a3139a3d0a15a3cfb75a8a2522fc5e20fc23c314f38f6b2a641b",
+      "bytes": 9153
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_history.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_history.json",
+      "sha256": "68472bf359f053ce7aa094da9d88cc73357c6f0f36d3f1718c682ff5ae1b8150",
+      "source_sha256": "68472bf359f053ce7aa094da9d88cc73357c6f0f36d3f1718c682ff5ae1b8150",
+      "bytes": 4139
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_r1.execution.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_r1.execution.json",
+      "sha256": "50750e93b35ad41b4c7fb213f672f8f27ebfa2f2d808bc13717867c80e3e5a32",
+      "source_sha256": "50750e93b35ad41b4c7fb213f672f8f27ebfa2f2d808bc13717867c80e3e5a32",
+      "bytes": 1587
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_r1.actual_tool_reply.json",
+      "sha256": "bfc2ca40b7c9dc3c2a1dc581518ba96856c900240d134860dbbf50c3ed38c7bd",
+      "source_sha256": "bfc2ca40b7c9dc3c2a1dc581518ba96856c900240d134860dbbf50c3ed38c7bd",
+      "bytes": 1684
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/fit_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/fit_r1.stdout.txt",
+      "sha256": "8b89e94804c63e613999eaac4c5c6ad95114b8894d24d8903e6f810faf1b35db",
+      "source_sha256": "8b89e94804c63e613999eaac4c5c6ad95114b8894d24d8903e6f810faf1b35db",
+      "bytes": 4357
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_registered.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_registered.json",
+      "sha256": "1c2f5d0e011b14bfaf0b0cad9a8f59addef4a3ba7ce92b5f3204a862430d52ce",
+      "source_sha256": "1c2f5d0e011b14bfaf0b0cad9a8f59addef4a3ba7ce92b5f3204a862430d52ce",
+      "bytes": 1512
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_CPU_regressions_r1.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_CPU_regressions_r1.json",
+      "sha256": "787eaef7b93ad992a219c3230529f1ce05ee1a3b6adeac579cca405767abc214",
+      "source_sha256": "787eaef7b93ad992a219c3230529f1ce05ee1a3b6adeac579cca405767abc214",
+      "bytes": 585
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_CPU_regressions_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_CPU_regressions_r1.stdout.txt",
+      "sha256": "8b538140d602e8f0a7a2a9369a46c96c3f20cdfe7b7839ae7ef8641f55cd1452",
+      "source_sha256": "8b538140d602e8f0a7a2a9369a46c96c3f20cdfe7b7839ae7ef8641f55cd1452",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_CPU_regressions_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "44cfe3397a8230f6044f05f90c99d619a1f1fce5aac966fb4f710b6fd0902e72",
+      "source_sha256": "44cfe3397a8230f6044f05f90c99d619a1f1fce5aac966fb4f710b6fd0902e72",
+      "bytes": 1181
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_registration_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_registration_r1.actual_tool_reply.json",
+      "sha256": "e049c8a05835b7b8989998242316c00f5f21c71ffea33b30d039f50f2c26fa9c",
+      "source_sha256": "e049c8a05835b7b8989998242316c00f5f21c71ffea33b30d039f50f2c26fa9c",
+      "bytes": 211
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_Train_fit_audit.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_Train_fit_audit.json",
+      "sha256": "52721e35caca596e26000c28714e8613b12949e3c88dcf1ba5e8514af274e6ba",
+      "source_sha256": "52721e35caca596e26000c28714e8613b12949e3c88dcf1ba5e8514af274e6ba",
+      "bytes": 4765
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_r1.execution.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_r1.execution.json",
+      "sha256": "5505441da4d3552f11ae48c268fada30efcb193fc7db48376a642785e928227d",
+      "source_sha256": "5505441da4d3552f11ae48c268fada30efcb193fc7db48376a642785e928227d",
+      "bytes": 1361
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_r1.actual_tool_reply.json",
+      "sha256": "474f3a016f5018867c60ad27c34c3460409e89b44e1622bf00b8615f66165e26",
+      "source_sha256": "474f3a016f5018867c60ad27c34c3460409e89b44e1622bf00b8615f66165e26",
+      "bytes": 1457
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit_r1.stdout.txt",
+      "sha256": "065a1f38b316d2e26fb7baa18b37f368391554b036cc2e2b89d4256d3cda9144",
+      "source_sha256": "065a1f38b316d2e26fb7baa18b37f368391554b036cc2e2b89d4256d3cda9144",
+      "bytes": 171
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/worker.supervisor.py.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/worker.supervisor_r1.py",
+      "sha256": "68a6119d703b1110c0a54a9ebdaaf3f248a61ff065155f6e7ed0037f603496e8",
+      "source_sha256": "68a6119d703b1110c0a54a9ebdaaf3f248a61ff065155f6e7ed0037f603496e8",
+      "bytes": 2802
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/Train/independent_audit.supervisor.py.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_20261127/independent_audit.supervisor_r1.py",
+      "sha256": "a0daa6a453153ebacc6aa1706795208f163261c4713d21d12fa049d4841ff01d",
+      "source_sha256": "a0daa6a453153ebacc6aa1706795208f163261c4713d21d12fa049d4841ff01d",
+      "bytes": 2638
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/CPU_regressions_r1.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/CPU_regressions_r1.json",
+      "sha256": "1ec80973ff39a91a0c4826668124d432f1ebed0147dd9204c8d1976fb50562d4",
+      "source_sha256": "1ec80973ff39a91a0c4826668124d432f1ebed0147dd9204c8d1976fb50562d4",
+      "bytes": 679
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/CPU_regressions_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/CPU_regressions_r1.stdout.txt",
+      "sha256": "b67d2b2a1618ca5b5d747d9b5337a40f878914f6b8b86f1b25f638f53446e62e",
+      "source_sha256": "b67d2b2a1618ca5b5d747d9b5337a40f878914f6b8b86f1b25f638f53446e62e",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/CPU_regressions_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "0d4f0b23a524e93238ad678df775544ec44a5eb852849e5f2aa46b3ace1ffcef",
+      "source_sha256": "0d4f0b23a524e93238ad678df775544ec44a5eb852849e5f2aa46b3ace1ffcef",
+      "bytes": 1182
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/CLI_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/CLI_r1.actual_tool_reply.json",
+      "sha256": "3382ea1b323ddb496997a91ff2b440e33bbcd4efc0b0658d3e3008b010662b56",
+      "source_sha256": "3382ea1b323ddb496997a91ff2b440e33bbcd4efc0b0658d3e3008b010662b56",
+      "bytes": 745
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/pipeline_registered.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/pipeline_registered.json",
+      "sha256": "b677235859b236e5cc5713a1b3d5bedb031fcd9c6506afeac653d08b45278c3a",
+      "source_sha256": "b677235859b236e5cc5713a1b3d5bedb031fcd9c6506afeac653d08b45278c3a",
+      "bytes": 64259
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/registration_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/registration_r1.actual_tool_reply.json",
+      "sha256": "36fc75ab90a8655e392d55c9bad88eee9886d5d9c9410cd06c3ea8296923c7d9",
+      "source_sha256": "36fc75ab90a8655e392d55c9bad88eee9886d5d9c9410cd06c3ea8296923c7d9",
+      "bytes": 230
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/controller_execution_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/controller.execution.json",
+      "sha256": "0286ef973ba4600d23c60854823194d28172bca093a0a4ad85063323849d9f22",
+      "source_sha256": "0286ef973ba4600d23c60854823194d28172bca093a0a4ad85063323849d9f22",
+      "bytes": 1303
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/state_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/state.json",
+      "sha256": "97624943f22a0c70de59874d733c3a46371e73654accfab5cb00a2abd9031c97",
+      "source_sha256": "97624943f22a0c70de59874d733c3a46371e73654accfab5cb00a2abd9031c97",
+      "bytes": 544
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/evaluation/controller.supervisor.py.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127/controller.supervisor_r1.py",
+      "sha256": "466d640520beac325f6f342027307bf7cc429c71dd06c28d40ad36ef21776028",
+      "source_sha256": "466d640520beac325f6f342027307bf7cc429c71dd06c28d40ad36ef21776028",
+      "bytes": 2775
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_archive_fit_evaluation_ready/all_live_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/live_observation_latest.json",
+      "sha256": "7560645bc95dc70d1a803e2860cecdd2da13313ae314597e3eb766ad5a30f761",
+      "source_sha256": "7560645bc95dc70d1a803e2860cecdd2da13313ae314597e3eb766ad5a30f761",
+      "bytes": 7917
+    }
+  ]
+}

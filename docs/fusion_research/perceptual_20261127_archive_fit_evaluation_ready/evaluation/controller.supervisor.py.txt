@@ -1,0 +1,47 @@
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+root=Path('/data3/liuyeqiang/IR-MFT')
+base=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/archive_reasoning_evaluation_20261127')
+source=root/'tools/run_mft_archive_reasoning.py'
+command=[sys.executable,'-u',str(source),'run']
+assert os.environ.get('CUDA_VISIBLE_DEVICES')==''
+assert(base/'pipeline_registered.json').exists()
+target=base/'controller.execution.json';log=base/'controller.stdout.txt'
+assert not target.exists()and not log.exists()
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def save(value):
+    temporary=target.with_suffix('.tmp.json');temporary.write_text(json.dumps(value,indent=2)+'\n');os.replace(temporary,target)
+started=time.monotonic();source_sha=sha(source);observations=[]
+with log.open('xb',buffering=0)as stream:
+    process=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
+    expected=b'\0'.join(os.fsencode(s)for s in command)+b'\0'
+    for _ in range(100):
+        proc=Path('/proc')/str(process.pid);raw=(proc/'cmdline').read_bytes()
+        observations.append(dict(bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
+        if raw==expected:
+            fields=(proc/'stat').read_text().rsplit(') ',1)[1].split()
+            visible=next((v.decode().split('=',1)[1]for v in(proc/'environ').read_bytes().split(b'\0')if v.startswith(b'CUDA_VISIBLE_DEVICES=')),None)
+            assert visible==''
+            actual=dict(PID=process.pid,start_ticks=int(fields[19]),raw_argv_sha256=hashlib.sha256(raw).hexdigest(),CUDA_VISIBLE_DEVICES=visible)
+            break
+        time.sleep(.01)
+    else:raise RuntimeError('Actual archive controller argv was not observed; preserve child')
+    value=dict(status='ACTUAL_CPU_ARCHIVE_REASONING_CONTROLLER_WAITING_OR_RUNNING',UTC_started=utc(),command=command,
+        source_sha256=source_sha,supervisor_sha256=sha(Path(__file__)),actual_child_exit_code=None,
+        identity=actual,startup_argv_snapshots=observations,log=str(log),GPU_work=False,
+        fixed_seed=0,GPU_usage_scope='No new GPU work; reuse completed GPU4/5 candidate banks',
+        pipeline_registration_sha256=sha(base/'pipeline_registered.json'))
+    save(value);print(json.dumps(value),flush=True)
+    code=process.wait()
+value.update(status='CLOSED_ACTUAL_ARCHIVE_REASONING_CONTROLLER',actual_child_exit_code=code,UTC_finished=utc(),
+    runtime_seconds=time.monotonic()-started,source_unchanged=sha(source)==source_sha)
+save(value);print(json.dumps(value),flush=True)
+raise SystemExit(code if value['source_unchanged']else 1)

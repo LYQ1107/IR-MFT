@@ -1,0 +1,95 @@
+{
+  "status": "ARCHIVE_FULL_DEV_PROTOCOL_BEFORE_NEW_DEV",
+  "fixed_baseline_Test_HOTA": 29.528970687393972,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "stretch_target_Test_HOTA": 39.52897068739397,
+  "complete_Dev_cases": [
+    {
+      "id": "AR_native_zero",
+      "kind": "reference_native",
+      "quantile": null,
+      "shape": false
+    },
+    {
+      "id": "AR_fixed_RGB_late",
+      "kind": "reference_late",
+      "quantile": null,
+      "shape": false
+    },
+    {
+      "id": "AR_fixed_RGB_late_shape",
+      "kind": "reference_pose",
+      "quantile": null,
+      "shape": true
+    },
+    {
+      "id": "AR_RGB_q99",
+      "kind": "RGB",
+      "quantile": "q99",
+      "shape": false
+    },
+    {
+      "id": "AR_paired_q99",
+      "kind": "paired",
+      "quantile": "q99",
+      "shape": false
+    },
+    {
+      "id": "AR_RGB_q99_shape",
+      "kind": "RGB",
+      "quantile": "q99",
+      "shape": true
+    },
+    {
+      "id": "AR_paired_q99_shape",
+      "kind": "paired",
+      "quantile": "q99",
+      "shape": true
+    },
+    {
+      "id": "AR_RGB_q999",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": false
+    },
+    {
+      "id": "AR_paired_q999",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": false
+    },
+    {
+      "id": "AR_RGB_q999_shape",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": true
+    },
+    {
+      "id": "AR_paired_q999_shape",
+      "kind": "paired",
+      "quantile": "q999",
+      "shape": true
+    }
+  ],
+  "selection": "Full4834-frame official combined HOTA,then AssA,then IDF1,then lexical case ID. Strictly exceed maximum frozen prior pose/risk/selective Dev best HOTA by1e-8 before any new Test.",
+  "predecessors": "Actual all6Train archive fit and selective-protection controller exit0 with unchanged sources. Final fitted-model hashes and all prior complete-Dev references are frozen before new Dev.",
+  "controls": "Original native IR detector tracking; fixed RGB late links; fixed shape/late control; matched RGB/paired archive models at Train wrong-edge q99/q999,with/without shape. Same models,frames,detector,encoders,seed. Only1fit per RGB/paired,not eleven separate fits.",
+  "interventions": "If normalDev improves,freeze selection first. Then fullDev missing IR and within-current-frame cyclic proposal IR permutation on matched paired model. MissingIR fullMOT and all47 must equal matched RGB. Never use intervention results to reselect.",
+  "full_Test": "All7Test15985frames,one frozen policy; native reference,shape/late reference,chosen learned method,and matched opposite identity modality model. Reparse original canonical CSV unchanged. No Test threshold/sequence routing.",
+  "shape_limit": "Shape rendering never feeds back; every matched filtered/current-shape pair must preserve all frame/identity/score/order. Different geometric GT matching may change AssA or IDF1.",
+  "fit_reused": "Separate archive models only; never assume short-gap risk logits calibrated for long gaps.",
+  "runtime_scope": "Reuse completed paired ROI banks; cachedCPU replay excludes neural,image and pseudoIR generation costs.",
+  "fixed_seed": 0,
+  "new_GPU_work": false,
+  "physical_GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "model_coefficients_or_normalization_public": false,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}
