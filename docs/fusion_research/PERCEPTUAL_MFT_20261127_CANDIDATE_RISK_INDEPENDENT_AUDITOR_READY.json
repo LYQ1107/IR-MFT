@@ -1,0 +1,403 @@
+{
+  "status": "INDEPENDENT_AUDITOR_REGISTERED_AND_LIVE_WAITING_NO_NEW_FIT_OR_ACCURACY",
+  "UTC": "2026-11-26T21:12:49.169389+00:00",
+  "observation_UTC": "2026-11-26T21:12:34.122623+00:00",
+  "fixed_baseline_Test_HOTA": 29.528970687393972,
+  "minimum_Test_HOTA": 34.52897068739397,
+  "stretch_Test_HOTA": 39.52897068739397,
+  "latest_formal_Test_HOTA": 29.955069130617183,
+  "latest_formal_gain_over_original_RGB_pp": 0.42609844322321067,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "new_code": {
+    "entrypoint": "tools/audit_mft_candidate_risk.py",
+    "fit_checker": "tools/mft_candidate_risk_fit_audit.py",
+    "tests": "tests/test_mft_candidate_risk_fit_audit.py",
+    "source_hashes": {
+      "tools/audit_mft_candidate_risk.py": "fe86504eb3b59edb41de2cd92479fdc707dd5a7ebe87274198ff4f8501ecaee8",
+      "tools/mft_candidate_risk_fit_audit.py": "a696ddffcab9777523a02d2855c7da7c3765e849a15ea15624e29e29776f06ce",
+      "tests/test_mft_candidate_risk_fit_audit.py": "5afafc1b25ec4577483c21ba785963647301c690cf464f392187c53a7450e146"
+    },
+    "registered_sha256": "90c0f069b698e936dc7b3a402210eadac7bd046b336295ff92fddf848fd8a17a",
+    "original_risk_pipeline_sources_verified": 486,
+    "independent_auditor_sources_verified": 3,
+    "additional_CPU_tests_passed": 2,
+    "actual_additional_CPU_test_exit": 0,
+    "actual_test_chunk_id": "f08249",
+    "actual_auditor_registration_exit": 0,
+    "original22_tests_risk_pipeline_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_CANDIDATE_RISK_REGISTERED_PIPELINE.json"
+  },
+  "live_controllers": {
+    "bank": {
+      "state": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+      "actual_exit": null,
+      "live": {
+        "PID": 2741594,
+        "start_ticks": 99068203,
+        "raw_argv_sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "jobs": [
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+          "id": "4",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "4",
+          "live": null
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+          "id": "5",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "5",
+          "live": null
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "PF-001",
+          "status": "RUNNING",
+          "actual_exit": null,
+          "slot": "4",
+          "live": {
+            "PID": 2742946,
+            "start_ticks": 99077612,
+            "raw_argv_sha256": "e4cecb743832fa4adfe9f0fc0acfa24bbfb9efee5251dacecbd8f2dd53061ac9",
+            "CUDA_VISIBLE_DEVICES": "4",
+            "kernel_state": "R"
+          }
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "SN-015",
+          "status": "COMPLETE",
+          "actual_exit": 0,
+          "slot": "5",
+          "live": null
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "BT-001",
+          "status": "RUNNING",
+          "actual_exit": null,
+          "slot": "5",
+          "live": {
+            "PID": 2789976,
+            "start_ticks": 99365513,
+            "raw_argv_sha256": "b29e68985c7800d82c2418d76e3b9f089882127b8d47dc410dcb63dfcc8fe1b6",
+            "CUDA_VISIBLE_DEVICES": "5",
+            "kernel_state": "D"
+          }
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "MSK-002",
+          "status": "PENDING",
+          "actual_exit": null,
+          "slot": null,
+          "live": null
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "SN-001",
+          "status": "PENDING",
+          "actual_exit": null,
+          "slot": null,
+          "live": null
+        },
+        {
+          "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+          "id": "BT-003",
+          "status": "PENDING",
+          "actual_exit": null,
+          "slot": null,
+          "live": null
+        }
+      ]
+    },
+    "risk": {
+      "state": "WAITING_EXISTING_TWO_GPU_ALL6_TRAIN_BANK",
+      "actual_exit": null,
+      "live": {
+        "PID": 2785342,
+        "start_ticks": 99342520,
+        "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "jobs": []
+    },
+    "auditor": {
+      "actual_exit": null,
+      "live": {
+        "PID": 2799652,
+        "start_ticks": 99428955,
+        "raw_argv_sha256": "c770729a463dc5ff75fef06bf87af9cc1d39f34756cbfe66ba7a1ea172953aa5",
+        "CUDA_VISIBLE_DEVICES": "",
+        "kernel_state": "S"
+      },
+      "progress": {
+        "status": "WAITING_ORIGINAL_RISK_CONTROLLER",
+        "UTC": "2026-11-26T21:12:30.882545+00:00",
+        "original_controller_live": {
+          "PID": 2785342,
+          "start_ticks": 99342520,
+          "kernel_state": "S",
+          "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965"
+        },
+        "new_GPU_work": false
+      }
+    }
+  },
+  "completed_first_Train_bank": {
+    "status": "INDEPENDENT_STORAGE_AUDIT_FIRST_COMPLETE_REAL_TRAIN_BANK",
+    "sequence": "SN-015",
+    "frames": 6570,
+    "proposals": 73023,
+    "uncompressed_payload_bytes": 151116692,
+    "compressed_bytes": 138684450,
+    "bank_sha256": "b87f5ed82f66dfd33cb2f2a5f4ba300c895367f317d2f7bc6093173a4a34a714",
+    "producer_actual_exit": 0,
+    "maximum_stored_FP16_unit_norm_error": {
+      "rgb": 7.11679458618164e-05,
+      "ir": 6.902217864990234e-05
+    },
+    "GT_file_read": false,
+    "teacher_or_risk_model_executed": false,
+    "new_fitted_models": 0,
+    "new_accuracy": false
+  },
+  "planned_audit": {
+    "only_after_original_controller_exit_zero": true,
+    "all_Train_sequences": 6,
+    "all_Train_frames": 27251,
+    "rebuild_early_feature_targets_and_statistics": true,
+    "rebuild_late_calibration_and_thresholds": true,
+    "calculate_final_gradient_and_Newton_direction_without_step": true,
+    "assert_model_coefficients_and_bytes_unchanged": true,
+    "exclude_mean_scale_and_coefficients_from_publication": true,
+    "original_CSV_columns": 276,
+    "aggregate_official_metrics": 47,
+    "expected_Dev_numeric_fields_if_complete": 1410,
+    "expected_Test_numeric_fields_if_selected_and_complete": 2632,
+    "actual_new_Train_audit_complete": false,
+    "actual_new_Dev_audit_complete": false,
+    "actual_new_Test_audit_complete": false,
+    "fit_history_raw_status_is_loop_snapshot_not_actual_completion": true,
+    "new_optimizer_steps": 0,
+    "new_model_fits": 0,
+    "new_GPU_work": false
+  },
+  "route_review": {
+    "source": "docs/fusion_research/PERCEPTUAL_MFT_20261125_PUBLIC_TRACKERS.csv",
+    "source_sha256": "52f9de4207f75e11ae53ff67c3bb312a48f9ea3d745e9013a3a46c3d90e6f891",
+    "reviewed_previous_Dev_only_values": [
+      {
+        "method": "bytetrack",
+        "stream": "source_RGB_fresh",
+        "HOTA": 47.579162182711485
+      },
+      {
+        "method": "bytetrack",
+        "stream": "matched_rgb",
+        "HOTA": 47.8784212564837
+      },
+      {
+        "method": "bytetrack",
+        "stream": "matched_gray",
+        "HOTA": 47.92894184070837
+      },
+      {
+        "method": "bytetrack",
+        "stream": "primary_IR",
+        "HOTA": 48.764688598758504
+      },
+      {
+        "method": "sort",
+        "stream": "source_RGB_fresh",
+        "HOTA": 36.80922982427731
+      },
+      {
+        "method": "sort",
+        "stream": "matched_rgb",
+        "HOTA": 35.99366188708306
+      },
+      {
+        "method": "sort",
+        "stream": "matched_gray",
+        "HOTA": 36.11435400072976
+      },
+      {
+        "method": "sort",
+        "stream": "primary_IR",
+        "HOTA": 36.52142022057979
+      },
+      {
+        "method": "ocsort",
+        "stream": "source_RGB_fresh",
+        "HOTA": 43.51967589988329
+      },
+      {
+        "method": "ocsort",
+        "stream": "matched_rgb",
+        "HOTA": 42.37392930677936
+      },
+      {
+        "method": "ocsort",
+        "stream": "matched_gray",
+        "HOTA": 41.20447920046287
+      },
+      {
+        "method": "ocsort",
+        "stream": "primary_IR",
+        "HOTA": 43.38878832085552
+      }
+    ],
+    "decision": "Do not repeat the broad public-backend sweep now. Existing public-backend Dev values on older structural streams do not justify replacing the active Train-supervised candidate-risk plan. They are not performance estimates for the current native detector.",
+    "previously_exposed_Test_remains_disclosed": true,
+    "new_backend_experiments_launched": 0
+  },
+  "resources": {
+    "physical_GPUs": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "Train_progress": {
+      "BT-001": {
+        "frame": 1800,
+        "frames": 3000,
+        "proposals": 24021,
+        "uncompressed_payload_bytes": 49704236,
+        "physical_gpu": "5",
+        "seconds": 830.4835726509336,
+        "GT_labels_parsed": false
+      },
+      "PF-001": {
+        "frame": 8900,
+        "frames": 15000,
+        "proposals": 18380,
+        "uncompressed_payload_bytes": 38152248,
+        "physical_gpu": "4",
+        "seconds": 3712.0801111300243,
+        "GT_labels_parsed": false
+      },
+      "SN-015": {
+        "frame": 6570,
+        "frames": 6570,
+        "proposals": 73023,
+        "uncompressed_payload_bytes": 151116692,
+        "physical_gpu": "5",
+        "seconds": 2821.3081125579774,
+        "GT_labels_parsed": false
+      }
+    },
+    "work_GiB": 61.48418670613319,
+    "cap_GiB": 64,
+    "free_GiB": 2638.843578338623,
+    "reserve_GiB": 40,
+    "new_image_crop_FPN_or_candidate_pair_cache": false
+  },
+  "limits": [
+    "Engineering tests do not establish HOTA gain, convergence, IR contribution or novelty.",
+    "Full-Train audit is pending until the original fit and formal evaluation really finish.",
+    "The audit will reuse the frozen teacher/feature definitions and independently re-read every bank; it is not a separate model or a new seed.",
+    "Historical Test has been exposed; later Dev-frozen results are not a new blind benchmark.",
+    "Cached replay excludes detector/encoders/IO and offline pseudo-IR generation from tracking time."
+  ],
+  "lightweight_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_registered.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_registered.json",
+      "sha256": "90c0f069b698e936dc7b3a402210eadac7bd046b336295ff92fddf848fd8a17a",
+      "source_sha256": "90c0f069b698e936dc7b3a402210eadac7bd046b336295ff92fddf848fd8a17a",
+      "bytes": 1166
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_registration_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_registration_r1.actual_tool_reply.json",
+      "sha256": "28f921bc6f83f8f3149536b29f447cc76136eca0cdaafe42698e98b79a22f860",
+      "source_sha256": "28f921bc6f83f8f3149536b29f447cc76136eca0cdaafe42698e98b79a22f860",
+      "bytes": 223
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_CPU_regressions_r1.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_CPU_regressions_r1.json",
+      "sha256": "bdcd557c1530a593fcece6afb40c30a428ce23f7534dde490be4a55bac854804",
+      "source_sha256": "bdcd557c1530a593fcece6afb40c30a428ce23f7534dde490be4a55bac854804",
+      "bytes": 666
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_CPU_regressions_r1.stdout.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_CPU_regressions_r1.stdout.txt",
+      "sha256": "2768982bf13de35227ea207d53725eff8b016330479ce975fc1335d03da0918d",
+      "source_sha256": "2768982bf13de35227ea207d53725eff8b016330479ce975fc1335d03da0918d",
+      "bytes": 1036
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_CPU_regressions_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_CPU_regressions_r1.actual_tool_reply.json",
+      "sha256": "c9fda1ffa607c3eae0cca8dc9f01110cfc6eddaa1f119d62049ea6b7ef6c0f86",
+      "source_sha256": "c9fda1ffa607c3eae0cca8dc9f01110cfc6eddaa1f119d62049ea6b7ef6c0f86",
+      "bytes": 1182
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/registration/independent_audit_CLI_help_r1.actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_CLI_help_r1.actual_tool_reply.json",
+      "sha256": "c890f46731bcb995fa3409cac367a1eb294e3d6d1b09dda5dc10f8d254073080",
+      "source_sha256": "c890f46731bcb995fa3409cac367a1eb294e3d6d1b09dda5dc10f8d254073080",
+      "bytes": 369
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/execution/independent_auditor_execution_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_r1.execution.json",
+      "sha256": "6f2dd99605a94f970a086a4ec110472c82407d921e4b85dc3c6ff2ae87e28abc",
+      "source_sha256": "6f2dd99605a94f970a086a4ec110472c82407d921e4b85dc3c6ff2ae87e28abc",
+      "bytes": 1166
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/execution/independent_audit_supervisor.py.txt",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit.supervisor_r1.py",
+      "sha256": "46793a3b72f1cb2f3d103ba5f9df7198a835f24599a85ff7189c6bcaaf845ef1",
+      "source_sha256": "46793a3b72f1cb2f3d103ba5f9df7198a835f24599a85ff7189c6bcaaf845ef1",
+      "bytes": 2766
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/execution/auditor_progress_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/independent_audit_progress.json",
+      "sha256": "334ee2ae4b0e949d06dc6be83535adbdf54bfef16a0c7094a5ea67bf6ded39ec",
+      "source_sha256": "334ee2ae4b0e949d06dc6be83535adbdf54bfef16a0c7094a5ea67bf6ded39ec",
+      "bytes": 322
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/execution/all_controllers_live_snapshot.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_risk_20261127/live_observation_latest.json",
+      "sha256": "c23f89eea4bf66966323c21b44959f7ebb069ca3ad85ee0f84ccbcd84a15b0e7",
+      "source_sha256": "c23f89eea4bf66966323c21b44959f7ebb069ca3ad85ee0f84ccbcd84a15b0e7",
+      "bytes": 4868
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/first_Train_bank/SN-015_metadata.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/cache/SN-015.json",
+      "sha256": "5bac5471ed6b1adda636fccbafe067165d82d0b837eead853131771a20de90c1",
+      "source_sha256": "5bac5471ed6b1adda636fccbafe067165d82d0b837eead853131771a20de90c1",
+      "bytes": 59293
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/first_Train_bank/SN-015_storage_audit.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/SN-015_independent_storage_audit_r1.json",
+      "sha256": "ac53538c91f2722d9cfd865b70d36ba8aeb3012b3f47c99acd7fb0fe864e73df",
+      "source_sha256": "ac53538c91f2722d9cfd865b70d36ba8aeb3012b3f47c99acd7fb0fe864e73df",
+      "bytes": 561
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_candidate_risk_independent_auditor_ready/first_Train_bank/SN-015_storage_audit_actual_tool_reply.json",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/candidate_train_bank_20261127/SN-015_independent_storage_audit_r1.actual_tool_reply.json",
+      "sha256": "eb842aa005b3bd046825d5cb66007c9416a25b91e270b15b67cf91562fd16a2a",
+      "source_sha256": "eb842aa005b3bd046825d5cb66007c9416a25b91e270b15b67cf91562fd16a2a",
+      "bytes": 686
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "UTC": "2026-11-26T21:12:34.122623+00:00",
+  "bank": {
+    "state": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+    "actual_exit": null,
+    "live": {
+      "PID": 2741594,
+      "start_ticks": 99068203,
+      "raw_argv_sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": [
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "4",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "5",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "PF-001",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "4",
+        "live": {
+          "PID": 2742946,
+          "start_ticks": 99077612,
+          "raw_argv_sha256": "e4cecb743832fa4adfe9f0fc0acfa24bbfb9efee5251dacecbd8f2dd53061ac9",
+          "CUDA_VISIBLE_DEVICES": "4",
+          "kernel_state": "R"
+        }
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-015",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-001",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "5",
+        "live": {
+          "PID": 2789976,
+          "start_ticks": 99365513,
+          "raw_argv_sha256": "b29e68985c7800d82c2418d76e3b9f089882127b8d47dc410dcb63dfcc8fe1b6",
+          "CUDA_VISIBLE_DEVICES": "5",
+          "kernel_state": "D"
+        }
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "MSK-002",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-001",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-003",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      }
+    ]
+  },
+  "risk": {
+    "state": "WAITING_EXISTING_TWO_GPU_ALL6_TRAIN_BANK",
+    "actual_exit": null,
+    "live": {
+      "PID": 2785342,
+      "start_ticks": 99342520,
+      "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "jobs": []
+  },
+  "auditor": {
+    "actual_exit": null,
+    "live": {
+      "PID": 2799652,
+      "start_ticks": 99428955,
+      "raw_argv_sha256": "c770729a463dc5ff75fef06bf87af9cc1d39f34756cbfe66ba7a1ea172953aa5",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "S"
+    },
+    "progress": {
+      "status": "WAITING_ORIGINAL_RISK_CONTROLLER",
+      "UTC": "2026-11-26T21:12:30.882545+00:00",
+      "original_controller_live": {
+        "PID": 2785342,
+        "start_ticks": 99342520,
+        "kernel_state": "S",
+        "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965"
+      },
+      "new_GPU_work": false
+    }
+  },
+  "frozen_auditor_sources_verified": 3,
+  "progress": {
+    "BT-001": {
+      "frame": 1800,
+      "frames": 3000,
+      "proposals": 24021,
+      "uncompressed_payload_bytes": 49704236,
+      "physical_gpu": "5",
+      "seconds": 830.4835726509336,
+      "GT_labels_parsed": false
+    },
+    "PF-001": {
+      "frame": 8900,
+      "frames": 15000,
+      "proposals": 18380,
+      "uncompressed_payload_bytes": 38152248,
+      "physical_gpu": "4",
+      "seconds": 3712.0801111300243,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 6570,
+      "frames": 6570,
+      "proposals": 73023,
+      "uncompressed_payload_bytes": 151116692,
+      "physical_gpu": "5",
+      "seconds": 2821.3081125579774,
+      "GT_labels_parsed": false
+    }
+  },
+  "ledger": {
+    "maximum_bytes": 1288490188,
+    "sequences": {
+      "PF-001": 38152248,
+      "SN-015": 151116692,
+      "BT-001": 49704236
+    },
+    "total_reserved_bytes": 238973176
+  },
+  "work_GiB": 61.48418670613319,
+  "free_GiB": 2638.843578338623,
+  "bank_complete": false,
+  "fitted_models": false,
+  "risk_Dev_complete": false,
+  "risk_Test_complete": false,
+  "frozen_risk_sources_verified": 486,
+  "last_formal_Test_HOTA": 29.955069130617183,
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "last_formal_gain_pp": 0.42609844322321067,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}
