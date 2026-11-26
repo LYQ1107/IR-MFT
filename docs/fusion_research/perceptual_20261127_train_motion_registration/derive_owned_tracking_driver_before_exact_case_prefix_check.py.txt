@@ -1,0 +1,62 @@
+import ast
+import hashlib
+import json
+from pathlib import Path
+import shutil
+
+R=Path('/data3/liuyeqiang/IR-MFT');W=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122');B=Path(__file__).resolve().parent
+old=R/'tools/run_mft_occlusion_rescue.py';new=R/'tools/run_mft_train_motion_prior.py'
+expected='33c6dc1aebcb8e0bcaf6a88fbb2e0f9f34a30cafd7077a0f6b139596aba8865b'
+assert hashlib.sha256(old.read_bytes()).hexdigest()==expected and not new.exists()
+s=old.read_text();changes=[]
+
+
+def replace(a,b):
+    global s
+    count=s.count(a);assert count,a;s=s.replace(a,b);changes.append(dict(old=a,new=b,count=count))
+
+
+replace('causal lost-track rescue study','Train-calibrated motion covariance study')
+replace('from tools.mft_occlusion_rescue import OcclusionRescue, policies','from tools.mft_train_motion_prior import TrainMotionPrior, policies')
+replace('OcclusionRescue(c, thresholds)', 'make_tracker(c, thresholds)')
+replace('tools/run_mft_occlusion_rescue.py','tools/run_mft_train_motion_prior.py')
+replace('tools/mft_occlusion_rescue.py','tools/mft_train_motion_prior.py')
+replace('tests/test_mft_occlusion_rescue.py','tests/test_mft_train_motion_prior.py')
+replace('configs/perceptual_occlusion_rescue_20261127.json','configs/perceptual_train_motion_tracking_20261127.json')
+replace("work / 'occlusion_rescue_20261127'", "work / 'train_motion_prior_20261127'")
+replace("from tools.run_mft_ambiguity_reasoning import registered as previous_registered", "from tools.run_mft_occlusion_rescue import registered as previous_registered")
+replace('OCCLUSION_RESCUE','TRAIN_MOTION_PRIOR')
+replace('ALL8','ALL6')
+replace("prior=work/'ambiguity_reasoning_20261127'", "prior=work/'occlusion_rescue_20261127'")
+replace("state['status']=='COMPLETE_AMBIGUITY_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'", "state['status']=='COMPLETE_OCCLUSION_RESCUE_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'")
+replace('len(jobs)==11','len(jobs)==10')
+replace("audit['official_numeric_fields_checked']==1692", "audit['official_numeric_fields_checked']==1551")
+replace("work / 'ambiguity_reasoning_20261127/controller.execution.json'", "work / 'occlusion_rescue_20261127/controller.execution.json'")
+replace("work / 'ambiguity_reasoning_20261127/complete_Dev.json'", "work / 'occlusion_rescue_20261127/complete_Dev.json'")
+replace("work / 'ambiguity_reasoning_20261127/independent_Dev_audit_complete.json'", "work / 'occlusion_rescue_20261127/independent_Dev_audit_complete.json'")
+replace("work / 'ambiguity_reasoning_20261127/independent_Dev_audit_r1.actual_completion.json'", "work / 'occlusion_rescue_20261127/independent_Dev_audit_r1.actual_completion.json'")
+replace("    if split == 'dev':\n        assert streams['OR_IR_descriptor_unavailable']['track_sha256'] == streams['OR_RGB_rescue_late']['track_sha256']\n", '')
+replace("        unavailable_IR_MOT_exact_RGB_fallback=(split == 'dev'), only_current_frame_values_supplied=True,", "        scoped_prediction_filter_restored=True, only_current_frame_values_supplied=True,")
+replace("            assert values[4]['combined47'] == values[7]['combined47']\n            assert values[4]['per_sequence47'] == values[7]['per_sequence47']\n", '')
+replace('missing_IR_all47_and_actual_MOT_exact_RGB_fallback=True,', 'scoped_prediction_filter_restored=True,')
+replace('OR_native_zero','MK_native_zero');replace('OR_late_only','MK_late_only')
+replace("                 str(SPEC.relative_to(ROOT))]:", "                 str(SPEC.relative_to(ROOT)), 'tools/fit_mft_train_motion_prior.py',\n                 'configs/perceptual_train_motion_prior_20261127.json']:")
+replace("    guard_storage(work)\n    value = dict(status=", "    motion=read(base/'Train_motion_statistics.json')\n    motion_execution=read(base/'Train_motion_fit_r1.actual_completion.json')\n    assert motion_execution['actual_tool_exit_code']==0 and motion_execution['source_unchanged']\n    assert motion['Dev_rows']==motion['Test_rows']==0 and motion['complete_Train_videos']==6\n    assert not motion['new_tracking_accuracy'] and not motion['GPU_work']\n    for name,digest in motion['source_hashes'].items():assert sha256(name)==digest,name\n    paths.extend([base/'Train_motion_statistics.json',base/'fit_registered.json',base/'Train_motion_fit_r1.actual_completion.json'])\n    artifacts={str(p):sha256(p)for p in paths}\n    artifacts.update(motion['source_hashes'])\n    guard_storage(work)\n    value = dict(status=")
+replace("artifact_hashes={str(p): sha256(p) for p in paths}", 'artifact_hashes=artifacts')
+helper='''def make_tracker(case,thresholds):
+    base=locations()[-2]
+    motion=read(base/'Train_motion_statistics.json')
+    return TrainMotionPrior(case,thresholds,motion['equal_video_RMS_acceleration_sigma'])
+
+
+'''
+replace('def prefix_rows(',helper+'def prefix_rows(')
+ast.parse(s);assert 'OR_'not in s and 'OcclusionRescue'not in s and 'values[7]'not in s
+new.write_text(s)
+for n in ['Train_thresholds.json','Train_threshold_fit_r1.execution.json']:
+    p=B/n;assert not p.exists();shutil.copyfile(W/'occlusion_rescue_20261127'/n,p)
+recipe=dict(parent=str(old),parent_sha256=expected,destination=str(new),destination_sha256=hashlib.sha256(new.read_bytes()).hexdigest(),changes=changes,previous_source_unchanged=hashlib.sha256(old.read_bytes()).hexdigest()==expected,new_NN_fits=0)
+(B/'owned_tracking_driver_derivation_r1.json').write_text(json.dumps(recipe,indent=2)+'\n')
+wrapper=(W/'occlusion_rescue_20261127/launch_controller_r1.py').read_text().replace("ROOT / 'tools/run_mft_occlusion_rescue.py'", "ROOT / 'tools/run_mft_train_motion_prior.py'").replace('OCCLUSION_RESCUE','TRAIN_MOTION_PRIOR')
+ast.parse(wrapper);p=B/'launch_controller_r1.py';assert not p.exists();p.write_text(wrapper)
+print(json.dumps({k:v for k,v in recipe.items()if k!='changes'}))

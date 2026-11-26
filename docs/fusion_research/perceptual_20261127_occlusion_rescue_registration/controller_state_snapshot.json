@@ -1,0 +1,200 @@
+{
+  "status": "OCCLUSION_RESCUE_20261127_DEV_OFFICIAL",
+  "phases": {
+    "OCCLUSION_RESCUE_20261127_DEV_REPLAY": {
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "replay",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2664889,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/logs/OCCLUSION_RESCUE_20261127_DEV_REPLAY_BT-005.log",
+        "started_monotonic": 986376.301689603,
+        "started_UTC": "2026-11-26T18:56:45.015210+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 98637630,
+        "command_sha256": "9e58043e5f2d51cebe078d2724c0f5f65794936d2b6ce6b15a5bba3f1ea79143",
+        "last_live_monotonic": 986476.331776368,
+        "observed_peak_RSS_bytes": 727519232,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-26T18:58:36.982606+00:00",
+        "worker_wall_upper_seconds": 111.96726489299908,
+        "worker_wall_lower_seconds": 100.03008676494937
+      },
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "replay",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2664918,
+        "slot": "CPU1",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/logs/OCCLUSION_RESCUE_20261127_DEV_REPLAY_SN-013.log",
+        "started_monotonic": 986377.273281885,
+        "started_UTC": "2026-11-26T18:56:45.986795+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 98637727,
+        "command_sha256": "37349d534941a01ed9756e2d4846f88997f78a94fc08e1137e783fe7aabcf59d",
+        "last_live_monotonic": 986519.446838532,
+        "observed_peak_RSS_bytes": 765841408,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-26T18:59:22.209569+00:00",
+        "worker_wall_upper_seconds": 156.222586355987,
+        "worker_wall_lower_seconds": 142.17355664703064
+      }
+    },
+    "OCCLUSION_RESCUE_20261127_DEV_OFFICIAL": {
+      "OR_native_zero": {
+        "id": "OR_native_zero",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_native_zero"
+        ],
+        "status": "RUNNING",
+        "pid": 2667624,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/logs/OCCLUSION_RESCUE_20261127_DEV_OFFICIAL_OR_native_zero.log",
+        "started_monotonic": 986545.886858429,
+        "started_UTC": "2026-11-26T18:59:34.600374+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 98654588,
+        "command_sha256": "0ecde41a71a42ab4b35664d5ff93e683b6fb35edeec05d63680868bd95a7c498"
+      },
+      "OR_late_only": {
+        "id": "OR_late_only",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_late_only"
+        ],
+        "status": "RUNNING",
+        "pid": 2667653,
+        "slot": "CPU1",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/logs/OCCLUSION_RESCUE_20261127_DEV_OFFICIAL_OR_late_only.log",
+        "started_monotonic": 986547.240766349,
+        "started_UTC": "2026-11-26T18:59:35.954282+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 98654724,
+        "command_sha256": "e984ee69c5c16a0108180513bc153ae1e1f76f85e9c2a4dc890c240e303d4ff8"
+      },
+      "OR_RGB_rescue": {
+        "id": "OR_RGB_rescue",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_RGB_rescue"
+        ],
+        "status": "PENDING"
+      },
+      "OR_RGB_IR_rescue": {
+        "id": "OR_RGB_IR_rescue",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_RGB_IR_rescue"
+        ],
+        "status": "PENDING"
+      },
+      "OR_RGB_rescue_late": {
+        "id": "OR_RGB_rescue_late",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_RGB_rescue_late"
+        ],
+        "status": "PENDING"
+      },
+      "OR_RGB_IR_rescue_late": {
+        "id": "OR_RGB_IR_rescue_late",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_RGB_IR_rescue_late"
+        ],
+        "status": "PENDING"
+      },
+      "OR_IR_descriptor_roll": {
+        "id": "OR_IR_descriptor_roll",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_IR_descriptor_roll"
+        ],
+        "status": "PENDING"
+      },
+      "OR_IR_descriptor_unavailable": {
+        "id": "OR_IR_descriptor_unavailable",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_occlusion_rescue.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "OR_IR_descriptor_unavailable"
+        ],
+        "status": "PENDING"
+      }
+    }
+  },
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "controller_pid": 2664576,
+  "new_GPU_work": false,
+  "fixed_seed": 0,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "physical_GPU_owner": "Unchanged tracklet R2 experiment"
+}

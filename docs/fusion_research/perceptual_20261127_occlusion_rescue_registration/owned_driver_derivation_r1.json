@@ -1,0 +1,131 @@
+{
+  "parent": "/data3/liuyeqiang/IR-MFT/tools/run_mft_ambiguity_reasoning.py",
+  "parent_sha256": "a7e61051c83f613f62a5e1d77c2eb81d97b814fb127b6dc5a64bc24bbd574bc5",
+  "destination": "/data3/liuyeqiang/IR-MFT/tools/run_mft_occlusion_rescue.py",
+  "destination_sha256": "f4672b2972af17874196ad29f864c0a7292a3e8a43d37715e6b0fa067a697a82",
+  "changes": [
+    {
+      "old": "CPU-only causal ambiguity study",
+      "new": "CPU-only causal lost-track rescue study",
+      "count": 1
+    },
+    {
+      "old": "tools.mft_ambiguity_reasoning import AmbiguityReasoning, policies",
+      "new": "tools.mft_occlusion_rescue import OcclusionRescue, policies",
+      "count": 1
+    },
+    {
+      "old": "AmbiguityReasoning",
+      "new": "OcclusionRescue",
+      "count": 2
+    },
+    {
+      "old": "tools/mft_ambiguity_reasoning.py",
+      "new": "tools/mft_occlusion_rescue.py",
+      "count": 1
+    },
+    {
+      "old": "tools/run_mft_ambiguity_reasoning.py",
+      "new": "tools/run_mft_occlusion_rescue.py",
+      "count": 1
+    },
+    {
+      "old": "tests/test_mft_ambiguity_reasoning.py",
+      "new": "tests/test_mft_occlusion_rescue.py",
+      "count": 1
+    },
+    {
+      "old": "configs/perceptual_ambiguity_reasoning_20261127.json",
+      "new": "configs/perceptual_occlusion_rescue_20261127.json",
+      "count": 1
+    },
+    {
+      "old": "work / 'ambiguity_reasoning_20261127'",
+      "new": "work / 'occlusion_rescue_20261127'",
+      "count": 1
+    },
+    {
+      "old": "AMBIGUITY",
+      "new": "OCCLUSION_RESCUE",
+      "count": 11
+    },
+    {
+      "old": "ALL9",
+      "new": "ALL8",
+      "count": 1
+    },
+    {
+      "old": "proof['tests_passed'] == 5",
+      "new": "proof['tests_passed'] == 4",
+      "count": 1
+    },
+    {
+      "old": "assert fit['specification_sha256'] == sha256(SPEC)",
+      "new": "assert fit['specification_sha256'] == sha256(ROOT / 'configs/perceptual_ambiguity_reasoning_20261127.json')",
+      "count": 1
+    },
+    {
+      "old": "parent = peer_registered()",
+      "new": "parent = previous_registered()\n    previous_ready(work)",
+      "count": 1
+    },
+    {
+      "old": "    peer_registered()\n    reg =",
+      "new": "    previous_registered()\n    reg =",
+      "count": 1
+    },
+    {
+      "old": "from tools.run_mft_tracklet_permanence_r2 import registered as peer_registered",
+      "new": "from tools.run_mft_tracklet_permanence_r2 import registered as peer_registered\nfrom tools.run_mft_ambiguity_reasoning import registered as previous_registered",
+      "count": 1
+    },
+    {
+      "old": "AR_RGB_primary_late",
+      "new": "OR_RGB_rescue_late",
+      "count": 1
+    },
+    {
+      "old": "AR_native_zero",
+      "new": "OR_native_zero",
+      "count": 1
+    },
+    {
+      "old": "AR_late_only",
+      "new": "OR_late_only",
+      "count": 1
+    },
+    {
+      "old": "AR_IR_descriptor_unavailable",
+      "new": "OR_IR_descriptor_unavailable",
+      "count": 1
+    },
+    {
+      "old": "values[8]",
+      "new": "values[7]",
+      "count": 2
+    },
+    {
+      "old": "chosen = min(values,",
+      "new": "chosen = min([r for r in values if r['case'] in policies()[:6]],",
+      "count": 1
+    },
+    {
+      "old": "    peer_dev = peer_dev_ready(peer)\n",
+      "new": "    peer_dev = peer_dev_ready(peer)\n    previous_ready(work)\n",
+      "count": 1
+    },
+    {
+      "old": "peer / 'Test_selection_frozen.json']",
+      "new": "peer / 'Test_selection_frozen.json',\n             work / 'ambiguity_reasoning_20261127/controller.execution.json',\n             work / 'ambiguity_reasoning_20261127/complete_Dev.json',\n             work / 'ambiguity_reasoning_20261127/independent_Dev_audit_complete.json']",
+      "count": 1
+    },
+    {
+      "old": "def register():\n",
+      "new": "def previous_ready(work):\n    prior=work/'ambiguity_reasoning_20261127'\n    execution=read(prior/'controller.execution.json')\n    assert execution['actual_child_exit_code']==0 and execution['source_unchanged']\n    assert identity(execution['identity']['PID']) is None\n    state=read(prior/'state.json')\n    assert state['status']=='COMPLETE_AMBIGUITY_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'\n    jobs=[j for rows in state['phases'].values() for j in rows.values()]\n    assert len(jobs)==11 and all(j['status']=='COMPLETE' and j['exit_code']==0\n        and j['argv_identity_observed'] and identity(j['pid']) is None for j in jobs)\n    audit=read(prior/'independent_Dev_audit_complete.json')\n    assert audit['official_numeric_fields_checked']==1692 and audit['Test_accuracy_parsed'] is False\n\n\ndef register():\n",
+      "count": 1
+    }
+  ],
+  "previous_source_unchanged": true,
+  "calibration_reused_byte_exact": true,
+  "new_fit": false
+}

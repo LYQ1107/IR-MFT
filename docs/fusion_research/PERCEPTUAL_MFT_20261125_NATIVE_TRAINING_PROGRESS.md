@@ -1,3 +1,7 @@
+> [最新完整Dev负结果与Train运动滤波](PERCEPTUAL_MFT_20261127_RESCUE_NEGATIVE_TRAIN_MOTION_STATUS.md)：遮挡恢复组合HOTA50.376163低于late-only50.429366；IDF1虽+0.872262，未达HOTA规则，不追加Test。10个worker与1551字段独立审计实际0。全部六段Train运动统计已完成、4项滤波回归实际通过，现运行六项CPU完整Dev；原R2七段Test保持冻结，后续不按其分数选型。下方旧段落保留各自观察时点。
+
+> [9项条件关联完整Dev与下一步](PERCEPTUAL_MFT_20261127_AMBIGUITY_NEGATIVE_RESCUE_STATUS.md)：新组合50.198833低于late-only50.429366，不追加Test。11个相关worker和1692字段独立审计实际0。IR正常/错位、重复RGB和缺失描述符都未改变对应RGB最终轨迹；偏好对数不算贡献。正在CPU运行未匹配丢失轨迹恢复八项Dev，旧七段Test仍由4/5继续。+5目标未达。下方均为各自旧观察时点。
+
 > [最新完整Dev与条件关联状态](PERCEPTUAL_MFT_20261127_TRACKLET_DEV_AND_AMBIGUITY_STATUS.md)：身份续接50.429366，比同IR父模型+0.314156；IR确认无额外增益，长保留负向。11个相关worker与1128字段独立核验实际0。原方案已冻结并在4/5继续完整Test；9项条件关联在CPU复用同一银行运行，不依据新Test选型。原始RGB Test29.528971，已验证IR Test29.799525，+5仍未达。下方段落为各自旧观察时点。
 
 > [身份续接R2](PERCEPTUAL_MFT_20261127_TRACKLET_PERMANENCE_R2_STATUS.md)已通过六项CPU回归和4/5两卡各12帧真实工程，当前正在提取完整Dev候选与两路身份描述符。原YOLOX-X和新版IR视觉父模型不变，复用既有seed0 ResNet50 RGB/IR身份编码器；全部Dev/Test紧凑载荷预计0.90GiB，不再反复编码每种关联条件。尚无新精度，不增加创新计数。

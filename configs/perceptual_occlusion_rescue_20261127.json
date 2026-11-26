@@ -1,0 +1,20 @@
+{
+  "status": "PREREGISTERED_BEFORE_OCCLUSION_RESCUE_DEV_OR_TEST",
+  "priority": "Original RGB-only YOLOX-X+ByteTrack full Test+5 HOTA; stretch+10. Fixed November IR and ProtocolV2, seed0.",
+  "evidence": "Global Fisher blending and bounded primary penalties harmed complete Dev. Late first-publication links gain only0.314156 Dev. Test a different failure mode: a lost track whose identity fits a geometrically unmatched high-score detection.",
+  "original_assignments": "Retain every original primary Hungarian assignment. A rescue may use only its unmatched rows and columns; no stealing or reordering of published history.",
+  "eligible_tracks": "Only TrackState.Lost with gap2..25, at least3 reliable past observations and a past-frame identity template. Original buffer25, secondary stages and birth thresholds unchanged.",
+  "eligible_detections": "Original high-score detections left unmatched by primary matching, score>0.6 and maximum current-proposal overlap<=0.5; scale ratio0.5..2, last-observation center distance<=0.5+Train_unknown_speed_upper*gap in old body diagonals.",
+  "identity": "RGB past/current cosine must pass the already fitted Train99th percentile0.3608310019969939 and bidirectional margin0.1 including competitors below threshold. IR-confirmed variant additionally requires its same-quantile0.42077010989189145. No new calibration, weights or seeds.",
+  "new_edges": "Explicitly admit one unique identity-supported edge at cost0 and lock it together with all original primary matches. This can restore edges beyond original IoU support. No positive-evidence rescue returns original matrix literally.",
+  "composition": "Optional tested first-publication late RGB links after actual pool departure; never relabel past outputs. Missing identity IR is exact RGB rescue fallback. Identity-descriptor roll is a diagnostic, while original IR visual detector stays normal.",
+  "cases": "Eight: zero, late-only, RGB rescue, RGB+IR-confirmed rescue, each rescue+late, rolled IR+late, missing IR+late. Six normal cases can be selected; descriptor interventions cannot be selected.",
+  "selection": "Complete both Dev videos for all8, maximize HOTA,AssA,IDF1 among the six normal policies, prefer earlier simple policy at ties. Freeze a new complete7 Test only if beating identical late-only. No Test outcome chooses a policy.",
+  "cache": "Reuse sealed R2 causal FP32 proposal/RGB/IR banks, no new GPU or NN execution and no image/FPN copies. CPU Dev starts only after original ambiguity Dev actual0; peer R2 full Test retains its GPU ownership.",
+  "controls": "Literal zero and late-only MOT parity, unavailable IR unreadable and exact RGB fallback, original matches cannot be stolen, no rescue of tracked or out-of-reach targets, future suffix corruption prefix invariance.",
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "new_GPU_work": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

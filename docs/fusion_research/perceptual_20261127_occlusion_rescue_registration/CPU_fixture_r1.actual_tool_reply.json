@@ -1,0 +1,12 @@
+{
+  "actual_unified_session_id": 17062,
+  "actual_tool_reply": {
+    "chunk_id": "752410",
+    "wall_time_seconds": 0.000061276,
+    "exit_code": 1,
+    "original_token_count": 544,
+    "output": "F...                                                                     [100%]\n=================================== FAILURES ===================================\n_______ test_new_identity_edge_beyond_geometry_and_original_match_locked _______\n\n    def test_new_identity_edge_beyond_geometry_and_original_match_locked():\n        model=OcclusionRescue(policies()[2],THRESHOLDS);model.reset('synthetic')\n        tracks=[track([1,0],TrackState.Tracked,9),track([0,1])]\n        dets=[detection([1,0]),detection([0,1],box=(30,0,50,20))]\n        base=np.asarray([[.2,.8],[.8,1.]],np.float64)\n        old=matching.linear_assignment(base,.9)[0];assert set(map(tuple,old))=={(0,0)}\n        cost=model.rescue_cost(tracks,dets,base,10,'primary')\n>       assert set(map(tuple,matching.linear_assignment(cost,.9)[0]))=={(0,0),(1,1)}\nE       assert {(0, 0)} == {(0, 0), (1, 1)}\nE         \nE         Extra items in the right set:\nE         (1, 1)\nE         Use -v to get more diff\n\ntests/test_mft_occlusion_rescue.py:36: AssertionError\n=============================== warnings summary ===============================\n../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12\n../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12\n  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:12: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.\n    if LooseVersion(torch.__version__) < LooseVersion(\"1.0.0\"):\n\n../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68\n../.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68\n  /data3/liuyeqiang/.venvs/cfp-fishmot/lib/python3.10/site-packages/thop/profile.py:68: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.\n    if LooseVersion(torch.__version__) >= LooseVersion(\"1.1.0\"):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED tests/test_mft_occlusion_rescue.py::test_new_identity_edge_beyond_geometry_and_original_match_locked\n1 failed, 3 passed, 4 warnings in 7.04s\n"
+  },
+  "scientific_accuracy": false,
+  "source_fix_pending": true
+}

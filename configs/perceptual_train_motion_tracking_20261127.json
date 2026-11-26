@@ -1,0 +1,18 @@
+{
+  "status": "PREREGISTERED_BEFORE_TRAIN_MOTION_TRACKING_DEV",
+  "priority": "Original RGB-only YOLOX-X+ByteTrack full Test+5 HOTA, +10 stretch. Fixed November IR primary detector and ProtocolV2 remain unchanged.",
+  "Train_calibration_config": "configs/perceptual_train_motion_prior_20261127.json",
+  "Train_calibration_config_sha256": "a53dd71a71f29b7df6bd333f5803a620cb7b73b1b0be054de02371a053579476",
+  "Train_fit": "All6 Train GT annotations,217201 valid boxes and216858 consecutive triplets; no images, weights, Dev/Test or NN fitting. Equal-video robust acceleration sigma[0.0524738868694014,0.03998233376115184,0.029661453082623204,0.029335073269698916]. This includes annotation noise and interpolation artifacts.",
+  "mechanism": "Replace only process covariance with discrete constant-acceleration blocks; center-only replaces x,y, full replaces x,y,aspect,height. Keep original measurement covariance, initialization, ByteTrack thresholds, buffer25 and output conventions.",
+  "shared_filter_scope": "Synchronous per-frame CPU replay binds the static STrack prediction filter in a try/finally scope and restores it after each update or exception. This qualifies the sequential experiment, not arbitrary callers performing concurrent global ByteTrack updates.",
+  "normal_cases": ["original", "late-only", "center-Q", "full-Q", "center-Q+late", "full-Q+late"],
+  "selection": "Run all six on both complete Dev videos. Maximize COMBINED HOTA,AssA,IDF1 in that order, prefer earlier simple policy at exact ties. Freeze a new complete Test only if beating the identical late-only reference. Never use a current Test outcome for selection.",
+  "previous_negative_study": "Require occlusion-rescue main actual0, all10 Dev-related jobs actual0 and1551-field independent audit actual0. Retain all negative results.",
+  "engineering": "Literal original and late-only full-MOT references; original R and initialization equal; calibrated covariance finite PSD, center-only shape covariance unaffected; scalar/batch parity; interleaved zero path and exception restoration; real-bank future suffix prefix invariance.",
+  "data": "Reuse original R2 FP32 proposal/RGB/IR banks. The covariance module reads current measurements and past filter state only. No new GPU, identity encoder, weights, image/FPN copies or seeds.",
+  "interpretation": "A numerical gain of the combined fixed-IR system over original RGB does not by itself attribute the whole gain to IR or establish a novel classical-filter contribution.",
+  "resources": "At most GPU4/5 for unchanged original R2 full Test; new study CPU only, work64GiB cap,40GiB reserve, fixedseed0.",
+  "goal_met": false,
+  "supported_innovations": 0
+}

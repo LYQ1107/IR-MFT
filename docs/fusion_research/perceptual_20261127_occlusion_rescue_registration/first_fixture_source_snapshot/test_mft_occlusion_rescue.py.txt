@@ -1,0 +1,79 @@
+from types import SimpleNamespace
+import json
+import numpy as np
+from tools.mft_occlusion_rescue import OcclusionRescue, policies
+from tools.mft_ambiguity_reasoning import AmbiguityReasoning, policies as prior
+from tools.native_pyramid_stream_tracks import mot_line
+from yolox.tracker import matching
+from yolox.tracker.basetrack import TrackState
+
+THRESHOLDS = dict(RGB_cosine_threshold=.5, IR_cosine_threshold=.30187624990940093,
+    Train_unknown_speed_upper=.13137420405549355,
+    primary_RGB_cosine_threshold=.3608310019969939, primary_IR_cosine_threshold=.42077010989189145)
+
+
+def unit(x):
+    a=np.asarray(x,np.float32);return a/np.linalg.norm(a)
+
+
+def track(cue, state=TrackState.Lost, frame=7, box=(0,0,20,20)):
+    return SimpleNamespace(state=state, frame_id=frame, memory_frame=frame, accepted=3,
+                           rgb=unit(cue),ir=unit(cue),last_box=np.asarray(box,np.float32))
+
+
+def detection(cue, ir=None, box=(0,0,20,20), reliable=True, available=True):
+    return SimpleNamespace(observation=dict(rgb=unit(cue),ir=unit(cue if ir is None else ir),
+        box=np.asarray(box,np.float32),reliable=reliable,auxiliary_available=available))
+
+
+def test_new_identity_edge_beyond_geometry_and_original_match_locked():
+    model=OcclusionRescue(policies()[2],THRESHOLDS);model.reset('synthetic')
+    tracks=[track([1,0],TrackState.Tracked,9),track([0,1])]
+    dets=[detection([1,0]),detection([0,1],box=(30,0,50,20))]
+    base=np.asarray([[.2,.8],[.8,1.]],np.float64)
+    old=matching.linear_assignment(base,.9)[0];assert set(map(tuple,old))=={(0,0)}
+    cost=model.rescue_cost(tracks,dets,base,10,'primary')
+    assert set(map(tuple,matching.linear_assignment(cost,.9)[0]))=={(0,0),(1,1)}
+    assert model.statistics['rescue_outside_original_geometric_graph']==1
+    assert base[1,1]==1. and cost[1,1]==0.
+    json.dumps(model.statistics)
+
+
+def test_no_steal_no_tracked_or_unreachable_rescue_and_exact_noop():
+    model=OcclusionRescue(policies()[2],THRESHOLDS);model.reset('synthetic')
+    for old,dets in [(track([1,0],TrackState.Tracked,9),[detection([1,0])]),
+                     (track([1,0]),[detection([1,0],box=(1000,0,1020,20))]),
+                     (track([1,0]),[detection([1,0],reliable=False)])]:
+        base=np.asarray([[1.]],np.float64)
+        assert model.rescue_cost([old],dets,base,10,'primary')is base
+    # The sole column belongs to an original geometric match and cannot be stolen.
+    base=np.asarray([[.2],[1.]],np.float64)
+    assert model.rescue_cost([track([0,1],TrackState.Tracked,9),track([1,0])],
+                            [detection([1,0])],base,10,'primary')is base
+
+
+def test_ir_confirmation_veto_and_competitors_below_threshold_keep_margin():
+    model=OcclusionRescue(policies()[3],THRESHOLDS);model.reset('synthetic')
+    base=np.asarray([[1.]],np.float64)
+    assert model.rescue_cost([track([1,0])],[detection([1,0],ir=[0,1])],base,10,'primary')is base
+    cost=model.rescue_cost([track([1,0])],[detection([1,0])],base,10,'primary')
+    assert cost[0,0]==0. and model.statistics['IR_confirmed_lost_pairs']==1
+    # 0.40 vs0.35: first passes0.3608, but0.05 uniqueness margin fails.
+    base=np.asarray([[1.,1.]],np.float64)
+    dets=[detection([.4,np.sqrt(1-.4**2)]),detection([.35,np.sqrt(1-.35**2)])]
+    assert model.rescue_cost([track([1,0])],dets,base,10,'primary')is base
+
+
+def test_zero_and_late_only_literal_reference_and_missing_ir_unreadable():
+    class Unreadable:
+        def __array__(self,*args,**kwargs):raise AssertionError('Unavailable actual IR read')
+    own=[OcclusionRescue(policies()[i],THRESHOLDS)for i in [0,1,4,7]]
+    refs=[AmbiguityReasoning(prior()[i],THRESHOLDS)for i in [0,1]]
+    rgb=np.asarray([[1.,0.],[0.,1.]],np.float32)
+    for frame in range(1,36):
+        d=np.asarray([[0,0,20,20,.9],[60,0,80,20,.9]],np.float32)
+        if 5<=frame<=8:d=d[:1]
+        values=[m.update('synthetic',frame,d,rgb[:len(d)],Unreadable())for m in own]
+        original=[m.update('synthetic',frame,d,rgb[:len(d)],Unreadable())for m in refs]
+        assert [[mot_line(row)for row in v]for v in values[:2]]==[[mot_line(row)for row in v]for v in original]
+        assert ''.join(map(mot_line,values[2]))==''.join(map(mot_line,values[3]))

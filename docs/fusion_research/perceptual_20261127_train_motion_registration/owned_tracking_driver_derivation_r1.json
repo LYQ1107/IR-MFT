@@ -1,0 +1,155 @@
+{
+  "parent": "/data3/liuyeqiang/IR-MFT/tools/run_mft_occlusion_rescue.py",
+  "parent_sha256": "33c6dc1aebcb8e0bcaf6a88fbb2e0f9f34a30cafd7077a0f6b139596aba8865b",
+  "destination": "/data3/liuyeqiang/IR-MFT/tools/run_mft_train_motion_prior.py",
+  "destination_sha256": "ba0a56751820e205dea3492ccaecd063c0feec8d7f8e71b09c5e31d4941dfe03",
+  "changes": [
+    {
+      "old": "causal lost-track rescue study",
+      "new": "Train-calibrated motion covariance study",
+      "count": 1
+    },
+    {
+      "old": "from tools.mft_occlusion_rescue import OcclusionRescue, policies",
+      "new": "from tools.mft_train_motion_prior import TrainMotionPrior, policies",
+      "count": 1
+    },
+    {
+      "old": "OcclusionRescue(c, thresholds)",
+      "new": "make_tracker(c, thresholds)",
+      "count": 2
+    },
+    {
+      "old": "tools/run_mft_occlusion_rescue.py",
+      "new": "tools/run_mft_train_motion_prior.py",
+      "count": 1
+    },
+    {
+      "old": "tools/mft_occlusion_rescue.py",
+      "new": "tools/mft_train_motion_prior.py",
+      "count": 1
+    },
+    {
+      "old": "tests/test_mft_occlusion_rescue.py",
+      "new": "tests/test_mft_train_motion_prior.py",
+      "count": 1
+    },
+    {
+      "old": "configs/perceptual_occlusion_rescue_20261127.json",
+      "new": "configs/perceptual_train_motion_tracking_20261127.json",
+      "count": 1
+    },
+    {
+      "old": "work / 'occlusion_rescue_20261127'",
+      "new": "work / 'train_motion_prior_20261127'",
+      "count": 1
+    },
+    {
+      "old": "from tools.run_mft_ambiguity_reasoning import registered as previous_registered",
+      "new": "from tools.run_mft_occlusion_rescue import registered as previous_registered",
+      "count": 1
+    },
+    {
+      "old": "OCCLUSION_RESCUE",
+      "new": "TRAIN_MOTION_PRIOR",
+      "count": 11
+    },
+    {
+      "old": "ALL8",
+      "new": "ALL6",
+      "count": 1
+    },
+    {
+      "old": "prior=work/'ambiguity_reasoning_20261127'",
+      "new": "prior=work/'occlusion_rescue_20261127'",
+      "count": 1
+    },
+    {
+      "old": "state['status']=='COMPLETE_AMBIGUITY_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'",
+      "new": "state['status']=='COMPLETE_OCCLUSION_RESCUE_NO_GAIN_OVER_LATE_ONLY_NO_NEW_TEST'",
+      "count": 1
+    },
+    {
+      "old": "len(jobs)==11",
+      "new": "len(jobs)==10",
+      "count": 1
+    },
+    {
+      "old": "audit['official_numeric_fields_checked']==1692",
+      "new": "audit['official_numeric_fields_checked']==1551",
+      "count": 1
+    },
+    {
+      "old": "work / 'ambiguity_reasoning_20261127/controller.execution.json'",
+      "new": "work / 'occlusion_rescue_20261127/controller.execution.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'ambiguity_reasoning_20261127/complete_Dev.json'",
+      "new": "work / 'occlusion_rescue_20261127/complete_Dev.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'ambiguity_reasoning_20261127/independent_Dev_audit_complete.json'",
+      "new": "work / 'occlusion_rescue_20261127/independent_Dev_audit_complete.json'",
+      "count": 1
+    },
+    {
+      "old": "work / 'ambiguity_reasoning_20261127/independent_Dev_audit_r1.actual_completion.json'",
+      "new": "work / 'occlusion_rescue_20261127/independent_Dev_audit_r1.actual_completion.json'",
+      "count": 1
+    },
+    {
+      "old": "    if split == 'dev':\n        assert streams['OR_IR_descriptor_unavailable']['track_sha256'] == streams['OR_RGB_rescue_late']['track_sha256']\n",
+      "new": "",
+      "count": 1
+    },
+    {
+      "old": "        unavailable_IR_MOT_exact_RGB_fallback=(split == 'dev'), only_current_frame_values_supplied=True,",
+      "new": "        scoped_prediction_filter_restored=True, only_current_frame_values_supplied=True,",
+      "count": 1
+    },
+    {
+      "old": "            assert values[4]['combined47'] == values[7]['combined47']\n            assert values[4]['per_sequence47'] == values[7]['per_sequence47']\n",
+      "new": "",
+      "count": 1
+    },
+    {
+      "old": "missing_IR_all47_and_actual_MOT_exact_RGB_fallback=True,",
+      "new": "scoped_prediction_filter_restored=True,",
+      "count": 1
+    },
+    {
+      "old": "OR_native_zero",
+      "new": "MK_native_zero",
+      "count": 1
+    },
+    {
+      "old": "OR_late_only",
+      "new": "MK_late_only",
+      "count": 1
+    },
+    {
+      "old": "                 str(SPEC.relative_to(ROOT))]:",
+      "new": "                 str(SPEC.relative_to(ROOT)), 'tools/fit_mft_train_motion_prior.py',\n                 'configs/perceptual_train_motion_prior_20261127.json']:",
+      "count": 1
+    },
+    {
+      "old": "    guard_storage(work)\n    value = dict(status=",
+      "new": "    motion=read(base/'Train_motion_statistics.json')\n    motion_execution=read(base/'Train_motion_fit_r1.actual_completion.json')\n    assert motion_execution['actual_tool_exit_code']==0 and motion_execution['source_unchanged']\n    assert motion['Dev_rows']==motion['Test_rows']==0 and motion['complete_Train_videos']==6\n    assert not motion['new_tracking_accuracy'] and not motion['GPU_work']\n    for name,digest in motion['source_hashes'].items():assert sha256(name)==digest,name\n    paths.extend([base/'Train_motion_statistics.json',base/'fit_registered.json',base/'Train_motion_fit_r1.actual_completion.json'])\n    artifacts={str(p):sha256(p)for p in paths}\n    artifacts.update(motion['source_hashes'])\n    guard_storage(work)\n    value = dict(status=",
+      "count": 1
+    },
+    {
+      "old": "artifact_hashes={str(p): sha256(p) for p in paths}",
+      "new": "artifact_hashes=artifacts",
+      "count": 1
+    },
+    {
+      "old": "def prefix_rows(",
+      "new": "def make_tracker(case,thresholds):\n    base=locations()[-2]\n    motion=read(base/'Train_motion_statistics.json')\n    return TrainMotionPrior(case,thresholds,motion['equal_video_RMS_acceleration_sigma'])\n\n\ndef prefix_rows(",
+      "count": 1
+    }
+  ],
+  "previous_source_unchanged": true,
+  "new_NN_fits": 0
+}

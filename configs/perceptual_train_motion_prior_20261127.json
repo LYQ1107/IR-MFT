@@ -1,0 +1,15 @@
+{
+  "status": "PREREGISTERED_BEFORE_TRAIN_MOTION_STATISTICS",
+  "priority": "At least+5 full Test HOTA versus original RGB-only YOLOX-X+ByteTrack29.528970687393972; stretch+10. Fixed November IR detector remains required.",
+  "evidence": "Identity rescue+late improves complete Dev IDF1 by0.872262 but reduces HOTA0.053203 and DetA0.104680 versus late-only. Study motion/box filtering rather than escalating identity penalties or seeds.",
+  "fit": "All valid class1 confirmed Train GT across all six videos. Only strictly consecutive three-observation windows of the same video-local identity support acceleration estimates. Never bridge annotation gaps or video boundaries.",
+  "coordinates": "Center x,y, aspect w/h and height. Second differences of x,y,h divided by middle-frame height; aspect acceleration is absolute. This includes annotation noise and interpolation artifacts and is not a claim of pure physical process noise.",
+  "statistic": "For each video and coordinate, sigma is90th percentile absolute acceleration divided by1.6448536269514722, with numerical floor1e-5. Combine videos with equal-weight RMS sigmas. No Dev/Test or checkpoint selection fits this statistic.",
+  "proposed_process": "Discrete constant-acceleration Q block sigma^2*[[0.25,0.5],[0.5,1]] per coordinate, scaling x,y,h by current height and leaving aspect absolute. Keep original measurement noise R and initialization. Compare center-only and all-four-coordinate Q, each with and without the existing late links.",
+  "proposed_cases": "Six normal Dev policies: original, late-only, center-only Train Q, full Train Q, each Train Q plus late-only. No parameter or seed grid. All six complete Dev before selection.",
+  "engineering_needed": "STrack.multi_predict uses shared_kalman rather than per-track filter. Any later injection must be scoped to a single synchronous tracker update and restore the shared filter even on exceptions, with interleaved zero-path parity and covariance/causality tests. Statistics alone do not qualify a new tracking pipeline.",
+  "data_boundary": "Only Train annotation files; no images, NN weights, Dev/Test labels or current Test outcome read. Historical Test exposure remains disclosed.",
+  "resources": "CPU only, no new NN fit or GPU extraction; reuse existing banks for later Dev. At most physical GPU4/5 for the unchanged peer experiment, work64GiB cap and40GiB free reserve.",
+  "supported_innovations": 0,
+  "goal_met": false
+}

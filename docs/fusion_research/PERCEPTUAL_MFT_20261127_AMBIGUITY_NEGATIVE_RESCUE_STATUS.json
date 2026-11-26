@@ -1,0 +1,243 @@
+{
+  "status": "ALL9_AMBIGUITY_DEV_NO_GAIN_NO_NEW_TEST_OCCLUSION_RESCUE_CPU_DEV_RUNNING",
+  "UTC": "2026-11-26T18:59:40.008343+00:00",
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "verified_IR_Test_HOTA": 29.799525425926028,
+  "verified_full_Test_gain_pp": 0.2705547385320557,
+  "required_Test_HOTA": 34.52897068739397,
+  "stretch_Test_HOTA": 39.52897068739397,
+  "complete_ambiguity_Dev_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_AMBIGUITY_FULL_DEV.json",
+  "complete_ambiguity_Dev_report_sha256": "33aaaa303dd1b92ab3385ad9e9715d568ea6c158a18edc68040e6e3bf69e7a76",
+  "ambiguity_original_controller_actual_exit_code": 0,
+  "ambiguity_independent_Dev_audit_actual_exit_code": 0,
+  "ambiguity_Dev_workers_actual_exit_zero": 11,
+  "ambiguity_official_numeric_fields_checked": 1692,
+  "ambiguity_selected": {
+    "id": "AR_late_only",
+    "weight": 0.0,
+    "late": true,
+    "cue": "none"
+  },
+  "ambiguity_gain_over_late_only_pp": 0.0,
+  "new_ambiguity_Test": false,
+  "IR_identity_preferences": 234,
+  "rolled_IR_preferences": 182,
+  "IR_identity_or_control_versus_RGB_output_comparisons": [
+    {
+      "a": "AR_RGB_primary",
+      "b": "AR_RGB_IR_primary",
+      "actual_MOT_bytes_equal": true,
+      "all47_equal": true
+    },
+    {
+      "a": "AR_RGB_primary_late",
+      "b": "AR_RGB_IR_primary_late",
+      "actual_MOT_bytes_equal": true,
+      "all47_equal": true
+    },
+    {
+      "a": "AR_RGB_primary_late",
+      "b": "AR_RGB_RGB_primary_late",
+      "actual_MOT_bytes_equal": true,
+      "all47_equal": true
+    },
+    {
+      "a": "AR_RGB_primary_late",
+      "b": "AR_IR_descriptor_roll",
+      "actual_MOT_bytes_equal": true,
+      "all47_equal": true
+    },
+    {
+      "a": "AR_RGB_primary_late",
+      "b": "AR_IR_descriptor_unavailable",
+      "actual_MOT_bytes_equal": true,
+      "all47_equal": true
+    }
+  ],
+  "original_R2_Test_phase": "TRACKLET_20261127_R2_TEST_NN",
+  "original_R2_Test_selection_unchanged": true,
+  "original_R2_new_Test_score_read": false,
+  "new_occlusion_rescue_registration_sha256": "2a11bc54466fca5d35f54e0604989a2d1b91d9aa0be632bc0fe4dac0be9c5545",
+  "new_occlusion_rescue_registered_sources": 457,
+  "new_occlusion_rescue_regressions_actual_exit_zero": 4,
+  "new_occlusion_rescue_controller_snapshot": {
+    "status": "ACTUAL_CPU_ONLY_OCCLUSION_RESCUE_CONTROLLER_RUNNING",
+    "UTC_started": "2026-11-26T18:56:24.775675+00:00",
+    "command": [
+      "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+      "-u",
+      "/data3/liuyeqiang/IR-MFT/tools/run_mft_occlusion_rescue.py",
+      "run"
+    ],
+    "source_sha256": "33c6dc1aebcb8e0bcaf6a88fbb2e0f9f34a30cafd7077a0f6b139596aba8865b",
+    "actual_child_exit_code": null,
+    "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/controller.stdout.txt",
+    "GPU_work": false,
+    "fixed_seed": 0,
+    "pipeline_registration_sha256": "2a11bc54466fca5d35f54e0604989a2d1b91d9aa0be632bc0fe4dac0be9c5545",
+    "identity": {
+      "PID": 2664576,
+      "start_ticks": 98635606,
+      "raw_argv_sha256": "fe7bcf0342157788e7c5c00d609b691f885702c7768f895e93c8651d17b31ac8",
+      "CUDA_VISIBLE_DEVICES": ""
+    },
+    "startup_argv_snapshots": [
+      {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 116,
+        "sha256": "fe7bcf0342157788e7c5c00d609b691f885702c7768f895e93c8651d17b31ac8"
+      }
+    ]
+  },
+  "new_occlusion_rescue_new_GPU_work": false,
+  "new_occlusion_rescue_new_calibration": false,
+  "new_occlusion_rescue_new_NN_fits": 0,
+  "new_occlusion_rescue_selection": "Only six normal policies can be selected; two descriptor interventions cannot.",
+  "first_synthetic_fixture_failure_preserved": true,
+  "synthetic_fixture_fix": "Only old observation frame7->5 to satisfy unchanged motion reach; no algorithm threshold changed.",
+  "work_GiB": 60.9048963887617,
+  "work_cap_GiB": 64,
+  "independent_available_GiB": 2639.997760772705,
+  "reserve_GiB": 40,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "new_seeds": 0,
+  "goal_met": false,
+  "goal_active": true,
+  "target_plus5_met": false,
+  "target_plus10_met": false,
+  "supported_innovations": 0,
+  "historical_Test_previously_exposed": true,
+  "RGB_pretraining_included_current_Dev": true,
+  "IR_generated_from_RGB": true,
+  "runtime_scope": "All CPU bank replay excludes detector/encoders/images/offline IR generation; not end-to-end FPS.",
+  "raw_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/controller.execution.json",
+      "sha256": "1246d4d9e3559e1a7b6964ad3452d387fc0ab373516929ea0300ea8d23c539c3",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/controller.execution.json",
+      "source_sha256": "1246d4d9e3559e1a7b6964ad3452d387fc0ab373516929ea0300ea8d23c539c3"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/independent_Dev_audit_complete.json",
+      "sha256": "40e33d86a602f5799815edde00ccde89c81ffd5930d0d1442d0a98ff64d01c11",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/independent_Dev_audit_complete.json",
+      "source_sha256": "40e33d86a602f5799815edde00ccde89c81ffd5930d0d1442d0a98ff64d01c11"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/independent_Dev_audit_r1.actual_completion.json",
+      "sha256": "9b6f7b04e00881a770ec7d80ac8f0d42bbacb36ec437c7294d619a380320a4aa",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/independent_Dev_audit_r1.actual_completion.json",
+      "source_sha256": "9b6f7b04e00881a770ec7d80ac8f0d42bbacb36ec437c7294d619a380320a4aa"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/independent_Dev_audit_r1.actual_tool_reply.json",
+      "sha256": "9a24075db55eeefa0f72167850875b50d16c7f2e4c52c14a2c2837c974c5b167",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/independent_Dev_audit_r1.actual_tool_reply.json",
+      "source_sha256": "9a24075db55eeefa0f72167850875b50d16c7f2e4c52c14a2c2837c974c5b167"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/independent_Dev_audit_r1.stdout.txt",
+      "sha256": "1194da6243fd12fd7aa6b9c035fd4c46ea5e05e021ab3203643752920e30bcfd",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/independent_Dev_audit_r1.stdout.txt",
+      "source_sha256": "1194da6243fd12fd7aa6b9c035fd4c46ea5e05e021ab3203643752920e30bcfd"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_ambiguity_full_dev/actual_completion/independent_Dev_audit_r1.source_binding.json",
+      "sha256": "309da4190274d1a488d8b6429a964e7ef968b15d3c1edc174d4498402d30ce55",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/ambiguity_reasoning_20261127/independent_Dev_audit_r1.source_binding.json",
+      "source_sha256": "309da4190274d1a488d8b6429a964e7ef968b15d3c1edc174d4498402d30ce55"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/pipeline_registered.json",
+      "sha256": "2a11bc54466fca5d35f54e0604989a2d1b91d9aa0be632bc0fe4dac0be9c5545",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/pipeline_registered.json",
+      "source_sha256": "2a11bc54466fca5d35f54e0604989a2d1b91d9aa0be632bc0fe4dac0be9c5545"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/Train_thresholds.json",
+      "sha256": "ae7a2f02767d85de276fbfbb8088215135bcbf0c232b1bf0ad689165ca8b035f",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/Train_thresholds.json",
+      "source_sha256": "ae7a2f02767d85de276fbfbb8088215135bcbf0c232b1bf0ad689165ca8b035f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/Train_threshold_fit_r1.execution.json",
+      "sha256": "e28a493ff5717320054e1fbeb5811cf3e673292c3f43319d898ad08de867128f",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/Train_threshold_fit_r1.execution.json",
+      "source_sha256": "e28a493ff5717320054e1fbeb5811cf3e673292c3f43319d898ad08de867128f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/CPU_regressions_r2.json",
+      "sha256": "4716bafc365f007a4b05aa25f93faf40a00c256683c655c6498607b7a5dad73d",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_regressions_r2.json",
+      "source_sha256": "4716bafc365f007a4b05aa25f93faf40a00c256683c655c6498607b7a5dad73d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/CPU_regressions_r2.stdout.txt",
+      "sha256": "7fec2e5965c679503e4234fcc353ea0c6ce71a0bb859c0bc2bb57e178867f664",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_regressions_r2.stdout.txt",
+      "source_sha256": "7fec2e5965c679503e4234fcc353ea0c6ce71a0bb859c0bc2bb57e178867f664"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/CPU_regressions_r2.actual_tool_reply.json",
+      "sha256": "631ca2d9d563580f0c9bd68f840b8e56d782e57960cf62363c3b75e690d7089f",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_regressions_r2.actual_tool_reply.json",
+      "source_sha256": "631ca2d9d563580f0c9bd68f840b8e56d782e57960cf62363c3b75e690d7089f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/CPU_fixture_r1.actual_tool_reply.json",
+      "sha256": "70ed97a75309a551071ff2f803b6bd31d10e32226c6be6398197246478db8186",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_fixture_r1.actual_tool_reply.json",
+      "source_sha256": "70ed97a75309a551071ff2f803b6bd31d10e32226c6be6398197246478db8186"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/CPU_fixture_r1_source_hashes.json",
+      "sha256": "d76ad7826d0eb8604652baea073cd7b9f010a33dc6a7f76d763989742ecc8370",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_fixture_r1_source_hashes.json",
+      "source_sha256": "d76ad7826d0eb8604652baea073cd7b9f010a33dc6a7f76d763989742ecc8370"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/owned_driver_derivation_r1.json",
+      "sha256": "ee5c1ac8435238a9067ae2f98820e1d8d3a4057889e7f88c023380b2856c69e4",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/owned_driver_derivation_r1.json",
+      "source_sha256": "ee5c1ac8435238a9067ae2f98820e1d8d3a4057889e7f88c023380b2856c69e4"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/first_fixture_source_snapshot/mft_occlusion_rescue.py.txt",
+      "sha256": "035c96f010401ac6145da0f7464434cace150243d92568e4a176858051f2cd2f",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_fixture_r1_sources/mft_occlusion_rescue.py",
+      "source_sha256": "035c96f010401ac6145da0f7464434cace150243d92568e4a176858051f2cd2f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/first_fixture_source_snapshot/test_mft_occlusion_rescue.py.txt",
+      "sha256": "5918f88d91301842b1d19330f0b35f3baff88622ddb0e4199d02c2c8cd158479",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/CPU_fixture_r1_sources/test_mft_occlusion_rescue.py",
+      "source_sha256": "5918f88d91301842b1d19330f0b35f3baff88622ddb0e4199d02c2c8cd158479"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/derived_driver_before_static_binding_review.py.txt",
+      "sha256": "f4672b2972af17874196ad29f864c0a7292a3e8a43d37715e6b0fa067a697a82",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/derived_driver_before_static_binding_review.py",
+      "source_sha256": "f4672b2972af17874196ad29f864c0a7292a3e8a43d37715e6b0fa067a697a82"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/controller_execution_snapshot.json",
+      "sha256": "f18df20071d6d0c85074b3647bb91c01feff8b8f88941024b97d3eec6d7fbff2",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/controller.execution.json",
+      "source_sha256": "f18df20071d6d0c85074b3647bb91c01feff8b8f88941024b97d3eec6d7fbff2"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_occlusion_rescue_registration/controller_state_snapshot.json",
+      "sha256": "6950c8cae2bd7f47ea51e817b79cbb9145b93c4d93003a7c074b0fd36f8135dc",
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/occlusion_rescue_20261127/state.json",
+      "source_sha256": "6950c8cae2bd7f47ea51e817b79cbb9145b93c4d93003a7c074b0fd36f8135dc"
+    }
+  ]
+}
