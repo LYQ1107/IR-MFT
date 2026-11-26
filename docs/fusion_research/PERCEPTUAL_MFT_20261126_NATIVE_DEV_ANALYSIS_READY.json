@@ -1,0 +1,113 @@
+{
+  "status": "COMPLETE_CPU_NATIVE_DEV_ANALYSIS_ENTRYPOINT_ENGINEERING_NOT_NINE_OR_TWELVE_EPOCH_ACCURACY",
+  "UTC": "2026-11-26T13:54:32.563346+00:00",
+  "source_tool": "tools/analyze_mft_native_complete_dev.py",
+  "source_tool_sha256": "c5b55544b3d2c9d27e564674f03da2f45747d996297079e27f2c0c1b7dba68ac",
+  "actual_parent_tool_exit_code": 0,
+  "actual_parent_tool_chunk_id": "6c58dd",
+  "actual_source_stage": 6,
+  "actual_source_cases": 62,
+  "reference6_published_sections_exact": {
+    "all_six_own_registered_Dev_best": true,
+    "descriptive_strongest_controls_across_modes": true,
+    "full_normal_curves": true,
+    "original_frozen_budget_decision": true,
+    "IR_own_best_comparisons": true,
+    "per_sequence_comparisons": true,
+    "all6_same_epoch_interactions": true
+  },
+  "combined_comparisons": 16,
+  "per_sequence_comparisons": 48,
+  "full_normal_curves": 6,
+  "actual_curve_points": 36,
+  "all47_signed_metric_deltas_present": true,
+  "incomplete_stage9_rejected_before_outputs": true,
+  "actual_child_executions": [
+    {
+      "label": "reference6",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/data3/liuyeqiang/IR-MFT/tools/analyze_mft_native_complete_dev.py",
+        "--dev-report",
+        "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json",
+        "--expect-report-sha256",
+        "63426a8689f27ce662557b2df1d737db1d55d18af7e716bdd1374bdc290d688e",
+        "--stage",
+        "6",
+        "--output-directory",
+        "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_complete_Dev_analysis_CPU_engineering_20261126_r2/reference6"
+      ],
+      "identity": {
+        "PID": 2344704,
+        "start_ticks": 96815471,
+        "raw_argv_sha256": "724a48494075682c85d61c37a0fa2c360dd11aeef5173811b4f7e5c5c20fce30"
+      },
+      "exit_code": 0,
+      "wall_seconds": 0.09728453599382192,
+      "log_sha256": "dfd94f2310bb7406d18c89450b1343fc7273103f285a7ab9573dc34a98b63beb",
+      "output_directory_exists": true,
+      "source_sha256": "c5b55544b3d2c9d27e564674f03da2f45747d996297079e27f2c0c1b7dba68ac",
+      "CUDA_VISIBLE_DEVICES": "",
+      "GPU_work": false
+    },
+    {
+      "label": "reject_reference6_as_stage9",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/data3/liuyeqiang/IR-MFT/tools/analyze_mft_native_complete_dev.py",
+        "--dev-report",
+        "/data3/liuyeqiang/IR-MFT/docs/fusion_research/PERCEPTUAL_MFT_20261126_NATIVE_MINIMUM6_FULL_DEV.json",
+        "--expect-report-sha256",
+        "63426a8689f27ce662557b2df1d737db1d55d18af7e716bdd1374bdc290d688e",
+        "--stage",
+        "9",
+        "--output-directory",
+        "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_complete_Dev_analysis_CPU_engineering_20261126_r2/reject_reference6_as_stage9"
+      ],
+      "identity": {
+        "PID": 2344705,
+        "start_ticks": 96815481,
+        "raw_argv_sha256": "1640a0cf45e6cbee895effe4aa50903b48616f00485b5d5eb7cbf08d1cab953f"
+      },
+      "exit_code": 1,
+      "wall_seconds": 0.1896370459580794,
+      "log_sha256": "1f6b8b052c25eb4a7db0c7ea52133f02cf126d16e4461651241cafc60a9f3897",
+      "output_directory_exists": false,
+      "source_sha256": "c5b55544b3d2c9d27e564674f03da2f45747d996297079e27f2c0c1b7dba68ac",
+      "CUDA_VISIBLE_DEVICES": "",
+      "GPU_work": false
+    }
+  ],
+  "stage9_actual_report_analyzed": false,
+  "stage12_actual_report_analyzed": false,
+  "new_HOTA": false,
+  "GPU_work": false,
+  "Test_results_read": false,
+  "original_selection_or_budget_changed": false,
+  "source_closures_unchanged": {
+    "native_pyramid_pipeline_registered.json": {
+      "registry_sha256": "6e3480b1b5bfbbc914e5e805d195b2647c398388122c0c817a54b4113156cfa1",
+      "source_count": 102,
+      "mismatches": [],
+      "new_analysis_source_part_of_original_frozen_set": false
+    },
+    "task_utility/pipeline_registered.json": {
+      "registry_sha256": "6f302f6710b9c6fd5e36bba034e277c769d5f30d75b5068701193ecfbdadfdff",
+      "source_count": 427,
+      "mismatches": [],
+      "new_analysis_source_part_of_original_frozen_set": false
+    }
+  },
+  "earlier_r1_failure": {
+    "actual_parent_tool_exit_code": 1,
+    "actual_child_exit_code": 1,
+    "output_directory_created": false,
+    "reason": "Field-definition metadata dictionaries were initially treated as strings; fixed by reading the original metric keys and preserving all metadata.",
+    "source_sha256": "8cc9afbfe945c991fe87617b05c157e904cd8b9bf13b93a53b3baae47a883b85"
+  },
+  "raw_proofs": "perceptual_20261126_native_complete_Dev_analysis_engineering",
+  "supported_innovations": 0,
+  "goal_met": false
+}
