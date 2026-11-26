@@ -1,0 +1,53 @@
+{
+  "status": "DESIGN_BEFORE_CANDIDATE_RISK_TRAIN_FITTING",
+  "priority": "Fixed November DiffV2IR, ProtocolV2 and original RGB-only YOLOX-X+ByteTrack Test29.528970687393972; target+5, stretch+10. No new seeds or RGB backbone search.",
+  "source_bank": "All6 actual Train candidate banks from candidate_train_bank_20261127,27251 frames, frozen detector and existing native paired encoders. Wait for all6 sealed banks and actual producer/controller exit0 before fitting any weights.",
+  "model_inputs": "Current proposals plus past track state/templates only: geometric cost/IoU, body-normalized displacement and scale, velocity consistency, history age/quality, RGB and IR similarities, competing row/column margins, cue disagreement and quality interactions. No GT identity, label, video name, absolute frame identifier or future observation in features.",
+  "labels": "Train labels only. Hungarian current-frame IoU>=0.5 with confirmed class1 GT. An unmatched detection is known background only if all valid GT overlap<0.2; ignored/distractor overlap>=0.2 remains unknown. Past track identity uses >=3 known past labels and majority purity>=0.8, committed only after the current association has executed. Unknown labels are omitted from supervised loss, not from the input bank or tracker.",
+  "teacher": "Roll the original25-frame ByteTrack association causally with paired reliable RGB/IR memories. Observe primary candidate edges before assignment, without modifying costs using GT. Post-step labels update only a separate training-label history. All detector proposals and frames still pass through the tracker.",
+  "fit_plan": "Two deterministic regularized logistic models: full cues and the same-dimensional RGB-only mask. Fit standardization and weights using the first75% time range of each Train video, use the last25% only for Train calibration/diagnostics, keep the early-fit weights. Equal-video weights, fixed regularization1e-3 and six cyclic optimizer passes, seed0. No class labels or images from Dev/Test fit these parameters.",
+  "calibration_plan": "Freeze the acceptance threshold from the99th percentile of wrong-edge scores on the late Train calibration portion. Calibrated scores are diagnostics on seen-encoder Train identities, not a fresh unseen-backbone validation. Engineering and actual data coverage must pass before the formal fitting protocol is registered.",
+  "scope": "The first implementation collects features and labels only. Inference policy, safeguards and all complete-Dev cases must be registered before replay or accuracy selection. Missing IR must fall back to the independently fitted RGB mask; descriptor interventions concern identity evidence while the IR visual detector remains unchanged.",
+  "storage": "Stream per-frame pair batches from compact banks; no images or new FPN cache, no unbounded candidate-pair disk dump. Keep working directory64GiB and40GiB free reserve. Models/weights and banks remain private; publish small code/configuration/statistics/metrics only.",
+  "limits": "The research stage follows previously exposed Test results. Future choice uses complete Dev only; no new blind-test claim. Whole-system gains do not establish the independent contribution of IR or novelty by themselves.",
+  "fit_parameters": {
+    "seed": 0,
+    "early_Train_time_fraction": 0.75,
+    "models": ["RGB", "paired"],
+    "optimizer": "six full streaming damped Newton passes; no stochastic shuffle or extra line-search passes",
+    "passes": 6,
+    "L2_weights_excluding_intercept": 0.001,
+    "linear_solve_diagonal_jitter": 1e-8,
+    "maximum_Newton_step_L2_norm": 2.0,
+    "standardization": "equal-video first75% known-edge moments, FP64, scale floor1e-4; same ordinary-feature moments for both models",
+    "standardized_feature_clip": 8.0,
+    "objective_weighting": "equal video weight and equal available positive/negative class weight within each video",
+    "calibration_wrong_score_quantile": 0.99,
+    "calibration_quantile_interpolation": "numpy default linear, pooled wrong edges from late25% Train only",
+    "maximum_calibration_score_RAM_bytes_per_model": 67108864,
+    "candidate_edge_disk_dump": false,
+    "coefficient_files_public": false
+  },
+  "inference_parameters": {
+    "ordinary_edges": "blend the original IoU/score cost with1-p on eligible ambiguous primary edges; retain original secondary and pending association",
+    "protect": "an original continuous tracked match with cost<=0.4 and row/column cost gap>=0.1 keeps its row/column assignment",
+    "unsupported_lost_edges": "only body-reachable scale0.5..2 edges with gap2..25, mutual maximum p, probability margin>=0.05 and p>=the frozen late-Train wrong-edge99th-percentile threshold may enter",
+    "RGB_fallback": "if current IR descriptors are unavailable, use the independently fitted same-dimensional RGB-masked model; no unavailable IR array read",
+    "shape_render": "current observed width/height about filtered center, no state feedback; raw area<=100 uses original filtered box",
+    "unchanged_detector": "all cases reuse the same fixed November pseudo-IR visual detector and paired identity encoders; RGB here describes identity evidence only"
+  },
+  "complete_Dev_cases": [
+    {"id":"CR_native_zero","kind":"reference_native","blend":0.0,"shape":false},
+    {"id":"CR_pose_late_control","kind":"reference_pose_late","blend":0.0,"shape":true},
+    {"id":"CR_RGB_risk","kind":"RGB","blend":0.5,"shape":false},
+    {"id":"CR_paired_risk","kind":"paired","blend":0.5,"shape":false},
+    {"id":"CR_paired_risk_shape","kind":"paired","blend":0.5,"shape":true},
+    {"id":"CR_paired_direct_shape","kind":"paired","blend":1.0,"shape":true}
+  ],
+  "selection_rule": "After all6 complete-Dev cases and all4834 frames, maximize official combined HOTA, then AssA, then IDF1, then ascending case ID. If the winner does not beat the frozen pose+late control HOTA by1e-8, report a negative and launch no new Test. Otherwise freeze native zero, pose+late control and the winner before replaying all7 Test videos15985 frames; never choose per Test video.",
+  "primary_baseline_Test_HOTA": 29.528970687393972,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "stretch_target_Test_HOTA": 39.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}

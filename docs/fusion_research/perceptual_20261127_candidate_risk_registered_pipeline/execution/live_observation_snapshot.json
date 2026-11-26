@@ -1,0 +1,145 @@
+{
+  "UTC": "2026-11-26T20:54:58.268781+00:00",
+  "bank": {
+    "state": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+    "actual_exit": null,
+    "live": {
+      "PID": 2741594,
+      "start_ticks": 99068203,
+      "raw_argv_sha256": "f8d1f867aa6430c82bbce54b8e3485e71fdd8770b337d07eb91c78f4bb9b04fd",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "R"
+    },
+    "jobs": [
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "4",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "4",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_GPU_ENGINEERING",
+        "id": "5",
+        "status": "COMPLETE",
+        "actual_exit": 0,
+        "slot": "5",
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "PF-001",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "4",
+        "live": {
+          "PID": 2742946,
+          "start_ticks": 99077612,
+          "raw_argv_sha256": "e4cecb743832fa4adfe9f0fc0acfa24bbfb9efee5251dacecbd8f2dd53061ac9",
+          "CUDA_VISIBLE_DEVICES": "4",
+          "kernel_state": "R"
+        }
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-015",
+        "status": "RUNNING",
+        "actual_exit": null,
+        "slot": "5",
+        "live": {
+          "PID": 2742975,
+          "start_ticks": 99077710,
+          "raw_argv_sha256": "5a9ca40ccd6fdda975d973d340a8088791514b5fbab19d02c1617dc403a9b638",
+          "CUDA_VISIBLE_DEVICES": "5",
+          "kernel_state": "R"
+        }
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-001",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "MSK-002",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "SN-001",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      },
+      {
+        "phase": "CANDIDATE_TRAIN_BANK_20261127_TRAIN_NN",
+        "id": "BT-003",
+        "status": "PENDING",
+        "actual_exit": null,
+        "slot": null,
+        "live": null
+      }
+    ]
+  },
+  "risk": {
+    "state": "WAITING_EXISTING_TWO_GPU_ALL6_TRAIN_BANK",
+    "actual_exit": null,
+    "live": {
+      "PID": 2785342,
+      "start_ticks": 99342520,
+      "raw_argv_sha256": "d28b41ff6ae02632f59aacd210f4654846c5f71d6d1bd45a3ba132c0cd8e0965",
+      "CUDA_VISIBLE_DEVICES": "",
+      "kernel_state": "R"
+    },
+    "jobs": []
+  },
+  "progress": {
+    "PF-001": {
+      "frame": 6500,
+      "frames": 15000,
+      "proposals": 13403,
+      "uncompressed_payload_bytes": 27821412,
+      "physical_gpu": "4",
+      "seconds": 2655.9795446679927,
+      "GT_labels_parsed": false
+    },
+    "SN-015": {
+      "frame": 6200,
+      "frames": 6570,
+      "proposals": 68889,
+      "uncompressed_payload_bytes": 142561660,
+      "physical_gpu": "5",
+      "seconds": 2642.344224527944,
+      "GT_labels_parsed": false
+    }
+  },
+  "ledger": {
+    "maximum_bytes": 1288490188,
+    "sequences": {
+      "PF-001": 27821412,
+      "SN-015": 142561660
+    },
+    "total_reserved_bytes": 170383072
+  },
+  "work_GiB": 61.35492255911231,
+  "free_GiB": 2639.1826820373535,
+  "bank_complete": false,
+  "fitted_models": false,
+  "risk_Dev_complete": false,
+  "risk_Test_complete": false,
+  "frozen_risk_sources_verified": 486,
+  "last_formal_Test_HOTA": 29.955069130617183,
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "last_formal_gain_pp": 0.42609844322321067,
+  "minimum_target_Test_HOTA": 34.52897068739397,
+  "goal_met": false,
+  "supported_innovations": 0
+}
