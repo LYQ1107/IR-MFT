@@ -1,0 +1,85 @@
+{
+  "status": "TRACKLET_20261127_R2_DEV_NN",
+  "controller_pid": 2589403,
+  "phases": {
+    "TRACKLET_20261127_R2_GPU_ENGINEERING": {
+      "4": {
+        "id": "4",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2589545,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_4.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "5": {
+        "id": "5",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2589546,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_5.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "TRACKLET_20261127_R2_DEV_NN": {
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "RUNNING",
+        "pid": 2590137,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_SN-013.log",
+        "slot": "4"
+      },
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_tracklet_permanence_r2.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "RUNNING",
+        "pid": 2590138,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_BT-005.log",
+        "slot": "5"
+      }
+    }
+  },
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "supported_innovations": 0,
+  "goal_met": false,
+  "UTC": "2026-11-26T17:52:29.863951+00:00",
+  "phase": "TRACKLET_20261127_R2_DEV_NN"
+}

@@ -1,3 +1,7 @@
+> [身份续接R2](PERCEPTUAL_MFT_20261127_TRACKLET_PERMANENCE_R2_STATUS.md)已通过六项CPU回归和4/5两卡各12帧真实工程，当前正在提取完整Dev候选与两路身份描述符。原YOLOX-X和新版IR视觉父模型不变，复用既有seed0 ResNet50 RGB/IR身份编码器；全部Dev/Test紧凑载荷预计0.90GiB，不再反复编码每种关联条件。尚无新精度，不增加创新计数。
+
+> 最新进展：配对Fisher完整Dev五项及九个相关子进程全部实际退出0；零50.115210，非零40.838753–47.221266，全部负增益，无新Test。独立CPU审计705字段及条件Test“不应启动”检查均实际0。[结果与下一步](PERCEPTUAL_MFT_20261127_FISHER_FULL_DEV.md)。当前完整Test29.799525相对原始RGB29.528971仍仅+0.270555，目标未达；继续改进并保持新版IR、seed0、GPU4/5与64GiB上限。下方旧段落保留原观察时点。
+
 # 当前优先目标：原始RGB baseline至少+5 HOTA
 
 最新完整七段Test已完成并核验：原始RGB29.528971，冻结IR主方案29.799525，**仅+0.270555点**，未达+5；新鲜B1 RGB29.820430。IDF1下降、IDSW由450增至487，负结果不删除。[完整Test与分析](PERCEPTUAL_MFT_20261126_NATIVE_PRIMARY_FULL_TEST_ANALYSIS_ZH.md)为当前结果入口。原11个实验worker均实际退出0；旧汇总常数约0.000007点的误差仅做CPU修复，原失败记录保留。原CSV未变，基线显示仍29.529。[记忆V3完整Dev](PERCEPTUAL_MFT_20261127_NATIVE_MEMORY_NO_GAIN.md)已结束：三个权重全部47项及同视频MOT字节相同，均HOTA50.115210，无增益、不追加Test。[Train Fisher身份投影](PERCEPTUAL_MFT_20261127_FISHER_TRAIN_AND_DEV_STATUS.md)已拟合94组身份、17266条采样ROI，时间留出检索30.97%相对原始RGB24.74%为正向诊断，尚不是HOTA提升。[未见Train视频的六折检查](PERCEPTUAL_MFT_20261127_FISHER_TRAIN_TRANSFER.md)配对投影27.59%、原始RGB24.74%、同算法RGB投影27.27%，配对仅2/6段优于后者，不证明稳定红外增益。新方案两张卡工程实际0、旧缓存字节及零路径复现通过，当前仅物理4/5运行预先固定的完整Dev五项；无新RGB结构或种子，Goal继续active。以下旧状态段落按各自时点保留。

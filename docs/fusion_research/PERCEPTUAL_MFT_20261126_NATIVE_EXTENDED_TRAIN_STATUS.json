@@ -1,6 +1,6 @@
 {
-  "status": "PRIMARY_TEST_UNMET_MEMORY_V3_NO_GAIN_PAIRED_FISHER_FULL_DEV_RUNNING",
-  "UTC": "2026-11-26T16:58:59.752191+00:00",
+  "status": "TRACKLET_R2_FULL_DEV_EXTRACTION_RUNNING_AFTER_ALL_NEGATIVE_FISHER_DEV",
+  "UTC": "2026-11-26T17:54:43.416129+00:00",
   "current_user_priority": "At least+5 absolute HOTA versus original direct RGB-only YOLOX-X+ByteTrack; stretch+10. Extra RGB architectures/removals deferred.",
   "original_RGB_Test_HOTA": 29.528970687393972,
   "primary_IR_Test_HOTA": 29.799525425926028,
@@ -17,7 +17,7 @@
   "latest_Fisher_status": "docs/fusion_research/PERCEPTUAL_MFT_20261127_FISHER_TRAIN_AND_DEV_STATUS.json",
   "latest_Fisher_status_sha256": "5c513ba5ca85d29e622866f86e50cd253f07db2925ff4b8479632a1b6136c193",
   "Fisher_controller_snapshot": {
-    "status": "FISHER_20261127_R1_DEV_NN",
+    "status": "COMPLETE_FISHER_NO_POSITIVE_DEV_GAIN_NO_NEW_TEST",
     "controller_pid": 2536709,
     "phases": {
       "FISHER_20261127_R1_GPU_ENGINEERING": {
@@ -65,10 +65,11 @@
             "--sequence",
             "SN-013"
           ],
-          "status": "RUNNING",
+          "status": "COMPLETE",
           "pid": 2537791,
           "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_SN-013.log",
-          "slot": "4"
+          "slot": "4",
+          "exit_code": 0
         },
         "BT-005": {
           "id": "BT-005",
@@ -82,10 +83,103 @@
             "--sequence",
             "BT-005"
           ],
-          "status": "RUNNING",
+          "status": "COMPLETE",
           "pid": 2537792,
           "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_BT-005.log",
-          "slot": "5"
+          "slot": "5",
+          "exit_code": 0
+        }
+      },
+      "FISHER_20261127_R1_DEV_OFFICIAL": {
+        "FF_native_zero": {
+          "id": "FF_native_zero",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "evaluate",
+            "--split",
+            "dev",
+            "--case",
+            "FF_native_zero"
+          ],
+          "status": "COMPLETE",
+          "pid": 2564558,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_zero.log",
+          "slot": "CPU0",
+          "exit_code": 0
+        },
+        "FF_native_w025_b025": {
+          "id": "FF_native_w025_b025",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "evaluate",
+            "--split",
+            "dev",
+            "--case",
+            "FF_native_w025_b025"
+          ],
+          "status": "COMPLETE",
+          "pid": 2564559,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w025_b025.log",
+          "slot": "CPU1",
+          "exit_code": 0
+        },
+        "FF_native_w050_b025": {
+          "id": "FF_native_w050_b025",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "evaluate",
+            "--split",
+            "dev",
+            "--case",
+            "FF_native_w050_b025"
+          ],
+          "status": "COMPLETE",
+          "pid": 2565629,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w050_b025.log",
+          "slot": "CPU0",
+          "exit_code": 0
+        },
+        "FF_native_w025_b250": {
+          "id": "FF_native_w025_b250",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "evaluate",
+            "--split",
+            "dev",
+            "--case",
+            "FF_native_w025_b250"
+          ],
+          "status": "COMPLETE",
+          "pid": 2565630,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w025_b250.log",
+          "slot": "CPU1",
+          "exit_code": 0
+        },
+        "FF_native_w050_b250": {
+          "id": "FF_native_w050_b250",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_fisher_memory.py",
+            "evaluate",
+            "--split",
+            "dev",
+            "--case",
+            "FF_native_w050_b250"
+          ],
+          "status": "COMPLETE",
+          "pid": 2565989,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w050_b250.log",
+          "slot": "CPU0",
+          "exit_code": 0
         }
       }
     },
@@ -100,12 +194,13 @@
     "user_priority": "Original direct RGB baseline +5 HOTA; +10 stretch",
     "supported_innovations": 0,
     "goal_met": false,
-    "UTC": "2026-11-26T16:58:56.067815+00:00",
-    "phase": "FISHER_20261127_R1_DEV_NN"
+    "UTC": "2026-11-26T17:23:12.156576+00:00",
+    "phase": "FISHER_20261127_R1_DEV_OFFICIAL",
+    "Dev_gain_pp": 0.0
   },
   "Fisher_registered_source_files": 439,
   "Fisher_actual_GPU_engineering_exit_zero": 2,
-  "Fisher_complete_Dev_metrics_available": false,
+  "Fisher_complete_Dev_metrics_available": true,
   "physical_gpus": [
     "4",
     "5"
@@ -113,8 +208,8 @@
   "maximum_cards": 2,
   "fixed_seed": 0,
   "additional_seed_work": false,
-  "work_GiB": 60.2430562088266,
-  "independent_available_GiB": 2640.6434593200684,
+  "work_GiB": 60.268052470870316,
+  "independent_available_GiB": 2640.6429328918457,
   "target_plus5_met": false,
   "target_plus10_met": false,
   "supported_innovations": 0,
@@ -824,5 +919,107 @@
     "original_primary_controller_actual_exit1_preserved": true,
     "CPU_aggregation_recovery_actual_exit_zero": true,
     "independent_full_Test_audit_actual_exit_zero": true
-  }
+  },
+  "latest_Fisher_complete_Dev": "docs/fusion_research/PERCEPTUAL_MFT_20261127_FISHER_FULL_DEV.json",
+  "latest_Fisher_complete_Dev_sha256": "b639fda2d609d79d2e00561bd9499b3180fca3fc23ed52981a50a9b80b4fcba7",
+  "Fisher_actual_controller_exit_code": 0,
+  "Fisher_Dev_related_workers_actual_exit_zero": 9,
+  "Fisher_independent_Dev_audit_actual_exit_code": 0,
+  "Fisher_conditional_Test_audit_actual_exit_code": 0,
+  "Fisher_complete_Dev_gain_pp": 0.0,
+  "Fisher_new_Test": false,
+  "next": "Complete the original two GPU candidate/identity producers, replay all5 fixed cases on CPU, evaluate complete Dev before one conditional frozen full Test; do not restart or change registered sources.",
+  "latest_tracklet_report": "docs/fusion_research/PERCEPTUAL_MFT_20261127_TRACKLET_PERMANENCE_R2_STATUS.json",
+  "latest_tracklet_report_sha256": "7ac3367001c7a0842907896ef5e5defd20d0866ce0674b3f32d6577ed9b70db7",
+  "tracklet_R2_registered_sources": 447,
+  "tracklet_R2_actual_GPU_engineering_exit_zero": 2,
+  "tracklet_R2_CPU_regression_passes": 6,
+  "tracklet_R2_Train_threshold_fit_reused": true,
+  "tracklet_R2_current_state_snapshot": {
+    "status": "TRACKLET_20261127_R2_DEV_NN",
+    "controller_pid": 2589403,
+    "phases": {
+      "TRACKLET_20261127_R2_GPU_ENGINEERING": {
+        "4": {
+          "id": "4",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2589545,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_4.log",
+          "slot": "4",
+          "exit_code": 0
+        },
+        "5": {
+          "id": "5",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2589546,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_5.log",
+          "slot": "5",
+          "exit_code": 0
+        }
+      },
+      "TRACKLET_20261127_R2_DEV_NN": {
+        "SN-013": {
+          "id": "SN-013",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "SN-013"
+          ],
+          "status": "RUNNING",
+          "pid": 2590137,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_SN-013.log",
+          "slot": "4"
+        },
+        "BT-005": {
+          "id": "BT-005",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "BT-005"
+          ],
+          "status": "RUNNING",
+          "pid": 2590138,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_BT-005.log",
+          "slot": "5"
+        }
+      }
+    },
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "supported_innovations": 0,
+    "goal_met": false,
+    "UTC": "2026-11-26T17:54:39.626273+00:00",
+    "phase": "TRACKLET_20261127_R2_DEV_NN"
+  },
+  "tracklet_R2_new_accuracy_available": false,
+  "tracklet_R2_expected_compact_payload_GiB": 0.8988413736224174
 }

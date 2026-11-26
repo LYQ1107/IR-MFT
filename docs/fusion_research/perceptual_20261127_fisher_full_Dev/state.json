@@ -1,0 +1,182 @@
+{
+  "status": "COMPLETE_FISHER_NO_POSITIVE_DEV_GAIN_NO_NEW_TEST",
+  "controller_pid": 2536709,
+  "phases": {
+    "FISHER_20261127_R1_GPU_ENGINEERING": {
+      "4": {
+        "id": "4",
+        "physical_gpu": "4",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2536917,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_GPU_ENGINEERING_4.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "5": {
+        "id": "5",
+        "physical_gpu": "5",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "engineering"
+        ],
+        "status": "COMPLETE",
+        "pid": 2536918,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_GPU_ENGINEERING_5.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "FISHER_20261127_R1_DEV_NN": {
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2537791,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_SN-013.log",
+        "slot": "4",
+        "exit_code": 0
+      },
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "produce",
+          "--split",
+          "dev",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2537792,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_NN_BT-005.log",
+        "slot": "5",
+        "exit_code": 0
+      }
+    },
+    "FISHER_20261127_R1_DEV_OFFICIAL": {
+      "FF_native_zero": {
+        "id": "FF_native_zero",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FF_native_zero"
+        ],
+        "status": "COMPLETE",
+        "pid": 2564558,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_zero.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "FF_native_w025_b025": {
+        "id": "FF_native_w025_b025",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FF_native_w025_b025"
+        ],
+        "status": "COMPLETE",
+        "pid": 2564559,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w025_b025.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "FF_native_w050_b025": {
+        "id": "FF_native_w050_b025",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FF_native_w050_b025"
+        ],
+        "status": "COMPLETE",
+        "pid": 2565629,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w050_b025.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      },
+      "FF_native_w025_b250": {
+        "id": "FF_native_w025_b250",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FF_native_w025_b250"
+        ],
+        "status": "COMPLETE",
+        "pid": 2565630,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w025_b250.log",
+        "slot": "CPU1",
+        "exit_code": 0
+      },
+      "FF_native_w050_b250": {
+        "id": "FF_native_w050_b250",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_fisher_memory.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--case",
+          "FF_native_w050_b250"
+        ],
+        "status": "COMPLETE",
+        "pid": 2565989,
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/FISHER_20261127_R1_DEV_OFFICIAL_FF_native_w050_b250.log",
+        "slot": "CPU0",
+        "exit_code": 0
+      }
+    }
+  },
+  "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "fixed_seed": 0,
+  "additional_seed_work": false,
+  "user_priority": "Original direct RGB baseline +5 HOTA; +10 stretch",
+  "supported_innovations": 0,
+  "goal_met": false,
+  "UTC": "2026-11-26T17:23:12.156576+00:00",
+  "phase": "FISHER_20261127_R1_DEV_OFFICIAL",
+  "Dev_gain_pp": 0.0
+}

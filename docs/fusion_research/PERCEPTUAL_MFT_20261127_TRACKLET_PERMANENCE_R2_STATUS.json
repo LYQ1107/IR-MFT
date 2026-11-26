@@ -1,0 +1,190 @@
+{
+  "status": "TRACKLET_R2_GPU_ENGINEERING_COMPLETE_FULL_DEV_EXTRACTION_RUNNING",
+  "UTC": "2026-11-26T17:52:31.189215+00:00",
+  "current_user_priority": "At least+5 original RGB-only YOLOX-X+ByteTrack full Test HOTA; +10 stretch, additional strong RGB architecture search deferred.",
+  "original_RGB_Test_HOTA": 29.528970687393972,
+  "current_native_parent_Test_HOTA": 29.799525425926028,
+  "current_native_parent_Test_gain_pp": 0.2705547385320557,
+  "minimum_target_HOTA": 34.52897068739397,
+  "stretch_target_HOTA": 39.52897068739397,
+  "new_tracklet_Dev_or_Test_accuracy": false,
+  "source_files_frozen": 447,
+  "pipeline_registration_sha256": "c1edbf472d7ed466a2e636dafad7b94be140b3fc04976724838ffeef581272f0",
+  "actual_GPU_engineering_workers_exit_zero": 2,
+  "actual_Train_frames_each_GPU": 12,
+  "preexisting_native_identity_checkpoint_epochs": 36,
+  "new_NN_training": false,
+  "fixed_seed": 0,
+  "additional_seeds": false,
+  "detector_backbone_changed": false,
+  "detector": "Same frozen source YOLOX-X and NP_temporal_ir_e06; two already-trained ResNet50 RGB/IR identity encoders are added as explicit association evidence, not a replacement baseline.",
+  "Train_thresholds": {
+    "RGB_cosine_threshold": 0.5,
+    "IR_cosine_threshold": 0.30187624990940093,
+    "Train_unknown_speed_upper": 0.13137420405549355
+  },
+  "threshold_calibration_optimistic_seen_IDs": true,
+  "source_pool_retirement_edge_fixed_before_any_R1_GPU": true,
+  "accepted_RGB_margin_competitors_include_subthreshold_candidates": true,
+  "R2_actual_CPU_regression_tests_passed": 6,
+  "R2_actual_CPU_test_reply": "c0ae6c",
+  "R1_initial_empty_argv_snapshot_preserved": true,
+  "R1_actual_CPU_fit_exit_code": 0,
+  "R2_thresholds_reused_byte_exact": true,
+  "all_Dataset_roots_and_fixed_November_IR_preserved": true,
+  "physical_gpus": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "expected_Dev_plus_Test_uncompressed_GiB": 0.8988413736224174,
+  "work_GiB": 60.26819060090929,
+  "free_GiB": 2640.6875381469727,
+  "controller_state_snapshot": {
+    "status": "TRACKLET_20261127_R2_DEV_NN",
+    "controller_pid": 2589403,
+    "phases": {
+      "TRACKLET_20261127_R2_GPU_ENGINEERING": {
+        "4": {
+          "id": "4",
+          "physical_gpu": "4",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2589545,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_4.log",
+          "slot": "4",
+          "exit_code": 0
+        },
+        "5": {
+          "id": "5",
+          "physical_gpu": "5",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "engineering"
+          ],
+          "status": "COMPLETE",
+          "pid": 2589546,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_GPU_ENGINEERING_5.log",
+          "slot": "5",
+          "exit_code": 0
+        }
+      },
+      "TRACKLET_20261127_R2_DEV_NN": {
+        "SN-013": {
+          "id": "SN-013",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "SN-013"
+          ],
+          "status": "RUNNING",
+          "pid": 2590137,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_SN-013.log",
+          "slot": "4"
+        },
+        "BT-005": {
+          "id": "BT-005",
+          "command": [
+            "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+            "-u",
+            "tools/run_mft_tracklet_permanence_r2.py",
+            "produce",
+            "--split",
+            "dev",
+            "--sequence",
+            "BT-005"
+          ],
+          "status": "RUNNING",
+          "pid": 2590138,
+          "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_logs/TRACKLET_20261127_R2_DEV_NN_BT-005.log",
+          "slot": "5"
+        }
+      }
+    },
+    "data_root": "/data3/liuyeqiang/datasets/mft26-ir",
+    "physical_gpus": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "fixed_seed": 0,
+    "supported_innovations": 0,
+    "goal_met": false,
+    "UTC": "2026-11-26T17:52:29.863951+00:00",
+    "phase": "TRACKLET_20261127_R2_DEV_NN"
+  },
+  "public_raw_files": [
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/Train_thresholds.json",
+      "sha256": "c1dd3fcb91626063f0a20f5c5df04800a1a2ce24a0945b650b9bc069eed5ad83"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/Train_threshold_fit_r1.execution.json",
+      "sha256": "75702d411f7908a972d240acc185f1c89d69e1bb401e354fa7b1fe58005ebdbf"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/CPU_tracklet_regression_r2.json",
+      "sha256": "26a001b544c5c9839ee535c09aa3fc901aca11e7078aef23bca0142791badd6f"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/CPU_tracklet_regression_r2.stdout.txt",
+      "sha256": "848e28c70acf0e28a414804ec518ee72f161a78f6c3540d21fdb4fd6bd43003a"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/CPU_tracklet_regression_r2.actual_tool_completion.json",
+      "sha256": "f5019bc20cc880a6c346cbfe372cea973d3928efc9c34f23bd8679584b65c16b"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/R1_superseded_before_GPU.json",
+      "sha256": "6a4476f54a7d0fec25835b41e4cfe3fdf5101c7558f9e2a9f846c739469ed418"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/R1_matching_pool_hazard_negative_fixture.json",
+      "sha256": "f63ad9918a4138f638947cff76eb682f0660fefd786eb4bc0858367982bc391d"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/pipeline_registered.json",
+      "sha256": "c1edbf472d7ed466a2e636dafad7b94be140b3fc04976724838ffeef581272f0"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/gpu_engineering_4.json",
+      "sha256": "a02091cbf560c10e6d6266b5e73fd842d76709616c317dccd983f0326d4920d3"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/gpu_engineering_5.json",
+      "sha256": "21baeac743a80c3477fbb270ad358655fa584dd5302bae2193bd181d691160b3"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/R1_pipeline_registered_before_source_fix.json",
+      "sha256": "42352f7c48cfbcbc0660e00e92d154f512e369ed025418658cfc57137901c87a"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/R1_CPU_4_tests_before_edge_fix.json",
+      "sha256": "35c1f91b8ee54c3611972924e5caf64799187a8a68f998308f155e5c8f89c92b"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/controller_execution_at_publication.json",
+      "sha256": "29e1a345b43502d724a788fda46d562a453eb1ef509ad51b9801246a7d4702cb"
+    },
+    {
+      "file": "docs/fusion_research/perceptual_20261127_tracklet_permanence_r2/state_at_publication.json",
+      "sha256": "dc62aca351c3ab501f5388547d242c64da7afe8a57c81dc6ab774389756c0a70"
+    }
+  ],
+  "supported_innovations": 0,
+  "goal_met": false,
+  "reference_Train_crops_compared_each_GPU_each_modality": 1,
+  "descriptor_suffix_corruption_checks_cache_replay_only": true
+}
