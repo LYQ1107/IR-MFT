@@ -1,0 +1,144 @@
+"""Read-only observation of the original matched continuation through epoch9."""
+import ast
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import time
+import traceback
+
+W=Path('/var/tmp/liuyeqiang_ir_mft_perceptual_20261122')
+STEM='native_nine_epoch_read_only_watch_20261126_r1'
+LATEST=W/(STEM+'_latest.json')
+LOG=W/(STEM+'.jsonl')
+PARENT=(1489657,91266785,'64fdf772923e6c6dead6583cdc707fafe372d53a536e2f6a941cf865ad4e8b47')
+INITIAL={'quality_rgb':(1613233,92829587,'d02e1a6a9d027160d651f37cd0809dc7e93291ff1081a6d48bf2246a8479351c'),
+         'quality_gray':(1613234,92829587,'fb3dc24e19d5d13cdabcc35e7272947b02ec939bfe0b6c67bd255cc1c87233c9')}
+NAMES={'quality_rgb','quality_gray','quality_ir','temporal_rgb','temporal_gray','temporal_ir'}
+WINDOW=21600
+
+
+def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def read(path):return json.loads(Path(path).read_text())
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def proc(pid):
+    path=Path('/proc')/str(pid)
+    try:
+        raw=(path/'cmdline').read_bytes();stat=(path/'stat').read_text().rsplit(')',1)[1].split()
+        env=(path/'environ').read_bytes().split(b'\0')
+        return dict(PID=pid,ok=True,state=stat[0],start_ticks=int(stat[19]),
+            argv_sha256=hashlib.sha256(raw).hexdigest(),command=raw.rstrip(b'\0').replace(b'\0',b' ').decode(),
+            CUDA_VISIBLE_DEVICES=next((v.decode().split('=',1)[1] for v in env if v.startswith(b'CUDA_VISIBLE_DEVICES=')),None))
+    except OSError as error:
+        return dict(PID=pid,ok=False,exists_on_recheck=path.exists(),error=repr(error),
+                    transient_read_is_not_a_training_failure=True)
+
+
+def last_update(path):
+    if not path:return None
+    try:
+        with Path(path).open('rb') as stream:
+            stream.seek(0,2);size=stream.tell();stream.seek(max(0,size-65536))
+            lines=stream.read().decode(errors='replace').splitlines()
+    except OSError:return None
+    for line in reversed(lines):
+        try:
+            value=ast.literal_eval(line)
+            if isinstance(value,dict) and 'actual_updates' in value:return value
+        except (ValueError,SyntaxError):pass
+    return None
+
+
+def save(value,emit=False):
+    temporary=LATEST.with_suffix('.partial.json')
+    temporary.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+    os.replace(temporary,LATEST)
+    if emit:
+        line=json.dumps(value,ensure_ascii=False)+'\n'
+        with LOG.open('a') as stream:stream.write(line)
+        print(line,end='',flush=True)
+
+
+def finish(status,code,**extra):
+    value=dict(row,status=status,UTC=utc(),observer_intended_exit_code=code,
+               actual_numeric_exit_requires_parent_tool=True,**extra)
+    save(value,True)
+    raise SystemExit(code)
+
+
+if os.environ.get('CUDA_VISIBLE_DEVICES')!='':raise ValueError('Read-only observer must remain CPU only')
+if LATEST.exists() or LOG.exists():raise ValueError('Preserve earlier observer evidence; no duplicate observation')
+authorization=read(W/'native_pyramid_stage_authorized.json')
+decision=W/'native_pyramid_Dev_stage_06.json'
+if (authorization['through_epoch']!=9 or set(authorization['fit_ids'])!=NAMES or
+        authorization['prior_decision_sha256']!=sha(decision) or
+        not read(decision)['decision']['extend_all_six']):
+    raise ValueError('Original complete Dev must authorize the common9-epoch budget')
+started=time.monotonic();next_emit=0;errors=0;pinned=dict(INITIAL)
+row=dict(status='READ_ONLY_NINE_EPOCH_OBSERVER_STARTED',UTC=utc(),observer=proc(os.getpid()),
+    source_sha256=sha(__file__),window_seconds=WINDOW,
+    original_authorization=authorization,prior_complete_Dev_sha256=sha(decision),
+    no_training_or_GPU_actions=True,new_accuracy_claimed_by_observer=False)
+save(row,True)
+while time.monotonic()-started<WINDOW:
+    try:
+        state=read(W/'native_pyramid_study_state.json');parent=proc(state['controller_pid'])
+        consistent=bool(parent.get('ok') and parent.get('state') not in ['T','Z'] and
+            (parent['PID'],parent['start_ticks'],parent['argv_sha256'])==PARENT)
+        jobs=state['phases']['NORMAL_TRAIN_09']
+        if set(jobs)!=NAMES:raise ValueError('All six original matched continuation jobs are required')
+        workers=[]
+        for name,job in jobs.items():
+            progress_path=W/'native_pyramid_fits'/name/'progress.json'
+            progress=read(progress_path) if progress_path.exists() else {}
+            entry=dict(id=name,status=job['status'],PID=job.get('pid'),slot=job.get('slot'),
+                original_parent_recorded_exit_code=job.get('exit_code'),
+                last_full_epoch_progress=dict(completed_full_Train_epochs=progress.get('completed_full_Train_epochs'),
+                    registered_through_epoch=progress.get('registered_through_epoch'),
+                    actual_optimizer_updates=progress.get('actual_optimizer_updates'),
+                    delivered_clips_total=progress.get('delivered_clips_total')),
+                last_periodic_training_update=last_update(job.get('log')))
+            if job['status']=='RUNNING':
+                actual=proc(job['pid']);expected=' '.join(job['command'])
+                match=bool(actual.get('ok') and actual.get('state') not in ['T','Z'] and
+                    actual.get('command')==expected and actual.get('CUDA_VISIBLE_DEVICES')==job['slot'] and
+                    job['slot'] in ['4','5'] and job['command'][-2:]==['--through-epoch','9'])
+                if match:
+                    identity=(actual['PID'],actual['start_ticks'],actual['argv_sha256'])
+                    if name in pinned:match=identity==pinned[name]
+                    else:pinned[name]=identity
+                entry.update(actual_process=actual,actual_identity_matches_registered_job=match)
+                consistent=consistent and match
+            elif job['status']=='COMPLETE':
+                actual=proc(job['pid']) if job.get('pid') else {}
+                retired=bool((actual.get('ok') and (actual.get('state')=='Z' or
+                    (name in pinned and actual.get('start_ticks')!=pinned[name][1]))) or
+                    (not actual.get('ok') and not actual.get('exists_on_recheck',True)))
+                entry['original_process_confirmed_retired']=retired
+                entry['qualified_nine_epoch_completion']=bool(type(job.get('exit_code')) is int and
+                    job['exit_code']==0 and progress.get('completed_full_Train_epochs',0)>=9 and retired)
+            workers.append(entry)
+        failed=state['status'].startswith('FAILED') or any('FAIL' in value['status'] for value in jobs.values())
+        done=all(value.get('qualified_nine_epoch_completion',False) for value in workers)
+        row=dict(status='VERIFIED_LIVE_COMMON_NINE_EPOCH_WAIT' if consistent else
+                 'TRANSIENT_PROCESS_READ_REINSPECT_SAME_ORIGINAL_JOBS',UTC=utc(),observer=proc(os.getpid()),
+            original_controller=parent,current_native_phase=state['status'],workers=workers,
+            completed_nine_epoch_jobs=sum(value.get('qualified_nine_epoch_completion',False) for value in workers),
+            pinned_original_workers={key:list(value) for key,value in pinned.items()},
+            periodic_log_scope='Last emitted prefix, not a continuously current total or full-epoch completion. '
+                'progress.json records the last complete epoch and may still say6 while epoch7 runs.',
+            no_training_or_GPU_actions=True,new_accuracy_claimed_by_observer=False,goal_met=False)
+        errors=0;now=time.monotonic();save(row,now>=next_emit)
+        if now>=next_emit:next_emit=now+50
+        if failed:finish('SOURCE_NINE_EPOCH_QUEUE_FAILED_PRESERVE_ORIGINAL_JOBS',1)
+        if done and consistent:finish('OBSERVED_ALL_SIX_ORIGINAL_FULL_NINE_EPOCH_FITS_ACTUAL_EXIT0',0)
+    except Exception as error:
+        errors+=1;row=dict(status='OBSERVER_READ_ERROR_REINSPECT_SOURCE_NOT_TRAINING_FAILURE',UTC=utc(),
+            error=repr(error),consecutive_observer_errors=errors,traceback=traceback.format_exc(limit=5),
+            no_training_or_GPU_actions=True)
+        save(row,True)
+        if errors>=6:finish('OBSERVER_FAILURE_NEEDS_DIRECT_SOURCE_CHECK',2)
+    time.sleep(5)
+finish('OBSERVATION_WINDOW_ENDED_REINSPECT_SAME_ORIGINAL_JOBS',0,
+       observation_timeout_is_not_training_failure=True)
