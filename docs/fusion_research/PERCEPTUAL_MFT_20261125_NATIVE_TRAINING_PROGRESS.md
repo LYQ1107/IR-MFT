@@ -31,3 +31,5 @@
 本次发布核对：工作目录约59.770GiB／64GiB，独立空闲约2683.157GiB，高于40GiB保留值。只发布小型文本、SVG和CSV；PNG预览留在工作目录，不上传权重、图像数据集、FPN或原始轨迹。
 
 后续九／十二轮完整Dev的[独立导出检查与自动等待](PERCEPTUAL_MFT_20261126_NATIVE_EXTENDED_DEV_AUDIT_READY.md)已接好；CPU工程检查实际退出0，九轮实际结果仍待原实验完成。首批quality_rgb／quality_gray已各完成第7轮，其余四组继续原队列。
+
+最新核对：[首批质量模式RGB／灰度已完成九轮且实际退出0](PERCEPTUAL_MFT_20261126_NATIVE_FIRST_PAIR_NINE_EPOCHS.md)，每组245259逻辑帧次、61326次更新，优化器连续性CPU检查实际退出0。4／5卡已由原队列接入quality_ir／temporal_rgb续训；另外两组仍待接续。完整九轮Dev尚未开始，上述六轮指标仍是最近完整Dev结果。
