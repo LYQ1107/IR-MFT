@@ -1,0 +1,39 @@
+"""Atomic L-PNG output and content/configuration-aware resume validation."""
+import pathlib,json,hashlib,functools,os,time
+from PIL import Image
+import numpy as np
+from queue_state import frame_done
+from recovery_support import transient_failure
+R=pathlib.Path(__file__).resolve().parents[1]
+WEIGHT_SHA='dcb838964eca6386f78248d73d335bca8ead5463222058d3e924fafdf8e8efb1'
+@functools.lru_cache(maxsize=4096)
+def sha(path):
+ h=hashlib.sha256()
+ with pathlib.Path(path).open('rb') as f:
+  for b in iter(lambda:f.read(4*1024*1024),b''):h.update(b)
+ return h.hexdigest()
+def identity(task):
+ aux=json.loads(pathlib.Path(task['aux']).read_text());caption=task.get('fixed_caption',aux['caption']);d={'generator':'DiffV2IR/M3FD/EMA','weight_sha256':WEIGHT_SHA,'input_size':task.get('input_size',[512,512]),'steps':25,'sampler':'Euler ancestral','cfg':[7.5,1.5,1.5],'seed':20261101,'precision':'FP32 parameters FP16 autocast TF32','preprocessing':'aspect-preserving PIL-BILINEAR RGB, 127 pad; NEAREST original SAM, 0 pad; crop pad and BILINEAR restore; BT.601 uint8 gray, no contrast normalization','caption':caption,'caption_policy':'fixed' if 'fixed_caption' in task else 'per_frame_BLIP','rgb_sha256':sha(task['rgb']),'mask_sha256':sha(aux['mask_path'])};return d,hashlib.sha256(json.dumps(d,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+def sidecar(task):
+ p=R/task['output'];return R/task['metadata_output'] if task.get('metadata_output') else p.with_suffix('.json')
+def validate(task):
+ p=R/task['output'];side=sidecar(task)
+ if not p.exists() or not side.exists():return False,'missing PNG or metadata'
+ try:
+  m=json.loads(side.read_text());cfg,fingerprint=identity(task)
+  if m.get('fingerprint')!=fingerprint:return False,'input, mask, caption or configuration mismatch'
+  with Image.open(p) as im:
+   if im.format!='PNG' or im.mode!='L' or im.size!=(1920,1080):return False,'wrong PNG format, mode or dimensions'
+   im.load()
+  # No cached digest for mutable outputs: deliberate corruption must be detected.
+  digest=hashlib.sha256(p.read_bytes()).hexdigest()
+  if digest!=m.get('output_sha256'):return False,'PNG content checksum mismatch'
+  return True,'valid'
+ except Exception as e:
+  if transient_failure(e)=='storage_unavailable':raise
+  return False,type(e).__name__+': '+str(e)
+def save(task,im,record):
+ p=R/task['output'];p.parent.mkdir(parents=True,exist_ok=True);im=im.convert('L');assert im.size==(1920,1080);a=np.asarray(im);mn,mx=int(a.min()),int(a.max())
+ if mn==mx and mn in (0,255):raise RuntimeError('Degenerate all-black/all-white generated infrared')
+ stats={'mean':float(a.mean(dtype=np.float64)),'variance':float(a.var(dtype=np.float64)),'minimum':mn,'maximum':mx}
+ tmp=p.with_name('.'+p.name+f'.{os.getpid()}.tmp');im.save(tmp,format='PNG',compress_level=6);digest=hashlib.sha256(tmp.read_bytes()).hexdigest();cfg,fingerprint=identity(task);side=sidecar(task);side.parent.mkdir(parents=True,exist_ok=True);meta={**record,'completed_unix':time.time(),'identity':cfg,'fingerprint':fingerprint,'output_sha256':digest,'output_mode':'L','output_bytes':tmp.stat().st_size,'pixel_statistics':stats};mt=side.with_name('.'+side.name+f'.{os.getpid()}.tmp');mt.write_text(json.dumps(meta,indent=2));os.replace(tmp,p);os.replace(mt,side);frame_done(task,meta);return meta

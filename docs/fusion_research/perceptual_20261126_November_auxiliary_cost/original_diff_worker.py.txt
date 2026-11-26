@@ -1,0 +1,71 @@
+"""DiffV2IR official model, EMA, CFG and Euler ancestral sampler; square letterbox/tiling adapters."""
+import argparse,pathlib,json,os,time,contextlib
+import torch,numpy as np
+from PIL import Image
+from omegaconf import OmegaConf
+from nvml_monitor import MemoryMonitor
+from separability import tile_starts
+import k_diffusion as K
+R=pathlib.Path(__file__).resolve().parents[1]
+class CFG(torch.nn.Module):
+ def __init__(self,model):super().__init__();self.model=model
+ def forward(self,z,sigma,cond,uncond,text_cfg_scale,image_cfg_scale,seg_cfg_scale):
+  x=z.repeat(4,1,1,1);sig=sigma.repeat(4)
+  c={'c_crossattn':[torch.cat([cond['c_crossattn'][0],uncond['c_crossattn'][0],uncond['c_crossattn'][0],uncond['c_crossattn'][0]])],'c_concat1':[torch.cat([cond['c_concat1'][0],cond['c_concat1'][0],uncond['c_concat1'][0],uncond['c_concat1'][0]])],'c_concat2':[torch.cat([cond['c_concat2'][0],cond['c_concat2'][0],cond['c_concat2'][0],uncond['c_concat2'][0]])]}
+  full,img,seg,none=self.model(x,sig,cond=c).chunk(4);return none+text_cfg_scale*(full-img)+image_cfg_scale*(img-seg)+seg_cfg_scale*(seg-none)
+
+def load_model(weight):
+ # CLIP text tensors are already in each official 7.7GB checkpoint; construct architecture locally to avoid redundant weights.
+ import ldm.modules.encoders.modules as enc
+ from transformers import CLIPTokenizer,CLIPTextConfig,CLIPTextModel
+ def clip_init(self,version=None,device='cuda',max_length=77):
+  torch.nn.Module.__init__(self);local=str(R/'cache/ram/clip_text');self.tokenizer=CLIPTokenizer.from_pretrained(local,local_files_only=True);self.transformer=CLIPTextModel(CLIPTextConfig.from_pretrained(local,local_files_only=True));self.device=device;self.max_length=max_length;self.freeze()
+ enc.FrozenCLIPEmbedder.__init__=clip_init
+ from stable_diffusion.ldm.util import instantiate_from_config
+ cfg=OmegaConf.load(R/'DiffV2IR/configs/generate.yaml');ckpt=R/'cache/ram/DiffV2IR/IR-500k/finetuned_checkpoints'/f'{weight}.ckpt';state=torch.load(ckpt,map_location='cpu',weights_only=False,mmap=True);model=instantiate_from_config(cfg.model);res=model.load_state_dict(state['state_dict'],strict=False);params=dict(model.named_parameters());missing_params=[k for k in res.missing_keys if k in params];meta={'weight':str(ckpt),'missing_keys':res.missing_keys,'unexpected_keys':res.unexpected_keys,'missing_parameters':missing_params,'checkpoint_keys':list(state),'global_step':str(state.get('global_step')),'config':OmegaConf.to_container(cfg,resolve=True),'construction_adapter':'FrozenCLIPEmbedder architecture and tokenizer from pinned config; CLIP parameters loaded from official checkpoint; original source unchanged'};(R/'evidence'/f'diff_{weight}_model_load_gpu{os.environ.get("PROBE_NVML_PHYSICAL_GPU","unknown")}_{os.getpid()}.json').write_text(json.dumps(meta,indent=2))
+ if missing_params:raise RuntimeError('Missing trained parameters: '+str(missing_params[:10]))
+ bad_buffers=[k for k in res.missing_keys if k.startswith('model_ema.') and not k.endswith(('decay','num_updates'))]
+ if bad_buffers:raise RuntimeError('Missing EMA inference buffers: '+str(bad_buffers[:10]))
+ # Stock LitEma.copy_to selects parameters by requires_grad. Copy the trained EMA once on CPU before freezing.
+ # This uses exactly the checkpoint EMA tensors while avoiding two redundant GPU UNet copies per image.
+ model.model_ema.copy_to(model.model);shadow=dict(model.model_ema.named_buffers());target=dict(model.model.named_parameters());equivalent=all(torch.equal(target[k].detach(),shadow[v]) for k,v in model.model_ema.m_name2s_name.items());assert equivalent
+ meta['ema_fold']={'copied_on':'CPU before CUDA/freezing','parameters_checked':len(model.model_ema.m_name2s_name),'all_bitwise_equal_to_checkpoint_ema':equivalent,'scope':'permanent EMA inference weights; no training; original checkpoint unchanged'}
+ del model.model_ema;model.use_ema=False;(R/'evidence'/f'diff_{weight}_model_load_gpu{os.environ.get("PROBE_NVML_PHYSICAL_GPU","unknown")}_{os.getpid()}.json').write_text(json.dumps(meta,indent=2))
+ del state;model=model.cuda().eval().requires_grad_(False);wrap=K.external.CompVisDenoiser(model);return model,CFG(wrap),wrap,model.get_learned_conditioning([''])
+
+def tensor(im):return torch.from_numpy(np.array(im.convert('RGB'),copy=True)).permute(2,0,1).float().div(127.5).sub(1).unsqueeze(0).cuda()
+@torch.inference_mode()
+def run(loaded,im,task):
+ model,wrap,denoiser,null=loaded;aux=json.loads(pathlib.Path(task['aux']).read_text());assert aux['sequence']==task['sequence'] and aux['frame']==task['frame'] and aux['rgb']==task['rgb'],'RGB/segmentation/caption alignment mismatch';seg=Image.open(aux['mask_path']).convert('RGB');native=task.get('native',512);w,h=im.size;seed=task.get('seed',20261101);steps=task.get('steps',100);calls=0
+ if task.get('fixed_caption') is not None:
+  aux['caption']=task['fixed_caption'];aux['edit']='turn the visible image of '+aux['caption']+' into infrared'
+ with torch.autocast('cuda',dtype=torch.float16):text=model.get_learned_conditioning([aux['edit']])
+ def predict(patches,masks,offset=0):
+  nonlocal calls
+  n=len(patches);rgb=torch.cat([tensor(a) for a in patches]);sg=torch.cat([tensor(a) for a in masks]);gens=[torch.Generator(device='cuda').manual_seed(seed+offset+j) for j in range(n)]
+  with torch.autocast('cuda',dtype=torch.float16):
+   cond={'c_crossattn':[text.expand(n,-1,-1)],'c_concat1':[model.encode_first_stage(rgb).mode()],'c_concat2':[model.encode_first_stage(sg).mode()]};uncond={'c_crossattn':[null.expand(n,-1,-1)],'c_concat1':[torch.zeros_like(cond['c_concat1'][0])],'c_concat2':[torch.zeros_like(cond['c_concat2'][0])]};sigmas=denoiser.get_sigmas(steps);kwargs={'cond':cond,'uncond':uncond,'text_cfg_scale':task.get('cfg_text',7.5),'image_cfg_scale':task.get('cfg_image',1.5),'seg_cfg_scale':task.get('cfg_seg',1.5)};shape=(1,*cond['c_concat1'][0].shape[1:]);z=torch.cat([torch.randn(shape,device='cuda',dtype=cond['c_concat1'][0].dtype,generator=g) for g in gens])*sigmas[0]
+   def noise_sampler(_a,_b):return torch.cat([torch.randn(shape,device='cuda',dtype=z.dtype,generator=g) for g in gens])
+   pred=K.sampling.sample_euler_ancestral(wrap,z,sigmas,extra_args=kwargs,noise_sampler=noise_sampler,disable=True);x=model.decode_first_stage(pred);assert torch.isfinite(x).all(),'Nonfinite decoded output';a=((x+1)/2).clamp(0,1).cpu().numpy();calls+=n
+  return [Image.fromarray((u.transpose(1,2,0)*255).astype(np.uint8)) for u in a]
+ with model.ema_scope():
+  if task['mode']=='letterbox':
+   iw,ih=task.get('input_size',[native,native]);assert iw%64==0 and ih%64==0;sc=min(iw/w,ih/h);nw,nh=round(w*sc),round(h*sc);left,top=(iw-nw)//2,(ih-nh)//2;rgb=Image.new('RGB',(iw,ih),(127,127,127));rgb.paste(im.resize((nw,nh),Image.Resampling.BILINEAR),(left,top));sm=Image.new('RGB',(iw,ih),(0,0,0));sm.paste(seg.resize((nw,nh),Image.Resampling.NEAREST),(left,top));out=predict([rgb],[sm])[0].crop((left,top,left+nw,top+nh)).resize((w,h),Image.Resampling.BILINEAR);return out,{'native_input':[iw,ih],'latent_size':[iw//8,ih//8],'mode':'letterbox','scale':sc,'content_size':[nw,nh],'padding_ltrb':[left,top,iw-left-nw,ih-top-nh],'rgb_resize':'PIL BILINEAR','mask_resize':'PIL NEAREST from the same original full-resolution union','model_images':1,'caption':aux['caption'],'mask_union_fraction':aux['mask_union_fraction']}
+  xs=tile_starts(w,native,native//8);ys=tile_starts(h,native,native//8);coords=[(x,y) for y in ys for x in xs];ramp=np.maximum(np.hanning(native),.001);mask=np.outer(ramp,ramp).astype(np.float32);canvas=np.zeros((h,w,3),np.float32);denom=np.zeros((h,w),np.float32);arrays=[];batch=task.get('batch_size',2)
+  for off in range(0,len(coords),batch):
+   xy=coords[off:off+batch];patches=[im.crop((x,y,x+native,y+native)) for x,y in xy];masks=[seg.crop((x,y,x+native,y+native)) for x,y in xy];pred=predict(patches,masks,off)
+   for (x,y),a in zip(xy,pred):arr=np.asarray(a);canvas[y:y+native,x:x+native]+=arr*mask[:,:,None];denom[y:y+native,x:x+native]+=mask;arrays.append(arr)
+   print('DIFF_TILES',off+len(xy),'/',len(coords),flush=True)
+  if task.get('save_tiles'):
+   z=R/task['save_tiles'];z.parent.mkdir(parents=True,exist_ok=True);np.savez_compressed(z,coords=np.asarray(coords),tiles=np.asarray(arrays),tile=native,seed=seed)
+  out=Image.fromarray(np.clip(canvas/np.maximum(denom[:,:,None],1e-9),0,255).astype(np.uint8));return out,{'native':native,'mode':'batch_tile','model_images':len(coords),'batch_size':batch,'tile':native,'overlap':native//8,'x_starts':xs,'y_starts':ys,'caption':aux['caption'],'mask_union_fraction':aux['mask_union_fraction'],'seed_policy':'independent CUDA generator per tile, seed+row-major index, same generator for initial and ancestral noise','blend':'separable Hann 1D floored .001'}
+
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);a=ap.parse_args();p=json.loads(pathlib.Path(a.plan).read_text());assert all(t.get('weight',p['weight'])==p['weight'] for t in p['tasks']),'mixed checkpoints require separate worker plans';torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=True;torch.backends.cudnn.allow_tf32=True;t=time.monotonic();loaded=load_model(p['weight']);torch.cuda.synchronize();print('MODEL_LOADED',p['weight'],time.monotonic()-t,flush=True);mon=MemoryMonitor()
+ for i,task in enumerate(p['tasks']):
+  dest=R/task['output']
+  if dest.exists():continue
+  im=Image.open(task['rgb']).convert('RGB');torch.cuda.reset_peak_memory_stats();torch.cuda.synchronize();t=time.monotonic();mon.start();out,meta=run(loaded,im,task);torch.cuda.synchronize();sec=time.monotonic()-t;nv=mon.stop();dest.parent.mkdir(parents=True,exist_ok=True);out.save(dest);rec={'experiment':p['experiment'],'candidate':'diffv2ir','weight':p['weight'],'task':task,'seconds':sec,'peak_allocated_bytes':torch.cuda.max_memory_allocated(),'peak_reserved_bytes':torch.cuda.max_memory_reserved(),'nvml_peak_bytes':nv,'preprocessing':meta,'gpu':torch.cuda.get_device_name(),'physical_gpu':int(os.environ['PROBE_NVML_PHYSICAL_GPU']),'first_after_load':i==0,'dtype':'FP32 parameters, FP16 autocast as official; TF32 enabled'}
+  with (R/'evidence'/f'{p["experiment"]}_records.jsonl').open('a') as f:f.write(json.dumps(rec)+'\n')
+  print('DONE',i+1,'/',len(p['tasks']),p['weight'],task['sequence'],task['frame'],task['mode'],'seconds',round(sec,3),flush=True)
+if __name__=='__main__':main()

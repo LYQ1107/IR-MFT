@@ -1,0 +1,44 @@
+{
+  "selected_setting": "S0",
+  "setting": {
+    "name": "S0",
+    "input_size": [
+      512,
+      512
+    ],
+    "caption_policy": "B",
+    "fixed_caption": "there are goldfish swimming in the fish tank"
+  },
+  "weight_repository": "Lidong26/IR-500K",
+  "weight_revision": "fa0b38d18c8326e87f7de135869b8717068fd7dd",
+  "weight_filename": "IR-500k/finetuned_checkpoints/M3FD.ckpt",
+  "weight_sha256": "dcb838964eca6386f78248d73d335bca8ead5463222058d3e924fafdf8e8efb1",
+  "ema": true,
+  "sampler": "Euler ancestral",
+  "steps": 25,
+  "cfg_text": 7.5,
+  "cfg_image": 1.5,
+  "cfg_seg": 1.5,
+  "seed_every_frame": 20261101,
+  "parameter_dtype": "FP32",
+  "autocast": "FP16",
+  "tf32": true,
+  "RGB_resize": "PIL BILINEAR aspect preserving minimal pad 127; crop generated padding and restore original size BILINEAR",
+  "SAM": "original 1920x1080 union, ViT-B settings identical to previous; NEAREST resize and zero padding",
+  "output": "8-bit single-channel L PNG, 1920x1080, fixed OpenCV BT.601 gray, no contrast normalization",
+  "selection_evidence": "evidence/candidate_selection.json",
+  "caption_tie_evidence": {},
+  "scope": "configuration selected from these test-sequence probes; not an independent downstream MOT evaluation",
+  "fixed_caption": "there are goldfish swimming in the fish tank",
+  "run_BLIP": false,
+  "configuration_source": "/data3/liuyeqiang/IR-MFT/diffv2ir_config_20261102/selected_config.json",
+  "inherited_probe_measurements": {
+    "steady_generation_seconds": 5.556330020918599,
+    "steady_SAM_seconds": 2.8057069987183616,
+    "steady_BLIP_seconds": 0.3529490280809114,
+    "steady_end_to_end_seconds": 8.714986047717872
+  },
+  "previous_probe_decision_sentence": "未找到通过约束的分辨率升级，保留512×512填充＋逐帧BLIP。新增设置虽有小鱼增益，却扩大背景亮斑并损失SN可分性。S0在PF-002上低于因果IR和SAM，MSK片段的框外帧间差又达到因果IR的3.49倍，因此本轮不建议立即启动48,070帧全量生成；所附计划供后续研究决策，未证明下游融合收益。",
+  "full_generation_authorization": "User request 2026-11-04; GPUs 0,1,2,3 only; fixed caption, automatic fallback on AUC drop >0.015",
+  "output_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation"
+}

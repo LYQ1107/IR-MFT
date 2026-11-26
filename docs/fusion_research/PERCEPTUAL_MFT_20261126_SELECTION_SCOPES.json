@@ -1,0 +1,87 @@
+{
+  "status": "STATIC_AUDIT_OF_EXISTING_FAMILY_DEV_SELECTION_SCOPES_NOT_NEW_MODEL_SELECTION_OR_COMPLETED_GPU_EXPERIMENTS",
+  "UTC": "2026-11-26T11:26:33.567059+00:00",
+  "scopes": [
+    {
+      "family": "native_pyramid",
+      "scope": "Six matched normal fits: quality/temporal x RGB/gray/IR. Primary highest normal IR Dev across both modes and executed epochs; original headline HOTA/AssA/IDF1 tie rule, then earlier epoch/quality. Preserve all six own-Dev-best normal models, and conditional removals own-Dev-best plus original-primary-epoch snapshots.",
+      "freeze": "native_pyramid_Test_selection_frozen.json",
+      "call_order": "launch_native_pyramid_study.py:291 selects;292 freezes normal choice;324 complete Dev;329 final Test roles;343 first formal Test observation.",
+      "precision": "Existing rounded39 metric choice remains unchanged; full-precision CSV is separate analysis.",
+      "runtime_executed": false
+    },
+    {
+      "family": "CGR_backfill",
+      "scope": "Previously selected six fits and output policies are inherited unchanged from the original complete Dev. All13 roles map to twelve unique cases; original primary is not changed by this coverage backfill.",
+      "freeze": "correlation_recovery_Test_selection_frozen.json",
+      "call_order": "launch_correlation_recovery_workflow.py:242 complete full-Dev proof;248 original cases/roles frozen;256 starts full Test pixels.",
+      "runtime_executed": false
+    },
+    {
+      "family": "neck72",
+      "scope": "Primary head N72_robust_new_ir and consensus readout fixed before new-head Dev. Each of sixteen head/readout curves chooses highest Dev HOTA, earlier epoch on ties. All normal and intervention/removal cases retained.",
+      "freeze": "neck72_Test_selection_frozen.json",
+      "call_order": "launch_neck72_study.py:253 selected_cases;255 all selected Dev;260 freeze;261 encode Test;262 full Test evaluation.",
+      "runtime_executed": false
+    },
+    {
+      "family": "neck72_runtime",
+      "scope": "Cost-only continuation of exactly the frozen neck72 accuracy cases; no independent accuracy model selection.",
+      "freeze": "Inherited neck72_Test_selection_frozen.json",
+      "call_order": "launch_neck72_runtime.py:193 waits predecessor;196 inherited cases;197 Dev runtime equivalence;201 Test runtime only after Dev proof.",
+      "runtime_executed": false
+    },
+    {
+      "family": "fusion_factorial",
+      "scope": "Four IR factorial cells inherit original native primary mode, common training budget and primary epoch. Each cell retains both paired-primary-epoch and own-Dev-best choices. This conditional IR experiment alone does not establish an IR-exclusive interaction against RGB/gray.",
+      "freeze": "fusion_factorial/Test_selection_frozen.json",
+      "call_order": "launch_fusion_factorial.py:215 complete_dev_and_freeze;216 frozen reuse plan;217 Test observations; frozen code additionally checks source identity.",
+      "runtime_executed": false
+    },
+    {
+      "family": "spatial_native",
+      "scope": "Nine variant/cue normal fits. Primary normal IR Dev best over registered spatial variants/epochs; all nine own-Dev-best and strongest RGB/gray within this family retained. Conditional removals retain own-Dev-best and paired-primary-epoch.",
+      "freeze": "native_spatial/Test_selection_frozen.json",
+      "call_order": "launch_spatial_native.py:275 selects;277 normal choice;296 complete Dev;301 final frozen roles;306 full Test observations.",
+      "precision": "Original276column CSV full precision: HOTA,AssA,IDF1 then earlier epoch/registered variant order.",
+      "runtime_executed": false
+    },
+    {
+      "family": "F4_fusion_memory",
+      "scope": "Choose an eligible parent only between original native and spatial frozen IR primaries using complete original Dev and strict RGB/gray/off/roll controls; do not reselect parent epochs. Then choose F4 normal cases on complete Dev, preserving ordinary RGB memory winners if they win.",
+      "freeze": "fusion_memory/frozen_Test_case_plan.json",
+      "call_order": "fusion_memory_pipeline.py:268 normal Dev choice;270 final additional-Dev freeze;271 Test production/evaluation. If neither parent is eligible, export the actual parent rejection without calling it an executed F4 experiment.",
+      "precision": "Full precision for comparison of already frozen parent choices; native original rounded choice is preserved.",
+      "runtime_executed": false
+    },
+    {
+      "family": "TaskUtility",
+      "scope": "Twelve registered variant/cue fits. Primary best normal IR Dev; retain all twelve own-Dev-best, matched RGB/gray and strongest RGB/gray within family. Additional Dev interventions cannot replace the primary.",
+      "freeze": "task_utility/Test_selection_frozen.json",
+      "call_order": "task_utility_controller.py:138 freezes normal choice;142 additional full Dev;144 freezes final cases;145 full Test observations. task_utility_selection.py:119 requires all26 formal Test objects.",
+      "precision": "Full precision HOTA,AssA,IDF1 then earlier epoch/registered variant order.",
+      "runtime_executed": false
+    }
+  ],
+  "new_global_model_selection_rule_added": false,
+  "Test_best_row_promoted_to_formal_primary": false,
+  "complete_Test_required_for_every_formal_case": true,
+  "negative_cases_preserved": true,
+  "historical_Test_already_exposed": true,
+  "RGB_pretraining_saw_current_Dev": true,
+  "pseudoIR_derived_from_RGB": true,
+  "live_proof": "perceptual_20261126_selection_scopes/actual_controller_and_source_verification.json",
+  "live_proof_sha256": "a915e53a486ab74da5ddbbb78c28a9d98c928b5f94cceca41ede3032f2268574",
+  "static_source_evidence": "perceptual_20261126_selection_scopes/static_source_call_order_evidence.json",
+  "static_source_evidence_sha256": "c6a99d70625d2dbb9c04f46618b25102fd4fc62f7024fddb2226dbf969f975b7",
+  "limitations": [
+    "Source reading verifies programmed ordering, not that queued engineering, fitting, Dev, Test or runtime gates have actually passed.",
+    "The native controller is still training at this audit. All seven future controllers are live CPU-only waiters with no phase jobs yet.",
+    "No single overall primary across all families is newly selected here. Historical maximum Test rows remain descriptive exploratory comparisons, not replacements of Dev-frozen family primaries.",
+    "Current native cost specification samples168timed frames and explicitly excludes offline generation. Existing generator timing provenance is being audited separately; complete generation-inclusive runtime is not established by this selection audit."
+  ],
+  "new_GPU_work": false,
+  "Test_GT_or_accuracy_read": false,
+  "supported_innovations": 0,
+  "goal_met": false
+}

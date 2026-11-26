@@ -1,0 +1,795 @@
+{
+  "logical_task_0": {
+    "sample_references": 80,
+    "temporal_references": 100,
+    "unique_frames": 178,
+    "parallel_children": 4
+  },
+  "production_frames": 48070,
+  "production_blocks": 101,
+  "maximum_frames_per_block": 500,
+  "allowed_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "minimum_free_mib": 12000,
+  "memory_retry_seconds": 60,
+  "phases": {
+    "train": {
+      "frames": 27251,
+      "sequences": {
+        "BT-001": 3000,
+        "BT-003": 243,
+        "MSK-002": 1754,
+        "PF-001": 15000,
+        "SN-001": 684,
+        "SN-015": 6570
+      }
+    },
+    "dev": {
+      "frames": 4834,
+      "sequences": {
+        "BT-005": 1834,
+        "SN-013": 3000
+      }
+    },
+    "test": {
+      "frames": 15985,
+      "sequences": {
+        "BT-002": 493,
+        "BT-004": 763,
+        "MSK-003": 629,
+        "PF-002": 3000,
+        "SN-009": 4500,
+        "SN-011": 4500,
+        "SN-014": 2100
+      }
+    }
+  },
+  "phase_order": [
+    "check",
+    "train",
+    "dev",
+    "test"
+  ],
+  "output_root": "/data3/liuyeqiang/nas/A100/IR-MFT/diffv2ir_final_20261104/full_generation",
+  "blocks": [
+    {
+      "key": "0000_check_BT-002",
+      "logical_task": 0,
+      "phase": "check",
+      "sequence": "BT-002",
+      "frames": 20
+    },
+    {
+      "key": "0000_check_MSK-003",
+      "logical_task": 0,
+      "phase": "check",
+      "sequence": "MSK-003",
+      "frames": 68
+    },
+    {
+      "key": "0000_check_PF-002",
+      "logical_task": 0,
+      "phase": "check",
+      "sequence": "PF-002",
+      "frames": 20
+    },
+    {
+      "key": "0000_check_SN-011",
+      "logical_task": 0,
+      "phase": "check",
+      "sequence": "SN-011",
+      "frames": 70
+    },
+    {
+      "key": "0001_train_BT-001_000001_000500",
+      "logical_task": 1,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0002_train_BT-001_000501_001000",
+      "logical_task": 2,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0003_train_BT-001_001001_001500",
+      "logical_task": 3,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0004_train_BT-001_001501_002000",
+      "logical_task": 4,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0005_train_BT-001_002001_002500",
+      "logical_task": 5,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0006_train_BT-001_002501_003000",
+      "logical_task": 6,
+      "phase": "train",
+      "sequence": "BT-001",
+      "frames": 500
+    },
+    {
+      "key": "0007_train_BT-003_000001_000243",
+      "logical_task": 7,
+      "phase": "train",
+      "sequence": "BT-003",
+      "frames": 243
+    },
+    {
+      "key": "0008_train_MSK-002_000001_000500",
+      "logical_task": 8,
+      "phase": "train",
+      "sequence": "MSK-002",
+      "frames": 500
+    },
+    {
+      "key": "0009_train_MSK-002_000501_001000",
+      "logical_task": 9,
+      "phase": "train",
+      "sequence": "MSK-002",
+      "frames": 500
+    },
+    {
+      "key": "0010_train_MSK-002_001001_001500",
+      "logical_task": 10,
+      "phase": "train",
+      "sequence": "MSK-002",
+      "frames": 500
+    },
+    {
+      "key": "0011_train_MSK-002_001501_001754",
+      "logical_task": 11,
+      "phase": "train",
+      "sequence": "MSK-002",
+      "frames": 254
+    },
+    {
+      "key": "0012_train_PF-001_000001_000500",
+      "logical_task": 12,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0013_train_PF-001_000501_001000",
+      "logical_task": 13,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0014_train_PF-001_001001_001500",
+      "logical_task": 14,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0015_train_PF-001_001501_002000",
+      "logical_task": 15,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0016_train_PF-001_002001_002500",
+      "logical_task": 16,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0017_train_PF-001_002501_003000",
+      "logical_task": 17,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0018_train_PF-001_003001_003500",
+      "logical_task": 18,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0019_train_PF-001_003501_004000",
+      "logical_task": 19,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0020_train_PF-001_004001_004500",
+      "logical_task": 20,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0021_train_PF-001_004501_005000",
+      "logical_task": 21,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0022_train_PF-001_005001_005500",
+      "logical_task": 22,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0023_train_PF-001_005501_006000",
+      "logical_task": 23,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0024_train_PF-001_006001_006500",
+      "logical_task": 24,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0025_train_PF-001_006501_007000",
+      "logical_task": 25,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0026_train_PF-001_007001_007500",
+      "logical_task": 26,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0027_train_PF-001_007501_008000",
+      "logical_task": 27,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0028_train_PF-001_008001_008500",
+      "logical_task": 28,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0029_train_PF-001_008501_009000",
+      "logical_task": 29,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0030_train_PF-001_009001_009500",
+      "logical_task": 30,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0031_train_PF-001_009501_010000",
+      "logical_task": 31,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0032_train_PF-001_010001_010500",
+      "logical_task": 32,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0033_train_PF-001_010501_011000",
+      "logical_task": 33,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0034_train_PF-001_011001_011500",
+      "logical_task": 34,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0035_train_PF-001_011501_012000",
+      "logical_task": 35,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0036_train_PF-001_012001_012500",
+      "logical_task": 36,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0037_train_PF-001_012501_013000",
+      "logical_task": 37,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0038_train_PF-001_013001_013500",
+      "logical_task": 38,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0039_train_PF-001_013501_014000",
+      "logical_task": 39,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0040_train_PF-001_014001_014500",
+      "logical_task": 40,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0041_train_PF-001_014501_015000",
+      "logical_task": 41,
+      "phase": "train",
+      "sequence": "PF-001",
+      "frames": 500
+    },
+    {
+      "key": "0042_train_SN-001_000001_000500",
+      "logical_task": 42,
+      "phase": "train",
+      "sequence": "SN-001",
+      "frames": 500
+    },
+    {
+      "key": "0043_train_SN-001_000501_000684",
+      "logical_task": 43,
+      "phase": "train",
+      "sequence": "SN-001",
+      "frames": 184
+    },
+    {
+      "key": "0044_train_SN-015_000001_000500",
+      "logical_task": 44,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0045_train_SN-015_000501_001000",
+      "logical_task": 45,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0046_train_SN-015_001001_001500",
+      "logical_task": 46,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0047_train_SN-015_001501_002000",
+      "logical_task": 47,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0048_train_SN-015_002001_002500",
+      "logical_task": 48,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0049_train_SN-015_002501_003000",
+      "logical_task": 49,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0050_train_SN-015_003001_003500",
+      "logical_task": 50,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0051_train_SN-015_003501_004000",
+      "logical_task": 51,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0052_train_SN-015_004001_004500",
+      "logical_task": 52,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0053_train_SN-015_004501_005000",
+      "logical_task": 53,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0054_train_SN-015_005001_005500",
+      "logical_task": 54,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0055_train_SN-015_005501_006000",
+      "logical_task": 55,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0056_train_SN-015_006001_006500",
+      "logical_task": 56,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 500
+    },
+    {
+      "key": "0057_train_SN-015_006501_006570",
+      "logical_task": 57,
+      "phase": "train",
+      "sequence": "SN-015",
+      "frames": 70
+    },
+    {
+      "key": "0058_dev_BT-005_000001_000500",
+      "logical_task": 58,
+      "phase": "dev",
+      "sequence": "BT-005",
+      "frames": 500
+    },
+    {
+      "key": "0059_dev_BT-005_000501_001000",
+      "logical_task": 59,
+      "phase": "dev",
+      "sequence": "BT-005",
+      "frames": 500
+    },
+    {
+      "key": "0060_dev_BT-005_001001_001500",
+      "logical_task": 60,
+      "phase": "dev",
+      "sequence": "BT-005",
+      "frames": 500
+    },
+    {
+      "key": "0061_dev_BT-005_001501_001834",
+      "logical_task": 61,
+      "phase": "dev",
+      "sequence": "BT-005",
+      "frames": 334
+    },
+    {
+      "key": "0062_dev_SN-013_000001_000500",
+      "logical_task": 62,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0063_dev_SN-013_000501_001000",
+      "logical_task": 63,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0064_dev_SN-013_001001_001500",
+      "logical_task": 64,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0065_dev_SN-013_001501_002000",
+      "logical_task": 65,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0066_dev_SN-013_002001_002500",
+      "logical_task": 66,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0067_dev_SN-013_002501_003000",
+      "logical_task": 67,
+      "phase": "dev",
+      "sequence": "SN-013",
+      "frames": 500
+    },
+    {
+      "key": "0068_test_BT-002_000001_000493",
+      "logical_task": 68,
+      "phase": "test",
+      "sequence": "BT-002",
+      "frames": 493
+    },
+    {
+      "key": "0069_test_BT-004_000001_000500",
+      "logical_task": 69,
+      "phase": "test",
+      "sequence": "BT-004",
+      "frames": 500
+    },
+    {
+      "key": "0070_test_BT-004_000501_000763",
+      "logical_task": 70,
+      "phase": "test",
+      "sequence": "BT-004",
+      "frames": 263
+    },
+    {
+      "key": "0071_test_MSK-003_000001_000500",
+      "logical_task": 71,
+      "phase": "test",
+      "sequence": "MSK-003",
+      "frames": 500
+    },
+    {
+      "key": "0072_test_MSK-003_000501_000629",
+      "logical_task": 72,
+      "phase": "test",
+      "sequence": "MSK-003",
+      "frames": 129
+    },
+    {
+      "key": "0073_test_PF-002_000001_000500",
+      "logical_task": 73,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0074_test_PF-002_000501_001000",
+      "logical_task": 74,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0075_test_PF-002_001001_001500",
+      "logical_task": 75,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0076_test_PF-002_001501_002000",
+      "logical_task": 76,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0077_test_PF-002_002001_002500",
+      "logical_task": 77,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0078_test_PF-002_002501_003000",
+      "logical_task": 78,
+      "phase": "test",
+      "sequence": "PF-002",
+      "frames": 500
+    },
+    {
+      "key": "0079_test_SN-009_000001_000500",
+      "logical_task": 79,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0080_test_SN-009_000501_001000",
+      "logical_task": 80,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0081_test_SN-009_001001_001500",
+      "logical_task": 81,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0082_test_SN-009_001501_002000",
+      "logical_task": 82,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0083_test_SN-009_002001_002500",
+      "logical_task": 83,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0084_test_SN-009_002501_003000",
+      "logical_task": 84,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0085_test_SN-009_003001_003500",
+      "logical_task": 85,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0086_test_SN-009_003501_004000",
+      "logical_task": 86,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0087_test_SN-009_004001_004500",
+      "logical_task": 87,
+      "phase": "test",
+      "sequence": "SN-009",
+      "frames": 500
+    },
+    {
+      "key": "0088_test_SN-011_000001_000500",
+      "logical_task": 88,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0089_test_SN-011_000501_001000",
+      "logical_task": 89,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0090_test_SN-011_001001_001500",
+      "logical_task": 90,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0091_test_SN-011_001501_002000",
+      "logical_task": 91,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0092_test_SN-011_002001_002500",
+      "logical_task": 92,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0093_test_SN-011_002501_003000",
+      "logical_task": 93,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0094_test_SN-011_003001_003500",
+      "logical_task": 94,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0095_test_SN-011_003501_004000",
+      "logical_task": 95,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0096_test_SN-011_004001_004500",
+      "logical_task": 96,
+      "phase": "test",
+      "sequence": "SN-011",
+      "frames": 500
+    },
+    {
+      "key": "0097_test_SN-014_000001_000500",
+      "logical_task": 97,
+      "phase": "test",
+      "sequence": "SN-014",
+      "frames": 500
+    },
+    {
+      "key": "0098_test_SN-014_000501_001000",
+      "logical_task": 98,
+      "phase": "test",
+      "sequence": "SN-014",
+      "frames": 500
+    },
+    {
+      "key": "0099_test_SN-014_001001_001500",
+      "logical_task": 99,
+      "phase": "test",
+      "sequence": "SN-014",
+      "frames": 500
+    },
+    {
+      "key": "0100_test_SN-014_001501_002000",
+      "logical_task": 100,
+      "phase": "test",
+      "sequence": "SN-014",
+      "frames": 500
+    },
+    {
+      "key": "0101_test_SN-014_002001_002100",
+      "logical_task": 101,
+      "phase": "test",
+      "sequence": "SN-014",
+      "frames": 100
+    }
+  ]
+}

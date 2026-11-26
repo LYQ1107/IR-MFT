@@ -1,0 +1,34 @@
+import pathlib,json,argparse,time,os,fcntl
+import torch,cv2,numpy as np
+from PIL import Image
+from diff_worker import load_model,run
+from nvml_monitor import MemoryMonitor
+from production_common import validate,save
+from production_common import sidecar
+from queue_state import frame_done
+from resume_index import existing_paths
+R=pathlib.Path(__file__).resolve().parents[1]
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--plan',required=True);ap.add_argument('--verify-only',action='store_true');a=ap.parse_args();p=json.loads(pathlib.Path(a.plan).read_text());pending=[];skips=[]
+ png_candidates=existing_paths(R/task['output'] for task in p['tasks'])
+ metadata_candidates=existing_paths(sidecar(task) for task in p['tasks'])
+ for task in p['tasks']:
+  if str(R/task['output']) not in png_candidates or str(sidecar(task)) not in metadata_candidates:
+   pending.append(task);continue
+  ok,reason=validate(task)
+  if ok:
+   skips.append({'sequence':task['sequence'],'frame':task['frame'],'output':task['output']});frame_done(task,json.loads(sidecar(task).read_text()))
+  else:pending.append(task)
+ (R/'evidence'/f'{p["experiment"]}_resume.json').write_text(json.dumps({'planned':len(p['tasks']),'valid_skipped':len(skips),'pending':len(pending),'skipped':skips},indent=2));print('RESUME',len(skips),'skipped',len(pending),'pending',flush=True)
+ if a.verify_only:raise SystemExit(0 if not pending else 2)
+ if not pending:return
+ torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=True;torch.backends.cudnn.allow_tf32=True;torch.cuda.set_per_process_memory_fraction(p.get('memory_fraction',.65));start=time.monotonic()
+ with (R/'cache/model_load.lock').open('a') as loadlock:
+  fcntl.flock(loadlock,fcntl.LOCK_EX);loaded=load_model('M3FD');torch.cuda.synchronize()
+ print('MODEL_READY',time.monotonic()-start,flush=True);mon=MemoryMonitor();recordpath=R/'evidence'/f'{p["experiment"]}_records.jsonl'
+ for i,task in enumerate(pending):
+  assert task['seed']==20261101 and task['steps']==25 and (task['cfg_text'],task['cfg_image'],task['cfg_seg'])==(7.5,1.5,1.5)
+  im=Image.open(task['rgb']).convert('RGB');torch.cuda.reset_peak_memory_stats();torch.cuda.synchronize();t=time.monotonic();mon.start();out,meta=run(loaded,im,task);torch.cuda.synchronize();sec=time.monotonic()-t;nv=mon.stop();gray=cv2.cvtColor(np.asarray(out.convert('RGB')),cv2.COLOR_RGB2GRAY);rec={'experiment':p['experiment'],'task':task,'seconds':sec,'preprocessing':meta,'caption':meta['caption'],'seed':20261101,'first_after_load':i==0,'gpu':torch.cuda.get_device_name(),'physical_gpu':int(os.environ.get('PROBE_NVML_PHYSICAL_GPU','0')),'peak_allocated_bytes':torch.cuda.max_memory_allocated(),'peak_reserved_bytes':torch.cuda.max_memory_reserved(),'nvml_device_peak_bytes':nv};saved=save(task,Image.fromarray(gray),rec)
+  with recordpath.open('a') as f:f.write(json.dumps({**rec,'fingerprint':saved['fingerprint'],'output_sha256':saved['output_sha256']})+'\n')
+  print('FRAME',i+1,'/',len(pending),task['setting'],task['sequence'],task['frame'],'seconds',round(sec,3),'peakGiB',round(rec['peak_allocated_bytes']/2**30,3),flush=True)
+if __name__=='__main__':main()
