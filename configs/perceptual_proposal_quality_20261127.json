@@ -1,0 +1,19 @@
+{
+  "status": "PROSPECTIVE_ALL_TRAIN_FOREGROUND_QUALITY_AND_CAUSAL_CONFIRMATION",
+  "hypothesis": "Many actual low/medium confidence true-object proposals never initialize tracks. Combine current RGB/pseudoIR foreground quality with independent temporal confirmation;avoid broad active identity reassignment.",
+  "training_data": "All6Train27251frames/all249639actual cached proposals. HungarianIoU>=.5 class1 foreground;knownbackgroundmaxvalidIoU<.2;ignored/ambiguous targetsunknown. Unknowns stay in inference/candidate/confirmation graph and areexcluded onlyfromloss.",
+  "foreground_view": {"task": "Foreground versus background,not fish identity", "dimensions_per_view": 512, "algorithm": "Equal-video/available-class within-class covariance with per-video/class centering,regularized linear discriminant;normalize direction to unitnorm", "ridge_fraction": 0.1},
+  "quality_head": {"features_from": "tools/mft_proposal_quality.py", "kinds": ["RGB", "paired", "duplicatedRGB"], "fit_frames": "first75% of every Train video", "L2": 0.001, "fixed_Newton_updates": 12, "weighting": "Equalvideo and available positive/negative classes", "standardized_clip": 8},
+  "calibration": {"frames": "last25% of each Train video", "eligible_original_scores": "(.3,.7]", "conditions": ["all", "confirmed>=3consecutiveframes"], "wrong_quantiles": {"q99": 0.99, "q999": 0.999}, "no_known_negative_threshold": 1.0, "score_quantile_is_not_a_tracking_error_bound": true},
+  "confirmation": "Separate low-threshold ByteTrack geometric observer on ORIGINALproposals:track_thresh.1,birth.2,match.9,mot20True(no score fusion),frame_rate25,buffer30. Consecutive current measurements only;missingframe resetsstreak;sequence reset clearsall. No promotedscore,GT,encoderorfilterfeedback entersobserver.",
+  "promotion": "Onlyoriginalscore(.3,.7],modelscore>frozenTrainquantile and optional3frameconfirmation=>score.75. OriginalByteTrack track_thresh.6 has det_thresh=.7,so.65wouldnotpermitbirth. Allother scores,boxes,proposalorder and highconfidence>.7 arepreserved.",
+  "Dev_plan": "Register unchangednative,previousarchive/current-shapecontrol,unconditionalconfirmedpromotion,andRGB/paired/duplicatedRGB q99/q999 with/withoutconfirmation. All4834Dev beforeanyTest;strictlyimprove52.098427171322534 andfreeze. QualifyfittedrealTrainprefix/missingIRbeforeformalDev.",
+  "controls": "MissingqualityIR selects literalRGBheadandRGBthreshold;current-frameROIIRpermutation before features;temporalconfirmation removal;dupRGB capacity;unconditionalthreshold/promotion. Selectedarchive/current-shape removals afterfreeze. QualityIRcontrols do not intervene on the fixed IR visual detector itself;whole-modality attribution/cost needs separate evidence.",
+  "private_parameters": "Learnedviewcenters/directions/headnormalization/coefficients remainprivate;no descriptor/pairdiskdump,newimagesorNNtraining.",
+  "resources": {"seed": 0, "GPUs_if_needed": ["4", "5"], "maximum_cards": 2, "work_cap_GiB": 64, "free_reserve_GiB": 40, "maximum_input_RAM_GiB": 2, "reuse_existing_postBN_ROI_banks": true},
+  "source_detector_historical_Dev_exposure": true,
+  "encoder_previously_seen_Train_identities": true,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

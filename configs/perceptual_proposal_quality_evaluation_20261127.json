@@ -1,0 +1,117 @@
+{
+  "status": "PROSPECTIVE_FULL_DEV_QUALITY_CONFIRMATION_AND_UNCONDITIONAL_CONTROLS",
+  "normal_cases": [
+    {
+      "id": "PQ_native_control",
+      "kind": "reference_native"
+    },
+    {
+      "id": "PQ_archive_control",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "PQ_unconditional_c0",
+      "kind": "unconditional",
+      "confirmation": 0,
+      "quantile": null
+    },
+    {
+      "id": "PQ_unconditional_c3",
+      "kind": "unconditional",
+      "confirmation": 3,
+      "quantile": null
+    },
+    {
+      "id": "PQ_RGB_q99_c0",
+      "kind": "RGB",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_paired_q99_c0",
+      "kind": "paired",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_duplicatedRGB_q99_c0",
+      "kind": "duplicatedRGB",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_RGB_q99_c3",
+      "kind": "RGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_paired_q99_c3",
+      "kind": "paired",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_duplicatedRGB_q99_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_RGB_q999_c0",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_paired_q999_c0",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_duplicatedRGB_q999_c0",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "PQ_RGB_q999_c3",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_paired_q999_c3",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_duplicatedRGB_q999_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 3
+    }
+  ],
+  "selection": "All4834Dev;rankHOTA,AssA,IDF1,lexicalID;strictlyimprove52.098427171322534 beforeanynewTest7. Freezechoicebeforecontrols/Test.",
+  "new_Test": "Anynewnonreferencewinner,includingunconditionalcontrol,mayenterTest. Includeunchangednative/archive,chosen,matchedRGB/paired/dupRGBandunconditionalsameconfirmation. NeverreselectfromTest.",
+  "interventions": "Afterfreeze,fullDev missingqualityIR,rollcurrentROIIR,confirmationtoggledwiththresholdheldfixed,noarchiveandnoshape. IfprimaryTestgain>=5,alsocompleteall7Testforfrozeninterventions. WholevisualIRnotintervenedbytheseROIcontrols.",
+  "quality_score_scope": "Onlyoriginalscore(.3,.7]maypromoteto.75. Originaldetectorpackethashkeptseparatefromcalibratedtrackerinputhash;boxes/orderandhighconfidence>.7unchanged.",
+  "confirmation": "SameGT-freeoriginalproposalshadowstreamsharedread-onlyacrosscases;mustproveexactMOTparitytodirectper-caseimplementationonrealall6Trainprefixes.",
+  "costs": "CachedCPUreplayexcludesimageIO/encoder/IRgeneration;noend-to-endFPSclaim.",
+  "independent_full_Train_audit_required_before_Test": true,
+  "historical_Test_previously_exposed": true,
+  "source_detector_historical_Dev_exposure": true,
+  "encoder_previously_seen_Train_identities": true,
+  "seed": 0,
+  "maximum_cards": 2,
+  "GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "goal_met": false,
+  "supported_innovations": 0
+}

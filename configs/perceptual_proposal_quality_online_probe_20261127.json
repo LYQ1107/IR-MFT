@@ -1,0 +1,11 @@
+{
+  "status": "PROSPECTIVE_SMALL_REAL_TRAIN_IMAGE_QUALITY_BRIDGE_AND_WHOLE_IR_FALLBACK_ENGINEERING",
+  "purpose": "VerifyactualRGB/NovemberIRpixels,frozennativevisualdetectorandpostBNcropencodersfeedthenewquality/confirmationtracker. Establishengineforlaterselectedend-to-endcostandwhole-modalitycontrols,withoutusingTestaccuracy.",
+  "coverage": "OnphysicalGPU4and5separately:BT003Trainframes1..12fornormal,wholeIRunavailable,wholeIRspatialroll;normalresetframes1..6. Everyactualproposal,andall16registeredqualitycases. Prefixengineeringonly,noGTlabelsorHOTA.",
+  "checks": "ActualonlineandfreshFP32evidencereplayMOTbyteexactforall16cases;normaldetectorsourcebankparity<=1e-4,cropfeaturesversusexistingFP16Trainbank<=1e-3;wholeunavailablevisualdecodedheadexacttosame-sourcefreshRGB,andqualityIRNoneforcesRGBfallback. AllweightsandBNunchanged;resetprefixexact;nogroundtruthcropsorfeature/image/FPNdiskdump.",
+  "scope": "WholeIRunavailable/spatialrollaffectbothvisualdetectorandquality. Same-sourcefreshRGBfallbackisamodalityablation,notareplacementprimarybaseline. These84totalTrainframevisitsarenotfullTrain/Dev/Testorend-to-endFPSmeasurement.",
+  "resources": {"seed": 0, "physical_GPUs": ["4", "5"], "maximum_cards": 2, "work_cap_GiB": 64, "free_reserve_GiB": 40, "new_NN_fits": 0, "new_training_seeds": 0},
+  "primary_baseline": "OriginaldirectRGBYOLOX-X+ByteTrackTest29.528970687393972",
+  "goal_met": false,
+  "supported_innovations": 0
+}

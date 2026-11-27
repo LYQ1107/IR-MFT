@@ -1,0 +1,90 @@
+{
+  "status": "FROZEN_COMPLETE_DEV_QUALITY_SELECTION_AND_CONTROLS",
+  "UTC": "2026-11-27T01:15:25.534944+00:00",
+  "chosen_case": {
+    "id": "PQ_paired_q999_c3",
+    "kind": "paired",
+    "quantile": "q999",
+    "confirmation": 3
+  },
+  "Test_cases": [
+    {
+      "id": "PQ_native_control",
+      "kind": "reference_native"
+    },
+    {
+      "id": "PQ_archive_control",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "PQ_paired_q999_c3",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_RGB_q999_c3",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_duplicatedRGB_q999_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "PQ_unconditional_c3",
+      "kind": "unconditional",
+      "confirmation": 3,
+      "quantile": null
+    }
+  ],
+  "Dev_interventions": [
+    {
+      "id": "PQ_control_missing",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "intervention": "missing",
+      "source_case": "PQ_paired_q999_c3"
+    },
+    {
+      "id": "PQ_control_roll",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "intervention": "roll",
+      "source_case": "PQ_paired_q999_c3"
+    },
+    {
+      "id": "PQ_control_confirmation",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 0,
+      "calibration_condition": "confirmed",
+      "source_case": "PQ_paired_q999_c3"
+    },
+    {
+      "id": "PQ_control_no_archive",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "parent": "native_shape",
+      "source_case": "PQ_paired_q999_c3"
+    },
+    {
+      "id": "PQ_control_no_shape",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "parent": "archive_raw",
+      "source_case": "PQ_paired_q999_c3"
+    }
+  ],
+  "complete_Dev_sha256": "d665dd7251bbe505d93e4e8eb77bc3b7d1eb0519286a6556de827e3793402567",
+  "Test_read_for_selection": false,
+  "no_IR_quality_innovation_claim_if_unconditional_wins": true,
+  "historical_Test_previously_exposed": true
+}
