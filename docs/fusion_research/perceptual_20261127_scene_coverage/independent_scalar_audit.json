@@ -1,0 +1,149 @@
+{
+  "status": "COMPLETE_INDEPENDENT_SCALAR_COVERAGE_AUDIT",
+  "UTC": "2026-11-27T03:21:52.424592+00:00",
+  "complete_report_sha256": "ac0a22f4a93dedd722c414ca96f5b0d8023325bdbf0002b4a47bf314bad2a4a8",
+  "registration_sha256": "07e866740820085ea1591a5cfb93d5cd6996ab37233800a9b1c432fc80eb0798",
+  "private_scalar_sha256": "91a0a6e22502f0f3b71e659e20a8e0904bde2d08b4e0a5d4536cc1816fac7be7",
+  "source_sha256": "c09d9f540baaca52b3f65f4095d26f8e975ee681ec32369f7ee972776699d5b0",
+  "actual_producer_execution": {
+    "engineering_r1": {
+      "identity": {
+        "PID": 3161622,
+        "start_ticks": 101619367,
+        "raw_argv_sha256": "4ab8a66ca46317c354dd56b73addb13cad5bd5daa3804ed325a4ed5da5ebb1a1",
+        "CUDA_VISIBLE_DEVICES": ""
+      },
+      "actual_exit": 0,
+      "receipt_sha256": "8b8392c39e697e3d9109085ebabdc3b6a78c8f40a8980d08cb75ff88592596f6"
+    },
+    "run_r1": {
+      "identity": {
+        "PID": 3162055,
+        "start_ticks": 101624766,
+        "raw_argv_sha256": "7863c9587b4508c9986850e7a182974c9530a46be51bbf81f5780a86d4a43b6c",
+        "CUDA_VISIBLE_DEVICES": ""
+      },
+      "actual_exit": 0,
+      "receipt_sha256": "f8215e1ab16c5a48f1466f6987a5992254b54d757abe198035a78728ea871daa"
+    }
+  },
+  "recomputed_threshold_fields_at_least": 5376,
+  "all8_complete_sequence_tables_recomputed": true,
+  "all6_Train_existing_opportunity_counts_and_original_MOT_hashes_agree": true,
+  "target_count_conservation_exact": true,
+  "IR_missing_RGB_frame_deficits_exact": true,
+  "gate_disagreement_frames": {
+    "train": {
+      "BT-001": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 47,
+          "paired_vs_IR_roll_different_frames": 57,
+          "paired_vs_count_different_frames": 167
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 2,
+          "paired_vs_IR_roll_different_frames": 1,
+          "paired_vs_count_different_frames": 5
+        }
+      },
+      "BT-003": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 2,
+          "paired_vs_IR_roll_different_frames": 9,
+          "paired_vs_count_different_frames": 13
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 0
+        }
+      },
+      "MSK-002": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 4,
+          "paired_vs_count_different_frames": 1
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 57,
+          "paired_vs_IR_roll_different_frames": 65,
+          "paired_vs_count_different_frames": 127
+        }
+      },
+      "PF-001": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 0
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 1
+        }
+      },
+      "SN-001": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 16,
+          "paired_vs_IR_roll_different_frames": 12,
+          "paired_vs_count_different_frames": 78
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 1,
+          "paired_vs_IR_roll_different_frames": 1,
+          "paired_vs_count_different_frames": 1
+        }
+      },
+      "SN-015": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 29,
+          "paired_vs_IR_roll_different_frames": 44,
+          "paired_vs_count_different_frames": 336
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 0
+        }
+      }
+    },
+    "dev": {
+      "BT-005": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 2,
+          "paired_vs_IR_roll_different_frames": 2,
+          "paired_vs_count_different_frames": 18
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 0
+        }
+      },
+      "SN-013": {
+        "0.1": {
+          "paired_vs_RGB_different_frames": 15,
+          "paired_vs_IR_roll_different_frames": 30,
+          "paired_vs_count_different_frames": 140
+        },
+        "0.25": {
+          "paired_vs_RGB_different_frames": 0,
+          "paired_vs_IR_roll_different_frames": 0,
+          "paired_vs_count_different_frames": 5
+        }
+      }
+    }
+  },
+  "budget": {
+    "work_file_bytes": 67068372694,
+    "work_cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960,
+    "free_bytes": 2805299642368
+  },
+  "audit_scope": "Recomputed scalar summaries, conservation, immutable-source and actual-exit provenance; not an independent replay of visual features, frame GT matching, tracker states or HOTA",
+  "Test_read": false,
+  "new_GPU_work": false,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
