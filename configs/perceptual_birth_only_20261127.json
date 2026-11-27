@@ -1,0 +1,57 @@
+{
+  "status": "PROSPECTIVE_BIRTH_ONLY_REPAIR_DESIGN_BEFORE_CURRENT_QUALITY_FULL_TEST_READ",
+  "UTC": "2026-11-27T01:23:22.558087+00:00",
+  "scope": "Fixed November DiffV2IR, ProtocolV2, original direct RGB YOLOX-X+ByteTrack Test baseline29.528970687393972; no stronger RGB architecture sweep.",
+  "evidence": "On complete Dev, promoting original uncertain scores to0.75 changes association and template routing as well as births. Broad q99 promotion reduces HOTA to46-47 versus52.0984 parent; unconditional promotion39.3. Exact birth-only change has not been evaluated.",
+  "hypothesis": "Separate eligibility to initialize a new identity from scores used for all existing-track associations. Permit qualified original0.6<score<0.7 unused high proposals to initialize without changing their scores, geometry, stages, matching costs or reliability labels.",
+  "parent": "AR_RGB_q999_shape selected from complete previous Dev; fixed across this repair.",
+  "quality_models": "Reuse frozen all27251Train foreground views, quality heads and q99/q999 all/confirmed thresholds from proposal_quality_20261127/private_models.json; no new NN fit or seed.",
+  "confirmation": "Original-proposal-only shadow observer, streak0 or3, no changed-score feedback.",
+  "calibration_limitation": "Existing quantiles were calibrated on original0.3<score<=0.7; reuse is explicit and not recalibrated on Dev/Test.",
+  "inference": "Current and past detections/descriptor evidence only. GT-free inference; no future data or output rewriting. Native ByteTrack source remains unchanged. Readable separate method port differs only at birth qualification.",
+  "stages": [
+    "Implement and engineer zero-gate port exact to original native ByteTrack and parent archive; preserve every original score.",
+    "All6Train diagnosis joins current GT after original zero-gate teacher decisions. Report actual unmatched-high birth opportunities, candidate class/confirmation and duplicate-output overlap, no counterfactual HOTA claim.",
+    "If sufficient nonzero Train opportunities, register finite normal Dev cases before replay; select full Dev HOTA/AssA/IDF1 then lexicographic ID, require gain over fixed parent before any new Test.",
+    "Freeze selected case plus matched controls and ablations before any new full Test. Keep unsuccessful candidates and official47."
+  ],
+  "normal_cases_planned": {
+    "controls": [
+      "native_original",
+      "archive_shape_zero_gate"
+    ],
+    "kind": [
+      "RGB",
+      "paired",
+      "duplicatedRGB"
+    ],
+    "quantile": [
+      "q99",
+      "q999"
+    ],
+    "confirmation": [
+      0,
+      3
+    ],
+    "unconditional_confirmation": [
+      0,
+      3
+    ]
+  },
+  "GT_policy": "Train labels only for diagnosis; unknown remains unknown; never filters inference candidate graph.",
+  "prior_art_boundary": "Thresholded track initialization, logistic quality, linear discriminants and temporal confirmation are established components, not automatically multimodal innovations.",
+  "quality_Dev_inputs_used": true,
+  "current_quality_Test_results_read_for_this_design": false,
+  "strongest_RGB_sweeps": "deferred per user latest scope",
+  "seed": 0,
+  "physical_GPU_if_needed": [
+    4,
+    5
+  ],
+  "max_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "new_descriptor_or_crop_disk_dump": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

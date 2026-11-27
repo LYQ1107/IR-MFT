@@ -1,0 +1,90 @@
+{
+  "status": "FROZEN_COMPLETE_DEV_BIRTH_ONLY_SELECTION_AND_CONTROLS",
+  "UTC": "2026-11-27T01:55:39.229435+00:00",
+  "chosen_case": {
+    "id": "BO_paired_q999_c3",
+    "kind": "paired",
+    "quantile": "q999",
+    "confirmation": 3
+  },
+  "Test_cases": [
+    {
+      "id": "BO_native_zero",
+      "kind": "reference_native"
+    },
+    {
+      "id": "BO_archive_zero",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "BO_paired_q999_c3",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_RGB_q999_c3",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_duplicatedRGB_q999_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_unconditional_c3",
+      "kind": "unconditional",
+      "confirmation": 3,
+      "quantile": null
+    }
+  ],
+  "Dev_interventions": [
+    {
+      "id": "BO_control_missing",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "intervention": "missing",
+      "source_case": "BO_paired_q999_c3"
+    },
+    {
+      "id": "BO_control_roll",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "intervention": "roll",
+      "source_case": "BO_paired_q999_c3"
+    },
+    {
+      "id": "BO_control_confirmation",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 0,
+      "calibration_condition": "confirmed",
+      "source_case": "BO_paired_q999_c3"
+    },
+    {
+      "id": "BO_control_no_archive",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "parent": "native_shape",
+      "source_case": "BO_paired_q999_c3"
+    },
+    {
+      "id": "BO_control_no_shape",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3,
+      "parent": "archive_raw",
+      "source_case": "BO_paired_q999_c3"
+    }
+  ],
+  "complete_Dev_sha256": "f163ad63c314f67aec978c6d2e86f9ad74be8e4bd62e4006f8b15efda0569918",
+  "Test_read_for_selection": false,
+  "no_IR_quality_innovation_claim_if_unconditional_wins": true,
+  "historical_Test_previously_exposed": true
+}

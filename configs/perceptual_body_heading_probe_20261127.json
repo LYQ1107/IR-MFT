@@ -1,0 +1,21 @@
+{
+  "status": "PROSPECTIVE_CACHED_TRAIN_BODY_HEADING_DIAGNOSTIC_BEFORE_OUTCOME",
+  "basis": "Previous fixed30Train pixel probe measured body principal axes but tested box localization only. Negative box correction does not test whether current axes carry useful motion-heading information.",
+  "features": "Reuse current-proposal RGB-gray and fixed DiffV2IR axes from the already measured same30Train frames. No new crop, model, image generation or tracker. Cached axes were measured before Train GT join.",
+  "targets": "Train GT center displacement from t-lag to t for same ID; this is an oracle motion target for a feature diagnostic, not an available inference feature or tracking accuracy.",
+  "lags": [1, 3],
+  "primary_lag": 3,
+  "minimum_GT_displacement_pixels": 1.0,
+  "strict_reliability": {"anisotropy_min": 0.5, "dominance_min": 0.5, "area_fraction_min": 0.02, "area_fraction_max": 0.8},
+  "primary_metric": "Mean doubled-angle dot product between axis and GT displacement, on same co-valid strict RGB-gray/IR proposals; equal-video IR-minus-gray.",
+  "controls": "All co-valid proposals and strict same-frame cyclic orientation permutation. Report coverage for each; never choose a lag or reliability rule after outcome.",
+  "pilot_gate": {"minimum_strict_moving_rows_at_primary_lag": 100, "minimum_positive_videos": 4, "minimum_equal_video_IR_minus_gray": 0.05, "minimum_equal_video_IR_minus_permuted_IR": 0.05},
+  "interpretation": "Gate only decides whether to pursue proposal-based causal association diagnostics. Even aligned axes cannot establish identity discrimination, useful matching or HOTA gain.",
+  "Dev_or_Test_rows": 0,
+  "new_GPU_work": false,
+  "seed": 0,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "goal_met": false,
+  "supported_innovations": 0
+}

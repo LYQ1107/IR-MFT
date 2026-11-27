@@ -1,0 +1,91 @@
+{
+  "status": "PROSPECTIVE_ALL12_CONDITIONAL_BIRTH_FULL_DEV_BEFORE_REPLAY",
+  "UTC": "2026-11-27T02:32:49.480336+00:00",
+  "normal_cases": [
+    {
+      "id": "BCQ_native_zero",
+      "kind": "reference_native"
+    },
+    {
+      "id": "BCQ_archive_zero",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "BCQ_unconditional_c3",
+      "kind": "unconditional",
+      "confirmation": 3,
+      "quantile": null
+    },
+    {
+      "id": "BCQ_RGB_q95_c3",
+      "kind": "RGB",
+      "quantile": "q95",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_paired_q95_c3",
+      "kind": "paired",
+      "quantile": "q95",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_duplicatedRGB_q95_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q95",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_RGB_q99_c3",
+      "kind": "RGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_paired_q99_c3",
+      "kind": "paired",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_duplicatedRGB_q99_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_RGB_q999_c3",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_paired_q999_c3",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BCQ_duplicatedRGB_q999_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 3
+    }
+  ],
+  "reference_controls": "Original native teacher and C3 RGB archive_shape; import previous BO selected Dev52.11311409153856 as strict gain gate without rerunning that head.",
+  "selection": "All4834Dev,rankHOTA/AssA/IDF1thenID;requirestrictgainover52.11311409153856.",
+  "Test": "Only after full independentTrainaudit actual0;freezechosen,matchedRGB/paired/dup/unconditionalandtwo refs. All7/15985Test, no reselection. If selectedgain>=5 over29.528970687393972,runfivefrozenfullTestablations.",
+  "controls": "Quality ROI IR missing/roll,confirmationtoggleatfixedcalibrationcondition,noarchive,noshape;no wholevisualIRclaim.",
+  "training": "Same11features and frozenFGviews;onlyconditionalbirthpopulationheadfit/calibration changes.",
+  "new_NN_training": false,
+  "seed": 0,
+  "maximum_physical_cards": 2,
+  "allowed_GPUs": [
+    "4",
+    "5"
+  ],
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

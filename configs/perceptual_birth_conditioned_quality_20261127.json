@@ -1,0 +1,42 @@
+{
+  "status": "PROSPECTIVE_TRAIN_ONLY_BIRTH_POPULATION_REFIT_BEFORE_COLLECTION",
+  "UTC": "2026-11-27T02:20:58.995020+00:00",
+  "scope": "Fixed November DiffV2IR, ProtocolV2 and original RGB YOLOX-X+ByteTrack Test29.528970687393972; target34.52897068739397,stretch39.52897068739397.",
+  "motivation": "Completed allTrain zero-gate diagnosis found18873actualunused high-score birth opportunities:13158knownpositive,885knownbackground,4830unknown. Previous foreground head trained on all proposals rather than this decision population. Its q99c3 paired rule covered357localuncoveredknownpositive opportunities with5knownbackground,versusRGB289with5. This refit is motivated by Train population shift, not Test tuning.",
+  "single_changed_factor": "Refit/calibrate same11Dquality heads on actual original-teacher birth opportunities0.6<score<0.7. Freeze existing512DFGviews, detector, descriptors, confirmation, feature definitions, tracker and rendering. No motion/coordinate features added in this repair.",
+  "all_Train_frames": 27251,
+  "all_Train_proposals": 249639,
+  "expected_birth_rows": 18873,
+  "GT_policy": "Every proposal enters unchanged raw teacher/shadow first; currentTrainlabels join afterward. Unknown remainsunknown and is excluded only objective/calibration.",
+  "fit_split": "Each video first75percent frames;equal available-class/video weights, same original standardization and clipping8.",
+  "calibration": "Last25percent onlyactualbirthpopulation;wrong known-background quantilesq95,q99,q999,all andconfirmed>=3. These are empirical score quantiles, not tracking error bounds.",
+  "quality_head": {
+    "L2": 0.001,
+    "fixed_Newton_updates": 12,
+    "maximum_Newton_updates": 36,
+    "extend_only_if_Train_gradient_norm_exceeds": 1e-06,
+    "extension_block": 4
+  },
+  "fit_kinds": [
+    "RGB",
+    "paired",
+    "duplicatedRGB"
+  ],
+  "private_RAM_cap_bytes": 16777216,
+  "new_NN_training_or_seeds": 0,
+  "new_image_or_feature_disk_bank": false,
+  "next_evaluation_design": "After independentfullTrainfit audit, finite12normal fullDev cases:twofixedreferenceparents,unconditionalc3,and3kinds x3quantiles xconfirmation3. Require strict fullDev gain over52.11311409153856 before freezing selected andmatched Test7. Do not promote existing32.76601955076041Testcontrol.",
+  "feedback_limitation": "Training examples are collected under original zero-gate graph. New births can change future candidate sets; calibration does not guarantee closed-loop safety.",
+  "strongest_RGB_sweeps": "deferred",
+  "seed": 0,
+  "physical_GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "max_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

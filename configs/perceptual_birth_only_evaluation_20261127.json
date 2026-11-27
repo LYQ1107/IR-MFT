@@ -1,0 +1,117 @@
+{
+  "status": "PROSPECTIVE_FINITE_BIRTH_ONLY_DEV_PLAN_BEFORE_NEW_DEV_REPLAY",
+  "UTC": "2026-11-27T01:35:25.906711+00:00",
+  "design": "configs/perceptual_birth_only_20261127.json",
+  "normal_cases": [
+    {
+      "id": "BO_native_zero",
+      "kind": "reference_native"
+    },
+    {
+      "id": "BO_archive_zero",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "BO_unconditional_c0",
+      "kind": "unconditional",
+      "confirmation": 0,
+      "quantile": null
+    },
+    {
+      "id": "BO_unconditional_c3",
+      "kind": "unconditional",
+      "confirmation": 3,
+      "quantile": null
+    },
+    {
+      "id": "BO_RGB_q99_c0",
+      "kind": "RGB",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_paired_q99_c0",
+      "kind": "paired",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_duplicatedRGB_q99_c0",
+      "kind": "duplicatedRGB",
+      "quantile": "q99",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_RGB_q99_c3",
+      "kind": "RGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_paired_q99_c3",
+      "kind": "paired",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_duplicatedRGB_q99_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q99",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_RGB_q999_c0",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_paired_q999_c0",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_duplicatedRGB_q999_c0",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 0
+    },
+    {
+      "id": "BO_RGB_q999_c3",
+      "kind": "RGB",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_paired_q999_c3",
+      "kind": "paired",
+      "quantile": "q999",
+      "confirmation": 3
+    },
+    {
+      "id": "BO_duplicatedRGB_q999_c3",
+      "kind": "duplicatedRGB",
+      "quantile": "q999",
+      "confirmation": 3
+    }
+  ],
+  "Train_gate": "All27251Train zero-gate native MOT exact; at least one known-positive uncovered local opportunity for a paired head. This count is not HOTA.",
+  "selection": "All4834Dev frames, rank HOTA/AssA/IDF1 then lexicographic ID; require > fixed C3 parent52.098427171322534. Do not use any Test for this selection.",
+  "freeze": "Chosen + matched RGB/paired/duplicatedRGB + unconditional same confirmation + two reference controls; five Dev controls no-reselection.",
+  "Test": "If new Dev gate passes, complete all7/15985Test for frozen cases. If chosen absolute gain over original canonical29.528970687393972 >=5, run five frozen completeTest interventions. Do not promote Test controls.",
+  "inputs": "Original detector scores, boxes and order unchanged. Only current birth eligibility changes; future candidate sets can consequently change.",
+  "head_fits": "Use existing converged Train-only quality models; no additional optimizer updates or CNN training.",
+  "control_scope": "ROI quality IR only. Visual IR detector unchanged, whole-IR claim requires separate actual-image intervention.",
+  "seed": 0,
+  "physical_GPUs_if_needed": [
+    4,
+    5
+  ],
+  "max_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

@@ -1,0 +1,56 @@
+{
+  "status": "PROSPECTIVE_TWO_CARD_ACTUAL_TRAIN_PROPOSAL_TOKEN_PILOT_BEFORE_NEW_FEATURES",
+  "UTC": "2026-11-27T02:00:10.052397+00:00",
+  "scope": "Preserve November DiffV2IR, ProtocolV2 and original direct RGB YOLOX-X+ByteTrack baseline29.528970687393972; only proposed method appearance representation changes. No strongest RGB architecture sweep.",
+  "model": "DINOv2 ViT-B/14, frozen external pretraining; no new supervised NN fit. This is a different and larger appearance encoder than existing ResNet50 ReID, not a change to the RGB tracking baseline.",
+  "official_source": "https://github.com/facebookresearch/dinov2",
+  "source_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+  "source_directory": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/vendor/dinov2_7764ea0f912e",
+  "existing_checkpoint": "/data3/liuyeqiang/.cache/torch/hub/checkpoints/dinov2_vitb14_pretrain.pth",
+  "checkpoint_sha256": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73",
+  "checkpoint_bytes": 346378731,
+  "weight_downloads_or_copies": 0,
+  "images": "Same fixed first64 current Train frames per video as earlier descriptor-location engineering; all original proposals, no GT crops, no filter by labels.",
+  "Train_frames": 384,
+  "Train_videos": 6,
+  "expected_proposals": 6752,
+  "views": [
+    "RGB",
+    "fixed_new_DiffV2IR",
+    "grayscale_RGB"
+  ],
+  "input": "Actual current boxes with5percent margin; preserve aspect in224square, normalized-neutral padding; original scalar IR/gray replicated3channels; ImageNet normalization.",
+  "representations": "Normalized768D CLS and valid-area-weighted mean of16x16 patch tokens; no mask fitted from GT. Store only compact FP16 final descriptors, no image/patch/FPN bank.",
+  "private_descriptor_payload_cap_bytes": 83886080,
+  "batch_size": 16,
+  "source_Bank": "candidate_train_bank_20261127 frozen originalFP32 detections, existingFP16RGB/IR descriptors; unmodified.",
+  "analysis": "Original geometry-only teacher with no token feedback. Compare first3reliable causal anchors after25frame minimum lag, current candidate graph and same known-label metrics; GT joins after inference only. Unknowns stay candidates and their top winners are reported. Never describe this diagnostic as tracking HOTA.",
+  "primary": "Valid-patch mean tokens; equal-video known-candidate top1 with at least100 total evaluated rows. CLS variants are descriptive only, no Test selection.",
+  "representation_gate": {
+    "DINO_RGB_minus_legacy_RGB_top1_pp": 5,
+    "positive_videos": 4
+  },
+  "IR_identity_gate": {
+    "paired_minus_DINO_RGB_top1_pp": 2,
+    "paired_minus_RGB_gray_top1_pp": 2,
+    "positive_videos": 4
+  },
+  "capacity_controls": "Equal-weight normalizedRGB+IR,RGB+gray, duplicatedRGB; same frozen backbone and frame crops. No claim that external pretraining matches old ReID training budget.",
+  "advance": "Only Train pilot evidence can qualify later fullTrain extraction/Train calibration/Dev; if only representation gate passes, any carryforward is a shared representation upgrade and gives no IR identity innovation credit.",
+  "limitations": [
+    "External DINO pretraining overlap with MFT is not established.",
+    "Old ReID encoder has prior Train identity exposure; this is not a new held-out-video test.",
+    "Partial64frame prefixes cannot establish long-video tracking accuracy."
+  ],
+  "physical_GPUs": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "seed": 0,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "new_Dev_or_Test": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}
