@@ -1,0 +1,16 @@
+{
+  "status": "NEXT_RESEARCH_DESIGN_ONLY_QUALITY_MODELS_NOT_IMPLEMENTED",
+  "motivation": "AllTrain causal gap prediction covers only413currently uncovered GT appearances among217201 validGT rows. This is a local coverage proxy,notHOTA upperbound. InMSK002,59126actual proposal GTmatches exceed46237ordinary output rows:atleast12889suchGT appearancescannotallbecoveredbythoseoutputrows. First quantify proposal confidence before choosing an implementation.",
+  "hypothesis": "Existing low confidence proposals may contain many true objects whose quality can be judged from matchedRGB/NovemberpseudoIR crop evidence and causal temporal confirmation. This shifts effort toward missed births and detector confidence rather than broad active identity swaps.",
+  "required_first_action": "Processall6Train27251frames/all249639proposals and report knownpositive/background/unknown counts for originalscore<=.3,.3..6,>.6. UnknownIoU/ignored targetsremainunknown;do not alter scores or tracker yet.",
+  "candidate_next_model": "Separately fit small regularized objectness heads on actual proposal crops,not identity labels orGT boxes. MatchedRGB,paired and duplicatedRGB capacity controls;trainfirst75%,calibratelast25% specificallyonlowconfidence knownnegative proposals. Reuse frozen512D banks;save learned means/coefficients privately only.",
+  "candidate_temporal_mechanism": "Promote only well supported weak candidates after causal temporal confirmation,with an independent lowthreshold shadow memory or proposal persistence. Preserve existing highconfidence detections;noGT/future orTest choice. Output and association changes need explicit controls andcompleteDev validation.",
+  "controls_before_any_claim": "Ordinary unchanged tracker,unconditional score/lower-threshold control,learnedRGB andpaired heads,duplicatedRGB capacity,temporal confirmation removal,missingIR exactRGB fallback,current-frame IR permutation. Include fixedarchive/current-shape components only as registered ablations. No contribution claim from Train classification alone.",
+  "selection": "Full4834Dev before any new7Test;strictly improve52.098427171322534 and freeze selection. HistoricalTest exposure explicitly disclosed.",
+  "scope": "Primary originalRGB direct-finetunedYOLOX-X+ByteTrack fullTest29.528970687393972;+5absolute HOTAminimum,+10stretch. Strongest/crossarchitectureRGB sweeps remain deferred,notcomplete.",
+  "resources": {"seed": 0, "physical_GPUs_if_needed": ["4", "5"], "maximum_cards": 2, "work_cap_GiB": 64, "free_reserve_GiB": 40, "reuse_existing_ROI_banks": true, "no_new_images_or_pair_disk_dump": true},
+  "new_quality_models": 0,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

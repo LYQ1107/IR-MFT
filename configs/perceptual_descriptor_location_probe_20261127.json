@@ -1,0 +1,22 @@
+{
+  "status": "PROSPECTIVE_MATCHED_TRAIN_DESCRIPTOR_LOCATION_DIAGNOSTIC",
+  "hypothesis": "native_forward optimizes triplet identity on normalized pre-BN projection,while current candidate banks normalize post-BN features. Both are valid feature locations;their difference alone is not a proven bug or gain.",
+  "frames": "64 uniformly spaced predetermined frames from each of all6Train videos,384total;every actual cached detector proposal on those frames. No GT crop or new detections.",
+  "inference": "Same frozen independently trained RGB/IR encoders,FP32,same images/crops and batch32;compare normalized projection before/after BN. Verify post-BN max absolute difference<=1e-3 against existing FP16 bank and all weights/BN unchanged.",
+  "producer_labels": "GPU producers cannot read GT. Separate CPU consumer joins current-frame Train labels only after all GPU producers finish.",
+  "diagnostic": "First3 reliable known actual proposal observations per identity in first75% of each original video form templates;last25% reliable known positives are queries. Encoder already saw Train identities;this is a feature-location diagnostic,not fresh generalization or tracking HOTA.",
+  "progress_gates": {"RGB": "preBN minus postBN equal-video retrieval>=2points and improvements on>=4of6Train videos", "paired": "preBN paired minus preBN RGB retrieval>=1point and improvements on>=4of6Train videos"},
+  "next_if_positive": "Create an independently source-pinned fullTrain and fullDev preBN bank within existing64GiB cap;refit/calibrate on actual allTrain candidates;fullDev gate before any Test. Keep old postBN results and matchedRGB/missing/permutation controls.",
+  "private_probe_payload_cap_MiB": 64,
+  "new_training_seeds": 0,
+  "fixed_inference_seed": 0,
+  "physical_GPUs": ["4", "5"],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "private_feature_arrays_not_for_Git": true,
+  "historical_Test_previously_exposed": true,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

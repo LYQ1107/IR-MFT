@@ -1,0 +1,132 @@
+{
+  "status": "PROSPECTIVE_FIXED_FULL_DEV_LEDGER_COMPARISON",
+  "normal_cases": [
+    {
+      "id": "IL_native_control",
+      "kind": "reference_native"
+    },
+    {
+      "id": "IL_archive_control",
+      "kind": "reference_archive"
+    },
+    {
+      "id": "IL_RGB_q95",
+      "kind": "RGB",
+      "quantile": "q95",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q95",
+      "kind": "critic",
+      "quantile": "q95",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q95_shape",
+      "kind": "RGB",
+      "quantile": "q95",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q95_shape",
+      "kind": "critic",
+      "quantile": "q95",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q99",
+      "kind": "RGB",
+      "quantile": "q99",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q99",
+      "kind": "critic",
+      "quantile": "q99",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q99_shape",
+      "kind": "RGB",
+      "quantile": "q99",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q99_shape",
+      "kind": "critic",
+      "quantile": "q99",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q999",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q999",
+      "kind": "critic",
+      "quantile": "q999",
+      "shape": false,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q999_shape",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_critic_q999_shape",
+      "kind": "critic",
+      "quantile": "q999",
+      "shape": true,
+      "adaptive": true
+    },
+    {
+      "id": "IL_RGB_q99_shape_fixed_memory",
+      "kind": "RGB",
+      "quantile": "q99",
+      "shape": true,
+      "adaptive": false
+    },
+    {
+      "id": "IL_critic_q99_shape_fixed_memory",
+      "kind": "critic",
+      "quantile": "q99",
+      "shape": true,
+      "adaptive": false
+    }
+  ],
+  "Dev_frames": 4834,
+  "gate": "Strictly improve prior completeDev HOTA52.098427171322534 before newTest7. Select by HOTA,AssA,IDF1,lexicalID.",
+  "Test_selection": "Freeze selected case,matchedRGB/critic and existing native/archive references before controls andTest;no reselection.",
+  "controls": "After freeze,fullDev current-frame IR permutation,missingIR exactmatchingRGB and fixed-memory selected configuration. Physical boxes unchanged for all ledger raw cases.",
+  "independent_Train_audit_before_Test": true,
+  "full_metrics": "All47 aggregate and every sequence;retain original276-column official CSV unchanged.",
+  "source_detector_historical_Dev_exposure": true,
+  "encoder_previously_seen_Train_identities": true,
+  "historical_Test_previously_exposed": true,
+  "fixed_seed": 0,
+  "GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "maximum_cards": 2,
+  "new_feature_extraction": false,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "paired_critic_has_no_independent_IR_attribution_without_positive_matched_controls": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_identity_ledger.py", line 272, in <module>
+    if __name__=='__main__':main()
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_identity_ledger.py", line 266, in main
+    elif a.mode=='run':run()
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_identity_ledger.py", line 217, in run
+    rows=phase(queue,'dev');old=read(work/'archive_reasoning_evaluation_20261127/complete_Dev.json')
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_identity_ledger.py", line 202, in phase
+    queue.jobs(PREFIX+'_'+label.upper()+'_OFFICIAL',[dict(id=c['id'],command=cmd+['evaluate',*extra,'--case',c['id']])for c in cases],False,
+  File "/data3/liuyeqiang/IR-MFT/tools/task_utility_queue.py", line 107, in jobs
+    if failure and not self.active:raise RuntimeError(failure)
+RuntimeError: Preserve failed child: /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_RGB_q95.log

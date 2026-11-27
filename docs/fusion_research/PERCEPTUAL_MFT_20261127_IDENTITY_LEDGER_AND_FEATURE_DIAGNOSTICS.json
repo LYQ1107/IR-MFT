@@ -1,0 +1,1125 @@
+{
+  "status": "COMPLETE_IDENTITY_LEDGER_NEGATIVE_FULL_DEV_AND_TRAIN_FEATURE_GAP_DIAGNOSES",
+  "UTC": "2026-11-27T00:33:53.742543+00:00",
+  "baseline": {
+    "method": "Original directRGB-finetuned YOLOX-X+ByteTrack",
+    "split": "FullTest7",
+    "frames": 15985,
+    "HOTA": 29.528970687393972,
+    "official_CSV_sha256": "c63ae33bbb01f14009da3dd3f834b017907df02958fe5200c68f20f38dc6fc6a"
+  },
+  "latest_Dev_frozen_formal_Test": {
+    "case": "AR_RGB_q999_shape",
+    "HOTA": 30.715876827587834,
+    "gain_pp": 1.1869061401938623,
+    "paired_identity_Test_control_HOTA": 30.837886844425295,
+    "not_promoted_from_Test": true,
+    "not_global_historical_best_claim": true
+  },
+  "target": {
+    "minimum_HOTA": 34.52897068739397,
+    "stretch_HOTA": 39.52897068739397,
+    "remaining_to_plus5_pp": 3.8130938598061377
+  },
+  "scope": "FixedNovemberDiffV2IR,ProtocolV2,seed0,originalRGBbaseline. Strongest/crossarchitectureRGB sweepsdeferred,notcomplete.",
+  "ledger": {
+    "Train_frames": 27251,
+    "Train_proposals": 249639,
+    "known_candidates": 3652433,
+    "early_fit_candidates": 2618548,
+    "RAM_feature_payload_bytes": 394462764,
+    "all_Train_teacher_MOT_exact": true,
+    "model_sha256": "09f4037f3e608b2c788b105f3f15881467d743da479c99091823bcd20e32ef73",
+    "Train_audit_R1_exit1_preserved": true,
+    "Train_audit_R2_exit0": true,
+    "normal_full_Dev_cases": 16,
+    "Dev_frames": 4834,
+    "parent_Dev_HOTA": 52.098427171322534,
+    "selected_case": {
+      "id": "IL_archive_control",
+      "kind": "reference_archive"
+    },
+    "best_new_case": {
+      "id": "IL_RGB_q999_shape",
+      "kind": "RGB",
+      "quantile": "q999",
+      "shape": true,
+      "adaptive": true
+    },
+    "best_new_HOTA": 43.272991542125986,
+    "best_new_minus_parent_pp": -8.825435629196548,
+    "IR_vetoes": 0,
+    "all7matchedRGB_critic_MOT_and_all47_exact": true,
+    "rebindings_by_sequence": {
+      "BT-005": {
+        "IL_RGB_q95": 197,
+        "IL_RGB_q95_shape": 197,
+        "IL_RGB_q99": 104,
+        "IL_RGB_q99_shape": 104,
+        "IL_RGB_q999": 8,
+        "IL_RGB_q999_shape": 8,
+        "IL_RGB_q99_shape_fixed_memory": 91
+      },
+      "SN-013": {
+        "IL_RGB_q95": 250,
+        "IL_RGB_q95_shape": 250,
+        "IL_RGB_q99": 177,
+        "IL_RGB_q99_shape": 177,
+        "IL_RGB_q999": 26,
+        "IL_RGB_q999_shape": 26,
+        "IL_RGB_q99_shape_fixed_memory": 123
+      }
+    },
+    "new_Test": false,
+    "official_fields_reparsed": 2256,
+    "all16_compact_official_jobs_exit0": true
+  },
+  "original_evaluation_failure": {
+    "original_controller_exit1_preserved": true,
+    "RGB_q95_worker_exit_minus15": true,
+    "peak_RSS_bytes": 8644038656,
+    "cause": "Research identity namespace starts near1e9;official loader allocates maxID+1 dense map.",
+    "recovery": "Sorted evaluation-only bijection preserves official internal identity ranks;inverse recovers rawMOT byteexact;all3already-completed47tables unchanged. RawonlineMOT,models andchoices unchanged."
+  },
+  "future_guard": {
+    "cascade_unknown_owner_counterexample_reproduced": true,
+    "regression_tests": 2,
+    "actual_exit0": true,
+    "used_in_completed_Dev": false,
+    "has_no_measured_accuracy_gain": true
+  },
+  "actual_ROI_metric": {
+    "Train_frames": 27251,
+    "all_proposals": 249639,
+    "means": {
+      "raw_RGB": 40.305435703230174,
+      "raw_IR": 19.073989210779356,
+      "raw_paired": 35.78126857874548,
+      "projected_RGB": 30.954681956338515,
+      "projected_paired": 28.747143043029514
+    },
+    "RGB_delta_pp": -9.350753746891659,
+    "paired_delta_pp": -2.2075389133090013,
+    "RGB_video_wins": 0,
+    "paired_video_wins": 1,
+    "both_progress_gates_failed": true,
+    "not_promoted_to_Dev": true,
+    "not_tracking_HOTA": true,
+    "held_video_exclusion_scope": "Projection fit only;encoderalreadytrainedonallTrainIDs"
+  },
+  "pre_post_BN": {
+    "frames": 384,
+    "proposals": 6752,
+    "private_payload_bytes": 27797424,
+    "means": {
+      "RGB_pre": 44.81065999648124,
+      "RGB_post": 44.23865048165695,
+      "IR_pre": 18.06881334352349,
+      "IR_post": 20.4042189629869,
+      "paired_pre": 40.756813465115634,
+      "paired_post": 38.962408398044495
+    },
+    "RGB_pre_minus_post_pp": 0.5720095148242947,
+    "RGB_pre_video_wins": 2,
+    "paired_pre_minus_RGB_pre_pp": -4.053846531365608,
+    "paired_pre_video_wins": 0,
+    "both_progress_gates_failed": true,
+    "all6GPU_producers_actual_exit0": true,
+    "physical_GPUs": [
+      "4",
+      "5"
+    ],
+    "maximum_cards": 2,
+    "all_weights_BN_unchanged": true,
+    "post_BN_bank_parity_max_abs_1e_3": true,
+    "new_NN_fits": 0,
+    "new_training_seeds": 0,
+    "not_a_proven_bug_or_HOTA_gain": true,
+    "gallery_scope": "CPU Train diagnostic usesfirst3earlyviews andonlyidentitiesalsohavinglatequeries;futureGTlabelsrestrictedtodiagnostics,notonlineinference.",
+    "supervisor_GPU_work_false_scope": "ParentcontrollerisCPU;actualGPUchildrenandtheirUUIDs/exitsareexplicitlyrecordedinstateandmetadata."
+  },
+  "causal_gap_diagnosis": {
+    "Train_frames": 27251,
+    "proposals": 249639,
+    "totals": {
+      "frames": 27251,
+      "proposals": 249639,
+      "valid_GT_rows": 217201,
+      "original_output_rows": 173844,
+      "virtual_candidates": 6885,
+      "unique_uncovered_GT_with_positive_candidate": 413,
+      "frames_with_positive_candidate": 407
+    },
+    "all_teacher_MOT_exact": true,
+    "no_virtual_box_emitted_or_fed_back": true,
+    "no_new_model": true,
+    "not_HOTA_or_global_upper_bound": true,
+    "source_complete_sha256": "d8f4a7df7792ef370c8a7932634441bbeaf0593ce876c5654064b65e25b045af"
+  },
+  "proposal_confidence_diagnosis": {
+    "Train_frames": 27251,
+    "proposals": 249639,
+    "coverage": {
+      "BT-001": {
+        "frames": 3000,
+        "proposals": 42063,
+        "valid_GT_rows": 30000,
+        "positive_proposal_rows": 24842,
+        "ordinary_output_rows": 28180,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 0,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 7537,
+            "known_positive": 1143,
+            "known_background": 550,
+            "unknown": 5844
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 7771,
+            "known_positive": 2462,
+            "known_background": 228,
+            "unknown": 5081
+          },
+          "score_gt_0_6": {
+            "proposals": 26755,
+            "known_positive": 21237,
+            "known_background": 74,
+            "unknown": 5444
+          }
+        },
+        "current_Train_label_packet_sha256": "72cd890587820c20a35f851c563ab5c078251e143b9ff49e56216f45dc0f6edf",
+        "bank_sha256": "f45eff338e81504b4d3da1313e5b38988e89075c80e5cf77d1a987c02d48b2a7",
+        "GT_sha256": "88b18b21c0a8081d1481ad092d5633b6d3783ac6c90b4506ae6719df7f569537"
+      },
+      "BT-003": {
+        "frames": 243,
+        "proposals": 3097,
+        "valid_GT_rows": 2430,
+        "positive_proposal_rows": 1980,
+        "ordinary_output_rows": 2252,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 0,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 416,
+            "known_positive": 55,
+            "known_background": 36,
+            "unknown": 325
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 434,
+            "known_positive": 115,
+            "known_background": 15,
+            "unknown": 304
+          },
+          "score_gt_0_6": {
+            "proposals": 2247,
+            "known_positive": 1810,
+            "known_background": 4,
+            "unknown": 433
+          }
+        },
+        "current_Train_label_packet_sha256": "dc45dde2c1235783175f5bb264ee5b85cffdb5f046f20827519596e391d19b15",
+        "bank_sha256": "659237a147ce1d5d79d74e02a2b8c3516ca462e25db174d4b72eb30ca0621d6e",
+        "GT_sha256": "8dd19218384d88f248d79548315e6fbbdb126fed407daae45afc7bcd487ee660"
+      },
+      "MSK-002": {
+        "frames": 1754,
+        "proposals": 91770,
+        "valid_GT_rows": 85385,
+        "positive_proposal_rows": 59126,
+        "ordinary_output_rows": 46237,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 12889,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 13139,
+            "known_positive": 2261,
+            "known_background": 4362,
+            "unknown": 6516
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 25423,
+            "known_positive": 14903,
+            "known_background": 2187,
+            "unknown": 8333
+          },
+          "score_gt_0_6": {
+            "proposals": 53208,
+            "known_positive": 41962,
+            "known_background": 1373,
+            "unknown": 9873
+          }
+        },
+        "current_Train_label_packet_sha256": "c03e3b3b936527e8a0687bffe0c1ce77446bf595c30c567b867eed46fb794210",
+        "bank_sha256": "10af0d3ec7e0b7af00289490743dd375e5d6bcde3d35c4a31b6504a491835d8a",
+        "GT_sha256": "0274259cb4e0def37563551c76bb140fe571f8e42fd7b9c75c86430957e38b3e"
+      },
+      "PF-001": {
+        "frames": 15000,
+        "proposals": 30889,
+        "valid_GT_rows": 30000,
+        "positive_proposal_rows": 29596,
+        "ordinary_output_rows": 29681,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 0,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 787,
+            "known_positive": 127,
+            "known_background": 9,
+            "unknown": 651
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 447,
+            "known_positive": 126,
+            "known_background": 6,
+            "unknown": 315
+          },
+          "score_gt_0_6": {
+            "proposals": 29655,
+            "known_positive": 29343,
+            "known_background": 0,
+            "unknown": 312
+          }
+        },
+        "current_Train_label_packet_sha256": "4403240fc91962daa911a83f7e98132a1d82b5d21bae91cfaa727fa0c5060783",
+        "bank_sha256": "5aec034164a5565aa1de82d0cca96743d8a207647842de3675857592edab59d4",
+        "GT_sha256": "85305e1d45b79c730dbd010ed2d807701411d1730ddc82fc0c5b63a25bd6aa5f"
+      },
+      "SN-001": {
+        "frames": 684,
+        "proposals": 8797,
+        "valid_GT_rows": 6632,
+        "positive_proposal_rows": 5801,
+        "ordinary_output_rows": 5740,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 61,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 1854,
+            "known_positive": 230,
+            "known_background": 576,
+            "unknown": 1048
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 1191,
+            "known_positive": 411,
+            "known_background": 186,
+            "unknown": 594
+          },
+          "score_gt_0_6": {
+            "proposals": 5752,
+            "known_positive": 5160,
+            "known_background": 24,
+            "unknown": 568
+          }
+        },
+        "current_Train_label_packet_sha256": "f45701b228894078bc765d0b6410c6f25477ef9886fddb39a31434cb01087a9f",
+        "bank_sha256": "7417908d58fc1c2846bab6f66afad5dd577bf17dcbd9346c02dfdf703189f42c",
+        "GT_sha256": "ee9e1176399bd611aefa675fc3e4b9b2da71ddabae5e4656dd443de6ef2f294f"
+      },
+      "SN-015": {
+        "frames": 6570,
+        "proposals": 73023,
+        "valid_GT_rows": 62754,
+        "positive_proposal_rows": 60060,
+        "ordinary_output_rows": 61754,
+        "at_least_proposal_GT_appearances_not_covered_by_ordinary_output_row_budget": 0,
+        "by_original_confidence": {
+          "score_le_0_3": {
+            "proposals": 6973,
+            "known_positive": 743,
+            "known_background": 1110,
+            "unknown": 5120
+          },
+          "score_gt_0_3_le_0_6": {
+            "proposals": 5041,
+            "known_positive": 1263,
+            "known_background": 598,
+            "unknown": 3180
+          },
+          "score_gt_0_6": {
+            "proposals": 61009,
+            "known_positive": 58054,
+            "known_background": 202,
+            "unknown": 2753
+          }
+        },
+        "current_Train_label_packet_sha256": "201877916d847077d97faa7cd6f013d794b4c34389f2b40910c0691e2fbe60f0",
+        "bank_sha256": "b87f5ed82f66dfd33cb2f2a5f4ba300c895367f317d2f7bc6093173a4a34a714",
+        "GT_sha256": "8530124374f8e6c04f80c312ff816f93b5ee67253bd8ca6eb93d4de82b722cb0"
+      }
+    },
+    "no_scores_or_tracker_outputs_changed": true,
+    "new_quality_models": 0,
+    "next_plan": "configs/perceptual_proposal_quality_followup_20261127.json",
+    "new_accuracy": false
+  },
+  "engineering": {
+    "core_tests": 6,
+    "real_tracker_controls": 3,
+    "future_exclusivity_guard_tests": 2,
+    "all_actual_exit0": true,
+    "earlier_fixture_and_singleton_margin_failures_preserved_in_proofs": true
+  },
+  "provenance": {
+    "fixed_NovemberIR": true,
+    "pseudoIR_is_RGBderived": true,
+    "source_detector_historical_Dev_exposure": true,
+    "encoder_previously_seen_Train_identities": true,
+    "historical_Test_previously_exposed": true,
+    "new_Test_in_this_study": false
+  },
+  "resources": {
+    "work_file_bytes": 66516855364,
+    "free_bytes": 2827973976064,
+    "cap_bytes": 68719476736,
+    "reserve_bytes": 42949672960
+  },
+  "cached_replay_cost_is_not_end_to_end_FPS": true,
+  "no_weights_normalization_vectors_images_crops_FPN_NPZ_or_MOT_published": true,
+  "unused_helpers": "audit_mft_identity_ledger_results.py and continue_mft_identity_ledger_Test.py wereprepared beforeofficialIDmemoryfailure;not executed orvalidatedstudyclosure. Actualsuccessfulclosureisrecover_mft_identity_ledger_metrics.py audit.",
+  "raw_aggregate_not_copied_due_duplicate_source_hash_size": {
+    "source_sha256": "7c3000e11bfebc55702a0a126e802e06ed98b24b359a6f9ab3af9012dc739aba",
+    "bytes": 1352727,
+    "every47value_preserved_in_individual_metrics_originalCSVs_and_compact_aggregate": true
+  },
+  "source_hashes": {
+    "tools/mft_identity_ledger.py": "1c2b76f98b7b27877008e8f9d89974072b713d41bb4554be76a7336cb60cc973",
+    "tools/mft_identity_ledger_labels.py": "1ba67185f038074d70090c131aa1d9a20f5364422d848f96c4445da4db5b090f",
+    "tools/mft_identity_ledger_evaluation.py": "75a2250a7e11d7e6d1ea886db0818b8d00e1ba5bee4a90fb322fb3502d84dd2f",
+    "tools/fit_mft_identity_ledger.py": "d4475d69ec114fa66428199ffa89693b41664ce69e130e61ca21520d4c6ad210",
+    "tools/supervise_mft_identity_ledger.py": "57edfff498962a2b09007a3299f432fa0ed29e1f3eb8d412816c044cc2069776",
+    "tools/run_mft_identity_ledger.py": "27b85ebb118b40b43be30a6aa05dd3713f0c4c76f79c8adc886f2ac2deee016a",
+    "tools/audit_mft_identity_ledger.py": "473981ba53f4f214389cadc5caee59954c052a683b19636697c5bb0770dbc73a",
+    "tools/audit_mft_identity_ledger_r2.py": "abe6bf2aaff517182eec68c1b3b9f6d2983e406dea4ba54a514c8f2fc919a65a",
+    "tools/audit_mft_identity_ledger_results.py": "f19e6bf372c698eac6ae53fd8a521ae50a853fc796e1f49ba4ef06b4209096b4",
+    "tools/continue_mft_identity_ledger_Test.py": "64070eae3b05f1559a583e362afb37d81cad11c932cd78fee63a161f00ac5d9c",
+    "tools/recover_mft_identity_ledger_metrics.py": "88a95495c3891fbe9977001f489006a6b01e16bebe0c63672e95d75784ca92e8",
+    "tools/fit_mft_actual_proposal_metric.py": "55618e0e935c93d05091b46938cf5156a91e2c0cf16397d25398ab3dfe10a6e2",
+    "tools/probe_mft_native_descriptor_location.py": "9534cb796edfdb6ec42862d1a44e9ba0b93ccff6e0b51af93f84ce901b853f23",
+    "tools/mft_identity_ledger_exclusive.py": "a8449fc84394cd56198b176055898096c15ca0545a0d15fbd586ba0a7058f5d8",
+    "tools/diagnose_mft_causal_gap_completion.py": "ce9fdf68c6d8a6a6329b78be6250269a85dd4138f242096a4eecdd8d64a91522",
+    "tools/diagnose_mft_proposal_confidence.py": "0bc00c245646feb6fb93465bcdec3c843e4986ad391b3cda2e305c8330a7e85d",
+    "tests/test_mft_identity_ledger.py": "c9d2fdecd01042d56f96c5aab05997442551cd908728854e6c892c74edcd34d4",
+    "tests/test_mft_identity_ledger_controls.py": "7ba7b8871fd6729a5294f606ec4340064573daa062017fd29bd7aa739f4082c8",
+    "tests/test_mft_identity_ledger_exclusive.py": "bb0b73e14d40f5fbcbd3639725af4b4e7538fadf4c80e3f33895cb1a928d5b74",
+    "configs/perceptual_identity_ledger_20261127.json": "4af3f212e9346010c046305b9ca40d815652d7a57dd5a36ad3cbf97bc62a6601",
+    "configs/perceptual_identity_ledger_evaluation_20261127.json": "d2f3c5b64a30280da8f8a2f9c658970a8df3593cadf247e8201b0df25a4b09ac",
+    "configs/perceptual_actual_proposal_metric_20261127.json": "fc60c7c1daceccdb5a03223d05d441ba3fd17139b049d2962bf9475509ec5aad",
+    "configs/perceptual_descriptor_location_probe_20261127.json": "ea7d0d95a1833c09c62171e78e3aeb6f605eb0c8a015bf884014fad6347c6f19",
+    "configs/perceptual_causal_gap_completion_diagnosis_20261127.json": "5cbcea8de443d712055020ae9128c619ccc6842635c4505e2fcc4d5e28d8cd51",
+    "configs/perceptual_proposal_quality_followup_20261127.json": "1299d2cd3a770ae2a5824069210818a3a2677d48fcb545b5f6aca6dc53347c9d"
+  },
+  "evidence_files": [
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/CPU_regressions_r2.json",
+      "source_sha256": "0e265c53ea182695b88123c00e778e2ca075d743c56244ee3620da8cff008aa8",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/CPU_regressions_r2.json",
+      "bytes": 786
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/real_Train_engineering.json",
+      "source_sha256": "fe516c934cfea7fbf8bfe6861d92e141c94892ddc1f1b8caad3e066aef48eb68",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/real_Train_engineering.json",
+      "bytes": 67780
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/engineering_r1.execution.json",
+      "source_sha256": "ce470ea6d5f31e9df50b9e64fe402ce18e1fba27cbbec33c506c52c8b3b5b3bd",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/engineering_r1.execution.json",
+      "bytes": 1902
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/engineering_r1.stdout.txt",
+      "source_sha256": "629ba6ececaa32e3e3e48d836dafb662b75b4b1d5f80faadb881ea8ff9599417",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/engineering_r1.stdout.txt",
+      "bytes": 73
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/fit_registered.json",
+      "source_sha256": "0a09957929c7a2db03f3e4f82ae044d73799b69f7f4ac1856cf51fbcfa54fdaa",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/fit_registered.json",
+      "bytes": 66169
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/Train_coverage.json",
+      "source_sha256": "0e7b31152071a3788b31922145078e35c7864ba5b5270da4a7ae82b1132505c6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/Train_coverage.json",
+      "bytes": 9931
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/fit_complete.json",
+      "source_sha256": "c994451662f906453f7d4e98a681f91ec12207873a8c8fed111232f5fa447b65",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/fit_complete.json",
+      "bytes": 10642
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/fit_history.json",
+      "source_sha256": "6782a3f6625ccf08e1fd8990eb12bb1cacf83bc35bce7ce52f68531c372deb09",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/fit_history.json",
+      "bytes": 8335
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/fit_r1.execution.json",
+      "source_sha256": "9270e85030acec70a85b4f9ffb85f321f29d1a817a20d0729a414467f802987d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/fit_r1.execution.json",
+      "bytes": 1770
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/fit_r1.stdout.txt",
+      "source_sha256": "3479a6c26d1ba5fde02064512934b022b6d614481a2cf1c78f2211262b572c50",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/fit_r1.stdout.txt",
+      "bytes": 7849
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/independent_fit_audit_registered.json",
+      "source_sha256": "8b9ba99d1b79094476d38d2c0175267760e785bd9db084e6434d55c9665b572d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/independent_fit_audit_registered.json",
+      "bytes": 61644
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/audit_r1.execution.json",
+      "source_sha256": "f723789224e3c0d44dc631b4a037600564d92eb6b3d2d4dd2f17644804cf43fd",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/audit_r1.execution.json",
+      "bytes": 2002
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/audit_r1.stdout.txt",
+      "source_sha256": "c5d032720942afbd46c06f043268a3204933fd7d3949ad78d2f00d91d5aeeb76",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/audit_r1.stdout.txt",
+      "bytes": 1155
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/independent_fit_audit_registered_r2.json",
+      "source_sha256": "4aeb6ed19d6e1cfbfe93d7cf2832c296710bb03194ef91ec52aebc85e536f1da",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/independent_fit_audit_registered_r2.json",
+      "bytes": 61756
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/audit_r2.execution.json",
+      "source_sha256": "d4f9195395f290f3183421890de954e699e315679e9a8b3e910a6cd8d856345c",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/audit_r2.execution.json",
+      "bytes": 2005
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/audit_r2.stdout.txt",
+      "source_sha256": "ad133c48af62c79286f1578092a33008d68a2a51690b9e1ff7e2bf37164452aa",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/audit_r2.stdout.txt",
+      "bytes": 720
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/independent_fit_audit.json",
+      "source_sha256": "645e07551f83a57f8712e9d5b608fd15feb5c8dfd99eb6a6b0bdde159feb05e0",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/independent_fit_audit.json",
+      "bytes": 5647
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/exclusive_guard_CPU_regressions_r1.json",
+      "source_sha256": "681ef4c2e6708dfb4a7ad04109b7930e01315d2554f516a0868d841f183e3a36",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/exclusive_guard_CPU_regressions_r1.json",
+      "bytes": 706
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_20261127/audit_r2.supervisor.py",
+      "source_sha256": "2f4cc4010062e67209f66462c905ec93df15c91debc5d0c37ce6fb5ca53c8f64",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/Train_ledger/audit_r2.supervisor.py",
+      "bytes": 3851
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/pipeline_registered.json",
+      "source_sha256": "2ff0fce1cfb036b81a1c0cc756cfbe27c95b29e7735b9c376b7a4e245c866e83",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/pipeline_registered.json",
+      "bytes": 65944
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/CPU_controls_r1.json",
+      "source_sha256": "455d0dfee6950e6ae52ff02ed49eb40acf561eaec5fb98e65fbf8269d1c55469",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/CPU_controls_r1.json",
+      "bytes": 714
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/real_Train_engineering.json",
+      "source_sha256": "c0a739d0e3b5da7b939aa65f35322eda03cc310071f33740366b3fe9b82c4255",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/real_Train_engineering.json",
+      "bytes": 62909
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/run_r1.execution.json",
+      "source_sha256": "28b1446599a64002844957323e7a27d58b2eed7f10d9496ba08e83b4f109d55d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/run_r1.execution.json",
+      "bytes": 2253
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/run_r1.stdout.txt",
+      "source_sha256": "94cc5bbbeb62688cce42b2bb5485631330fcf5d1d44aef450d588ac0d2acedf9",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/run_r1.stdout.txt",
+      "bytes": 1002
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/state.json",
+      "source_sha256": "22c2dbf1b7dd816c2695a515f1df8a53282241bac6aecccd5d8d1428264a67eb",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/state.json",
+      "bytes": 13687
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/streams/dev/sequence_manifests/BT-005.json",
+      "source_sha256": "641d597eb241ac12589d5d28d0f149b4ee82cff0a15d74aac14f52f47af1e5b4",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/sequence_BT-005.json",
+      "bytes": 79720
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/streams/dev/sequence_manifests/SN-013.json",
+      "source_sha256": "d9602af7e323403058a3273a64193cb7b7ad0bf9d0115ecb0b77f40398d7a291",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/sequence_SN-013.json",
+      "bytes": 79727
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_RGB_q95.log",
+      "source_sha256": "7475c0cdb68049b36ad6fbe1ca92a3d0628b4ddf921942c66d818991228609d5",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/failed_RGB_q95_official.log",
+      "bytes": 505
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/registered.json",
+      "source_sha256": "d750e3bf1583086da326d20d0f00c1ad412653d8853c35d434fd3681cccf9a40",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/registered.json",
+      "bytes": 66257
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/state.json",
+      "source_sha256": "316bd8a902e419ec54412c43b9116c68e7cacd04f893c758e327a82b918eeb33",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/state.json",
+      "bytes": 18511
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/run_r1.execution.json",
+      "source_sha256": "a75b7a8c4b2afd4bc4df1bd70cb96e0baa26ccd4b336b3deab42d36e8dc05e53",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/run_r1.execution.json",
+      "bytes": 2292
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/run_r1.stdout.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/run_r1.stdout.txt",
+      "bytes": 0
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/independent_official_audit.json",
+      "source_sha256": "eddd628ecb72e1ed8982a8c8597215b813bbee14eef52b5f4058e23cb02bdeb2",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/independent_official_audit.json",
+      "bytes": 873
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/run_r1.supervisor.py",
+      "source_sha256": "b834cf0abf3df2505e5b23b28d49400b46977b729847f5f89caf27420caa14ba",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/run_r1.supervisor.py",
+      "bytes": 3854
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_native_control/metrics.json",
+      "source_sha256": "f81e822b20a99bc12978f681176d726433a295075ed1f897f0db929b850ac3c1",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_native_control.json",
+      "bytes": 79598
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_native_control/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "cb4291f212d88e8c0afcaf7f020e658d2146c0d3d91653727712d2d0b438c16a",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_native_control.csv",
+      "bytes": 15860
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_native_control/manifest.json",
+      "source_sha256": "df421aea33b886b518918cefe7753c805dd070ee0063d6ffc63c3549beaa1403",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_native_control.json",
+      "bytes": 2301
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_archive_control/metrics.json",
+      "source_sha256": "432ec14534017af88f36bfcf7e90f22f77953f90adecd3505805ef15701bfffc",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_archive_control.json",
+      "bytes": 79657
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_archive_control/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "ee476015c9cca823b74ef218bb715d64a43ac4eacdba285f453b0fd6a7963525",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_archive_control.csv",
+      "bytes": 15863
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_archive_control/manifest.json",
+      "source_sha256": "a74259a66fa70d483c49b3a2d89ce32a3c9fb4b4febdb16721c9f13b8063def5",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_archive_control.json",
+      "bytes": 2307
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q95/metrics.json",
+      "source_sha256": "bc78ed60754a8664ce29ec05c5eca4b7d06a885b7b823cdba1d139bb0f7898cf",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q95.json",
+      "bytes": 79725
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q95/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "6380f4ece8e44c5a4f91fa3dee8808f2c6a01e41348c044f532e752b7b83d5b3",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q95.csv",
+      "bytes": 16025
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q95/manifest.json",
+      "source_sha256": "b4db91203f56849a867150c6a6c4ce48dba6cd9494a744ab5bb53e21ad1f680d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q95.json",
+      "bytes": 2334
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q95/metrics.json",
+      "source_sha256": "066a34e8cb1db27de1a9e92763f340e45fcb3be71738153d1dbc0556675f53ae",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q95.json",
+      "bytes": 79745
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q95/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "6380f4ece8e44c5a4f91fa3dee8808f2c6a01e41348c044f532e752b7b83d5b3",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q95.csv",
+      "bytes": 16025
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q95/manifest.json",
+      "source_sha256": "6f7e83b2b3bbd97ee49c437f36c50000a195a530d5ea69dd347b443f79826691",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q95.json",
+      "bytes": 2352
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q95_shape/metrics.json",
+      "source_sha256": "0edb6ecfc736aa0d36c9326a649d555290e588f7021ba9b3344d4b848f9ccc47",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q95_shape.json",
+      "bytes": 79758
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q95_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "c34d500149d7f92113234a52bc78e6f468a30bc8ddc273a51f63d3f475d72653",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q95_shape.csv",
+      "bytes": 15999
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q95_shape/manifest.json",
+      "source_sha256": "f99b021915a22753dfd4e3098fc73f08bc3a57e252a0cebac1876652a7081f23",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q95_shape.json",
+      "bytes": 2363
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q95_shape/metrics.json",
+      "source_sha256": "5c4b79512f1c648f79a9791de46c6bf469e1ab579e882c3c89daaf09a4c30109",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q95_shape.json",
+      "bytes": 79779
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q95_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "c34d500149d7f92113234a52bc78e6f468a30bc8ddc273a51f63d3f475d72653",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q95_shape.csv",
+      "bytes": 15999
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q95_shape/manifest.json",
+      "source_sha256": "3a86aa1625d1aa3eb33f0fe07aed72647c6caebf2a8524c68964e8db52af3a36",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q95_shape.json",
+      "bytes": 2381
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99/metrics.json",
+      "source_sha256": "fd17feead345796c55c153d351d4b65e02f9e4ed2cffb77607d24ee838565056",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q99.json",
+      "bytes": 79717
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "fbc591efa4b9f6562adf4dfa0cdc1b0058628a480e6d0b0998f2270e7c337b5f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q99.csv",
+      "bytes": 16022
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q99/manifest.json",
+      "source_sha256": "e3e988b687587fd2632eeec3f291b5e01c09eaf1ee9bbe5e6ca0119263fc6046",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q99.json",
+      "bytes": 2334
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99/metrics.json",
+      "source_sha256": "6b8bd7c524cd02f949fd2952c469f2fc180d4866795dc100c39ca57bd5375071",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q99.json",
+      "bytes": 79738
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "fbc591efa4b9f6562adf4dfa0cdc1b0058628a480e6d0b0998f2270e7c337b5f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q99.csv",
+      "bytes": 16022
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q99/manifest.json",
+      "source_sha256": "44a9672fac3c26b111004ce6cb35119e9f6785d31480300f43036b9aeca9730f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q99.json",
+      "bytes": 2352
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99_shape/metrics.json",
+      "source_sha256": "2f5c16552c07260e8487b69e1168ef3c77fa7a74e735c21264915d10388d8a75",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q99_shape.json",
+      "bytes": 79699
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "862e93c20133e0b3df6d4805e40708f25c1a57ab62cfc841916bb39b46e431d6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q99_shape.csv",
+      "bytes": 15910
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q99_shape/manifest.json",
+      "source_sha256": "ac0c35b3d68d749cf34d36d062522423f938d908aa9c10973fc2385bbdc2e68d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q99_shape.json",
+      "bytes": 2363
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99_shape/metrics.json",
+      "source_sha256": "36d546cf01580f0ccea34f6d8c172a985c73992e7f9b9164f5b5f65d7780c461",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q99_shape.json",
+      "bytes": 79720
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "862e93c20133e0b3df6d4805e40708f25c1a57ab62cfc841916bb39b46e431d6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q99_shape.csv",
+      "bytes": 15910
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q99_shape/manifest.json",
+      "source_sha256": "5b2691eb35f38a9b5adb8d9bd1f962c59b6144afd93952252680332eeb237c83",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q99_shape.json",
+      "bytes": 2381
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q999/metrics.json",
+      "source_sha256": "489282ca538f3a504c173d43291add3a2e655d49a7c4916f72d6073282725692",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q999.json",
+      "bytes": 79705
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q999/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "1db73bac741ec9efea204657d0cee5fe21d8c8d2766f21ae01b25af50fca350f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q999.csv",
+      "bytes": 15936
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q999/manifest.json",
+      "source_sha256": "c9ec78a6baea57282db1dc1f47a4ea2c4c59ab8596769158afa7179a9102ab92",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q999.json",
+      "bytes": 2340
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q999/metrics.json",
+      "source_sha256": "1f7d0e3e3f9bc91163d2c6ced7d1fa06cf701086bdc976a44ab9ed71761392b2",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q999.json",
+      "bytes": 79726
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q999/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "1db73bac741ec9efea204657d0cee5fe21d8c8d2766f21ae01b25af50fca350f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q999.csv",
+      "bytes": 15936
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q999/manifest.json",
+      "source_sha256": "37596daa817423650aec0470c7ce67669f42dfb6eaf706074b9baea78c645d70",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q999.json",
+      "bytes": 2358
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q999_shape/metrics.json",
+      "source_sha256": "d5006ab6c8a6c8e0b11e9ce68d631dc71cf7dc22cd4577500187e20a13e9db8e",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q999_shape.json",
+      "bytes": 79682
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q999_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "f14fb305e99c15c576f8dd48273624d6c10aa6ecf038ab9c6211b1e3ccc12074",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q999_shape.csv",
+      "bytes": 15861
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q999_shape/manifest.json",
+      "source_sha256": "9d445796731376f3152893bf4a74f0e2ed3ff6d5c92cce6a2e8b8fe9acac82c2",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q999_shape.json",
+      "bytes": 2369
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q999_shape/metrics.json",
+      "source_sha256": "74f10bc54cbb1fb4f8cf2bd941d91accd8b06064fb65061cd40ec6fe6cfc3dac",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q999_shape.json",
+      "bytes": 79703
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q999_shape/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "f14fb305e99c15c576f8dd48273624d6c10aa6ecf038ab9c6211b1e3ccc12074",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q999_shape.csv",
+      "bytes": 15861
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q999_shape/manifest.json",
+      "source_sha256": "8ef86dc00df51e5000ebaee6f36da347acf37bb1a4979d2e195fc5d57b12cb3f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q999_shape.json",
+      "bytes": 2387
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99_shape_fixed_memory/metrics.json",
+      "source_sha256": "4b5cc6fc9045c50d6c48aa21be756163905781d8e2edaedf1cfd3110c28f90fc",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_RGB_q99_shape_fixed_memory.json",
+      "bytes": 79837
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_RGB_q99_shape_fixed_memory/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "c19d22688d5220415dc25230d4a011164b7e0baa1858be41441e450508ff4eb1",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_RGB_q99_shape_fixed_memory.csv",
+      "bytes": 15995
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_RGB_q99_shape_fixed_memory/manifest.json",
+      "source_sha256": "d89d764249a7b83b93be64522e9114ca51a70ae4e38a89d38f8b322dd5948884",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_RGB_q99_shape_fixed_memory.json",
+      "bytes": 2429
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99_shape_fixed_memory/metrics.json",
+      "source_sha256": "4dc39dfb86a340bf9b488f11cf659e6a2c7ddfe6d99603d0f321b2918da21fc6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/cases/IL_critic_q99_shape_fixed_memory.json",
+      "bytes": 79858
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/evaluation/IL_critic_q99_shape_fixed_memory/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "c19d22688d5220415dc25230d4a011164b7e0baa1858be41441e450508ff4eb1",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/original_CSV/IL_critic_q99_shape_fixed_memory.csv",
+      "bytes": 15995
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/compact_official_r2/inputs/IL_critic_q99_shape_fixed_memory/manifest.json",
+      "source_sha256": "30a7e039c6336c6b966b199da8b0cced795ffd7c083950beddd631c7dbcd52d0",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/compact_Dev47/ID_bijections/IL_critic_q99_shape_fixed_memory.json",
+      "bytes": 2447
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/evaluation/dev/IL_native_control/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "cb4291f212d88e8c0afcaf7f020e658d2146c0d3d91653727712d2d0b438c16a",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/completed_original_CSV/IL_native_control.csv",
+      "bytes": 15860
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/evaluation/dev/IL_archive_control/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "ee476015c9cca823b74ef218bb715d64a43ac4eacdba285f453b0fd6a7963525",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/completed_original_CSV/IL_archive_control.csv",
+      "bytes": 15863
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/evaluation/dev/IL_critic_q95/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "6380f4ece8e44c5a4f91fa3dee8808f2c6a01e41348c044f532e752b7b83d5b3",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/original_Dev_attempt/completed_original_CSV/IL_critic_q95.csv",
+      "bytes": 16025
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/actual_proposal_metric_20261127/registered.json",
+      "source_sha256": "f2eb4450bb4c842f50a5ef313d0109630258858e3e14caec5a7df16d4a632f8d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/actual_proposal_metric/registered.json",
+      "bytes": 64800
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/actual_proposal_metric_20261127/fit_r1.execution.json",
+      "source_sha256": "c2accb0fc06e70ee018d3fd636bdb1e7417d1ab84c68bff5a8ee024a3903cc71",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/actual_proposal_metric/fit_r1.execution.json",
+      "bytes": 2139
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/actual_proposal_metric_20261127/fit_r1.stdout.txt",
+      "source_sha256": "da42b7eca285a6c60a06828d77f034ec323fcfc4f7b8f57acf8491ca535c665d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/actual_proposal_metric/fit_r1.stdout.txt",
+      "bytes": 6735
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/actual_proposal_metric_20261127/complete.json",
+      "source_sha256": "41550915220d1ed76c91c20996f17ce388af33e01c2875244345aec6e873b333",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/actual_proposal_metric/complete.json",
+      "bytes": 38791
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/actual_proposal_metric_20261127/fit_r1.supervisor.py",
+      "source_sha256": "4a31c936217e72e42265a4e935db4b4d5e39c1e86436fd99c139e299e34ec980",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/actual_proposal_metric/fit_r1.supervisor.py",
+      "bytes": 3913
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/registered.json",
+      "source_sha256": "9a33f8f1b9c8158050e9fab8416afab306f900ff14071379fed211be70137f9d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/registered.json",
+      "bytes": 70707
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/state.json",
+      "source_sha256": "a328795d20f6be0ab370f511bee216063b983f9bb53fee272ea18f3b45f16fd6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/state.json",
+      "bytes": 7754
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/run_r1.execution.json",
+      "source_sha256": "1e4c5b7d9cae23dca9458ef318d9d93d5ab2cf59ee3d3c782f51159874ec30e3",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/run_r1.execution.json",
+      "bytes": 2407
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/run_r1.stdout.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/run_r1.stdout.txt",
+      "bytes": 0
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/complete.json",
+      "source_sha256": "3b4521a234c482f78b2a910407d7836f6d828af22c98ff5d1cd3ba5e313f1b02",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/complete.json",
+      "bytes": 8091
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/run_r1.supervisor.py",
+      "source_sha256": "3f250241a33b2c5b37efda4ec9555bf1f5f67b590c19ecbc4da9e272b111ab7e",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/run_r1.supervisor.py",
+      "bytes": 3896
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/BT-001.json",
+      "source_sha256": "6428def74e4c756f73a4a3c3ec17dcecd1c1c906b1fe87bb92f9fdb3bf42f3ca",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/BT-001.json",
+      "bytes": 90358
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/BT-003.json",
+      "source_sha256": "00f6162f478bd2c900c4ed7b068a10f5fa89c75b1a40c0c52fd6a11ca7f531d4",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/BT-003.json",
+      "bytes": 90215
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/MSK-002.json",
+      "source_sha256": "744842ff54838fc5f2725c75f1ae651f99bb3fbd33183423e8dabbe37febdf1a",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/MSK-002.json",
+      "bytes": 90452
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/PF-001.json",
+      "source_sha256": "db1e2f8ed724e97e93e59a217a7643c1fb6ace873cda823517556d5a2cd8ecb5",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/PF-001.json",
+      "bytes": 90435
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/SN-001.json",
+      "source_sha256": "d4b830103a4dc5f9cf4233138425591693a69e50a85be841febfc067cb774bc6",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/SN-001.json",
+      "bytes": 90251
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/private_cache/SN-015.json",
+      "source_sha256": "526621e6c13b023a2d1ff22f0fd293ec045b8d8b2db0de17d15ac9caf25972f9",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/metadata/SN-015.json",
+      "bytes": 90377
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_BT-001.log",
+      "source_sha256": "84d905448c3daab7f2c4ccb92db7601a3bbd4782162cb62c4a969388603cea94",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_BT-001.log",
+      "bytes": 148
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_BT-003.log",
+      "source_sha256": "0d2af3b60a07121b7245891407f48ad69038f5a82f5a5b5ab3d74cbf7935a367",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_BT-003.log",
+      "bytes": 141
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_MSK-002.log",
+      "source_sha256": "e4c59672f62ea915d9c43e417728d8fbaebb52197d4aadab7a8f5f9eb46e608e",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_MSK-002.log",
+      "bytes": 143
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_PF-001.log",
+      "source_sha256": "ef877668f24fc29b3f86b3ef35292bf4b460a95dd92f45d481dd1ce8037e2b6e",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_PF-001.log",
+      "bytes": 147
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_SN-001.log",
+      "source_sha256": "eafc125541e59362acc5285586b84e4d52b4ce3b5d5a3d5bb8ddbbf044c48000",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_SN-001.log",
+      "bytes": 141
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_GPU_SN-015.log",
+      "source_sha256": "f892a9368fddcce3d210551e09327d0aa216ee973956ac2a3e55672daa3ae80d",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_GPU_SN-015.log",
+      "bytes": 141
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/descriptor_location_probe_20261127/logs/DESCRIPTOR_LOCATION_TRAIN_ANALYSIS_all6.log",
+      "source_sha256": "38bed1b0ccb890cd41d1f97101f45512780303d153d0ccf4d5ff5b5895fb69e8",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/pre_post_BN/logs/DESCRIPTOR_LOCATION_TRAIN_ANALYSIS_all6.log",
+      "bytes": 298
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/causal_gap_completion_20261127/registered.json",
+      "source_sha256": "161711301e526dfb486b7e4e2618b0c9cf9b5037315534fe57e4970dc9957dc2",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/causal_gap_candidate_diagnosis/registered.json",
+      "bytes": 64802
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/causal_gap_completion_20261127/run_r1.execution.json",
+      "source_sha256": "23caa6c9e81817b3868c49051d1c2bbb55c64b658ba7c40ad297090beb8fd419",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/causal_gap_candidate_diagnosis/run_r1.execution.json",
+      "bytes": 2404
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/causal_gap_completion_20261127/run_r1.stdout.txt",
+      "source_sha256": "92dc0e634b43692f65fb8f65857eb2e311bef0b77b73d4de114c51366580fef9",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/causal_gap_candidate_diagnosis/run_r1.stdout.txt",
+      "bytes": 13384
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/causal_gap_completion_20261127/complete_Train.json",
+      "source_sha256": "d8f4a7df7792ef370c8a7932634441bbeaf0593ce876c5654064b65e25b045af",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/causal_gap_candidate_diagnosis/complete_Train.json",
+      "bytes": 24217
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/causal_gap_completion_20261127/run_r1.supervisor.py",
+      "source_sha256": "08002c83e02bba33bbb62af6dbdbc58bb598bbed036b117da7b01ecdafae2cfe",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/causal_gap_candidate_diagnosis/run_r1.supervisor.py",
+      "bytes": 3894
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/proposal_confidence_diagnosis_20261127/registered.json",
+      "source_sha256": "d3def24be091d090e3d769ef7357c4b59e2917a638172ca6705f0a92e6ced77f",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/proposal_confidence_diagnosis/registered.json",
+      "bytes": 64796
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/proposal_confidence_diagnosis_20261127/complete_Train.json",
+      "source_sha256": "1c973bdd365613fc0578099f18196c45609f0752ffd2fc67667071a3c5864996",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/proposal_confidence_diagnosis/complete_Train.json",
+      "bytes": 7100
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/proposal_confidence_diagnosis_20261127/actual_completion.json",
+      "source_sha256": "a3f1f1b2eda83cb22ad16a3b4c281ee0051c5de63919c36fd841127ed6fab876",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/proposal_confidence_diagnosis/actual_completion.json",
+      "bytes": 244
+    },
+    {
+      "source": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/native_pyramid_evaluation/test/NP_source_canonical_RGB/trackeval_output/pedestrian_detailed.csv",
+      "source_sha256": "c63ae33bbb01f14009da3dd3f834b017907df02958fe5200c68f20f38dc6fc6a",
+      "public_path": "docs/fusion_research/perceptual_20261127_identity_ledger_diagnostics/references/original_RGB_Test7_detailed.csv",
+      "bytes": 37775
+    }
+  ],
+  "goal_status": "active",
+  "goal_met": false,
+  "supported_innovations": 0,
+  "consecutive_genuine_blocker_turns": 0
+}

@@ -1,0 +1,414 @@
+{
+  "status": "FAILED_PRESERVE_LEDGER_EVALUATION_ATTEMPT",
+  "controller_pid": 2987650,
+  "phases": {
+    "IDENTITY_LEDGER_ENGINEERING": {
+      "all6": {
+        "id": "all6",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "engineer"
+        ],
+        "status": "COMPLETE",
+        "pid": 2987778,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_ENGINEERING_all6.log",
+        "started_monotonic": 1004437.505409025,
+        "started_UTC": "2026-11-26T23:57:46.218923+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100443750,
+        "command_sha256": "44f2e7aec8abb58fddbe32cb7774c170bd48fbc9d88248a038d13c4c29b543c5",
+        "last_live_monotonic": 1004643.355559143,
+        "observed_peak_RSS_bytes": 855318528,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:01:18.446870+00:00",
+        "worker_wall_upper_seconds": 212.22785839100834,
+        "worker_wall_lower_seconds": 205.85015011799987
+      }
+    },
+    "IDENTITY_LEDGER_DEV_REPLAY": {
+      "BT-005": {
+        "id": "BT-005",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "replay",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--sequence",
+          "BT-005"
+        ],
+        "status": "COMPLETE",
+        "pid": 2991742,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_REPLAY_BT-005.log",
+        "started_monotonic": 1004653.439151182,
+        "started_UTC": "2026-11-27T00:01:22.152665+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100465343,
+        "command_sha256": "51b4ea0d604d2624a94ce581d422439123b086e25aea06d9f626f591f0dc2142",
+        "last_live_monotonic": 1004956.129443764,
+        "observed_peak_RSS_bytes": 753958912,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:06:31.282941+00:00",
+        "worker_wall_upper_seconds": 309.13018117204774,
+        "worker_wall_lower_seconds": 302.69029258203227
+      },
+      "SN-013": {
+        "id": "SN-013",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "replay",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--sequence",
+          "SN-013"
+        ],
+        "status": "COMPLETE",
+        "pid": 2991743,
+        "slot": "CPU1",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_REPLAY_SN-013.log",
+        "started_monotonic": 1004654.463266335,
+        "started_UTC": "2026-11-27T00:01:23.176780+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100465446,
+        "command_sha256": "b95a039bf4b0b871c80066fff6714781e2670f9ae1fffd3b2b3f4be1745973e9",
+        "last_live_monotonic": 1005129.458206544,
+        "observed_peak_RSS_bytes": 795328512,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:09:24.410941+00:00",
+        "worker_wall_upper_seconds": 481.2340656280285,
+        "worker_wall_lower_seconds": 474.99494020908605
+      }
+    },
+    "IDENTITY_LEDGER_DEV_OFFICIAL": {
+      "IL_native_control": {
+        "id": "IL_native_control",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_native_control"
+        ],
+        "status": "COMPLETE",
+        "pid": 2999272,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_native_control.log",
+        "started_monotonic": 1005137.904535418,
+        "started_UTC": "2026-11-27T00:09:26.618049+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100513790,
+        "command_sha256": "77dc18e9faf819774ea93b2f56b57f89c833403967da9cb8ff9c192f7066cbf8",
+        "last_live_monotonic": 1005159.314292358,
+        "observed_peak_RSS_bytes": 674447360,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:09:56.477097+00:00",
+        "worker_wall_upper_seconds": 29.858939436962828,
+        "worker_wall_lower_seconds": 21.409756939974613
+      },
+      "IL_archive_control": {
+        "id": "IL_archive_control",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_archive_control"
+        ],
+        "status": "COMPLETE",
+        "pid": 2999291,
+        "slot": "CPU1",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_archive_control.log",
+        "started_monotonic": 1005138.897446367,
+        "started_UTC": "2026-11-27T00:09:27.610965+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100513889,
+        "command_sha256": "4dc98e9c0f93195fc2b33a3d92dd27144780882e6dc4c3a848d70651bb6ed0e1",
+        "last_live_monotonic": 1005152.343163405,
+        "observed_peak_RSS_bytes": 644718592,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:09:48.028221+00:00",
+        "worker_wall_upper_seconds": 20.417141991085373,
+        "worker_wall_lower_seconds": 13.44571703800466
+      },
+      "IL_RGB_q95": {
+        "id": "IL_RGB_q95",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q95"
+        ],
+        "status": "FAILED",
+        "pid": 2999737,
+        "slot": "CPU1",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_RGB_q95.log",
+        "started_monotonic": 1005160.69954241,
+        "started_UTC": "2026-11-27T00:09:49.413056+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100516069,
+        "command_sha256": "5461e0de9e3df433f6ffa7508f8e2723eae0075e67a2c0a274cf610b9980dfe7",
+        "last_live_monotonic": 1005240.626107362,
+        "observed_peak_RSS_bytes": 8644038656,
+        "exit_code": -15,
+        "completion_observed_UTC": "2026-11-27T00:11:16.474498+00:00",
+        "worker_wall_upper_seconds": 87.06131035101134,
+        "worker_wall_lower_seconds": 79.92656495200936
+      },
+      "IL_critic_q95": {
+        "id": "IL_critic_q95",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q95"
+        ],
+        "status": "COMPLETE",
+        "pid": 2999860,
+        "slot": "CPU0",
+        "log": "/var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_critic_q95.log",
+        "started_monotonic": 1005169.656033797,
+        "started_UTC": "2026-11-27T00:09:58.369547+00:00",
+        "argv_identity_observed": true,
+        "start_ticks": 100516965,
+        "command_sha256": "b79980f4cad0cf0ac5fb73b17cab84ee3b06b6d652b4d1f3c51f5bd1aa55d982",
+        "last_live_monotonic": 1005247.761072556,
+        "observed_peak_RSS_bytes": 7507496960,
+        "exit_code": 0,
+        "completion_observed_UTC": "2026-11-27T00:11:23.828390+00:00",
+        "worker_wall_upper_seconds": 85.45832283305936,
+        "worker_wall_lower_seconds": 78.10503875906579
+      },
+      "IL_RGB_q95_shape": {
+        "id": "IL_RGB_q95_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q95_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q95_shape": {
+        "id": "IL_critic_q95_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q95_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_RGB_q99": {
+        "id": "IL_RGB_q99",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q99"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q99": {
+        "id": "IL_critic_q99",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q99"
+        ],
+        "status": "PENDING"
+      },
+      "IL_RGB_q99_shape": {
+        "id": "IL_RGB_q99_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q99_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q99_shape": {
+        "id": "IL_critic_q99_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q99_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_RGB_q999": {
+        "id": "IL_RGB_q999",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q999"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q999": {
+        "id": "IL_critic_q999",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q999"
+        ],
+        "status": "PENDING"
+      },
+      "IL_RGB_q999_shape": {
+        "id": "IL_RGB_q999_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q999_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q999_shape": {
+        "id": "IL_critic_q999_shape",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q999_shape"
+        ],
+        "status": "PENDING"
+      },
+      "IL_RGB_q99_shape_fixed_memory": {
+        "id": "IL_RGB_q99_shape_fixed_memory",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_RGB_q99_shape_fixed_memory"
+        ],
+        "status": "PENDING"
+      },
+      "IL_critic_q99_shape_fixed_memory": {
+        "id": "IL_critic_q99_shape_fixed_memory",
+        "command": [
+          "/data3/liuyeqiang/.venvs/trackocd-a100/bin/python",
+          "-u",
+          "tools/run_mft_identity_ledger.py",
+          "evaluate",
+          "--split",
+          "dev",
+          "--stage",
+          "normal",
+          "--case",
+          "IL_critic_q99_shape_fixed_memory"
+        ],
+        "status": "PENDING"
+      }
+    }
+  },
+  "seed": 0,
+  "new_GPU_work": false,
+  "goal_met": false,
+  "supported_innovations": 0,
+  "failure": "Preserve failed child: /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_RGB_q95.log",
+  "error": "RuntimeError('Preserve failed child: /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/identity_ledger_evaluation_20261127/logs/IDENTITY_LEDGER_DEV_OFFICIAL_IL_RGB_q95.log')"
+}

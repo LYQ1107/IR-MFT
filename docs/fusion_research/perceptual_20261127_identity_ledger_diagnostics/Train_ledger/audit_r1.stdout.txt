@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_identity_ledger.py", line 126, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('mode',choices=['audit']);p.parse_args();audit()
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_identity_ledger.py", line 80, in audit
+    rows=collector.step(sequence,frame,arrays['detections'][lo:hi],arrays['rgb'][lo:hi],arrays['ir'][lo:hi],gt[left:right],split='train')
+  File "/data3/liuyeqiang/IR-MFT/tools/mft_identity_ledger_labels.py", line 50, in step
+    rows=self.tracker.update(sequence,frame,d,rgb,ir)
+  File "/data3/liuyeqiang/IR-MFT/tools/mft_identity_ledger.py", line 202, in update
+    if self.observer is not None:self.observer(x,eligible,roots,frame)
+  File "/data3/liuyeqiang/IR-MFT/tools/mft_identity_ledger_labels.py", line 38, in observe
+    if known.any():self.sink(self.sequence,frame,x[known].copy(),targets[known].copy())
+  File "/data3/liuyeqiang/IR-MFT/tools/audit_mft_identity_ledger.py", line 70, in sink
+    if part=='late':wrong[k].append(p[y==0]);right[k].append(p[y==1]);continue
+TypeError: 'int' object is not subscriptable

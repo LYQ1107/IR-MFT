@@ -1,0 +1,28 @@
+{
+  "status": "PROSPECTIVE_TRAIN_ONLY_ACTUAL_PROPOSAL_METRIC_DIAGNOSTIC",
+  "dimensions": 32,
+  "ridge_fraction": 0.1,
+  "maximum_RAM_input_payload_bytes": 1073741824,
+  "input": "All6Train27251frame actual detector proposal banks, current-frame Hungarian GT labels and unchanged descriptor reliability. Never crop using GT or read Dev/Test labels.",
+  "fit": "Known positive reliable actual detections in first75% of each Train video;minimum3 observations per video-local identity. Fit independent RGB-only512D and paired1024D regularized Fisher transforms, equal video/identity weights. No old Fisher coefficients reused.",
+  "legacy_difference": "Old Fisher used sampled GT boxes pooled from320D teacher FPN. This investigation reuses actual detector boxes and512D independently trained ReID crop encoders. The classical Fisher algorithm itself is not novel.",
+  "validation": "6 deterministic leave-one-Train-video-out transform fits. Only other5videos early observations enter a transform. Held video's first3 reliable early detections per GT identity form diagnostic templates;last25% reliable known positives are queries. Encoder pretraining previously saw all Train identities, including held video:exclusion applies only to the projection.",
+  "progress_gates": {
+    "RGB": "ProjectedRGB minus rawRGB equal-video top1>=2absolute points and wins on at least4of6heldTrain videos",
+    "paired": "Projectedpaired minus projectedRGB equal-video top1>=1absolute point and wins on at least4of6heldTrain videos",
+    "on_failure": "Retain negative diagnostic;do not promote it to Dev or tracking contribution. Continue investigating identity dynamics or recognition using Train evidence."
+  },
+  "next_if_gate_passes": "Refit a separately calibrated logical ledger on transformed allTrain candidates,then completeDev before any newTest. Preserve matchedRGB,missingIR and current-frame IR permutation;do not reuse raw-ledger probability calibration.",
+  "current_ledger_Dev_running_at_design": true,
+  "seed": 0,
+  "GPUs_if_needed": ["4", "5"],
+  "maximum_cards": 2,
+  "work_cap_GiB": 64,
+  "free_reserve_GiB": 40,
+  "new_images_or_feature_bank": false,
+  "private_projection_coefficients_not_for_Git": true,
+  "historical_Test_previously_exposed": true,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

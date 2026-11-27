@@ -1,0 +1,29 @@
+{
+  "status": "PROSPECTIVE_ORIGIN_CLEAN_LOGICAL_IDENTITY_LEDGER",
+  "seed": 0,
+  "data": "Fixed November DiffV2IR and MFT ProtocolV2; unchanged all-proposal detector and physical ByteTrack.",
+  "evidence": "First3 reliable RGB/IR view anchors, past-only adaptive templates updated only when RGB anchor cosine>=.5. Last trusted box/time independent of the physical filter.",
+  "candidates": "All current actual proposals versus all ready roots within1000 trusted frames; active owners remain eligible. Rotation-tolerant diagonal scale .25..4 and body reach .5+Train_unknown_speed_upper*gap. No GT filtering, edge truncation or pair disk dump.",
+  "targets": "Train-only Hungarian current detection labels; root origin requires the first3 reliable seed views all having the same positive GT ID. A mixed/unknown origin is never relabeled by later majority. Unknown edges excluded only from loss.",
+  "fit": {
+    "maximum_RAM_feature_payload_bytes": 4294967296,
+    "fixed_Newton_updates": 12,
+    "L2": 0.001,
+    "fit_frames": "first75% of each of all6Train sequences",
+    "calibration_frames": "last25% of each Train sequence",
+    "weighting": "Equal video and available positive/negative class weight",
+    "models": ["RGB", "paired"],
+    "late_wrong_quantiles": {"q95": 0.95, "q99": 0.99, "q999": 0.999},
+    "critic_veto_threshold": "1st percentile of late-Train known positive paired posterior; missing IR cannot veto. Paired posterior never creates a proposal."
+  },
+  "online_rule": "RGB posterior above frozen Train quantile and mutual row/column margin>=.05 for3 consecutive frames. Preserve occupied root unless its current owner has posterior<=.5 or an accepted simultaneous handoff. Assign displaced owner a new unique identity. No prefix rewriting, future input, GT or physical filter feedback.",
+  "feature_names_from": "tools/mft_identity_ledger.py",
+  "Dev_plan": "All4834Dev first; q95/q99/q999 RGB and conditional IR critic, each with filtered/raw-shape rendering; frozen-memory ablations. Strict improvement over previous fullDev52.098427171322534 required before new Test7. Freeze selection before interventions and Test; no reselection from Test.",
+  "resources": {"GPUs_if_needed": ["4", "5"], "maximum_cards": 2, "work_cap_GiB": 64, "free_reserve_GiB": 40, "new_feature_extraction": false},
+  "historical_Test_previously_exposed": true,
+  "source_detector_historical_Dev_exposure": true,
+  "encoder_previously_seen_Train_identities": true,
+  "new_accuracy": false,
+  "goal_met": false,
+  "supported_innovations": 0
+}

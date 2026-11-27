@@ -1,0 +1,13 @@
+{
+  "status": "PROSPECTIVE_FULL_TRAIN_OUTPUT_ONLY_CAUSAL_GAP_COMPLETION_DIAGNOSIS",
+  "motivation": "Broad appearance-led active identity remapping hurt fullDev;actual-proposal Fisher and pre/postBN retrieval checks did not pass gates. Investigate short missing observations separately from physical association and identity memory.",
+  "candidate": "Every currently lost activated physical ByteTrack with>=3reliable observations,gap1..25 and predicted box area>100. Use its current causal Kalman prediction without changing its filter,buffer,assignment,template or published output.",
+  "features": "Only current/past box,velocity,covariance,score,template reliability and all current proposal RGB/IR neighborhood support. No GT or future input at candidate generation.",
+  "Train_labels": "Frozen positive origin requires first3reliable actual detections to have the same positive GT ID. Current GT origin exists,IoU>=.5,and no original visible prediction already covers it=>positive coverage candidate. Existing visible target,origin absent orIoU<.2=>known negative. Unknown/mixed origin,ignored overlap>=.2 orIoU.2..5=>unknown. Labels never filter proposals or alter tracker.",
+  "coverage": "All6Train27251frames and249639actual proposals;old physical teacher MOT must remain byteexact. Reportearly75/late25 and gaps1,2-3,4-5,6-10,11-25. Count unique uncovered GT perframe to avoid duplicate-candidate inflation.",
+  "scope": "Train localIoU.5 candidate coverage diagnosis only;not a globalHOTA upperbound,tracker gain,online oracle or validated innovation. Fit any later completion risk model separately and select on fullDev before Test.",
+  "resources": {"seed": 0, "GPUs_if_needed": ["4", "5"], "maximum_cards": 2, "new_GPU_work": false, "reuse_ROI_banks": true, "pair_disk_dump": false, "work_cap_GiB": 64, "free_reserve_GiB": 40},
+  "historical_Test_previously_exposed": true,
+  "goal_met": false,
+  "supported_innovations": 0
+}
