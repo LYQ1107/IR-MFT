@@ -1,0 +1,193 @@
+{
+  "purpose": "Prospective protected trusted/peripheral tracking with spatial explanation; distinct from closed failed joint-recall study",
+  "normal_cases": [
+    {
+      "id": "PP_reference",
+      "kind": "reference",
+      "need_mode": "original",
+      "threshold": null
+    },
+    {
+      "id": "PP_unconditional",
+      "kind": "unconditional",
+      "need_mode": "original",
+      "threshold": null
+    },
+    {
+      "id": "PP_original_count_t01",
+      "kind": "count",
+      "need_mode": "original",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_original_RGB_t01",
+      "kind": "RGB",
+      "need_mode": "original",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_original_paired_t01",
+      "kind": "paired",
+      "need_mode": "original",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_original_duplicatedRGB_t01",
+      "kind": "duplicatedRGB",
+      "need_mode": "original",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_original_count_t025",
+      "kind": "count",
+      "need_mode": "original",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_original_RGB_t025",
+      "kind": "RGB",
+      "need_mode": "original",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_original_paired_t025",
+      "kind": "paired",
+      "need_mode": "original",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_original_duplicatedRGB_t025",
+      "kind": "duplicatedRGB",
+      "need_mode": "original",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_expanded_count_t01",
+      "kind": "count",
+      "need_mode": "expanded",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_expanded_RGB_t01",
+      "kind": "RGB",
+      "need_mode": "expanded",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_expanded_paired_t01",
+      "kind": "paired",
+      "need_mode": "expanded",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_expanded_duplicatedRGB_t01",
+      "kind": "duplicatedRGB",
+      "need_mode": "expanded",
+      "threshold": 0.1
+    },
+    {
+      "id": "PP_expanded_count_t025",
+      "kind": "count",
+      "need_mode": "expanded",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_expanded_RGB_t025",
+      "kind": "RGB",
+      "need_mode": "expanded",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_expanded_paired_t025",
+      "kind": "paired",
+      "need_mode": "expanded",
+      "threshold": 0.25
+    },
+    {
+      "id": "PP_expanded_duplicatedRGB_t025",
+      "kind": "duplicatedRGB",
+      "need_mode": "expanded",
+      "threshold": 0.25
+    }
+  ],
+  "primary_selection_kinds": [
+    "paired"
+  ],
+  "need_modes": [
+    "original",
+    "expanded"
+  ],
+  "thresholds": [
+    0.1,
+    0.25
+  ],
+  "source_parent": {
+    "train": "Original fixed-score ByteTrack + current measured shape rendering; no late-calibrated quality/archive thresholds",
+    "dev_and_test": "Previously Dev-selected fixed BO_paired_q999_c3, unchanged"
+  },
+  "shadow": "Unchanged independent original-score ProposalConfirmation, track_thresh0.1,mot20True,frame25,buffer30,match0.9; no GT",
+  "weak_birth": {
+    "minimum_score_exclusive": 0.3,
+    "maximum_score_exclusive": 0.7,
+    "minimum_streak": 3,
+    "not_owned_by_main": true,
+    "maximum_explained_area_exclusive": 0.5,
+    "explanation": "Exact union of current measured trusted rectangles, clipped to candidate; no label or videoID. Reject union coverage>=0.5. New auxiliary also cannot be mostly explained by an already emitted auxiliary current rectangle."
+  },
+  "continuation": "An already published shadow identity may continue when currently measured, even if the global need gate is off; ownership, trusted spatial explanation, current observations and area>100 still apply. No past output rewrite.",
+  "need_definition": {
+    "original": "Frozen prior confirmedunused0.6-0.7 foreground ratio from unchanged raw teacher",
+    "expanded": "Confirmed unassigned0.3-0.7 confidence weighted by 1-unionCoverage divided by this mass plus current main measured confidence; zero denominator0",
+    "without_explanation": "Expanded ratio with weights1, for the registered removal control only"
+  },
+  "confidence_is_calibrated_count": false,
+  "identity_contract": {
+    "main_rows_geometry_scores_survive": true,
+    "main_aliases_injective_immutable": true,
+    "aux_to_brand_new_main_handoff": true,
+    "maximum_publication_gap_frames": 2,
+    "prefer_original_numeric_main_ID_if_unused": true,
+    "future_numeric_collision": "Allocate new unused compact positive ID for a not-yet-published main identity; never revise old IDs",
+    "no_future_maxID_or_billion_namespace": true,
+    "zero_aux_MOT_literal_exact": true
+  },
+  "source_bank": "Current-frame main and shadow geometry/IDs, needs float64, offsets and IDs int64. No GT labels, images, RGB/IR descriptors or weights; sequential delivery; source models unchanged. Exact real-prefix direct/replay check required.",
+  "private_source_cache_total_cap_bytes": 268435456,
+  "source_diagnostic": "Before HOTA, complete all6Train+2Dev GTfree producers; separately audit original need vs prior scalar diagnostic, missingRGB exact, broad candidate labels only after completed sources. No fitting or threshold changes from this diagnostic.",
+  "validation_lengths": {
+    "BT-001": 750,
+    "BT-003": 61,
+    "MSK-002": 439,
+    "PF-001": 3750,
+    "SN-001": 171,
+    "SN-015": 1643
+  },
+  "Train_validation_scored_frames": 6814,
+  "Train_past_frames_consumed": 27251,
+  "standalone_validation_caveat": "New controller forward replay on final25percent; heads/directions fit first75percent. Prior development has inspected this validation window; old ReID encoders saw Train identities. No new untouched or unseen-domain claim.",
+  "minimum_validation_HOTA_gain_pp": 0.1,
+  "full_Dev_noninferiority_HOTA": 52.11311409153856,
+  "full_Dev_tolerance_pp": 1e-10,
+  "selection_rule": "Paired cases only; validation gain>=0.1 and completeDev>=52.11311409153856-1e-10. Rank by validation HOTA,thenDevHOTA,AssA,IDF1 descending,thenid. Exact Dev ties allowed prospectively; no Test selection.",
+  "controls": "All matchedRGB/duplicatedRGB/count/unconditional and reference; selected IR gate roll/missing, no spatial explanation, no identity handoff. Same source neural inputs and budgets; ROI gate controls do not remove frozen IR visual detector or old quality/archive.",
+  "Test_cases": "Selected paired and matched RGB/dup/count at same need mode and threshold, reference, unconditional. All7full15985frames/all47. Module controls on Test if numeric+5 attained, never reselected.",
+  "original_RGB_baseline_HOTA": 29.528970687393972,
+  "minimum_Test_HOTA": 34.52897068739397,
+  "stretch_Test_HOTA": 39.52897068739397,
+  "seed": 0,
+  "physical_GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "max_cards": 2,
+  "new_GPU_work": false,
+  "new_neural_training": false,
+  "work_cap_GiB": 64,
+  "reserve_GiB": 40,
+  "cleanup": "After official metrics, newly created TrackEval-format MOT duplicates may be removed only after byte-exact comparison to preserved canonical streams, with receipts. Do not remove registered original assets.",
+  "prior_work": "ByteTrack, adaptive birth intensity and ByteTraX boundaries documented; ordinary trackers/thresholds/exclusion/ID transfer do not automatically establish multimodal novelty.",
+  "historical_Test_exposed": true,
+  "stronger_RGB_crossarchitecture_sweeps": "Deferred under user scope, not complete",
+  "goal_met": false,
+  "supported_innovations": 0
+}
