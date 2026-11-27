@@ -1,0 +1,103 @@
+{
+  "purpose": "New prospective coverage-triggered weak-recall study, distinct from the closed failed conditional-quality study",
+  "normal_cases": [
+    {
+      "id": "CR_reference",
+      "kind": "reference",
+      "threshold": null
+    },
+    {
+      "id": "CR_unconditional",
+      "kind": "unconditional",
+      "threshold": null
+    },
+    {
+      "id": "CR_count_t01",
+      "kind": "count",
+      "threshold": 0.1
+    },
+    {
+      "id": "CR_RGB_t01",
+      "kind": "RGB",
+      "threshold": 0.1
+    },
+    {
+      "id": "CR_paired_t01",
+      "kind": "paired",
+      "threshold": 0.1
+    },
+    {
+      "id": "CR_duplicatedRGB_t01",
+      "kind": "duplicatedRGB",
+      "threshold": 0.1
+    },
+    {
+      "id": "CR_count_t025",
+      "kind": "count",
+      "threshold": 0.25
+    },
+    {
+      "id": "CR_RGB_t025",
+      "kind": "RGB",
+      "threshold": 0.25
+    },
+    {
+      "id": "CR_paired_t025",
+      "kind": "paired",
+      "threshold": 0.25
+    },
+    {
+      "id": "CR_duplicatedRGB_t025",
+      "kind": "duplicatedRGB",
+      "threshold": 0.25
+    }
+  ],
+  "candidate_selection_kinds": [
+    "paired"
+  ],
+  "minimum_score_for_extra_birth": 0.3,
+  "minimum_original_shadow_streak": 3,
+  "original_active_association_stages_precede_new_weak_pending_and_birth": true,
+  "original_scores_boxes_order_preserved": true,
+  "global_gate_inputs": "Original unchanged zero-gate teacher and independent original-score shadow; no per-video or Test rule",
+  "standalone_Train_validation": "Warm every Train sequence from frame1, emit/evaluate only final25percent. Original shape-rendered parent with no archive or late-calibrated birth-quality thresholds. Coverage heads and foreground directions fit on first75percent; no fitting in last25percent. Legacy ReID encoders already trained on Train identities; this is forward validation of new controller, not an unseen-encoder/domain test.",
+  "validation_lengths": {
+    "BT-001": 750,
+    "BT-003": 61,
+    "MSK-002": 439,
+    "PF-001": 3750,
+    "SN-001": 171,
+    "SN-015": 1643
+  },
+  "standalone_min_validation_HOTA_gain_pp": 0.1,
+  "full_Dev_parent": "Frozen previously Dev-selected BO_paired_q999_c3, including its old Train calibration",
+  "full_Dev_noninferiority_HOTA": 52.11311409153856,
+  "full_Dev_noninferiority_tolerance_pp": 1e-10,
+  "selection": "Eligible paired cases require standalone forward-Train-validation HOTA gain >=0.1 and complete full-Dev HOTA >= prior52.11311409153856 minus1e-10. Rank by standalone validation HOTA, then Dev HOTA, AssA, IDF1 descending, then id. Exact Dev ties are allowed prospectively. Count/RGB/duplicated/unconditional are controls and cannot be promoted from Test.",
+  "Test_cases": "Frozen selected paired case, matched RGB/duplicatedRGB/count at same threshold, reference, unconditional; all7 full sequences15985frames, all47 metrics",
+  "gate_interventions": "IR_roll/IR_missing change only the new coverage gate, not fixed IR visual detector or frozen parent quality/archive; missing must exactly match matchedRGB gate",
+  "source_data": "Fixed NovemberDiffV2IR, MFTProtocolV2; original canonical RGBYOLOXX+ByteTrack baseline29.528970687393972",
+  "minimum_Test_HOTA": 34.52897068739397,
+  "stretch_Test_HOTA": 39.52897068739397,
+  "no_Test_selection": true,
+  "historical_Test_exposed": true,
+  "seed": 0,
+  "new_neural_training": false,
+  "new_GPU_work": false,
+  "physical_GPUs_if_needed": [
+    "4",
+    "5"
+  ],
+  "max_GPU_cards": 2,
+  "disk_work_cap_GiB": 64,
+  "disk_reserve_GiB": 40,
+  "never_push": [
+    "weights",
+    "images",
+    "descriptor banks",
+    "MOT trajectory dumps",
+    "private scalar table"
+  ],
+  "goal_met": false,
+  "supported_innovations": 0
+}
