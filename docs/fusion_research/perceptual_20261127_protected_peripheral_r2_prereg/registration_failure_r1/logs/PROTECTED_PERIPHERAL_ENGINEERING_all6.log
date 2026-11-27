@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_protected_peripheral.py", line 118, in <module>
+    if a.mode in ['register','run','engineer','diagnostic']:{'register':register,'run':run,'engineer':engineer,'diagnostic':diagnostic}[a.mode]()
+  File "/data3/liuyeqiang/IR-MFT/tools/mft_protected_peripheral_experiment.py", line 163, in engineer
+    full,digest=_prefix(sequence,a,64,m,standalone,allcases)
+  File "/data3/liuyeqiang/IR-MFT/tools/mft_protected_peripheral_experiment.py", line 141, in _prefix
+    expected=baseline.update(sequence,i+1,d,rgb,ir);text=''.join(map(mot_line,expected))
+NameError: name 'mot_line' is not defined

@@ -18,6 +18,7 @@ from tools.native_pyramid_experiment import ROOT,read,frozen_json
 from tools.native_pyramid_training_loop import guard_storage
 from tools.run_mft_candidate_train_bank import atomic_json
 from tools.run_pseudo_ir_comparison import sha256
+from tools.native_pyramid_stream_tracks import mot_line
 from tools.run_mft_native_memory_priority_v3 import identity
 from tools.fit_mft_proposal_quality import utc
 from tools.fusion_memory_observation import LENGTHS
@@ -35,7 +36,7 @@ SOURCES=['tools/mft_protected_peripheral.py','tools/mft_peripheral_frame_bank.py
 
 def locations():
     plan,protocol,work,previous=previous_locations()
-    return plan,protocol,work,work/'protected_peripheral_20261127',previous
+    return plan,protocol,work,work/'protected_peripheral_20261127_r2',previous
 
 
 def register():
@@ -52,7 +53,8 @@ def register():
     source={**old['source_hashes'],**{n:sha256(ROOT/n)for n in SOURCES}}
     paths=[SPEC,base/'unit_regressions.json',previous/'registered.json',previous/'complete_forward_Train_validation.json',
         previous/'complete_Dev.json',previous/'independent_results_audit.json',previous/'validation_GT_view_audit.json',
-        previous/'failure_analysis_Train_false_need.json',previous/'false_need_probe_actual_tool.json']
+        previous/'failure_analysis_Train_false_need.json',previous/'false_need_probe_actual_tool.json',
+        work/'protected_peripheral_20261127/failed_r1_source_snapshot/attempt_failure.json']
     m=models();fit,archive=m[-2:]
     frozen_json(base/'registered.json',dict(status='REGISTERED_PROTECTED_PERIPHERAL_BEFORE_NEW_SOURCE_OR_HOTA',UTC=utc(),
         source_hashes=source,artifact_hashes={str(p):sha256(p)for p in paths},specification=spec,

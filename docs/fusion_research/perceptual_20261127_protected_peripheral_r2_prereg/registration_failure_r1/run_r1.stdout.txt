@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_protected_peripheral.py", line 118, in <module>
+    if a.mode in ['register','run','engineer','diagnostic']:{'register':register,'run':run,'engineer':engineer,'diagnostic':diagnostic}[a.mode]()
+  File "/data3/liuyeqiang/IR-MFT/tools/run_mft_protected_peripheral.py", line 62, in run
+    queue.jobs(PREFIX+'_ENGINEERING',[dict(id='all6',command=cmd+['engineer'])],False,
+  File "/data3/liuyeqiang/IR-MFT/tools/task_utility_queue.py", line 107, in jobs
+    if failure and not self.active:raise RuntimeError(failure)
+RuntimeError: Preserve failed child: /var/tmp/liuyeqiang_ir_mft_perceptual_20261122/protected_peripheral_20261127/logs/PROTECTED_PERIPHERAL_ENGINEERING_all6.log
