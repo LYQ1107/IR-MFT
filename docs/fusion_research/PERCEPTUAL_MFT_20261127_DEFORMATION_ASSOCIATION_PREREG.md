@@ -1,0 +1,15 @@
+# Registered confidence/shape association factorial
+
+Primary baseline remains original RGB-only YOLOX-X+ByteTrack,29.5289706874 HOTA on all Test7/15,985 frames. Minimum34.5289706874 (+5), stretch39.5289706874 (+10). The selected PP method has32.4955880280 (+2.9666173406), below+5. StrongestRGB/crossarchitecture sweeps remain deferred; detector/encoder architectures and fixed November pseudo-IR remain unchanged.
+
+Four fixed cases compare original association, no score fusion, measured-scale matching, and both. Measured-scale matching centers a box of the current candidate's measured width/height at the predicted track center, then compares it with the current candidate by IoU. It applies at primary/secondary/pending stages with unchanged0.9/0.5/0.7 assignment thresholds. The independent score factor controls the existing primary/pending score fusion. This differs from the previous current-width/height output rendering: matching itself may now change.
+
+Original observations/scores/order, score partitions, birth rules, measurement update equations, template reliability, trained heads/calibration, archive and selected PP peripheral policy stay fixed. Changed assignments may change later identities, state and memory. Each publisher retains its own main rows and never feeds back into its main tracker. Only the reference has an exact-original-state/MOT contract across methods; alternative states are intentionally different.
+
+Warm all27,251 Train frames and score its final6,814. Full Dev has4,834 frames. Only nonreference cases with Train HOTA gain>=0.1 over selected PP and full Dev HOTA>=52.11311409153856 within1e-10 qualify. Rank validation HOTA, then Dev HOTA/AssA/IDF1 and identifier. Freeze one primary method before any new Test; all four fixed factorial controls then run on full Test without reselection or promotion. If none qualifies, no new Test run occurs.
+
+Three regressions passed for shape/center behavior, literal original-row/hidden-state parity, and private score-mode isolation/original scores. Runner import passed. The controller additionally checks six real-Train64-frame prefixes, original hidden state/MOT and32-frame prefix invariance under future input corruption before formal HOTA. The saved actual launch identity is a running snapshot, not a completion claim.
+
+These are classical geometric association hypotheses and do not introduce new independent IR evidence. Their gains alone cannot establish multimodal novelty. Historical Test and prior PP results were exposed before this hypothesis, and earlier work inspected the Train validation window; old encoders saw Train identities and the older RGB detector had Dev exposure. No newly blinded evaluation is claimed.
+
+Fixed seed0; cached qualified native neural inputs; no new training/images/descriptor banks/weights or GPU work. If needed, only physical GPU4/5, maximum two. New private cap256MiB inside existing64GiB work cap, with40GiB free reserve. Canonical MOT, NN banks, images, weights and GT stay out of Git. Cached timing excludes original neural/image/generation costs.
